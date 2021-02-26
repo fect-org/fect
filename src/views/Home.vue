@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Button size="mini"></Button>
+    <Button size="mini" @click="handleTest">I am button</Button>
   </div>
 </template>
 
@@ -11,6 +11,11 @@ import Button from '../../packages/Button'
 export default {
   components:{
     Button,
+  },
+  methods:{
+    handleTest(e){
+      console.log(e)
+    },
   },
   name: 'Home',
  

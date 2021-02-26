@@ -2,7 +2,7 @@
 node_modules
 /dist
 
-
+_templates
 # local env files
 .env.local
 .env.*.local
