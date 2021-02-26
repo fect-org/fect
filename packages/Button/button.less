@@ -18,7 +18,7 @@
   overflow: hidden;
   cursor: pointer;
   transition: border 0.2s, background 0.2s, color 0.2s ease-out;
-  &:hover {
+  &:not(.shadow):not(.loading):hover {
     color: var(--accents-1);
     background-color: #fff;
     color: #333;
@@ -46,5 +46,29 @@
     font-size: 18px;
     padding: 0 30px;
     height: 45px;
+  }
+  &.disabled {
+    color: #ccc !important;
+    cursor: not-allowed !important;
+    pointer-events: none;
+    background: var(--accents-7) !important;
+    border-color: var(--accents-7) !important;
+    &:hover {
+      background: var(--accents-7) !important;
+      border-color: var(--accents-7) !important;
+      color: #ccc !important;
+      cursor: not-allowed !important;
+    }
+  }
+  &.shadow {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
+  }
+  &.loading {
+    // border: 1px solid #333 !important;
+    // background-color: black;
+    pointer-events: none;
+    &.fay-loading-icon {
+      background-color: #000;
+    }
   }
 }

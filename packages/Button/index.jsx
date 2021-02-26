@@ -38,7 +38,18 @@ export default createComponent({
     const clickHandler = (e) => emit('click', e)
     return () => (
       <>
-        <button className={`fay-btn ${clacClass.value}`} onClick={clickHandler}>
+        <button
+          disabled={disabled}
+          className={`fay-btn ${clacClass.value}`}
+          onClick={clickHandler}
+        >
+          {loading.value && (
+            <span className={'fay-loading-icon'}>
+              <i></i>
+              <i></i>
+              <i></i>
+            </span>
+          )}
           {slots && slots.default()}
         </button>
       </>
