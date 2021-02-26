@@ -1,6 +1,20 @@
 <template>
   <div class="home">
-    <fay-Button size="mini" @click="handleTest">I am angry</fay-Button>
+    <!-- size="medium" -->
+    <fay-Button type="success" size="mini" @click="handleTest"
+      >mini Button</fay-Button
+    >
+    <p style="margin-top: 15px" />
+    <fay-Button type="success" size="small" @click="handleTest"
+      >small Button</fay-Button
+    >
+    <p style="margin-top: 15px" />
+    <fay-Button type="success" @click="handleTest">medium Button</fay-Button>
+
+    <p style="margin-top: 15px" />
+    <fay-Button type="success" size="large" @click="handleTest"
+      >large Button</fay-Button
+    >
   </div>
 </template>
 

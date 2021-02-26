@@ -1,3 +1,7 @@
+/**
+ *create a baise component by composition Api defineComponent and install
+ */
+
 import { defineComponent } from 'vue'
 
 const createComponent = (name) => {

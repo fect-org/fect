@@ -1,4 +1,4 @@
-import { toRefs } from 'vue'
+import { computed, toRefs } from 'vue'
 import validator from '../utils/validator'
 import theme from '../utils/theme'
 import { createNameSpace } from '../utils'
@@ -12,10 +12,12 @@ export default createComponent({
     type: {
       type: String,
       validator: validator.enums(buttonTypes),
+      default: 'default',
     },
     size: {
       type: String,
       validator: validator.enums(normalSizes),
+      default: 'medium',
     },
     disabled: Boolean,
     shadow: Boolean,
@@ -23,13 +25,22 @@ export default createComponent({
   },
   emits: ['click'],
   setup(props, { attrs, slots, emit }) {
-    const { size, type } = toRefs(props)
+    const { size, type, loading, shadow, disabled } = toRefs(props)
+    const clacClass = computed(() => {
+      let str = ''
+      loading.value && (str += ' loading')
+      type.value && (str += ` ${type.value}`)
+      size.value && (str += ` ${size.value}`)
+      shadow.value && (str += ' shadow')
+      disabled.value && (str += ' disabled')
+      return str.trim()
+    })
     const clickHandler = (e) => emit('click', e)
     return () => (
       <>
-        <div className={'fay-btn'} onClick={clickHandler}>
+        <button className={`fay-btn ${clacClass.value}`} onClick={clickHandler}>
           {slots && slots.default()}
-        </div>
+        </button>
       </>
     )
   },

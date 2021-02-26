@@ -1,9 +1,6 @@
-@colors : red;
-
-.fay-btn{
+.fay-btn {
   box-sizing: border-box;
   display: inline-block;
-  // padding: ;
   font-weight: 400;
   user-select: none;
   text-transform: capitalize;
@@ -11,5 +8,43 @@
   text-align: center;
   outline: none;
   width: auto;
-  border: 1px solid var(--body-colors);
+  height: 35px;
+  border-radius: 5px;
+  font-size: 15px;
+  border: 1px solid var(--accents-7);
+  color: var(--accents-1);
+  background-color: #fff;
+  padding: 0 25px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border 0.2s, background 0.2s, color 0.2s ease-out;
+  &:hover {
+    color: var(--accents-1);
+    background-color: #fff;
+    color: #333;
+    border-color: #000;
+  }
+
+  &.mini {
+    width: initial;
+    min-width: 60px;
+    font-size: 12px;
+    padding: 0 15px;
+    height: 30px;
+  }
+
+  &.small {
+    width: initial;
+    min-width: 100px;
+    font-size: 13px;
+    padding: 0 20px;
+    height: 35px;
+  }
+  &.large {
+    width: initial;
+    min-width: 180px;
+    font-size: 18px;
+    padding: 0 30px;
+    height: 45px;
+  }
 }
