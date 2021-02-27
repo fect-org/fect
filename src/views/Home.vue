@@ -1,39 +1,40 @@
 <template>
   <div class="home">
     <!-- size="medium" -->
-    <fay-Button type="success" size="mini" @click="handleTest"
-      >mini Button</fay-Button
+    <fay-button type="success" size="mini" @click="handleTest"
+      >mini Button</fay-button
     >
     <p style="margin-top: 15px" />
-    <fay-Button type="success" shadow size="small" @click="handleTest"
-      >small Button</fay-Button
+    <fay-button type="success" shadow size="small" @click="handleTest"
+      >small Button</fay-button
     >
     <p style="margin-top: 15px" />
-    <fay-Button type="success" loading @click="handleTest"
-      >medium Button</fay-Button
+    <fay-button type="success" loading @click="handleTest"
+      >medium Button</fay-button
     >
 
     <p style="margin-top: 15px" />
-    <fay-Button type="success" size="large" @click="handleTest"
-      >large Button</fay-Button
+    <fay-button type="success" size="large" @click="handleTest"
+      >large Button</fay-button
     >
     <p style="margin-top: 15px" />
-    <fay-Button type="success" disabled size="large" @click="handleTest">
+    <fay-button type="success" disabled size="large" @click="handleTest">
       <div>哈哈哈</div>
-    </fay-Button>
+    </fay-button>
   </div>
 </template>
 
 <script>
+import { onMounted, ref, toRef } from 'vue'
 // @ is an alias to /src
 
 export default {
   components: {},
+
   methods: {
     handleTest(e) {
       console.log(e)
     },
   },
-  name: 'Home',
 }
 </script>

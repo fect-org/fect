@@ -3,11 +3,12 @@
  */
 
 import { defineComponent } from 'vue'
+import { camelize } from '../foramt/string'
 
 const createComponent = (name) => {
   return function (component) {
     component.name = name
-    component.install = (vue) => vue.component(name, component)
+    component.install = (vue) => vue.component(camelize(`-${name}`), component)
     return defineComponent(component)
   }
 }

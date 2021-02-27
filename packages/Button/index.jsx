@@ -35,7 +35,11 @@ export default createComponent({
       disabled.value && (str += ' disabled')
       return str.trim()
     })
-    const clickHandler = (e) => emit('click', e)
+    const clickHandler = (e) => {
+      // hide drip when button in shadow status
+      const showDrip = !shadow.value
+      emit('click', e)
+    }
     return () => (
       <>
         <button
@@ -43,7 +47,7 @@ export default createComponent({
           className={`fay-btn ${clacClass.value}`}
           onClick={clickHandler}
         >
-          <ButtonDrip />
+          <ButtonDrip onCompleted={() => console.log('h')} />
           {/* {loading.value && (
             <span className={'fay-loading-icon'}>
               <i></i>
