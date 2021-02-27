@@ -1,3 +1,3 @@
 import * as validator from './enums'
 
-export default validator
+export { validator }

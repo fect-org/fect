@@ -1,9 +1,9 @@
 import { computed, toRefs } from 'vue'
-import validator from '../utils/validator'
-import theme from '../utils/theme'
-import { createNameSpace } from '../utils'
+import { validator, theme, createNameSpace } from '../utils'
 const { buttonTypes, normalSizes } = theme
 const [createComponent] = createNameSpace('Button')
+
+import ButtonDrip from './button.drip'
 
 import './button.less'
 
@@ -43,13 +43,14 @@ export default createComponent({
           className={`fay-btn ${clacClass.value}`}
           onClick={clickHandler}
         >
-          {loading.value && (
+          <ButtonDrip />
+          {/* {loading.value && (
             <span className={'fay-loading-icon'}>
               <i></i>
               <i></i>
               <i></i>
             </span>
-          )}
+          )} */}
           {slots && slots.default()}
         </button>
       </>
