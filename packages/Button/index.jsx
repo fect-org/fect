@@ -46,6 +46,7 @@ export default createComponent({
           disabled={disabled}
           className={`fay-btn ${clacClass.value}`}
           onClick={clickHandler}
+          {...attrs}
         >
           <ButtonDrip onCompleted={() => console.log('h')} />
           {/* {loading.value && (

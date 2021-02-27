@@ -62,6 +62,10 @@
   }
   &.shadow {
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
+    &:not(.loading):hover {
+      box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
+      transform: translateY(-1px);
+    }
   }
   &.loading {
     // border: 1px solid #333 !important;
@@ -70,5 +74,34 @@
     &.fay-loading-icon {
       background-color: #000;
     }
+  }
+}
+
+.fay-btn {
+  &.default {
+    background-color: #fff;
+    border: 1px solid var(--accents-7);
+    &:not(.shadow):not(.loading):hover {
+      color: var(--accents-1);
+      background-color: #fff;
+      color: #333;
+      border-color: #000;
+    }
+  }
+  &.success {
+    border-color: var(--geist-success);
+    background-color: var(--geist-success);
+    color: #fff;
+  }
+  &.warning {
+    border-color: var(--geist-warning);
+    background-color: var(--geist-warning);
+    color: #fff;
+  }
+  &.error {
+    background-color: var(--geist-error);
+    border-color: #fff;
+    color: #fff;
+    // color: var(--geist-error);
   }
 }

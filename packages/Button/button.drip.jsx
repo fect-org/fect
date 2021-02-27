@@ -21,12 +21,9 @@ const ButtonDrip = defineComponent({
     onCompleted: Function,
   },
   setup(props, { attrs, slots, emit }) {
-    const show = ref(true)
+    const show = ref(false)
     const dripRef = ref(null)
     const { onCompleted } = toRefs(props)
-    watch(dripRef.value, () => {
-      console.log(dripRef.value)
-    })
     // onCompleted.value()
     const styles = computed(() => {
       const styles = DEFAULT_STYLE

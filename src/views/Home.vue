@@ -1,26 +1,14 @@
 <template>
-  <div class="home">
-    <!-- size="medium" -->
-    <fay-button type="success" size="mini" @click="handleTest"
-      >mini Button</fay-button
-    >
-    <p style="margin-top: 15px" />
-    <fay-button type="success" shadow size="small" @click="handleTest"
-      >small Button</fay-button
-    >
-    <p style="margin-top: 15px" />
-    <fay-button type="success" loading @click="handleTest"
-      >medium Button</fay-button
-    >
-
-    <p style="margin-top: 15px" />
-    <fay-button type="success" size="large" @click="handleTest"
-      >large Button</fay-button
-    >
-    <p style="margin-top: 15px" />
-    <fay-button type="success" disabled size="large" @click="handleTest">
-      <div>哈哈哈</div>
-    </fay-button>
+  <div>
+    111
+    <!-- y="3" -->
+    <div style="background: #444">
+      <fay-spacer y=".3" x="2" inline />
+      1
+      <fay-spacer y=".3" x="2" inline />
+      1
+    </div>
+    222
   </div>
 </template>
 
