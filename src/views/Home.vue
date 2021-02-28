@@ -1,24 +1,22 @@
 <template>
   <div>
-    111
-    <!-- y="3" -->
-    <div style="background: #444">
-      <fay-spacer y=".3" x="2" inline />
-      1
-      <fay-spacer y=".3" x="2" inline />
-      1
+    <div style="background: red; height: 50px; width: 50px">
+      <fay-avatar src="./test.jpg" />
     </div>
-    222
   </div>
 </template>
 
 <script>
 import { onMounted, ref, toRef } from 'vue'
 // @ is an alias to /src
-
+import testAvatar from './test.jpg'
 export default {
   components: {},
-
+  data() {
+    return {
+      ava: testAvatar,
+    }
+  },
   methods: {
     handleTest(e) {
       console.log(e)
