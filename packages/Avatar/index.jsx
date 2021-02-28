@@ -45,7 +45,10 @@ export default createComponent({
         <div className={`fay-avatar ${clacAttrs.value} ${calcClass.value}`}>
           {!showText && <img src={src.value} draggable="false" {...attrs} />}
           {showText && (
-            <span className={`fay-avatar-text ${attrs.class}`} {...attrs}>
+            <span
+              className={`fay-avatar-text ${attrs.class ? attrs.class : ''}`}
+              {...attrs}
+            >
               {safeText(text.value)}
             </span>
           )}

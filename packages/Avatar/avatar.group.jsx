@@ -9,7 +9,7 @@ export default createComponent({
   props: {
     count: [String, Number],
   },
-  setup(props, { attrs, slots, emit }) {
+  setup(props, { attrs, slots }) {
     const { count } = toRefs(props)
     const showCount = !!(count && count.value)
     console.log(showCount)
