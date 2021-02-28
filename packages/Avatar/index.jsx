@@ -1,3 +1,4 @@
+import { computed, toRefs } from 'vue'
 import { validator, theme, createNameSpace } from '../utils'
 const [createComponent] = createNameSpace('Avatar')
 const { normalSizes } = theme
@@ -8,30 +9,43 @@ export default createComponent({
   props: {
     stacked: Boolean,
     isSquare: Boolean,
-    size: validator.enums(normalSizes),
+    size: {
+      type: String,
+      validator: validator.enums(normalSizes),
+      default: 'medium',
+    },
     text: {
       type: String,
       default: '',
     },
-    src: {
-      type: String,
-      default: '',
-    },
+    src: String,
+    className: String,
   },
-  setup(props, { attrs, slots, emit }) {
-    const { stacked, isSquare, size, text, src } = props
-    console.log(src.value)
-    const showText = !src.value
+  setup(props, { attrs }) {
+    const { stacked, isSquare, size, text, src, className } = toRefs(props)
+    const showText = !(src && src.value)
 
+    // when text has value to take the best range
     const safeText = (text) => (text.length <= 4 ? text : text.slice(0, 3))
+
+    //calculate outer Container className
+    const calcClass = computed(() => (className ? className.value : ''))
+
+    // claulate avatar style
+    const clacAttrs = computed(() => {
+      let str = ''
+      isSquare.value && (str += ' isSquare')
+      size.value && (str += ` ${size.value}`)
+      return str.trim()
+    })
 
     return () => (
       <>
-        <div className={'fay-avatar'}>
-          {!showText && <img src={src} draggable="false" {...attrs} />}
+        <div className={`fay-avatar ${clacAttrs.value} ${calcClass.value}`}>
+          {!showText && <img src={src.value} draggable="false" {...attrs} />}
           {showText && (
-            <span className={'fay-avatar-text'} {...attrs}>
-              {safeText(text)}
+            <span className={`fay-avatar-text ${attrs.class}`} {...attrs}>
+              {safeText(text.value)}
             </span>
           )}
         </div>

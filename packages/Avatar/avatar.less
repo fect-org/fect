@@ -5,10 +5,41 @@
   width: 40px;
   border-radius: 50%;
   overflow: hidden;
+  border: 1px solid var(--accents-7);
+  background-color: #fff;
   img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center;
+  }
+}
+
+span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 1em;
+  text-align: center;
+  transform: translate(-50%, -50%) scale(0.65);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.fay-avatar {
+  &.mini {
+    width: 20px;
+    height: 20px;
+  }
+  &.small {
+    width: 30px;
+    height: 30px;
+  }
+  &.large {
+    width: 60px;
+    height: 60px;
+  }
+  &.isSquare {
+    border-radius: 5px;
   }
 }

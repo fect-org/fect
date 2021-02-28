@@ -1,8 +1,12 @@
 <template>
   <div>
-    <div style="background: red; height: 50px; width: 50px">
-      <fay-avatar src="./test.jpg" />
-    </div>
+    <!--  -->
+    <!-- :src="ava" -->
+    <fay-avatar :src="ava" text="112221" style="" size="mini" />
+    <fay-avatar :src="ava" text="112221" style="" size="small" />
+    <fay-avatar :src="ava" text="112221" style="" />
+    <fay-avatar text="Xery" size="large" />
+    <fay-avatar text="Xery" isSquare size="large" />
   </div>
 </template>
 
