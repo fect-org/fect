@@ -3,7 +3,7 @@
  */
 
 import { defineComponent } from 'vue'
-import { camelize } from '../foramt/string'
+import { camelize } from '../format/string'
 
 const createComponent = (name) => {
   return function (component) {

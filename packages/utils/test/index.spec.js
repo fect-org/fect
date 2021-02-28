@@ -1,4 +1,4 @@
-import { camelize } from '../foramt/string'
+import { camelize } from '../format/string'
 
 test('camlize', () => {
   expect(camelize('ab')).toEqual('ab')

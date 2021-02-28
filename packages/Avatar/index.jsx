@@ -34,6 +34,7 @@ export default createComponent({
     // claulate avatar style
     const clacAttrs = computed(() => {
       let str = ''
+      stacked.value && (str += ' stacked')
       isSquare.value && (str += ' isSquare')
       size.value && (str += ` ${size.value}`)
       return str.trim()
