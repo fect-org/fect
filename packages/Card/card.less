@@ -1,0 +1,22 @@
+.fay-card {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid var(--accents-7);
+}
+
+.fay-card {
+  &.hoverable {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+  }
+  &.shadow {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+    border-color: transparent;
+    &:hover {
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+  }
+}
