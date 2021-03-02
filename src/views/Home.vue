@@ -2,7 +2,7 @@
   <div>
     <!--  -->
     <!-- :src="ava" -->
-    <fay-avatar :src="ava" text="112221" style="" size="mini" />
+    <!-- <fay-avatar :src="ava" text="112221" style="" size="mini" />
     <fay-avatar :src="ava" text="112221" style="" size="small" />
     <fay-avatar :src="ava" text="112221" style="" />
     <fay-avatar text="Xery" size="large" />
@@ -16,7 +16,12 @@
     </div>
     <fay-button @click="handleTest">按钮</fay-button>
 
-    <fay-card class="hahaha" hoverable style="color: red">我是卡片</fay-card>
+    <fay-card class="hahaha" hoverable style="color: red">我是卡片</fay-card> -->
+    <!-- class="hha" -->
+    <fay-dot class="h">111</fay-dot>
+    <fay-dot class="h" type="success">111</fay-dot>
+    <fay-dot class="h" type="warning">111</fay-dot>
+    <fay-dot class="h" type="error">111</fay-dot>
   </div>
 </template>
 
