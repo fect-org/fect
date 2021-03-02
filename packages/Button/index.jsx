@@ -26,7 +26,7 @@ export default createComponent({
   emits: ['click'],
   setup(props, { attrs, slots, emit }) {
     const { size, type, loading, shadow, disabled } = toRefs(props)
-    const clacClass = computed(() => {
+    const calcClass = computed(() => {
       let str = ''
       loading.value && (str += ' loading')
       type.value && (str += ` ${type.value}`)
@@ -44,7 +44,7 @@ export default createComponent({
       <>
         <button
           disabled={disabled.value}
-          className={`fay-btn ${clacClass.value}`}
+          className={`fay-btn ${calcClass.value}`}
           onClick={clickHandler}
           {...attrs}
         >

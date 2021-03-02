@@ -32,7 +32,7 @@ export default createComponent({
     const calcClass = computed(() => (className ? className.value : ''))
 
     // claulate avatar style
-    const clacAttrs = computed(() => {
+    const calcAttrs = computed(() => {
       let str = ''
       stacked.value && (str += ' stacked')
       isSquare.value && (str += ' isSquare')
@@ -42,7 +42,7 @@ export default createComponent({
 
     return () => (
       <>
-        <div className={`fay-avatar ${clacAttrs.value} ${calcClass.value}`}>
+        <div className={`fay-avatar ${calcAttrs.value} ${calcClass.value}`}>
           {!showText && <img src={src.value} draggable="false" {...attrs} />}
           {showText && (
             <span
