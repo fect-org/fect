@@ -15,7 +15,7 @@ export default createComponent({
   setup(props, { attrs, slots, emit }) {
     const { type } = toRefs(props)
     const classAttr = !!attrs?.class
-    console.log(classAttr)
+    const safeSlots = !!slots?.default
     return () => (
       <>
         <div
@@ -23,7 +23,7 @@ export default createComponent({
           className={`fay-dot-wrapper ${classAttr ? attrs.class : ''}`}
         >
           <span className={`fay-dot ${type.value}`}></span>
-          <span className={'fay-dot-ctx'}>{slots && slots.default()}</span>
+          <span className={'fay-dot-ctx'}>{safeSlots && slots.default()}</span>
         </div>
       </>
     )

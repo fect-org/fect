@@ -13,6 +13,7 @@ export default createComponent({
   setup(props, { attrs, slots, emit }) {
     const { hoverable, shadow } = toRefs(props)
     console.log(attrs.class)
+    const safeSlots = !!slots?.default
     const clacClass = computed(() => {
       let str = ''
       shadow.value && (str += ' shadow')
@@ -28,7 +29,7 @@ export default createComponent({
           }`}
           style={attrs.style ? attrs.style : false}
         >
-          <CardContent>{slots && slots.default()}</CardContent>
+          <CardContent>{safeSlots && slots.default()}</CardContent>
         </div>
       </>
     )

@@ -26,6 +26,7 @@ export default createComponent({
   emits: ['click'],
   setup(props, { attrs, slots, emit }) {
     const { size, type, loading, shadow, disabled } = toRefs(props)
+    const safeSlots = !!slots?.default
     const calcClass = computed(() => {
       let str = ''
       loading.value && (str += ' loading')
@@ -35,6 +36,7 @@ export default createComponent({
       disabled.value && (str += ' disabled')
       return str.trim()
     })
+
     const clickHandler = (e) => {
       // hide drip when button in shadow status
       // const showDrip = !shadow.value
@@ -56,7 +58,7 @@ export default createComponent({
               <i></i>
             </span>
           )} */}
-          {slots && slots.default()}
+          {safeSlots && slots.default()}
         </button>
       </>
     )

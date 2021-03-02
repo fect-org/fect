@@ -12,6 +12,7 @@ export default createComponent({
   setup(props, { attrs, slots }) {
     const { count } = toRefs(props)
     const showCount = !!(count && count.value)
+    const safeSlots = !!slots?.default
     console.log(showCount)
     return () => (
       <>
@@ -19,7 +20,7 @@ export default createComponent({
           className={`fay-ava-group ${(attrs.class ? attrs.class : '').trim()}`}
           style={attrs.style}
         >
-          {slots && slots.default()}
+          {safeSlots && slots.default()}
           {showCount && (
             <span className={'fay-ava-counter'}>+{count.value}</span>
           )}

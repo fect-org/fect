@@ -4,9 +4,10 @@ import Avatar from './Avatar'
 import AvatarGroup from './Avatar/avatar.group'
 import Card from './Card'
 import Dot from './Dot'
+import Link from './Link'
 
 import { camelize } from './utils/format/string'
-const components = [Button, Spacer, Avatar, AvatarGroup, Card, Dot]
+const components = [Button, Spacer, Avatar, AvatarGroup, Card, Dot, Link]
 const install = (vue) => {
   if (install.installed) return
   components.map((component) => {
