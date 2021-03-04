@@ -1,6 +1,11 @@
 const tuple = (...args) => {
   const temp = []
+  const isStr = (key) =>
+    Object.prototype.toString.call(key) === '[object String]'
   for (const key of args) {
+    if (!isStr(key)) {
+      throw new Error('type Error. type is not string!')
+    }
     temp.push(key)
   }
   return temp
