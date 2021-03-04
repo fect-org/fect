@@ -5,19 +5,24 @@ import { getCurrentInstance, inject, onUnmounted, computed, ref } from 'vue'
  * @param {*} key ctx Key
  */
 
-const useProvider = (key) => {
-  const ctx = inject(key, null)
-
+const useProvider = (key, defaultVal) => {
+  const ctx = inject(key, defaultVal ? defaultVal : null)
   if (ctx) {
-    const instance = getCurrentInstance()
-    const { link, unlink, internalChildren, children, ...rest } = ctx
-    link(instance)
-    onUnmounted(() => unlink(instance))
-    const idx = computed(() => internalChildren.indexOf(instance))
-
+    if (ctx?.children) {
+      const instance = getCurrentInstance()
+      const { link, unlink, internalChildren, children, ...rest } = ctx
+      const noProvider = JSON.stringify(rest) === '{}'
+      link(instance)
+      onUnmounted(() => unlink(instance))
+      const idx = computed(() => internalChildren.indexOf(instance))
+      return {
+        ctx: noProvider ? defaultVal : rest,
+        idx: idx.value,
+      }
+    }
     return {
-      ctx: rest,
-      idx: idx.value,
+      ctx: defaultVal,
+      idx: 0,
     }
   }
   return {

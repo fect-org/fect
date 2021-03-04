@@ -34,7 +34,7 @@ const READONLY_KEY = 'componentsKey'
 
 export default {
   setup() {
-    const { idx, ctx } = createProvider(READONLY_KEY)
+    const { idx, ctx } = useProvider(READONLY_KEY)
     const { count, addCount } = ctx
     onMounted(() => {
       addCount()
@@ -48,14 +48,16 @@ export default {
 
 #### createProvider 创建 provider 容器
 
-| 参数     | 说明             | 类型                   |
+| 返回参数 | 说明             | 类型                   |
 | -------- | ---------------- | ---------------------- |
 | children | 子组件列表       | ----                   |
-| provider | 像子组件传递参数 | _(value: any) => void_ |
+| provider | 向子组件传递参数 | _(value: any) => void_ |
 
 #### useProvider 使用 provider 容器
 
-| 参数 | 说明                         | 类型       |
-| ---- | ---------------------------- | ---------- |
-| ctx  | 父组件提供的值               | _(any)_    |
-| idx  | 当前组件在父组件中的索引位置 | _(number)_ |
+_useProvider_ 支持传递第二参数类型(_(any)_)作为默认参数,当父组件没有该值的时候默认启用默认参数,用法与`inject`相同。
+
+| 返回参数 | 说明                         | 类型       |
+| -------- | ---------------------------- | ---------- |
+| ctx      | 父组件提供的值               | _(any)_    |
+| idx      | 当前组件在父组件中的索引位置 | _(number)_ |
