@@ -41,7 +41,11 @@ export default createComponent({
 
     return () => (
       <>
-        <label className={`fay-switch ${size.value} ${calcStatus.value}`}>
+        <label
+          {...attrs}
+          className={`fay-switch ${size.value} ${calcStatus.value}
+          ${attrs.class ? attrs.class : ''}`}
+        >
           <input
             className={`fay-switch-checkBox ${size.value}`}
             type="checkBox"

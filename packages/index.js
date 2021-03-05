@@ -6,7 +6,8 @@ import Card from './Card'
 import Dot from './Dot'
 import Switch from './Switch'
 import Link from './Link'
-
+import Toast from './Toast'
+import Code from './Code'
 import { camelize } from './utils/format/string'
 const components = [
   Button,
@@ -17,6 +18,8 @@ const components = [
   Dot,
   Link,
   Switch,
+  Toast,
+  Code,
 ]
 const install = (vue) => {
   if (install.installed) return
