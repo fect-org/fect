@@ -1,4 +1,5 @@
 import Avatar from './Avatar'
+import AvatarGroup from './AvatarGroup'
 import Button from './Button'
 import Card from './Card'
 import Code from './Code'
@@ -6,11 +7,10 @@ import Dot from './Dot'
 import Link from './Link'
 import Spacer from './Spacer'
 import Switch from './Switch'
-import Toast from './Toast'
-import AvatarGroup from './Avatar/avatar.group'
 import { camelize } from './utils/format/string'
 const components = [
   Avatar,
+  AvatarGroup,
   Button,
   Card,
   Code,
@@ -18,14 +18,13 @@ const components = [
   Link,
   Spacer,
   Switch,
-  Toast,
-  AvatarGroup,
 ]
 const install = (vue) => {
-  if (install.installed) {
-    return components.map((component) => {
+  if (!install.installed) {
+    components.map((component) => {
       vue.component(camelize(`-${component.name}`), component)
     })
   }
+  return
 }
 export default { install }

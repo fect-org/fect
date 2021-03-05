@@ -8,7 +8,7 @@ const IGNORE_DIR = ['utils', 'createContext']
 const IGNORE_FILE_REG = /.*?(\.js)$/g
 
 const importTemplate
-  = ';const install = (vue) => {if (install.installed) return components.map((component) => {vue.component(camelize(`-${component.name}`), component)})};export default { install }'
+  = ';const install = (vue) => {if (!install.installed) {components.map((component) => {vue.component(camelize(`-${component.name}`), component)})}return}; export default { install }'
 
 const resolveImport = (dir, dirPath) => {
   const importFile = []

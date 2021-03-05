@@ -3,7 +3,7 @@ import { createNameSpace } from '../utils'
 
 const [createComponent] = createNameSpace('AvatarGroup')
 
-import './avatar.group.less'
+import './avatarGroup.less'
 
 export default createComponent({
   props: {
