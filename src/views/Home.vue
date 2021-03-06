@@ -1,15 +1,19 @@
 <template>
   <div>
-    <fay-button>A</fay-button>
-    <fay-card></fay-card>
-    <fay-dot></fay-dot>
-    <fay-avatar />
-    <fay-avatar-group>
-      <fay-avatar text="Xery" />
-    </fay-avatar-group>
-    <fay-link href="/test"></fay-link>
-    <!-- <fay-button></fay-button> -->
-    <!-- <a href="/test">W3School</a> -->
+    <!-- <fay-button class="IamNiDie" shadow type="success">A</fay-button> -->
+    <fay-spacer />
+    <fay-button class="IamNiDie">A</fay-button>
+    <fay-spacer />
+    <fay-capacity value="10" />
+    <fay-spacer />
+    <fay-capacity value="35" />
+    <fay-spacer />
+    <fay-capacity :value="count" />
+    <fay-spacer />
+    <fay-capacity value="61" color="blue" />
+    <fay-spacer />
+    <!-- disabled -->
+    <fay-button @click="handleTest" size="large">B</fay-button>
   </div>
 </template>
 
@@ -26,17 +30,17 @@ export default {
 
   methods: {},
   setup(props) {
-    const text = ref('Xery')
+    const count = ref(0)
     // onMounted(() => {
     //   // console.log(DotRef.value)
     // })
     const handleTest = (e) => {
-      text.value = text.value === 'yue' ? 'Xery' : 'yue'
-      console.log(text.value)
+      count.value++
     }
+    onMounted(() => {})
     return {
-      text,
       handleTest,
+      count,
     }
   },
 }
