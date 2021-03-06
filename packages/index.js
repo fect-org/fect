@@ -1,6 +1,7 @@
 import Avatar from './Avatar'
 import AvatarGroup from './AvatarGroup'
 import Button from './Button'
+import Capacity from './Capacity'
 import Card from './Card'
 import Code from './Code'
 import Dot from './Dot'
@@ -12,6 +13,7 @@ const components = [
   Avatar,
   AvatarGroup,
   Button,
+  Capacity,
   Card,
   Code,
   Dot,
