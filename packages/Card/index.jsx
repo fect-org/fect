@@ -12,7 +12,6 @@ export default createComponent({
   },
   setup(props, { attrs, slots, emit }) {
     const { hoverable, shadow } = toRefs(props)
-    console.log(attrs.class)
     const safeSlots = !!slots?.default
     const clacClass = computed(() => {
       let str = ''

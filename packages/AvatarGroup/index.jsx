@@ -13,7 +13,6 @@ export default createComponent({
     const { count } = toRefs(props)
     const showCount = !!(count && count.value)
     const safeSlots = !!slots?.default
-    console.log(showCount)
     return () => (
       <>
         <div
