@@ -1,4 +1,4 @@
-import { computed, ref, toRefs } from 'vue'
+import { computed, onMounted, ref, toRefs, watchEffect } from 'vue'
 import { validator, theme, createNameSpace } from '../utils'
 const { buttonTypes, normalSizes } = theme
 const [createComponent] = createNameSpace('Button')
@@ -49,10 +49,18 @@ export default createComponent({
         drapShow.value = true
         drapX.value = e.clientX - rect.left
         drapY.value = e.clientY - rect.top
-        console.log(drapX, drapY)
       }
       emit('click', e)
     }
+
+    const dripCompleteHnadler = () => {
+      drapShow.value = false
+      drapX.value = 0
+      drapY.value = 0
+      // console.log(drapShow.value)
+    }
+    // watchEffect(() => console.log(drapShow.value))
+
     return () => (
       <>
         <button
@@ -68,9 +76,10 @@ export default createComponent({
             <ButtonDrip
               x={drapX.value}
               y={drapY.value}
-              onCompleted={() => console.log('h')}
+              onCompleted={dripCompleteHnadler}
             />
           )}
+
           {/* {loading.value && (
             <span className={'fay-loading-icon'}>
               <i></i>
