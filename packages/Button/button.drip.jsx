@@ -25,14 +25,10 @@ const ButtonDrip = defineComponent({
       const left = Number.isNaN(+x.value) ? 0 : x.value - 10
       return { top, left }
     })
-    watchEffect((onInvalidate) => {
-      // if (!dripRef.value) return
-      // dripRef.value.addEventListener('animationend', onCompleted.value())
-      // onInvalidate(() => {
-      //   if (!dripRef.value) return
-      //   dripRef.value.removeEventListener('animationend', onCompleted.value())
-      // })
-      // // if(!showDrip.value)  return
+    onMounted(() => {
+      if (!dripRef.value) return
+      dripRef.value.addEventListener('animationend', onCompleted.value())
+      dripRef.value.removeEventListener('animationend', onCompleted.value())
     })
 
     return () => (

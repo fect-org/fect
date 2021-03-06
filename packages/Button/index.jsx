@@ -54,12 +54,12 @@ export default createComponent({
     }
 
     const dripCompleteHnadler = () => {
-      drapShow.value = false
-      drapX.value = 0
-      drapY.value = 0
-      // console.log(drapShow.value)
+      setTimeout(() => {
+        drapShow.value = false
+        drapX.value = 0
+        drapY.value = 0
+      }, 500)
     }
-    // watchEffect(() => console.log(drapShow.value))
 
     return () => (
       <>
@@ -79,14 +79,6 @@ export default createComponent({
               onCompleted={dripCompleteHnadler}
             />
           )}
-
-          {/* {loading.value && (
-            <span className={'fay-loading-icon'}>
-              <i></i>
-              <i></i>
-              <i></i>
-            </span>
-          )} */}
           {safeSlots && slots.default()}
         </button>
       </>
