@@ -19,4 +19,21 @@ const normalTypes = tuple('default', 'success', 'warning', 'error')
 
 const themeTypes = tuple('dark', 'light')
 
-export { buttonTypes, normalSizes, normalTypes, themeTypes }
+const justifyTypes = tuple(
+  'start',
+  'end',
+  'center',
+  'space-around',
+  'space-between',
+)
+
+const alignTypes = tuple('top', 'middle', 'bottom')
+
+export {
+  buttonTypes,
+  normalSizes,
+  normalTypes,
+  themeTypes,
+  justifyTypes,
+  alignTypes,
+}
