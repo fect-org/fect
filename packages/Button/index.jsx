@@ -4,7 +4,7 @@ const { buttonTypes, normalSizes } = theme
 const [createComponent] = createNameSpace('Button')
 
 import ButtonDrip from './button.drip'
-
+import ButtonLoading from './button.loading'
 import './button.less'
 
 export default createComponent({
@@ -43,6 +43,7 @@ export default createComponent({
 
     const clickHandler = (e) => {
       // hide drip when button in shadow status
+      if (disabled.value || loading.value) return
       const showDrip = !shadow.value
       if (showDrip) {
         const rect = buttonRef.value.getBoundingClientRect()
@@ -72,6 +73,7 @@ export default createComponent({
           ref={buttonRef}
           onClick={clickHandler}
         >
+          {loading.value && <ButtonLoading color={type.value} />}
           {drapShow.value && (
             <ButtonDrip
               x={drapX.value}

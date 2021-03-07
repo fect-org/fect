@@ -6,6 +6,7 @@ import Card from './Card'
 import Code from './Code'
 import Dot from './Dot'
 import Link from './Link'
+import Loading from './Loading'
 import Spacer from './Spacer'
 import Switch from './Switch'
 import { camelize } from './utils/format/string'
@@ -18,6 +19,7 @@ const components = [
   Code,
   Dot,
   Link,
+  Loading,
   Spacer,
   Switch,
 ]

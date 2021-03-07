@@ -37,6 +37,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
     "chalk": "^4.1.0",
+    "css-loader": "^5.1.1",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^6.7.2",
     "eslint-config-kagura": "^1.0.3",
@@ -50,6 +51,7 @@
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "lint-staged": "^9.5.0",
+    "style-loader": "^2.0.0",
     "typescript": "~3.9.3",
     "vue-jest": "^5.0.0-0",
     "vue-loader": "^16.1.2"
