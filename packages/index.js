@@ -6,8 +6,11 @@ import Card from './Card'
 import Code from './Code'
 import Col from './Col'
 import Dot from './Dot'
+import Input from './Input'
 import Link from './Link'
 import Loading from './Loading'
+import Radio from './Radio'
+import RadioGroup from './RadioGroup'
 import Row from './Row'
 import Spacer from './Spacer'
 import Switch from './Switch'
@@ -21,8 +24,11 @@ const components = [
   Code,
   Col,
   Dot,
+  Input,
   Link,
   Loading,
+  Radio,
+  RadioGroup,
   Row,
   Spacer,
   Switch,
