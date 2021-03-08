@@ -1,4 +1,4 @@
-import { computed, toRefs ,ref } from 'vue'
+import { computed, toRefs ,ref, onMounted } from 'vue'
 import { createNameSpace, theme, validator,createProvider } from '../utils'
 
 const { normalSizes } = theme
@@ -22,16 +22,12 @@ export default createComponent({
   },
   emits: ['change'],
   setup(props, { attrs, slots,emit }) {
-    const { initialValue, useRow, disabled, size } = toRefs(props)
-    const selfvalueGroup = ref(initialValue?.value)
-    const groupSize = ref(size.value)
-    const disabledAll = ref(disabled.value)
-    const updateState = (nextVal)=>{
-      sefvalueGroup.value = nextVal
-      emit(nextVal)
-    }
+    const {  useRow } = toRefs(props)
+   
+    const updateState = (nextVal)=> emit(nextVal)
+    
     const { provider } = createProvider(READNONLY_RADIO_GROUP_KEY)
-    provider({ updateState,disabledAll,groupVal:selfvalueGroup,inGroup:true ,groupSize })
+    provider({ props , updateState })
     return () => (
       <>
         <div 

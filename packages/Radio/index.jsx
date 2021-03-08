@@ -1,4 +1,4 @@
-import { computed, onMounted, ref, toRefs, watchEffect } from 'vue'
+import { computed, onMounted, ref, toRefs, watch, watchEffect } from 'vue'
 import { createNameSpace, theme, validator,useProvider } from '../utils'
 
 const { normalSizes } = theme
@@ -34,21 +34,28 @@ export default createComponent({
   },
   emtis: ['change'],
   setup(props, { attrs, slots, emit }) {
+    
     const { checked, value, size ,disabled } = toRefs(props)
     const { ctx } = useProvider(READNONLY_RADIO_GROUP_KEY)
-    const { groupVal,updateState,disabledAll,inGroup,groupSize } = ctx
     const radioValue = ref(value.value)
-    const isDisabled = ref(disabled.value || disabledAll.value)
-    const selfChecked = ref(!!checked.value )
+    const radioSize = ref(size.value)
+    const isDisabled = ref(disabled.value)
+    const selfChecked = ref(!!checked.value)
 
-    if (inGroup){
-      watchEffect(()=>{
-        console.log(groupVal.value)
-        selfChecked.value = (groupVal.value === radioValue.value)
-      })
-      console.log(selfChecked.value)
+
+    const changeStatus = ()=>{
+      isDisabled.value = ctx.props.disabled
+      radioSize.value = ctx.props.size
+      radioValue.value = ctx.props?.initialValue || null
+      selfChecked.value = (radioValue.value === value.value)
     }
 
+    if (ctx){
+      watchEffect(()=>{
+        changeStatus()
+      })
+    }
+   
     const handlerChange = (e) => {
       if (isDisabled.value) return
       const radioEvent = {
@@ -60,15 +67,15 @@ export default createComponent({
         nativeEvent: e,
       }
       selfChecked.value = !selfChecked.value;
-      if (inGroup){
+      if (ctx){
         console.log(value.value)
-        updateState && updateState(radioValue.value)
+        ctx.updateState && ctx.updateState(radioValue.value)
       }
       emit('change', radioEvent)
     }
 
     const calcRadioSize = computed(()=>{
-      const _size =  queryRadioSize(groupSize.value || size.value)
+      const _size = queryRadioSize(radioSize.value)
       const style = {}
       style['--radioSize'] = _size
       return style

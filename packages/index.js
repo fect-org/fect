@@ -6,7 +6,6 @@ import Card from './Card'
 import Code from './Code'
 import Col from './Col'
 import Dot from './Dot'
-import Input from './Input'
 import Link from './Link'
 import Loading from './Loading'
 import Radio from './Radio'
@@ -24,7 +23,6 @@ const components = [
   Code,
   Col,
   Dot,
-  Input,
   Link,
   Loading,
   Radio,
