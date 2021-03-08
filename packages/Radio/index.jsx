@@ -1,4 +1,4 @@
-import { computed, onMounted, ref, toRefs } from 'vue'
+import { computed, onMounted, ref, toRefs, watchEffect } from 'vue'
 import { createNameSpace, theme, validator,useProvider } from '../utils'
 
 const { normalSizes } = theme
@@ -35,14 +35,20 @@ export default createComponent({
   emtis: ['change'],
   setup(props, { attrs, slots, emit }) {
     const { checked, value, size ,disabled } = toRefs(props)
+    const { ctx } = useProvider(READNONLY_RADIO_GROUP_KEY)
+    const { groupVal,updateState,disabledAll,inGroup,groupSize } = ctx
     const radioValue = ref(value.value)
-    const { idx,ctx } = useProvider(READNONLY_RADIO_GROUP_KEY)
-    const { val,updateState,disabledAll,inGroup } = ctx
     const isDisabled = ref(disabled.value || disabledAll.value)
-    const selfChecked = ref(!!checked.value)
+    const selfChecked = ref(!!checked.value )
 
-    console.log(val)
-    console.log(inGroup)
+    if (inGroup){
+      watchEffect(()=>{
+        console.log(groupVal.value)
+        selfChecked.value = (groupVal.value === radioValue.value)
+      })
+      console.log(selfChecked.value)
+    }
+
     const handlerChange = (e) => {
       if (isDisabled.value) return
       const radioEvent = {
@@ -62,7 +68,7 @@ export default createComponent({
     }
 
     const calcRadioSize = computed(()=>{
-      const _size =  queryRadioSize(size.value)
+      const _size =  queryRadioSize(groupSize.value || size.value)
       const style = {}
       style['--radioSize'] = _size
       return style

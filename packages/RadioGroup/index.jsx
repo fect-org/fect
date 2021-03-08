@@ -9,19 +9,8 @@ const READNONLY_RADIO_GROUP_KEY = 'radioGroupKey'
 
 import './radioGroup.less'
 
-const queryRadioSize = (radioSize) => {
-  const size = {
-    mini: '12px',
-    small: '14px',
-    medium: '16px',
-    large: '18px',
-  }
-  return size[radioSize]
-}
-
 export default createComponent({
   props: {
-    value: [String, Number],
     initialValue: [String, Number],
     useRow: Boolean,
     disabled: Boolean,
@@ -33,20 +22,22 @@ export default createComponent({
   },
   emits: ['change'],
   setup(props, { attrs, slots,emit }) {
-    const { value, initialValue, useRow, disabled, size } = toRefs(props)
-    const sefvalueGroup = ref(initialValue?.value)
+    const { initialValue, useRow, disabled, size } = toRefs(props)
+    const selfvalueGroup = ref(initialValue?.value)
+    const groupSize = ref(size.value)
+    const disabledAll = ref(disabled.value)
     const updateState = (nextVal)=>{
       sefvalueGroup.value = nextVal
       emit(nextVal)
     }
-    const { children,provider } = createProvider(READNONLY_RADIO_GROUP_KEY)
-    provider({ updateState,disabledAll:disabled,val:sefvalueGroup,inGroup:true })
+    const { provider } = createProvider(READNONLY_RADIO_GROUP_KEY)
+    provider({ updateState,disabledAll,groupVal:selfvalueGroup,inGroup:true ,groupSize })
     return () => (
       <>
         <div 
           {...attrs} 
           className={`fay-radio-group 
-            ${useRow.value && 'useRow'}
+            ${useRow.value ? 'useRow' : ''}
             ${attrs?.class ? attrs.class : ''}`}>
           {slots.default?.()}
         </div>
