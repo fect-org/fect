@@ -1,19 +1,12 @@
 <template>
   <div>
-    <!-- <fay-button class="IamNiDie" shadow type="success">A</fay-button> -->
-    <fay-spacer />
-    <fay-button class="IamNiDie">A</fay-button>
-    <fay-spacer />
-    <fay-capacity value="10" />
-    <fay-spacer />
-    <fay-capacity value="35" />
-    <fay-spacer />
-    <fay-capacity :value="count" />
-    <fay-spacer />
-    <fay-capacity value="61" color="blue" />
-    <fay-spacer />
     <!-- disabled -->
-    <fay-button @click="handleTest" size="large">B</fay-button>
+    <!--  -->
+    <fay-radio-group useRow size="large" @change="handleTest">
+      <fay-radio value="3" class="test" style="color:red">7777</fay-radio>
+      <fay-radio value="1">1117</fay-radio>
+      <fay-radio value="2">7777</fay-radio>
+    </fay-radio-group>
   </div>
 </template>
 
@@ -31,11 +24,9 @@ export default {
   methods: {},
   setup(props) {
     const count = ref(0)
-    // onMounted(() => {
-    //   // console.log(DotRef.value)
-    // })
     const handleTest = (e) => {
       count.value++
+      console.log(e)
     }
     onMounted(() => {})
     return {
@@ -45,3 +36,13 @@ export default {
   },
 }
 </script>
+
+<style lang="less" scoped>
+.test {
+  .fay-radio-point {
+    &::before {
+      background-color: blue !important;
+    }
+  }
+}
+</style>

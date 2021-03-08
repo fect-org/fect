@@ -47,10 +47,12 @@ export default createComponent({
       isDisabled.value = ctx.props.disabled
       radioSize.value = ctx.props.size
       radioValue.value = ctx.props?.initialValue || null
+      if (ctx.groupValue.value) radioValue.value = ctx.groupValue.value
       selfChecked.value = (radioValue.value === value.value)
     }
 
     if (ctx){
+      console.log(ctx.groupValue.value)
       watchEffect(()=>{
         changeStatus()
       })
@@ -66,9 +68,9 @@ export default createComponent({
         preventDefault: e.preventDefault,
         nativeEvent: e,
       }
-      selfChecked.value = !selfChecked.value;
+      selfChecked.value = !selfChecked.value
       if (ctx){
-        console.log(value.value)
+        ctx.groupValue.value = value.value
         ctx.updateState && ctx.updateState(radioValue.value)
       }
       emit('change', radioEvent)
@@ -82,10 +84,11 @@ export default createComponent({
     })
 
     return () => (
-      <div className={`fay-radio ${attrs?.class ? attrs.class : ''}`} style={calcRadioSize.value}>
+      <div 
+        {...attrs}
+        className={`fay-radio ${attrs?.class ? attrs.class : ''}`} style={calcRadioSize.value}>
         <label className={` ${isDisabled.value ? 'disabled' : ''}`}>
           <input
-            {...attrs}
             type="radio"
             value={radioValue.value}
             checked={selfChecked.value}

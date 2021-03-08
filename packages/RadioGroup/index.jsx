@@ -23,11 +23,11 @@ export default createComponent({
   emits: ['change'],
   setup(props, { attrs, slots,emit }) {
     const {  useRow } = toRefs(props)
-   
-    const updateState = (nextVal)=> emit(nextVal)
+    const groupValue = ref(null)
+    const updateState = (nextVal)=> emit('change',nextVal)
     
     const { provider } = createProvider(READNONLY_RADIO_GROUP_KEY)
-    provider({ props , updateState })
+    provider({ props , updateState ,groupValue })
     return () => (
       <>
         <div 
