@@ -32,7 +32,7 @@ export default createComponent({
       default: 'medium',
     },
   },
-  emtis: ['change'],
+  emits: ['change'],
   setup(props, { attrs, slots, emit }) {
     
     const { checked, value, size ,disabled } = toRefs(props)
@@ -52,7 +52,6 @@ export default createComponent({
     }
 
     if (ctx){
-      console.log(ctx.groupValue.value)
       watchEffect(()=>{
         changeStatus()
       })
@@ -60,15 +59,16 @@ export default createComponent({
    
     const handlerChange = (e) => {
       if (isDisabled.value) return
+      selfChecked.value = !selfChecked.value
       const radioEvent = {
         target:{
-          checked:!selfChecked.value,
+          checked:selfChecked.value,
         },
         stopPropagation: e.stopPropagation,
         preventDefault: e.preventDefault,
         nativeEvent: e,
       }
-      selfChecked.value = !selfChecked.value
+      // selfChecked.value = !selfChecked.value
       if (ctx){
         ctx.groupValue.value = value.value
         ctx.updateState && ctx.updateState(radioValue.value)
