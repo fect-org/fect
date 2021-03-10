@@ -3,7 +3,7 @@ import { validator, theme, createNameSpace } from '../utils'
 const [createComponent] = createNameSpace('Avatar')
 const { normalSizes } = theme
 
-// import './avatar.less'
+import './avatar.less'
 
 export default createComponent({
   props: {
