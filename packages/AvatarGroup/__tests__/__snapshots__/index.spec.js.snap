@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AvatarGroup shoudle be avatar container and should work 1`] = `
+<div class="fay-ava-group ">
+  <div class="fay-avatar stacked medium ">
+    <!----><span class="fay-avatar-text ">a</span>
+  </div>
+  <div class="fay-avatar stacked medium ">
+    <!----><span class="fay-avatar-text ">b</span>
+  </div>
+  <div class="fay-avatar stacked medium ">
+    <!----><span class="fay-avatar-text ">c</span>
+  </div>
+  <div class="fay-avatar stacked medium ">
+    <!----><span class="fay-avatar-text ">d</span>
+  </div><span class="fay-ava-counter">+10</span>
+</div>
+`;
+
+exports[`AvatarGroup should be render as Element 1`] = `
+<div class="fay-ava-group ">
+  <!---->
+  <!---->
+</div>
+`;
