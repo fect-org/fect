@@ -15,9 +15,8 @@ const ButtonDrip = defineComponent({
     y: [String, Number],
     onCompleted: Function,
   },
-  setup(props, { attrs, slots, emit }) {
+  setup(props) {
     const dripRef = ref(null)
-    const showDrip = ref(false)
     const { x, y, onCompleted } = toRefs(props)
 
     const calcPlace = computed(() => {

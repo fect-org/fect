@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button should allowed all size 1`] = `
+<button class="fay-btn mini medium ">
+  <!---->
+  <!---->
+  <!---->
+</button><button class="fay-btn small medium ">
+  <!---->
+  <!---->
+  <!---->
+</button><button class="fay-btn medium medium ">
+  <!---->
+  <!---->
+  <!---->
+</button><button class="fay-btn large medium ">
+  <!---->
+  <!---->
+  <!---->
+</button>
+`;
+
+exports[`Button should allowed all types 1`] = `
+<button class="fay-btn default medium ">
+  <!---->
+  <!---->
+  <!---->
+</button><button class="fay-btn success medium ">
+  <!---->
+  <!---->
+  <!---->
+</button><button class="fay-btn warning medium ">
+  <!---->
+  <!---->
+  <!---->
+</button><button class="fay-btn error medium ">
+  <!---->
+  <!---->
+  <!---->
+</button>
+`;
+
+exports[`Button should be render as Element 1`] = `
+<button class="fay-btn default medium ">
+  <!---->
+  <!---->
+  <!---->
+</button>
+`;
