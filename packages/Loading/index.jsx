@@ -36,6 +36,7 @@ export default createComponent({
             <i
               className={`${size.value} ${type.value}`}
               style={{ backgroundColor: `${safeColor && color.value}` }}
+              key={item + i}
             ></i>
           ))}
         </span>

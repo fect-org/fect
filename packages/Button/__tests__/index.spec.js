@@ -35,16 +35,15 @@ describe('Button', () => {
   it('should allowed all types', () => {
     const wrapper = mount({
       setup(props) {
-        const typeList = ['default', 'success', 'warning', 'error']
         return {
-          typeList,
+          typeList: ['default', 'success', 'warning', 'error'],
         }
       },
       render(h) {
         return (
           <>
-            {this.typeList.map((item) => (
-              <Button type={item} />
+            {this.typeList.map((item, i) => (
+              <Button type={item} key={i} />
             ))}
           </>
         )
@@ -58,16 +57,15 @@ describe('Button', () => {
   it('should allowed all size', () => {
     const wrapper = mount({
       setup(props) {
-        const sizeList = ['mini', 'small', 'medium', 'large']
         return {
-          sizeList,
+          sizeList: ['mini', 'small', 'medium', 'large'],
         }
       },
       render(h) {
         return (
           <>
-            {this.sizeList.map((item) => (
-              <Button type={item} />
+            {this.sizeList.map((item, i) => (
+              <Button size={item} key={i} />
             ))}
           </>
         )
