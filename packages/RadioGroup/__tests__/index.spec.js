@@ -1,4 +1,5 @@
 import { mount } from '@vue/test-utils'
+import { ref } from 'vue'
 import RadioGroup from '../index'
 import Radio from '../../Radio'
 
@@ -83,6 +84,5 @@ describe('RadioGroup', () => {
         )
       },
     })
-    
   })
 })
