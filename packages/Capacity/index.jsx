@@ -17,10 +17,8 @@ export default createComponent({
   },
   setup(props, { attrs }) {
     const { value, limit, color } = toRefs(props)
-    const safeColor = !!color?.value
-
     const calcColor = computed(() => {
-      if (safeColor) {
+      if (color?.value) {
         return color.value
       }
       const val = value.value
