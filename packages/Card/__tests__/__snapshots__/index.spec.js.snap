@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card should be render as element 1`] = `
+<div class="fay-card  ">
+  <div class="fay-card-content ">
+    <!---->
+  </div>
+</div>
+`;
+
+exports[`Card should be support shdow and hoverable 1`] = `
+<div class="fay-card hoverable ">
+  <div class="fay-card-content ">hoverable Card</div>
+</div>
+<div class="fay-card shadow ">
+  <div class="fay-card-content ">shadow Card</div>
+</div>
+<div class="fay-card  ">
+  <div class="fay-card-content ">hoverable and shadow Card</div>
+</div>
+`;

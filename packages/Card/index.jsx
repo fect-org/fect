@@ -1,5 +1,5 @@
 import { computed, toRefs } from 'vue'
-import { theme, createNameSpace } from '../utils'
+import { createNameSpace } from '../utils'
 import CardContent from './card.content'
 
 const [createComponent] = createNameSpace('Card')
