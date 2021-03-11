@@ -25,7 +25,7 @@ export default createComponent({
   props: {
     checked: Boolean,
     disabled:Boolean,
-    value: { type: String ,required:true },
+    value: { type: [String,Number] ,required:true },
     size: {
       type: String,
       validator: validator.enums(normalSizes),
@@ -37,11 +37,10 @@ export default createComponent({
     
     const { checked, value, size ,disabled } = toRefs(props)
     const { ctx } = useProvider(READNONLY_RADIO_GROUP_KEY)
-    const radioValue = ref(value.value)
+    const radioValue = ref(value?.value)
     const radioSize = ref(size.value)
     const isDisabled = ref(disabled.value)
     const selfChecked = ref(!!checked.value)
-
 
     const changeStatus = ()=>{
       isDisabled.value = ctx.props.disabled
@@ -54,6 +53,11 @@ export default createComponent({
     if (ctx){
       watchEffect(()=>{
         changeStatus()
+      })
+    } 
+    if (!ctx){
+      watchEffect(()=>{
+        selfChecked.value =  checked.value ? true : false
       })
     }
    

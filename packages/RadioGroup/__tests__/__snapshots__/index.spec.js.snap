@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RadioGroup should be render as element 1`] = `
+<div class="fay-radio-group 
+            
+            ">
+  <!---->
+</div>
+`;
+
+exports[`RadioGroup should be support differentSizes 1`] = `
+<div class="fay-radio-group 
+            
+            ">
+  <div class="fay-radio " style="--radioSize: 12px;"><label class=" "><input type="radio" value=""><span class="fay-radio-name"><span class="fay-radio-point  "></span>
+      <!----></span>
+    </label></div>
+</div>
+<div class="fay-radio-group 
+            
+            ">
+  <div class="fay-radio " style="--radioSize: 14px;"><label class=" "><input type="radio" value=""><span class="fay-radio-name"><span class="fay-radio-point  "></span>
+      <!----></span>
+    </label></div>
+</div>
+<div class="fay-radio-group 
+            
+            ">
+  <div class="fay-radio " style="--radioSize: 16px;"><label class=" "><input type="radio" value=""><span class="fay-radio-name"><span class="fay-radio-point  "></span>
+      <!----></span>
+    </label></div>
+</div>
+<div class="fay-radio-group 
+            
+            ">
+  <div class="fay-radio " style="--radioSize: 18px;"><label class=" "><input type="radio" value=""><span class="fay-radio-name"><span class="fay-radio-point  "></span>
+      <!----></span>
+    </label></div>
+</div>
+`;
+
+exports[`RadioGroup should be support initialValue 1`] = `
+<div class="fay-radio-group 
+            
+            ">
+  <div class="fay-radio " style="--radioSize: 16px;"><label class=" "><input type="radio" value="1"><span class="fay-radio-name"><span class="fay-radio-point  active"></span>
+      <!----></span>
+    </label></div>
+  <div class="fay-radio " style="--radioSize: 16px;"><label class=" "><input type="radio" value="1"><span class="fay-radio-name"><span class="fay-radio-point  "></span>
+      <!----></span>
+    </label></div>
+</div>
+`;

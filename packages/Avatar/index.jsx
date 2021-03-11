@@ -26,7 +26,8 @@ export default createComponent({
     const showText = !(src && src.value)
 
     // when text has value to take the best range
-    const safeText = (text) => (text.length <= 4 ? text : text.slice(0, 3))
+    const safeText = (text) =>
+      String(text).length <= 4 ? text : text.slice(0, 3)
 
     //calculate outer Container className
     const calcClass = computed(() => (className ? className.value : ''))
@@ -49,6 +50,7 @@ export default createComponent({
               className={`fay-avatar-text ${attrs.class ? attrs.class : ''}`}
               {...attrs}
             >
+              {/* {text.value} */}
               {safeText(text.value)}
             </span>
           )}
