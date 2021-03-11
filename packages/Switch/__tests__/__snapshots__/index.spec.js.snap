@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Switch should be render as element 1`] = `
+<label class="fay-switch medium 
+          "><input class="fay-switch-checkBox medium" type="checkBox">
+  <div class="fay-swtich-slider medium "></div>
+</label>
+`;
+
+exports[`Switch should be support different sizes 1`] = `
+<label class="fay-switch mini 
+          "><input class="fay-switch-checkBox mini" type="checkBox">
+  <div class="fay-swtich-slider mini "></div>
+</label><label class="fay-switch small 
+          "><input class="fay-switch-checkBox small" type="checkBox">
+  <div class="fay-swtich-slider small "></div>
+</label><label class="fay-switch medium 
+          "><input class="fay-switch-checkBox medium" type="checkBox">
+  <div class="fay-swtich-slider medium "></div>
+</label><label class="fay-switch large 
+          "><input class="fay-switch-checkBox large" type="checkBox">
+  <div class="fay-swtich-slider large "></div>
+</label>
+`;
