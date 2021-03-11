@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link should be render as element 1`] = `
+<a class="fay-link " href="">
+  <!---->
+</a>
+`;
+
+exports[`Link should be render correctly 1`] = `<a class="fay-link " href="https://www.test.com">Link</a><a class="fay-link color" href="https://www.test.com">Link</a><a class="fay-link underline" href="https://www.test.com">Link</a><a class="fay-link color underline" href="https://www.test.com">Link</a><a class="fay-link block" href="https://www.test.com">Link</a>`;

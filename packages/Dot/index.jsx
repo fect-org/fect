@@ -23,7 +23,9 @@ export default createComponent({
           className={`fay-dot-wrapper ${classAttr ? attrs.class : ''}`}
         >
           <span className={`fay-dot ${type.value}`}></span>
-          <span className={'fay-dot-ctx'}>{safeSlots && slots.default()}</span>
+          <span className={'fay-dot-ctx'}>
+            {safeSlots && slots.default?.()}
+          </span>
         </div>
       </>
     )
