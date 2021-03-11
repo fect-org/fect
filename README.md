@@ -1,29 +1,30 @@
-# kam
+> Modern and minimalist Vue3 UI library,originating from Vercel's design and Geist-ui
 
-## Project setup
-```
-npm install
-```
+<br/>
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### Quick start
 
-### Compiles and minifies for production
-```
-npm run build
-```
+1. run `yarn add @fay-ui/vue` or `npm install @fay-ui/vue` install it
 
-### Run your unit tests
-```
-npm run test:unit
+2. import into project
+
+```Vue3
+import { createApp } from 'vue'
+import App from './App.vue'
+import FAYUI from '@fay-ui/vue'
+import '@fay-ui/vue/dist/fay-ui.css'
+
+createApp(App).use(FAYUI).mount('#app')
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+<br />
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Documentation
+
+- ....no docs
+
+<br />
+
+### LICENSE
+
+[MIT](./LICENSE)
