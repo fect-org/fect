@@ -1,4 +1,15 @@
-> Modern and minimalist Vue3 UI library,originating from Vercel's design and Geist-ui
+<p align="center" height="370">
+@Fay-ui/vue
+</p>
+
+<p align="center">
+
+<a href="LICENSE">
+  <img alt="LICENSE" src="https://img.shields.io/badge/License-MIT-yellow"/>
+</a>
+</p>
+
+> Modern and minimalist Vue3 UI library,originating from Vercel's design and Geist
 
 <br/>
 
@@ -8,20 +19,22 @@
 
 2. import into project
 
-```Vue3
+```js
 import { createApp } from 'vue'
 import App from './App.vue'
 import FAYUI from '@fay-ui/vue'
 import '@fay-ui/vue/dist/fay-ui.css'
 
-createApp(App).use(FAYUI).mount('#app')
+createApp(App)
+  .use(FAYUI)
+  .mount('#app')
 ```
 
 <br />
 
 ### Documentation
 
-- ....no docs
+- ....no docs ...wait planning
 
 <br />
 
