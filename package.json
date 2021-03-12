@@ -7,6 +7,7 @@
     "build": "vue-cli-service build",
     "build:lib": "node scripts/build.js",
     "test:unit": "vue-cli-service test:unit",
+    "coverage": "npm run test:unit --coverage",
     "lint": "vue-cli-service lint",
     "commit": "git-cz",
     "collect": "node scripts/collect.js",
