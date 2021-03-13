@@ -7,13 +7,14 @@
     "build": "vue-cli-service build",
     "build:lib": "node scripts/build.js",
     "test:unit": "vue-cli-service test:unit",
-    "coverage": "npm run test:unit --coverage",
+    "coverage": "npm run test:unit -- --coverage",
     "lint": "vue-cli-service lint",
     "commit": "git-cz",
     "collect": "node scripts/collect.js",
     "setup": "hygen component new --name"
   },
   "dependencies": {
+    "@mdx-js/vue-loader": "^1.6.22",
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"
