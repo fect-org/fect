@@ -1,4 +1,4 @@
-import { computed, toRefs ,ref, onMounted } from 'vue'
+import { computed, toRefs ,ref  } from 'vue'
 import { createNameSpace, theme, validator,createProvider } from '../utils'
 
 const { normalSizes } = theme

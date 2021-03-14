@@ -37,7 +37,7 @@ export default createComponent({
     
     const { checked, value, size ,disabled } = toRefs(props)
     const { ctx } = useProvider(READNONLY_RADIO_GROUP_KEY)
-    const radioValue = ref(value?.value)
+    const radioValue = ref(value?.value) //single radio value
     const radioSize = ref(size.value)
     const isDisabled = ref(disabled.value)
     const selfChecked = ref(!!checked.value)
@@ -45,19 +45,32 @@ export default createComponent({
     const changeStatus = ()=>{
       isDisabled.value = ctx.props.disabled
       radioSize.value = ctx.props.size
-      radioValue.value = ctx.props?.initialValue || null
-      if (ctx.groupValue.value) radioValue.value = ctx.groupValue.value
-      selfChecked.value = (radioValue.value === value.value)
+      // radioValue.value = ctx.props?.initialValue || null
+      // if (ctx.groupValue.value) radioValue.value = ctx.groupValue.value
+      // selfChecked.value = (radioValue.value === value.value)
+      /** refactor */
+      const parentValue = ctx.props?.initialValue || null
+      if (ctx.groupValue.value) selfChecked.value = ctx.groupValue.value === value.value
+      if (!ctx.groupValue.value){
+        if (parentValue) selfChecked.value = parentValue === value.value
+      }
     }
 
+    /**
+     * when component init,it will execute once.
+     * watchEffect will executed auto when the dependence is changed 
+     */
     if (ctx){
       watchEffect(()=>{
         changeStatus()
       })
     } 
+    /**
+     * without radioGroup 
+     */
     if (!ctx){
       watchEffect(()=>{
-        selfChecked.value =  checked.value ? true : false
+        selfChecked.value = checked.value ? true : false
       })
     }
    
@@ -72,12 +85,13 @@ export default createComponent({
         preventDefault: e.preventDefault,
         nativeEvent: e,
       }
-      // selfChecked.value = !selfChecked.value
       if (ctx){
         ctx.groupValue.value = value.value
         ctx.updateState && ctx.updateState(radioValue.value)
       }
-      emit('change', radioEvent)
+      if (!ctx){
+        emit('change', radioEvent)
+      }
     }
 
     const calcRadioSize = computed(()=>{

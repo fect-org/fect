@@ -63,11 +63,15 @@ describe('RadioGroup', () => {
     expect(() => wrapper.unmount()).not.toThrow()
   })
 
-  it('should be support emit change', () => {
+  it('should be support emit change', async () => {
     const wrapper = mount({
-      setup() {
+      emits: ['change'],
+      setup(props, { emit }) {
         const test = ref(0)
-        const handlerChange = (next) => (test.value = next)
+        const handlerChange = (next) => {
+          test.value = next
+          emit('change', next)
+        }
         return {
           test,
           handlerChange,
@@ -84,5 +88,13 @@ describe('RadioGroup', () => {
         )
       },
     })
+
+    const labels = wrapper.findAll('[type="radio"]')
+    await labels[0].trigger('change')
+    expect(wrapper.vm.test).toEqual(1)
+    expect(wrapper.emitted().change[0]).toEqual([1])
+    await labels[1].trigger('change')
+    expect(wrapper.vm.test).toEqual(2)
+    expect(wrapper.emitted().change[2]).toEqual([2])
   })
 })
