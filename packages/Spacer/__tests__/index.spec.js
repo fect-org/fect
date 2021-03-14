@@ -10,8 +10,11 @@ describe('Spacer', () => {
 
   it('should be support inline style', () => {
     const wrapper = mount(<Spacer inline />)
-    expect(wrapper.find('.fay-spacer').html()).toContain(
-      '<span class="fay-spacer" style="display: inline-block;"></span>',
+    // expect(wrapper.find('.fay-spacer').html()).toContain(
+    //   '"<span class="fay-spacer " style="display: inline-block;"></span>'
+    // )
+    expect(wrapper.find('.fay-spacer').attributes('style')).toEqual(
+      'display: inline-block;',
     )
   })
 
@@ -27,5 +30,12 @@ describe('Spacer', () => {
       },
     })
     expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('should be support attrs class', () => {
+    const wrapper = mount(<Spacer class="test" />)
+    expect(wrapper.find('.fay-spacer').attributes('class')).toEqual(
+      'fay-spacer test',
+    )
   })
 })

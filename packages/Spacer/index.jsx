@@ -33,14 +33,13 @@ export default createComponent({
     return () => (
       <>
         <span
-          // , marginLeft.value
-          className={'fay-spacer'}
+          {...attrs}
+          className={`fay-spacer ${attrs.class ? attrs.class : ''}`}
           style={{
             marginTop: marginTop.value,
             marginLeft: marginLeft.value,
             display: inline.value ? 'inline-block' : 'block',
           }}
-          {...attrs}
         ></span>
       </>
     )
