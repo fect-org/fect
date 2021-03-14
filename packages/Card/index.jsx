@@ -23,6 +23,7 @@ export default createComponent({
     return () => (
       <>
         <div
+          {...attrs}
           className={`fay-card ${clacClass.value} ${
             attrs.class ? attrs.class : ''
           }`}
