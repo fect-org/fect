@@ -1,7 +1,17 @@
 <template>
-  <router-view />
+  <MDXProvider>
+    <!-- <router-view /> -->
+  </MDXProvider>
 </template>
 
-<style lang="less">
+<script>
+import { MDXProvider } from '@mdx-js/vue-loader'
 
-</style>
+export default {
+  components: {
+    MDXProvider,
+  },
+}
+</script>
+
+<style lang="less"></style>

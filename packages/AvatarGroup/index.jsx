@@ -16,6 +16,7 @@ export default createComponent({
     return () => (
       <>
         <div
+          {...attrs}
           className={`fay-ava-group ${(attrs.class ? attrs.class : '').trim()}`}
           style={attrs.style}
         >
