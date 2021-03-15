@@ -43,6 +43,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^7.0.0-0",
     "execa": "^5.0.0",
+    "extract-mdx-metadata": "^1.0.0",
     "fs-extra": "^9.1.0",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
