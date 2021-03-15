@@ -1,6 +1,6 @@
 <template>
   <MDXProvider>
-    <!-- <router-view /> -->
+    <router-view />
   </MDXProvider>
 </template>
 

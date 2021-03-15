@@ -8,7 +8,7 @@ const IGNORE_DIR = ['utils', 'createContext']
 const IGNORE_FILE_REG = /.*?(\.js)$/g
 
 const importTemplate
-  = ';const install = (vue) => {if (!install.installed) {components.map((component) => {vue.component(camelize(`-${component.name}`), component)})}return}; export default { install }'
+  = ';const install = (vue) => {if (!install.installed) {components.map((component) => {vue.component(camelize(`-${component.name}`), component)})}return};\n export default { install }'
 
 const resolveImport = (dir, dirPath) => {
   const importFile = []
@@ -22,7 +22,7 @@ const resolveImport = (dir, dirPath) => {
       components.push(`${d}`)
     })
   importFile.push('import { camelize } from "./utils/format/string"')
-  return [importFile.join(';'), components]
+  return [importFile.join(';\n'), components]
 }
 
 ;(async () => {

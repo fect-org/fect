@@ -3,7 +3,6 @@ const extractMetadata = require('extract-mdx-metadata')
 const path = require('path')
 const docsPath = path.join(__dirname, '../docs/zh-cn/components')
 const routerPath = path.join(__dirname, '../src/router/index.js')
-const testPath = path.join(__dirname, '../test.js')
 
 const getMetaData = async (files, parent_path) => {
   return Promise.all(
@@ -26,37 +25,38 @@ const getMetaData = async (files, parent_path) => {
   )
 }
 
-const routerTempalte = (routes, routeFile) => {
+const routerTempalte = (routes) => {
   const routerPool = []
   const _templte = [
     'import { createRouter, createWebHistory } from \'vue-router\';\n',
   ]
-  routes.map((route, i) => {
-    // console.log(route)
+  routes.map((route) => {
     routerPool.push({
       path: route.url,
       name: route.componentName,
-      component: route.componentName,
+      component: `${route.componentName}`,
     })
-    // console.log(routerPool[i])
     _templte.push(
       `import ${route.componentName} from '../../docs/zh-cn/components/${route.componentName}.mdx';\n`,
     )
   })
-  var reTemp = `${_templte.join('')}\n const routes=[${JSON.stringify(
+  var reTemp = `${_templte.join('')}\n const routes=${JSON.stringify(
     routerPool,
-  )}];\n const router = createRouter({
+  )};\n const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes,
   });\n export default router;`
-  // console.log(reTemp)
   return reTemp
 }
 
 ;(async () => {
-  const docFiles = await fs.readdir(docsPath)
-  const res = await getMetaData(docFiles, docsPath)
-  const tes = await routerTempalte(res)
-  // console.log(tes)
-  await fs.writeFile(testPath, tes)
+  try {
+    const docFiles = await fs.readdir(docsPath)
+    const res = await getMetaData(docFiles, docsPath)
+    const tar = await routerTempalte(res)
+    await fs.writeFile(routerPath, tar)
+  } catch (error) {
+    console.log(error)
+    process.exit(1)
+  }
 })()
