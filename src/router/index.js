@@ -10,8 +10,12 @@ import loading from '../../docs/zh-cn/components/loading.mdx'
 import radio from '../../docs/zh-cn/components/radio.mdx'
 import spacer from '../../docs/zh-cn/components/spacer.mdx'
 import swtich from '../../docs/zh-cn/components/swtich.mdx'
+import int from '../../docs/zh-cn/quickStart/introduce.mdx'
+import install from '../../docs/zh-cn/quickStart/install.mdx'
 
 const routes = [
+  { path: '/install', name: 'insatll', component: install },
+  { path: '/int', name: 'int', component: int },
   { path: '/avatar', name: 'avatar', component: avatar },
   { path: '/button', name: 'button', component: button },
   { path: '/capacity', name: 'capacity', component: capacity },
@@ -28,4 +32,5 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 })
+
 export default router
