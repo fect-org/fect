@@ -1,0 +1,45 @@
+## 安装
+
+### 配置
+
+请确保你的<fay-link href="https://nodejs.org/en/">NodeJS</fay-link>处于高版本(>=10),同时还需准备包管理器`NPM`或者`Yarn`
+
+<fay-spacer/>
+<fay-dot type="success" />1. 运行命令下载包:
+
+```shell
+
+$ yarn add @fay-ui/vue 
+
+$ npm install @fay-ui/vue
+
+```
+
+<fay-spacer y=".6"/>
+<fay-dot type="success" />2. 引入包到你的 Vue3 项目中：
+
+```js
+//全局引入
+import { createApp } from 'vue'
+import App from './App.vue'
+import FAYUI from '@fay-ui/vue'
+import '@fay-ui/vue/dist/fay-ui.css'
+
+createApp(App)
+  .use(FAYUI)
+  .mount('#app')
+
+```
+
+<fay-spacer y=".6"/>
+<fay-dot type="success" />3. 在任意处使用组件：
+
+```jsx
+ <template>
+   <fay-button>按钮</fay-button>
+ </template>
+```
+
+<fay-spacer y=".6"/>
+
+
