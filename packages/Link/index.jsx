@@ -1,4 +1,5 @@
 import { computed, toRefs } from 'vue'
+import { useRouter } from 'vue-router'
 import { createNameSpace } from '../utils'
 const [createComponent] = createNameSpace('Link')
 import './link.less'
@@ -9,12 +10,14 @@ export default createComponent({
       type: String,
       default: '',
     },
+    to: [String, Boolean],
     color: Boolean,
     underline: Boolean,
     block: Boolean,
   },
-  setup(props, { attrs, slots, emit }) {
-    const { href, color, underline, block } = toRefs(props)
+  setup(props, { attrs, slots }) {
+    const { href, color, underline, block, to } = toRefs(props)
+    const route = useRouter()
     const safeSlots = !!slots?.default
     const calcClass = computed(() => {
       let str = ''
@@ -24,12 +27,20 @@ export default createComponent({
       return str.trim()
     })
 
+    const safeHref = computed(() => {
+      if (to.value) return 'javascript: void 0;'
+      return href.value
+    })
+
+    const goToHandler = () => route.push(to.value)
+
     return () => (
       <>
         <a
           {...attrs}
           className={`fay-link ${calcClass.value}`}
-          href={href.value}
+          href={safeHref.value}
+          onClick={goToHandler}
         >
           {safeSlots && slots.default()}
         </a>
