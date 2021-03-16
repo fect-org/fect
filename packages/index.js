@@ -1,3 +1,4 @@
+import './utils/styles/colors.css'
 import Avatar from './Avatar'
 import AvatarGroup from './AvatarGroup'
 import Button from './Button'

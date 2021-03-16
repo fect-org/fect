@@ -32,7 +32,9 @@ export default createComponent({
       return href.value
     })
 
-    const goToHandler = () => route.push(to.value)
+    const goToHandler = () => {
+      if (to.value) route.push(to.value)
+    }
 
     return () => (
       <>
