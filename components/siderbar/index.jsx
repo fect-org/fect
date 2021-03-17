@@ -5,7 +5,7 @@ import Widgets from './widgets'
 const READONLY_SIDEBAR_KEY = 'siebarKey'
 const SiderBar = defineComponent({
   setup(props, { slots }) {
-    const { provider, children } = createProvider(READONLY_SIDEBAR_KEY)
+    const { provider } = createProvider(READONLY_SIDEBAR_KEY)
     const Routes = [
       {
         title: '快速上手',
