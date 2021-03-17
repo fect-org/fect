@@ -1,17 +1,20 @@
 <template>
-  <MDXProvider>
+  <Layout>
     <router-view />
-  </MDXProvider>
+  </Layout>
 </template>
 
 <script>
-import { MDXProvider } from '@mdx-js/vue-loader'
-
+import { Layout } from '../components/index'
 export default {
   components: {
-    MDXProvider,
+    Layout,
   },
 }
 </script>
 
-<style lang="less"></style>
+<style lang="less">
+body::-webkit-scrollbar {
+  width: 0;
+}
+</style>
