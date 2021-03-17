@@ -1,5 +1,7 @@
 import { defineComponent } from 'vue'
 import { useProvider } from '../../packages/utils'
+import ActiveCateLog from './active-catelog'
+import ActiveLink from './active-link'
 const READONLY_SIDEBAR_KEY = 'siebarKey'
 const SideItem = defineComponent({
   setup(props, { slots }) {
@@ -7,9 +9,11 @@ const SideItem = defineComponent({
     const { route } = ctx
     return () => (
       <>
-        {route.map((item, i) => (
-          <div className="item" key={`${item.name}-${item.index}`}>
-            <FayLink to={item.url}>{item.name}</FayLink>
+        <ActiveCateLog name={route[0].title} />
+        {route[0].rule.map((item) => (
+          // className="item"
+          <div key={`${item.name}-${item.index}`}>
+            <ActiveLink href={item.url} text={item.name} />
           </div>
         ))}
       </>
