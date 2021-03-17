@@ -1,8 +1,9 @@
 import { defineComponent } from 'vue'
+import AnchorIcon from './anchor/anchor-icon'
+import CodeShow from './codeShow/codeShow'
 import SiderBar from './siderbar'
 const Layout = defineComponent({
   setup(props, { slots }) {
-    console.log(slots)
     return () => (
       <div className="layout">
         <aside className="sidebar">
