@@ -24,7 +24,7 @@ const CodePreView = defineComponent({
                 style={{ height: '100%', width: '100%' }}
               >
                 <Fay-col className="action">
-                  <span className="arrow">></span>
+                  <span className="arrow">&gt;</span>
                   <span>浏览代码</span>
                 </Fay-col>
               </Fay-row>

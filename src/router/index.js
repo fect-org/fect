@@ -14,8 +14,8 @@ import int from '../../docs/zh-cn/quickStart/introduce.mdx'
 import install from '../../docs/zh-cn/quickStart/install.mdx'
 
 const routes = [
-  { path: '/install', name: 'insatll', component: install },
-  { path: '/int', name: 'int', component: int },
+  { path: '/zh-cn/quickStart/install', name: 'insatll', component: install },
+  { path: '/zh-cn/quickStart/introduce', name: 'int', component: int },
   { path: '/avatar', name: 'avatar', component: avatar },
   { path: '/button', name: 'button', component: button },
   { path: '/capacity', name: 'capacity', component: capacity },

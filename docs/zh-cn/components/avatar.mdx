@@ -1,7 +1,25 @@
+import {CodeShow} from '../../../pages'
+
+
 export const meta = {
   title: '头像 Avatar',
   group:'数据展示',
 }
+
+
+<CodeShow title="默认的" desc="Avatar 组件包含了圆形与方形" code={`const a = 3;`}>
+<div>
+    <fay-avatar src="http://xinbeauty.oss-cn-shenzhen.aliyuncs.com/default/493938b7-af31-4097-b59a-eb4db4b69492"/>
+  <fay-avatar src="http://xinbeauty.oss-cn-shenzhen.aliyuncs.com/default/493938b7-af31-4097-b59a-eb4db4b69492"/>
+</div>
+
+<fay-spacer y={.6}/>
+
+<div>
+    <fay-avatar text="xeryYue" size="mini"/>
+    <fay-avatar text="xeryYue" size="mini"/>
+</div>
+</CodeShow>
 
 
 ## Avatar / 头像
@@ -20,6 +38,7 @@ export const meta = {
 | --------- | -------- | ----------------- | ------------------- | ---- |
 | **count** | 数量     | `string`,`number` | --                  | --   |
 | ...       | 原生属性 | `HTMLAttributes`  | `'alt','class',...` | `-`  |
+
 
 
 
