@@ -9,9 +9,10 @@ import link from '../../docs/zh-cn/components/link.mdx'
 import loading from '../../docs/zh-cn/components/loading.mdx'
 import radio from '../../docs/zh-cn/components/radio.mdx'
 import spacer from '../../docs/zh-cn/components/spacer.mdx'
-import swtich from '../../docs/zh-cn/components/swtich.mdx'
 import int from '../../docs/zh-cn/quickStart/introduce.mdx'
 import install from '../../docs/zh-cn/quickStart/install.mdx'
+
+import switchA from '../../docs/zh-cn/components/switch.mdx'
 
 const routes = [
   { path: '/zh-cn/quickStart/install', name: 'insatll', component: install },
@@ -26,7 +27,7 @@ const routes = [
   { path: '/loading', name: 'loading', component: loading },
   { path: '/radio', name: 'radio', component: radio },
   { path: '/spacer', name: 'spacer', component: spacer },
-  { path: '/swtich', name: 'swtich', component: swtich },
+  { path: '/switch', name: 'switch', component: switchA },
 ]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
