@@ -17,7 +17,7 @@ const Title = defineComponent({
         <style jsx>{`
           h3 {
             line-height: 1;
-            font-size: 16px;
+            font-size: 20px;
             margin-top: 75px;
             text-transform: capitalize;
             position: relative;

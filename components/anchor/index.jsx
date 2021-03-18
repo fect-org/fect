@@ -19,7 +19,9 @@ const Anchor = defineComponent({
     return () => (
       <>
         <span className="parent-anchor" ref={anchorRef}>
-          <FayLink href={`#${tar.value}`}>{slots.default?.()}</FayLink>
+          <FayLink href={`#${tar.value}`} style={{ fontSize: '20px' }}>
+            {slots.default?.()}
+          </FayLink>
           <span className="virtual" id={tar.value}></span>
           <span className="icon">
             <AnchorIcon />
@@ -29,6 +31,7 @@ const Anchor = defineComponent({
           .parent-anchor {
             position: relative;
             color: inherit;
+            display: flex;
           }
           .parent-anchor a {
             color: inherit;
@@ -48,15 +51,15 @@ const Anchor = defineComponent({
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            left: -1.5em;
+            left: -1.7em;
             top: 50%;
             transform: translateY(-50%);
             position: absolute;
+            font-size: inherit;
             opacity: 0;
             visibility: hidden;
-            font-size: inherit;
-            width: 0.8em;
-            height: 0.8em;
+            width: 15px;
+            height: 15px;
             margin-top: 1px;
             color: var(--accents-3);
           }

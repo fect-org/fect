@@ -21,20 +21,30 @@ export default createComponent({
   setup(props, { attrs, slots }) {
     const { tag, span, offset } = toRefs(props)
 
-
-    const calcStyle = computed(()=>{
+    const calcStyle = computed(() => {
       const style = {}
-      style.width = (`${100 / 24}` * `${span.value}`) + '%'
-      style.marginLeft = (`${100 / 24} ` * `${offset.value}`) + '%'
+      style.width = `${100 / 24}` * `${span.value}` + '%'
+      style.marginLeft = `${100 / 24} ` * `${offset.value}` + '%'
       return style
+    })
+
+    const safeClass = computed(() => {
+      let _class = ''
+      if (attrs.class) {
+        _class = attrs.class ? attrs.class : ''
+        return _class
+      }
+      _class = attrs.className ? attrs.className : ''
+      return _class
     })
 
     return () => (
       <>
-        <tag.value   
-          {...attrs} 
+        <tag.value
+          {...attrs}
           style={calcStyle.value}
-          className={`fay-col  ${attrs?.class ? attrs.class : ''}`}
+          // ${attrs?.class ? attrs.class : ''}
+          className={`fay-col  ${safeClass.value}`}
         >
           {slots.default?.()}
         </tag.value>

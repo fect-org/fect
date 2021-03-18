@@ -1,7 +1,8 @@
 import { createNameSpace, createProvider } from '../../packages/utils'
-import CodeWrapper from './code-wrapper'
+
 import CodeComponent from './code-component'
 import Title from './title'
+import CodePreView from './code-preview'
 
 const READONLY_CODESHOW_KEY = 'codeShowKey'
 
@@ -21,7 +22,8 @@ export default createComponent({
         <Title />
         <div className="codeShow-container">
           <CodeComponent v-slots={slots} />
-          {/* <CodeWrapper></CodeWrapper> */}
+          <CodePreView />
+     
           <style jsx>{`
             .codeShow-container {
               width: 100%;
