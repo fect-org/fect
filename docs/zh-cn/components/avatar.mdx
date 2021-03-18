@@ -1,10 +1,13 @@
-import {CodeShow} from '../../../pages'
+import {CodeShow,Attributes} from '../../../pages'
 
 
 export const meta = {
   title: '头像 Avatar',
   group:'数据展示',
 }
+
+
+## Avatar / 头像
 
 
 <CodeShow title="默认的" desc="Avatar 组件包含了圆形与方形" code={`const a = 3;`}>
@@ -22,7 +25,10 @@ export const meta = {
 </CodeShow>
 
 
-## Avatar / 头像
+
+
+<Attributes>
+
 
 | 属性          | 描述                    | 类型                | 可选值                            | 默认     |
 | ------------- | ----------------------- | ------------------- | --------------------------------- | -------- |
@@ -34,11 +40,21 @@ export const meta = {
 | **className** | 图像容器设置 class      | `string`            | -                                 | `-`      |
 | ...           | 原生属性                | `ImgHTMLAttributes` | `'alt','class',...`               | `-`      |
 
+</Attributes>
+
+
+
+
+
+
+
+<Attributes>
+
 | 属性      | 描述     | 类型              | 可选值              | 默认 |
 | --------- | -------- | ----------------- | ------------------- | ---- |
 | **count** | 数量     | `string`,`number` | --                  | --   |
 | ...       | 原生属性 | `HTMLAttributes`  | `'alt','class',...` | `-`  |
 
 
-
+</Attributes>
 
