@@ -1,7 +1,8 @@
 import { createNameSpace } from '../../packages/utils'
-import Anchor from '../anchor'
 
 const [createComponent] = createNameSpace('Attributes')
+import Anchor from '../anchor'
+import AttributeTitle from './attributes-title'
 import './attributes.less'
 
 export default createComponent({
