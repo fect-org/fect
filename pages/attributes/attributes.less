@@ -1,0 +1,60 @@
+.api-title {
+  vertical-align: middle;
+}
+
+.attrs {
+  table {
+    margin-right: 16pt;
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+  }
+  pre {
+    margin: 0;
+  }
+  & th,
+  td {
+    padding: 0 10px;
+    text-align: left;
+  }
+  th {
+    height: 40px;
+    color: var(--accents-4);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0;
+    background-color: var(--accents-8);
+    border-bottom: 1px solid var(--accents-7);
+    border-top: 1px solid var(--accents-7);
+    &:nth-child(1) {
+      border-bottom: 1px solid var(--accents-7);
+      border-left: 1px solid var(--accents-7);
+      border-radius: 4px 0 0 4px;
+      border-top: 1px solid var(--accents-7);
+    }
+    &:last-child {
+      border-bottom: 1px solid var(--accents-7);
+      border-radius: 0 4px 4px 0;
+      border-right: 1px solid var(--accents-7);
+      border-top: 1px solid var(--accents-7);
+    }
+  }
+  & tr,
+  td {
+    border-bottom: 1px solid var(--accents-7);
+    color: var(--accents-2);
+    font-size: 13px;
+    height: 52px;
+  }
+  & td:nth-child(1) {
+    border-left: 1px solid transparent;
+  }
+}
+
+.attrs thead th td {
+  height: 40px;
+}
+
+.attrs tbody tr td {
+  height: 52px;
+}

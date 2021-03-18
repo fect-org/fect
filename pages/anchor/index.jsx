@@ -31,7 +31,7 @@ const Anchor = defineComponent({
           .parent-anchor {
             position: relative;
             color: inherit;
-            display: flex;
+            vertical-align: middle;
           }
           .parent-anchor a {
             color: inherit;
