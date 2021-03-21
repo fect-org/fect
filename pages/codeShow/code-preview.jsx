@@ -48,7 +48,7 @@ const CodePreView = defineComponent({
           }
           summary {
             height: 35px;
-            border-top: 1px solid var(--accents-7);
+            border-top: 1px solid var(--accents-2);
             display: flex;
             justify-content: space-between;
             align-items: center;

@@ -4,7 +4,7 @@
 
 .attrs {
   table {
-    margin-right: 16pt;
+    margin-right: var(--fay-gap);
     border-collapse: separate;
     border-spacing: 0;
     width: 100%;
@@ -19,35 +19,36 @@
   }
   th {
     height: 40px;
-    color: var(--accents-4);
+    color: var(--accents-5);
     font-size: 12px;
     font-weight: 400;
     letter-spacing: 0;
-    background-color: var(--accents-8);
-    border-bottom: 1px solid var(--accents-7);
-    border-top: 1px solid var(--accents-7);
+    background-color: var(--accents-1);
+    border-bottom: 1px solid var(--accents-2);
+    border-top: 1px solid var(--accents-2);
     &:nth-child(1) {
-      border-bottom: 1px solid var(--accents-7);
-      border-left: 1px solid var(--accents-7);
+      border-bottom: 1px solid var(--accents-2);
+      border-left: 1px solid var(--accents-2);
       border-radius: 4px 0 0 4px;
-      border-top: 1px solid var(--accents-7);
+      border-top: 1px solid var(--accents-2);
     }
     &:last-child {
-      border-bottom: 1px solid var(--accents-7);
+      border-bottom: 1px solid var(--accents-2);
       border-radius: 0 4px 4px 0;
-      border-right: 1px solid var(--accents-7);
-      border-top: 1px solid var(--accents-7);
+      border-right: 1px solid var(--accents-2);
+      border-top: 1px solid var(--accents-2);
     }
   }
   & tr,
   td {
-    border-bottom: 1px solid var(--accents-7);
-    color: var(--accents-2);
+    border-bottom: 1px solid var(--accents-2);
+    color: var(--accents-6);
     font-size: 13px;
     height: 52px;
   }
   & td:nth-child(1) {
     border-left: 1px solid transparent;
+    font-size: 15px;
   }
 }
 

@@ -23,12 +23,12 @@ export default createComponent({
         <div className="codeShow-container">
           <CodeComponent v-slots={slots} />
           <CodePreView />
-     
+
           <style jsx>{`
             .codeShow-container {
               width: 100%;
               border-radius: 5px;
-              border: 1px solid var(--accents-7);
+              border: 1px solid var(--accents-2);
             }
           `}</style>
         </div>

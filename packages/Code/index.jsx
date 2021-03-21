@@ -25,9 +25,9 @@ export default createComponent({
 
     return () => {
       if (block.value) {
-        return isBlock()
+        return normal()
       }
-      return normal()
+      return isBlock()
     }
   },
 })

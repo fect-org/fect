@@ -20,13 +20,13 @@ const AttributeTitle = defineComponent({
             padding: 0 6pt;
             font-size: 17px;
             font-weight: 300;
-            background-color: var(--accents-8);
+            background-color: var(--primary-background);
             border-radius: 5px;
             box-sizing: border-box;
           }
 
           .attr-title {
-            color: var(--geist-highlight-purple);
+            color: var(--fay-code-color);
             position: relative;
           }
 
