@@ -1,3 +1,4 @@
+import { onMounted, watchEffect } from '@vue/runtime-core'
 import { createNameSpace } from '../../packages/utils'
 
 const [createComponent] = createNameSpace('Attributes')
@@ -6,6 +7,15 @@ import './attributes.less'
 
 export default createComponent({
   setup(props, { slots }) {
+    onMounted(() => {
+      const codes = document.querySelectorAll('inlinecode')
+      codes.forEach((code) => {
+        const content = code.textContent
+        const codeEl = document.createElement('code')
+        codeEl.innerHTML = content
+        code.parentNode.replaceChild(codeEl, code)
+      })
+    })
     return () => (
       <>
         <fay-spacer y={5} />
