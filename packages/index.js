@@ -15,6 +15,7 @@ import Row from './Row'
 import Spacer from './Spacer'
 import Switch from './Switch'
 import { camelize } from './utils/format/string'
+import { theme } from './utils'
 const components = [
   Avatar,
   AvatarGroup,
@@ -40,4 +41,4 @@ const install = (vue) => {
   }
   return
 }
-export default { install }
+export default { install, theme }

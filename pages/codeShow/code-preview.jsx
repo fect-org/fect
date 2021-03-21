@@ -40,7 +40,7 @@ const CodePreView = defineComponent({
             border-bottom-right-radius: 5px;
           }
           details {
-            background: #fafafa;
+            background: var(--accents-1);
             transition: all 0.2s ease;
             overflow: hidden;
             border-bottom-left-radius: 5px;
@@ -81,7 +81,7 @@ const CodePreView = defineComponent({
           }
 
           .area {
-            background-color: #ffff;
+            background: var(--accents-1);
             position: relative;
             box-sizing: border-box;
             white-space: pre;

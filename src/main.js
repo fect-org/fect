@@ -1,8 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import fay from '../packages'
+import FectUI from '../packages'
 createApp(App)
   .use(router)
-  .use(fay)
+  .use(FectUI)
   .mount('#app')
