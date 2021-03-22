@@ -24,7 +24,7 @@ export default createComponent({
       <>
         <div
           {...attrs}
-          className={`fay-card ${clacClass.value} ${
+          className={`fect-card ${clacClass.value} ${
             attrs.class ? attrs.class : ''
           }`}
           style={attrs.style ? attrs.style : false}

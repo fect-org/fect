@@ -32,7 +32,7 @@ export default createComponent({
       <>
         <div 
           {...attrs} 
-          className={`fay-radio-group 
+          className={`fect-radio-group 
             ${useRow.value ? 'useRow' : ''}
             ${attrs?.class ? attrs.class : ''}`}>
           {slots.default?.()}

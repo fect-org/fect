@@ -1,4 +1,4 @@
-.fay-btn {
+.fect-btn {
   box-sizing: border-box;
   display: inline-block;
   font-weight: 400;
@@ -11,20 +11,19 @@
   height: 35px;
   border-radius: 5px;
   font-size: 15px;
-  border: 1px solid var(--accents-7);
-  color: var(--accents-1);
-  background-color: #fff;
+
+  color: var(--accents-5);
   padding: 0 25px;
   overflow: hidden;
   cursor: pointer;
   position: relative;
   transition: border 0.2s, background 0.2s, color 0.2s ease-out;
-  &:not(.shadow):not(.loading):hover {
-    color: var(--accents-1);
-    background-color: #fff;
-    color: #333;
-    border-color: #000;
-  }
+  // &:not(.shadow):not(.loading):hover {
+  //   color: var(--accents-1);
+  //   background-color: var(--primary-background);
+  //   color: #333;
+  //   border-color: #000;
+  // }
 
   &.mini {
     width: initial;
@@ -72,36 +71,36 @@
     // border: 1px solid #333 !important;
     // background-color: black;
     pointer-events: none;
-    &.fay-loading-icon {
+    &.fect-loading-icon {
       background-color: #000;
     }
   }
 }
 
-.fay-btn {
+.fect-btn {
   &.default {
-    background-color: #fff;
-    border: 1px solid var(--accents-7);
+    background-color: var(--primary-background);
+    border: 1px solid var(--accents-2);
     &:not(.shadow):not(.loading):hover {
       color: var(--accents-1);
-      background-color: #fff;
+      background-color: var(--primary-background);
       color: #333;
-      border-color: #000;
+      border-color: var(--primary-foreground);
     }
   }
   &.success {
-    border-color: var(--geist-success);
-    background-color: var(--geist-success);
+    border-color: var(--success-default);
+    background-color: var(--success-default);
     color: #fff;
   }
   &.warning {
-    border-color: var(--geist-warning);
-    background-color: var(--geist-warning);
+    border-color: var(--warning-default);
+    background-color: var(--warning-default);
     color: #fff;
   }
   &.error {
-    background-color: var(--geist-error);
-    border-color: #fff;
+    background-color: var(--error-default);
+    border-color: var(--error-default);
     color: #fff;
   }
 }

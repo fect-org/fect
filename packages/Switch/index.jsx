@@ -43,18 +43,18 @@ export default createComponent({
       <>
         <label
           {...attrs}
-          className={`fay-switch ${size.value} ${calcStatus.value}
+          className={`fect-switch ${size.value} ${calcStatus.value}
           ${attrs.class ? attrs.class : ''}`}
         >
           <input
-            className={`fay-switch-checkBox ${size.value}`}
+            className={`fect-switch-checkBox ${size.value}`}
             type="checkBox"
             checked={selfChecked.value}
             disabled={disabled.value}
             onChange={changeHandler}
           ></input>
           <div
-            className={`fay-swtich-slider ${size.value} ${calcStatus.value}`}
+            className={`fect-swtich-slider ${size.value} ${calcStatus.value}`}
           ></div>
         </label>
       </>

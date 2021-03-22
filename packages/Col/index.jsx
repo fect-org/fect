@@ -44,7 +44,7 @@ export default createComponent({
           {...attrs}
           style={calcStyle.value}
           // ${attrs?.class ? attrs.class : ''}
-          className={`fay-col  ${safeClass.value}`}
+          className={`fect-col  ${safeClass.value}`}
         >
           {slots.default?.()}
         </tag.value>

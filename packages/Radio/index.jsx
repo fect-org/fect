@@ -104,7 +104,7 @@ export default createComponent({
     return () => (
       <div 
         {...attrs}
-        className={`fay-radio ${attrs?.class ? attrs.class : ''}`} style={calcRadioSize.value}>
+        className={`fect-radio ${attrs?.class ? attrs.class : ''}`} style={calcRadioSize.value}>
         <label className={` ${isDisabled.value ? 'disabled' : ''}`}>
           <input
             type="radio"
@@ -113,9 +113,9 @@ export default createComponent({
             onChange={handlerChange}
             disabled={isDisabled.value}
           ></input>
-          <span className={'fay-radio-name'}>
+          <span className={'fect-radio-name'}>
             <span 
-              className={`fay-radio-point ${isDisabled.value ? 'disabled' : ''} ${selfChecked.value ? 'active' : ''}`}  />
+              className={`fect-radio-point ${isDisabled.value ? 'disabled' : ''} ${selfChecked.value ? 'active' : ''}`}  />
             {slots.default?.()}
           </span>
         

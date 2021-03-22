@@ -34,7 +34,7 @@ export default createComponent({
       <>
         <span
           {...attrs}
-          className={`fay-spacer ${attrs.class ? attrs.class : ''}`}
+          className={`fect-spacer ${attrs.class ? attrs.class : ''}`}
           style={{
             marginTop: marginTop.value,
             marginLeft: marginLeft.value,

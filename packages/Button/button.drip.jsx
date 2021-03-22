@@ -31,7 +31,7 @@ const ButtonDrip = defineComponent({
     })
 
     return () => (
-      <div ref={dripRef} className={'fay-button-drip'}>
+      <div ref={dripRef} className={'fect-button-drip'}>
         <svg width="20" height="20" viewBox="0 0 20 20" style={calcPlace.value}>
           <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g fill="#ddd">

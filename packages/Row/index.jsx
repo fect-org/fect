@@ -32,10 +32,10 @@ export default createComponent({
     const calcClass = computed(()=>{
       let _class = ''
       if (justify.value !== 'start'){
-        _class += ` fay-justify-${justify.value}`
+        _class += ` fect-justify-${justify.value}`
       }
       if (align.value !== 'top'){
-        _class += ` fay-align-${align.value}`
+        _class += ` fect-align-${align.value}`
       }
       return _class.trim()
     })
@@ -56,7 +56,7 @@ export default createComponent({
       <>
         <tag.value {...attrs} 
           style={calcGutter.value}
-          className={`fay-row ${calcClass.value} ${attrs?.class ? attrs.class : ''}`}>
+          className={`fect-row ${calcClass.value} ${attrs?.class ? attrs.class : ''}`}>
           {slots.default?.()}
         </tag.value>
       </>

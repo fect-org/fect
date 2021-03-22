@@ -67,7 +67,7 @@ export default createComponent({
         <button
           {...attrs}
           disabled={disabled.value}
-          className={`fay-btn ${calcClass.value} ${
+          className={`fect-btn ${calcClass.value} ${
             attrs.class ? attrs.class : ''
           }`}
           ref={buttonRef}

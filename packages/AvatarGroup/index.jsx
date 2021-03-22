@@ -17,12 +17,12 @@ export default createComponent({
       <>
         <div
           {...attrs}
-          className={`fay-ava-group ${(attrs.class ? attrs.class : '').trim()}`}
+          className={`fect-ava-group ${(attrs.class ? attrs.class : '').trim()}`}
           style={attrs.style}
         >
           {safeSlots && slots.default()}
           {showCount && (
-            <span className={'fay-ava-counter'}>+{count.value}</span>
+            <span className={'fect-ava-counter'}>+{count.value}</span>
           )}
         </div>
       </>

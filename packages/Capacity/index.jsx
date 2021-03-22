@@ -22,9 +22,9 @@ export default createComponent({
         return color.value
       }
       const val = value.value
-      if (val < 33) return 'var(--geist-cycan)'
-      if (val < 66) return 'var(--geist-warning-light)'
-      return 'var(--geitst-error-dark)'
+      if (val < 33) return 'var(--hightlight-cyan)'
+      if (val < 66) return 'var(--warning-light)'
+      return 'var(--error-dark)'
     })
 
     return () => (
@@ -32,7 +32,7 @@ export default createComponent({
         <div
           {...attrs}
           title={`${value.value}%`}
-          className={`fay-capacity ${attrs.class ? attrs.class : ''}`}
+          className={`fect-capacity ${attrs.class ? attrs.class : ''}`}
         >
           <span
             style={{

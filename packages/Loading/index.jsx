@@ -29,7 +29,7 @@ export default createComponent({
     return () => (
       <div
         {...attrs}
-        className={`fay-loading-container ${attrs.class ? attrs.class : ''}`}
+        className={`fect-loading-container ${attrs.class ? attrs.class : ''}`}
       >
         <span className={'loading'}>
           {new Array(3).fill(0).map((item, i) => (

@@ -5,7 +5,7 @@ const CardContent = defineComponent({
   setup(props, { attrs, slots }) {
     return () => (
       <>
-        <div className={'fay-card-content'}>{slots && slots.default()}</div>
+        <div className={'fect-card-content'}>{slots && slots.default()}</div>
       </>
     )
   },

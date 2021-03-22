@@ -20,10 +20,10 @@ export default createComponent({
       <>
         <div
           {...attrs}
-          className={`fay-dot-wrapper ${classAttr ? attrs.class : ''}`}
+          className={`fect-dot-wrapper ${classAttr ? attrs.class : ''}`}
         >
-          <span className={`fay-dot ${type.value}`}></span>
-          <span className={'fay-dot-ctx'}>
+          <span className={`fect-dot ${type.value}`}></span>
+          <span className={'fect-dot-ctx'}>
             {safeSlots && slots.default?.()}
           </span>
         </div>

@@ -7,7 +7,7 @@ import './button.loading.less'
 const ButtonLoading = defineComponent({
   setup(props, { attrs }) {
     return () => (
-      <div className={`fay-btn-loading ${attrs.color}`}>
+      <div className={`fect-btn-loading ${attrs.color}`}>
         <Loading />
       </div>
     )
