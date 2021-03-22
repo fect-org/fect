@@ -22,7 +22,7 @@ describe('Avatr', () => {
         text: 'XeryYue',
       },
     })
-    const text = ava.find('.fay-avatar-text').text()
+    const text = ava.find('.fect-avatar-text').text()
     expect(text.length).toBeLessThanOrEqual(3)
   })
 

@@ -31,7 +31,7 @@ describe('Radio', () => {
       },
     })
 
-    const els = wrapper.findAll('.fay-radio')
+    const els = wrapper.findAll('.fect-radio')
     expect(els[0].attributes('style')).toBe('--radioSize: 12px;')
     expect(els[1].attributes('style')).toBe('--radioSize: 14px;')
     expect(els[2].attributes('style')).toBe('--radioSize: 16px;')
@@ -43,7 +43,7 @@ describe('Radio', () => {
   it('should be support cheked', () => {
     const wrapper = mount(<Radio value={'test'} checked={true} />)
     expect(wrapper.html()).toContain(
-      '<span class="fay-radio-point  active"></span>',
+      '<span class="fect-radio-point  active"></span>',
     )
     expect(wrapper.vm.checked).toBeTruthy()
   })

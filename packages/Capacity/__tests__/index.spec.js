@@ -13,7 +13,7 @@ describe('Capacity', () => {
         return <Capacity value="40" />
       },
     })
-    const el = wrapper.find('.fay-capacity')
+    const el = wrapper.find('.fect-capacity')
     expect(el.attributes('title')).toBe('40%')
     expect(wrapper.html()).toMatchSnapshot()
   })

@@ -25,7 +25,7 @@ describe('Loading', () => {
       },
     })
     expect(wrapper.html()).toMatchSnapshot()
-    expect(wrapper.findAll('.fay-loading-container').length).toEqual(4)
+    expect(wrapper.findAll('.fect-loading-container').length).toEqual(4)
   })
 
   it('should be support different sizes', () => {
@@ -44,7 +44,7 @@ describe('Loading', () => {
       },
     })
     expect(wrapper.html()).toMatchSnapshot()
-    expect(wrapper.findAll('.fay-loading-container').length).toEqual(4)
+    expect(wrapper.findAll('.fect-loading-container').length).toEqual(4)
   })
 
   it('should be support use custom color', () => {

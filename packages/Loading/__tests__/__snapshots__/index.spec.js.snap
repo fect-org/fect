@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Loading should be render as element 1`] = `<div class="fay-loading-container "><span class="loading"><i class="medium default"></i><i class="medium default"></i><i class="medium default"></i></span></div>`;
+exports[`Loading should be render as element 1`] = `<div class="fect-loading-container "><span class="loading"><i class="medium default"></i><i class="medium default"></i><i class="medium default"></i></span></div>`;
 
 exports[`Loading should be support different sizes 1`] = `
-<div class="fay-loading-container "><span class="loading"><i class="mini default"></i><i class="mini default"></i><i class="mini default"></i></span></div>
-<div class="fay-loading-container "><span class="loading"><i class="small default"></i><i class="small default"></i><i class="small default"></i></span></div>
-<div class="fay-loading-container "><span class="loading"><i class="medium default"></i><i class="medium default"></i><i class="medium default"></i></span></div>
-<div class="fay-loading-container "><span class="loading"><i class="large default"></i><i class="large default"></i><i class="large default"></i></span></div>
+<div class="fect-loading-container "><span class="loading"><i class="mini default"></i><i class="mini default"></i><i class="mini default"></i></span></div>
+<div class="fect-loading-container "><span class="loading"><i class="small default"></i><i class="small default"></i><i class="small default"></i></span></div>
+<div class="fect-loading-container "><span class="loading"><i class="medium default"></i><i class="medium default"></i><i class="medium default"></i></span></div>
+<div class="fect-loading-container "><span class="loading"><i class="large default"></i><i class="large default"></i><i class="large default"></i></span></div>
 `;
 
 exports[`Loading should be support types 1`] = `
-<div class="fay-loading-container "><span class="loading"><i class="medium default"></i><i class="medium default"></i><i class="medium default"></i></span></div>
-<div class="fay-loading-container "><span class="loading"><i class="medium success"></i><i class="medium success"></i><i class="medium success"></i></span></div>
-<div class="fay-loading-container "><span class="loading"><i class="medium warning"></i><i class="medium warning"></i><i class="medium warning"></i></span></div>
-<div class="fay-loading-container "><span class="loading"><i class="medium error"></i><i class="medium error"></i><i class="medium error"></i></span></div>
+<div class="fect-loading-container "><span class="loading"><i class="medium default"></i><i class="medium default"></i><i class="medium default"></i></span></div>
+<div class="fect-loading-container "><span class="loading"><i class="medium success"></i><i class="medium success"></i><i class="medium success"></i></span></div>
+<div class="fect-loading-container "><span class="loading"><i class="medium warning"></i><i class="medium warning"></i><i class="medium warning"></i></span></div>
+<div class="fect-loading-container "><span class="loading"><i class="medium error"></i><i class="medium error"></i><i class="medium error"></i></span></div>
 `;
 
-exports[`Loading should be support use custom color 1`] = `<div class="fay-loading-container "><span class="loading"><i class="medium default" style="background-color: pink;"></i><i class="medium default" style="background-color: pink;"></i><i class="medium default" style="background-color: pink;"></i></span></div>`;
+exports[`Loading should be support use custom color 1`] = `<div class="fect-loading-container "><span class="loading"><i class="medium default" style="background-color: pink;"></i><i class="medium default" style="background-color: pink;"></i><i class="medium default" style="background-color: pink;"></i></span></div>`;

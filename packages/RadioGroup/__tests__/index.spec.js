@@ -19,13 +19,13 @@ describe('RadioGroup', () => {
     )
 
     expect(wrapper.html()).toMatchSnapshot()
-    const els = wrapper.findAll('.fay-radio-point')
+    const els = wrapper.findAll('.fect-radio-point')
     expect(els[0].classes('active')).toBeTruthy()
   })
 
   it('should be support useRow', () => {
     const wrapper = mount(<RadioGroup useRow={true}></RadioGroup>)
-    expect(wrapper.find('.fay-radio-group').classes('useRow')).toBe(true)
+    expect(wrapper.find('.fect-radio-group').classes('useRow')).toBe(true)
   })
 
   it('should be support disabled', () => {

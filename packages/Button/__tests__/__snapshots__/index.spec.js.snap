@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button should allowed all size 1`] = `
-<button class="fay-btn default mini ">
+<button class="fect-btn default mini ">
   <!---->
   <!---->
   <!---->
-</button><button class="fay-btn default small ">
+</button><button class="fect-btn default small ">
   <!---->
   <!---->
   <!---->
-</button><button class="fay-btn default medium ">
+</button><button class="fect-btn default medium ">
   <!---->
   <!---->
   <!---->
-</button><button class="fay-btn default large ">
+</button><button class="fect-btn default large ">
   <!---->
   <!---->
   <!---->
@@ -21,19 +21,19 @@ exports[`Button should allowed all size 1`] = `
 `;
 
 exports[`Button should allowed all types 1`] = `
-<button class="fay-btn default medium ">
+<button class="fect-btn default medium ">
   <!---->
   <!---->
   <!---->
-</button><button class="fay-btn success medium ">
+</button><button class="fect-btn success medium ">
   <!---->
   <!---->
   <!---->
-</button><button class="fay-btn warning medium ">
+</button><button class="fect-btn warning medium ">
   <!---->
   <!---->
   <!---->
-</button><button class="fay-btn error medium ">
+</button><button class="fect-btn error medium ">
   <!---->
   <!---->
   <!---->
@@ -41,7 +41,7 @@ exports[`Button should allowed all types 1`] = `
 `;
 
 exports[`Button should be render as Element 1`] = `
-<button class="fay-btn default medium ">
+<button class="fect-btn default medium ">
   <!---->
   <!---->
   <!---->

@@ -1,5 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Spacer shoul be render as element 1`] = `<span class="fay-spacer " style="display: block;"></span>`;
+exports[`Spacer shoul be render as element 1`] = `<span class="fect-spacer " style="display: block;"></span>`;
 
-exports[`Spacer should be support x and y 1`] = `<span class="fay-spacer " style="display: block;"></span><span class="fay-spacer " style="display: block;"></span>`;
+exports[`Spacer should be support x and y 1`] = `<span class="fect-spacer " style="display: block;"></span><span class="fect-spacer " style="display: block;"></span>`;

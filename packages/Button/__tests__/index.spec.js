@@ -87,8 +87,8 @@ describe('Button', () => {
       },
     })
 
-    expect(wrapper.find('.fay-btn').text()).toBe('0')
-    await wrapper.find('.fay-btn').trigger('click')
-    expect(wrapper.find('.fay-btn').text()).toBe('1')
+    expect(wrapper.find('.fect-btn').text()).toBe('0')
+    await wrapper.find('.fect-btn').trigger('click')
+    expect(wrapper.find('.fect-btn').text()).toBe('1')
   })
 })

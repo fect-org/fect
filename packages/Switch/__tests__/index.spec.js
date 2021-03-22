@@ -23,7 +23,7 @@ describe('Switch', () => {
         )
       },
     })
-    const els = wrapper.findAll('.fay-switch')
+    const els = wrapper.findAll('.fect-switch')
     expect(wrapper.html()).toMatchSnapshot()
     expect(els[0].classes('mini')).toBe(true)
     expect(els[1].classes('small')).toBe(true)
@@ -33,13 +33,13 @@ describe('Switch', () => {
 
   it('should be support disbaled', () => {
     const wrapper = mount(<Switch disabled={true} />)
-    const el = wrapper.find('.fay-swtich-slider')
+    const el = wrapper.find('.fect-swtich-slider')
     expect(el.classes('disabled')).toBe(true)
   })
 
   it('should emit event change', async () => {
     const wrapper = mount(<Switch />)
-    const el = wrapper.find('.fay-swtich-slider')
+    const el = wrapper.find('.fect-swtich-slider')
     expect(el.classes('checked')).toBe(false)
     await wrapper.find('[type="checkBox"]').trigger('change')
     expect(el.classes('checked')).toBe(true)

@@ -30,7 +30,7 @@ describe('AvatarGroup', () => {
 
     expect(wrapper.html()).toMatchSnapshot()
 
-    expect(wrapper.find('.fay-ava-counter').text()).toBe('+10')
+    expect(wrapper.find('.fect-ava-counter').text()).toBe('+10')
 
     expect(() => wrapper.unmount()).not.toThrow()
   })
