@@ -5,10 +5,15 @@ const Widgets = defineComponent({
     const isDark = ref(false)
     const setTheme = (theme) => localStorage.setItem('theme', theme)
 
+    /**
+     *while watchEffect exduce can't not found null includes
+     */
+
     watchEffect(() => {
-      const _theme = localStorage.getItem('theme').includes('dark')
-      isDark.value = _theme
-      console.log(isDark.value)
+      const _theme = localStorage.getItem('theme')
+      if (_theme) {
+        isDark.value = _theme.includes('dark')
+      }
       const { setLightTheme, setDarkTheme } = useTheme
       // eslint-disable-next-line no-unused-expressions
       isDark.value ? setDarkTheme() : setLightTheme()
@@ -16,7 +21,7 @@ const Widgets = defineComponent({
 
     const changeThemeHandler = () => {
       const next = localStorage.getItem('theme')
-      if (next === 'light') {
+      if (next === 'light' || next === null) {
         isDark.value = true
         setTheme('dark')
       } else {
