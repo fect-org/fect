@@ -18,11 +18,11 @@ export default createComponent({
     })
     return () => (
       <>
-        <fay-spacer y={5} />
+        <Fect-spacer y={5} />
         <h3 className="api-title">
           <Anchor>API's</Anchor> / 接口文档
         </h3>
-        <fay-card class="attrs">{slots.default?.()}</fay-card>
+        <fect-card class="attrs">{slots.default?.()}</fect-card>
         <Spacer y={3} />
       </>
     )

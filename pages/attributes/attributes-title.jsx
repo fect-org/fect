@@ -10,7 +10,7 @@ const AttributeTitle = defineComponent({
         <h4>
           <span className={'attr-title'}>{props?.title && props.title}</span>
         </h4>
-        <fay-spacer y={0.6} />
+        <fect-spacer y={0.6} />
         <style jsx>{`
           h4 {
             margin-bottom: 0;
@@ -26,7 +26,7 @@ const AttributeTitle = defineComponent({
           }
 
           .attr-title {
-            color: var(--fay-code-color);
+            color: var(--Fect-code-color);
             position: relative;
           }
 

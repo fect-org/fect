@@ -32,7 +32,7 @@ const Widgets = defineComponent({
     return () => (
       <>
         <div className="widgest-container">
-          <FayLink href="https://github.com/fay-org/Yuki">代码仓库</FayLink>
+          <fectLink href="https://github.com/Fect-org/Yuki">代码仓库</fectLink>
           <span onClick={changeThemeHandler}>主题</span>
           <style jsx>{`
             .widgest-container {
@@ -52,7 +52,7 @@ const Widgets = defineComponent({
               position: absolute;
             }
             span {
-              margin-left: var(--fay-gap-quarter);
+              margin-left: var(--Fect-gap-quarter);
             }
           `}</style>
         </div>

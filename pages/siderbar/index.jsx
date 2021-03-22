@@ -11,7 +11,7 @@ const SiderBar = defineComponent({
         title: '快速上手',
         rule: [
           {
-            name: '什么是FAY UI',
+            name: '什么是Fect UI',
             url: '/zh-cn/quickStart/introduce',
             index: 1,
           },
@@ -24,7 +24,7 @@ const SiderBar = defineComponent({
       <>
         <div className="sides box">
           <Widgets />
-          <FaySpacer />
+          <fectSpacer />
           <SideItem />
           <style jsx>{`
             .sides {

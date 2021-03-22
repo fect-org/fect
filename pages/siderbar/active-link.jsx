@@ -13,7 +13,7 @@ const ActiveLink = defineComponent({
     watchEffect(() => (isActive.value = route.path === href.value))
     return () => (
       <div className={`link ${isActive.value ? 'active' : ''}`}>
-        <FayLink to={href?.value}>{text?.value}</FayLink>
+        <fectLink to={href?.value}>{text?.value}</fectLink>
         <style jsx>{`
           .link {
             width: 100%;

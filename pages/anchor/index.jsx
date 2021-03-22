@@ -19,9 +19,9 @@ const Anchor = defineComponent({
     return () => (
       <>
         <span className="parent-anchor" ref={anchorRef}>
-          <FayLink href={`#${tar.value}`} style={{ fontSize: '20px' }}>
+          <fectLink href={`#${tar.value}`} style={{ fontSize: '20px' }}>
             {slots.default?.()}
-          </FayLink>
+          </fectLink>
           <span className="virtual" id={tar.value}></span>
           <span className="icon">
             <AnchorIcon />
