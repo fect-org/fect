@@ -40,7 +40,7 @@ export default createComponent({
       <>
         <a
           {...attrs}
-          className={`fay-link ${calcClass.value}`}
+          className={`fect-link ${calcClass.value}`}
           href={safeHref.value}
           onClick={goToHandler}
         >
