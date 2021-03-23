@@ -31,7 +31,7 @@
   .fect-radio-point {
     height: var(--radioSize);
     width: var(--radioSize);
-    border: 1px solid var(--accents-7);
+    border: 1px solid var(--accents-2);
     border-radius: 50%;
     transition: all 0.2s ease 0s;
     position: relative;
@@ -40,11 +40,13 @@
     margin-right: calc(var(--radioSize) * 0.375);
 
     &::before {
-      background-color: var(--accents-2);
+      background-color: var(--primary-foreground);
       content: '';
       position: absolute;
       transform: scale(0);
       border-radius: 50%;
+      top: -1px;
+      left: -1px;
       height: var(--radioSize);
       width: var(--radioSize);
     }

@@ -26,7 +26,7 @@ const AttributeTitle = defineComponent({
           }
 
           .attr-title {
-            color: var(--Fect-code-color);
+            color: var(--fay-code-color);
             position: relative;
           }
 

@@ -52,7 +52,7 @@ const Widgets = defineComponent({
               position: absolute;
             }
             span {
-              margin-left: var(--Fect-gap-quarter);
+              margin-left: var(--fay-gap-quarter);
             }
           `}</style>
         </div>
