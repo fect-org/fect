@@ -51,11 +51,11 @@
     color: #ccc !important;
     cursor: not-allowed !important;
     // pointer-events: none;
-    background: var(--accents-7) !important;
-    border-color: var(--accents-7) !important;
+    background: var(--accents-1) !important;
+    border-color: var(--accents-2) !important;
     &:hover {
-      background: var(--accents-7) !important;
-      border-color: var(--accents-7) !important;
+      background: var(--accents-1) !important;
+      border-color: var(--accents-2) !important;
       color: #ccc !important;
       cursor: not-allowed !important;
     }
@@ -78,6 +78,8 @@
 }
 
 .fect-btn {
+  background-color: var(--primary-background);
+  border: 1px solid var(--accents-2);
   &.default {
     background-color: var(--primary-background);
     border: 1px solid var(--accents-2);
@@ -92,15 +94,27 @@
     border-color: var(--success-default);
     background-color: var(--success-default);
     color: #fff;
+    &:hover {
+      color: var(--success-default);
+      background-color: var(--primary-background);
+    }
   }
   &.warning {
     border-color: var(--warning-default);
     background-color: var(--warning-default);
     color: #fff;
+    &:hover {
+      color: var(--warning-default);
+      background-color: var(--primary-background);
+    }
   }
   &.error {
     background-color: var(--error-default);
     border-color: var(--error-default);
     color: #fff;
+    &:hover {
+      color: var(--error-default);
+      background-color: var(--primary-background);
+    }
   }
 }

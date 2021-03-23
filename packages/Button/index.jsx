@@ -1,4 +1,4 @@
-import { computed, onMounted, ref, toRefs, watchEffect } from 'vue'
+import { computed, ref, toRefs, watchEffect } from 'vue'
 import { validator, theme, createNameSpace } from '../utils'
 const { buttonTypes, normalSizes } = theme
 const [createComponent] = createNameSpace('Button')

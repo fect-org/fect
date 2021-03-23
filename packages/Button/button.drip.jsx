@@ -1,12 +1,4 @@
-import {
-  defineComponent,
-  computed,
-  ref,
-  toRefs,
-  watch,
-  watchEffect,
-  onMounted,
-} from 'vue'
+import { defineComponent, computed, ref, toRefs, onMounted } from 'vue'
 import './button.drip.less'
 
 const ButtonDrip = defineComponent({
@@ -34,7 +26,7 @@ const ButtonDrip = defineComponent({
       <div ref={dripRef} className={'fect-button-drip'}>
         <svg width="20" height="20" viewBox="0 0 20 20" style={calcPlace.value}>
           <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-            <g fill="#ddd">
+            <g fill="var(--accents-2)">
               <rect width="100%" height="100%" rx="10" />
             </g>
           </g>
