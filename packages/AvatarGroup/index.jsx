@@ -12,15 +12,18 @@ export default createComponent({
   setup(props, { attrs, slots }) {
     const { count } = toRefs(props)
     const showCount = !!(count && count.value)
-    const safeSlots = !!slots?.default
+
     return () => (
       <>
         <div
           {...attrs}
-          className={`fect-ava-group ${(attrs.class ? attrs.class : '').trim()}`}
+          className={`fect-ava-group ${(attrs.class
+            ? attrs.class
+            : ''
+          ).trim()}`}
           style={attrs.style}
         >
-          {safeSlots && slots.default()}
+          {slots.default?.()}
           {showCount && (
             <span className={'fect-ava-counter'}>+{count.value}</span>
           )}

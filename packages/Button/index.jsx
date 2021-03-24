@@ -30,7 +30,7 @@ export default createComponent({
     const drapShow = ref(false) // control drap component display
     const drapX = ref(0)
     const drapY = ref(0)
-    const safeSlots = !!slots?.default
+
     const calcClass = computed(() => {
       let str = ''
       loading.value && (str += ' loading')
@@ -81,7 +81,7 @@ export default createComponent({
               onCompleted={dripCompleteHnadler}
             />
           )}
-          {safeSlots && slots.default()}
+          {slots.default?.()}
         </button>
       </>
     )

@@ -18,7 +18,7 @@ export default createComponent({
   setup(props, { attrs, slots }) {
     const { href, color, underline, block, to } = toRefs(props)
     const route = useRouter()
-    const safeSlots = !!slots?.default
+
     const calcClass = computed(() => {
       let str = ''
       color.value && (str += ' color')
@@ -44,7 +44,7 @@ export default createComponent({
           href={safeHref.value}
           onClick={goToHandler}
         >
-          {safeSlots && slots.default()}
+          {slots.default?.()}
         </a>
       </>
     )

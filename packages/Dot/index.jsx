@@ -15,7 +15,7 @@ export default createComponent({
   setup(props, { attrs, slots, emit }) {
     const { type } = toRefs(props)
     const classAttr = !!attrs?.class
-    const safeSlots = !!slots?.default
+
     return () => (
       <>
         <div
@@ -23,9 +23,7 @@ export default createComponent({
           className={`fect-dot-wrapper ${classAttr ? attrs.class : ''}`}
         >
           <span className={`fect-dot ${type.value}`}></span>
-          <span className={'fect-dot-ctx'}>
-            {safeSlots && slots.default?.()}
-          </span>
+          <span className={'fect-dot-ctx'}>{slots.default?.()}</span>
         </div>
       </>
     )

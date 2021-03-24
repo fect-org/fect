@@ -9,16 +9,14 @@ export default createComponent({
   },
   setup(props, { attrs, slots }) {
     const { block } = toRefs(props)
-    const safeSlost = !!slots?.default
-
     const isBlock = () => {
-      return <code {...attrs}>{safeSlost && slots.default()}</code>
+      return <code {...attrs}>{slots.default?.()}</code>
     }
 
     const normal = () => {
       return (
         <pre {...attrs}>
-          <code>{safeSlost && slots.default()}</code>
+          <code>{slots.default?.()}</code>
         </pre>
       )
     }
