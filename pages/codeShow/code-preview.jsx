@@ -18,16 +18,16 @@ const CodePreView = defineComponent({
         <div className="code-preview">
           <details open={visible.value}>
             <summary onClick={handlerClick}>
-              <Fay-row
+              <fect-row
                 justify="space-between"
                 align="middle"
                 style={{ height: '100%', width: '100%' }}
               >
-                <Fay-col className="action">
+                <fect-col className="action">
                   <span className="arrow">&gt;</span>
                   <span>浏览代码</span>
-                </Fay-col>
-              </Fay-row>
+                </fect-col>
+              </fect-row>
             </summary>
             <div className="area">
               <CodeWrapper></CodeWrapper>

@@ -12,6 +12,14 @@ const CodeWrapper = defineComponent({
     return () => (
       <>
         <Prism language="html">{ctx.code}</Prism>
+        <style jsx>{`
+          .language-html {
+            margin: 0;
+            background: var(--primary-background);
+            border: none;
+            overflow-x: auto;
+          }
+        `}</style>
       </>
     )
   },
