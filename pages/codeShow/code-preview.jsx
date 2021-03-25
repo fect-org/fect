@@ -88,6 +88,19 @@ const CodePreView = defineComponent({
             font-size: 1em;
             overflow: hidden;
           }
+
+          .area pre {
+            margin: 0;
+            background: var(--primary-background);
+            border: none;
+            overflow-x: auto;
+          }
+          .area pre span {
+            text-transform: none;
+          }
+          .area pre code {
+            text-transform: none;
+          }
         `}</style>
       </>
     )
