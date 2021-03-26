@@ -43,7 +43,10 @@ export default createComponent({
 
     return () => (
       <>
-        <div className={`fect-avatar ${calcAttrs.value} ${calcClass.value}`}>
+        <div
+          className={`fect-avatar ${calcAttrs.value} ${calcClass.value}`}
+          style={attrs.style ? attrs.style : ''}
+        >
           {!showText && <img src={src.value} draggable="false" {...attrs} />}
           {showText && (
             <span

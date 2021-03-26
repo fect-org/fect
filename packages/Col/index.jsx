@@ -3,6 +3,16 @@ import { createNameSpace } from '../utils'
 const [createComponent] = createNameSpace('Col')
 import './col.less'
 
+//calculate tag safe distance
+
+const useDistance = (value) => {
+  if (typeof value === 'string') Number(value)
+
+  const tempDistance = 100 / 24
+  if (value >= 24) return '100%'
+  return `${tempDistance * value}%`
+}
+
 export default createComponent({
   props: {
     tag: {
@@ -23,8 +33,8 @@ export default createComponent({
 
     const calcStyle = computed(() => {
       const style = {}
-      style.width = `${100 / 24}` * `${span.value}` + '%'
-      style.marginLeft = `${100 / 24} ` * `${offset.value}` + '%'
+      style.width = useDistance(span.value)
+      style.marginLeft = useDistance(offset.value)
       return style
     })
 
