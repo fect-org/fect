@@ -2,9 +2,112 @@ import { CodeShow, Attributes } from '../../../pages'
 
 # Link / 链接
 
+网页之间的超链接
 
+<CodeShow title="默认的" code={`<template>
+ <div>
+   <fect-link href="https://vue3js.cn/docs/zh/" target="_blank">如何学习 Vue3</fect-link>
+ </div>
+</template>
+ 
+<script>
+   
+export default{
+ 
+}
+ 
+</script>
+`}>
 
-<fay-link>hh</fay-link>
+ <div>
+   <fect-link href="https://vue3js.cn/docs/zh/" target="_blank">如何学习 Vue3</fect-link>
+ </div>
+</CodeShow>
+
+<CodeShow title="高亮" desc="以不同的颜色区分链接" code={`<template>
+ <div>
+    <fect-link href="https://vue3js.cn/docs/zh/" target="_blank">如何学习 Vue3</fect-link>
+    <fect-spacer y=".5"/>
+    <fect-link href="https://vue3js.cn/docs/zh/" target="_blank" color>如何学习 Vue3</fect-link>
+ </div>
+</template>
+ 
+<script>
+   
+export default{
+ 
+}
+ 
+</script>
+`}>
+
+ <div>
+   <fect-link href="https://vue3js.cn/docs/zh/" target="_blank">如何学习 Vue3</fect-link>
+   <fect-spacer y=".5"/>
+   <fect-link href="https://vue3js.cn/docs/zh/" target="_blank" color>如何学习 Vue3</fect-link>
+ </div>
+</CodeShow>
+
+<CodeShow title="不同风格的" desc="链接的风格" code={`<template>
+ <div>
+     <fect-link href="https://vue3js.cn/docs/zh/" target="_blank" block>如何学习 Vue3</fect-link>
+     <fect-spacer y=".5"/>
+     <fect-link href="https://vue3js.cn/docs/zh/" target="_blank" block color>如何学习 Vue3</fect-link>
+     <fect-spacer y=".5"/>
+     <fect-link href="https://vue3js.cn/docs/zh/" target="_blank">如何学习 Vue3</fect-link>
+     <fect-spacer y=".5"/>
+     <fect-link href="https://vue3js.cn/docs/zh/" target="_blank" color>如何学习 Vue3</fect-link>
+     <fect-spacer y=".5"/>
+     <fect-link href="https://vue3js.cn/docs/zh/" target="_blank" underline>如何学习 Vue3</fect-link>
+     <fect-spacer y=".5"/>
+     <fect-link href="https://vue3js.cn/docs/zh/" target="_blank" color underline>如何学习 Vue3</fect-link>
+ </div>
+</template>
+ 
+<script>
+   
+export default{
+ 
+}
+ 
+</script>
+`}>
+
+ <div>
+   <fect-link href="https://vue3js.cn/docs/zh/" target="_blank" block>如何学习 Vue3</fect-link>
+   <fect-spacer y=".5"/>
+   <fect-link href="https://vue3js.cn/docs/zh/" target="_blank" block color>如何学习 Vue3</fect-link>
+   <fect-spacer y=".5"/>
+   <fect-link href="https://vue3js.cn/docs/zh/" target="_blank">如何学习 Vue3</fect-link>
+   <fect-spacer y=".5"/>
+   <fect-link href="https://vue3js.cn/docs/zh/" target="_blank" color>如何学习 Vue3</fect-link>
+   <fect-spacer y=".5"/>
+   <fect-link href="https://vue3js.cn/docs/zh/" target="_blank" underline>如何学习 Vue3</fect-link>
+   <fect-spacer y=".5"/>
+   <fect-link href="https://vue3js.cn/docs/zh/" target="_blank" color underline>如何学习 Vue3</fect-link>
+ </div>
+</CodeShow>
+
+<CodeShow title="路由跳转" desc="link组件提供了vueRouter push的路由跳转方式" code={`<template>
+ <div>
+   <fect-link to="/avatar">Avatar 组件</fect-link>
+ </div>
+</template>
+ 
+<script>
+   
+export default{
+ 
+}
+ 
+</script>
+`}>
+
+ <div>
+   <fect-link to="/avatar">Avatar 组件</fect-link>
+ </div>
+</CodeShow>
+
 
 <Attributes>
   
