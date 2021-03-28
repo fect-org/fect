@@ -24,6 +24,8 @@ const Title = defineComponent({
           }
           h3 > p {
             margin: 13pt 0;
+            font-size: 0.75em;
+            font-weight: 400;
           }
           h3 > :code,
           h3 > :pre {

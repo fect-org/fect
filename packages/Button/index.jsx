@@ -22,10 +22,11 @@ export default createComponent({
     disabled: Boolean,
     shadow: Boolean,
     loading: Boolean,
+    auto: Boolean,
   },
   emits: ['click'],
   setup(props, { attrs, slots, emit }) {
-    const { size, type, loading, shadow, disabled } = toRefs(props)
+    const { size, type, loading, shadow, disabled, auto } = toRefs(props)
     const buttonRef = ref(null)
     const drapShow = ref(false) // control drap component display
     const drapX = ref(0)
@@ -38,6 +39,7 @@ export default createComponent({
       size.value && (str += ` ${size.value}`)
       shadow.value && (str += ' shadow')
       disabled.value && (str += ' disabled')
+      auto.value && (str += ' auto')
       return str.trim()
     })
 

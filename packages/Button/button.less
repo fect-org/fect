@@ -8,7 +8,7 @@
   text-align: center;
   outline: none;
   width: auto;
-  height: 35px;
+  height: 40px;
   border-radius: 5px;
   font-size: 15px;
 
@@ -18,16 +18,13 @@
   cursor: pointer;
   position: relative;
   transition: border 0.2s, background 0.2s, color 0.2s ease-out;
-  // &:not(.shadow):not(.loading):hover {
-  //   color: var(--accents-1);
-  //   background-color: var(--primary-background);
-  //   color: #333;
-  //   border-color: #000;
-  // }
+  &:not(.auto) {
+    min-width: 200px;
+  }
 
   &.mini {
     width: initial;
-    min-width: 60px;
+    min-width: 150px;
     font-size: 12px;
     padding: 0 15px;
     height: 30px;
@@ -35,14 +32,14 @@
 
   &.small {
     width: initial;
-    min-width: 100px;
+    min-width: 180px;
     font-size: 13px;
     padding: 0 20px;
     height: 35px;
   }
   &.large {
     width: initial;
-    min-width: 180px;
+    min-width: 250px;
     font-size: 18px;
     padding: 0 30px;
     height: 45px;
@@ -74,6 +71,9 @@
     &.fect-loading-icon {
       background-color: #000;
     }
+  }
+  &.auto {
+    min-width: auto;
   }
 }
 

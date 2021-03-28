@@ -20,7 +20,6 @@ const CodePreView = defineComponent({
             <summary onClick={handlerClick}>
               <fect-row
                 justify="space-between"
-                align="middle"
                 style={{ height: '100%', width: '100%' }}
               >
                 <fect-col className="action">

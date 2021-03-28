@@ -12,9 +12,10 @@ const CodeComponent = defineComponent({
             display: flex;
             flex-direction: column;
             box-sizing: border-box;
+            justify-content: space-between;
           }
           .code-components > div {
-          width:100%:
+            width: 100%;
           }
         `}</style>
       </div>
