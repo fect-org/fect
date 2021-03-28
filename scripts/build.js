@@ -14,7 +14,7 @@ const args = [
   '--target',
   'lib',
   '--name',
-  'fay-ui',
+  'fect-ui',
   './packages/index.js',
 ]
 

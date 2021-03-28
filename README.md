@@ -1,5 +1,5 @@
 <p align="center" height="370">
-@Fay-ui/vue
+@fect-ui/vue
 </p>
 
 <p align="center">
@@ -15,18 +15,18 @@
 
 ### Quick start
 
-1. run `yarn add @fay-ui/vue` or `npm install @fay-ui/vue` install it
+1. run `yarn add @fec-ui/vue` or `npm install @fect-ui/vue` install it
 
 2. import into project
 
 ```js
 import { createApp } from 'vue'
 import App from './App.vue'
-import FAYUI from '@fay-ui/vue'
-import '@fay-ui/vue/dist/fay-ui.css'
+import FectUI from '@fect-ui/vue'
+import '@fect-ui/vue/dist/fect-ui.css'
 
 createApp(App)
-  .use(FAYUI)
+  .use(FectUI)
   .mount('#app')
 ```
 
