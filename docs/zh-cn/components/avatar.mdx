@@ -10,10 +10,25 @@ export const meta = {
 # Avatar / 头像
 
 
-<CodeShow title="默认的" desc="Avatar 组件包含了圆形与方形" code={`const a = 3;`}>
+<CodeShow title="默认的" desc="Avatar 组件包含了圆形与方形" code={`<template>
+ <div>
+    <fect-avatar text="h"/>
+    <br/>
+    <fect-avatar text="xeryYue" size="mini"/>
+    <fect-avatar text="xeryYue" size="mini"/>
+ </div>
+</template>
+ 
+<script>
+   
+export default{
+ 
+}
+ 
+</script>
+`}>
 <div>
-    <fect-avatar src="http://xinbeauty.oss-cn-shenzhen.aliyuncs.com/default/493938b7-af31-4097-b59a-eb4db4b69492"/>
-  <fect-avatar src="http://xinbeauty.oss-cn-shenzhen.aliyuncs.com/default/493938b7-af31-4097-b59a-eb4db4b69492"/>
+    <fect-avatar text="h"/>
 </div>
 
 <fect-spacer y={.6}/>

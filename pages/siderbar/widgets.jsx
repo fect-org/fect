@@ -33,7 +33,9 @@ const Widgets = defineComponent({
       <>
         <div className="widgest-container">
           <fectLink href="https://github.com/Fect-org/Yuki">代码仓库</fectLink>
-          <span onClick={changeThemeHandler}>主题</span>
+          <span className="widgest-theme" onClick={changeThemeHandler}>
+            主题
+          </span>
           <style jsx>{`
             .widgest-container {
               width: 100%;
@@ -51,7 +53,7 @@ const Widgets = defineComponent({
               background-color: var(--accents-7);
               position: absolute;
             }
-            span {
+            .widgest-theme {
               margin-left: var(--fay-gap-quarter);
             }
           `}</style>

@@ -18,16 +18,16 @@ const CodePreView = defineComponent({
         <div className="code-preview">
           <details open={visible.value}>
             <summary onClick={handlerClick}>
-              <Fay-row
+              <fect-row
                 justify="space-between"
                 align="middle"
                 style={{ height: '100%', width: '100%' }}
               >
-                <Fay-col className="action">
+                <fect-col className="action">
                   <span className="arrow">&gt;</span>
                   <span>浏览代码</span>
-                </Fay-col>
-              </Fay-row>
+                </fect-col>
+              </fect-row>
             </summary>
             <div className="area">
               <CodeWrapper></CodeWrapper>
@@ -87,6 +87,19 @@ const CodePreView = defineComponent({
             white-space: pre;
             font-size: 1em;
             overflow: hidden;
+          }
+
+          .area pre {
+            margin: 0;
+            background: var(--primary-background);
+            border: none;
+            overflow-x: auto;
+          }
+          .area pre span {
+            text-transform: none;
+          }
+          .area pre code {
+            text-transform: none;
           }
         `}</style>
       </>
