@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Col should be render as Element 1`] = `
+<div style="width: 100%; margin-left: 0%; padding-left: 0px; padding-right: 0px;" class="fect-col  ">
+  <!---->
+</div>
+`;

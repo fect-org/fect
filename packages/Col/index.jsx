@@ -1,4 +1,4 @@
-import { computed, toRefs } from 'vue'
+import { computed, ref, toRefs } from 'vue'
 import { createNameSpace, useProvider } from '../utils'
 const [createComponent] = createNameSpace('Col')
 import './col.less'
@@ -32,8 +32,12 @@ export default createComponent({
   },
   setup(props, { attrs, slots }) {
     const { tag, span, offset } = toRefs(props)
+    const gutter = ref(null)
     const { ctx } = useProvider(READONLY_LAYOUT_KEY)
-    const { gutter } = ctx
+    if (ctx) {
+      gutter.value = ctx.gutter.value
+    }
+
     const calcStyle = computed(() => {
       const style = {}
       style.width = useDistance(span.value)

@@ -5,7 +5,7 @@ describe('Col', () => {
   it('should be render as Element', () => {
     const col = mount(Col)
     expect(col.html()).toMatchSnapshot()
-    expect(() => col.unmount()).not.toThcol()
+    expect(() => col.unmount()).not.toThrow()
   })
 
   it('should be support tag', () => {
