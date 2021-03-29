@@ -2,11 +2,84 @@ import { CodeShow, Attributes } from '../../../pages'
 
 # switch / 开关
 
+显示布尔值的开关控件
 
+<CodeShow title="默认的" code={`<template>
+ <div>
+   <fect-switch/>
+   <fect-spacer/>
+   <fect-switch checked/>
+ </div>
+</template>
+ 
+<script>
+   
+export default{
+ 
+}
+ 
+</script>
+`}>
+ <div>
+   <fect-switch/>
+   <fect-spacer/>
+   <fect-switch checked/>
+ </div>
+</CodeShow>
 
+<CodeShow title="禁用" code={`<template>
+ <div>
+   <fect-switch disabled/>
+   <fect-spacer/>
+   <fect-switch checked disabled/>
+ </div>
+</template>
+ 
+<script>
+   
+export default{
+ 
+}
+ 
+</script>
+`}>
+ <div>
+   <fect-switch disabled/>
+   <fect-spacer/>
+   <fect-switch checked disabled/>
+ </div>
+</CodeShow>
 
-
-<fect-switch checked disabled/>
+<CodeShow title="尺寸" desc="switch组件支持修改大小" code={`<template>
+ <div>
+   <fect-switch size="mini"/>
+   <fect-spacer/>
+   <fect-switch size="small"/>
+   <fect-spacer/>
+   <fect-switch size="medium"/>
+   <fect-spacer/>
+   <fect-switch size="large"/>
+ </div>
+</template>
+ 
+<script>
+   
+export default{
+ 
+}
+ 
+</script>
+`}>
+ <div>
+   <fect-switch size="mini"/>
+   <fect-spacer/>
+   <fect-switch size="small"/>
+   <fect-spacer/>
+   <fect-switch size="medium"/>
+   <fect-spacer/>
+   <fect-switch size="large"/>
+ </div>
+</CodeShow>
 
 <Attributes>
   
@@ -15,7 +88,7 @@ import { CodeShow, Attributes } from '../../../pages'
 | 属性         | 描述     | 类型                  | 可选值               | 默认    |
 | ------------ | -------- | --------------------- | -------------------- | ------- |
 | **checked**  | 是否选中 | `boolean`             | `'true','false'`     | `false` |
-| **size**     | 开关大小 | `string`              | `'true','false'`     | `false` |
+| **size**     | 开关大小 | `string`              | `'mini', 'small', 'medium', 'large'`     | `false` |
 | **disabled** | 禁用交互 | `boolean`             | `'true','false'`     | `false` |
 | **change**   | 开关事件 | `SwitchEvent`         | `-`                  | `-`     |
 | ...          | 原生属性 | `LabelHTMLAttributes` | `'class','name',...` | `-`     |

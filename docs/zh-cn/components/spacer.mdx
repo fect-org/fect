@@ -2,6 +2,62 @@ import { CodeShow, Attributes } from '../../../pages'
 
 # spacer / 间距
 
+为排版提供标准化的间距
+
+<CodeShow title="默认的" code={`<template>
+ <div>
+   <fect-row style="background:#444"><fect-spacer y="1" /></fect-row>
+   <fect-spacer y="1" />
+   <fect-row style="background:#444"><fect-spacer y="2" /></fect-row>
+   <fect-spacer y="1" />
+   <fect-row style="background:#444"><fect-spacer y="3" /></fect-row>
+ </div>
+</template>
+ 
+<script>
+   
+export default{
+ 
+}
+ 
+</script>
+`}>
+ <div>
+   <fect-row style="background:#444"><fect-spacer y="1" /></fect-row>
+   <fect-spacer y="1" />
+   <fect-row style="background:#444"><fect-spacer y="2" /></fect-row>
+   <fect-spacer y="1" />
+   <fect-row style="background:#444"><fect-spacer y="3" /></fect-row>
+ </div>
+</CodeShow>
+
+<CodeShow title="水平的" code={`<template>
+ <div>
+   <fect-row >
+      <fect-col style="background:#444"></fect-col>
+      <fect-spacer x="5" />
+      <fect-col style="background:#444"></fect-col>
+    </fect-row>
+ </div>
+</template>
+ 
+<script>
+   
+export default{
+ 
+}
+ 
+</script>
+`}>
+ <div>
+    <fect-row >
+      <fect-col style="background:#444"></fect-col>
+      <fect-spacer x="5" />
+      <fect-col style="background:#444"></fect-col>
+    </fect-row>
+ </div>
+</CodeShow>
+
 <Attributes>
   
 <Attributes.title title={'Spacer Props'}/>
