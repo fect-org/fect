@@ -2,8 +2,76 @@ import { CodeShow, Attributes } from '../../../pages'
 
 # loading / 加载中
 
+表示动作正在后台运行
 
-<fay-loading/>
+<CodeShow title="默认的" code={`<template>
+ <div>
+   <fect-loading />
+ </div>
+</template>
+ 
+<script>
+   
+export default{
+ 
+}
+ 
+</script>
+`}>
+ <div>
+   <fect-loading />
+ </div>
+</CodeShow>
+
+<CodeShow title="类型" desc="可以指定指示器的类型" code={`<template>
+ <div>
+   <fect-loading type="default"/>
+   <fect-loading type="success"/>
+   <fect-loading type="warning"/>
+   <fect-loading type="error"/>
+ </div>
+</template>
+ 
+<script>
+   
+export default{
+ 
+}
+ 
+</script>
+`}>
+ <div>
+   <fect-loading type="default"/>
+   <fect-loading type="success"/>
+   <fect-loading type="warning"/>
+   <fect-loading type="error"/>
+ </div>
+</CodeShow>
+
+<CodeShow title="尺寸" desc="可以指定指示器的尺寸" code={`<template>
+ <div>
+   <fect-loading type="default" size="mini"/>
+   <fect-loading type="success" size="small"/>
+   <fect-loading type="warning" size="medium"/>
+   <fect-loading type="error" size="large"/>
+ </div>
+</template>
+ 
+<script>
+   
+export default{
+ 
+}
+ 
+</script>
+`}>
+ <div>
+   <fect-loading type="default" size="mini"/>
+   <fect-loading type="success" size="small"/>
+   <fect-loading type="warning" size="medium"/>
+   <fect-loading type="error" size="large"/>
+ </div>
+</CodeShow>
 
 <Attributes>
   

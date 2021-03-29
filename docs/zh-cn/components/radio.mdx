@@ -2,6 +2,145 @@ import { CodeShow, Attributes } from '../../../pages'
 
 # Radio / 单选框
 
+提供用户输入的选择项
+
+<CodeShow title="默认的" code={`<template>
+ <div>
+   <fect-radio value="1">Radio</fect-radio>
+ </div>
+</template>
+ 
+<script>
+   
+export default{
+ 
+}
+ 
+</script>
+`}>
+ <div>
+    <fect-radio value="1">Radio</fect-radio>
+ </div>
+</CodeShow>
+
+<CodeShow title="组" desc="一组可控选择的数值" code={`<template>
+ <div>
+   <fect-radioGroup>
+     <fect-radio value="1">Radio</fect-radio>
+     <fect-radio value="2">Radio2</fect-radio>
+   </fect-radioGroup>
+ </div>
+</template>
+ 
+<script>
+   
+export default{
+ 
+}
+ 
+</script>
+`}>
+ <div>
+   <fect-radioGroup>
+     <fect-radio value="1">Radio</fect-radio>
+     <fect-radio value="2">Radio2</fect-radio>
+   </fect-radioGroup>
+ </div>
+</CodeShow>
+
+<CodeShow title="行对齐" desc="水平排列所有的选项" code={`<template>
+ <div>
+   <fect-radioGroup useRow>
+     <fect-radio value="1">Radio</fect-radio>
+     <fect-radio value="2">Radio2</fect-radio>
+   </fect-radioGroup>
+ </div>
+</template>
+ 
+<script>
+   
+export default{
+ 
+}
+ 
+</script>
+`}>
+ <div>
+   <fect-radioGroup useRow>
+     <fect-radio value="1">Radio</fect-radio>
+     <fect-radio value="2">Radio2</fect-radio>
+   </fect-radioGroup>
+ </div>
+</CodeShow>
+
+<CodeShow title="禁用" desc="禁用组内所有的可选项" code={`<template>
+ <div>
+   <fect-radioGroup useRow disabled>
+     <fect-radio value="1">Radio</fect-radio>
+     <fect-radio value="2" checked>Radio2</fect-radio>
+   </fect-radioGroup>
+ </div>
+</template>
+ 
+<script>
+   
+export default{
+ 
+}
+ 
+</script>
+`}>
+ <div>
+   <fect-radioGroup useRow disabled>
+     <fect-radio value="1">Radio</fect-radio>
+     <fect-radio value="2" checked>Radio2</fect-radio>
+   </fect-radioGroup>
+ </div>
+</CodeShow>
+
+<CodeShow title="尺寸" desc="禁用组内所有的可选项" code={`<template>
+ <div>
+   <p>单选组</p>
+   <fect-radioGroup size="mini">
+     <fect-radio value="1" size="mini">Radio</fect-radio>
+     <fect-radio value="2" checked >Radio2</fect-radio>
+     <fect-radio value="3" >Radio3</fect-radio>
+     <fect-radio value="4"  >Radio4</fect-radio>
+   </fect-radioGroup>
+  
+   <p>单个</p>
+   <fect-radio value="1" size="mini">Radio</fect-radio>
+     <fect-radio value="2"size="small">Radio2</fect-radio>
+     <fect-radio value="3"  size="medium">Radio3</fect-radio>
+   <fect-radio value="4"  size="large">Radio4</fect-radio>
+ </div>
+</template>
+ 
+<script>
+   
+export default{
+ 
+}
+ 
+</script>
+`}>
+ <div>
+    <p>单选组</p>
+   <fect-radioGroup size="mini">
+     <fect-radio value="1" size="mini">Radio</fect-radio>
+     <fect-radio value="2" checked >Radio2</fect-radio>
+     <fect-radio value="3" >Radio3</fect-radio>
+     <fect-radio value="4"  >Radio4</fect-radio>
+   </fect-radioGroup>
+  
+   <p>单个</p>
+   <fect-radio value="1" size="mini">Radio</fect-radio>
+     <fect-radio value="2"size="small">Radio2</fect-radio>
+     <fect-radio value="3"  size="medium">Radio3</fect-radio>
+   <fect-radio value="4"  size="large">Radio4</fect-radio>
+ </div>
+</CodeShow>
+
 <Attributes>
   
 <Attributes.title title={'Radio Props'}/>

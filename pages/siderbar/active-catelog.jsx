@@ -7,10 +7,10 @@ const ActiveCateLog = defineComponent({
   setup(props, { slots }) {
     return () => (
       <>
-        <span>
+        <span className="active-catelog">
           {props.name}
           <style jsx>{`
-            span {
+            .active-catelog {
               font-size: 13px;
               transition: all 0.2s ease;
               text-transform: uppercase;
