@@ -1,8 +1,11 @@
 import { computed, toRefs } from 'vue'
-import { createNameSpace,theme,validator } from '../utils'
+import { createNameSpace,theme,validator,createProvider } from '../utils'
 const [createComponent] = createNameSpace('Row')
 
 const { justifyTypes,alignTypes } = theme
+
+const READONLY_LAYOUT_KEY = 'layoutKey'
+
 import './row.less'
 
 export default createComponent({
@@ -29,6 +32,10 @@ export default createComponent({
   setup(props, { attrs, slots }) {
     const { tag ,gutter,justify,align } = toRefs(props)
 
+    const { provider } = createProvider(READONLY_LAYOUT_KEY)
+
+    provider({ gutter })
+
     const calcClass = computed(()=>{
       let _class = ''
       if (justify.value !== 'start'){
@@ -45,10 +52,7 @@ export default createComponent({
       if (gutter.value){
         style.marginLeft = `-${gutter.value / 2}px`
         style.marginRight = style.marginLeft
-        style['--gutter'] = style.marginLeft
-      } else {
-        style['--gutter'] = 0
-      }
+      } 
       return style
     })
 
