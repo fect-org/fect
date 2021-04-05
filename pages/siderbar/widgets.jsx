@@ -3,6 +3,7 @@ import { useTheme } from '../../packages/utils'
 const Widgets = defineComponent({
   setup() {
     const isDark = ref(false)
+    const themeIcon = ref('moon')
     const setTheme = (theme) => localStorage.setItem('theme', theme)
 
     /**
@@ -24,9 +25,11 @@ const Widgets = defineComponent({
       if (next === 'light' || next === null) {
         isDark.value = true
         setTheme('dark')
+        themeIcon.value = 'sun'
       } else {
         isDark.value = false
         setTheme('light')
+        themeIcon.value = 'moon'
       }
     }
     return () => (
@@ -34,7 +37,7 @@ const Widgets = defineComponent({
         <div className="widgest-container">
           <fectLink href="https://github.com/Fect-org/Yuki">代码仓库</fectLink>
           <span className="widgest-theme" onClick={changeThemeHandler}>
-            主题
+            <fect-icon icon={themeIcon} size="20" />
           </span>
           <style jsx>{`
             .widgest-container {

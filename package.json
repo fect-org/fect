@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
+    "@fect-ui/vue-icons": "^0.1.2",
     "@vue/babel-plugin-jsx": "^1.0.3",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",

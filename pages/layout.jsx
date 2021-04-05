@@ -1,6 +1,5 @@
 import { defineComponent } from 'vue'
-import AnchorIcon from './anchor/anchor-icon'
-import CodeShow from './codeShow/codeShow'
+    
 import SiderBar from './siderbar'
 const Layout = defineComponent({
   setup(props, { slots }) {
@@ -48,6 +47,38 @@ const Layout = defineComponent({
             padding-top: 25px;
             flex: 0 0 100%;
             padding-bottom: 150px;
+          }
+
+          @media only screen and (max-width: 650px) {
+            .layout {
+              max-width: 100%;
+              width: 100%;
+              padding: 5rem 1rem;
+            }
+
+            .sidebar {
+              position: fixed;
+              top: 0;
+              left: 0;
+              right: 0;
+              z-index: 10;
+              width: 100vw;
+              padding: 0;
+              display: none;
+              overflow: hidden;
+              transition: height 250ms ease;
+            }
+
+            .main {
+              width: 90vw;
+              max-width: 90vw;
+              padding: 0;
+            }
+
+            .side-shadow {
+              display: none;
+              visibility: hidden;
+            }
           }
         `}</style>
       </div>

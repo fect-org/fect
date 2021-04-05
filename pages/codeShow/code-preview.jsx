@@ -4,13 +4,15 @@ import CodeWrapper from './code-wrapper'
 const CodePreView = defineComponent({
   setup() {
     const visible = ref(false)
-
+    const codeIcon = ref('chevronRight')
     const handlerClick = (e) => {
-      // console.log('hahas')
       e.stopPropagation()
       e.preventDefault()
       visible.value = !visible.value
-      console.log(visible.value)
+      if (codeIcon.value === 'chevronRight') {
+        return (codeIcon.value = 'chevronDown')
+      }
+      codeIcon.value = 'chevronRight'
     }
 
     return () => (
@@ -23,8 +25,17 @@ const CodePreView = defineComponent({
                 style={{ height: '100%', width: '100%' }}
               >
                 <fect-col className="action">
-                  <span className="arrow">&gt;</span>
+                  <span className="arrow">
+                    <fect-icon icon={codeIcon} />
+                  </span>
                   <span>浏览代码</span>
+                  {visible.value === true && (
+                    <fect-icon
+                      icon="copy"
+                      size="18"
+                      style={{ marginLeft: 'auto', marginRight: '20px' }}
+                    />
+                  )}
                 </fect-col>
               </fect-row>
             </summary>
@@ -93,6 +104,9 @@ const CodePreView = defineComponent({
             background: var(--primary-background);
             border: none;
             overflow-x: auto;
+          }
+          .area pre::-webkit-scrollbar {
+            -webkit-overflow-scrolling: touch;
           }
           .area pre span {
             text-transform: none;

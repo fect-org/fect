@@ -48,6 +48,7 @@ const SiderBar = defineComponent({
             }
             @media only screen and (max-width: 650px) {
               .box {
+                display: none;
                 padding: calc(3.5 * 16pt) 15vw;
                 width: 100vw;
                 height: 100%;
