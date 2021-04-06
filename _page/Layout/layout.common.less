@@ -20,6 +20,14 @@
   -webkit-overflow-scrolling: touch;
   flex-shrink: 0;
   z-index: 100;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--accents-2);
+    border-radius: 10px;
+  }
 }
 .f_doc-side-shadow {
   width: 200px;
@@ -46,15 +54,23 @@
   }
   .f_doc-sidebar {
     position: fixed;
-    top: 0;
+    top: 3.7rem;
     left: 0;
     right: 0;
     z-index: 10;
     width: 100vw;
     padding: 0;
-    overflow: hidden;
-    display: none;
-    transition: height 250ms ease;
+
+    box-sizing: border-box;
+    padding: 0 var(--fay-gap);
+    padding-top: var(--fay-gap);
+    height: 0;
+    background-color: var(--primary-background);
+
+    &.isAcive {
+      height: 100vh;
+      transition: height 250ms ease;
+    }
   }
   .f_doc-side-shadow {
     width: 0;
