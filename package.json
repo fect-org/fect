@@ -14,7 +14,7 @@
     "setup": "hygen component new --name"
   },
   "dependencies": {
-    "@fect-ui/themes": "^1.0.5",
+    "@fect-ui/themes": "^1.0.7",
     "@mdx-js/vue-loader": "^1.6.22",
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
