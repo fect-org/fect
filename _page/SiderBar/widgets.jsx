@@ -1,12 +1,16 @@
 import { defineComponent, watchEffect, ref } from 'vue'
 import { useTheme } from '../../packages/utils'
+import { useProvider } from '../../packages/utils'
 import './widgets.less'
+
+const READONLY_LAYOUT_KEY = 'layoutKey'
+
 const Widgets = defineComponent({
   setup() {
     const isDark = ref(false)
     const themeIcon = ref('moon')
     const setTheme = (theme) => localStorage.setItem('theme', theme)
-
+    const { ctx } = useProvider(READONLY_LAYOUT_KEY)
     /**
      *while watchEffect exduce can't not found null includes
      */
@@ -19,6 +23,7 @@ const Widgets = defineComponent({
       const { setLightTheme, setDarkTheme } = useTheme
       // eslint-disable-next-line no-unused-expressions
       isDark.value ? setDarkTheme() : setLightTheme()
+      ctx.handlerChangeTheme(_theme)
     })
 
     const changeThemeHandler = () => {
