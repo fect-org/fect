@@ -5,11 +5,13 @@
 </template>
 
 <script>
-import { Layout } from '../pages/index'
+import { Layout } from '../_page/index'
 import { ref } from 'vue'
+import * as Component from '../_page/index'
 export default {
   components: {
-    Layout,
+    // Layout,
+    ...Component,
   },
   setup() {
     const type = ref('default')

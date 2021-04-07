@@ -54,7 +54,7 @@
   }
   .f_doc-sidebar {
     position: fixed;
-    top: 3.7rem;
+    top: 0;
     left: 0;
     right: 0;
     z-index: 10;
@@ -68,6 +68,7 @@
     background-color: var(--primary-background);
 
     &.isAcive {
+      top: 3.7rem;
       height: 100vh;
       transition: height 250ms ease;
     }
