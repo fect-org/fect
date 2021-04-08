@@ -1,4 +1,4 @@
-import { defineComponent, ref, watch } from 'vue'
+import { defineComponent, ref } from 'vue'
 import AnchorIcon from './anchor.icon'
 
 import './anchor.common.less'
@@ -14,16 +14,20 @@ const Anchor = defineComponent({
       return text.toLowerCase().replace(/ /g, '')
     }
 
-    watch(anchorRef, () => {
+    const handlerClickAnchor = () => {
       const el = anchorRef.value.innerText
       tar.value = anchorEncode(el)
-    })
+    }
+
     return () => (
       <>
-        <span className="f_doc-anchor" ref={anchorRef}>
-          <fectLink href={`#${tar.value}`} style={{ fontSize: '1.65rem' }}>
-            {slots.default?.()}
-          </fectLink>
+        <span
+          className="f_doc-anchor"
+          ref={anchorRef}
+          onClick={handlerClickAnchor}
+        >
+          {/* style={{ fontSize: '1.65rem' }} */}
+          <fectLink href={`#${tar.value}`}>{slots.default?.()}</fectLink>
           <span className="f_doc-anchor_virtual" id={tar.value}></span>
           <span className="f_doc-anchor_icon">
             <AnchorIcon />

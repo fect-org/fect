@@ -1,0 +1,40 @@
+.f_doc-anchor {
+  position: relative;
+  color: inherit;
+  vertical-align: middle;
+}
+.f_doc-anchor a {
+  color: inherit;
+}
+
+.f_doc-anchor_virtual {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.f_doc-anchor_icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  left: -1.2em;
+  top: 50%;
+  transform: translate(-25%, -50%);
+  position: absolute;
+  font-size: inherit;
+  opacity: 0;
+  visibility: hidden;
+  width: 1em;
+  height: 1em;
+  margin-top: 0;
+  color: var(--accents-3);
+}
+
+.f_doc-anchor:hover > .f_doc-anchor_icon {
+  opacity: 1;
+  visibility: visible;
+}

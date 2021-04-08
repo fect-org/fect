@@ -1,8 +1,15 @@
 .f_doc-active_cate {
-  font-size: 1rem;
   color: var(--primary-foreground);
-  border-bottom: 1px solid var(--accents-2);
-  height: 50px;
+
+  height: 2.25rem;
   display: flex;
   align-items: center;
+}
+
+@media only screen and (max-width: 650px) {
+  .f_doc-active_cate {
+    font-size: 1rem;
+    height: 50px;
+    border-bottom: 1px solid var(--accents-2);
+  }
 }
