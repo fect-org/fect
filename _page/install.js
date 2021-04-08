@@ -1,7 +1,8 @@
 import Attributes from './Attributes'
 import AttributesTitle from './Attributes/attributes.title'
+import CodeShow from './CodeShow/'
 
-const components = [Attributes, AttributesTitle]
+const components = [Attributes, AttributesTitle, CodeShow]
 
 const install = (vue) => {
   if (!install.installed) {
