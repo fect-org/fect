@@ -10,44 +10,38 @@ export const meta = {
 
 请确保你的<fect-link href="https://nodejs.org/en/">NodeJS</fect-link>处于高版本(>=10),同时还需准备包管理器`NPM`或者`Yarn`
 
-<fect-spacer/>
+<fect-spacer />
 <fect-dot type="success" />1. 运行命令下载包:
 
 ```shell
 
-$ yarn add @fect-ui/vue 
+$ yarn add @fect-ui/vue
 
 $ npm install @fect-ui/vue
 
 ```
 
-<fect-spacer y=".6"/>
+<fect-spacer y=".6" />
 <fect-dot type="success" />2. 引入包到你的 Vue3 项目中：
 
 ```js
-//全局引入
 import { createApp } from 'vue'
 import App from './App.vue'
-import fectUI from '@fect-ui/vue'
+import FectUI from '@fect-ui/vue'
 import '@fect-ui/vue/dist/fect-ui.css'
 
 createApp(App)
-  .use(fectUI)
+  .use(FectUI)
   .mount('#app')
-
 ```
 
-<fect-spacer y=".6"/>
+<fect-spacer y=".6" />
 <fect-dot type="success" />3. 在任意处使用组件：
 
 ```jsx
- <template>
-   <fect-button>按钮</fect-button>
- </template>
+<template>
+  <fect-button>按钮</fect-button>
+</template>
 ```
 
-<fect-spacer y=".6"/>
-
-
-
-
+<fect-spacer y=".6" />
