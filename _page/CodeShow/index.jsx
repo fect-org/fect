@@ -13,6 +13,7 @@ export default createComponent({
     title: String,
     desc: String,
     code: String,
+    name: String,
   },
   setup(props, { slots }) {
     const { provider } = createProvider(READONLY_CODESHOW_KEY)

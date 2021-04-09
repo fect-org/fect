@@ -33,7 +33,7 @@ const CodePreView = defineComponent({
                       transform: `rotate(${visible.value ? 90 : 0}deg)`,
                     }}
                   >
-                    <fect-icon icon={codeIcon} />
+                    <fect-icon icon={codeIcon.value} />
                   </span>
                   <span>浏览代码</span>
                   {visible.value && (

@@ -1,3 +1,14 @@
 const context = require.context('./', true, /\.vue$/)
 
-console.log(context.keys())
+export default {
+  install: (vue) =>
+    context
+      .keys()
+      .map((path) => {
+        const exampleModule = context(path)
+        return exampleModule.default
+      })
+      .forEach((exModule) => {
+        vue.component(exModule.name, exModule)
+      }),
+}

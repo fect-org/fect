@@ -1,6 +1,3 @@
-import {CodeShow,Attributes} from '../../../pages'
-
-
 export const meta = {
   title: '头像 Avatar',
   group:'数据展示',
@@ -11,133 +8,23 @@ export const meta = {
 
 展示用户头像信息
 
-<CodeShow title="默认的" desc="Avatar 组件包含了圆形与方形" code={`<template>
- <div>
-    <fect-avatar src="./img/avatar.png"/>
-    <fect-avatar src="./img/avatar.png"/>
-    <fect-avatar src="./img/avatar.png"/>
-    <br/>
-    <fect-avatar src="./img/avatar.png"/>
-    <fect-avatar src="./img/avatar.png"/>
-    <fect-avatar src="./img/avatar.png"/>
- </div>
-</template>
- 
-<script>
-   
-export default{
- 
-}
- 
-</script>
-`}>
-<div>
-    <fect-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4"/>
-    <fect-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4"/>
-    <fect-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4"/>
-</div>
+<fect-CodeShow title="默认的" name="ex-avatar-default" desc="Avatar 组件包含了圆形与方形" code="ex-avatar-default Test" />
 
-<div>
-    <fect-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" isSquare/>
-    <fect-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" isSquare/>
-    <fect-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" isSquare/>
-</div>
-</CodeShow>
+<fect-CodeShow title="大小" name="ex-avatar-size" desc="你可以指定组件大小" code="ex-avatar-default Test" />
 
-<CodeShow title="大小" desc="你可以指定组件的大小" code={`<template>
- <div>
-    <fect-avatar src="./img/avatar.png" size="mini"/>
-    <fect-avatar src="./img/avatar.png" size="small"/>
-    <fect-avatar src="./img/avatar.png" size="medium"/>
-    <fect-avatar src="./img/avatar.png" size="large"/>
- </div>
-</template>
- 
-<script>
-   
-export default{
- 
-}
- 
-</script>
-`}>
+<fect-CodeShow title="文本" name="ex-avatar-text" desc="在头像框内用文本替代" code="ex-avatar-default Test" />
 
- <div>
-    <fect-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" size="mini"/>
-    <fect-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" size="small"/>
-    <fect-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" size="medium"/>
-    <fect-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" size="large"/>
- </div>
-
-
-</CodeShow>
-
-<CodeShow title="文本" desc="在头像框内用文本替代" code={`<template>
- <div>
-    <fect-avatar text="X" />
-    <fect-avatar text="E" />
-    <fect-avatar text="L" />
-    <fect-avatar text="林" />
- </div>
-</template>
- 
-<script>
-   
-export default{
- 
-}
- 
-</script>
-`}>
-
- <div>
-    <fect-avatar text="X" />
-    <fect-avatar text="E" />
-    <fect-avatar text="L" />
-    <fect-avatar text="林" />
- </div>
-</CodeShow>
-
-<CodeShow title="头像组" desc="多个头像框可以堆叠在一起" code={`<template>
- <div>
-    <fect-avatarGroup>
-      <fect-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" stacked/>
-      <fect-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" stacked/>
-      <fect-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" stacked/>
-      <fect-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" stacked/>
-    </fect-avatarGroup>
- </div>
-</template>
- 
-<script>
-   
-export default{
- 
-}
- 
-</script>
-`}>
-
- <div>
-   <fect-avatarGroup>
-    <fect-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" stacked/>
-    <fect-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" stacked/>
-    <fect-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" stacked/>
-    <fect-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" stacked/>
-   </fect-avatarGroup>
- </div>
-</CodeShow>
-
-
-<Attributes>
+<fect-CodeShow title="头像组" name="ex-avatar-stacked" desc="多个头像框可以堆叠在一起" code="ex-avatar-default Test" />
 
 
 
-<Attributes.title title={'Avatar Props'}/>
+<fect-Attributes>
+
+<fect-AttributesTitle title="Avatar Props" />
 
 | 属性          | 描述                    | 类型                | 可选值                            | 默认     |
 | ------------- | ----------------------- | ------------------- | --------------------------------- | -------- |
-| **stacked**   | 是否堆叠显示            | `boolean`           | -                                 | `false`  |
+| **stacked**   | 是否堆叠显示            | _boolean_           | -                                 | `false`  |
 | **isSquare**  | 是否为方形头像          | `boolean`           | -                                 | `false`  |
 | **size**      | 头像大小                | `string`            | `'mini','small','medium','large'` | `medium` |
 | **text**      | 文本,无图像链接才会显示 | `string`,`number`   | -                                 | `-`      |
@@ -145,13 +32,16 @@ export default{
 | **className** | 图像容器设置 class      | `string`            | -                                 | `-`      |
 | ...           | 原生属性                | `ImgHTMLAttributes` | `'alt','class',...`               | `-`      |
 
+</fect-Attributes>
 
+<fect-Attributes>
 
-<Attributes.title title={'AvatarGroup Props'}/>
+<fect-AttributesTitle title="AvatarGroup Props" />
 
 | 属性      | 描述     | 类型              | 可选值              | 默认 |
 | --------- | -------- | ----------------- | ------------------- | ---- |
 | **count** | 数量     | `string`,`number` | --                  | --   |
 | ...       | 原生属性 | `HTMLAttributes`  | `'alt','class',...` | `-`  |
 
-</Attributes>
+</fect-Attributes>
+

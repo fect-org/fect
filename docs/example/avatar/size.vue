@@ -1,9 +1,9 @@
 <template>
   <div>
-    <fect-avatar src="./img/avatar.png" size="mini" />
-    <fect-avatar src="./img/avatar.png" size="small" />
-    <fect-avatar src="./img/avatar.png" size="medium" />
-    <fect-avatar src="./img/avatar.png" size="large" />
+    <fect-avatar :src="img" size="mini" />
+    <fect-avatar :src="img" size="small" />
+    <fect-avatar :src="img" size="medium" />
+    <fect-avatar :src="img" size="large" />
   </div>
 </template>
 

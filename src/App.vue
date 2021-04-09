@@ -1,5 +1,6 @@
 <template>
   <Layout>
+    <!-- <img :src="type" alt="" /> -->
     <router-view />
   </Layout>
 </template>
@@ -14,7 +15,7 @@ export default {
     ...Component,
   },
   setup() {
-    const type = ref('default')
+    const type = ref('https://avatars.githubusercontent.com/u/52351095?v=4')
     const handlerClick = () => {
       if (type.value === 'success') return (type.value = 'defaut')
       type.value = 'success'

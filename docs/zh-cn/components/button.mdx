@@ -1,4 +1,4 @@
-import { CodeShow, Attributes } from '../../../pages'
+
 
 export const meta = {
   title: '按钮 Button',
@@ -9,163 +9,17 @@ export const meta = {
 
 用于触发一个操作
 
+<fect-CodeShow title="默认的" name="ex-button-default" desc="默认Button包含一个动画效果。" code="ex-avatar-default Test" />
 
-<CodeShow title="默认的" desc="默认Button包含一个动画效果。" code={`<template>
- <div>
-   <fect-button>Button</fect-button>
- </div>
-</template>
- 
-<script>
-   
-export default{
- 
-}
- 
-</script>
-`}>
+<fect-CodeShow title="加载中" name="ex-button-loading" desc="Button按钮支持加载状态。" code="ex-avatar-default Test" />
 
- <div>
-   <fect-button>Button</fect-button>
- </div>
-</CodeShow>
+<fect-CodeShow title="禁用" name="ex-button-disabled"  desc="禁止Button的一切操作" code="ex-avatar-default Test" />
 
-<CodeShow title="加载中" desc="Button按钮支持加载状态" code={`<template>
- <div>
-    <fect-button loading size="large">Button</fect-button>
-    <fect-spacer y={0.5}/>
-    <fect-button loading>Button</fect-button>
-    <fect-spacer y={0.5}/>
-    <fect-button loading size="small">Button</fect-button>
- </div>
-</template>
- 
-<script>
-   
-export default{
- 
-}
- 
-</script>
-`}>
+<fect-CodeShow title="阴影" name="ex-button-shadow" desc="使用阴影凸显层级" code="ex-avatar-default Test" />
 
- <div>
-    <fect-button loading size="large" type="success">Button</fect-button>
-    <fect-spacer y={0.5}/>
-    <fect-button loading>Button</fect-button>
-    <fect-spacer y={0.5}/>
-    <fect-button loading size="small">Button</fect-button>
- </div>
-</CodeShow>
+<fect-CodeShow title="类型" name="ex-button-type" desc="不同状态下的按钮" />
 
-<CodeShow title="禁用" desc="禁止Button的一切操作" code={`<template>
- <div>
-    <fect-button disabled>Button</fect-button>
- </div>
-</template>
- 
-<script>
-   
-export default{
- 
-}
- 
-</script>
-`}>
-
- <div>
-    <fect-button disabled>Button</fect-button>
- </div>
-</CodeShow>
-
-<CodeShow title="阴影" desc="使用阴影凸显层级" code={`<template>
- <div>
-    <fect-button shadow>Button</fect-button>
- </div>
-</template>
- 
-<script>
-   
-export default{
- 
-}
- 
-</script>
-`}>
-
- <div>
-    <fect-button shadow>Button</fect-button>
- </div>
-</CodeShow>
-
-<CodeShow title="类型" desc="不同状态下的按钮" code={`<template>
- <div>
-    <fect-button type="default">Button</fect-button>
-    <fect-spacer y={.5}/>
-    <fect-button type="success">Button</fect-button>
-    <fect-spacer y={.5}/>
-    <fect-button type="warning">Button</fect-button>
-    <fect-spacer y={.5}/>
-    <fect-button type="error">Button</fect-button>
- </div>
-</template>
- 
-<script>
-   
-export default{
- 
-}
- 
-</script>
-`}>
-
- <div>
-    <fect-button type="default">Button</fect-button>
-    <fect-spacer y={.5}/>
-    <fect-button type="success">Button</fect-button>
-    <fect-spacer y={.5}/>
-    <fect-button type="warning">Button</fect-button>
-    <fect-spacer y={.5}/>
-    <fect-button type="error">Button</fect-button>
- </div>
-</CodeShow>
-
-<CodeShow title="尺寸" desc="不同大小下的按钮" code={`<template>
- <div>
-    <fect-button type="default">Button</fect-button>
-    <fect-spacer y={.5}/>
-    <fect-button type="success">Button</fect-button>
-    <fect-spacer y={.5}/>
-    <fect-button type="warning">Button</fect-button>
-    <fect-spacer y={.5}/>
-    <fect-button type="error">Button</fect-button>
-    <fect-spacer y={.5}/>
-    <fect-button auto>Button</fect-button>
- </div>
-</template>
- 
-<script>
-   
-export default{
- 
-}
- 
-</script>
-`}>
-
- <div>
-    <fect-button size="mini">Button</fect-button>
-    <fect-spacer y={.5}/>
-    <fect-button size="small">Button</fect-button>
-    <fect-spacer y={.5}/>
-    <fect-button size="medium">Button</fect-button>
-    <fect-spacer y={.5}/>
-    <fect-button size="large">Button</fect-button>
-    <fect-spacer y={.5}/>
-    <fect-button auto size="large">自动宽度</fect-button>
- </div>
-</CodeShow>
-
+<fect-CodeShow title="尺寸" name="ex-button-size" desc="不同大小下的按钮" />
 
 <fect-Attributes>
 

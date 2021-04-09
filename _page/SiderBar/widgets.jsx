@@ -48,7 +48,7 @@ const Widgets = defineComponent({
             <fect-icon icon="github" size="18" />
           </fectLink>
           <span className={'f_doc-widgets_icons'} onClick={changeThemeHandler}>
-            <fect-icon icon={themeIcon} size="18" />
+            <fect-icon icon={themeIcon.value} size="18" />
           </span>
         </div>
       </>

@@ -12,10 +12,7 @@ const Title = defineComponent({
 
     return () => (
       <>
-        <h3
-          class="f_doc-codeShow_anTitle"
-          style={{ marginBottom: desc ? '0' : '1.8rem;' }}
-        >
+        <h3 class={`f_doc-codeShow_anTitle ${desc ? 'f_doc-t_desc' : ''}`}>
           <Anchor>{title}</Anchor>
           {desc && <p>{desc}</p>}
         </h3>

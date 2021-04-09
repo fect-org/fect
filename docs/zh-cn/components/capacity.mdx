@@ -1,56 +1,10 @@
-import { CodeShow, Attributes } from '../../../pages'
-
 # Capacity / 容量
 
 显示一个容量指示器
 
-<CodeShow title="默认的"  code={`<template>
- <div>
-   <fect-capacity value="30"/>
-   <fect-spacer y={.5}/>
-   <fect-capacity value="60"/>
-   <fect-spacer y={.5}/>
-   <fect-capacity value="80"/>
- </div>
-</template>
- 
-<script>
-   
-export default{
- 
-}
- 
-</script>
-`}>
+<fect-CodeShow title="默认的" name="ex-capacity-default" />
 
- <div>
-   <fect-capacity value="30"/>
-   <fect-spacer y={.5}/>
-   <fect-capacity value="60"/>
-   <fect-spacer y={.5}/>
-   <fect-capacity value="80"/>
- </div>
-</CodeShow>
-
-<CodeShow title="固定颜色" desc="指定一个默认颜色进行覆盖"  code={`<template>
- <div>
-   <fect-capacity value="30"/>
- </div>
-</template>
- 
-<script>
-   
-export default{
- 
-}
- 
-</script>
-`}>
-
- <div>
-   <fect-capacity value="30" color="green"/>
- </div>
-</CodeShow>
+<fect-CodeShow title="固定颜色" name="ex-capacity-color" desc="指定一个默认颜色进行覆盖" />
 
 <fect-Attributes>
 
