@@ -14,7 +14,7 @@ const Title = defineComponent({
           <Anchor>{title}</Anchor>
           {desc && <p>{desc}</p>}
         </h3>
-        <style jsx>{`
+        {/* <style jsx>{`
           h3 {
             line-height: 1;
             font-size: 20px;
@@ -31,7 +31,7 @@ const Title = defineComponent({
           h3 > :pre {
             text-transform: none;
           }
-        `}</style>
+        `}</style> */}
       </>
     )
   },

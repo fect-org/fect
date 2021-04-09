@@ -1,27 +1,19 @@
 import { defineComponent } from 'vue'
 import { useProvider } from '../../packages/utils'
 const READONLY_CODESHOW_KEY = 'codeShowKey'
+import './code.component.less'
+
 const CodeComponent = defineComponent({
   setup(props, { slots }) {
     const { ctx } = useProvider(READONLY_CODESHOW_KEY)
     const { code } = ctx
-    return () => (
-      <div className="code-components">
-        {/* {slots.default?.()} */}
+    console.log(code)
 
-        <style jsx>{`
-          .code-components {
-            width: 100%;
-            padding: 16pt;
-            display: flex;
-            flex-direction: column;
-            box-sizing: border-box;
-            justify-content: space-between;
-          }
-          .code-components > div {
-            width: 100%;
-          }
-        `}</style>
+    const tempRender = (code) => code
+
+    return () => (
+      <div className="f_doc-code-components" v-html={tempRender(code)}>
+        {/* {slots.default?.()} */}
       </div>
     )
   },

@@ -9,8 +9,7 @@ const CodeWrapper = defineComponent({
     const { ctx } = useProvider(READONLY_CODESHOW_KEY)
     return () => (
       <>
-        {/* <Prism language="html">{ctx.code}</Prism> */}
-        <style jsx></style>
+        <fect-code block={true}>{ctx.code}</fect-code>
       </>
     )
   },
