@@ -1,4 +1,10 @@
 const context = require.context('./', true, /\.vue$/)
+const exContext = require.context('!raw-loader!./', true, /\.vue$/)
+
+const extractContext = (component, meta) => {
+  const data = { _meta: () => meta }
+  return Object.assign(component, data)
+}
 
 export default {
   install: (vue) =>
@@ -6,9 +12,11 @@ export default {
       .keys()
       .map((path) => {
         const exampleModule = context(path)
-        return exampleModule.default
+        // return exampleModule.default
+        return extractContext(exampleModule.default, exContext(path))
       })
       .forEach((exModule) => {
+        // console.log(exModule)
         vue.component(exModule.name, exModule)
       }),
 }

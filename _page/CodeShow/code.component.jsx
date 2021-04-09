@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { defineComponent, ref, onMounted } from 'vue'
 import { useProvider } from '../../packages/utils'
 const READONLY_CODESHOW_KEY = 'codeShowKey'
 import './code.component.less'
@@ -8,10 +8,15 @@ const CodeComponent = defineComponent({
   setup(props, { slots }) {
     const { ctx } = useProvider(READONLY_CODESHOW_KEY)
     const { name } = ctx
+    const renderRef = ref(null)
+    onMounted(() => {
+      const codes = renderRef.value._.subTree.type._meta().default
+      ctx.setpreViewCode(codes)
+    })
 
     return () => (
       <div className="f_doc-code-components">
-        <codeRender name={name} />
+        <codeRender name={name} ref={renderRef} />
       </div>
     )
   },

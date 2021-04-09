@@ -3,6 +3,7 @@ import { createNameSpace, createProvider } from '../../packages/utils'
 import CodeComponent from './code.component'
 import Title from './code.title'
 import CodePreView from './code.preview'
+import { toRefs, ref, toRef } from 'vue'
 
 const READONLY_CODESHOW_KEY = 'codeShowKey'
 
@@ -12,12 +13,20 @@ export default createComponent({
   props: {
     title: String,
     desc: String,
-    code: String,
     name: String,
   },
   setup(props, { slots }) {
     const { provider } = createProvider(READONLY_CODESHOW_KEY)
-    provider(props)
+    const code = ref(null)
+    const setpreViewCode = (pre) => (code.value = pre)
+    const { title, desc, name } = toRefs(props)
+    provider({
+      title: title.value,
+      desc: desc.value,
+      name: name.value,
+      code,
+      setpreViewCode,
+    })
     return () => (
       <>
         <Title />

@@ -2,6 +2,7 @@ const path = require('path')
 
 module.exports = {
   productionSourceMap: false,
+  
   configureWebpack: {
     module: {
       rules: [
