@@ -1,8 +1,9 @@
 import { defineComponent, onMounted, ref } from 'vue'
 import { useProvider } from '../../packages/utils'
 import Prism from 'vue-prism-component'
-
 const READONLY_CODESHOW_KEY = 'codeShowKey'
+
+import './code.css'
 
 const CodeWrapper = defineComponent({
   setup() {
@@ -13,7 +14,7 @@ const CodeWrapper = defineComponent({
     })
     return () => (
       <>
-        {/* code={ctx.code.value} */}
+        {/* {preViewCode.value} */}
         {preViewCode.value && (
           <Prism language="html">{preViewCode.value}</Prism>
         )}
