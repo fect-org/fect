@@ -21,9 +21,9 @@ export default createComponent({
     const setpreViewCode = (pre) => (code.value = pre)
     const { title, desc, name } = toRefs(props)
     provider({
-      title: title.value,
-      desc: desc.value,
-      name: name.value,
+      title: title?.value,
+      desc: desc?.value,
+      name: name?.value,
       code,
       setpreViewCode,
     })
