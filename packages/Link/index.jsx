@@ -10,7 +10,10 @@ export default createComponent({
       type: String,
       default: '',
     },
-    to: [String, Boolean],
+    to: {
+      type: [String, Object],
+      default: () => {},
+    },
     color: Boolean,
     underline: Boolean,
     block: Boolean,

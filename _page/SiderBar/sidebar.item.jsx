@@ -5,13 +5,11 @@ const READONLY_SIDEBAR_KEY = 'siebarKey'
 const SideItem = defineComponent({
   setup(props, { slots }) {
     const { ctx } = useProvider(READONLY_SIDEBAR_KEY)
-    const { route } = ctx
     return () => (
       <>
-        {route[0].rule.map((item) => (
-          // className="item"
-          <div key={`${item.name}-${item.index}`}>
-            <ActiveCate routerTo={item.url} routerName={item.name} />
+        {ctx.route.map((item) => (
+          <div key={`${item.name}-${item.route}`}>
+            <ActiveCate routerTo={item.route} routerName={item.title} />
           </div>
         ))}
       </>

@@ -1,25 +1,15 @@
-import { defineComponent } from 'vue'
+import { defineComponent, reactive } from 'vue'
 import { createProvider } from '../../packages/utils'
 import SideItem from './sidebar.item'
-
 import Widgets from './widgets'
+
+import docs from '../../docs/index'
+
 const READONLY_SIDEBAR_KEY = 'siebarKey'
 const SideBar = defineComponent({
   setup(props, { slots }) {
     const { provider } = createProvider(READONLY_SIDEBAR_KEY)
-    const Routes = [
-      {
-        title: '快速上手',
-        rule: [
-          {
-            name: '什么是Fect UI',
-            url: { name: 'Introduce' },
-            index: 1,
-          },
-          { name: '安装', url: { name: 'Install' }, index: 2 },
-        ],
-      },
-    ]
+    const Routes = reactive(docs['zh-cn'])
     provider({ route: Routes })
     return () => (
       <div className="f_doc-side">
