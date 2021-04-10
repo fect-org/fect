@@ -22,7 +22,8 @@ const getMetaData = async (dirs, parent_path) => {
           url,
           group: meta.group || null,
         }
-      }),
+        // eslint-disable-next-line comma-dangle
+      })
     )
   }
 
@@ -51,7 +52,7 @@ const routerTempalte = (routes) => {
       component: route.componentName,
     })
     _templte.push(
-      `import ${route.componentName} from '../../docs/zh-cn${route.url}';\n`,
+      `const ${route.componentName}= () =>import('../../docs/zh-cn${route.url}');\n`,
     )
   })
   var reTemp = `${_templte.join('')}\n const routes=${JSON.stringify(
@@ -68,8 +69,7 @@ const routerTempalte = (routes) => {
     const docFiles = await fs.readdir(docsPath)
     const soureData = await getMetaData(docFiles, docsPath)
     const tar = await routerTempalte(soureData.flat())
-    // await fs.writeFile(routerPath, tar)
-    await fs.writeFile('./a.js', tar)
+    await fs.writeFile(routerPath, tar)
   } catch (error) {
     console.log(error)
     process.exit(1)

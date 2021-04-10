@@ -1,21 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Avatar from '../../docs/zh-cn/components/avatar.mdx'
-import Button from '../../docs/zh-cn/components/button.mdx'
-import Capacity from '../../docs/zh-cn/components/capacity.mdx'
-import Card from '../../docs/zh-cn/components/card.mdx'
-import Dot from '../../docs/zh-cn/components/dot.mdx'
-import Layout from '../../docs/zh-cn/components/layout.mdx'
-import Link from '../../docs/zh-cn/components/link.mdx'
-import Loading from '../../docs/zh-cn/components/loading.mdx'
-import Radio from '../../docs/zh-cn/components/radio.mdx'
-import Spacer from '../../docs/zh-cn/components/spacer.mdx'
-import Switch from '../../docs/zh-cn/components/switch.mdx'
-import Install from '../../docs/zh-cn/quickStart/install.mdx'
-import Introduce from '../../docs/zh-cn/quickStart/introduce.mdx'
+const Avatar = () => import('../../docs/zh-cn/components/avatar.mdx')
+const Button = () => import('../../docs/zh-cn/components/button.mdx')
+const Capacity = () => import('../../docs/zh-cn/components/capacity.mdx')
+const Card = () => import('../../docs/zh-cn/components/card.mdx')
+const Dot = () => import('../../docs/zh-cn/components/dot.mdx')
+const Layout = () => import('../../docs/zh-cn/components/layout.mdx')
+const Link = () => import('../../docs/zh-cn/components/link.mdx')
+const Loading = () => import('../../docs/zh-cn/components/loading.mdx')
+const Radio = () => import('../../docs/zh-cn/components/radio.mdx')
+const Spacer = () => import('../../docs/zh-cn/components/spacer.mdx')
+const Switch = () => import('../../docs/zh-cn/components/switch.mdx')
+const Install = () => import('../../docs/zh-cn/quickStart/install.mdx')
+const Introduce = () => import('../../docs/zh-cn/quickStart/introduce.mdx')
 
 const routes = [
   { path: '/', redirect: { name: 'Introduce' } },
-  { path: '/avatar', name: 'Avatar', component: Avatar },
+  { path: '/avatar', name: 'Avatar', component: () => Avatar() },
   { path: '/button', name: 'Button', component: Button },
   { path: '/capacity', name: 'Capacity', component: Capacity },
   { path: '/card', name: 'Card', component: Card },

@@ -8,7 +8,7 @@ const READONLY_LAYOUT_KEY = 'layoutKey'
 const ActiveCate = defineComponent({
   props: {
     routerTo: {
-      type: String,
+      type: [String, Object],
     },
     routerName: String,
   },
