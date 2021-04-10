@@ -1,3 +1,7 @@
+/**
+ * author :XeryYue
+ * collect all component and create at packages/index.js
+ */
 const fs = require('fs-extra')
 const path = require('path')
 const packagePath = path.resolve(__dirname, '../packages')

@@ -1,37 +1,36 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import avatar from '../../docs/zh-cn/components/avatar.mdx'
-import button from '../../docs/zh-cn/components/button.mdx'
-import capacity from '../../docs/zh-cn/components/capacity.mdx'
-import card from '../../docs/zh-cn/components/card.mdx'
-import dot from '../../docs/zh-cn/components/dot.mdx'
-import layout from '../../docs/zh-cn/components/layout.mdx'
-import link from '../../docs/zh-cn/components/link.mdx'
-import loading from '../../docs/zh-cn/components/loading.mdx'
-import radio from '../../docs/zh-cn/components/radio.mdx'
-import spacer from '../../docs/zh-cn/components/spacer.mdx'
-import int from '../../docs/zh-cn/quickStart/introduce.mdx'
-import install from '../../docs/zh-cn/quickStart/install.mdx'
-
-import switchA from '../../docs/zh-cn/components/switch.mdx'
+import Avatar from '../../docs/zh-cn/components/avatar.mdx'
+import Button from '../../docs/zh-cn/components/button.mdx'
+import Capacity from '../../docs/zh-cn/components/capacity.mdx'
+import Card from '../../docs/zh-cn/components/card.mdx'
+import Dot from '../../docs/zh-cn/components/dot.mdx'
+import Layout from '../../docs/zh-cn/components/layout.mdx'
+import Link from '../../docs/zh-cn/components/link.mdx'
+import Loading from '../../docs/zh-cn/components/loading.mdx'
+import Radio from '../../docs/zh-cn/components/radio.mdx'
+import Spacer from '../../docs/zh-cn/components/spacer.mdx'
+import Switch from '../../docs/zh-cn/components/switch.mdx'
+import Install from '../../docs/zh-cn/quickStart/install.mdx'
+import Introduce from '../../docs/zh-cn/quickStart/introduce.mdx'
 
 const routes = [
-  { path: '/zh-cn/quickStart/install', name: 'insatll', component: install },
-  { path: '/zh-cn/quickStart/introduce', name: 'int', component: int },
-  { path: '/avatar', name: 'avatar', component: avatar },
-  { path: '/button', name: 'button', component: button },
-  { path: '/capacity', name: 'capacity', component: capacity },
-  { path: '/card', name: 'card', component: card },
-  { path: '/dot', name: 'dot', component: dot },
-  { path: '/layout', name: 'layout', component: layout },
-  { path: '/link', name: 'link', component: link },
-  { path: '/loading', name: 'loading', component: loading },
-  { path: '/radio', name: 'radio', component: radio },
-  { path: '/spacer', name: 'spacer', component: spacer },
-  { path: '/switch', name: 'switch', component: switchA },
+  { path: '/', redirect: { name: 'Introduce' } },
+  { path: '/avatar', name: 'Avatar', component: Avatar },
+  { path: '/button', name: 'Button', component: Button },
+  { path: '/capacity', name: 'Capacity', component: Capacity },
+  { path: '/card', name: 'Card', component: Card },
+  { path: '/dot', name: 'Dot', component: Dot },
+  { path: '/layout', name: 'Layout', component: Layout },
+  { path: '/link', name: 'Link', component: Link },
+  { path: '/loading', name: 'Loading', component: Loading },
+  { path: '/radio', name: 'Radio', component: Radio },
+  { path: '/spacer', name: 'Spacer', component: Spacer },
+  { path: '/switch', name: 'Switch', component: Switch },
+  { path: '/install', name: 'Install', component: Install },
+  { path: '/introduce', name: 'Introduce', component: Introduce },
 ]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 })
-
 export default router

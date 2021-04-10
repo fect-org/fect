@@ -13,10 +13,10 @@ const SideBar = defineComponent({
         rule: [
           {
             name: '什么是Fect UI',
-            url: '/zh-cn/quickStart/introduce',
+            url: { name: 'Introduce' },
             index: 1,
           },
-          { name: '安装', url: '/zh-cn/quickStart/install', index: 2 },
+          { name: '安装', url: { name: 'Install' }, index: 2 },
         ],
       },
     ]

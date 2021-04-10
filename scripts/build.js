@@ -1,3 +1,8 @@
+/**
+ * author:XeryYue
+ * collect all component and build
+ */
+
 const path = require('path')
 const fs = require('fs-extra')
 const execa = require('execa')
