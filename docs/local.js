@@ -6,6 +6,7 @@ module.exports = {
     surface: '表面',
     form: '表单',
     data: '数据展示',
+    notice: '布告',
     navigation: '导航',
   },
   'en-us': {},
