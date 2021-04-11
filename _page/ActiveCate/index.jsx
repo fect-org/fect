@@ -1,5 +1,5 @@
 import { defineComponent, watchEffect, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { useProvider } from '../../packages/utils/createContext'
 import './activecate.common.less'
 
@@ -13,9 +13,11 @@ const ActiveCate = defineComponent({
     routerName: String,
   },
   setup(props) {
-    const route = useRoute()
+    const router = useRouter()
     const isActive = ref(false)
-    watchEffect(() => (isActive.value = route.path === props.routerTo))
+    watchEffect(() => {
+      isActive.value = router.currentRoute.value.name === props.routerTo.name
+    })
     const { ctx } = useProvider(READONLY_LAYOUT_KEY)
     const { handlerMobileTabbarClick } = ctx
     return () => (

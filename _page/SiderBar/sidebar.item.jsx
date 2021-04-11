@@ -6,7 +6,6 @@ const READONLY_SIDEBAR_KEY = 'siebarKey'
 const SideItem = defineComponent({
   setup(props, { slots }) {
     const { ctx } = useProvider(READONLY_SIDEBAR_KEY)
-    console.log(ctx.route)
     return () => (
       <>
         {ctx.route.map((r, idx) => (
