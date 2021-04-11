@@ -42,7 +42,8 @@ const Widgets = defineComponent({
       <>
         <div className="f_doc-widgets">
           <fectLink
-            href="https://github.com/Fect-org/Yuki"
+            href="https://github.com/fay-org/fect"
+            target="_blank"
             class={'f_doc-widgets_icons'}
           >
             <fect-icon icon="github" size="18" />

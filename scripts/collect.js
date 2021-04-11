@@ -25,7 +25,8 @@ const resolveImport = (dir, dirPath) => {
       importFile.push(`import ${d} from "${filePath}"`)
       components.push(`${d}`)
     })
-  importFile.push('import { camelize } from "./utils/format/string"')
+  importFile.push(`import { camelize } from "./utils/format/string";\n
+  import './utils/styles/index.css'`)
   return [importFile.join(';\n'), components]
 }
 
