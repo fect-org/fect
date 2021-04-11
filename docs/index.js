@@ -1,4 +1,5 @@
 const zhContext = require.context('./zh-cn', true, /.\mdx$/)
+const Type = require('./local')
 
 const pickGroupName = (meta) => {
   const ROUTE_REG = /(\w)+/g
@@ -16,14 +17,34 @@ const pickGroupName = (meta) => {
   return result
 }
 
+const sortGroup = (source) => {
+  const zhDocs = Type['zh-cn']
+  const zhDocsKey = Object.keys(zhDocs)
+  const zhDocsValue = []
+  const gourpData = []
+  for (const key of zhDocsKey) {
+    zhDocsValue.push(zhDocs[key])
+  }
+  source.sort((a, b) => {
+    return zhDocsValue.indexOf(a.group) - zhDocsValue.indexOf(b.group)
+  })
+  for (const key of zhDocsValue) {
+    gourpData.push({
+      name: key,
+      children: source.filter((v) => v.group === key),
+    })
+  }
+  return gourpData
+}
+
 const makeModules = (context) => {
-  return context.keys().map((path) => {
+  const chaosModule = context.keys().map((path) => {
     const mdModule = context(path)
     const metaModule = pickGroupName(mdModule.meta)
     return metaModule
   })
+  return sortGroup(chaosModule)
 }
-
 const zhModule = makeModules(zhContext)
 
 export default {
