@@ -1,1 +1,1 @@
-export { default as mountComponent } from './mountComponent'
+export { mountComponent } from './mountComponent'
