@@ -10,7 +10,7 @@ const renderBgColor = (type) => {
     default: 'var(--primary-background)',
     success: 'var(--success-default)',
     warning: 'var(--warning-default)',
-    eroor: 'var(--error-default)',
+    error: 'var(--error-default)',
   }
   const isDefault = type !== '' && type === 'default'
   /**
@@ -18,11 +18,11 @@ const renderBgColor = (type) => {
    * Toast backgroundcolor only follow the theme type change
    * others can't change the style ,unless you modify the style
    */
-  console.log(isDefault)
   if (isDefault) {
     return {
       backgroundColor: bgColorsPool[type],
       color: 'var(--primary-foreground)',
+      border: '1px solid var(--accents-2)',
     }
   }
   return {
