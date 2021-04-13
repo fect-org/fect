@@ -23,11 +23,9 @@ export default createComponent({
   setup(props, { attrs, slots, emit }) {
     const { provider } = createProvider(READNONLY_TOAST_KEY)
     provider(props)
-
-    return () => (
-      <>
-        <ToastItem />
-      </>
-    )
+    /**
+     * container will created when event is triggered
+     */
+    return () => <ToastItem />
   },
 })

@@ -10,7 +10,7 @@ export default {
   name: 'ex-toast-default',
   setup() {
     const handlerClick = () => {
-      FectToast({ text: 'I am Test MessageA!', type: 'success' })
+      FectToast({ text: 'I am Test MessageA!', type: 'default' })
       // FectToast({ text: 'I am Test MessageA!', type: 'warning' })
       // FectToast({ text: 'I am Test MessageA!', type: 'default' })
     }
