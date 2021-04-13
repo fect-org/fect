@@ -1,1 +1,1 @@
-export { mountComponent } from './mountComponent'
+export * as mountRender from './mountComponent'
