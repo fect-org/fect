@@ -3,6 +3,7 @@ const Avatar = () => import('../../docs/zh-cn/components/avatar.mdx')
 const Button = () => import('../../docs/zh-cn/components/button.mdx')
 const Capacity = () => import('../../docs/zh-cn/components/capacity.mdx')
 const Card = () => import('../../docs/zh-cn/components/card.mdx')
+const Code = () => import('../../docs/zh-cn/components/code.mdx')
 const Dot = () => import('../../docs/zh-cn/components/dot.mdx')
 const Layout = () => import('../../docs/zh-cn/components/layout.mdx')
 const Link = () => import('../../docs/zh-cn/components/link.mdx')
@@ -10,6 +11,7 @@ const Loading = () => import('../../docs/zh-cn/components/loading.mdx')
 const Radio = () => import('../../docs/zh-cn/components/radio.mdx')
 const Spacer = () => import('../../docs/zh-cn/components/spacer.mdx')
 const Switch = () => import('../../docs/zh-cn/components/switch.mdx')
+const Toast = () => import('../../docs/zh-cn/components/toast.mdx')
 const Install = () => import('../../docs/zh-cn/quickStart/install.mdx')
 const Introduce = () => import('../../docs/zh-cn/quickStart/introduce.mdx')
 
@@ -26,6 +28,8 @@ const routes = [
   { path: '/radio', name: 'Radio', component: Radio },
   { path: '/spacer', name: 'Spacer', component: Spacer },
   { path: '/switch', name: 'Switch', component: Switch },
+  { path: '/toast', name: 'Toast', component: Toast },
+  { path: '/code', name: 'Code', component: Code },
   { path: '/install', name: 'Install', component: Install },
   { path: '/introduce', name: 'Introduce', component: Introduce },
 ]

@@ -1,0 +1,12 @@
+.fect-toast-container {
+  position: fixed;
+  width: 420px;
+  max-width: 90vw;
+  bottom: var(--fay-gap);
+  right: var(--fay-gap);
+  z-index: 2000;
+  transition: all 400ms ease;
+  &.hover {
+    transform: translate3d(0, -10px, 0);
+  }
+}

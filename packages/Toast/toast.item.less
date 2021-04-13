@@ -1,0 +1,39 @@
+.fect-toast {
+  width: 420px;
+  max-width: 90vw;
+  max-height: 75px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: var(--fay-radius);
+  padding: var(--fay-gap);
+  box-sizing: border-box;
+  position: absolute;
+  border: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 1;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+  // transform: translate3d(0, 100%, 0px) scale(1);
+  transition: transform 400ms ease 0ms, visibility 200ms ease 0ms,
+    opacity 200ms ease 0ms;
+
+  &.visible {
+    opacity: 1;
+  }
+}
+.fect-toast-message {
+  align-items: center;
+  height: 100%;
+  transition: opacity 0.4s ease;
+  font-size: 0.875rem;
+  display: -webkit-box;
+  word-break: break-all;
+  padding-right: var(--fay-gap-half);
+  overflow: hidden;
+  max-height: 100%;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-height: 1.1rem;
+}

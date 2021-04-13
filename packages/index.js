@@ -1,4 +1,3 @@
-import './utils/styles/index.css'
 import Avatar from './Avatar'
 import AvatarGroup from './AvatarGroup'
 import Button from './Button'
@@ -15,7 +14,8 @@ import Row from './Row'
 import Spacer from './Spacer'
 import Switch from './Switch'
 import { camelize } from './utils/format/string'
-import { theme } from './utils'
+
+import './utils/styles/index.css'
 const components = [
   Avatar,
   AvatarGroup,
@@ -41,4 +41,4 @@ const install = (vue) => {
   }
   return
 }
-export default { install, theme }
+export default { install }
