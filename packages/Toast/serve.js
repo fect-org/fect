@@ -1,6 +1,6 @@
 import { mountRender } from '../utils'
 const { mountComponent, initMountArea } = mountRender
-import Toast from './toast'
+import FectToast from './toast'
 
 const insertToArea = (cont, elComponent, args) => {
   console.log(args)
@@ -22,38 +22,40 @@ const insertToArea = (cont, elComponent, args) => {
   return { unmount, mountNode }
 }
 
-const FectToast = ({ ...args }) => {
+const Toast = ({ ...args }) => {
   /**
    * while toastEvent excute ,it will
    * create toast container area  to save all toast
    */
   const area = initMountArea('fect-toast-area')
+  console.log(args)
   const toastEl = document.querySelector('.fect-toast-container')
-  const { unmount, mountNode } = insertToArea(area, Toast, [args])
+  const { unmount } = insertToArea(area, FectToast, [args])
   /**
    * unload all element at the end of the timer
    */
 
-  setTimeout(() => {
+  const _timer = setTimeout(() => {
     unmount(area)
     if (!toastEl) {
       document.body.removeChild(area)
+      clearTimeout(_timer)
     }
   }, 4500)
 }
 
 const createMethods = (type) => (option) => {
-  Object.assign(option, { type })
+  // Object.assign(option, { type })
   FectToast(option)
 }
 
 /**
  * static methods
  */
-FectToast.success = createMethods('success')
+Toast.success = createMethods('success')
 
-FectToast.warning = createMethods('warning')
+Toast.warning = createMethods('warning')
 
-FectToast.error = createMethods('error')
+Toast.error = createMethods('error')
 
-export default FectToast
+export default Toast

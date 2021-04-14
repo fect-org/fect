@@ -13,6 +13,7 @@ import RadioGroup from './RadioGroup'
 import Row from './Row'
 import Spacer from './Spacer'
 import Switch from './Switch'
+import Toast from './Toast/index'
 import { camelize } from './utils/format/string'
 
 import './utils/styles/index.css'
@@ -39,6 +40,7 @@ const install = (vue) => {
       vue.component(camelize(`-${component.name}`), component)
     })
   }
+  Toast.install(vue)
   return
 }
 export default { install }
