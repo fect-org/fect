@@ -75,7 +75,6 @@
     z-index: 10;
     width: 100vw;
     padding: 0;
-
     box-sizing: border-box;
     padding: 0 var(--fay-gap);
     padding-top: var(--fay-gap);
@@ -86,7 +85,8 @@
     }
     &.isAcive {
       top: 3.7rem;
-      height: 100vh;
+      min-height: 100vh;
+      padding-bottom: 3.7rem;
       transition: height 250ms ease;
     }
   }
