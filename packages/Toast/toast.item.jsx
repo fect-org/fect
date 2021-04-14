@@ -5,7 +5,6 @@ import './toast.item.less'
 const READNONLY_TOAST_KEY = 'toastKey'
 
 const renderBgColor = (type) => {
-  console.log(type)
   const bgColorsPool = {
     default: 'var(--primary-background)',
     success: 'var(--success-default)',

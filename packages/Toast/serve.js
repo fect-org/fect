@@ -3,7 +3,6 @@ const { mountComponent, initMountArea } = mountRender
 import FectToast from './toast'
 
 const insertToArea = (cont, elComponent, args) => {
-  console.log(args)
   const { instance, unmount, mountNode } = mountComponent(elComponent, ...args)
   /**
    *
@@ -28,25 +27,26 @@ const Toast = ({ ...args }) => {
    * create toast container area  to save all toast
    */
   const area = initMountArea('fect-toast-area')
-  console.log(args)
+  const duration = args?.duration
   const toastEl = document.querySelector('.fect-toast-container')
   const { unmount } = insertToArea(area, FectToast, [args])
   /**
    * unload all element at the end of the timer
+   * support custom duration
    */
-
+  const _t = Number(duration) ? Number(duration) : 4500
   const _timer = setTimeout(() => {
     unmount(area)
     if (!toastEl) {
       document.body.removeChild(area)
       clearTimeout(_timer)
     }
-  }, 4500)
+  }, _t)
 }
 
 const createMethods = (type) => (option) => {
-  // Object.assign(option, { type })
-  FectToast(option)
+  Object.assign(option, { type })
+  Toast(option)
 }
 
 /**
