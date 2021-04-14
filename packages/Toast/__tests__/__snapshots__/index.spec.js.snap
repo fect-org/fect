@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toast should render as element 1`] = `
+<div class="fect-toast ">
+  <div class="fect-toast-message">Test Message</div>
+</div>
+`;
+
+exports[`Toast should support different types 1`] = `
+<div class="fect-toast ">
+  <div class="fect-toast-message">0</div>
+</div>
+<div class="fect-toast " style="color: white;">
+  <div class="fect-toast-message">1</div>
+</div>
+<div class="fect-toast " style="color: white;">
+  <div class="fect-toast-message">2</div>
+</div>
+<div class="fect-toast " style="color: white;">
+  <div class="fect-toast-message">3</div>
+</div>
+`;

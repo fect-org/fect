@@ -11,7 +11,7 @@ const READNONLY_TOAST_KEY = 'toastKey'
 export default createComponent({
   props: {
     text: {
-      type: String,
+      type: [String, Number],
       default: '',
     },
     type: {
