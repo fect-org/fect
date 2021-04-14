@@ -1,6 +1,7 @@
 /**
  * author :XeryYue
  * collect all component and create at packages/index.js
+ *  waste
  */
 const fs = require('fs-extra')
 const path = require('path')
@@ -11,8 +12,14 @@ const IGNORE_DIR = ['utils', 'createContext']
 
 const IGNORE_FILE_REG = /.*?(\.js)$/g
 
-const importTemplate
-  = ';const install = (vue) => {if (!install.installed) {components.map((component) => {vue.component(camelize(`-${component.name}`), component)})}return};\n export default { install }'
+const importTemplate = `;const install = (vue) => {
+    if (!install.installed) {
+      components.map((component) => {
+        component.install(vue)
+      })
+    }
+    return
+  };\n export default { install };\n`
 
 const resolveImport = (dir, dirPath) => {
   const importFile = []
@@ -25,7 +32,7 @@ const resolveImport = (dir, dirPath) => {
       importFile.push(`import ${d} from "${filePath}"`)
       components.push(`${d}`)
     })
-  importFile.push(`import { camelize } from "./utils/format/string";\n
+  importFile.push(`
   import './utils/styles/index.css'`)
   return [importFile.join(';\n'), components]
 }

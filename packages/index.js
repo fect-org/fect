@@ -13,8 +13,7 @@ import RadioGroup from './RadioGroup'
 import Row from './Row'
 import Spacer from './Spacer'
 import Switch from './Switch'
-import Toast from './Toast/index'
-import { camelize } from './utils/format/string'
+import Toast from './Toast'
 
 import './utils/styles/index.css'
 const components = [
@@ -33,14 +32,14 @@ const components = [
   Row,
   Spacer,
   Switch,
+  Toast,
 ]
 const install = (vue) => {
   if (!install.installed) {
     components.map((component) => {
-      vue.component(camelize(`-${component.name}`), component)
+      component.install(vue)
     })
   }
-  Toast.install(vue)
   return
 }
 export default { install }

@@ -10,7 +10,7 @@
     "coverage": "npm run test:unit -- --coverage",
     "lint": "vue-cli-service lint",
     "commit": "git-cz",
-    "collect": "node scripts/collect.js",
+    "collect": "node scripts/collect.js && eslint --fix --ext .js packages/index.js",
     "setup": "hygen component new --name"
   },
   "dependencies": {
