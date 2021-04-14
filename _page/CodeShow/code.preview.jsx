@@ -1,11 +1,16 @@
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, getCurrentInstance } from 'vue'
 import CodeWrapper from './code.wrapper'
+import { useClipboard } from '../utils/clipboard'
+import { useProvider } from '../../packages/utils'
 import './code.preview.less'
+const READONLY_CODESHOW_KEY = 'codeShowKey'
 
 const CodePreView = defineComponent({
   setup() {
     const visible = ref(false)
     const codeIcon = ref('chevronRight')
+    const { ctx } = useProvider(READONLY_CODESHOW_KEY)
+    const { proxy } = getCurrentInstance()
     const handlerClick = (e) => {
       e.stopPropagation()
       e.preventDefault()
@@ -14,7 +19,8 @@ const CodePreView = defineComponent({
     const handlerCopyClick = (e) => {
       e.stopPropagation()
       e.preventDefault()
-      console.log(e)
+      useClipboard(ctx.code.value)
+      proxy.$toast.success({ text: '复制成功~' })
     }
 
     return () => (
