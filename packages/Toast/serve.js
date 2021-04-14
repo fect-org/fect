@@ -5,7 +5,6 @@ import FectToast from './toast'
 const insertToArea = (cont, elComponent, args) => {
   const { instance, unmount, mountNode } = mountComponent(elComponent, ...args)
   /**
-   *
    * It will  create anonymous el ,so you need to name them
    */
   mountNode.classList.add('fect-toast-container')
@@ -29,17 +28,21 @@ const Toast = ({ ...args }) => {
   const area = initMountArea('fect-toast-area')
   const duration = args?.duration
   const toastEl = document.querySelector('.fect-toast-container')
-  const { unmount } = insertToArea(area, FectToast, [args])
+  const { unmount, mountNode } = insertToArea(area, FectToast, [args])
   /**
    * unload all element at the end of the timer
    * support custom duration
    */
+
   const _t = Number(duration) ? Number(duration) : 4500
   const _timer = setTimeout(() => {
-    unmount(area)
-    if (!toastEl) {
-      document.body.removeChild(area)
-      clearTimeout(_timer)
+    mountNode.setAttribute('style', 'opacity: 0;')
+    if (!mountNode.style.opacity) {
+      unmount(area)
+      if (!toastEl) {
+        document.body.removeChild(area)
+        clearTimeout(_timer)
+      }
     }
   }, _t)
 }

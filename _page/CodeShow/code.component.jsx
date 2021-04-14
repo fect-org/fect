@@ -5,7 +5,7 @@ import './code.component.less'
 import codeRender from './code.render'
 
 const CodeComponent = defineComponent({
-  setup(props, { slots }) {
+  setup(props) {
     const { ctx } = useProvider(READONLY_CODESHOW_KEY)
     const { name } = ctx
     const renderRef = ref(null)

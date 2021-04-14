@@ -15,7 +15,7 @@ export default createComponent({
     desc: String,
     name: String,
   },
-  setup(props, { slots }) {
+  setup(props) {
     const { provider } = createProvider(READONLY_CODESHOW_KEY)
     const code = ref(null)
     const setpreViewCode = (pre) => (code.value = pre)
@@ -31,7 +31,7 @@ export default createComponent({
       <>
         <Title />
         <div className="f_doc-codeShow_container">
-          <CodeComponent v-slots={slots} />
+          <CodeComponent />
           <CodePreView />
 
           <style jsx>{`
