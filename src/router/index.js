@@ -14,13 +14,15 @@ const Switch = () => import('../../docs/zh-cn/components/switch.mdx')
 const Toast = () => import('../../docs/zh-cn/components/toast.mdx')
 const Install = () => import('../../docs/zh-cn/quickStart/install.mdx')
 const Introduce = () => import('../../docs/zh-cn/quickStart/introduce.mdx')
+const Colors = () => import('../../docs/zh-cn/themes/colors.mdx')
 
 const routes = [
-  { path: '/', redirect: { name: 'Introduce' } },
-  { path: '/avatar', name: 'Avatar', component: () => Avatar() },
+  { path: '/', redirect: { name: Introduce } },
+  { path: '/avatar', name: 'Avatar', component: Avatar },
   { path: '/button', name: 'Button', component: Button },
   { path: '/capacity', name: 'Capacity', component: Capacity },
   { path: '/card', name: 'Card', component: Card },
+  { path: '/code', name: 'Code', component: Code },
   { path: '/dot', name: 'Dot', component: Dot },
   { path: '/layout', name: 'Layout', component: Layout },
   { path: '/link', name: 'Link', component: Link },
@@ -29,9 +31,9 @@ const routes = [
   { path: '/spacer', name: 'Spacer', component: Spacer },
   { path: '/switch', name: 'Switch', component: Switch },
   { path: '/toast', name: 'Toast', component: Toast },
-  { path: '/code', name: 'Code', component: Code },
   { path: '/install', name: 'Install', component: Install },
   { path: '/introduce', name: 'Introduce', component: Introduce },
+  { path: '/colors', name: 'Colors', component: Colors },
 ]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
