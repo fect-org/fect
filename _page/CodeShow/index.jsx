@@ -14,6 +14,10 @@ export default createComponent({
     title: String,
     desc: String,
     name: String,
+    hiddenCode: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props) {
     const { provider } = createProvider(READONLY_CODESHOW_KEY)
@@ -32,7 +36,7 @@ export default createComponent({
         <Title />
         <div className="f_doc-codeShow_container">
           <CodeComponent />
-          <CodePreView />
+          {!props.hiddenCode && <CodePreView />}
 
           <style jsx>{`
             .f_doc-codeShow_container {
