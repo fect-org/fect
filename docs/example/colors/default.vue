@@ -3,19 +3,18 @@
     <fect-col
       v-for="(color, idx) in colors"
       :key="color + idx"
-      class="color-col"
+      class="color-item"
+      :style="style(color, idx)"
     >
-      <div class="color-item" :style="style(color, idx)">
-        <h4>{{ color.name }}</h4>
-        <span>{{ color.value }}</span>
-        <span>{{ colorValue(color.value) }}</span>
-      </div>
+      <h4>{{ color.name }}</h4>
+      <span>{{ color.value }}</span>
+      <span>{{ colorValue(color.value) }}</span>
     </fect-col>
   </fect-row>
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue'
+import { reactive } from 'vue'
 import { getCssValue } from './colors'
 export default {
   name: 'ex-colors-default',

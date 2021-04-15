@@ -17,7 +17,7 @@ const Introduce = () => import('../../docs/zh-cn/quickStart/introduce.mdx')
 const Colors = () => import('../../docs/zh-cn/themes/colors.mdx')
 
 const routes = [
-  { path: '/', redirect: { name: Introduce } },
+  { path: '/', redirect: { name: 'Introduce' } },
   { path: '/avatar', name: 'Avatar', component: Avatar },
   { path: '/button', name: 'Button', component: Button },
   { path: '/capacity', name: 'Capacity', component: Capacity },
