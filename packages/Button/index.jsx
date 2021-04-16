@@ -56,7 +56,7 @@ export default createComponent({
       emit('click', e)
     }
 
-    const dripCompleteHnadler = () => {
+    const dripCompleteHandler = () => {
       setTimeout(() => {
         drapShow.value = false
         drapX.value = 0
@@ -80,7 +80,7 @@ export default createComponent({
             <ButtonDrip
               x={drapX.value}
               y={drapY.value}
-              onCompleted={dripCompleteHnadler}
+              onCompleted={dripCompleteHandler}
             />
           )}
           {slots.default?.()}

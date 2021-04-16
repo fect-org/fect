@@ -29,6 +29,18 @@ const justifyTypes = tuple(
 
 const alignTypes = tuple('top', 'middle', 'bottom')
 
+const snippetCopyTypes = tuple('default', 'silent', 'prevent')
+
+const snippetStyleTypes = tuple(
+  'default',
+  'secondary',
+  'success',
+  'warning',
+  'error',
+  'lite',
+  'dark',
+)
+
 export {
   buttonTypes,
   normalSizes,
@@ -36,4 +48,6 @@ export {
   themeTypes,
   justifyTypes,
   alignTypes,
+  snippetCopyTypes,
+  snippetStyleTypes,
 }
