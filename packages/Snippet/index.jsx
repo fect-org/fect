@@ -1,8 +1,11 @@
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { createNameSpace, validator, theme } from '../utils'
-const [createComponent] = createNameSpace('Snippet')
 import SnippetIcon from './snippet.icon'
+import Toast from '../Toast'
+
+const [createComponent] = createNameSpace('Snippet')
 const { snippetCopyTypes, normalTypes } = theme
+
 import './snippet.less'
 
 export default createComponent({
@@ -41,21 +44,35 @@ export default createComponent({
       validator: validator.enums(normalTypes),
     },
   },
-  setup(props, { attrs, slots, emit }) {
+  setup(props) {
     const { copy, toastType, width, type, symbol, toastText, fill } = props
+    const showCopyIcon = ref(copy !== 'prevent')
     const getSnippetClass = computed(() => {
       let str = ''
       type && (str += ` ${type}`)
       fill && (str += ' fill')
+      !showCopyIcon.value && (str += ' disabled')
       return str.trim()
     })
+
+    const clickCopyHandler = () => {
+      if (copy !== 'default') {
+        return console.log('3')
+      }
+      Toast({ text: toastText, type: toastType })
+    }
+
     return () => (
       <div class={`fect-snippet ${getSnippetClass.value}`} style={{ width }}>
         <span>
-          <span>{symbol}</span>
+          {symbol && <span>{symbol}</span>}
           {props.text}
         </span>
-        <SnippetIcon />
+        {showCopyIcon.value && (
+          <div onClick={clickCopyHandler}>
+            <SnippetIcon />
+          </div>
+        )}
       </div>
     )
   },
