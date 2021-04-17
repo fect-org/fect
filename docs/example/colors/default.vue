@@ -50,4 +50,6 @@ export default {
 }
 </script>
 
-<style scoped src="./mixins.css"></style>
+<style scoped>
+@import url('./mixins.css');
+</style>
