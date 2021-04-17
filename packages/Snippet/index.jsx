@@ -69,7 +69,7 @@ export default createComponent({
           {props.text}
         </span>
         {showCopyIcon.value && (
-          <div onClick={clickCopyHandler}>
+          <div class="fect-snippet_copy" onClick={clickCopyHandler}>
             <SnippetIcon />
           </div>
         )}
