@@ -34,7 +34,7 @@ createApp(App)
 
 ### Documentation
 
-- ....no docs ...wait planning
+- [中文文档](https://vue.miaya.art/)
 
 <br />
 
