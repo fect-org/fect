@@ -1,4 +1,4 @@
-import { getCurrentInstance } from 'vue'
+
 import { validator, createNameSpace, theme, createProvider } from '../utils'
 import ToastItem from './toast.item'
 const [createComponent] = createNameSpace('Toast')

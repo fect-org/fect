@@ -13,7 +13,7 @@ export default createComponent({
     text: {
       type: String,
       default: '',
-      require: true,
+      required: true,
     },
     width: {
       type: [String, Number],
