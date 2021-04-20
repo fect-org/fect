@@ -15,6 +15,7 @@ const Toast = () => import('../../docs/zh-cn/components/toast.mdx')
 const Snippet = () => import('../../docs/zh-cn/components/snippet.mdx')
 const Tabs = () => import('../../docs/zh-cn/components/tabs.mdx')
 const Badge = () => import('../../docs/zh-cn/components/badge.mdx')
+const CheckBox = () => import('../../docs/zh-cn/components/checkbox.mdx')
 const Install = () => import('../../docs/zh-cn/quickStart/install.mdx')
 const Introduce = () => import('../../docs/zh-cn/quickStart/introduce.mdx')
 const Colors = () => import('../../docs/zh-cn/themes/colors.mdx')
@@ -37,6 +38,7 @@ const routes = [
   { path: '/snippet', name: 'Snippet', component: Snippet },
   { path: '/tabs', name: 'Tabs', component: Tabs },
   { path: '/badge', name: 'Badge', component: Badge },
+  { path: '/checkbox', name: 'Checkbox', component: CheckBox },
   { path: '/install', name: 'Install', component: Install },
   { path: '/introduce', name: 'Introduce', component: Introduce },
   { path: '/colors', name: 'Colors', component: Colors },

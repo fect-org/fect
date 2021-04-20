@@ -1,0 +1,43 @@
+.fect-checkbox {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  cursor: pointer;
+  height: var(--checkboxSize);
+  line-height: var(--checkboxSize);
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+}
+
+.fect-checkbox {
+  input {
+    outline: none;
+    position: absolute;
+    height: 0;
+    width: 0;
+    opacity: 0;
+    z-index: -1;
+    background-color: transparent;
+  }
+  svg {
+    display: inline-flex;
+    user-select: none;
+    cursor: pointer;
+    height: calc(var(--checkboxSize) * 0.85);
+    width: calc(var(--checkboxSize) * 0.85);
+    &.disabled {
+      cursor: not-allowed;
+      opacity: 0.75;
+    }
+  }
+
+  .fect-text_inner {
+    user-select: none;
+    font-size: var(--checkboxSize);
+    line-height: var(--checkboxSize);
+    padding-left: calc(var(--checkboxSize) * 0.5);
+  }
+}
