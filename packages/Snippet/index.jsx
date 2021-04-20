@@ -45,7 +45,7 @@ export default createComponent({
       validator: validator.enums(normalTypes),
     },
   },
-  setup(props) {
+  setup(props, { attrs }) {
     const { copy, toastType, width, type, symbol, toastText, fill } = props
     const showCopyIcon = ref(copy !== 'prevent')
     const { copyText } = useClipboard()
@@ -64,7 +64,11 @@ export default createComponent({
     }
 
     return () => (
-      <div class={`fect-snippet ${getSnippetClass.value}`} style={{ width }}>
+      <div
+        class={`fect-snippet ${getSnippetClass.value}`}
+        style={{ width }}
+        {...attrs}
+      >
         <span>
           {symbol && <span>{symbol}</span>}
           {props.text}

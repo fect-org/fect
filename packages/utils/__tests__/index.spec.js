@@ -19,6 +19,6 @@ test('crateNameSpace', () => {
   })
   const _wrapper = mount(wrapper)
 
-  expect(wrapper.name).toBe('fect-TestComponents')
+  expect(wrapper.name).toBe('fe-TestComponents')
   expect(_wrapper.html()).toContain('<div>test Componetns</div>')
 })

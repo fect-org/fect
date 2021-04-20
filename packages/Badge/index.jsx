@@ -1,9 +1,11 @@
-import { computed } from 'vue'
-import { createNameSpace, theme, validator } from '../utils'
+import { computed, ref } from 'vue'
+import { createNameSpace, theme, validator, useProvider } from '../utils'
 const [createComponent] = createNameSpace('Badge')
 import './badge.less'
 
 const { normalTypes, normalSizes } = theme
+
+const READONLY_BADGE_ANCHOR_KEY = 'badgeAnchorKey'
 
 const queryBgColor = (type) => {
   const bgsPool = {
@@ -40,6 +42,8 @@ export default createComponent({
     dot: Boolean,
   },
   setup(props, { attrs, slots }) {
+    const { ctx } = useProvider(READONLY_BADGE_ANCHOR_KEY)
+    const hasParent = ref(Boolean(ctx))
     const calcStyle = computed(() => {
       const styles = {
         backgroundColor: queryBgColor(props.type),
@@ -47,14 +51,41 @@ export default createComponent({
       }
       return styles
     })
+
+    const palcementStyle = computed(() => {
+      const { top, left, right, value, origin, bottom } = ctx
+      const style = {
+        position: 'absolute',
+        top: `${top || 'auto'}`,
+        left: `${left || 'auto'}`,
+        right: `${right || 'auto'}`,
+        bottom: `${bottom || 'auto'}`,
+        transform: `${value}`,
+        transformOrigin: `${origin}`,
+        zIndex: 1,
+      }
+      return style
+    })
+
+    const renderElement = () => {
+      return (
+        <span
+          {...attrs}
+          class={`${props.dot ? 'fect-dot' : ''} fect-badge`}
+          style={calcStyle.value}
+        >
+          {!props.dot && slots.default?.()}
+        </span>
+      )
+    }
     return () => (
-      <span
-        {...attrs}
-        class={`${props.dot ? 'fect-dot' : ''} fect-badge`}
-        style={calcStyle.value}
-      >
-        {!props.dot && slots.default?.()}
-      </span>
+      <>
+        {hasParent.value ? (
+          <sup style={palcementStyle.value}>{renderElement()}</sup>
+        ) : (
+          <>{renderElement()}</>
+        )}
+      </>
     )
   },
 })
