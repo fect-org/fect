@@ -37,7 +37,7 @@ const Toast = ({ ...args }) => {
   const _t = Number(duration) ? Number(duration) : 4500
   const _timer = setTimeout(() => {
     mountNode.setAttribute('style', 'opacity: 0;')
-    if (!mountNode.style.opacity) {
+    if (!!mountNode.style.opacity) {
       unmount(area)
       if (!toastEl) {
         document.body.removeChild(area)

@@ -1,5 +1,7 @@
 import Avatar from './Avatar';
 import AvatarGroup from './AvatarGroup';
+import Badge from './Badge';
+import BadgeAnchor from './BadgeAnchor';
 import Button from './Button';
 import Capacity from './Capacity';
 import Card from './Card';
@@ -15,9 +17,11 @@ import Row from './Row';
 import Snippet from './Snippet';
 import Spacer from './Spacer';
 import Switch from './Switch';
+import Tab from './Tab';
+import Tabs from './Tabs';
 import Toast from './Toast';
 
-import './utils/styles/index.css';const components = [Avatar,AvatarGroup,Button,Capacity,Card,Code,Col,Dot,Input,Link,Loading,Radio,RadioGroup,Row,Snippet,Spacer,Switch,Toast];const install = (vue) => {
+import './utils/styles/index.css';const components = [Avatar,AvatarGroup,Badge,BadgeAnchor,Button,Capacity,Card,Code,Col,Dot,Input,Link,Loading,Radio,RadioGroup,Row,Snippet,Spacer,Switch,Tab,Tabs,Toast];const install = (vue) => {
   if (!install.installed) {
     components.map((component) => {
       component.install(vue)

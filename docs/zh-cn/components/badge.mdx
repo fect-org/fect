@@ -22,5 +22,60 @@ export const meta = {
 <fe-CodeShow
   title="大小"
   name="ex-badge-size"
-  desc="不同大小的徽章组件"
+  desc="不同大小的徽标组件"
 />
+
+<fe-CodeShow
+  title="锚点"
+  name="ex-badge-anchor"
+  desc="提供一个固定徽标的容器"
+/>
+
+<fe-Attributes>
+  
+<fe-AttributesTitle title="Badge Props" />
+
+| 属性             | 描述                 | 类型             | 可选值                               | 默认     |
+| ---------------- | -------------------- | ---------------- | ------------------------------------ | -------- |
+| **size** | 组件大小             | `string`         |    [NormalSizes](#normalsizes)               | `medium`      |
+| **type**       | 组件类型 | [NormalTypes](#normaltypes)        | [NormalTypes](#normaltypes)                     | `default`  |
+|**dot**|忽略内容并显示圆点|`'boolean'`                           |                      `-`|`-`|
+| ...              | 原生属性             | `HTMLAttributes` | `'class','id',...`                   | `-`      |
+
+</fe-Attributes>
+
+<fe-Attributes>
+
+
+<fe-AttributesTitle title="BadgeAnchor Props" />
+
+| 属性             | 描述                 | 类型             | 可选值                               | 默认     |
+| ---------------- | -------------------- | ---------------- | ------------------------------------ | -------- |
+| **plcement** | 固定徽标的位置            | `string`         |    `'topLeft', 'topRight', 'bottomLeft', 'bottomRight'`               | `'topRight'`      |
+| ...              | 原生属性             | `HTMLAttributes` | `'class','id',...`                   | `-`      |
+
+</fe-Attributes>
+
+<fe-Attributes>
+
+
+
+<fe-AttributesTitle title="NormalSizes" />
+
+| 类型              可选值                               | 
+| ---------------- | -------------------- |
+| **NormalSizes**       | `'mini', 'small', 'medium', 'large'`|
+
+
+</fe-Attributes>
+
+<fe-Attributes>
+
+<fe-AttributesTitle title="NormalTypes" />
+
+| 类型              可选值                               | 
+| ---------------- | -------------------- |
+| **NormalTypes**       | `'default', 'success', 'warning', 'error'`|
+
+
+</fe-Attributes>
