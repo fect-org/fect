@@ -1,10 +1,10 @@
 <template>
   <div>
-    <fect-row style="background:#444"><fect-spacer y="1"/></fect-row>
-    <fect-spacer y="1" />
-    <fect-row style="background:#444"><fect-spacer y="2"/></fect-row>
-    <fect-spacer y="1" />
-    <fect-row style="background:#444"><fect-spacer y="3"/></fect-row>
+    <fe-row style="background:#444"><fe-spacer y="1"/></fe-row>
+    <fe-spacer y="1" />
+    <fe-row style="background:#444"><fe-spacer y="2"/></fe-row>
+    <fe-spacer y="1" />
+    <fe-row style="background:#444"><fe-spacer y="3"/></fe-row>
   </div>
 </template>
 

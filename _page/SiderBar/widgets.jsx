@@ -41,13 +41,13 @@ const Widgets = defineComponent({
     return () => (
       <>
         <div className="f_doc-widgets">
-          <fectLink
+          <feLink
             href="https://github.com/fay-org/fect"
             target="_blank"
             class={'f_doc-widgets_icons'}
           >
             <fect-icon icon="github" size="18" />
-          </fectLink>
+          </feLink>
           <span className={'f_doc-widgets_icons'} onClick={changeThemeHandler}>
             <fect-icon icon={themeIcon.value} size="18" />
           </span>

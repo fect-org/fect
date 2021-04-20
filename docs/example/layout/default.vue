@@ -1,12 +1,12 @@
 <template>
   <div>
-    <fect-row
+    <fe-row
       v-for="ex in 2"
       :key="ex"
       style="margin-bottom:10px;background-color:#0070f3;border-radius:6px;"
     >
-      <fect-spacer />
-    </fect-row>
+      <fe-spacer />
+    </fe-row>
   </div>
 </template>
 

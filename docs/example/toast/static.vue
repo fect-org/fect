@@ -1,21 +1,21 @@
 <template>
-  <fect-row>
-    <fect-col class="flex-able">
+  <fe-row>
+    <fe-col class="flex-able">
       <div>
-        <fect-button @click="handlerClick('success')" type="success"
-          >Show</fect-button
+        <fe-button @click="handlerClick('success')" type="success"
+          >Show</fe-button
         >
-        <fect-spacer />
-        <fect-button @click="handlerClick('warning')" type="warning"
-          >Show</fect-button
+        <fe-spacer />
+        <fe-button @click="handlerClick('warning')" type="warning"
+          >Show</fe-button
         >
-        <fect-spacer />
-        <fect-button @click="handlerClick('error')" type="error"
-          >Show</fect-button
+        <fe-spacer />
+        <fe-button @click="handlerClick('error')" type="error"
+          >Show</fe-button
         >
       </div>
-    </fect-col>
-  </fect-row>
+    </fe-col>
+  </fe-row>
 </template>
 
 <script>

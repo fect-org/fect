@@ -1,15 +1,15 @@
 <template>
   <div>
-    <fect-row
+    <fe-row
       style="margin-bottom:10px;"
       gutter="15"
       v-for="temp in 2"
       :key="temp"
     >
-      <fect-col v-for="(ex, idx) in 3" :key="idx">
+      <fe-col v-for="(ex, idx) in 3" :key="idx">
         <div class="ex-block"></div>
-      </fect-col>
-    </fect-row>
+      </fe-col>
+    </fe-row>
   </div>
 </template>
 

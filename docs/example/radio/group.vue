@@ -1,9 +1,9 @@
 <template>
   <div>
-    <fect-radioGroup>
-      <fect-radio value="1">Radio</fect-radio>
-      <fect-radio value="2">Radio2</fect-radio>
-    </fect-radioGroup>
+    <fe-radioGroup>
+      <fe-radio value="1">Radio</fe-radio>
+      <fe-radio value="2">Radio2</fe-radio>
+    </fe-radioGroup>
   </div>
 </template>
 

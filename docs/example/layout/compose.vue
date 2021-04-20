@@ -1,37 +1,37 @@
 <template>
-  <fect-row style="margin-bottom:10px;" gutter="15">
-    <fect-col span="16">
+  <fe-row style="margin-bottom:10px;" gutter="15">
+    <fe-col span="16">
       <div class="ex-col"></div>
-    </fect-col>
-    <fect-col span="8">
+    </fe-col>
+    <fe-col span="8">
       <div class="ex-col"></div>
-    </fect-col>
-  </fect-row>
-  <fect-row style="margin-bottom:10px;" gutter="15">
-    <fect-col span="8">
+    </fe-col>
+  </fe-row>
+  <fe-row style="margin-bottom:10px;" gutter="15">
+    <fe-col span="8">
       <div class="ex-col"></div>
-    </fect-col>
-    <fect-col span="8">
+    </fe-col>
+    <fe-col span="8">
       <div class="ex-col"></div>
-    </fect-col>
-    <fect-col span="4">
+    </fe-col>
+    <fe-col span="4">
       <div class="ex-col"></div>
-    </fect-col>
-    <fect-col span="4">
+    </fe-col>
+    <fe-col span="4">
       <div class="ex-col"></div>
-    </fect-col>
-  </fect-row>
-  <fect-row gutter="15">
-    <fect-col span="4">
+    </fe-col>
+  </fe-row>
+  <fe-row gutter="15">
+    <fe-col span="4">
       <div class="ex-col"></div>
-    </fect-col>
-    <fect-col span="16">
+    </fe-col>
+    <fe-col span="16">
       <div class="ex-col"></div>
-    </fect-col>
-    <fect-col span="4">
+    </fe-col>
+    <fe-col span="4">
       <div class="ex-col"></div>
-    </fect-col>
-  </fect-row>
+    </fe-col>
+  </fe-row>
 </template>
 
 <script>

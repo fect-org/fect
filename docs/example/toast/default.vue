@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fect-button @click="handlerClick">Toast</fect-button>
+    <fe-button @click="handlerClick">Toast</fe-button>
   </div>
 </template>
 

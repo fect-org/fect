@@ -1,7 +1,7 @@
 import { createComponent } from './component'
 
 const createNameSpace = (name) => {
-  name = `fect-${name}`
+  name = `fe-${name}`
   return [createComponent(name)]
 }
 

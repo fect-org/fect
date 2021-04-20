@@ -1,9 +1,9 @@
 <template>
   <div>
-    <fect-dot style="margin-right:15px" />
-    <fect-dot type="success" style="margin-right:15px" />
-    <fect-dot type="warning" style="margin-right:15px" />
-    <fect-dot type="error" style="margin-right:15px" />
+    <fe-dot style="margin-right:15px" />
+    <fe-dot type="success" style="margin-right:15px" />
+    <fe-dot type="warning" style="margin-right:15px" />
+    <fe-dot type="error" style="margin-right:15px" />
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fect-button disabled>Button</fect-button>
+    <fe-button disabled>Button</fe-button>
   </div>
 </template>
 <script>

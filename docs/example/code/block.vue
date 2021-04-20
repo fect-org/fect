@@ -1,10 +1,10 @@
 <template>
   <div>
-    <fect-code block>
+    <fe-code block>
       yarn add @fec-ui/vue
       <br />
-      npm install @fect-ui/vue
-    </fect-code>
+      npm install @fe-ui/vue
+    </fe-code>
   </div>
 </template>
 

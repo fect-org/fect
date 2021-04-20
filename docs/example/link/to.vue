@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fect-link to="/avatar">Avatar 组件</fect-link>
+    <fe-link to="/avatar">Avatar 组件</fe-link>
   </div>
 </template>
 

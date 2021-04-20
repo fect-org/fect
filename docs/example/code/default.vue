@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fect-code>Run npm i @fect-ui/vue to install.</fect-code>
+    <fe-code>Run npm i @fe-ui/vue to install.</fe-code>
   </div>
 </template>
 

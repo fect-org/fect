@@ -1,6 +1,6 @@
 <template>
-  <fect-row class="color-ctx">
-    <fect-col
+  <fe-row class="color-ctx">
+    <fe-col
       v-for="(color, idx) in colors"
       :key="color + idx"
       class="color-item"
@@ -9,8 +9,8 @@
       <h4>{{ color.name }}</h4>
       <span>{{ color.value }}</span>
       <span>{{ colorValue(color.value) }}</span>
-    </fect-col>
-  </fect-row>
+    </fe-col>
+  </fe-row>
 </template>
 
 <script>

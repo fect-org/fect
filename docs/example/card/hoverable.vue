@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fect-card hoverable>这是一个基础的卡片容器</fect-card>
+    <fe-card hoverable>这是一个基础的卡片容器</fe-card>
   </div>
 </template>
 

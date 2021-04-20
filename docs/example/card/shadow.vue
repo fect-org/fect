@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fect-card shadow>shadow</fect-card>
+    <fe-card shadow>shadow</fe-card>
   </div>
 </template>
 

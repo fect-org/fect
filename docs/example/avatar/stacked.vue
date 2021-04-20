@@ -1,10 +1,10 @@
 <template>
   <div>
-    <fect-avatarGroup>
-      <fect-avatar :src="img" stacked />
-      <fect-avatar :src="img" stacked />
-      <fect-avatar :src="img" stacked />
-    </fect-avatarGroup>
+    <fe-avatarGroup>
+      <fe-avatar :src="img" stacked />
+      <fe-avatar :src="img" stacked />
+      <fe-avatar :src="img" stacked />
+    </fe-avatarGroup>
   </div>
 </template>
 

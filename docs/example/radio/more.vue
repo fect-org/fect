@@ -1,15 +1,15 @@
 <template>
   <div>
-    <fect-radio value="1" disabled size="mini">Radio</fect-radio>
-    <fect-radio value="2">Radio2</fect-radio>
-    <fect-radioGroup useRow size="small">
-      <fect-radio value="1">Radio</fect-radio>
-      <fect-radio value="2">Radio2</fect-radio>
-    </fect-radioGroup>
-    <fect-radioGroup useRow disabled>
-      <fect-radio value="1">Radio</fect-radio>
-      <fect-radio value="2" checked>Radio2</fect-radio>
-    </fect-radioGroup>
+    <fe-radio value="1" disabled size="mini">Radio</fe-radio>
+    <fe-radio value="2">Radio2</fe-radio>
+    <fe-radioGroup useRow size="small">
+      <fe-radio value="1">Radio</fe-radio>
+      <fe-radio value="2">Radio2</fe-radio>
+    </fe-radioGroup>
+    <fe-radioGroup useRow disabled>
+      <fe-radio value="1">Radio</fe-radio>
+      <fe-radio value="2" checked>Radio2</fe-radio>
+    </fe-radioGroup>
   </div>
 </template>
 

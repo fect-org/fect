@@ -1,8 +1,8 @@
 <template>
   <div>
-    <fect-switch disabled />
-    <fect-spacer />
-    <fect-switch checked disabled />
+    <fe-switch disabled />
+    <fe-spacer />
+    <fe-switch checked disabled />
   </div>
 </template>
 

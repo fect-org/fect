@@ -1,9 +1,9 @@
 <template>
   <div>
-    <fect-loading type="default" size="mini" />
-    <fect-loading type="success" size="small" />
-    <fect-loading type="warning" size="medium" />
-    <fect-loading type="error" size="large" />
+    <fe-loading type="default" size="mini" />
+    <fe-loading type="success" size="small" />
+    <fe-loading type="warning" size="medium" />
+    <fe-loading type="error" size="large" />
   </div>
 </template>
 

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <fect-avatar :src="img" />
-    <fect-avatar :src="img" />
-    <fect-avatar :src="img" />
+    <fe-avatar :src="img" />
+    <fe-avatar :src="img" />
+    <fe-avatar :src="img" />
   </div>
 </template>
 

@@ -1,12 +1,12 @@
 <template>
   <div>
-    <fect-button type="default">Button</fect-button>
-    <fect-spacer y="{.5}" />
-    <fect-button type="success">Button</fect-button>
-    <fect-spacer y="{.5}" />
-    <fect-button type="warning">Button</fect-button>
-    <fect-spacer y="{.5}" />
-    <fect-button type="error">Button</fect-button>
+    <fe-button type="default">Button</fe-button>
+    <fe-spacer y="{.5}" />
+    <fe-button type="success">Button</fe-button>
+    <fe-spacer y="{.5}" />
+    <fe-button type="warning">Button</fe-button>
+    <fe-spacer y="{.5}" />
+    <fe-button type="error">Button</fe-button>
   </div>
 </template>
 

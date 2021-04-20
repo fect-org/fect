@@ -1,26 +1,26 @@
 <template>
   <div>
-    <fect-row>
-      <fect-col
+    <fe-row>
+      <fe-col
         class="ex-col"
         v-for="(ex, idx) in 2"
         :key="ex + idx"
         :style="rightColor(idx)"
       >
-        <fect-spacer />
-      </fect-col>
-    </fect-row>
-    <fect-row style="margin-top:10px">
-      <fect-col
+        <fe-spacer />
+      </fe-col>
+    </fe-row>
+    <fe-row style="margin-top:10px">
+      <fe-col
         class="ex-col"
         v-for="(ex, idx) in 2"
         :key="ex + idx"
         :span="!idx ? 3 : 21"
         :style="rightColor(idx)"
       >
-        <fect-spacer />
-      </fect-col>
-    </fect-row>
+        <fe-spacer />
+      </fe-col>
+    </fe-row>
   </div>
 </template>
 

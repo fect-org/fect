@@ -28,11 +28,11 @@ const CodePreView = defineComponent({
         <div className="f_code-preview">
           <details open={visible.value}>
             <summary onClick={handlerClick}>
-              <fect-row
+              <fe-row
                 justify="space-between"
                 style={{ height: '100%', width: '100%' }}
               >
-                <fect-col className="f_doc-action">
+                <fe-col className="f_doc-action">
                   <span
                     className="f_doc-arrow"
                     style={{
@@ -53,8 +53,8 @@ const CodePreView = defineComponent({
                       style={{ marginLeft: 'auto', marginRight: '20px' }}
                     />
                   )}
-                </fect-col>
-              </fect-row>
+                </fe-col>
+              </fe-row>
             </summary>
             <div className="f_doc-area">
               <CodeWrapper></CodeWrapper>

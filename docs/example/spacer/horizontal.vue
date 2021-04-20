@@ -1,10 +1,10 @@
 <template>
   <div>
-    <fect-row>
-      <fect-col style="background:#444"></fect-col>
-      <fect-spacer x="5" />
-      <fect-col style="background:#444"></fect-col>
-    </fect-row>
+    <fe-row>
+      <fe-col style="background:#444"></fe-col>
+      <fe-spacer x="5" />
+      <fe-col style="background:#444"></fe-col>
+    </fe-row>
   </div>
 </template>
 

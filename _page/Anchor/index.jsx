@@ -23,7 +23,7 @@ const Anchor = defineComponent({
       <>
         <span className="f_doc-anchor" ref={anchorRef}>
           {/* style={{ fontSize: '1.65rem' }} */}
-          <fectLink href={`#${tar.value}`}>{slots.default?.()}</fectLink>
+          <feLink href={`#${tar.value}`}>{slots.default?.()}</feLink>
           <span className="f_doc-anchor_virtual" id={tar.value}></span>
           <span className="f_doc-anchor_icon">
             <AnchorIcon />

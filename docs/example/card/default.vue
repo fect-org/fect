@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fect-card></fect-card>
+    <fe-card></fe-card>
   </div>
 </template>
 <script>

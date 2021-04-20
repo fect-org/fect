@@ -1,51 +1,51 @@
 <template>
   <div>
-    <fect-row style="margin-bottom:10px;" gutter="15">
-      <fect-col span="16">
+    <fe-row style="margin-bottom:10px;" gutter="15">
+      <fe-col span="16">
         <div class="ex-col" :style="rightGap(8)"></div>
-      </fect-col>
-    </fect-row>
+      </fe-col>
+    </fe-row>
 
-    <fect-row style="margin-bottom:10px;" gutter="15" justify="center">
-      <fect-col span="16">
+    <fe-row style="margin-bottom:10px;" gutter="15" justify="center">
+      <fe-col span="16">
         <div class="ex-col" :style="rightGap(8)"></div>
-      </fect-col>
-    </fect-row>
+      </fe-col>
+    </fe-row>
 
-    <fect-row style="margin-bottom:10px;" gutter="15" justify="end">
-      <fect-col span="16">
+    <fe-row style="margin-bottom:10px;" gutter="15" justify="end">
+      <fe-col span="16">
         <div class="ex-col" :style="rightGap(8)"></div>
-      </fect-col>
-    </fect-row>
+      </fe-col>
+    </fe-row>
 
-    <fect-row style="margin-bottom:10px;" gutter="15">
-      <fect-col :span="6">
-        <fect-row style="height:100%;">
+    <fe-row style="margin-bottom:10px;" gutter="15">
+      <fe-col :span="6">
+        <fe-row style="height:100%;">
           <div class="ex-col" :style="rightGap(12)"></div>
-        </fect-row>
-      </fect-col>
-      <fect-col :span="6">
-        <fect-row style="height:100%;" align="top">
-          <fect-col>
+        </fe-row>
+      </fe-col>
+      <fe-col :span="6">
+        <fe-row style="height:100%;" align="top">
+          <fe-col>
             <div class="ex-col" :style="rightGap(8)"></div>
-          </fect-col>
-        </fect-row>
-      </fect-col>
-      <fect-col :span="6">
-        <fect-row style="height:100%;" align="middle">
-          <fect-col>
+          </fe-col>
+        </fe-row>
+      </fe-col>
+      <fe-col :span="6">
+        <fe-row style="height:100%;" align="middle">
+          <fe-col>
             <div class="ex-col" :style="rightGap(6)"></div>
-          </fect-col>
-        </fect-row>
-      </fect-col>
-      <fect-col :span="6">
-        <fect-row style="height:100%;" align="bottom">
-          <fect-col>
+          </fe-col>
+        </fe-row>
+      </fe-col>
+      <fe-col :span="6">
+        <fe-row style="height:100%;" align="bottom">
+          <fe-col>
             <div class="ex-col" :style="rightGap(3)"></div>
-          </fect-col>
-        </fect-row>
-      </fect-col>
-    </fect-row>
+          </fe-col>
+        </fe-row>
+      </fe-col>
+    </fe-row>
   </div>
 </template>
 

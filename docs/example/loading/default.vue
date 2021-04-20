@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fect-loading />
+    <fe-loading />
   </div>
 </template>
 

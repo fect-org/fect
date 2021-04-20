@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fect-radio value="1">Radio</fect-radio>
+    <fe-radio value="1">Radio</fe-radio>
   </div>
 </template>
 

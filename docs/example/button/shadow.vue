@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fect-button shadow>Button</fect-button>
+    <fe-button shadow>Button</fe-button>
   </div>
 </template>
 

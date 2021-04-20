@@ -1,13 +1,13 @@
 <template>
   <div v-for="(ex, idx) in types" :key="idx">
-    <fect-snippet
-      text="yarn add @fect-ui/vue"
+    <fe-snippet
+      text="yarn add @fe-ui/vue"
       fill
       :type="ex"
       width="300px"
       :toastType="ex"
     />
-    <fect-spacer />
+    <fe-spacer />
   </div>
 </template>
 

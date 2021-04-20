@@ -1,7 +1,7 @@
 <template>
   <div v-for="(ex, idx) in types" :key="idx">
-    <fect-snippet text="yarn add @fect-ui/vue" :type="ex" width="300px" />
-    <fect-spacer />
+    <fe-snippet text="yarn add @fe-ui/vue" :type="ex" width="300px" />
+    <fe-spacer />
   </div>
 </template>
 

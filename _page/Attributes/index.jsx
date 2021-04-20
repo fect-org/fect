@@ -15,9 +15,9 @@ export default createComponent({
     })
     return () => (
       <>
-        <fect-spacer y={2} />
+        <fe-spacer y={2} />
         <div class="f_doc-api_attrs">{slots.default?.()}</div>
-        <fect-spacer y={1} />
+        <fe-spacer y={1} />
       </>
     )
   },

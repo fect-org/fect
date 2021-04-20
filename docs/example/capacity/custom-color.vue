@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fect-capacity value="30" color="green" />
+    <fe-capacity value="30" color="green" />
   </div>
 </template>
 
