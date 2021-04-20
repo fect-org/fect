@@ -1,5 +1,6 @@
 import { computed, ref } from 'vue'
-import { createNameSpace, validator, theme } from '../utils'
+import { createNameSpace, validator, theme, useClipboard } from '../utils'
+// import { useClipboard } from '../../_page/utils/clipboard'
 import SnippetIcon from './snippet.icon'
 import Toast from '../Toast'
 
@@ -47,6 +48,7 @@ export default createComponent({
   setup(props) {
     const { copy, toastType, width, type, symbol, toastText, fill } = props
     const showCopyIcon = ref(copy !== 'prevent')
+    const { copyText } = useClipboard()
     const getSnippetClass = computed(() => {
       let str = ''
       type && (str += ` ${type}`)
@@ -56,9 +58,8 @@ export default createComponent({
     })
 
     const clickCopyHandler = () => {
-      if (copy !== 'default') {
-        return console.log('3')
-      }
+      if (copy !== 'default') return copyText(props.text)
+      copyText(props.text)
       Toast({ text: toastText, type: toastType })
     }
 
