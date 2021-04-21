@@ -33,7 +33,6 @@ const renderBgColor = (type) => {
 const ToastItem = defineComponent({
   setup() {
     const { ctx } = useProvider(READNONLY_TOAST_KEY)
-    // console.log(ctx)
     const usebgColor = computed(() => renderBgColor(ctx.type))
     return () => (
       // visible

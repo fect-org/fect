@@ -1,4 +1,4 @@
-import { computed } from 'vue'
+import { ref } from 'vue'
 import { createNameSpace, createProvider, theme, validator } from '../utils'
 const [createComponent] = createNameSpace('CheckboxGroup')
 import './checkBoxGroup.less'
@@ -10,7 +10,8 @@ export default createComponent({
   props: {
     disabled: Boolean,
     modelValue: {
-      default: false,
+      type: Array,
+      default: () => [],
     },
     size: {
       type: String,
@@ -22,9 +23,9 @@ export default createComponent({
   emits: ['change', 'update:modelValue'],
   setup(props, { attrs, slots, emit }) {
     const { provider } = createProvider(READONLY_CHECKBOX_KEY)
-    const setParentModelValue = (pre) => emit('update:modelValue', pre)
+    const updateParentValue = (pre) => emit('update:modelValue', pre)
     const handlerParentChange = (e) => emit('change', e)
-    provider({ props, setParentModelValue, handlerParentChange })
+    provider({ props, updateParentValue, handlerParentChange })
     return () => (
       <>
         <div

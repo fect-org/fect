@@ -16,7 +16,6 @@ export default {
         return extractContext(exampleModule.default, exContext(path))
       })
       .forEach((exModule) => {
-        // console.log(exModule)
         vue.component(exModule.name, exModule)
       }),
 }

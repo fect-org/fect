@@ -21,13 +21,15 @@ const queryCheckboxSize = (size) => {
 export default createComponent({
   props: {
     disabled: Boolean,
-    modelValue: {
-      default: false,
-    },
+    modelValue: Boolean,
     size: {
       type: String,
       default: 'medium',
       validator: validator.enums(normalSizes),
+    },
+    label: {
+      type: [String, Number],
+      default: '',
     },
   },
   emits: ['change', 'update:modelValue'],
@@ -36,10 +38,32 @@ export default createComponent({
     const selfSize = ref(props.size)
     const isDisabled = ref(props.disabled)
     const { ctx } = useProvider(READONLY_CHECKBOX_KEY)
-    // const { setParentModelValue, handlerParentChange } = ctx
+
+    const setCurrentState = () => {
+      const { modelValue } = ctx.props
+      const value = modelValue.slice()
+      isChecked.value = value.find((v) => v === props.label)
+    }
+
+    const setParentValue = (e) => {
+      const { label } = props
+      const { modelValue } = ctx.props
+      const { updateParentValue, handlerParentChange } = ctx
+      const value = modelValue.slice()
+      if (!isChecked.value) {
+        const index = value.indexOf(label)
+        value.splice(index, 1)
+      } else {
+        if (value.indexOf(label) === -1) {
+          value.push(label)
+        }
+      }
+      updateParentValue(value)
+      handlerParentChange({ target: value })
+    }
+
     const handlerChange = (e) => {
       isChecked.value = !isChecked.value
-      emit('update:modelValue', isChecked.value)
       const CheckboxEvent = {
         target: {
           checked: isChecked.value,
@@ -48,7 +72,13 @@ export default createComponent({
         preventDefault: e.preventDefault,
         nativeEvent: e,
       }
-      emit('change', CheckboxEvent)
+      if (ctx) {
+        setParentValue(CheckboxEvent)
+      }
+      if (!ctx) {
+        emit('update:modelValue', isChecked.value)
+        emit('change', CheckboxEvent)
+      }
     }
 
     const setCurrentStyle = () => {
@@ -57,10 +87,10 @@ export default createComponent({
     }
     if (ctx) {
       watchEffect(() => {
+        setCurrentState()
         setCurrentStyle()
       })
     }
-
     const setCheckBoxBaseSize = computed(() => {
       const _size = queryCheckboxSize(selfSize.value)
       const style = {}

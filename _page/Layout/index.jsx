@@ -13,7 +13,6 @@ const Layout = defineComponent({
     const { provider } = createProvider(READONLY_LAYOUT_KEY)
     const handlerMobileTabbarClick = () => {
       isScroll.value = !isScroll.value
-      // console.log(isScroll.value)
     }
     const handlerChangeTheme = (cur) => (theme.value = cur)
     const inMobileScroll = computed(() => (isScroll.value ? 'isAcive' : ''))
