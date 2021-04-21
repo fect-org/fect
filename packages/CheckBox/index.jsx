@@ -42,10 +42,10 @@ export default createComponent({
     const setCurrentState = () => {
       const { modelValue } = ctx.props
       const value = modelValue.slice()
-      isChecked.value = value.find((v) => v === props.label)
+      isChecked.value = Boolean(value.find((v) => v === props.label))
     }
 
-    const setParentValue = (e) => {
+    const setParentValue = () => {
       const { label } = props
       const { modelValue } = ctx.props
       const { updateParentValue, handlerParentChange } = ctx
@@ -106,6 +106,7 @@ export default createComponent({
       >
         <CheckIcon
           class={`${isDisabled.value ? 'disabled' : ''}`}
+          isChecked={isChecked.value}
           checked={isChecked.value}
         />
         <input
