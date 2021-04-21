@@ -4,14 +4,12 @@ const [createComponent] = createNameSpace('Input')
 import './input.less'
 
 export default createComponent({
-  props: {
-  },
+  props: {},
   setup(props, { attrs, slots, emit }) {
-
     return () => (
-      <>
-        <div></div>
-      </>
+      <div>
+        <input type="text" />
+      </div>
     )
   },
 })
