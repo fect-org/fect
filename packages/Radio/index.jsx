@@ -45,9 +45,6 @@ export default createComponent({
     const changeStatus = ()=>{
       isDisabled.value = ctx.props.disabled
       radioSize.value = ctx.props.size
-      // radioValue.value = ctx.props?.initialValue || null
-      // if (ctx.groupValue.value) radioValue.value = ctx.groupValue.value
-      // selfChecked.value = (radioValue.value === value.value)
       /** refactor */
       const parentValue = ctx.props?.initialValue || null
       if (ctx.groupValue.value) selfChecked.value = ctx.groupValue.value === value.value

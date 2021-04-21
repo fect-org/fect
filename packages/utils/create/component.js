@@ -6,9 +6,8 @@ import { defineComponent } from 'vue'
 import { camelize } from '../format/string'
 
 const createComponent = (name) => {
-  return function (component) {
+  return function(component) {
     component.name = name
-    // console.log(camelize(`-${name}`))
     component.install = (vue) => vue.component(camelize(`-${name}`), component)
     return defineComponent(component)
   }
