@@ -17,7 +17,7 @@ export default createComponent({
       default: '',
     },
   },
-  setup(props, { slots }) {
+  setup(props, { slots, attrs }) {
     const hasLink = ref(false)
 
     watchEffect(() => {
@@ -34,22 +34,24 @@ export default createComponent({
     const withoutLinkRender = () => {
       return (
         <span class="fect-braed_item">
-          {content} <Separator>{ctx?.separator}</Separator>
+          {content}
+          <Separator>{ctx?.separator}</Separator>
         </span>
       )
     }
     const linkRender = () => {
       return (
-        <>
+        <div class="fect-braed_item ">
           <Link
-            class="fect-braed_item withLink"
             to={props.to}
             href={props.href}
+            class="withLink"
+            target={attrs.target}
           >
             {content}
           </Link>
           <Separator>{ctx?.separator}</Separator>
-        </>
+        </div>
       )
     }
 

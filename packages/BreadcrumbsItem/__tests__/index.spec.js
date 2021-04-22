@@ -10,7 +10,7 @@ describe('BreadcrumbsItem', () => {
     const wrapper = mount(<BreadcrumbsItem />)
     expect(wrapper.html()).toMatchSnapshot()
     expect(wrapper.find('.fect-braed_item').html()).toBe(
-      '<span class="fect-braed_item"><!----> <div class="fect-bread_separator"><!----></div></span>',
+      '<span class="fect-braed_item"><!----><div class="fect-bread_separator"><!----></div></span>',
     )
   })
 })

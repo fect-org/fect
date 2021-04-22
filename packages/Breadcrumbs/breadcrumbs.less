@@ -6,7 +6,6 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
- 
 }
 
 .fect-nav_container {
@@ -16,5 +15,12 @@
     user-select: none;
     pointer-events: none;
     align-items: center;
+  }
+  .fect-braed_item {
+    &:last-child {
+      .fect-bread_separator {
+        display: none;
+      }
+    }
   }
 }

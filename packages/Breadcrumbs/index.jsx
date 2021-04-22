@@ -1,4 +1,4 @@
-import { computed, onMounted } from 'vue'
+import { computed } from 'vue'
 import { createNameSpace, theme, validator, createProvider } from '../utils'
 const [createComponent] = createNameSpace('Breadcrumbs')
 import './breadcrumbs.less'
@@ -32,13 +32,6 @@ export default createComponent({
   setup(props, { slots }) {
     const { provider } = createProvider(READONLY_BREADCRUMBS_KEY)
     provider({ separator: props.separator })
-
-    onMounted(() => {
-      const items = document.querySelectorAll('.fect-bread_separator')
-      if (items.length) {
-        items[items.length - 1].setAttribute('style', 'display:none')
-      }
-    })
 
     const safeSize = computed(() => {
       const styles = {
