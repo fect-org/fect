@@ -34,16 +34,22 @@ export default createComponent({
     const withoutLinkRender = () => {
       return (
         <span class="fect-braed_item">
-          {content} <Separator>{ctx.separator}</Separator>
+          {content} <Separator>{ctx?.separator}</Separator>
         </span>
       )
     }
     const linkRender = () => {
       return (
-        <Link class="fect-braed_item withLink" to={props.to} href={props.href}>
-          {content}
-          <Separator>{ctx.separator}</Separator>
-        </Link>
+        <>
+          <Link
+            class="fect-braed_item withLink"
+            to={props.to}
+            href={props.href}
+          >
+            {content}
+          </Link>
+          <Separator>{ctx?.separator}</Separator>
+        </>
       )
     }
 

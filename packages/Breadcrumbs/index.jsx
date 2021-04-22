@@ -29,7 +29,7 @@ export default createComponent({
       validator: validator.enums(normalSizes),
     },
   },
-  setup(props, { attrs, slots, emit }) {
+  setup(props, { slots }) {
     const { provider } = createProvider(READONLY_BREADCRUMBS_KEY)
     provider({ separator: props.separator })
 
