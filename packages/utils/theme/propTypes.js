@@ -44,6 +44,7 @@ const snippetStyleTypes = tuple(
 const placeTypes = tuple('topLeft', 'topRight', 'bottomLeft', 'bottomRight')
 
 export {
+  tuple,
   buttonTypes,
   normalSizes,
   normalTypes,

@@ -65,9 +65,9 @@ export default createComponent({
 
     return () => (
       <div
+        {...attrs}
         class={`fect-snippet ${getSnippetClass.value}`}
         style={{ width }}
-        {...attrs}
       >
         <span>
           {symbol && <span>{symbol}</span>}
