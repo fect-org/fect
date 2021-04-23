@@ -31,7 +31,12 @@ const ModalWrapper = defineComponent({
     return () => (
       <>
         <Transition>
-          <div class="fect-modal_wrapper" {...attrs}>
+          <div
+            role="dialog"
+            class="fect-modal_wrapper"
+            {...attrs}
+            style={{ width: ctx.props.width }}
+          >
             {renderCustomTitle()}
             <div class="fect-modal_content"> {slots.default?.()}</div>
             {renderCustomAction()}

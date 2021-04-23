@@ -1,5 +1,4 @@
-import { computed, toRefs } from 'vue'
-import { createNameSpace, theme, createProvider } from '../utils'
+import { createNameSpace, createProvider } from '../utils'
 import { READONLY_MODAL_KEY } from './ModalKey'
 const [createComponent] = createNameSpace('Modal')
 import './modal.less'
@@ -14,7 +13,7 @@ export default createComponent({
     },
     width: {
       type: String,
-      default: '300px',
+      default: '420px',
     },
     cancel: {
       type: String,
@@ -25,10 +24,14 @@ export default createComponent({
       default: 'done',
     },
   },
-  emits: ['open', 'close'],
+  emits: ['update:visible'],
   setup(props, { attrs, slots, emit }) {
     const { provider } = createProvider(READONLY_MODAL_KEY)
-    provider(props)
-    return () => <ModalWrapper {...attrs} v-slots={slots} />
+    const updateVisibleValue = (pre) => emit('update:visible', pre)
+    provider({ props, updateVisibleValue })
+
+    return () => (
+      <>{props.visible ? <ModalWrapper {...attrs} v-slots={slots} /> : ''}</>
+    )
   },
 })

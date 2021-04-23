@@ -11,7 +11,7 @@ const ModalTitle = defineComponent({
     const { ctx } = useProvider(READONLY_MODAL_KEY)
     return () => (
       <div class="fect-modal_title__container">
-        <h2 class="modal_title">{ctx.title}</h2>
+        <h2 class="modal_title">{ctx.props.title}</h2>
       </div>
     )
   },
