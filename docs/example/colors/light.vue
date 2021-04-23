@@ -32,7 +32,7 @@ export default {
       const Style = {
         backgroundColor: color.value,
         color:
-          idx > 3 ? 'var(--primary-foreground)' : ' var(--primary-background)',
+          idx > 2 ? 'var(--primary-foreground)' : ' var(--primary-background)',
       }
       return Style
     }
