@@ -12,7 +12,15 @@ const ModalWrapper = defineComponent({
 
     const renderCustomTitle = () => {
       const titleSlot = slots['title']
-      return <>{titleSlot ? titleSlot() : <ModalTitle />}</>
+      return (
+        <>
+          {titleSlot ? (
+            <div class="fect-modal_title__container">{titleSlot()}</div>
+          ) : (
+            <ModalTitle />
+          )}
+        </>
+      )
     }
 
     const renderCustomAction = () => {
@@ -25,7 +33,7 @@ const ModalWrapper = defineComponent({
         <Transition>
           <div class="fect-modal_wrapper" {...attrs}>
             {renderCustomTitle()}
-            {slots.default?.()}
+            <div class="fect-modal_content"> {slots.default?.()}</div>
             {renderCustomAction()}
           </div>
         </Transition>

@@ -15,6 +15,7 @@ import Dot from './Dot';
 import Input from './Input';
 import Link from './Link';
 import Loading from './Loading';
+import Modal from './Modal';
 import Radio from './Radio';
 import RadioGroup from './RadioGroup';
 import Row from './Row';
@@ -23,7 +24,7 @@ import Spacer from './Spacer';
 import Switch from './Switch';
 import Toast from './Toast';
 
-import './utils/styles/index.css';const components = [Avatar,AvatarGroup,Badge,BadgeAnchor,Breadcrumbs,BreadcrumbsItem,Button,Capacity,Card,CheckBox,CheckBoxGroup,Code,Col,Dot,Input,Link,Loading,Radio,RadioGroup,Row,Snippet,Spacer,Switch,Toast];const install = (vue) => {
+import './utils/styles/index.css';const components = [Avatar,AvatarGroup,Badge,BadgeAnchor,Breadcrumbs,BreadcrumbsItem,Button,Capacity,Card,CheckBox,CheckBoxGroup,Code,Col,Dot,Input,Link,Loading,Modal,Radio,RadioGroup,Row,Snippet,Spacer,Switch,Toast];const install = (vue) => {
   if (!install.installed) {
     components.map((component) => {
       component.install(vue)

@@ -8,12 +8,19 @@
   box-sizing: border-box;
   background-color: var(--primary-background);
   color: var(--primary-foreground);
-  border-radius: var(--fay-gap);
-  // box-shadow: rgba(0, 0, 0, 0.12) 0px 20px 30px 0px;
+  border-radius: var(--fay-radius);
+  width: 420px;
+  // box-shadow: rgb(51 51 51) 0px 0px 0px 1px;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
   // opacity: 0;
   // outline: none;
   // transform: translate3d(0px, -30px, 0px);
-  // transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-  //   transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  .fect-modal_content {
+    padding: var(--fay-gap) var(--fay-gap) var(--fay-gap-half);
+    position: relative;
+    text-align: left;
+    box-sizing: border-box;
+  }
 }

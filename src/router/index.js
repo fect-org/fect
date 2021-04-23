@@ -16,6 +16,7 @@ const Snippet = () => import('../../docs/zh-cn/components/snippet.mdx')
 const Spacer = () => import('../../docs/zh-cn/components/spacer.mdx')
 const Switch = () => import('../../docs/zh-cn/components/switch.mdx')
 const Toast = () => import('../../docs/zh-cn/components/toast.mdx')
+const Modal = () => import('../../docs/zh-cn/components/modal.mdx')
 const Input = () => import('../../docs/zh-cn/components/input.mdx')
 const Install = () => import('../../docs/zh-cn/quickStart/install.mdx')
 const Introduce = () => import('../../docs/zh-cn/quickStart/introduce.mdx')
@@ -41,6 +42,7 @@ const routes = [
   { path: '/switch', name: 'Switch', component: Switch },
   { path: '/toast', name: 'Toast', component: Toast },
   { path: '/input', name: 'Input', component: Input },
+  { path: '/modal', name: 'Modal', component: Modal },
   { path: '/install', name: 'Install', component: Install },
   { path: '/introduce', name: 'Introduce', component: Introduce },
   { path: '/colors', name: 'Colors', component: Colors },
