@@ -30,7 +30,7 @@ const ModalWrapper = defineComponent({
 
     return () => (
       <>
-        <Transition>
+        <Transition name="fect-dialog_slide">
           <div
             role="dialog"
             class="fect-modal_wrapper"

@@ -1,0 +1,47 @@
+.fect-dialog_root {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 10000;
+
+  .fect-dialog-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: var(--fay-portalOpacity);
+    pointer-events: none;
+
+    &.responsive {
+      background-color: transparent;
+      z-index: 10;
+      opacity: 0;
+      pointer-events: unset;
+    }
+  }
+}
+
+.fect-dialog-backdrop-enter-active,
+.fect-dialog-backdrop-leave-active {
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+}
+
+.fect-dialog-backdrop-enter,
+.fect-dialog-backdrop-leave,
+.fect-dialog-backdrop-leave-active {
+  opacity: 0;
+}

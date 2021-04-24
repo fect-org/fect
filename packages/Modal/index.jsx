@@ -1,8 +1,10 @@
+import { Transition } from 'vue'
 import { createNameSpace, createProvider } from '../utils'
 import { READONLY_MODAL_KEY } from './ModalKey'
-const [createComponent] = createNameSpace('Modal')
 import './modal.less'
 import ModalWrapper from './modal.wrapper'
+
+const [createComponent] = createNameSpace('Modal')
 
 export default createComponent({
   props: {
@@ -31,7 +33,19 @@ export default createComponent({
     provider({ props, updateVisibleValue })
 
     return () => (
-      <>{props.visible ? <ModalWrapper {...attrs} v-slots={slots} /> : ''}</>
+      <>
+        {props.visible ? (
+          <Transition name="fect-dialog-backdrop">
+            <div className="fect-dialog_root">
+              <div className="fect-dialog-backdrop"></div>
+              <div className="fect-dialog-backdrop responsive"></div>
+              <ModalWrapper {...attrs} v-slots={slots} />
+            </div>
+          </Transition>
+        ) : (
+          ''
+        )}
+      </>
     )
   },
 })
