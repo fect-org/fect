@@ -2,14 +2,18 @@
   <div>
     <fe-button @click="handlerClick">Button</fe-button>
     <fe-modal
-      title="箭头函数"
       v-model:visible="show"
+      width="450px"
       cancel="放弃使用"
       done="明白了"
     >
-      <p>
-        总所周知箭头函数没有自己的<fe-code>this</fe-code>因此,它依赖于外部指向。
-      </p>
+      <template #title>
+        <div style="text-align: center;font-size:20px;margin-top:30px;">
+          我的最爱
+        </div>
+      </template>
+      这就是自定义!
+      <template #action> </template>
     </fe-modal>
   </div>
 </template>
@@ -17,7 +21,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-modal-default',
+  name: 'ex-modal-custom',
   setup() {
     const show = ref(false)
     const handlerClick = () => (show.value = true)
