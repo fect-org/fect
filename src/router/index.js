@@ -21,6 +21,7 @@ const Input = () => import('../../docs/zh-cn/components/input.mdx')
 const Install = () => import('../../docs/zh-cn/quickStart/install.mdx')
 const Introduce = () => import('../../docs/zh-cn/quickStart/introduce.mdx')
 const Colors = () => import('../../docs/zh-cn/themes/colors.mdx')
+const Tabs = () => import('../../docs/zh-cn/components/tabs.mdx')
 
 const routes = [
   { path: '/', redirect: { name: 'Introduce' } },
@@ -46,6 +47,7 @@ const routes = [
   { path: '/install', name: 'Install', component: Install },
   { path: '/introduce', name: 'Introduce', component: Introduce },
   { path: '/colors', name: 'Colors', component: Colors },
+  { path: '/tabs', name: 'Tabs', component: Tabs },
 ]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
