@@ -5,12 +5,17 @@
 </template>
 
 <script>
-import { getCurrentInstance } from 'vue'
+import { getCurrentInstance, ref, watchEffect } from 'vue'
 export default {
   name: 'ex-modal-direct',
   setup() {
     const { proxy } = getCurrentInstance()
-    const handlerClick = () => proxy.$modal({ visible: false, title: 'Test' })
+    const show = ref(true)
+    const handlerClick = () =>
+      proxy.$modal({ visible: show.value, title: 'Test' })
+    watchEffect(() => {
+      console.log(show.value)
+    })
     return {
       handlerClick,
     }

@@ -5,11 +5,11 @@ const { mountComponent } = mountRender
 const Modal = ({ ...args }) => {
   const { instance, unmount } = mountComponent(FectModal, args)
 
-  const hasClose = FectModal.props.visible()
+  const hasClose = args.visible
   if (hasClose) {
-    unmount()
-  } else {
     instance()
+  } else {
+    unmount()
   }
 }
 
