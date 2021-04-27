@@ -1,5 +1,5 @@
-import { ref } from 'vue'
 import { createNameSpace, createProvider } from '../utils'
+import { ref } from 'vue'
 import './tabs.less'
 import TabsTitle from './tabs.title'
 
@@ -17,12 +17,14 @@ export default createComponent({
   },
   emits: ['change', 'update:active'],
   setup(props, { attrs, slots, emit }) {
+    const currentChecked = ref(props.active)
     const { provider, children } = createProvider(READONLY_TABS_KEY)
-    provider(props)
+    provider({ props, currentChecked })
 
     const setCurrent = (data) => {
       const { value } = data
       emit('update:active', value)
+      currentChecked.value = value
       // support emit change event
       emit('change', value)
     }
@@ -47,7 +49,7 @@ export default createComponent({
           >
             {renderNav()}
           </header>
-          <div>{slots.default?.()}</div>
+          {slots.default?.()}
         </div>
       </>
     )

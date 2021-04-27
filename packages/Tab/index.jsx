@@ -1,5 +1,5 @@
-import { computed, toRefs } from 'vue'
 import { createNameSpace, useProvider } from '../utils'
+import { computed } from 'vue'
 import './tab.less'
 
 const [createComponent] = createNameSpace('Tab')
@@ -18,11 +18,15 @@ export default createComponent({
     },
   },
   setup(props, { attrs, slots, emit }) {
-    const { ctx, idx } = useProvider(READONLY_TABS_KEY)
+    const { ctx } = useProvider(READONLY_TABS_KEY)
+    const isDisabled = computed(() => {
+      return ctx.currentChecked.value === props.value ? '' : 'none'
+    })
+
     return () => (
       <>
-        <div class="fect-tab_wrapper">
-          {ctx.active === idx ? slots.default?.() : ''}
+        <div class={`fect-tab_wrapper ${isDisabled.value}`}>
+          {slots.default?.()}
         </div>
       </>
     )
