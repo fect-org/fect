@@ -1,4 +1,4 @@
-import { computed, onMounted, getCurrentInstance, nextTick } from 'vue'
+import { ref } from 'vue'
 import { createNameSpace, createProvider } from '../utils'
 import './tabs.less'
 import TabsTitle from './tabs.title'
@@ -11,7 +11,7 @@ export default createComponent({
   props: {
     active: {
       type: [String, Number],
-      default: '',
+      default: 0,
     },
     hideDivider: Boolean,
   },
@@ -19,9 +19,21 @@ export default createComponent({
   setup(props, { attrs, slots, emit }) {
     const { provider, children } = createProvider(READONLY_TABS_KEY)
     provider(props)
+
+    const setCurrent = (data) => {
+      const { value } = data
+      emit('update:active', value)
+    }
+
     const renderNav = () => {
       return children.map((el, idx) => (
-        <TabsTitle title={el.title} value={el.value} key={idx} />
+        <TabsTitle
+          title={el.title}
+          value={el.value ? el.value : idx}
+          key={idx}
+          active={props.active}
+          onClick={setCurrent}
+        />
       ))
     }
 

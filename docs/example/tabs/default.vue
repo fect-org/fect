@@ -1,12 +1,22 @@
 <template>
   <div>
-    <fe-tabs>
-      <fe-tab title="二进制">阿巴阿巴</fe-tab>
-      <fe-tab title="八进制">阿巴阿巴</fe-tab>
+    <fe-tabs v-model:active="active">
+      <fe-tab title="二进制">阿巴阿巴0</fe-tab>
+      <fe-tab title="八进制">阿巴阿巴1</fe-tab>
     </fe-tabs>
   </div>
 </template>
 
 <script>
-export default { name: 'ex-tabs-default' }
+import { ref, watchEffect } from 'vue'
+export default {
+  name: 'ex-tabs-default',
+  setup() {
+    const active = ref(0)
+    watchEffect(() => console.log(active.value))
+    return {
+      active,
+    }
+  },
+}
 </script>

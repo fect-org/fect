@@ -19,10 +19,12 @@ export default createComponent({
   },
   setup(props, { attrs, slots, emit }) {
     const { ctx, idx } = useProvider(READONLY_TABS_KEY)
-    console.log(idx)
+
     return () => (
       <>
-        <div class="fect-tab_wrapper">{slots.default?.()}</div>
+        <div class="fect-tab_wrapper">
+          {ctx.active === idx ? slots.default?.() : ''}
+        </div>
       </>
     )
   },
