@@ -23,6 +23,8 @@ export default createComponent({
     const setCurrent = (data) => {
       const { value } = data
       emit('update:active', value)
+      // support emit change event
+      emit('change', value)
     }
 
     const renderNav = () => {

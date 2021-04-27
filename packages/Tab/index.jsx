@@ -19,7 +19,6 @@ export default createComponent({
   },
   setup(props, { attrs, slots, emit }) {
     const { ctx, idx } = useProvider(READONLY_TABS_KEY)
-
     return () => (
       <>
         <div class="fect-tab_wrapper">
