@@ -1,7 +1,17 @@
 {
   "name": "fect",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.0-alpha.0",
+  "public": true,
+  "description": "Minimalist UI components built on Vue",
+  "license": "MIT",
+  "main": "dist/fect-ui.common.js",
+  "module": "dist/fect-ui.common.js",
+  "author": "Fect Org",
+  "homepage": "https://github.com/fay-org/fect",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fay-org/fect"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -71,5 +81,17 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "files": [
+    "LICENSE",
+    "dist/"
+  ],
+  "keywords": [
+    "vue component",
+    "fect",
+    "vue ui"
+  ],
+  "peerDependencies": {
+    "vue": "^3.0.0"
   }
 }

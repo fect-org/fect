@@ -13,11 +13,25 @@ export const meta = {
 
 <fe-spacer />
 <fe-dot type="success" />1. 运行命令下载包:
+<fe-spacer y={0.5} />
+
+<!--  -->
+
+<fe-tabs hideDivider>
+  {/*  */}
+  <fe-tab title="Yarn">
+    <fe-snippet text="yarn add @fect-ui/vue" width="300px" />
+  </fe-tab>
+  {/*  */}
+  <fe-tab title="Npm">
+    <fe-snippet text="npm install @fect-ui/vue" width="300px" />
+  </fe-tab>
+</fe-tabs>
+
+<!--  -->
+
 <fe-spacer />
-<fe-snippet text="yarn add @fe-ui/vue" width="300px" />
-<fe-spacer />
-<fe-snippet text="npm install @fe-ui/vue" width="300px" />
-<fe-spacer y=".6" />
+
 <fe-dot type="success" />2. 引入包到你的 Vue3 项目中：
 
 ```javascript
