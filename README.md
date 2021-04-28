@@ -15,7 +15,7 @@
 
 ### Quick start
 
-1. run `yarn add @fec-ui/vue` or `npm install @fect-ui/vue` install it
+1. run `yarn add @fect-ui/vue` or `npm install @fect-ui/vue` install it
 
 2. import into project
 

@@ -1,5 +1,5 @@
 {
-  "name": "fect",
+  "name": "@fect-ui/vue",
   "version": "0.1.0-alpha.0",
   "public": true,
   "description": "Minimalist UI components built on Vue",
@@ -21,7 +21,8 @@
     "lint": "vue-cli-service lint",
     "commit": "git-cz",
     "collect": "node scripts/collect.js && eslint --fix --ext .js packages/index.js",
-    "setup": "hygen component new --name"
+    "setup": "hygen component new --name",
+    "release": "npm publish --access public --non-interactive"
   },
   "dependencies": {
     "@fect-ui/themes": "^1.0.8-beta.0",
