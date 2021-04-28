@@ -13,6 +13,12 @@ export const meta = {
   desc="切换显示不同的内容"
 />
 
+<fe-CodeShow
+  title="分割线"
+  name="ex-tabs-divider"
+  desc="隐藏默认的分割线"
+/>
+
 <fe-Attributes>
   
 <fe-AttributesTitle title="Tabs Props" />
@@ -22,6 +28,7 @@ export const meta = {
 | **v-model:active** | 绑定当前选中标签的标识符 | `'number','string'`  | `-`                  | `0`     |
 | **hideDivider**    | 隐藏默认分割线           | `boolean`            | `-`                  | `false` |
 | **change**         | 选项卡切换事件           | `(val)=>void` | `-`                  | `-`     |
+| **click**         | 选项卡点击事件           | `TabsEvent` | `-`                  | `-`     |
 | ...                | 原生属性                 | `HTMLAttributes`     | `'class','name',...` | `-`     |
 </fe-Attributes>
 

@@ -1,5 +1,5 @@
 import { createNameSpace, createProvider } from '../utils'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import './tabs.less'
 import TabsTitle from './tabs.title'
 
@@ -15,19 +15,30 @@ export default createComponent({
     },
     hideDivider: Boolean,
   },
-  emits: ['change', 'update:active'],
+  emits: ['change', 'update:active', 'click'],
   setup(props, { attrs, slots, emit }) {
     const currentChecked = ref(props.active)
     const { provider, children } = createProvider(READONLY_TABS_KEY)
     provider({ props, currentChecked })
 
     const setCurrent = (data) => {
-      const { value } = data
-      emit('update:active', value)
+      const { value, e } = data
       currentChecked.value = value
-      // support emit change event
-      emit('change', value)
+      const selfEvent = {
+        target: {
+          checkValue: value,
+        },
+        stopPropagation: e.stopPropagation,
+        preventDefault: e.preventDefault,
+        nativeEvent: e,
+      }
+      emit('update:active', value)
+      emit('click', selfEvent)
     }
+
+    watch(currentChecked, (pre) => emit('change', pre))
+
+    // console.log(children)
 
     const renderNav = () => {
       return children.map((el, idx) => (
