@@ -22,6 +22,12 @@ export default createComponent({
     const { ctx, idx } = useProvider(READONLY_TABS_KEY)
     const selfIndex = ref(props.value)
 
+    if (!ctx) {
+      if (process.env.NODE_ENV !== 'production') {
+        console.error('[Fect] <Tab> must be a child component of <Tabs>.')
+      }
+      return
+    }
     /**
      * it will  use index of components while value is empty
      */

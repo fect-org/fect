@@ -29,6 +29,15 @@ export default createComponent({
     })
     const { ctx } = useProvider(READONLY_BREADCRUMBS_KEY)
 
+    if (!ctx) {
+      if (process.env.NODE_ENV !== 'production') {
+        console.error(
+          '[Fect] <BreadcrumbsItem> must be a child component of <Breadcrumbs>.',
+        )
+      }
+      return
+    }
+
     const content = slots.default?.()
 
     const withoutLinkRender = () => {

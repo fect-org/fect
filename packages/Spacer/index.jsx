@@ -19,11 +19,11 @@ export default createComponent({
 
     const getMargin = (num) => {
       if (num <= 0) {
-        console.log(`[Spacer Error] ${num} should be greater than 0`)
+        console.error(`[Spacer Error] ${num} should be greater than 0`)
         return
       }
       if (Number.isNaN(Number(num))) {
-        console.log(`[Spacer Error] ${num} should be number`)
+        console.error(`[Spacer Error] ${num} should be number`)
         return
       }
       return `calc(${num * 15.25}pt + 1px * ${num - 1})`
