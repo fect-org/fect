@@ -38,8 +38,6 @@ export default createComponent({
 
     watch(currentChecked, (pre) => emit('change', pre))
 
-    // console.log(children)
-
     const renderNav = () => {
       return children.map((el, idx) => (
         <TabsTitle

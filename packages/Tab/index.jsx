@@ -35,8 +35,6 @@ export default createComponent({
       if (selfIndex.value === '') return (selfIndex.value = idx)
     })
 
-    // console.log(props.disabled)
-
     const isDisabled = computed(() => {
       return ctx.currentChecked.value === selfIndex.value ? '' : 'none'
     })
