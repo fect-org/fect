@@ -44,7 +44,7 @@ export default createComponent({
           title={el.title}
           value={el.value ? el.value : idx}
           key={idx}
-          active={props.active}
+          active={currentChecked.value}
           onClick={setCurrent}
         />
       ))
