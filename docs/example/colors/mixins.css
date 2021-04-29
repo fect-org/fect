@@ -27,6 +27,8 @@
   user-select: none;
 }
 .color-item span {
+  cursor: pointer;
+  user-select: none;
   flex: 1;
 }
 .color-item span:nth-child(2) {

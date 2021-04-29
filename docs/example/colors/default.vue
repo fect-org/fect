@@ -7,15 +7,18 @@
       :style="style(color, idx)"
     >
       <h4>{{ color.name }}</h4>
-      <span>{{ color.value }}</span>
-      <span>{{ colorValue(color.value) }}</span>
+      <span @click="handleCopy(color.value)">{{ color.value }}</span>
+      <span @click="handleCopy(color.value)">{{
+        colorValue(color.value)
+      }}</span>
     </fe-col>
   </fe-row>
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { reactive, getCurrentInstance } from 'vue'
 import { getCssValue } from './colors'
+import { useClipboard } from '../../../packages/utils/useClipboard'
 export default {
   name: 'ex-colors-default',
   setup() {
@@ -32,6 +35,10 @@ export default {
       { name: 'Foreground', value: 'var(--primary-foreground)' },
     ])
 
+    const { copyText } = useClipboard()
+
+    const { proxy } = getCurrentInstance()
+
     const colorValue = (val) => getCssValue(val)
     const style = (color, idx) => {
       const Style = {
@@ -41,10 +48,17 @@ export default {
       }
       return Style
     }
+
+    const handleCopy = (val) => {
+      proxy.$toast({ text: `Copied:${val}` })
+      copyText(val)
+    }
+
     return {
       colors,
       colorValue,
       style,
+      handleCopy,
     }
   },
 }
