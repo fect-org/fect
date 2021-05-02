@@ -2,7 +2,7 @@ import { defineComponent } from 'vue'
 
 const PasswordIcon = defineComponent({
   props: {
-    visibled: Boolean,
+    visible: Boolean,
   },
   setup(props) {
     return () => (

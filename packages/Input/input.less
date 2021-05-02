@@ -6,6 +6,8 @@
   .input_container {
     display: inline-flex;
     align-items: center;
+    width: inherit;
+    height: calc(var(--heightRatio) * var(--fay-gap));
   }
   .input_wrapper {
     display: inline-flex;
@@ -14,13 +16,18 @@
     height: 100%;
     flex: 1;
     user-select: none;
+    border: 1px solid var(--fay-border);
+    border-radius: var(--fay-radius);
     transition: border 0.2s ease 0s, color 0.2s ease 0s;
+    padding: 0;
+    &.hover {
+      border-color: var(--accents-5);
+    }
   }
 
   .input_wrapper {
     input {
       margin: 4px 10px;
-      padding: 0;
       box-shadow: none;
       background-color: transparent;
       border: none;
@@ -28,7 +35,9 @@
       border-radius: 0;
       width: 100%;
       min-width: 0;
+      height: 100%;
       -webkit-appearance: none;
+      color: var(--primary-foreground);
       &::placeholder {
         color: var(--accents-3);
       }

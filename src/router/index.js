@@ -8,6 +8,7 @@ const Card = () => import('../../docs/zh-cn/components/card.mdx')
 const Checkbox = () => import('../../docs/zh-cn/components/checkbox.mdx')
 const Code = () => import('../../docs/zh-cn/components/code.mdx')
 const Dot = () => import('../../docs/zh-cn/components/dot.mdx')
+const Input = () => import('../../docs/zh-cn/components/input.mdx')
 const Layout = () => import('../../docs/zh-cn/components/layout.mdx')
 const Link = () => import('../../docs/zh-cn/components/link.mdx')
 const Loading = () => import('../../docs/zh-cn/components/loading.mdx')
@@ -33,6 +34,7 @@ const routes = [
   { path: '/checkbox', name: 'Checkbox', component: Checkbox },
   { path: '/code', name: 'Code', component: Code },
   { path: '/dot', name: 'Dot', component: Dot },
+  { path: '/input', name: 'Input', component: Input },
   { path: '/layout', name: 'Layout', component: Layout },
   { path: '/link', name: 'Link', component: Link },
   { path: '/loading', name: 'Loading', component: Loading },
