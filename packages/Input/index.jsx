@@ -1,8 +1,10 @@
-import { computed, onMounted, ref, watchEffect } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 import { createNameSpace, theme, validator } from '../utils'
 import ClearableIcon from './clearable-icon'
 import PasswordIcon from './password-icon'
 import IconContent from './icon-content'
+import InputLabel from './input-label'
+import InputBlockLabel from './input-block-label'
 import './input.less'
 
 const [createComponent] = createNameSpace('Input')
@@ -49,7 +51,8 @@ export default createComponent({
     readonly: Boolean,
     disabled: Boolean,
     clearable: Boolean,
-    label: [String, Number],
+    prefix: [String, Number],
+    suffix: [String, Number],
   },
   emits: ['change', 'blur', 'focus', 'clearClick', 'update:modelValue'],
   setup(props, { attrs, slots, emit }) {
@@ -59,7 +62,8 @@ export default createComponent({
     const passwordVisible = ref(false)
     const fontSize = ref(null)
     const heightRatio = ref(null)
-    const hasLabel = ref(!!props.label)
+    const hasPrefix = ref(!!props.prefix)
+    const hasSuffix = ref(!!props.suffix)
 
     const setHoverable = (pre) => (hover.value = pre)
 
@@ -157,16 +161,48 @@ export default createComponent({
       )
     }
 
+    const haslabel = computed(() => {
+      const prefixStyle = {
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
+      }
+      const suffixStyle = {
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0,
+      }
+
+      if (hasPrefix.value && hasSuffix.value) {
+        return Object.assign({}, prefixStyle, suffixStyle)
+      }
+      if (hasPrefix.value) {
+        return prefixStyle
+      }
+      if (hasSuffix.value) {
+        return suffixStyle
+      }
+      return ''
+    })
+
     return () => (
       <div class="fect-input" style={{ '--heightRatio': heightRatio.value }}>
+        {slots.default && <InputBlockLabel v-slots={slots} />}
         <div class={'input_container'}>
+          {hasPrefix.value && (
+            <InputLabel fontSize={fontSize.value}>{props.prefix}</InputLabel>
+          )}
           <div
             class={`input_wrapper ${hover.value ? 'hover' : ''} ${
               props.disabled ? 'disabled' : ''
             }`}
+            style={haslabel.value}
           >
             {renderInput()}
           </div>
+          {hasSuffix.value && (
+            <InputLabel fontSize={fontSize.value} isRight>
+              {props.suffix}
+            </InputLabel>
+          )}
         </div>
       </div>
     )
