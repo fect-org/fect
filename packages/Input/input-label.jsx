@@ -7,7 +7,10 @@ const InputLabel = defineComponent({
   },
   setup(props, { slots }) {
     return () => (
-      <div class={`input-label ${props.isRight ? 'suffix' : ''}`}>
+      <div
+        class={`input-label ${props.isRight ? 'suffix' : ''}`}
+        style={{ fontSize: props.fontSize }}
+      >
         {slots.default?.()}
       </div>
     )

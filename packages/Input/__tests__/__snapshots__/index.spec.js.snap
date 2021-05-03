@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input should be support different sizes 1`] = `
+<div class="fect-input" style="--heightRatio: 1.313;">
+  <!---->
+  <div class="input_container">
+    <!---->
+    <div class="input_wrapper  "><input type="text" class="" style="font-size: 12px;"></div>
+    <!---->
+  </div>
+</div>
+<div class="fect-input" style="--heightRatio: 1.5;">
+  <!---->
+  <div class="input_container">
+    <!---->
+    <div class="input_wrapper  "><input type="text" class="" style="font-size: 12px;"></div>
+    <!---->
+  </div>
+</div>
+<div class="fect-input" style="--heightRatio: 1.687;">
+  <!---->
+  <div class="input_container">
+    <!---->
+    <div class="input_wrapper  "><input type="text" class="" style="font-size: 14px;"></div>
+    <!---->
+  </div>
+</div>
+<div class="fect-input" style="--heightRatio: 1.875;">
+  <!---->
+  <div class="input_container">
+    <!---->
+    <div class="input_wrapper  "><input type="text" class="" style="font-size: 16px;"></div>
+    <!---->
+  </div>
+</div>
+`;
+
+exports[`Input should support password Icon 1`] = `
+<div class="fect-input" style="--heightRatio: 1.687;">
+  <!---->
+  <div class="input_container">
+    <!---->
+    <div class="input_wrapper  "><input type="password" class="" style="font-size: 14px;">
+      <div class="input-icon" style="cursor: pointer;"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" shapeRendering="geometricPrecision" style="color: currentColor;">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg></div>
+    </div>
+    <!---->
+  </div>
+</div>
+`;
+
+exports[`Input should work with label 1`] = `
+<div class="fect-input" style="--heightRatio: 1.687;"><label><span>Test</span></label>
+  <div class="input_container">
+    <!---->
+    <div class="input_wrapper  "><input type="text" class="" style="font-size: 14px;"></div>
+    <!---->
+  </div>
+</div>
+`;

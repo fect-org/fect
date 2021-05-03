@@ -151,7 +151,10 @@ export default createComponent({
             ''
           )}
           {props.type === 'password' ? (
-            <IconContent onClick={setPasswordVisible}>
+            <IconContent
+              onClick={setPasswordVisible}
+              clickable={props.disabled || props.readonly}
+            >
               <PasswordIcon visible={passwordVisible.value} />
             </IconContent>
           ) : (

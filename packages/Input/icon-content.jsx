@@ -9,8 +9,8 @@ const IconContent = defineComponent({
   setup(props, { slots, emit }) {
     const baseStyle = computed(() => {
       const style = {
-        cursor: props.clickable ? 'pointer' : 'default',
-        PointerEvetns: props.clickable ? 'auto' : 'none',
+        cursor: !props.clickable ? 'pointer' : 'default',
+        PointerEvetns: !props.clickable ? 'auto' : 'none',
       }
       return style
     })
