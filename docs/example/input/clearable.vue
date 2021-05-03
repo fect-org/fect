@@ -1,15 +1,15 @@
 <template>
   <div>
-    <fe-input placeholder="一个基础的示例" v-model="value" />
+    <fe-input placeholder="请输入" v-model="value" clearable />
   </div>
 </template>
 
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-input-default',
+  name: 'ex-input-clearable',
   setup() {
-    const value = ref('')
+    const value = ref('示例文字')
 
     return {
       value,
