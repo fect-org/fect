@@ -1,0 +1,29 @@
+.fect-input {
+  .input_container {
+    .input-label {
+      display: inline-flex;
+      width: initial;
+      height: 100%;
+      align-items: center;
+      pointer-events: none;
+      margin: 0;
+      padding: 0 var(--fay-gap-half);
+      color: var(--accents-4);
+      background-color: var(--accents-1);
+      border-top-left-radius: var(--fay-radius);
+      border-bottom-left-radius: var(--fay-radius);
+      border-top: 1px solid var(--fay-border);
+      border-left: 1px solid var(--fay-border);
+      border-bottom: 1px solid var(--fay-border);
+      line-height: 1;
+      &.suffix {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: var(--fay-radius);
+        border-bottom-right-radius: var(--fay-radius);
+        border-left: 0;
+        border-right: 1px solid var(--fay-border);
+      }
+    }
+  }
+}

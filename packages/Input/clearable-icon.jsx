@@ -1,14 +1,32 @@
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
+import './clearable-icon.less'
 
 const ClearableIcon = defineComponent({
   props: {
-    visibled: Boolean,
+    visible: Boolean,
     disabled: Boolean,
   },
   emits: ['click'],
   setup(props, { emit }) {
+    const clearableStyle = computed(() => {
+      let str = ''
+      props.visible && (str += ' visible')
+      props.disabled && (str += ' disabled')
+      return str
+    })
+
+    const handleClick = (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+      e.stopImmediatePropagation()
+      emit('click', e)
+    }
+
     return () => (
-      <div>
+      <div
+        className={`input__clear-icon ${clearableStyle.value}`}
+        onClick={handleClick}
+      >
         <svg
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -25,3 +43,5 @@ const ClearableIcon = defineComponent({
     )
   },
 })
+
+export default ClearableIcon

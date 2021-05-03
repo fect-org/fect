@@ -1,0 +1,32 @@
+.fect-input {
+  .input__clear-icon {
+    padding: 0 var(--fay-gap-half);
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    box-sizing: border-box;
+    transition: color 150ms ease 0s;
+    cursor: pointer;
+    visibility: hidden;
+    color: var(--accents-3);
+    opacity: 0;
+    &.visible {
+      visibility: visible;
+      opacity: 1;
+    }
+    &.disabled {
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    &:hover {
+      color: var(--primary-foreground);
+    }
+
+    svg {
+      color: currentColor;
+      width: calc(var(--heightRatio) * 10.66px);
+      height: calc(var(--heightRatio) * 10.66px);
+    }
+  }
+}
