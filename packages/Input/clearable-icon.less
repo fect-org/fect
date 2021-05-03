@@ -15,11 +15,12 @@
       visibility: visible;
       opacity: 1;
     }
+    &.disabled {
+      cursor: not-allowed;
+      pointer-events: none;
+    }
     &:hover {
       color: var(--primary-foreground);
-      &.disabled {
-        color: var(--accents-3);
-      }
     }
 
     svg {

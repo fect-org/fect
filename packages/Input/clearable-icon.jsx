@@ -18,7 +18,7 @@ const ClearableIcon = defineComponent({
     const handleClick = (e) => {
       e.preventDefault()
       e.stopPropagation()
-      e.nativeEvent.stopImmediatePropagation()
+      e.stopImmediatePropagation()
       emit('click', e)
     }
 

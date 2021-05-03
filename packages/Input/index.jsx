@@ -1,4 +1,4 @@
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 import { createNameSpace, theme, validator } from '../utils'
 import ClearableIcon from './clearable-icon'
 import PasswordIcon from './password-icon'
@@ -51,26 +51,62 @@ export default createComponent({
     clearable: Boolean,
     label: [String, Number],
   },
-  emits: ['change', 'blur', 'focus', 'update:modelValue'],
+  emits: ['change', 'blur', 'focus', 'clearClick', 'update:modelValue'],
   setup(props, { attrs, slots, emit }) {
     const inputRef = ref(null)
     const hover = ref(false)
+    const selfType = ref(props.type)
+    const passwordVisible = ref(false)
+    const fontSize = ref(null)
+    const heightRatio = ref(null)
+    const hasLabel = ref(!!props.label)
+
     const setHoverable = (pre) => (hover.value = pre)
 
-    const { heightRatio, fontSize } = queryInputSize(props.size)
+    watchEffect(() => {
+      const { heightRatio: Ratio, fontSize: Size } = queryInputSize(props.size)
+      heightRatio.value = Ratio
+      fontSize.value = Size
+    })
+
+    const updatelValue = (val) => {
+      if (props.type === 'number') {
+        val = Number(val)
+      }
+      if (inputRef.value && val !== inputRef.value.value) {
+        inputRef.value.value = val
+      }
+      if (val !== props.modelValue) {
+        emit('update:modelValue', val)
+      }
+    }
+
+    const InputHandler = (e) => updatelValue(e.target.value)
 
     const focusHandler = (e) => {
       setHoverable(true)
-      emit('update:modelValue', inputRef.value.value)
+      emit('focus', e)
     }
 
     const blurHandler = (e) => {
       setHoverable(false)
+      emit('blur', e)
     }
 
     const changeHandler = (e) => {
-      emit('update:modelValue', inputRef.value.value)
+      if (props.disabled || props.readonly) return
+      emit('change', e)
     }
+
+    const clearHandler = (e) => {
+      updatelValue('')
+      emit('clearClick', e)
+    }
+
+    /**
+     *control clearable icon visible
+     */
+    const setClearable = computed(() => Boolean(props.modelValue !== ''))
 
     const renderInput = () => {
       const InputProps = {
@@ -80,18 +116,39 @@ export default createComponent({
         readOnly: props.readonly,
         placeholder: props.placeholder,
         autocomplete: props.autocomplete,
+        onInput: InputHandler,
         onFocus: focusHandler,
         onBlur: blurHandler,
         onChange: changeHandler,
+        ...attrs,
+      }
+
+      const setPasswordVisible = () => {
+        passwordVisible.value = !passwordVisible.value
+        if (passwordVisible.value) return (selfType.value = 'text')
+        return (selfType.value = 'password')
       }
 
       return (
         <>
-          <input type={props.type} style={{ fontSize }} {...InputProps} />
-          {props.clearable ? <ClearableIcon /> : ''}
+          <input
+            type={selfType.value}
+            class={`${props.disabled ? 'disabled' : ''}`}
+            style={{ fontSize: fontSize.value }}
+            {...InputProps}
+          />
+          {props.clearable ? (
+            <ClearableIcon
+              visible={setClearable.value}
+              disabled={props.disabled || props.readonly}
+              onClick={clearHandler}
+            />
+          ) : (
+            ''
+          )}
           {props.type === 'password' ? (
-            <IconContent>
-              <PasswordIcon />
+            <IconContent onClick={setPasswordVisible}>
+              <PasswordIcon visible={passwordVisible.value} />
             </IconContent>
           ) : (
             ''
@@ -101,9 +158,13 @@ export default createComponent({
     }
 
     return () => (
-      <div class="fect-input" style={{ '--heightRatio': heightRatio }}>
+      <div class="fect-input" style={{ '--heightRatio': heightRatio.value }}>
         <div class={'input_container'}>
-          <div class={`input_wrapper ${hover.value ? 'hover' : ''}`}>
+          <div
+            class={`input_wrapper ${hover.value ? 'hover' : ''} ${
+              props.disabled ? 'disabled' : ''
+            }`}
+          >
             {renderInput()}
           </div>
         </div>

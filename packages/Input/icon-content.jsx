@@ -6,7 +6,7 @@ const IconContent = defineComponent({
     clickable: Boolean,
   },
   emits: ['click'],
-  setup(props, { slots }) {
+  setup(props, { slots, emit }) {
     const baseStyle = computed(() => {
       const style = {
         cursor: props.clickable ? 'pointer' : 'default',
@@ -16,7 +16,11 @@ const IconContent = defineComponent({
     })
 
     return () => (
-      <div className="input-icon" style={baseStyle.value}>
+      <div
+        className="input-icon"
+        style={baseStyle.value}
+        onClick={(e) => emit('click', e)}
+      >
         {slots.default?.()}
       </div>
     )

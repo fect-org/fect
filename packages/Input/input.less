@@ -23,6 +23,11 @@
     &.hover {
       border-color: var(--accents-5);
     }
+    &.disabled {
+      cursor: not-allowed;
+      background-color: var(--accents-1);
+      border-color: var(--accents-2);
+    }
   }
 
   .input_wrapper {
@@ -40,6 +45,9 @@
       color: var(--primary-foreground);
       &::placeholder {
         color: var(--accents-3);
+      }
+      &.disabled {
+        cursor: not-allowed;
       }
     }
   }
