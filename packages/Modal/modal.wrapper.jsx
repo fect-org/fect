@@ -9,7 +9,6 @@ import './modal.wrapper.less'
 const ModalWrapper = defineComponent({
   setup(props, { attrs, slots }) {
     const { ctx } = useProvider(READONLY_MODAL_KEY)
-    console.log(ctx)
     const renderCustomTitle = () => {
       const titleSlot = slots['title']
       return (

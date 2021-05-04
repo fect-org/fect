@@ -22,7 +22,7 @@ export default {
 
   setup() {
     const show = ref(false)
-    const handlerClick = () => (show.value = !show.value)
+    const handlerClick = () => (show.value = true)
     return {
       show,
       handlerClick,
