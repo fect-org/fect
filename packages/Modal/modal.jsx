@@ -15,7 +15,7 @@ export default createComponent({
     },
     width: {
       type: String,
-      default: '420px',
+      default: '400px',
     },
     cancel: {
       type: String,
@@ -33,19 +33,16 @@ export default createComponent({
     provider({ props, updateVisibleValue })
 
     return () => (
-      <>
-        {props.visible ? (
-          <Transition name="fect-dialog-backdrop">
-            <div className="fect-dialog_root">
-              <div className="fect-dialog-backdrop"></div>
-              <div className="fect-dialog-backdrop responsive"></div>
-              <ModalWrapper {...attrs} v-slots={slots} />
-            </div>
-          </Transition>
-        ) : (
-          ''
-        )}
-      </>
+      <Transition name="fect-dialog-backdrop">
+        <div className="fect-dialog_root" v-show={props.visible}>
+          <div className="fect-dialog-backdrop"></div>
+          <div
+            className="fect-dialog-backdrop responsive"
+            onClick={() => updateVisibleValue(false)}
+          ></div>
+          <ModalWrapper {...attrs} v-slots={slots} />
+        </div>
+      </Transition>
     )
   },
 })

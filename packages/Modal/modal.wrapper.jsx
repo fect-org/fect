@@ -9,7 +9,7 @@ import './modal.wrapper.less'
 const ModalWrapper = defineComponent({
   setup(props, { attrs, slots }) {
     const { ctx } = useProvider(READONLY_MODAL_KEY)
-
+    console.log(ctx)
     const renderCustomTitle = () => {
       const titleSlot = slots['title']
       return (
@@ -29,8 +29,8 @@ const ModalWrapper = defineComponent({
     }
 
     return () => (
-      <>
-        <Transition name="fect-dialog_slide">
+      <Transition name="fect-dialog_slide">
+        {ctx.props.visible ? (
           <div
             role="dialog"
             class="fect-modal_wrapper"
@@ -41,8 +41,10 @@ const ModalWrapper = defineComponent({
             <div class="fect-modal_content"> {slots.default?.()}</div>
             {renderCustomAction()}
           </div>
-        </Transition>
-      </>
+        ) : (
+          ''
+        )}
+      </Transition>
     )
   },
 })

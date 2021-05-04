@@ -10,8 +10,8 @@
   color: var(--primary-foreground);
   border-radius: var(--fay-radius);
   box-shadow: var(--fay-shadowLarge);
-  // transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-  //   transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  z-index: 100;
+
   .fect-modal_content {
     padding: var(--fay-gap) var(--fay-gap) var(--fay-gap-half);
     position: relative;
@@ -32,9 +32,9 @@
     transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s;
 }
 
-.fect-dialog_slide-enter,
+.fect-dialog_slide-enter-from,
 .fect-dialog_slide-leave,
 .fect-dialog_slide-leave-active {
   opacity: 0;
-  transform: translateY(-135px);
+  transform: translate3d(0px, -30px, 0px);
 }
