@@ -8,7 +8,7 @@
       done="明白了"
     >
       <p>
-        总所周知箭头函数没有自己的<fe-code>this</fe-code>因此,它依赖于外部指向。
+        众所周知箭头函数没有自己的<fe-code>this</fe-code>因此,它依赖于外部指向。
       </p>
     </fe-modal>
   </div>
@@ -16,8 +16,10 @@
 
 <script>
 import { ref } from 'vue'
+
 export default {
   name: 'ex-modal-default',
+
   setup() {
     const show = ref(false)
     const handlerClick = () => (show.value = true)

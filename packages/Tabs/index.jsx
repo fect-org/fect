@@ -51,16 +51,14 @@ export default createComponent({
     }
 
     return () => (
-      <>
-        <div class="fect-tabs_container">
-          <header
-            class={`tabs_header ${props.hideDivider ? 'hide-divider' : ''}`}
-          >
-            {renderNav()}
-          </header>
-          {slots.default?.()}
-        </div>
-      </>
+      <div class="fect-tabs_container">
+        <header
+          class={`tabs_header ${props.hideDivider ? 'hide-divider' : ''}`}
+        >
+          {renderNav()}
+        </header>
+        {slots.default?.()}
+      </div>
     )
   },
 })

@@ -40,11 +40,9 @@ export default createComponent({
     })
 
     return () => (
-      <>
-        <div class={`fect-tab_wrapper ${isDisabled.value}`}>
-          {slots.default?.()}
-        </div>
-      </>
+      <div class={`fect-tab_wrapper ${isDisabled.value}`}>
+        {slots.default?.()}
+      </div>
     )
   },
 })
