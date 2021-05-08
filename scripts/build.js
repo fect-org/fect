@@ -66,7 +66,7 @@ const buildMain = async () => {
 
 const build = async () => {
   console.log('> collect packages...')
-  // await bundleComponents()
+  await bundleComponents()
   await buildMain()
 }
 
