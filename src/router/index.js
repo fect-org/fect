@@ -22,6 +22,7 @@ const Toast = () => import('../../docs/zh-cn/components/toast.mdx')
 const Install = () => import('../../docs/zh-cn/quickStart/install.mdx')
 const Introduce = () => import('../../docs/zh-cn/quickStart/introduce.mdx')
 const Colors = () => import('../../docs/zh-cn/themes/colors.mdx')
+const Image = () => import('../../docs/zh-cn/components/image.mdx')
 
 const routes = [
   { path: '/', redirect: { name: 'Introduce' } },
@@ -48,6 +49,7 @@ const routes = [
   { path: '/install', name: 'Install', component: Install },
   { path: '/introduce', name: 'Introduce', component: Introduce },
   { path: '/colors', name: 'Colors', component: Colors },
+  { path: '/image', name: 'Image', component: Image },
 ]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

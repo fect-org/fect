@@ -1,0 +1,27 @@
+export const meta = {
+  title: '图片 Image',
+  group: '数据展示',
+}
+
+# Image / 图片
+
+用于展示图象数据
+
+<fe-CodeShow title="默认的" name="ex-image-default" />
+<fe-CodeShow title="骨架" name="ex-image-skeleton" />
+
+
+<fe-Attributes>
+
+<fe-AttributesTitle title="Image Props" />
+
+| 属性     | 描述     | 类型             | 可选值                                     | 默认值    |
+| -------- | -------- | ---------------- | ------------------------------------------ | --------- |
+| **src** | 图片地址 | `string`       | `-` | `-` |
+| **width** | 宽度 | `string`       | `-` | `atuo` |
+| **height** | 高度 | `string`       | `-` | `atuo` |
+| **skeleton** | 启用骨架屏动画 | `boolean`       | `'true','false'` | `false` |
+| **maxDelay** | 动画持续最大时间 (毫秒) | `'string','number'`       | `-` | `3000` |
+| ...      | 原生属性 | `ImgHTMLAttributes` | `'class','id','alt',...`                         | `-`       |
+
+</fe-Attributes>
