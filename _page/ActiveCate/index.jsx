@@ -15,11 +15,17 @@ const ActiveCate = defineComponent({
   setup(props) {
     const router = useRouter()
     const isActive = ref(false)
+
     watchEffect(() => {
       isActive.value = router.currentRoute.value.name === props.routerTo.name
+      if (isActive.value) {
+        document.title = `${props.routerName} | Vue - Fect UI`
+      }
     })
+
     const { ctx } = useProvider(READONLY_LAYOUT_KEY)
     const { handlerMobileTabbarClick } = ctx
+
     return () => (
       <div
         className="f_doc-active_cate"

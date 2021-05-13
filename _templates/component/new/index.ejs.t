@@ -4,8 +4,9 @@ to: packages/<%= name %>/index.jsx
 
 import { computed, toRefs } from 'vue'
 import { createNameSpace } from '../utils'
-const [createComponent] = createNameSpace('<%= name %>')
 import './<%= h.changeCase.lcFirst(name) %>.less'
+
+const [createComponent] = createNameSpace('<%= name %>')
 
 export default createComponent({
   props: {
@@ -13,9 +14,7 @@ export default createComponent({
   setup(props, { attrs, slots, emit }) {
 
     return () => (
-      <>
-        <div></div>
-      </>
+       <div></div>
     )
   },
 })
