@@ -1,5 +1,9 @@
-import { computed, toRefs } from 'vue'
-import { createNameSpace, validator, theme } from '../utils'
+import { computed, watch, ref, watchEffect, toRefs } from 'vue'
+import { createNameSpace, validator, theme, createProvider } from '../utils'
+import PaginationPages from './pagination-pages'
+import PaginationNext from './pagination-next'
+import PaginationPrev from './pagination-previous'
+import PaginationSimple from './pagination-simple'
 import './pagination.less'
 
 const [createComponent] = createNameSpace('Pagination')
@@ -20,8 +24,9 @@ const queryPaginationSize = (size) => {
 export default createComponent({
   props: {
     modelValue: {
-      type: [String, Number],
-      default: '',
+      // use modelValue as currentPage
+      type: Number,
+      default: 1,
     },
     count: {
       type: [String, Number],
@@ -35,8 +40,111 @@ export default createComponent({
     prevText: { type: String, default: 'Prev' },
     nextText: { type: String, default: 'Next' },
     simple: Boolean,
+    limit: { type: Number, default: 7 },
   },
+  emits: ['update:modelValue', 'change'],
   setup(props, { attrs, slots, emit }) {
-    return () => <nav class="fect-pagination"></nav>
+    const currentPage = ref(props.modelValue)
+    const setCurrentPage = (val) => (currentPage.value = val)
+
+    /**
+     * control prev and next button disabled style
+     */
+
+    const isFirst = ref(false)
+    const isLast = ref(false)
+
+    // func use in prev and next
+    const sideUpdatePage = (type) => {
+      const cur = currentPage.value
+      if (type === 'prev' && currentPage.value > 1) {
+        setCurrentPage(cur - 1)
+      }
+      if (type === 'next' && currentPage.value < props.count) {
+        setCurrentPage(cur + 1)
+      }
+    }
+
+    watchEffect(() => {
+      const page = currentPage.value
+      isFirst.value = page <= 1
+      isLast.value = page >= props.count
+    })
+
+    const baseStyle = computed(() => {
+      const { font: _font, width: _width } = queryPaginationSize(props.size)
+      const style = {
+        fontSize: _font,
+      }
+      style['--pagination-size'] = _width
+      return style
+    })
+
+    const { provider } = createProvider(READONLY_PAGINATION_KEY)
+    provider({
+      setCurrentPage,
+      sideUpdatePage,
+      ...toRefs(props),
+      isFirst,
+      isLast,
+    })
+
+    watch(currentPage, (page) => {
+      emit('update:modelValue', page)
+      emit('change', page)
+    })
+
+    const renderPrev = () => {
+      // when slots.prev is exists, it will use custom prve render
+      const prevSlot = slots['prev']
+      return (
+        <>
+          {prevSlot ? (
+            <li
+              class="paginatuon-slots__custom"
+              onClick={() => sideUpdatePage('prev')}
+            >
+              {prevSlot()}
+            </li>
+          ) : (
+            <PaginationPrev>{props.prevText}</PaginationPrev>
+          )}
+        </>
+      )
+    }
+
+    const renderNext = () => {
+      // when slots.next is exists, it will use custom next render
+      const nextSlot = slots['next']
+      return (
+        <>
+          {nextSlot ? (
+            <li
+              class="paginatuon-slots__custom"
+              onClick={() => sideUpdatePage('next')}
+            >
+              {nextSlot()}
+            </li>
+          ) : (
+            <PaginationNext>{props.nextText}</PaginationNext>
+          )}
+        </>
+      )
+    }
+
+    const renderPage = () => {
+      const isSimple = props.simple
+      return <>{isSimple ? <PaginationSimple /> : <PaginationPages />}</>
+    }
+
+    return () => (
+      <nav class="fect-pagination" style={baseStyle.value}>
+        <ul>
+          {renderPrev()}
+          {renderPage()}
+          {renderNext()}
+        </ul>
+      </nav>
+    )
   },
 })
