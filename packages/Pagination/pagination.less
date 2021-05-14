@@ -3,4 +3,95 @@
   padding: 0;
   font-variant: tabular-nums;
   font-feature-settings: 'tnum';
+  ul {
+    width: inherit;
+    height: inherit;
+    font: inherit;
+    display: flex;
+    align-items: center;
+    li {
+      margin-right: 6px;
+      display: inline-block;
+      .pagination-item__button {
+        height: var(--pagination-size);
+        min-width: var(--pagination-size);
+        color: var(--success-default);
+        border-radius: var(--fay-radius);
+        background-color: var(--primary-background);
+        transition: all linear 200ms 0ms;
+      }
+    }
+
+    .pagination-simple__desc {
+      font-size: inherit;
+      height: var(--pagination-size);
+      min-width: calc(var(--pagination-size) * 2.5);
+      text-align: center;
+      line-height: var(--pagination-size);
+    }
+    .pagination-simple__side {
+      min-width: calc(var(--pagination-size) * 2.5);
+      height: var(--pagination-size);
+      text-align: center;
+      color: var(--success-default);
+      background-color: var(--primary-background);
+    }
+    .paginatuon-slots__custom {
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .pagination-item__button,
+    .pagination-simple__side {
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      text-transform: capitalize;
+      user-select: none;
+      white-space: nowrap;
+      text-align: center;
+      vertical-align: middle;
+      box-shadow: none;
+      outline: none;
+      font-size: inherit;
+      cursor: pointer;
+      &:hover {
+        background-color: var(--pagination-hover);
+      }
+      &.active {
+        font-weight: bold;
+        background-color: var(--success-default);
+        color: var(--primary-background);
+        box-shadow: var(--fay-shadowSmall);
+        &:hover {
+          background-color: var(--pagination-activeHover);
+          box-shadow: var(--fay-shadowMedium);
+        }
+      }
+      &.disabled {
+        color: var(--accents-4);
+        cursor: not-allowed;
+        &:hover {
+          background-color: var(--accents-2);
+        }
+      }
+    }
+
+    .pagination-item__button {
+      svg {
+        color: currentColor;
+        stroke: currentColor;
+        width: 1rem;
+        height: 1rem;
+        &.more {
+          transform: rotate(0);
+        }
+        &.before {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
 }
