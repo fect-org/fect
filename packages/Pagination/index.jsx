@@ -54,6 +54,26 @@ export default createComponent({
     const isFirst = ref(false)
     const isLast = ref(false)
 
+    /**
+     * check safe limit value
+     */
+    if (process.env.NODE_ENV !== 'production' && props.count < 1) {
+      console.error(
+        '[Fect] <Pagination> the minimum count value must be more than 1 .',
+      )
+      return
+    }
+    if (
+      process.env.NODE_ENV !== 'production'
+      && props.limit <= 2
+      && !props.simple
+    ) {
+      console.error(
+        '[Fect] <Pagination> the minimum limit value must be more than 3 .',
+      )
+      return
+    }
+
     // func use in prev and next
     const sideUpdatePage = (type) => {
       const cur = currentPage.value
