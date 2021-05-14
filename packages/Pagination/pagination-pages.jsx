@@ -1,7 +1,7 @@
 import { computed, defineComponent, ref, watchEffect } from 'vue'
 import { useProvider } from '../utils'
 import PaginationItem from './pagination-item'
-import PagintaionEllipsis from './pagination-ellipsis'
+import PaginationEllipsis from './pagination-ellipsis'
 
 const READONLY_PAGINATION_KEY = 'paginationKey'
 
@@ -11,15 +11,6 @@ const PaginationPages = defineComponent({
     const middleNum = ref(0)
     const showBeforeEllipsis = ref(false)
     const showAfterEllipsis = ref(false)
-    /**
-     * check safe limit value
-     */
-    // if (process.env.NODE_ENV !== 'production' && ctx.limit.value <= 2) {
-    //   console.error(
-    //     '[Fect] <Pagination> the minimum limit value must be more than 3 .'
-    //   )
-    //   return
-    // }
 
     /**
      * can visible page area
@@ -43,6 +34,7 @@ const PaginationPages = defineComponent({
       middleNum.value = middleNumber
       showBeforeEllipsis.value = before
       showAfterEllipsis.value = after
+
     })
 
     /**
@@ -122,8 +114,34 @@ const PaginationPages = defineComponent({
         ) : (
           <>
             {renderItem(1, ctx.modelValue.value)}
-            {renderStartPages()}
-            {renderMiddlePages()}
+            {showBeforeEllipsis.value && (
+              <PaginationEllipsis
+                key="pagination-ellipsis-before"
+                isBefore
+                onClick={() =>
+                  ctx.setCurrentPage(
+                    ctx.modelValue.value - 5 >= 1 ? ctx.modelValue.value - 5 : 1,
+                  )
+                }
+              />
+            )}
+            {showBeforeEllipsis.value && showAfterEllipsis.value
+              ? renderMiddlePages()
+              : showBeforeEllipsis.value
+                ? renderEndPages()
+                : renderStartPages()}
+            {showAfterEllipsis.value && (
+              <PaginationEllipsis
+                key="pagination-ellipsis-after"
+                onClick={() =>
+                  ctx.setCurrentPage(
+                    ctx.modelValue.value + 5 <= ctx.count.value
+                      ? ctx.modelValue.value + 5
+                      : ctx.count.value,
+                  )
+                }
+              />
+            )}
             {renderItem(ctx.count.value, ctx.modelValue.value)}
           </>
         )}
