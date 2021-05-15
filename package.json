@@ -18,7 +18,7 @@
     "build:lib": "node scripts/build.js",
     "test:unit": "vue-cli-service test:unit",
     "coverage": "npm run test:unit -- --coverage",
-    "lint": "vue-cli-service lint",
+    "lint": "eslint \"{packages,_page,src,scripts}/**/*.{js,jsx,vue}\"",
     "commit": "git-cz",
     "collect": "node scripts/collect.js && eslint --fix --ext .js packages/index.js",
     "setup": "hygen component new --name",
