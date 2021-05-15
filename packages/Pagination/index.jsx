@@ -154,7 +154,19 @@ export default createComponent({
 
     const renderPage = () => {
       const isSimple = props.simple
-      return <>{isSimple ? <PaginationSimple /> : <PaginationPages />}</>
+      return (
+        <>
+          {isSimple ? (
+            <PaginationSimple />
+          ) : (
+            <PaginationPages
+              current={props.modelValue}
+              count={props.count}
+              limit={props.limit}
+            />
+          )}
+        </>
+      )
     }
 
     return () => (
