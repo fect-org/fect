@@ -1,4 +1,4 @@
-import { computed, defineComponent, ref, watchEffect } from 'vue'
+import { defineComponent, computed, watchEffect, ref } from 'vue'
 import { useProvider } from '../utils'
 import PaginationItem from './pagination-item'
 import PaginationEllipsis from './pagination-ellipsis'
@@ -6,147 +6,128 @@ import PaginationEllipsis from './pagination-ellipsis'
 const READONLY_PAGINATION_KEY = 'paginationKey'
 
 const PaginationPages = defineComponent({
-  setup(props, { slots }) {
-    const { ctx } = useProvider(READONLY_PAGINATION_KEY)
-    const middleNum = ref(0)
+  props: {
+    current: [Number],
+    count: [String, Number],
+    limit: [String, Number],
+  },
+  setup(props) {
     const showBeforeEllipsis = ref(false)
     const showAfterEllipsis = ref(false)
+    const isLess = ref(false) // control less or normal
+    const { ctx } = useProvider(READONLY_PAGINATION_KEY)
+    const setPage = (page) => ctx.setCurrentPage(page)
 
-    /**
-     * can visible page area
-     */
-    const showPages = computed(() => {
-      const limit = ctx.limit.value
-      const oddLimit = limit % 2 === 0 ? limit - 1 : limit
-      return oddLimit - 2
+    const visbilePage = computed(() => {
+      const { limit } = props
+      return (limit % 2 === 0 ? limit - 1 : limit) - 2
     })
-
-    const pagesArray = [...new Array(showPages.value)]
 
     watchEffect(() => {
-      const limit = ctx.limit.value
-      const count = ctx.count.value
-      const current = ctx.modelValue.value
-      const middleNumber = (showPages.value + 1) / 2
-      const showEllipsis = count > limit
-      const before = showEllipsis && current > middleNumber + 1
-      const after = showEllipsis && current < count - middleNumber
-      middleNum.value = middleNumber
-      showBeforeEllipsis.value = before
-      showAfterEllipsis.value = after
+      const { count, limit, current } = props
+      const middleNum = (visbilePage.value + 1) / 2
+      showBeforeEllipsis.value = false
+      showAfterEllipsis.value = false
+      isLess.value = Number(count) < Number(limit) ? true : false
+      if (count > limit) {
+        if (current > middleNum + 1) {
+          showBeforeEllipsis.value = true
+        }
+        if (current < count - middleNum) {
+          showAfterEllipsis.value = true
+        }
+      }
+    })
 
+    const pagers = computed(() => {
+      const { count, limit, current } = props
+      const showBefore = showBeforeEllipsis.value
+      const showAfter = showAfterEllipsis.value
+      const middleNum = (visbilePage.value + 1) / 2
+      const pageArr = []
+      if (showBefore && showAfter) {
+        const offset = middleNum - 1
+        for (let i = current; i <= current + offset; i++) {
+          pageArr.push(i)
+        }
+        return pageArr
+      }
+      if (showBefore && !showAfter) {
+        for (let i = current; i <= count - 1; i++) {
+          pageArr.push(i)
+        }
+        return pageArr
+      }
+
+      if (!showBefore && showAfter) {
+        for (let i = 2; i < limit; i++) {
+          pageArr.push(i)
+        }
+        return pageArr
+      }
+      for (let i = 2; i < count; i++) {
+        pageArr.push(i)
+      }
+
+      return pageArr
     })
 
     /**
-     * value as page number,active as index,
-     * while page num equal acitve num it will set active attribute
+     * A common base render element
+     * value as page num , active as index
+     * while page num equal active num it will set active attribute
      */
-    const renderItem = (value, active) => (
-      <PaginationItem
-        active={value === active}
-        key={`pagination-item-${value}`}
-        onClick={() => ctx.setCurrentPage(value)}
-      >
-        {value}
-      </PaginationItem>
-    )
+    const renderItem = (value, active) => {
+      return (
+        <PaginationItem
+          active={value === active}
+          key={`pagination-item-${value}`}
+          onClick={() => setPage(value)}
+        >
+          {value}
+        </PaginationItem>
+      )
+    }
 
-    // render start pages
-    const renderStartPages = () => {
+    const renderEllipsis = (value, key, isBefore = false) => {
+      return (
+        <PaginationEllipsis
+          key={`pagination-ellipsis-${key}`}
+          isBefore={isBefore}
+          onClick={() => setPage(value)}
+        />
+      )
+    }
+
+    /**
+     * when limit value older than count value use it
+     */
+    const renderlessLimit = () => {
+      return [...new Array(Number(props.count))].map((_, index) => {
+        const value = index + 1
+        const { current } = props
+        return renderItem(value, current)
+      })
+    }
+
+    const renderNormal = () => {
+      const { current, count } = props
+      const beforeValue = current - 5 >= 1 ? current - 5 : 1
+      const afterValue = current + 5 <= count ? current + 5 : count
+
       return (
         <>
-          {pagesArray.map((_, index) => {
-            const value = index + 2
-            return renderItem(value, ctx.modelValue.value)
-          })}
+          {renderItem(1, current)}
+          {showBeforeEllipsis.value
+            && renderEllipsis(beforeValue, 'before', true)}
+          {pagers.value.map((page) => renderItem(page, current))}
+          {showAfterEllipsis.value && renderEllipsis(afterValue, 'after')}
+          {renderItem(count, current)}
         </>
       )
     }
 
-    const renderMiddlePages = () => (
-      <>
-        {pagesArray.map((_, index) => {
-          const middleIndex = middleNum.value - (index + 1)
-          const value = ctx.modelValue.value - middleIndex
-          return (
-            <PaginationItem
-              key={`pagination-middle-${index}`}
-              active={index + 1 === middleIndex}
-              onClick={() => ctx.setCurrentPage(value)}
-            >
-              {value}
-            </PaginationItem>
-          )
-        })}
-      </>
-    )
-
-    const renderEndPages = () => (
-      <>
-        {pagesArray.map((_, index) => {
-          const value = ctx.count.value - (showPages.value - index)
-          return renderItem(value, ctx.modelValue.value)
-        })}
-      </>
-    )
-
-    const renderLessLimit = () => (
-      <>
-        {[...new Array(Number(ctx.count.value))].map((_, index) => {
-          const value = index + 1
-          return (
-            <PaginationItem
-              key={`pagination-item-${value}`}
-              active={value === ctx.modelValue.value}
-              onClick={() => ctx.setCurrentPage(value)}
-            >
-              {value}
-            </PaginationItem>
-          )
-        })}
-      </>
-    )
-
-    return () => (
-      <>
-        {Number(ctx.count.value) < Number(ctx.limit.value) ? (
-          renderLessLimit()
-        ) : (
-          <>
-            {renderItem(1, ctx.modelValue.value)}
-            {showBeforeEllipsis.value && (
-              <PaginationEllipsis
-                key="pagination-ellipsis-before"
-                isBefore
-                onClick={() =>
-                  ctx.setCurrentPage(
-                    ctx.modelValue.value - 5 >= 1 ? ctx.modelValue.value - 5 : 1,
-                  )
-                }
-              />
-            )}
-            {showBeforeEllipsis.value && showAfterEllipsis.value
-              ? renderMiddlePages()
-              : showBeforeEllipsis.value
-                ? renderEndPages()
-                : renderStartPages()}
-            {showAfterEllipsis.value && (
-              <PaginationEllipsis
-                key="pagination-ellipsis-after"
-                onClick={() =>
-                  ctx.setCurrentPage(
-                    ctx.modelValue.value + 5 <= ctx.count.value
-                      ? ctx.modelValue.value + 5
-                      : ctx.count.value,
-                  )
-                }
-              />
-            )}
-            {renderItem(ctx.count.value, ctx.modelValue.value)}
-          </>
-        )}
-      </>
-    )
+    return () => <>{isLess.value ? renderlessLimit() : renderNormal()}</>
   },
 })
 
