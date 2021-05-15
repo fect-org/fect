@@ -45,7 +45,7 @@ export default createComponent({
   emits: ['update:modelValue', 'change'],
   setup(props, { attrs, slots, emit }) {
     const currentPage = ref(props.modelValue)
-    const setCurrentPage = (val) => (currentPage.value = val)
+    const setCurrentPage = (val) => (currentPage.value = Number(val))
 
     /**
      * control prev and next button disabled style

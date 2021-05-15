@@ -114,7 +114,6 @@ const PaginationPages = defineComponent({
       const { current, count } = props
       const beforeValue = current - 5 >= 1 ? current - 5 : 1
       const afterValue = current + 5 <= count ? current + 5 : count
-
       return (
         <>
           {renderItem(1, current)}
@@ -122,7 +121,7 @@ const PaginationPages = defineComponent({
             && renderEllipsis(beforeValue, 'before', true)}
           {pagers.value.map((page) => renderItem(page, current))}
           {showAfterEllipsis.value && renderEllipsis(afterValue, 'after')}
-          {renderItem(count, current)}
+          {renderItem(Number(count), current)}
         </>
       )
     }

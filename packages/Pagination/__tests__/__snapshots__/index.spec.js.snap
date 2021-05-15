@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination should be render all pages wehen limit value is older than the count value 1`] = `
+<nav class="fect-pagination" style="font-size: 14px; --pagination-size: 32px;">
+  <ul>
+    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Prev</button></li>
+    <li><button class="pagination-item__button active " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">1</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">2</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">3</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">4</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">5</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">6</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">7</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">8</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">9</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">10</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Next</button></li>
+  </ul>
+</nav>
+`;
+
+exports[`Pagination should be render as element 1`] = `
+<nav class="fect-pagination" style="font-size: 14px; --pagination-size: 32px;">
+  <ul>
+    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Prev</button></li>
+    <li><button class="pagination-item__button active " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">1</button></li>
+    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Next</button></li>
+  </ul>
+</nav>
+`;
+
+exports[`Pagination should be support custom slots 1`] = `
+<nav class="fect-pagination" style="font-size: 14px; --pagination-size: 32px;">
+  <ul>
+    <li class="paginatuon-slots__custom">
+      <h4>Custom Prev</h4>
+    </li>
+    <li><button class="pagination-item__button active " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">1</button></li>
+    <li class="paginatuon-slots__custom">
+      <h3>Custom Next</h3>
+    </li>
+  </ul>
+</nav>
+`;
+
+exports[`Pagination should be support different sizes 1`] = `
+<nav class="fect-pagination" style="font-size: 12px; --pagination-size: 20px;">
+  <ul>
+    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Prev</button></li>
+    <li><button class="pagination-item__button active " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">1</button></li>
+    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Next</button></li>
+  </ul>
+</nav>
+`;
+
+exports[`Pagination should be support different sizes 2`] = `
+<nav class="fect-pagination" style="font-size: 12px; --pagination-size: 26.5px;">
+  <ul>
+    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Prev</button></li>
+    <li><button class="pagination-item__button active " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">1</button></li>
+    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Next</button></li>
+  </ul>
+</nav>
+`;
+
+exports[`Pagination should be support different sizes 3`] = `
+<nav class="fect-pagination" style="font-size: 14px; --pagination-size: 32px;">
+  <ul>
+    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Prev</button></li>
+    <li><button class="pagination-item__button active " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">1</button></li>
+    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Next</button></li>
+  </ul>
+</nav>
+`;
+
+exports[`Pagination should be support different sizes 4`] = `
+<nav class="fect-pagination" style="font-size: 16px; --pagination-size: 38.5px;">
+  <ul>
+    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Prev</button></li>
+    <li><button class="pagination-item__button active " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">1</button></li>
+    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Next</button></li>
+  </ul>
+</nav>
+`;
+
+exports[`Pagination should support simple mode 1`] = `
+<nav class="fect-pagination" style="font-size: 14px; --pagination-size: 32px;">
+  <ul>
+    <li><button class="pagination-simple__side disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Prev</button></li>
+    <li class="pagination-simple__desc">1/1</li>
+    <li><button class="pagination-simple__side disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Next</button></li>
+  </ul>
+</nav>
+`;
