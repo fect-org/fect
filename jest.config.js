@@ -2,7 +2,7 @@ module.exports = {
   testPathIgnorePatterns: ['/node_modules/', '/dist/', '/lib/', '/src/'],
   collectCoverageFrom: [
     'packages/**/*.{js,jsx,vue}',
-    '!packages/utils/*',
+    '!packages/utils/**/*',
     '!packages/index.js',
   ],
   preset: '@vue/cli-plugin-unit-jest',

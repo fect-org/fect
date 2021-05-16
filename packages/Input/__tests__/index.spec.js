@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-
+import { ref } from 'vue'
 import Input from '../index'
 
 describe('Input', () => {
@@ -70,4 +70,17 @@ describe('Input', () => {
     const wrapper = mount(<Input type="password" />)
     expect(wrapper.html()).toMatchSnapshot()
   })
+  it('when prpos type is number emit value should be number type', () => {
+    const wrapper = mount(Input, {
+      props: {
+        modelValue: 0,
+        type: 'number',
+      },
+    })
+    const input = wrapper.find('input')
+    input.element.value = 2
+    input.trigger('input')
+    expect(wrapper.emitted('update:modelValue')[0][0]).toEqual(2)
+  })
+  
 })
