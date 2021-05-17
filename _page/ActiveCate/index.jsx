@@ -31,7 +31,7 @@ const ActiveCate = defineComponent({
         className="f_doc-active_cate"
         onClick={() => handlerMobileTabbarClick()}
       >
-        <fe-link to={props.routerTo} block color={isActive.value}>
+        <fe-link to={props.routerTo} color={isActive.value}>
           {props.routerName}
         </fe-link>
       </div>
