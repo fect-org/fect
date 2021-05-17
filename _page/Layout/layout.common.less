@@ -79,15 +79,18 @@
     padding: 0 var(--fay-gap);
     padding-top: var(--fay-gap);
     height: 0;
+
     background-color: var(--primary-background);
     &::-webkit-scrollbar {
       width: 0;
     }
     &.isAcive {
       top: 3.7rem;
-      min-height: 100vh;
-      padding-bottom: 3.7rem;
+      height: calc(100vh - 3.9rem);
+      // padding-bottom: 1.7rem;
       transition: height 250ms ease;
+      overflow: auto;
+      z-index: 20;
     }
   }
   .f_doc-side-shadow {
