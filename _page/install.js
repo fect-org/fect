@@ -1,13 +1,13 @@
 import Attributes from './Attributes'
 import AttributesTitle from './Attributes/attributes.title'
 import CodeShow from './CodeShow/'
-
-const components = [Attributes, AttributesTitle, CodeShow]
+import Logo from './Logo'
+const components = [Attributes, AttributesTitle, CodeShow, Logo]
 
 const install = (vue) => {
   if (!install.installed) {
     components.map((component) => {
-      vue.component(component.name, component)
+      component.install(vue)
     })
   }
   return
