@@ -25,6 +25,7 @@ const Colors = () => import('../../docs/zh-cn/themes/colors.mdx')
 const Image = () => import('../../docs/zh-cn/components/image.mdx')
 const Icons = () => import('../../docs/zh-cn/themes/icons.mdx')
 const Pagination = () => import('../../docs/zh-cn/components/pagination.mdx')
+const Tag = () => import('../../docs/zh-cn/components/tag.mdx')
 
 const routes = [
   { path: '/', redirect: { name: 'Introduce' } },
@@ -54,6 +55,7 @@ const routes = [
   { path: '/image', name: 'Image', component: Image },
   { path: '/icons', name: 'Icons', component: Icons },
   { path: '/pagination', name: 'Pagination', component: Pagination },
+  { path: '/tag', name: 'Tag', component: Tag },
 ]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
