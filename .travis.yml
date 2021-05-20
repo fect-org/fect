@@ -1,4 +1,4 @@
-langeuage: node_js
+language: node_js
 
 node_js:
   - 14.5.0
@@ -16,7 +16,7 @@ branches:
     - master
 
 install:
-  - npm
+  - yarn
 
 script:
-  - npm run build:lib
+  - yarn run build
