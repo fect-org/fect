@@ -7,10 +7,10 @@ src="https://user-images.githubusercontent.com/52351095/118687359-7e809480-b837-
 <a href="LICENSE">
   <img alt="LICENSE" src="https://img.shields.io/github/license/fay-org/fect?style=for-the-badge"/>
 </a>
-<a href="GITHUB (STAR)">
+<a href="https://github.com/fay-org/fect/stargazers">
  <img alt="GITHUB (STAR)" src="https://img.shields.io/github/stars/fay-org/fect?style=for-the-badge"/>
 </a>
-<a href="NPM (SCOPED)">
+<a href="https://www.npmjs.com/package/@fect-ui/vue">
   <img alt="NPM (SCOPED)" src="https://img.shields.io/npm/v/@fect-ui/vue?color=%230761d1&logoColor=%23000000&style=for-the-badge" />
 </a>
 </p>
