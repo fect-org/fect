@@ -20,4 +20,4 @@ install:
 
 script:
   - yarn run build:lib
-  - yarn run test:unit
+  - yarn coverage
