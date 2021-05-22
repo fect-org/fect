@@ -22,7 +22,8 @@
     "commit": "git-cz",
     "collect": "node scripts/collect.js && eslint --fix --ext .js packages/index.js",
     "setup": "hygen component new --name",
-    "release": "npm publish --access public --non-interactive"
+    "release": "npm publish --access public --non-interactive",
+    "report": "npm run coverage && codecov"
   },
   "dependencies": {
     "@fect-ui/themes": "^1.0.8-beta.0",
@@ -46,6 +47,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
     "chalk": "^4.1.0",
+    "codecov": "^3.8.2",
     "css-loader": "^5.1.1",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^6.7.2",
