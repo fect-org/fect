@@ -19,6 +19,9 @@ src="https://user-images.githubusercontent.com/52351095/118687359-7e809480-b837-
 <a>
   <img alt="BUILD" src="https://img.shields.io/travis/fay-org/fect/master?style=for-the-badge" />
 </a>
+<a>
+  <img alt="CODECOV" src="https://img.shields.io/codecov/c/gh/fay-org/fect?style=for-the-badge&token=ZYSZDJXJ6C"/>  
+</a>
 <a href="DOWNLOAD">
   <img alt="DOWNLOAD" src="https://img.shields.io/npm/dm/@fect-ui/vue?style=for-the-badge"/>
 </a>
