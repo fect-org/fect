@@ -1,7 +1,3 @@
-import FectModal from './modal'
-
-Modal.install = (vue) => {
-  vue.use(FectModal)
-}
+import Modal from './modal'
 
 export default Modal
