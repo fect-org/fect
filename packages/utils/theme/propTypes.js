@@ -1,14 +1,9 @@
 const tuple = (...args) => {
-  const temp = []
-  const isStr = (key) =>
-    Object.prototype.toString.call(key) === '[object String]'
-  for (const key of args) {
-    if (!isStr(key)) {
-      throw new Error('type Error. type is not string!')
-    }
-    temp.push(key)
+  const noStr = [...args].map((_) => typeof _ !== 'string').includes(true)
+  if (noStr) {
+    throw new Error('[Fect] type Error. type is not string!')
   }
-  return temp
+  return args
 }
 
 const buttonTypes = tuple('default', 'success', 'warning', 'error')
