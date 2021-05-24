@@ -1,10 +1,65 @@
 .fect-select {
   display: inline-flex;
   align-items: center;
+  position: relative;
   user-select: none;
   white-space: nowrap;
   max-width: 80vw;
   cursor: pointer;
   width: initial;
   overflow: hidden;
+  border: 1px solid var(--fay-border);
+  border-radius: var(--fay-radius);
+  padding: 0 var(--fay-gap-quarter) 0 var(--fay-gap-half);
+  background-color: var(--primary-background);
+}
+
+.fect-select {
+  .value {
+    display: inline-flex;
+    flex: 1;
+    height: 100%;
+    align-items: center;
+    line-height: 1;
+    padding: 0;
+    margin-right: 18px;
+    color: var(--primary-foreground);
+    width: calc(100% - 18px);
+  }
+  .fect-select__placeholder {
+    color: var(--accents-3);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: var(--select-fontSize);
+    line-height: var(--select-height);
+  }
+}
+
+.fect-select {
+  .fect-select__icon-context {
+    position: absolute;
+    right: var(--fay-gap-quarter);
+    font-size: var(--select-fontSize);
+    top: 50%;
+    bottom: 0;
+    pointer-events: none;
+    transition: transform 200ms ease;
+    display: flex;
+    align-items: center;
+    transform: translateY(-50%) rotate(0deg);
+    color: var(--accents-5);
+  }
+}
+
+.fect-select {
+  .fect-select__dropdown {
+    position: absolute;
+    background-color: var(--primary-background);
+    border-radius: var(--fay-radius);
+    overflow-y: auto;
+    box-shadow: var(--fay-shadow-large);
+    padding: var(--fay-gap-quarter) 0;
+  }
 }
