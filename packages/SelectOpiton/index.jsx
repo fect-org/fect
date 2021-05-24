@@ -9,7 +9,7 @@ export default createComponent({
   props: {},
   setup(props, { slots }) {
     const { ctx } = useProvider(READONLY_SELECT_KEY)
-    
-    return () => <div></div>
+
+    return () => <div class="fect-option"></div>
   },
 })
