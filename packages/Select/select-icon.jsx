@@ -1,9 +1,12 @@
 import { defineComponent } from 'vue'
 
 const SelectIcon = defineComponent({
-  setup() {
+  props: {
+    className: String,
+  },
+  setup(props) {
     return () => (
-      <div class="fect-select__icon-context">
+      <div class={`fect-select__icon-context ${props.className}`}>
         <svg
           viewBox="0 0 24 24"
           width="20px"
