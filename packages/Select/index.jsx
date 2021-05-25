@@ -1,11 +1,19 @@
-import { computed, ref, watchEffect } from 'vue'
-import { createNameSpace, createProvider, theme, validator } from '../utils'
+import { computed, ref, watchEffect, toRefs, watch } from 'vue'
+import {
+  createNameSpace,
+  createProvider,
+  theme,
+  validator,
+  mountRender,
+  useRect,
+} from '../utils'
 import SelectIcon from './select-icon'
 import SelectDropDown from './select-dropdown'
 import './select.less'
 
 const [createComponent] = createNameSpace('Select')
 
+const { initMountArea } = mountRender
 const { tuple, normalSizes } = theme
 
 const READONLY_SELECT_KEY = 'selectKey'
@@ -36,6 +44,8 @@ const querySelectSize = (size) => {
   return sizes[size]
 }
 
+initMountArea('fect-select__option-wrapper')
+
 export default createComponent({
   props: {
     modelValue: {
@@ -61,22 +71,26 @@ export default createComponent({
       default: 'initial',
     },
   },
+  emits: ['change'],
   setup(props, { attrs, slots, emit }) {
     const IsArr = Array.isArray(props.modelValue)
     const visible = ref(false)
     const isEmpty = ref(false)
     const selectRef = ref(false)
-
+    const renderSelect = () => selectRef.value
     /**
      * Automatic detection modelValue to jug selection mode
-     *
      */
     const mutiple = ref(false)
 
     const { provider } = createProvider(READONLY_SELECT_KEY)
-    provider(props)
+    provider({
+      ...toRefs(props),
+      renderSelect,
+      visible,
+    })
 
-    const setVisbile = (state) => (visbile.value = state)
+    const setVisbile = (state) => (visible.value = state)
 
     const setEmpty = (state) => (isEmpty.value = state)
 
@@ -92,7 +106,6 @@ export default createComponent({
 
     watchEffect(() => {
       initIsEmpty()
-      console.log(isEmpty.value)
     })
 
     /**
@@ -106,8 +119,17 @@ export default createComponent({
       style['--select-fontSize'] = fontSize
       style['--select-minWidth'] = minWidth
       style['--select-height'] = height
+      style.width = props.width
       return style
     })
+
+    const handleClick = (e) => {
+      if (props.disabled) return
+      e.stopPropagation()
+      e.preventDefault()
+      const show = visible.value
+      setVisbile(!show)
+    }
 
     const renderPlaceHolder = () => {
       return (
@@ -120,10 +142,16 @@ export default createComponent({
     }
 
     return () => (
-      <div class="fect-select" ref={selectRef} style={setStyle.value}>
+      <div
+        class={`fect-select ${props.disabled ? 'disabled' : ''}`}
+        ref={selectRef}
+        style={setStyle.value}
+        onClick={handleClick}
+      >
         {isEmpty.value && renderPlaceHolder()}
-        <SelectDropDown>{slots.default?.()}</SelectDropDown>
-        <SelectIcon />
+        {renderSingleMode()}
+        <SelectDropDown v-slots={slots} />
+        <SelectIcon className={visible.value ? 'click' : ''} />
       </div>
     )
   },

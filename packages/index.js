@@ -22,6 +22,7 @@ import Radio from './Radio';
 import RadioGroup from './RadioGroup';
 import Row from './Row';
 import Select from './Select';
+import SelectOpiton from './SelectOpiton';
 import Snippet from './Snippet';
 import Spacer from './Spacer';
 import Switch from './Switch';
@@ -30,7 +31,7 @@ import Tabs from './Tabs';
 import Tag from './Tag';
 import Toast from './Toast';
 
-import './utils/styles/index.css';const components = [Avatar,AvatarGroup,Badge,BadgeAnchor,Breadcrumbs,BreadcrumbsItem,Button,Capacity,Card,CheckBox,CheckBoxGroup,Code,Col,Dot,Image,Input,Link,Loading,Modal,Pagination,Radio,RadioGroup,Row,Select,Snippet,Spacer,Switch,Tab,Tabs,Tag,Toast];const install = (vue) => {
+import './utils/styles/index.css';const components = [Avatar,AvatarGroup,Badge,BadgeAnchor,Breadcrumbs,BreadcrumbsItem,Button,Capacity,Card,CheckBox,CheckBoxGroup,Code,Col,Dot,Image,Input,Link,Loading,Modal,Pagination,Radio,RadioGroup,Row,Select,SelectOpiton,Snippet,Spacer,Switch,Tab,Tabs,Tag,Toast];const install = (vue) => {
   if (!install.installed) {
     components.map((component) => {
       component.install(vue)

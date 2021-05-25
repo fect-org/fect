@@ -1,6 +1,11 @@
 <template>
   <div>
     <!--  v-model="val" -->
+    <fe-select placeholder="placeholder" disabled width="300px">
+      <fe-option>123</fe-option>
+      <fe-option>456</fe-option>
+    </fe-select>
+    <fe-spacer />
     <fe-select placeholder="placeholder">
       <fe-option>123</fe-option>
       <fe-option>456</fe-option>
