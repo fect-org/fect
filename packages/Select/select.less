@@ -12,6 +12,8 @@
   border-radius: var(--fay-radius);
   padding: 0 var(--fay-gap-quarter) 0 var(--fay-gap-half);
   background-color: var(--primary-background);
+  min-width: var(--select-minWidth);
+  height: var(--select-height);
   &:hover {
     &:not(.disabled) {
       border-color: var(--primary-foreground);
@@ -33,6 +35,8 @@
     padding: 0;
     margin-right: 18px;
     color: var(--primary-foreground);
+    width: calc(100% - 18px);
+
     width: calc(100% - 18px);
   }
   .fect-select__placeholder {
@@ -65,18 +69,49 @@
   }
 }
 
-.fect-select__option-wrapper {
-  z-index: 1200;
-  position: absolute;
-  top: 165px;
-  left: 284px;
-  .fect-select__dropdown {
-    position: absolute;
-    width: 108px;
-    background-color: var(--primary-background);
-    border-radius: var(--fay-radius);
-    overflow-y: auto;
-    box-shadow: var(--fay-shadowLarge);
-    padding: var(--fay-gap-quarter) 0;
+.fect-select {
+  .fect-select__item {
+    display: inline-flex;
+    height: calc(var(--select-fontSize) * 2);
+    justify-items: center;
+    align-items: center;
+    line-height: 1;
+    // padding: 0 8px;
+    font-size: var(--select-fontSize);
+    // border-radius: var(--fay-radius);
+    // background-color: var(--accents-2);
+    // color: var(--accents-6);
   }
+  .fect-select__clearIcon {
+    padding: 0;
+    padding-left: var(--fay-gap-quarter);
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: color 150ms ease 0s;
+    color: var(--accents-3);
+    visibility: visible;
+    opacity: 1;
+    &:hover {
+      color: var(--primary-foreground);
+    }
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
+.fect-select__dropdown {
+  position: absolute;
+  z-index: 1200;
+  width: 100%;
+  background-color: var(--primary-background);
+  border-radius: var(--fay-radius);
+  overflow-y: auto;
+  box-shadow: var(--fay-shadowLarge);
+  padding: var(--fay-gap-quarter) 0;
 }

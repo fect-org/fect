@@ -1,43 +1,49 @@
-import { defineComponent, onMounted, ref, Teleport } from 'vue'
+import { defineComponent, watchEffect, ref, Teleport, nextTick } from 'vue'
 
-import { useRect, useProvider } from '../utils'
+import { useRect, useProvider, useResize } from '../utils'
 
 const READONLY_SELECT_KEY = 'selectKey'
 
-const getOffset = (el) => {
-  if (!el) return { top: 0, left: 0 }
-  const { top, left } = el.getBoundingClientRect()
-  return { top, left }
-}
-
-const getRect = (ref, parent) => {
+const getRect = (ref) => {
   const rect = useRect(ref)
-  const container = parent ? parent() : null
-  const scrollElement = container || document.documentElement
-  const { top: offsetTop, left: offsetLeft } = getOffset(container)
+  const { width, height, top, left } = rect
   return {
-    ...rect,
-    width: rect.width || rect.right - rect.left,
-    top: rect.bottom + scrollElement.scrollTop - offsetTop,
-    left: rect.left + scrollElement.scrollLeft - offsetLeft,
+    width,
+    height,
+    left,
+    top: top + height,
   }
 }
 
 const SelectDropDown = defineComponent({
   setup(props, { slots }) {
     const dropDownRef = ref(null)
-
     const { ctx } = useProvider(READONLY_SELECT_KEY)
-    console.log(ctx)
-    onMounted(() => {
-      const v = getRect(dropDownRef, ctx.renderSelect)
-      const r = useRect(ctx.renderSelect())
-      console.log(r)
-      console.log(v)
+    const { width, height } = useResize()
+
+    const setPosition = () => {
+      nextTick(() => {
+        const rect = getRect(ctx.selectRef)
+        const { width, top, left } = rect
+        const style = {
+          width: `${width}px`,
+          top: `${top + 2}px`,
+          left: `${left}px`,
+        }
+        dropDownRef.value.style.width = style.width
+        dropDownRef.value.style.top = style.top
+        dropDownRef.value.style.left = style.left
+      })
+    }
+
+    watchEffect(() => {
+      if (width.value || height.value) {
+        setPosition()
+      }
     })
 
     return () => (
-      <Teleport to=".fect-select__option-wrapper">
+      <Teleport to="body">
         <div
           class="fect-select__dropdown"
           ref={dropDownRef}
