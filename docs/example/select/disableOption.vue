@@ -1,7 +1,7 @@
 <template>
   <div>
     <fe-select placeholder="placeholder" v-model="val">
-      <fe-option label="Vue" value="0"></fe-option>
+      <fe-option label="Vue" value="0" disabled></fe-option>
       <fe-option label="React" value="1"></fe-option>
     </fe-select>
   </div>
@@ -10,7 +10,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-select-default',
+  name: 'ex-select-disableOption',
   setup() {
     const val = ref(null)
     return { val }
