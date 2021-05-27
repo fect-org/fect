@@ -4,17 +4,17 @@ import {
   createProvider,
   theme,
   validator,
-  mountRender,
-  useRect,
+  useEventListener,
 } from '../utils'
+import SelectMultiple from './select-multiple'
 import SelectIcon from './select-icon'
+import SelcetClearableIcon from './select-icon-clear'
 import SelectDropDown from './select-dropdown'
 import './select.less'
 
 const [createComponent] = createNameSpace('Select')
 
-const { initMountArea } = mountRender
-const { tuple, normalSizes } = theme
+const { normalSizes } = theme
 
 const READONLY_SELECT_KEY = 'selectKey'
 
@@ -44,8 +44,6 @@ const querySelectSize = (size) => {
   return sizes[size]
 }
 
-initMountArea('fect-select__option-wrapper')
-
 export default createComponent({
   props: {
     modelValue: {
@@ -71,24 +69,19 @@ export default createComponent({
       default: 'initial',
     },
   },
-  emits: ['change'],
+  emits: ['change', 'update:modelValue'],
   setup(props, { attrs, slots, emit }) {
     const IsArr = Array.isArray(props.modelValue)
     const visible = ref(false)
     const isEmpty = ref(false)
-    const selectRef = ref(false)
-    const renderSelect = () => selectRef.value
+    const selectRef = ref(null)
+
     /**
      * Automatic detection modelValue to jug selection mode
      */
     const mutiple = ref(false)
 
-    const { provider } = createProvider(READONLY_SELECT_KEY)
-    provider({
-      ...toRefs(props),
-      renderSelect,
-      visible,
-    })
+    const { provider, children } = createProvider(READONLY_SELECT_KEY)
 
     const setVisbile = (state) => (visible.value = state)
 
@@ -98,14 +91,18 @@ export default createComponent({
 
     const initIsEmpty = () => {
       const hasValue = !!props.modelValue
-      console.log(hasValue)
       if (IsArr && props.modelValue.length > 0) return setEmpty(false)
       if (hasValue) return setEmpty(false)
       return setEmpty(true)
     }
 
+    const initMutiple = () => {
+      if (IsArr && props.modelValue.length > 0) return setMutiple(true)
+    }
+
     watchEffect(() => {
       initIsEmpty()
+      initMutiple()
     })
 
     /**
@@ -131,6 +128,20 @@ export default createComponent({
       setVisbile(!show)
     }
 
+    const updateModelValue = (value) => emit('update:modelValue', value)
+
+    const setChange = (value) => emit('change', value)
+    useEventListener('click', () => setVisbile(false))
+
+    provider({
+      ...toRefs(props),
+      selectRef,
+      visible,
+      setVisbile,
+      setChange,
+      updateModelValue,
+    })
+
     const renderPlaceHolder = () => {
       return (
         <span class="value fect-select__placeholder">{props.placeholder}</span>
@@ -138,7 +149,26 @@ export default createComponent({
     }
 
     const renderSingleMode = () => {
-      return <span class="value">{props.modelValue}</span>
+      return (
+        <span class="value" style="justify-content: space-between">
+          {children.map((child) => {
+            if (child.value === props.modelValue) {
+              return (
+                <>
+                  <SelectMultiple>{child.label}</SelectMultiple>
+                  {props.clearable && !props.disabled && (
+                    <SelcetClearableIcon
+                      style="margin-right:5px"
+                      disabled={props.disabled}
+                      onClick={() => updateModelValue('')}
+                    />
+                  )}
+                </>
+              )
+            }
+          })}
+        </span>
+      )
     }
 
     return () => (
@@ -149,7 +179,7 @@ export default createComponent({
         onClick={handleClick}
       >
         {isEmpty.value && renderPlaceHolder()}
-        {renderSingleMode()}
+        {!isEmpty.value && !mutiple.value && renderSingleMode()}
         <SelectDropDown v-slots={slots} />
         <SelectIcon className={visible.value ? 'click' : ''} />
       </div>

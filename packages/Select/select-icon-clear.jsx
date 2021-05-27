@@ -1,9 +1,16 @@
 import { defineComponent } from 'vue'
 
 const SelcetClearableIcon = defineComponent({
-  setup() {
+  emits: ['click'],
+  setup(props, { attrs, emit }) {
+    const handleClick = (e) => {
+      e.stopPropagation()
+      e.preventDefault()
+      emit('click', e)
+    }
+
     return () => (
-      <div class="fect-select__clearIcon">
+      <div class="fect-select__clearIcon" onClick={handleClick} {...attrs}>
         <svg
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -12,7 +19,7 @@ const SelcetClearableIcon = defineComponent({
           strokeLinejoin="round"
           fill="none"
           shapeRendering="geometricPrecision"
-          style={style.value}
+          color="currentColor"
         >
           <path d="M18 6L6 18" />
           <path d="M6 6l12 12" />
