@@ -1,4 +1,4 @@
-import { computed, ref, watchEffect, toRefs } from 'vue'
+import { computed, ref, watchEffect, toRefs, watch } from 'vue'
 import {
   createNameSpace,
   createProvider,
@@ -51,7 +51,7 @@ export default createComponent({
       default: '',
     },
     placeholder: {
-      type: [String],
+      type: String,
       default: '',
     },
     size: {
@@ -70,12 +70,14 @@ export default createComponent({
     },
     multiple: Boolean,
   },
-  emits: ['change', 'update:modelValue', 'clear'],
+  emits: ['change', 'update:modelValue'],
   setup(props, { attrs, slots, emit }) {
     const selectRef = ref(null)
     const visible = ref(false)
     const isEmpty = ref(false)
     const showClear = ref(false)
+
+    const selectValue = ref(props.modelValue)
 
     const { provider, children } = createProvider(READONLY_SELECT_KEY)
 
@@ -140,7 +142,20 @@ export default createComponent({
       updateModelValue('')
     }
 
-    const updateModelValue = (value) => emit('update:modelValue', value)
+    const updateModelValue = (val) => {
+      if (props.multiple) {
+        const value = selectValue.value.slice()
+        const index = value.indexOf(val)
+        if (index !== -1) {
+          value.splice(index, 1)
+        } else {
+          value.push(val)
+        }
+        selectValue.value = value
+        return emit('update:modelValue', selectValue.value)
+      }
+      emit('update:modelValue', val)
+    }
 
     const setChange = (value) => emit('change', value)
 
@@ -166,6 +181,8 @@ export default createComponent({
       return show
     })
 
+    watch(selectValue, (pre) => setChange(pre))
+
     provider({
       ...toRefs(props),
       selectRef,
@@ -188,7 +205,14 @@ export default createComponent({
         >
           {queryChecked.value.map((child) => (
             <>
-              {props.multiple && <SelectMultiple>{child.label}</SelectMultiple>}
+              {props.multiple && (
+                <SelectMultiple
+                  onClear={() => updateModelValue(child.value)}
+                  clearable={props.clearable}
+                >
+                  {child.label}
+                </SelectMultiple>
+              )}
               {!props.multiple && child.label}
             </>
           ))}

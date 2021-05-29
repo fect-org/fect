@@ -25,6 +25,7 @@ const SelectDropDown = defineComponent({
       nextTick(() => {
         const rect = getRect(ctx.selectRef)
         const { width, top, left } = rect
+
         const style = {
           width: `${width}px`,
           top: `${top + 2}px`,
@@ -35,7 +36,6 @@ const SelectDropDown = defineComponent({
         dropDownRef.value.style.left = style.left
       })
     }
-
     watchEffect(() => {
       if (width.value || height.value) {
         setPosition()
