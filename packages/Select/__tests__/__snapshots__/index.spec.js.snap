@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Select shoudl be supoort multiple mode 1`] = `
+<div class="fect-select  multiple" style="--select-fontSize: 14px; --select-minWidth: 160px; --select-height: calc(1.688 * var(--fay-gap));">
+  <!----><span class="fect-multiple__container "></span>
+  <!--teleport start-->
+  <!--teleport end-->
+  <div class="fect-select__icon-context "><svg viewBox="0 0 24 24" width="20px" height="20px" strokeWidth="1" strokeLinecap="round" color="currentColor" stroke="currentColor" strokeLinejoin="round" fill="none" shapeRendering="geometricPrecision">
+      <path d="M6 9l6 6 6-6"></path>
+    </svg></div>
+  <!---->
+</div>
+`;
+
 exports[`Select should be render as element 1`] = `
 <div class="fect-select  " style="--select-fontSize: 14px; --select-minWidth: 160px; --select-height: calc(1.688 * var(--fay-gap));"><span class="value fect-select__placeholder"></span>
   <!---->

@@ -1,5 +1,6 @@
 import Select from '../index'
 import Option from '../../SelectOpiton'
+import { ref } from 'vue'
 import { mount } from '@vue/test-utils'
 
 describe('Select', () => {
@@ -75,5 +76,25 @@ describe('Select', () => {
       },
     })
     expect(wrapper.find('.fect-select__placeholder').text()).toContain('custom')
+  })
+
+  it('shoudl be supoort multiple mode', () => {
+    const wrapper = mount({
+      setup() {
+        const val = ref(['0', '1', '2'])
+        return { val }
+      },
+      render() {
+        return (
+          <Select multiple v-model={this.val}>
+            <Option value="0" label="Vue"></Option>
+            <Option value="1" label="React"></Option>
+            <Option value="2" label="Angular"></Option>
+          </Select>
+        )
+      },
+    })
+
+    expect(wrapper.html()).toMatchSnapshot()
   })
 })
