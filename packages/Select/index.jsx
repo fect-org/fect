@@ -47,7 +47,7 @@ const querySelectSize = (size) => {
 export default createComponent({
   props: {
     modelValue: {
-      type: [String],
+      type: [String, Array],
       default: '',
     },
     placeholder: {
@@ -70,7 +70,7 @@ export default createComponent({
     },
     multiple: Boolean,
   },
-  emits: ['change', 'update:modelValue'],
+  emits: ['change', 'update:modelValue', 'clear'],
   setup(props, { attrs, slots, emit }) {
     const selectRef = ref(null)
     const visible = ref(false)
@@ -144,22 +144,25 @@ export default createComponent({
 
     const setChange = (value) => emit('change', value)
 
-    // useEventListener('click', () => setVisbile(false))
+    useEventListener('click', () => setVisbile(false))
 
     /**
      * filter and collect checked label array
      */
-    const queryChecked = computed(() =>
-      children.filter((child) => child.value === props.modelValue),
-    )
+    const queryChecked = computed(() => {
+      return children.filter((child) => {
+        if ([...props.modelValue].includes(child.value)) return child
+      })
+    })
 
     /**
      *  Display control right icon in singleMode
      */
 
     const rightVisible = computed(() => {
-      const { clearable, disabled, modelValue } = props
-      const show = clearable && !disabled && modelValue && showClear.value
+      const { clearable, disabled, modelValue, multiple } = props
+      const show
+        = clearable && !disabled && modelValue && showClear.value && !multiple
       return show
     })
 
@@ -178,29 +181,32 @@ export default createComponent({
       )
     }
 
-    const renderSingleMode = () => {
+    const renderNodes = () => {
       return (
-        <span class="value" style="justify-content: space-between">
+        <span
+          class={`${props.multiple ? 'fect-multiple__container' : 'value'} `}
+        >
           {queryChecked.value.map((child) => (
-            <SelectMultiple>{child.label}</SelectMultiple>
+            <>
+              {props.multiple && <SelectMultiple>{child.label}</SelectMultiple>}
+              {!props.multiple && child.label}
+            </>
           ))}
         </span>
       )
     }
 
-    const renderMultipleMode = () => {
-      return <div>1</div>
-    }
-
     return () => (
       <div
-        class={`fect-select ${props.disabled ? 'disabled' : ''}`}
+        class={`fect-select ${props.disabled ? 'disabled' : ''} ${
+          props.multiple ? 'multiple' : ''
+        }`}
         ref={selectRef}
         style={setStyle.value}
         onClick={handleClick}
       >
         {isEmpty.value && renderPlaceHolder()}
-        {!isEmpty.value && renderSingleMode()}
+        {!isEmpty.value && renderNodes()}
         <SelectDropDown v-slots={slots} />
         {!rightVisible.value && (
           <SelectIcon className={visible.value ? 'click' : ''} />
