@@ -1,4 +1,8 @@
 codecov:
+  status:
+    project:
+      default:
+        target: 80% # the required coverage value
   require_ci_to_pass: yes
   comment:
     layout: 'reach, diff, flags, files'
