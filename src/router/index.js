@@ -21,6 +21,7 @@ const Tabs = () => import('../../docs/zh-cn/components/tabs.mdx')
 const Toast = () => import('../../docs/zh-cn/components/toast.mdx')
 const Install = () => import('../../docs/zh-cn/quickStart/install.mdx')
 const Introduce = () => import('../../docs/zh-cn/quickStart/introduce.mdx')
+const Into = () => import('../../docs/zh-cn/quickStart/into.mdx')
 const Colors = () => import('../../docs/zh-cn/themes/colors.mdx')
 const Image = () => import('../../docs/zh-cn/components/image.mdx')
 const Icons = () => import('../../docs/zh-cn/themes/icons.mdx')
@@ -58,6 +59,7 @@ const routes = [
   { path: '/pagination', name: 'Pagination', component: Pagination },
   { path: '/tag', name: 'Tag', component: Tag },
   { path: '/select', name: 'Select', component: Select },
+  { path: '/into', name: 'Into', component: Into },
 ]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
