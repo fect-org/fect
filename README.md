@@ -41,7 +41,7 @@ src="https://user-images.githubusercontent.com/52351095/118687359-7e809480-b837-
 import { createApp } from 'vue'
 import App from './App.vue'
 import FectUI from '@fect-ui/vue'
-import '@fect-ui/vue/dist/fect-ui.css'
+import '@fect-ui/vue/index.css'
 
 createApp(App)
   .use(FectUI)
