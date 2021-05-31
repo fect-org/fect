@@ -1,0 +1,26 @@
+export const meta = {
+  title: '按需导入',
+  group: '快速上手',
+  route: 'Into',
+  index: 3,
+}
+
+# 导入
+
+### 配置
+
+可能在项目中您并不需要把组件全部加载进入到您的项目,`FectUI`提供了按需导入的功能。
+
+```javascript
+import { createApp } from 'vue'
+import App from './App.vue'
+import { Button } from '@fect-ui/vue'
+import '@fect-ui/themes/main.css'
+import '@fect-ui/vue/lib/Button/index.css'
+
+createApp(App)
+  .use(Button)
+  .mount('#app')
+```
+
+上述的示例便完成了按需导入。
