@@ -1,42 +1,33 @@
-import Avatar from './Avatar';
-import AvatarGroup from './AvatarGroup';
-import Badge from './Badge';
-import BadgeAnchor from './BadgeAnchor';
-import Breadcrumbs from './Breadcrumbs';
-import BreadcrumbsItem from './BreadcrumbsItem';
-import Button from './Button';
-import Capacity from './Capacity';
-import Card from './Card';
-import CheckBox from './CheckBox';
-import CheckBoxGroup from './CheckBoxGroup';
-import Code from './Code';
-import Col from './Col';
-import Dot from './Dot';
-import Image from './Image';
-import Input from './Input';
-import Link from './Link';
-import Loading from './Loading';
-import Modal from './Modal';
-import Pagination from './Pagination';
-import Radio from './Radio';
-import RadioGroup from './RadioGroup';
-import Row from './Row';
-import Select from './Select';
-import SelectOpiton from './SelectOpiton';
-import Snippet from './Snippet';
-import Spacer from './Spacer';
-import Switch from './Switch';
-import Tab from './Tab';
-import Tabs from './Tabs';
-import Tag from './Tag';
-import Toast from './Toast';
-
-import './utils/styles/index.css';const components = [Avatar,AvatarGroup,Badge,BadgeAnchor,Breadcrumbs,BreadcrumbsItem,Button,Capacity,Card,CheckBox,CheckBoxGroup,Code,Col,Dot,Image,Input,Link,Loading,Modal,Pagination,Radio,RadioGroup,Row,Select,SelectOpiton,Snippet,Spacer,Switch,Tab,Tabs,Tag,Toast];const install = (vue) => {
-  if (!install.installed) {
-    components.map((component) => {
-      component.install(vue)
-    })
-  }
-  return
-};
-export default { install };
+export { default as Avatar } from './Avatar'
+export { default as AvatarGroup } from './AvatarGroup'
+export { default as Badge } from './Badge'
+export { default as BadgeAnchor } from './BadgeAnchor'
+export { default as Breadcrumbs } from './Breadcrumbs'
+export { default as BreadcrumbsItem } from './BreadcrumbsItem'
+export { default as Button } from './Button'
+export { default as Capacity } from './Capacity'
+export { default as Card } from './Card'
+export { default as CheckBox } from './CheckBox'
+export { default as CheckBoxGroup } from './CheckBoxGroup'
+export { default as Code } from './Code'
+export { default as Col } from './Col'
+export { default as Dot } from './Dot'
+export { default as Image } from './Image'
+export { default as Input } from './Input'
+export { default as Link } from './Link'
+export { default as Loading } from './Loading'
+export { default as Modal } from './Modal'
+export { default as Pagination } from './Pagination'
+export { default as Radio } from './Radio'
+export { default as RadioGroup } from './RadioGroup'
+export { default as Row } from './Row'
+export { default as Select } from './Select'
+export { default as SelectOpiton } from './SelectOpiton'
+export { default as Snippet } from './Snippet'
+export { default as Spacer } from './Spacer'
+export { default as Switch } from './Switch'
+export { default as Tab } from './Tab'
+export { default as Tabs } from './Tabs'
+export { default as Tag } from './Tag'
+export { default as Toast } from './Toast'
+import './utils/styles/index.css'

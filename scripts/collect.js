@@ -1,46 +1,32 @@
 /**
  * author :XeryYue
  * collect all component and create at packages/index.js
- *  waste
  */
+
 const fs = require('fs-extra')
 const path = require('path')
-const packagePath = path.resolve(__dirname, '../packages')
+const packagePath = path.join(__dirname, '../packages')
 const resolvePath = path.join(packagePath, './index.js')
+const IGNORE_DIR = ['utils']
 
-const IGNORE_DIR = ['utils', 'createContext']
+const styleTemp = 'import \'./utils/styles/index.css\''
 
-const IGNORE_FILE_REG = /.*?(\.js)$/g
-
-const importTemplate = `;const install = (vue) => {
-    if (!install.installed) {
-      components.map((component) => {
-        component.install(vue)
+const resolveImport = (dir) => {
+  dir
+    = dir
+      .filter((d) => !IGNORE_DIR.includes(d))
+      .filter((r) => !r.endsWith('.js'))
+      .map((d) => {
+        const filePath = `./${d}`
+        const temp = `export {default as ${d}} from "${filePath}";\n`
+        return temp
       })
-    }
-    return
-  };\n export default { install };\n`
-
-const resolveImport = (dir, dirPath) => {
-  const importFile = []
-  const components = []
-  dir = dir
-    .filter((d) => !IGNORE_DIR.includes(d))
-    .filter((d) => !d.endsWith('.js'))
-    .map((d) => {
-      const filePath = `./${d}`
-      importFile.push(`import ${d} from "${filePath}"`)
-      components.push(`${d}`)
-    })
-  importFile.push(`
-  import './utils/styles/index.css'`)
-  return [importFile.join(';\n'), components]
+      .join(' ') + styleTemp
+  return dir
 }
 
 ;(async () => {
   const files = await fs.readdir(packagePath)
-  const [importFile, components] = await resolveImport(files, packagePath)
-  const resolveFile
-    = importFile + `;const components =[${components}]` + importTemplate
-  await fs.writeFile(resolvePath, resolveFile)
+  const r = await resolveImport(files)
+  fs.writeFile(resolvePath, r)
 })()
