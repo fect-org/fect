@@ -1,11 +1,16 @@
-const presets = () => {
-  if (process.env.NODE_ENV === 'production') {
-    return '@babel/preset-env'
-  }
-  return '@vue/cli-plugin-babel/preset'
-}
-
 module.exports = {
-  presets: [presets()],
-  plugins: ['@vue/babel-plugin-jsx'],
+  env: {
+    development: {
+      presets: ['@vue/cli-plugin-babel/preset'],
+      plugins: ['@vue/babel-plugin-jsx'],
+    },
+    production: {
+      presets: ['@babel/preset-env'],
+      plugins: ['@vue/babel-plugin-jsx'],
+    },
+    test: {
+      presets: ['@vue/cli-plugin-babel/preset'],
+      plugins: ['@vue/babel-plugin-jsx'],
+    },
+  },
 }

@@ -1,4 +1,10 @@
-import { onMounted, unref, onUnmounted, onDeactivated } from 'vue'
+import {
+  onMounted,
+  unref,
+  onUnmounted,
+  onDeactivated,
+  onBeforeUnmount,
+} from 'vue'
 
 /**
  *
@@ -10,13 +16,14 @@ import { onMounted, unref, onUnmounted, onDeactivated } from 'vue'
 const useEventListener = (event, listener, target = window) => {
   const add = () => {
     const element = unref(target)
+
     element.addEventListener(event, listener)
   }
   const remove = () => {
     const element = unref(target)
     element.removeEventListener(event, listener)
   }
-  onUnmounted(remove)
+  onBeforeUnmount(remove)
   onDeactivated(remove)
   onMounted(add)
 }

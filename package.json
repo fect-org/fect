@@ -15,7 +15,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:lib": "rollup -c ./scripts/rollup.config.js",
+    "build:lib": "set BABEL_ENV=production && rollup -c ./scripts/rollup.config.js",
     "test:unit": "vue-cli-service test:unit",
     "coverage": "npm run test:unit -- --coverage",
     "lint": "eslint \"{packages,_page,src,scripts}/**/*.{js,jsx,vue}\"",
