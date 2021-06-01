@@ -64,7 +64,7 @@ export default (async () => {
       if (!stat.isDirectory()) return null
       const hasFile = await fs.pathExists(entry)
       if (!hasFile) return null
-      return { name, url: entry }
+      return { name: name.toLowerCase(), url: entry }
     }),
   )
   return [
