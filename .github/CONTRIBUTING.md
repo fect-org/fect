@@ -26,7 +26,7 @@ At any time, you think it's ok, you can start the following steps to submit your
 
 1. Run `Yarn setup {COMPONENT_NAME}` and it will create a folder in `packages`.
 2. Run `Yarn collect` and it will automatic add `import` to `packages/index.js`
-3. Create a document file in `docs/zh-cn` and `docs/example`, and add Route in `src/router/index.js`
+3. Create a document file in `docs/zh-cn` and `docs/example`,it will automatic logon.
 4. Restart local server view changes: `yarn serve`.
 
 #### **Create testcase**
