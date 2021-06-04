@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Badge should be support different size 1`] = `<span class="fect-badge" style="font-size: 11px;">mini</span><span class="fect-badge" style="font-size: 12px;">small</span><span class="fect-badge" style="font-size: 14px;">medium</span><span class="fect-badge" style="font-size: 16px;">large</span>`;
+
+exports[`Badge should be support different types 1`] = `<span type-data="default" class="fect-badge" style="font-size: 14px;">default</span><span type-data="success" class="fect-badge" style="font-size: 14px;">success</span><span type-data="warning" class="fect-badge" style="font-size: 14px;">warning</span><span type-data="error" class="fect-badge" style="font-size: 14px;">error</span>`;
+
+exports[`Badge should render as a dot element and innerText will be null 1`] = `<span class="fect-dot fect-badge" style="font-size: 14px;"><!----></span>`;
