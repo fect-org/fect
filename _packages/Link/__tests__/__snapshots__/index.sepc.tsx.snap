@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link should be render as element 1`] = `
+<a class="fect-link " href="javascript: void 0;">
+  <!---->
+</a>
+`;
+
+exports[`Link should be render correctly 1`] = `<a class="fect-link " href="javascript: void 0;">Link</a><a class="fect-link color" href="javascript: void 0;">Link</a><a class="fect-link underline" href="javascript: void 0;">Link</a><a class="fect-link color underline" href="javascript: void 0;">Link</a><a class="fect-link block" href="javascript: void 0;">Link</a>`;
