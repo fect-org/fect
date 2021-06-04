@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BreadcrumbsItem when component have not to or href,it should render as span 1`] = `<nav class="fect-nav_container" style="font-size: 16px;"><span class="fect-braed_item"><!----><div class="fect-bread_separator">/</div></span></nav>`;
