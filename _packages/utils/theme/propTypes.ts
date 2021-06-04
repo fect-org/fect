@@ -6,8 +6,6 @@ const tuple = <T extends string[]>(...args: T): T => {
   return args
 }
 
-// export const tuple = <T extends string[]>(...args: T) => args
-
 const buttonTypes = tuple('default', 'success', 'warning', 'error')
 
 const normalSizes = tuple('mini', 'small', 'medium', 'large')
@@ -21,7 +19,7 @@ const justifyTypes = tuple(
   'end',
   'center',
   'space-around',
-  'space-between'
+  'space-between',
 )
 
 const alignTypes = tuple('top', 'middle', 'bottom')
@@ -35,7 +33,7 @@ const snippetStyleTypes = tuple(
   'warning',
   'error',
   'lite',
-  'dark'
+  'dark',
 )
 
 const placeTypes = tuple('topLeft', 'topRight', 'bottomLeft', 'bottomRight')
