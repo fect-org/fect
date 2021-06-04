@@ -6,7 +6,7 @@ import './badgeAnchor.less'
 
 const [createComponent] = createNameSpace('BadgeAnchor')
 
-const READONLY_BADGE_ANCHOR_KEY = 'badgeAnchorKey'
+export const READONLY_BADGE_ANCHOR_KEY = 'badgeAnchorKey'
 
 export type TransformStyles = {
   top?: string
@@ -46,7 +46,7 @@ export const getTransform = (placement: PlaceTypes): TransformStyles => {
   }
   return styles[placement]
 }
-// & TransformStyles
+
 export type BadgeAnchorProvide = TransformStyles
 
 export default createComponent({

@@ -40,7 +40,7 @@ export default createComponent({
           <img src={props.src} draggable="false" {...attrs} />
         )}
         {showText.value && (
-          <span class={`fect-avatar-text `} {...attrs}>
+          <span class={'fect-avatar-text '} {...attrs}>
             {safeText(props.text)}
           </span>
         )}

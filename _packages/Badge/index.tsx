@@ -1,11 +1,13 @@
 import { computed, ref, CSSProperties, PropType } from 'vue'
 import { createNameSpace, useProvider } from '../utils'
 import { NormalSizes, NormalTypes } from '../utils/theme/propTypes'
-import { BadgeAnchorProvide } from '../BadgeAnchor/index'
+import {
+  BadgeAnchorProvide,
+  READONLY_BADGE_ANCHOR_KEY,
+} from '../BadgeAnchor/index'
 import './badge.less'
 
 const [createComponent] = createNameSpace('Badge')
-const READONLY_BADGE_ANCHOR_KEY = 'badgeAnchorKey'
 
 export const queryBgColor = (type: NormalTypes) => {
   const bgsPool: { [key in NormalTypes]: string } = {
@@ -41,7 +43,7 @@ export default createComponent({
   },
   setup(props, { slots, attrs }) {
     const { context } = useProvider<BadgeAnchorProvide>(
-      READONLY_BADGE_ANCHOR_KEY
+      READONLY_BADGE_ANCHOR_KEY,
     )
     const hasParent = ref<boolean>(Boolean(context))
 
@@ -54,7 +56,7 @@ export default createComponent({
     })
 
     const placementStyle = computed(() => {
-      const { left, right, value, origin, bottom } = context!
+      const { top, left, right, value, origin, bottom } = context!
       const style: CSSProperties = {
         position: 'absolute',
         top: `${top || 'auto'}`,

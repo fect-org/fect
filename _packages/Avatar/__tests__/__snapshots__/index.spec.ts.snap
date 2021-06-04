@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar should be render as Element 1`] = `
+<div class="fect-avatar mini "><img src="http://img.com" draggable="false">
+  <!---->
+</div>
+`;
+
+exports[`Avatar should be render as Element 2`] = `
+<div class="fect-avatar medium ">
+  <!----><span class="fect-avatar-text ">test</span>
+</div>
+`;
