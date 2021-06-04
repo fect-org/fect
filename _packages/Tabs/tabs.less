@@ -1,0 +1,58 @@
+.fect-tabs_container {
+  width: inherit;
+  .tabs_header {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    user-select: none;
+    border-bottom: 1px solid var(--fay-border);
+    overflow: scroll;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .hide-divider {
+    border-bottom: none;
+  }
+}
+
+.fect-tabs_container {
+  .tabs_header {
+    .fect-tab_title {
+      cursor: pointer;
+      outline: 0;
+      transition: all 500ms ease;
+      text-transform: capitalize;
+      padding: var(--fay-gap-half) calc(0.65 * var(--fay-gap-quarter));
+      font-size: 16px;
+      white-space: nowrap;
+      margin: 0 calc(0.8 * var(--fay-gap-half));
+      color: var(--accents-6);
+      user-select: none;
+      display: flex;
+      align-items: center;
+      line-height: 20px;
+      position: relative;
+      &.disabled {
+        cursor: not-allowed;
+      }
+      &::after {
+        position: absolute;
+        content: '';
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 2px;
+        transform: scaleX(0.75);
+        background-color: transparent;
+        transition: all 500ms ease;
+      }
+      &.active::after {
+        background-color: var(--primary-foreground);
+        transform: scaleX(1);
+      }
+    }
+  }
+}
