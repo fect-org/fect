@@ -1,0 +1,61 @@
+.fect-radio {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  width: initial;
+  input {
+    opacity: 0;
+    overflow: hidden;
+    visibility: hidden;
+    width: 1px;
+    height: 1px;
+    top: -1000px;
+    right: -1000px;
+    position: fixed;
+  }
+  label {
+    cursor: pointer;
+    // color: var(--accents-2);
+    &.disabled {
+      color: var(--accents-5);
+      cursor: not-allowed;
+    }
+  }
+  .fect-radio-name {
+    font-size: var(--radioSize);
+    font-weight: bold;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+  }
+  .fect-radio-point {
+    height: var(--radioSize);
+    width: var(--radioSize);
+    border: 1px solid var(--accents-2);
+    border-radius: 50%;
+    transition: all 0.2s ease 0s;
+    position: relative;
+    display: inline-block;
+    transform: scale(0.875);
+    margin-right: calc(var(--radioSize) * 0.375);
+
+    &::before {
+      background-color: var(--primary-foreground);
+      content: '';
+      position: absolute;
+      transform: scale(0);
+      border-radius: 50%;
+      top: -1px;
+      left: -1px;
+      height: var(--radioSize);
+      width: var(--radioSize);
+    }
+    &.disabled::before {
+      background-color: var(--accents-5);
+    }
+    &.active::before {
+      transform: scale(0.875);
+      transition: all 0.2s ease 0s;
+    }
+  }
+}
