@@ -6,8 +6,8 @@
 const fs = require('fs-extra')
 const path = require('path')
 const { compose, concat, filter, map } = require('./reducer')
-const packagePath = path.join(__dirname, '../packages')
-const resolvePath = path.join(packagePath, './index.js')
+const packagePath = path.join(__dirname, '../_packages')
+const resolvePath = path.join(packagePath, './index.ts')
 const IGNORE_DIR = ['utils', 'index.js']
 
 const styleTemp = 'import \'./utils/styles/index.css\''

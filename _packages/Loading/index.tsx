@@ -1,6 +1,7 @@
 import { PropType, ref } from 'vue'
 import { createNameSpace } from '../utils'
 import { NormalSizes, NormalTypes } from '../utils/theme/propTypes'
+import './loading.less'
 
 const [createComponent] = createNameSpace('Loading')
 
