@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckboxGroup should be support useRow 1`] = `
+<div class="fect-checkbox_group useRow">
+  <!---->
+</div>
+`;
