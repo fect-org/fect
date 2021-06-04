@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image should be render as element 1`] = `
+<div class="fect-image" style="width: auto; height: auto;">
+  <!----><img src="" width="0" height="0" style="display: block;">
+</div>
+`;
