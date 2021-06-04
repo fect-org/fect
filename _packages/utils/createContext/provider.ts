@@ -33,7 +33,7 @@ export const flattenVNodes = (children: VNodeNormalizedChildren) => {
 export const sortChildren = (
   parent: ComponentInternalInstance,
   publicChildren: ComponentPublicInstance[],
-  internalChildren: ComponentInternalInstance[]
+  internalChildren: ComponentInternalInstance[],
 ) => {
   const VNodes = flattenVNodes(parent.subTree.children)
   internalChildren.sort(
@@ -51,8 +51,8 @@ export const sortChildren = (
 export const createProvider = <
   T extends ComponentPublicInstance = ComponentPublicInstance
 >(
-  key: string | symbol
-) => {
+    key: string | symbol,
+  ) => {
   const publicChildren: T[] = reactive([])
   const internalChildren: ComponentInternalInstance[] = reactive([])
   const parent = getCurrentInstance()!
