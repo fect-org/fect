@@ -8,7 +8,7 @@ const path = require('path')
 const { compose, concat, filter, map } = require('./reducer')
 const packagePath = path.join(__dirname, '../_packages')
 const resolvePath = path.join(packagePath, './index.ts')
-const IGNORE_DIR = ['utils', 'index.js']
+const IGNORE_DIR = ['utils', 'index.ts']
 
 const styleTemp = 'import \'./utils/styles/index.css\''
 
