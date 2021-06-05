@@ -10,9 +10,9 @@ const READONLY_LAYOUT_KEY = 'layoutKey'
 export default createComponent({
   setup(props, { slots }) {
     const img = ref(light)
-    const { ctx } = useProvider(READONLY_LAYOUT_KEY)
+    const { context } = useProvider(READONLY_LAYOUT_KEY)
     watchEffect(() => {
-      const theme = ctx.theme.value
+      const theme = context.theme.value
 
       if (theme === 'dark') {
         img.value = dark

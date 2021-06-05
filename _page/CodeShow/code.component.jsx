@@ -6,12 +6,12 @@ import codeRender from './code.render'
 
 const CodeComponent = defineComponent({
   setup(props) {
-    const { ctx } = useProvider(READONLY_CODESHOW_KEY)
-    const { name } = ctx
+    const { context } = useProvider(READONLY_CODESHOW_KEY)
+    const { name } = context
     const renderRef = ref(null)
     onMounted(() => {
       const codes = renderRef.value._.subTree.type._meta().default
-      ctx.setpreViewCode(codes)
+      context.setpreViewCode(codes)
     })
 
     return () => (

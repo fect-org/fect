@@ -5,7 +5,6 @@
     "jsx": "preserve",
     "target": "esnext",
     "module": "esnext",
-    "declaration": true,
     "strict": true,
     "allowJs": true,
     "noImplicitThis": true,
@@ -24,7 +23,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx",
-    "_packages/**/*"
+    "packages/**/*"
   ],
   "exclude": ["node_modules", "src/**/*.js", "src/**/*.jsx"]
 }

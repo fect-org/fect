@@ -82,5 +82,4 @@ describe('Input', () => {
     input.trigger('input')
     expect(wrapper.emitted('update:modelValue')[0][0]).toEqual(2)
   })
-  
 })

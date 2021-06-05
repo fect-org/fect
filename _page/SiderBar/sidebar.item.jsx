@@ -5,11 +5,11 @@ import './sidebar.item.less'
 const READONLY_SIDEBAR_KEY = 'siebarKey'
 const SideItem = defineComponent({
   setup(props, { slots }) {
-    const { ctx } = useProvider(READONLY_SIDEBAR_KEY)
+    const { context } = useProvider(READONLY_SIDEBAR_KEY)
 
     return () => (
       <>
-        {ctx.route.map((r, idx) => (
+        {context.route.map((r, idx) => (
           <div className="r_doc-side_route-p" key={`${r.name}-${idx}`}>
             <span className="side_route-title">{r.name}</span>
             <div className="f_doc-side_route-c">

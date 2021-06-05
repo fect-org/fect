@@ -7,10 +7,10 @@ import './code.css'
 
 const CodeWrapper = defineComponent({
   setup() {
-    const { ctx } = useProvider(READONLY_CODESHOW_KEY)
+    const { context } = useProvider(READONLY_CODESHOW_KEY)
     const preViewCode = ref(null)
     onMounted(() => {
-      preViewCode.value = ctx.code.value
+      preViewCode.value = context.code.value
     })
     return () => (
       <>

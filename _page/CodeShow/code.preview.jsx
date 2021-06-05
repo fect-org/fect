@@ -9,7 +9,7 @@ const CodePreView = defineComponent({
   setup() {
     const visible = ref(false)
     const codeIcon = ref('chevronRight')
-    const { ctx } = useProvider(READONLY_CODESHOW_KEY)
+    const { context } = useProvider(READONLY_CODESHOW_KEY)
     const { proxy } = getCurrentInstance()
     const { copyText } = useClipboard()
     const handlerClick = (e) => {
@@ -20,7 +20,7 @@ const CodePreView = defineComponent({
     const handlerCopyClick = (e) => {
       e.stopPropagation()
       e.preventDefault()
-      copyText(ctx.code.value)
+      copyText(context.code.value)
       proxy.$toast.success({ text: '复制成功~' })
     }
 
