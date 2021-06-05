@@ -10,11 +10,11 @@ const READONLY_LAYOUT_KEY = 'layoutKey'
 const TabbarMobile = defineComponent({
   emits: ['click'],
   setup(props, { emit }) {
-    const { ctx } = useProvider(READONLY_LAYOUT_KEY)
+    const { context } = useProvider(READONLY_LAYOUT_KEY)
     const handlerTap = () => emit('click')
 
     const theme = computed(() => {
-      if (ctx.theme.value === 'light') return LightShadow
+      if (context.theme.value === 'light') return LightShadow
       return DarkShadow
     })
     return () => (

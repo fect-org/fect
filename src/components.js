@@ -1,4 +1,4 @@
-import * as components from '../_packages'
+import * as components from '../packages'
 
 const install = (vue) => {
   const r = { ...components }

@@ -7,8 +7,8 @@ const READONLY_CODESHOW_KEY = 'codeShowKey'
 
 const Title = defineComponent({
   setup() {
-    const { ctx } = useProvider(READONLY_CODESHOW_KEY)
-    const { title, desc } = ctx // display title  desc
+    const { context } = useProvider(READONLY_CODESHOW_KEY)
+    const { title, desc } = context // display title  desc
 
     return () => (
       <>

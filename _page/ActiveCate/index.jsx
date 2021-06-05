@@ -23,8 +23,8 @@ const ActiveCate = defineComponent({
       }
     })
 
-    const { ctx } = useProvider(READONLY_LAYOUT_KEY)
-    const { handlerMobileTabbarClick } = ctx
+    const { context } = useProvider(READONLY_LAYOUT_KEY)
+    const { handlerMobileTabbarClick } = context
 
     return () => (
       <div

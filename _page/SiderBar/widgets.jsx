@@ -10,7 +10,7 @@ const Widgets = defineComponent({
     const isDark = ref(false)
     const themeIcon = ref('moon')
     const setTheme = (theme) => localStorage.setItem('theme', theme)
-    const { ctx } = useProvider(READONLY_LAYOUT_KEY)
+    const { context } = useProvider(READONLY_LAYOUT_KEY)
     /**
      *while watchEffect exduce can't not found null includes
      */
@@ -23,7 +23,7 @@ const Widgets = defineComponent({
       const { setLightTheme, setDarkTheme } = useTheme
       // eslint-disable-next-line no-unused-expressions
       isDark.value ? setDarkTheme() : setLightTheme()
-      ctx.handlerChangeTheme(_theme)
+      context.handlerChangeTheme(_theme)
     })
 
     const changeThemeHandler = () => {

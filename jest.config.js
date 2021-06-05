@@ -7,12 +7,9 @@ module.exports = {
     '/packages/',
   ],
   collectCoverageFrom: [
-    // 'packages/**/*.{js,jsx,vue}',
-    // '!packages/utils/**/*',
-    // '!packages/index.js',
-    '_packages/**/*.{js,jsx,ts,tsx,vue}',
-    '!_packages/utils/**/*',
-    '!_packages/index.ts',
+    'packages/**/*.{js,jsx,ts,tsx,vue}',
+    '!packages/utils/**/*',
+    '!packages/index.ts',
   ],
   preset: '@vue/cli-plugin-unit-jest/presets/typescript-and-babel',
   transform: {
