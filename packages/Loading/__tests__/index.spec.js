@@ -1,8 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { ref } from 'vue'
 import Loading from '../index'
-import { NormalSizes, NormalTypes } from '../../utils/theme/propTypes'
-
 describe('Loading', () => {
   it('should be render as element', () => {
     const loading = mount(Loading)
@@ -19,7 +17,7 @@ describe('Loading', () => {
         return (
           <>
             {this.typeList.map((item, i) => (
-              <Loading type={item as NormalTypes} key={i} />
+              <Loading type={item} key={i} />
             ))}
           </>
         )
@@ -38,7 +36,7 @@ describe('Loading', () => {
         return (
           <>
             {this.sizeList.map((item, i) => (
-              <Loading size={item as NormalSizes} key={i} />
+              <Loading size={item} key={i} />
             ))}
           </>
         )

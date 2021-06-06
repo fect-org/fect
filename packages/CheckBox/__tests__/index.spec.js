@@ -1,6 +1,5 @@
 import { mount } from '@vue/test-utils'
 import Checkbox from '../index'
-import { NormalSizes } from '../../utils/theme/propTypes'
 import { ref } from 'vue'
 
 describe('Checkbox', () => {
@@ -17,7 +16,7 @@ describe('Checkbox', () => {
         return (
           <>
             {this.sizes.map((size, idx) => (
-              <Checkbox key={idx} size={size as NormalSizes}>
+              <Checkbox key={idx} size={size}>
                 {idx}
               </Checkbox>
             ))}

@@ -1,6 +1,5 @@
 import Tag from '../index'
 import { mount } from '@vue/test-utils'
-import { NormalTypes } from '../../utils/theme/propTypes'
 
 describe('Tag', () => {
   it('should be render as element', () => {
@@ -23,7 +22,7 @@ describe('Tag', () => {
         return (
           <>
             {this.types.map((type, i) => (
-              <Tag text={i} type={type as NormalTypes} key={type} />
+              <Tag text={i} type={type} key={type} />
             ))}
           </>
         )
@@ -42,7 +41,7 @@ describe('Tag', () => {
         return (
           <>
             {this.types.map((type, i) => (
-              <Tag text={i} type={type as NormalTypes} key={type} useInvert />
+              <Tag text={i} type={type} key={type} useInvert />
             ))}
           </>
         )

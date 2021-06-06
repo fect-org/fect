@@ -1,7 +1,6 @@
 import { mount } from '@vue/test-utils'
 import Breadcrumbs from '../index'
 import BreadcrumbsItem from '../../BreadcrumbsItem'
-import { NormalSizes } from '../../utils/theme/propTypes'
 
 describe('Breadcrumbs', () => {
   it('should be render as element', () => {
@@ -18,7 +17,7 @@ describe('Breadcrumbs', () => {
         return (
           <>
             {this.sizes.map((size, idx) => (
-              <Breadcrumbs size={size as NormalSizes} key={idx}>
+              <Breadcrumbs size={size} key={idx}>
                 {idx}
               </Breadcrumbs>
             ))}

@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { ref } from 'vue'
-import Modal from '../modal'
+import Modal from '..'
 
 describe('Modal', () => {
   it('should be render as element', () => {

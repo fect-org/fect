@@ -1,6 +1,5 @@
 import { mount } from '@vue/test-utils'
 import { ref } from 'vue'
-import { NormalSizes } from '../../utils/theme/propTypes'
 import Radio from '../index'
 
 describe('Radio', () => {
@@ -25,7 +24,7 @@ describe('Radio', () => {
         return (
           <>
             {this.sizeList.map((item, i) => (
-              <Radio size={item as NormalSizes} key={i} value={item} />
+              <Radio size={item} key={i} value={item} />
             ))}
           </>
         )
@@ -63,7 +62,7 @@ describe('Radio', () => {
     })
 
     wrapper.trigger('change')
-    expect(wrapper.emitted('change')!.length).toEqual(1)
+    expect(wrapper.emitted('change').length).toEqual(1)
     expect(wrapper.html()).toContain('state: 0')
     await wrapper.find('[type="radio"]').trigger('change')
     expect(wrapper.html()).toContain('state: 1')
