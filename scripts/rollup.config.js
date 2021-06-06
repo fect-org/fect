@@ -17,6 +17,7 @@ const external = ['vue', '@babel/runtime']
 const plugins = (name) => [
   typescript({
     tsconfig: './tsconfig.json',
+    clean: true,
   }),
   babel({
     exclude: 'node_modules/**',
@@ -51,7 +52,7 @@ const globals = {
 }
 
 const cjsOutput = {
-  format: 'esm',
+  format: 'cjs',
   exports: 'named',
   entryFileNames: '[name]/index.js',
   dir: 'lib',

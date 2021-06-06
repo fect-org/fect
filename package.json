@@ -1,6 +1,6 @@
 {
   "name": "@fect-ui/vue",
-  "version": "0.1.0-alpha.4",
+  "version": "0.1.0-alpha.5",
   "description": "Minimalist UI components built on Vue",
   "author": "Fect Org",
   "scripts": {
@@ -14,8 +14,9 @@
     "report": "npm run coverage && codecov",
     "setup": "hygen component new --name",
     "build:doc": "vue-cli-service build",
-    "build:lib": "set BABEL_ENV=production && rollup -c ./scripts/rollup.config.js",
-    "build:types": "tsc -p ./scripts"
+    "build:lib": "set NODE_OPTIONS=--max_old_space_size=8172 && set BABEL_ENV=production && rollup -c ./scripts/rollup.config.js",
+    "build:types": "tsc -p ./scripts",
+    "build": "npm run build:lib && npm run build:types"
   },
   "main": "lib/index.js",
   "module": "lib/index.js",
