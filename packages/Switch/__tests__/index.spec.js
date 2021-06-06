@@ -1,6 +1,5 @@
 import { mount } from '@vue/test-utils'
 import Switch from '../index'
-import { NormalSizes } from '../../utils/theme/propTypes'
 
 describe('Switch', () => {
   it('should be render as element', () => {
@@ -18,7 +17,7 @@ describe('Switch', () => {
         return (
           <>
             {this.sizesList.map((item) => (
-              <Switch size={item as NormalSizes} key={item} />
+              <Switch size={item} key={item} />
             ))}
           </>
         )

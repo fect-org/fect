@@ -1,5 +1,4 @@
 import { mount } from '@vue/test-utils'
-import { NormalTypes, NormalSizes } from '../../utils/theme/propTypes'
 import Badge from '../index'
 
 describe('Badge', () => {
@@ -16,7 +15,7 @@ describe('Badge', () => {
         return (
           <>
             {this.types.map((type) => (
-              <Badge key={type} type={type as NormalTypes} type-data={type}>
+              <Badge key={type} type={type} type-data={type}>
                 {type}
               </Badge>
             ))}
@@ -40,7 +39,7 @@ describe('Badge', () => {
         return (
           <>
             {this.sizes.map((type) => (
-              <Badge key={type} size={type as NormalSizes}>
+              <Badge key={type} size={type}>
                 {type}
               </Badge>
             ))}

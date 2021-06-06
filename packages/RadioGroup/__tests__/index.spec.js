@@ -2,7 +2,6 @@ import { mount } from '@vue/test-utils'
 import { ref } from 'vue'
 import RadioGroup from '../index'
 import Radio from '../../Radio'
-import { NormalSizes } from '../../utils/theme/propTypes'
 
 describe('RadioGroup', () => {
   it('should be render as element', () => {
@@ -51,7 +50,7 @@ describe('RadioGroup', () => {
         return (
           <>
             {this.sizeList.map((item) => (
-              <RadioGroup size={item as NormalSizes} key={item}>
+              <RadioGroup size={item} key={item}>
                 <Radio value={item} />
               </RadioGroup>
             ))}
@@ -69,7 +68,7 @@ describe('RadioGroup', () => {
       emits: ['change'],
       setup(props, { emit }) {
         const test = ref(0)
-        const handlerChange = (next: number) => {
+        const handlerChange = (next) => {
           test.value = next
           emit('change', next)
         }

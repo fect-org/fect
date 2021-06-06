@@ -1,7 +1,6 @@
 import { mount } from '@vue/test-utils'
 import BadgeAnchor from '../index'
 import Badge from '../../Badge'
-import { PlaceTypes } from '../../utils/theme/propTypes'
 
 describe('BadgeAnchor', () => {
   it('should be render as element', () => {
@@ -18,7 +17,7 @@ describe('BadgeAnchor', () => {
         return (
           <>
             {this.places.map((place) => (
-              <BadgeAnchor placement={place as PlaceTypes} key={place}>
+              <BadgeAnchor placement={place} key={place}>
                 <p>Test Info</p>
                 <Badge dot />
               </BadgeAnchor>

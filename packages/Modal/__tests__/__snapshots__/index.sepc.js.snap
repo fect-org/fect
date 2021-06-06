@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal props should be supported 1`] = `
+<transition-stub>
+  <div class="fect-dialog_root">
+    <div class="fect-dialog-backdrop"></div>
+    <div class="fect-dialog-backdrop responsive"></div>
+    <transition-stub>
+      <div role="dialog" class="fect-modal_wrapper" style="width: 400px;">
+        <div class="fect-modal_title__container">
+          <h2 class="modal_title">Test Modal</h2>
+        </div>
+        <div class="fect-modal_content">
+          <!---->
+        </div>
+        <footer class="fect-modal_action__container"><button class="fect-btn default medium modal_action__btn">
+            <!---->
+            <!---->Cancel
+          </button><button class="fect-btn default medium modal_action__btn">
+            <!---->
+            <!---->Done
+          </button></footer>
+      </div>
+    </transition-stub>
+  </div>
+</transition-stub>
+`;
+
+exports[`Modal should be render as element 1`] = `
+<transition-stub>
+  <div class="fect-dialog_root">
+    <div class="fect-dialog-backdrop"></div>
+    <div class="fect-dialog-backdrop responsive"></div>
+    <transition-stub>
+      <div role="dialog" class="fect-modal_wrapper" style="width: 400px;">
+        <div class="fect-modal_title__container">
+          <h2 class="modal_title"></h2>
+        </div>
+        <div class="fect-modal_content">
+          <!---->
+        </div>
+        <footer class="fect-modal_action__container"><button class="fect-btn default medium modal_action__btn">
+            <!---->
+            <!---->cancel
+          </button><button class="fect-btn default medium modal_action__btn">
+            <!---->
+            <!---->done
+          </button></footer>
+      </div>
+    </transition-stub>
+  </div>
+</transition-stub>
+`;
+
+exports[`Modal should support slot to define custom title and action  1`] = `
+<transition-stub>
+  <div class="fect-dialog_root">
+    <div class="fect-dialog-backdrop"></div>
+    <div class="fect-dialog-backdrop responsive"></div>
+    <transition-stub>
+      <div role="dialog" class="fect-modal_wrapper" style="width: 400px;">
+        <div class="fect-modal_title__container">Custom Title</div>
+        <div class="fect-modal_content">
+          <!---->
+        </div>
+        <h3>Custom Action</h3>
+      </div>
+    </transition-stub>
+  </div>
+</transition-stub>
+`;

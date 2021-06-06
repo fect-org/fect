@@ -1,6 +1,5 @@
 import Dot from '../index'
 import { mount } from '@vue/test-utils'
-import { NormalTypes } from '../../utils/theme/propTypes'
 describe('Dot', () => {
   it('should be render as element', () => {
     const dot = mount(Dot)
@@ -16,7 +15,7 @@ describe('Dot', () => {
         return (
           <>
             {this.typeList.map((item) => (
-              <Dot type={item as NormalTypes} />
+              <Dot type={item} />
             ))}
           </>
         )
