@@ -19,5 +19,4 @@ install:
   - yarn
 
 script:
-  - yarn run build:lib
   - yarn report
