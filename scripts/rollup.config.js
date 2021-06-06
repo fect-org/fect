@@ -6,6 +6,7 @@ import vue from 'rollup-plugin-vue'
 import nodeResolve from '@rollup/plugin-node-resolve'
 import postcss from 'rollup-plugin-postcss'
 import { terser } from 'rollup-plugin-terser'
+import typescript from 'rollup-plugin-typescript2'
 
 const componentsPath = path.join(__dirname, '../packages')
 const libPath = path.join(__dirname, '../lib')
@@ -14,11 +15,14 @@ const extensions = ['.js', '.jsx', '.ts', '.tsx']
 const external = ['vue', '@babel/runtime']
 
 const plugins = (name) => [
+  typescript({
+    tsconfig: './tsconfig.json',
+  }),
   babel({
     exclude: 'node_modules/**',
     extensions,
     babelHelpers: 'runtime',
-    presets: ['@babel/preset-env'],
+    presets: ['@babel/preset-env', '@babel/preset-typescript'],
     plugins: ['@vue/babel-plugin-jsx', '@babel/plugin-transform-runtime'],
   }),
   commonjs(),
@@ -42,11 +46,16 @@ const plugins = (name) => [
   }),
 ]
 
+const globals = {
+  vue: 'vue',
+}
+
 const cjsOutput = {
-  format: 'cjs',
+  format: 'esm',
   exports: 'named',
   entryFileNames: '[name]/index.js',
   dir: 'lib',
+  globals,
 }
 
 export default (async () => {
@@ -56,8 +65,8 @@ export default (async () => {
     files.map(async (name) => {
       const comPath = path.join(componentsPath, name)
       const r = () => {
-        if (name === 'Modal' || name === 'Toast') return 'index.js'
-        return 'index.jsx'
+        if (name === 'Modal') return 'index.ts'
+        return 'index.tsx'
       }
       const entry = path.join(comPath, r())
       const stat = await fs.stat(comPath)
@@ -77,7 +86,7 @@ export default (async () => {
         plugins: plugins(name),
       })),
     {
-      input: { index: path.join(componentsPath) },
+      input: { index: path.join(componentsPath, 'index.ts') },
       output: [
         {
           ...cjsOutput,
