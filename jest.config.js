@@ -1,11 +1,5 @@
 module.exports = {
-  testPathIgnorePatterns: [
-    '/node_modules/',
-    '/dist/',
-    '/lib/',
-    '/src/',
-    '/packages/',
-  ],
+  testPathIgnorePatterns: ['/node_modules/', '/dist/', '/lib/', '/src/'],
   collectCoverageFrom: [
     'packages/**/*.{js,jsx,ts,tsx,vue}',
     '!packages/utils/**/*',
