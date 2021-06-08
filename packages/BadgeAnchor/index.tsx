@@ -1,5 +1,6 @@
 import { PropType } from 'vue'
-import { createNameSpace, createProvider } from '../utils'
+import { createNameSpace } from '../utils'
+import { createProvider } from '@fect-ui/vue-hooks'
 import { PlaceTypes } from '../utils/theme/propTypes'
 
 import './badgeAnchor.less'

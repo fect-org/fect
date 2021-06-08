@@ -1,5 +1,6 @@
 import { computed, ref, CSSProperties, PropType } from 'vue'
-import { createNameSpace, useProvider } from '../utils'
+import { createNameSpace } from '../utils'
+import { useProvider } from '@fect-ui/vue-hooks'
 import { NormalSizes, NormalTypes } from '../utils/theme/propTypes'
 import {
   BadgeAnchorProvide,

@@ -1,5 +1,5 @@
 import { defineComponent, computed, watchEffect, ref } from 'vue'
-import { useProvider } from '../utils'
+import { useProvider } from '@fect-ui/vue-hooks'
 import PaginationItem from './pagination-item'
 import PaginationEllipsis from './pagination-ellipsis'
 import { READONLY_PAGINATION_KEY, PaginationProvide } from './type'

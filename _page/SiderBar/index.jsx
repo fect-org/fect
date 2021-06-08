@@ -1,5 +1,5 @@
 import { defineComponent, reactive } from 'vue'
-import { createProvider } from '../../packages/utils'
+import { createProvider } from '@fect-ui/vue-hooks'
 import SideItem from './sidebar.item'
 import Widgets from './widgets'
 

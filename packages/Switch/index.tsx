@@ -1,4 +1,4 @@
-import { computed, ref, toRefs, watch, PropType } from 'vue'
+import { computed, ref, PropType } from 'vue'
 import { createNameSpace } from '../utils'
 import { NormalSizes } from '../utils/theme/propTypes'
 import './switch.less'

@@ -1,5 +1,5 @@
 import { defineComponent, ref } from 'vue'
-import { useProvider } from '../utils'
+import { useProvider } from '@fect-ui/vue-hooks'
 import Button from '../Button'
 import { READONLY_MODAL_KEY, ModalProvide } from './type'
 

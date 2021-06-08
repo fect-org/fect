@@ -1,7 +1,6 @@
 import { defineComponent, ref, getCurrentInstance } from 'vue'
 import CodeWrapper from './code.wrapper'
-// import { useClipboard } from '../utils/clipboard'
-import { useProvider, useClipboard } from '../../packages/utils'
+import { useProvider, useClipboard } from '@fect-ui/vue-hooks'
 import './code.preview.less'
 const READONLY_CODESHOW_KEY = 'codeShowKey'
 

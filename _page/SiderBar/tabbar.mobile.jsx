@@ -1,5 +1,5 @@
 import { defineComponent, computed } from 'vue'
-import { useProvider } from '../../packages/utils'
+import { useProvider } from '@fect-ui/vue-hooks'
 import './sidebar.mobile.less'
 
 const DarkShadow = 'rgba(255,255,255, 0.22)'

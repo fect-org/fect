@@ -1,5 +1,6 @@
 import { computed, ref, watchEffect, PropType } from 'vue'
-import { createNameSpace, useProvider } from '../utils'
+import { useProvider } from '@fect-ui/vue-hooks'
+import { createNameSpace } from '../utils'
 import { NormalSizes } from '../utils/theme/propTypes'
 import { CustomCSSProperties } from '../utils/base'
 import {

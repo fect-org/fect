@@ -1,5 +1,5 @@
 import { defineComponent, onMounted, ref } from 'vue'
-import { useProvider } from '../../packages/utils'
+import { useProvider } from '@fect-ui/vue-hooks'
 import Prism from 'vue-prism-component'
 const READONLY_CODESHOW_KEY = 'codeShowKey'
 

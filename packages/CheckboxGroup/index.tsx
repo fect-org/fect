@@ -1,5 +1,6 @@
 import { PropType } from 'vue'
-import { createNameSpace, createProvider } from '../utils'
+import { createNameSpace } from '../utils'
+import { createProvider } from '@fect-ui/vue-hooks'
 import { NormalSizes } from '../utils/theme/propTypes'
 const [createComponent] = createNameSpace('CheckboxGroup')
 import './checkbox-group.less'

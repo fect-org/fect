@@ -1,5 +1,6 @@
 import { ref, watch, Ref } from 'vue'
-import { createNameSpace, createProvider } from '../utils'
+import { createProvider } from '@fect-ui/vue-hooks'
+import { createNameSpace } from '../utils'
 import { ComponentInstance } from '../utils/base'
 import TabsTitle, { TabTitleEmit } from './tabs-title'
 import './tabs.less'
