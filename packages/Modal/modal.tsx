@@ -1,4 +1,5 @@
-import { createNameSpace, createProvider } from '../utils'
+import { createNameSpace } from '../utils'
+import { createProvider } from '@fect-ui/vue-hooks'
 import { READONLY_MODAL_KEY } from './type'
 import ModalWrapper from './modal-wrapper'
 

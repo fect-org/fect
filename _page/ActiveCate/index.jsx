@@ -1,6 +1,6 @@
 import { defineComponent, watchEffect, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useProvider } from '../../packages/utils/createContext'
+import { useProvider } from '@fect-ui/vue-hooks'
 import './activecate.common.less'
 
 const READONLY_LAYOUT_KEY = 'layoutKey'

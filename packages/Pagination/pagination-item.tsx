@@ -1,5 +1,6 @@
 import { defineComponent, computed, ref } from 'vue'
-import { useProvider, color } from '../utils'
+import { useProvider } from '@fect-ui/vue-hooks'
+import { color } from '../utils'
 import { CustomCSSProperties } from '../utils/base'
 import { READONLY_PAGINATION_KEY, PaginationProvide } from './type'
 

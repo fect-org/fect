@@ -1,5 +1,5 @@
 import { defineComponent, computed, ref } from 'vue'
-import { createProvider } from '../../packages/utils/createContext'
+import { createProvider } from '@fect-ui/vue-hooks'
 import SideBar from '../SiderBar'
 import TabbarMobile from '../SiderBar/tabbar.mobile'
 import './layout.common.less'

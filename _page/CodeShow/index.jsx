@@ -1,4 +1,5 @@
-import { createNameSpace, createProvider } from '../../packages/utils'
+import { createNameSpace } from '../../packages/utils'
+import { createProvider } from '@fect-ui/vue-hooks'
 
 import CodeComponent from './code.component'
 import Title from './code.title'

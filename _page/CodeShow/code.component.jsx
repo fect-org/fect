@@ -1,5 +1,5 @@
 import { defineComponent, ref, onMounted } from 'vue'
-import { useProvider } from '../../packages/utils'
+import { useProvider } from '@fect-ui/vue-hooks'
 const READONLY_CODESHOW_KEY = 'codeShowKey'
 import './code.component.less'
 import codeRender from './code.render'

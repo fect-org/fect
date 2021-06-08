@@ -1,5 +1,6 @@
 import { watchEffect, ref } from 'vue'
-import { createNameSpace, useProvider } from '../../packages/utils'
+import { useProvider } from '@fect-ui/vue-hooks'
+import { createNameSpace } from '../../packages/utils'
 
 import light from '../../src/assets/default.png'
 import dark from '../../src/assets/dark.png'

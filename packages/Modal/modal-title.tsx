@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue'
-import { useProvider } from '../utils'
+import { useProvider } from '@fect-ui/vue-hooks'
 import { READONLY_MODAL_KEY, ModalProvide } from './type'
 
 const ModalTitle = defineComponent({

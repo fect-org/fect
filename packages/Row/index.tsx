@@ -1,5 +1,6 @@
 import { computed, PropType, CSSProperties } from 'vue'
-import { createNameSpace, createProvider } from '../utils'
+import { createProvider } from '@fect-ui/vue-hooks'
+import { createNameSpace } from '../utils'
 import { JustifyTypes, AlignTypes } from '../utils/theme/propTypes'
 import './row.less'
 

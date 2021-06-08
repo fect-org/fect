@@ -1,5 +1,5 @@
 import { defineComponent, Transition } from 'vue'
-import { useProvider } from '../utils'
+import { useProvider } from '@fect-ui/vue-hooks'
 import ModalTitle from './modal-title'
 import ModalAction from './modal-action'
 import { READONLY_MODAL_KEY, ModalProvide } from './type'

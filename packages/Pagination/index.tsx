@@ -1,5 +1,6 @@
 import { computed, watch, ref, watchEffect, toRefs, PropType } from 'vue'
-import { createNameSpace, createProvider } from '../utils'
+import { createProvider } from '@fect-ui/vue-hooks'
+import { createNameSpace } from '../utils'
 import { NormalSizes } from '../utils/theme/propTypes'
 import { READONLY_PAGINATION_KEY, PaginationSize } from './type'
 import { CustomCSSProperties, ComponentInstance } from '../utils/base'

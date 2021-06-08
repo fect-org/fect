@@ -1,5 +1,6 @@
 import { ref, watchEffect } from 'vue'
-import { createNameSpace, useProvider } from '../utils'
+import { createNameSpace } from '../utils'
+import { useProvider } from '@fect-ui/vue-hooks'
 import { BreadcrumbsProvide, READONLY_BREADCRUMBS_KEY } from '../Breadcrumbs'
 import Link from '../Link'
 import Separator from './breadcrumbs-spearator'

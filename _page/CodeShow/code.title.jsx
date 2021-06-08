@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue'
-import { useProvider } from '../../packages/utils'
+import { useProvider } from '@fect-ui/vue-hooks'
 import Anchor from '../Anchor'
 
 import './code.title.less'

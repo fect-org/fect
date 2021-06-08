@@ -1,5 +1,6 @@
-import { computed, ref, PropType, CSSProperties } from 'vue'
-import { createNameSpace, useClipboard } from '../utils'
+import { computed, ref, PropType } from 'vue'
+import { useClipboard } from '@fect-ui/vue-hooks'
+import { createNameSpace } from '../utils'
 import { NormalTypes, SnippetCopyTypes } from '../utils/theme/propTypes'
 import SnippetIcon from './snippet-icon'
 import Toast from '../Toast'

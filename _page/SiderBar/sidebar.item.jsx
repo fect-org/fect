@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue'
-import { useProvider } from '../../packages/utils'
+import { useProvider } from '@fect-ui/vue-hooks'
 import ActiveCate from '../ActiveCate'
 import './sidebar.item.less'
 const READONLY_SIDEBAR_KEY = 'siebarKey'

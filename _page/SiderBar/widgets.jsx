@@ -1,6 +1,6 @@
 import { defineComponent, watchEffect, ref } from 'vue'
 import { useTheme } from '../../packages/utils'
-import { useProvider } from '../../packages/utils'
+import { useProvider } from '@fect-ui/vue-hooks'
 import './widgets.less'
 
 const READONLY_LAYOUT_KEY = 'layoutKey'
