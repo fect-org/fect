@@ -1,6 +1,7 @@
 import { defineComponent, ref, getCurrentInstance } from 'vue'
 import CodeWrapper from './code.wrapper'
 import { useProvider, useClipboard } from '@fect-ui/vue-hooks'
+import { copy, chevronRight } from '@fect-ui/vue-icons'
 import './code.preview.less'
 const READONLY_CODESHOW_KEY = 'codeShowKey'
 
@@ -39,17 +40,16 @@ const CodePreView = defineComponent({
                       transform: `rotate(${visible.value ? 90 : 0}deg)`,
                     }}
                   >
-                    <fect-icon icon={codeIcon.value} />
+                    <chevronRight />
                   </span>
                   <span>浏览代码</span>
                   {visible.value && (
-                    <fect-icon
+                    <copy
                       onClick={handlerCopyClick}
                       class={`f_icons_transform ${
                         visible.value ? 'active' : ''
                       }`}
-                      icon="copy"
-                      size="18"
+                      size="20"
                       style={{ marginLeft: 'auto', marginRight: '20px' }}
                     />
                   )}

@@ -1,5 +1,6 @@
 import { defineComponent, watchEffect, ref } from 'vue'
 import { useTheme } from '../../packages/utils'
+import { github, sun, moon } from '@fect-ui/vue-icons'
 import { useProvider } from '@fect-ui/vue-hooks'
 import './widgets.less'
 
@@ -46,10 +47,10 @@ const Widgets = defineComponent({
             target="_blank"
             class={'f_doc-widgets_icons'}
           >
-            <fect-icon icon="github" size="18" />
+            <github size="18" />
           </feLink>
           <span className={'f_doc-widgets_icons'} onClick={changeThemeHandler}>
-            <fect-icon icon={themeIcon.value} size="18" />
+            {themeIcon.value === 'sun' ? <sun size="18" /> : <moon size="18" />}
           </span>
         </div>
       </>

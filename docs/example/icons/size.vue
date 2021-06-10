@@ -1,21 +1,23 @@
 <template>
   <div>
-    <fect-icon icon="gitlab" size="16" />
+    <github size="12" />
     <fe-spacer inline />
-    <fect-icon icon="gitlab" size="20" />
+    <github size="16" />
     <fe-spacer inline />
-    <fect-icon icon="gitlab" size="24" />
+    <github size="18" />
     <fe-spacer inline />
-    <fect-icon icon="gitlab" size="28" />
+    <github size="22" />
     <fe-spacer inline />
-    <fect-icon icon="gitlab" size="32" />
-    <fe-spacer inline />
-    <fect-icon icon="gitlab" size="36" />
+    <github size="24" />
   </div>
 </template>
 
 <script>
+import { github } from '@fect-ui/vue-icons'
 export default {
   name: 'ex-icons-sizes',
+  components: {
+    github,
+  },
 }
 </script>
