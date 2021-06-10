@@ -22,6 +22,7 @@
 import { computed, ref } from 'vue'
 import iconsPool from './icon'
 import IconCell from './icons-cell'
+
 export default {
   name: 'Icons',
   components: {
@@ -37,7 +38,7 @@ export default {
       iconName.value = name
     }
     // const modalTitle = computed(() => )
-    const snippetText = computed(() => `<fect-icon icon="${iconName.value}" />`)
+    const snippetText = computed(() => `< ${iconName.value} />`)
     return {
       iconName,
       show,

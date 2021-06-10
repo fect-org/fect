@@ -18,7 +18,7 @@
 <script>
 import { reactive, getCurrentInstance } from 'vue'
 import { getCssValue } from './colors'
-import { useClipboard } from '../../../packages/utils/useClipboard'
+import { useClipboard } from '@fect-ui/vue-hooks'
 export default {
   name: 'ex-colors-default',
   setup() {

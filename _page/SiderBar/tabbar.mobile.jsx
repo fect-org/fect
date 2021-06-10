@@ -1,5 +1,6 @@
 import { defineComponent, computed } from 'vue'
 import { useProvider } from '@fect-ui/vue-hooks'
+import { navigation } from '@fect-ui/vue-icons'
 import './sidebar.mobile.less'
 
 const DarkShadow = 'rgba(255,255,255, 0.22)'
@@ -23,7 +24,8 @@ const TabbarMobile = defineComponent({
         style={{ boxShadow: ` 0 2px 5px 0 ${theme.value}` }}
       >
         <div className="f_doc-tab-icons" onClick={handlerTap}>
-          <fect-icon icon="navigation" size="20" color="var(--accents-7)" />
+          <navigation size="22" color="var(--accents-7)" />
+          {/* <fect-icon icon="navigation" size="20" color="var(--accents-7)" /> */}
         </div>
         <span>@FECT-UI/VUE</span>
       </div>
