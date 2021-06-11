@@ -120,5 +120,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/fay-org/fect"
+  },
+  "vetur": {
+    "tags": "vetur/tags.json",
+    "attributes": "vetur/attributes.json"
   }
 }
