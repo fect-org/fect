@@ -1,0 +1,450 @@
+{
+  "fe-avatar/stacked": {
+    "type": "boolean",
+    "description": "是否堆叠显示 , 默认值: `false`"
+  },
+  "fe-avatar/isSquare": {
+    "type": "boolean",
+    "description": "是否为方形头像 , 默认值: `false`"
+  },
+  "fe-avatar/size": {
+    "type": "string",
+    "description": "头像大小 ,可选值为`mini`,`small`,`medium`,`large`, 默认值: `medium`"
+  },
+  "fe-avatar/text": {
+    "type": "string | number",
+    "description": "文本,无图像链接才会显示 , 默认值：`-`"
+  },
+  "fe-avatar/src": {
+    "type": "string",
+    "description": "图像链接 , 默认值：`-`"
+  },
+  "fe-avatar/className": {
+    "type": "string",
+    "description": "图像容器设置 class , 默认值: `-`"
+  },
+  "fe-avatarGroup/count": {
+    "type": "string | number",
+    "description": "堆叠头像的数量 , 默认值: `-`"
+  },
+  "fe-badge/size": {
+    "type": "string",
+    "description": "徽标大小 ,可选值为`mini`,`small`,`medium`,`large`, 默认值: `medium`"
+  },
+  "fe-badge/type": {
+    "type": "string",
+    "description": "徽标类型 ,可选值为`default`,`success`,`warning`,`error`, 默认值: `default`"
+  },
+  "fe-badge/dot": {
+    "type": "boolean",
+    "description": "忽略内容并显示圆点,默认值: `false`"
+  },
+  "fe-badgeAnchor/placement": {
+    "type": "string",
+    "description": "固定徽标的位置,可选值为`topLeft`, `topRight`, `bottomLeft`, `bottomRight`,默认值: `false`"
+  },
+  "fe-breadcrumbs/size": {
+    "type": "string",
+    "description": "分页符大小, 可选值为`mini`,`small`,`medium`,`large`, 默认值: `medium`"
+  },
+  "fe-breadcrumbs/separator": {
+    "type": "string",
+    "description": "分隔符, 默认值:`/`"
+  },
+  "fe-breadcrumbsItem/href": {
+    "type": "string",
+    "description": "链接地址 默认值:`-`"
+  },
+  "fe-breadcrumbsItem/to": {
+    "type": "string | object",
+    "description": "Vue 路由跳转(push) 默认值:`-`"
+  },
+  "fe-button/type": {
+    "type": "string ",
+    "description": "按钮类型 ,可选值为`default`,`success`,`warning`,`error`, 默认值: `default`"
+  },
+  "fe-button/size": {
+    "type": "string ",
+    "description": "按钮大小 ,可选值为`mini`,`small`,`medium`,`large`, 默认值: `medium`"
+  },
+  "fe-button/auto": {
+    "type": "boolean",
+    "description": "自动缩放按钮宽度 , 默认值:`false` "
+  },
+  "fe-button/disabled": {
+    "type": "boolean",
+    "description": "是否禁用按钮 , 默认值:`false` "
+  },
+  "fe-button/shadow": {
+    "type": "boolean",
+    "description": "是否显示阴影 , 默认值:`false` "
+  },
+  "fe-button/loading": {
+    "type": "boolean",
+    "description": "是否启用加载状态 , 默认值:`false` "
+  },
+  "fe-capacity/value": {
+    "type": "string | number",
+    "description": "当前的容量值 , 默认值:`0` "
+  },
+  "fe-capacity/color": {
+    "type": "string | number",
+    "description": "自定义容量 css 颜色 , 默认值:`-` "
+  },
+  "fe-card/hoverable": {
+    "type": "boolean",
+    "description": "是否在悬停时增加阴影 , 默认值:`false` "
+  },
+  "fe-card/shadow": {
+    "type": "boolean",
+    "description": "是否总是显示阴影 , 默认值:`false` "
+  },
+  "fe-checkbox/v-model": {
+    "type": "boolean",
+    "description": "是否选中 , 默认值:`false` "
+  },
+  "fe-checkbox/size": {
+    "type": "string",
+    "description": "复选框大小 , 可选值为`mini`,`small`,`medium`,`large`, 默认值: `medium` "
+  },
+  "fe-checkbox/disabled": {
+    "type": "boolean",
+    "description": "是否禁用交互 , 默认值:`false` "
+  },
+  "fe-checkbox/label": {
+    "type": "string | number",
+    "description": "复选框标识符 ,  默认值: `-` "
+  },
+  "fe-checkboxGroup/v-model": {
+    "type": "any[]",
+    "description": "所有选中项的标识符 , 默认值:`-` "
+  },
+  "fe-checkboxGroup/size": {
+    "type": "string",
+    "description": "所有复选框大小 , 可选值为`mini`,`small`,`medium`,`large`, 默认值: `medium` "
+  },
+  "fe-checkboxGroup/disabled": {
+    "type": "boolean",
+    "description": "是否禁用所有交互 , 默认值:`false` "
+  },
+  "fe-checkboxGroup/useRow": {
+    "type": "boolean",
+    "description": "是否水平对齐  , 默认值:`false` "
+  },
+  "fe-code/block": {
+    "type": "boolean",
+    "description": "是否展示多行的代码块  , 默认值:`false` "
+  },
+  "fe-dot/type": {
+    "type": "string",
+    "description": "点的类型 ,可选值为`default`,`success`,`warning`,`error`, 默认值: `default`"
+  },
+  "fe-image/src": {
+    "type": "string",
+    "description": "图片地址 ,默认值: `-`"
+  },
+  "fe-image/width": {
+    "type": "string",
+    "description": "图片宽度 ,默认值: `auto`"
+  },
+  "fe-image/height": {
+    "type": "string",
+    "description": "图片高度 ,默认值: `auto`"
+  },
+  "fe-image/skeleton": {
+    "type": "boolean",
+    "description": "是否启用骨架屏动画 , 默认值:`false` "
+  },
+  "fe-image/maxDelay": {
+    "type": "string | number",
+    "description": "动画持续最大时间 (毫秒) ,默认值: `3000`"
+  },
+  "fe-input/v-model": {
+    "type": "string | number",
+    "description": "可绑定的输入值 ,默认值: `-`"
+  },
+  "fe-input/prefix": {
+    "type": "string | number",
+    "description": "输入框左侧文本标签 ,默认值: `-`"
+  },
+  "fe-input/suffix": {
+    "type": "string | number",
+    "description": "输入框右侧文本标签 ,默认值: `-`"
+  },
+  "fe-input/clearable": {
+    "type": "boolean",
+    "description": "是否展示清除按钮 <br>如果要监听清除事件使用 `@clearClick` ,默认值: `false`"
+  },
+  "fe-row/tag": {
+    "type": "string",
+    "description": "自定义元素标签 , 默认值为`div`"
+  },
+  "fe-row/gutter": {
+    "type": "string | number",
+    "description": "子元素列的间距 , 默认值为`0`"
+  },
+  "fe-row/justify": {
+    "type": "string",
+    "description": "水平轴对齐方式 可选值为`start`,`end` <br> `center`,`space-around`,`space-between` <br> 默认值:`start`"
+  },
+  "fe-row/align": {
+    "type": "string",
+    "description": "交叉轴对齐方式,可选值为`top`,`middle`,`bottom` <br> 默认值:`top` "
+  },
+  "fe-col/tag": {
+    "type": "string",
+    "description": "自定义元素标签 , 默认值为`div`"
+  },
+  "fe-col/span": {
+    "type": "string | number",
+    "description": "每列占据的网格大小 , 可选值为[0-24] , 默认值:`24` "
+  },
+  "fe-col/offset": {
+    "type": "string",
+    "description": "当前列的偏移位置, 默认值:`0`"
+  },
+  "fe-link/href": {
+    "type": "string",
+    "description": "链接地址, 默认值:`-`"
+  },
+  "fe-link/to": {
+    "type": "string | object",
+    "description": "Vue 路由跳转(push), 默认值:`-`"
+  },
+  "fe-link/color": {
+    "type": "boolean",
+    "description": "是否高亮显示, 默认值:`false`"
+  },
+  "fe-link/underline": {
+    "type": "boolean",
+    "description": "是否显示下划线, 默认值:`false`"
+  },
+  "fe-link/block": {
+    "type": "boolean",
+    "description": "是否为块级元素, 默认值:`false`"
+  },
+  "fe-loading/size": {
+    "type": "string",
+    "description": "指示器的大小 , 可选值为`mini`,`small`,`medium`,`large`, 默认值: `medium`"
+  },
+  "fe-loading/type": {
+    "type": "string",
+    "description": "指示器的类型 , 可选值为`default`,`success`,`warning`,`error`, 默认值: `default`"
+  },
+  "fe-loading/color": {
+    "type": "string",
+    "description": "自定义指示器颜色 , 默认值:`-`"
+  },
+  "fe-modal/v-model:visible": {
+    "type": "string",
+    "description": "控制对话框的显示隐藏 , 默认值:`false`"
+  },
+  "fe-modal/title": {
+    "type": "string",
+    "description": "对话框的标题 , 默认值:`-`"
+  },
+  "fe-modal/width": {
+    "type": "string",
+    "description": "对话框宽度,移动端默认最大值为`90vw` , 默认值:`420px`"
+  },
+  "fe-modal/cancel": {
+    "type": "string",
+    "description": "对话框取消按钮的文字 , 默认值:`cancel`"
+  },
+  "fe-modal/done": {
+    "type": "string",
+    "description": "对话框确定按钮的文字 , 默认值:`done`"
+  },
+  "fe-pagination/v-model": {
+    "type": "number",
+    "description": "当前页码 , 默认值:`1`"
+  },
+  "fe-pagination/count": {
+    "type": "string | number",
+    "description": "页码数量 , 默认值:`1`"
+  },
+  "fe-pagination/size": {
+    "type": "string",
+    "description": " 分页器的大小 , 可选值为`mini`,`small`,`medium`,`large`, 默认值: `medium`"
+  },
+  "fe-pagination/limit": {
+    "type": "string | number",
+    "description": "一次可展示分页器的最大值 , 默认值:`7`"
+  },
+  "fe-pagination/simple": {
+    "type": "boolean",
+    "description": "是否启用朴素模式 ,  默认值: `false`"
+  },
+  "fe-pagination/prevText": {
+    "type": "string",
+    "description": "分页器上一页的文字 ,  默认值: `Prev`"
+  },
+  "fe-pagination/nextText": {
+    "type": "string",
+    "description": "分页器下一页的文字 ,  默认值: `Next`"
+  },
+  "fe-radio/checked": {
+    "type": "boolean",
+    "description": "是否选中单选框(仅在单选时有效) ,  默认值: `false`"
+  },
+  "fe-radio/disabed": {
+    "type": "boolean",
+    "description": "是否禁用当前选项 ,  默认值: `false`"
+  },
+  "fe-radio/value": {
+    "type": "string | number",
+    "description": "单选框的值(必填) ,  默认值: `-`"
+  },
+  "fe-radio/size": {
+    "type": "string",
+    "description": "单选框的大小 , 可选值为`mini`,`small`,`medium`,`large`,  默认值: `medium`"
+  },
+  "fe-radioGroup/initialValue": {
+    "type": "string",
+    "description": "初始值 ,   默认值: `-`"
+  },
+  "fe-radioGroup/useRow": {
+    "type": "boolean",
+    "description": "水平对齐所有子单选框 , 默认值: `false`"
+  },
+  "fe-radioGroup/disabled": {
+    "type": "boolean",
+    "description": "禁用所有单选框 , 默认值: `false`"
+  },
+  "fe-radioGroup/size": {
+    "type": "string",
+    "description": "组内所有单选框大小 , 可选值为`mini`,`small`,`medium`,`large`,  默认值: `medium`"
+  },
+  "fe-select/v-model": {
+    "type": "string | string[]",
+    "description": "选择器的值 , 默认值: `-`"
+  },
+  "fe-select/placeholder": {
+    "type": "string",
+    "description": "占位文本内容 , 默认值: `-`"
+  },
+  "fe-select/multiple": {
+    "type": "boolean",
+    "description": "是否支持多选 , 默认值: `false`"
+  },
+  "fe-select/size": {
+    "type": "string",
+    "description": "选择器组件大小 ,可选值为`mini`,`small`,`medium`,`large` , 默认值: `medium`"
+  },
+  "fe-select/width": {
+    "type": "string",
+    "description": "设置组件宽度 , 默认值: `initial`"
+  },
+  "fe-select/clearable": {
+    "type": "boolean",
+    "description": "是否展示移除图标 , 默认值: `true`"
+  },
+  "fe-select/disabled": {
+    "type": "boolean",
+    "description": "是否禁用交互 , 默认值: `false`"
+  },
+  "fe-option/value": {
+    "type": "string",
+    "description": "唯一鉴别值 , 默认值: `-`"
+  },
+  "fe-option/label": {
+    "type": "string",
+    "description": "展示的文本内容 , 默认值: `-`"
+  },
+  "fe-option/disabled": {
+    "type": "boolean",
+    "description": "是否禁用交互 , 默认值: `false`"
+  },
+  "fe-snippet/text": {
+    "type": "string",
+    "description": "展示的文本内容 , 默认值: `-`"
+  },
+  "fe-snippet/type": {
+    "type": "string",
+    "description": "组件的类型 , 可选值为`default`,`success`,`warning`,`error`, 默认值: `default`"
+  },
+  "fe-snippet/fill": {
+    "type": "boolean",
+    "description": "填充风格的样式 , 默认值: `false`"
+  },
+  "fe-snippet/width": {
+    "type": "string",
+    "description": "设置组件宽度 , 默认值: `initial`"
+  },
+  "fe-snippet/copy": {
+    "type": "string",
+    "description": "组件的拷贝方式 ,可选值为`default`,`silent`,`prevent` , 默认值: `default`"
+  },
+  "fe-snippet/symbol": {
+    "type": "string",
+    "description": "组件左侧显示的字符 , 默认值: `symbol`"
+  },
+  "fe-snippet/toastText": {
+    "type": "string",
+    "description": "拷贝提示的字符 , 默认值: `symbol`"
+  },
+  "fe-snippet/toastType": {
+    "type": "string",
+    "description": "拷贝提示的样式 , 可选值为`default`,`success`,`warning`,`error`, 默认值: `default`"
+  },
+  "fe-spacer/x": {
+    "type": "number",
+    "description": "水平轴间距 , 默认值:`1`"
+  },
+  "fe-spacer/y": {
+    "type": "number",
+    "description": "垂直轴间距 , 默认值:`1`"
+  },
+  "fe-switch/checked": {
+    "type": "boolean",
+    "description": "是否选中 , 默认值:`false`"
+  },
+  "fe-switch/size": {
+    "type": "string",
+    "description": "开关的大小 ,可选值为`mini`,`small`,`medium`,`large` , 默认值:`medium`"
+  },
+  "fe-switch/disabled": {
+    "type": "string",
+    "description": "是否禁用交互 , 默认值:`false`"
+  },
+  "fe-tabs/v-model:active": {
+    "type": "string | number",
+    "description": "绑定当前选中标签的标识符 ,  默认值: `0`"
+  },
+  "fe-tabs/hideDivider": {
+    "type": "boolean",
+    "description": "隐藏默认分割线 , 默认值:`false`"
+  },
+  "fe-tab/title": {
+    "type": "string",
+    "description": "选项卡的文字描述 , 默认值:`-`"
+  },
+  "fe-tab/value": {
+    "type": "string",
+    "description": "绑定选项卡的标识符 , 默认值:`-`"
+  },
+  "fe-tag/text": {
+    "type": "string",
+    "description": "标签内容 , 默认值:`-`"
+  },
+  "fe-tag/type": {
+    "type": "string",
+    "description": "标签类型 , 可选值为`default`,`success`,`warning`,`error`, 默认值: `default`"
+  },
+  "fe-tag/useInvert": {
+    "type": "boolean",
+    "description": "是否反转背景与主色 , 默认值:`false`"
+  },
+  "fe-toast/text": {
+    "type": "string | number ",
+    "description": "通知消息的文本 , 默认值:`-`"
+  },
+  "fe-toast/type": {
+    "type": "string",
+    "description": "通知框的主题 , 可选值为`default`,`success`,`warning`,`error`, 默认值: `default`"
+  },
+  "fe-toast/duration": {
+    "type": "string | number ",
+    "description": "消息框的展示时间 , 默认值:`4500`"
+  }
+}
