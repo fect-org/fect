@@ -203,7 +203,8 @@
   "fe-spacer": {
     "attributes": [
       "x",
-      "y"
+      "y",
+      "inline"
     ]
   },
   "fe-switch": {
@@ -237,6 +238,14 @@
       "text",
       "type",
       "duration"
+    ]
+  },
+  "fe-progress": {
+    "attributes": [
+      "value",
+      "max",
+      "type",
+      "colors"
     ]
   }
 }

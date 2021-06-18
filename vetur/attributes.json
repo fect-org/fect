@@ -395,6 +395,10 @@
     "type": "number",
     "description": "垂直轴间距 , 默认值:`1`"
   },
+  "fe-spacer/inline": {
+    "type": "boolean",
+    "description": "行内模式 , 默认值:`false`"
+  },
   "fe-switch/checked": {
     "type": "boolean",
     "description": "是否选中 , 默认值:`false`"
@@ -446,5 +450,21 @@
   "fe-toast/duration": {
     "type": "string | number ",
     "description": "消息框的展示时间 , 默认值:`4500`"
+  },
+  "fe-progress/value": {
+    "type": "number ",
+    "description": "进度条当前数值 , 默认值:`0`"
+  },
+  "fe-progress/max": {
+    "type": "number ",
+    "description": "最大值 , 默认值:`100`"
+  },
+  "fe-progress/colors": {
+    "type": "{ [key: number]: string }",
+    "description": "在范围内自定义颜色 , 默认值:`{}`"
+  },
+  "fe-progress/type": {
+    "type": "string",
+    "description": "预定义的状体类型 , 可选值为`default`,`success`,`warning`,`error`, 默认值: `default`"
   }
 }
