@@ -13,7 +13,7 @@ export default createComponent({
     },
     to: {
       type: [String, Object],
-      default: String,
+      default: '',
     },
     color: Boolean,
     underline: Boolean,

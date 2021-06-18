@@ -45,7 +45,7 @@ const Widgets = defineComponent({
           <feLink
             href="https://github.com/fay-org/fect"
             target="_blank"
-            class={'f_doc-widgets_icons'}
+            class="f_doc-widgets_icons"
           >
             <github size="18" />
           </feLink>
