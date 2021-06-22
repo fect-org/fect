@@ -92,7 +92,12 @@
       "width",
       "height",
       "skeleton",
-      "maxDelay"
+      "maxDelay",
+      "useBrowser",
+      "title",
+      "url",
+      "showFullLink",
+      "invert"
     ]
   },
   "fe-input": {

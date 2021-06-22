@@ -159,6 +159,26 @@
     "type": "string | number",
     "description": "动画持续最大时间 (毫秒) ,默认值: `3000`"
   },
+  "fe-image/useBrowser": {
+    "type": "boolean",
+    "description": "启用浏览器风格 ,默认值: `false`"
+  },
+  "fe-image/title": {
+    "type": "string",
+    "description": "显示标题 (当 `url` 未设置时生效) ,默认值: `-`"
+  },
+  "fe-image/url": {
+    "type": "string",
+    "description": "在浏览器地址栏显示链接 ,默认值: `-`"
+  },
+  "fe-image/showFullLink": {
+    "type": "boolean",
+    "description": "显示完整的链接而非域名 ,默认值: `false`"
+  },
+  "fe-image/invert": {
+    "type": "boolean",
+    "description": "反转地址栏颜色 ,默认值: `false`"
+  },
   "fe-input/v-model": {
     "type": "string | number",
     "description": "可绑定的输入值 ,默认值: `-`"
