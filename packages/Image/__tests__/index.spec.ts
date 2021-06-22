@@ -15,4 +15,15 @@ describe('Image', () => {
     })
     expect(wrapper.find('.skeleton')).toBeTruthy()
   })
+  it('should support useBrowser', () => {
+    const wrapper = mount(Image, {
+      props: {
+        useBrowser: true,
+        height: '240px',
+        width: '540px',
+      },
+    })
+    expect(wrapper.find('.fect-image__browser')).toBeTruthy()
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 })

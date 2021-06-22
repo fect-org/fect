@@ -5,3 +5,15 @@ exports[`Image should be render as element 1`] = `
   <!----><img src="" width="0" height="0" style="display: block;">
 </div>
 `;
+
+exports[`Image should support useBrowser 1`] = `
+<div class="fect-image__browser">
+  <header>
+    <div class="traffic"><span class="close" role="browser-close"></span><span class="mini" role="browser-mini"></span><span class="full" role="browser-full"></span></div>
+    <div class="title"><span></span></div>
+  </header>
+  <div class="fect-image" style="width: 540px; height: 240px;">
+    <!----><img src="" width="0" height="0" style="display: block;">
+  </div>
+</div>
+`;
