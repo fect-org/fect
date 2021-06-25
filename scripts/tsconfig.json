@@ -17,8 +17,10 @@
     "paths": {
       "@/*": ["src/*"]
     },
+
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
+  "include": ["../src/*.d.ts"],
   "files": ["../packages/index.ts"],
   "exclude": ["node_modules"]
 }
