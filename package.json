@@ -28,7 +28,7 @@
   ],
   "dependencies": {
     "@fect-ui/themes": "^1.0.8-beta.0",
-    "@fect-ui/vue-hooks": "0.0.1",
+    "@fect-ui/vue-hooks": "0.0.2",
     "core-js": "^3.6.5",
     "vue": "^3.0.0"
   },
