@@ -1,16 +1,32 @@
-import { computed, toRefs, PropType, ref, watchEffect } from 'vue'
+import { computed, PropType, ref, watchEffect } from 'vue'
 import { createProvider } from '@fect-ui/vue-hooks'
 import { createNameSpace } from '../utils'
 import { NormalSizes } from '../utils/theme/propTypes'
+import { CustomCSSProperties, ComponentInstance } from '../utils/base'
 import SelectIcon from './select-icon'
 import SelcetClearableIcon from './select-clear-icon'
-import { CustomCSSProperties } from '../utils/base'
+import SelectMultiple from './select-multiple'
 
 import './select.less'
 
 const [createComponent] = createNameSpace('Select')
 
 export const READONLY_SELECT_KEY = 'selectKey'
+
+interface SelectEvent {
+  target: {
+    value: string
+  }
+  stopPropagation: () => void
+  preventDefault: () => void
+  nativeEvent: Event
+}
+
+export type SelectProvide = {
+  setVisible: (status: boolean) => void
+  updateModelValue: (value: string) => void
+  setChange: (event: SelectEvent) => void
+}
 
 type SizeStyle = {
   height: string
@@ -71,7 +87,9 @@ export default createComponent({
   },
   emits: ['change', 'update:modelValue'],
   setup(props, { attrs, slots, emit }) {
-    const { provider } = createProvider(READONLY_SELECT_KEY)
+    const { provider, children } = createProvider<ComponentInstance>(
+      READONLY_SELECT_KEY,
+    )
     const selectRef = ref<HTMLDivElement>()
     const visible = ref<boolean>(false)
     const isEmpty = ref<boolean>(false)
@@ -86,7 +104,6 @@ export default createComponent({
       const hasValue = !!props.modelValue
       hasValue && setEmpty(false)
     })
-
 
     const setStyle = computed(() => {
       const { height, fontSize, minWidth } = querySelectSize(props.size)
@@ -109,10 +126,24 @@ export default createComponent({
       emit('update:modelValue', val)
     }
 
+    const queryChecked = computed(() => {
+      return children.filter((child: ComponentInstance) => {
+        /**
+         * user may may pass in null
+         */
+        if (props.modelValue === null) return
+        if ([...props.modelValue].includes(child.value)) return child
+      })
+    })
+
     const clearIconHandler = () => {
       setVisible(false)
       updateModelValue('')
     }
+
+    const setChange = (value: SelectEvent) => emit('change', value)
+
+    provider({ updateModelValue, setChange, setVisible })
 
     /**
      * control show main context
@@ -123,7 +154,25 @@ export default createComponent({
 
     const renderNodes = () => {
       const classes = (props.multiple && 'fect-multiple__container') || 'value'
-      return <span class={classes}>{props.modelValue}</span>
+      const { multiple, clearable } = props
+      return (
+        <span class={classes}>
+          {queryChecked.value.map((child) => (
+            <>
+              {multiple ? (
+                <SelectMultiple
+                  onClear={() => updateModelValue(child.value)}
+                  clearable={clearable}
+                >
+                  {child.label}
+                </SelectMultiple>
+              ) : (
+                child.label
+              )}
+            </>
+          ))}
+        </span>
+      )
     }
 
     /**
@@ -144,6 +193,7 @@ export default createComponent({
     return () => (
       <div class={setClass.value} ref={selectRef} style={setStyle.value}>
         {isEmpty.value ? renderPlaceHolder() : renderNodes()}
+        <div style={{ display: 'none' }}> {slots.default?.()}</div>
         {renderRightIcon()}
       </div>
     )

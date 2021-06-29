@@ -37,5 +37,6 @@ declare module 'vue' {
     onTouchcancel?: EventHandler
     onMouseenter?: EventHandler
     onMouseleave?: EventHandler
+    onClear?: EventHandler
   }
 }

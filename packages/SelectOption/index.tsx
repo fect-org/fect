@@ -1,7 +1,8 @@
 import { watchEffect } from 'vue'
 import { useProvider } from '@fect-ui/vue-hooks'
-import { READONLY_SELECT_KEY } from '../Select'
-import { createNameSpace } from 'packages/utils'
+import { READONLY_SELECT_KEY, SelectProvide } from '../Select'
+import { createNameSpace } from '../utils'
+import './selectOption.less'
 
 const [createComponent] = createNameSpace('Option')
 
@@ -16,20 +17,24 @@ export default createComponent({
     disabled: Boolean,
   },
   setup(props, { slots }) {
-    const { context } = useProvider(READONLY_SELECT_KEY)
+    const { context } = useProvider<SelectProvide>(READONLY_SELECT_KEY)
+    const { setChange, setVisible, updateModelValue } = context!
+
     const handleClick = (e: Event) => {
       if (props.disabled) return
-      const targetEvent = {
-        target: {
-          value: props.value,
-        },
-        stopPropagation: e.stopPropagation,
-        preventDefault: e.preventDefault,
-        nativeEvent: e,
+      if (props.value) {
+        const targetEvent = {
+          target: {
+            value: props.value,
+          },
+          stopPropagation: e.stopPropagation,
+          preventDefault: e.preventDefault,
+          nativeEvent: e,
+        }
+        setVisible(false)
+        updateModelValue(props.value)
+        setChange(targetEvent)
       }
-      // ctx.setVisbile(false)
-      // ctx.updateModelValue(props.value)
-      // ctx.setChange(targetEvent)
     }
     return () => (
       <div
