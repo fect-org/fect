@@ -1,12 +1,16 @@
 import { computed, PropType, ref, watchEffect } from 'vue'
-import { createProvider } from '@fect-ui/vue-hooks'
+import {
+  createProvider,
+  useClickAway,
+  useEventListener,
+} from '@fect-ui/vue-hooks'
 import { createNameSpace } from '../utils'
 import { NormalSizes } from '../utils/theme/propTypes'
 import { CustomCSSProperties, ComponentInstance } from '../utils/base'
 import SelectIcon from './select-icon'
 import SelcetClearableIcon from './select-clear-icon'
 import SelectMultiple from './select-multiple'
-
+import SelectDropDown from './select-dropdown'
 import './select.less'
 
 const [createComponent] = createNameSpace('Select')
@@ -93,16 +97,41 @@ export default createComponent({
     const selectRef = ref<HTMLDivElement>()
     const visible = ref<boolean>(false)
     const isEmpty = ref<boolean>(false)
+    const showClear = ref(false)
 
     const setVisible = (cur: boolean) => (visible.value = cur)
     const setEmpty = (cur: boolean) => (isEmpty.value = cur)
+    const setShowClear = (state: boolean) => (showClear.value = state)
+
+    useEventListener(
+      'mouseenter',
+      (e: Event) => {
+        e.stopPropagation()
+        e.preventDefault()
+        setShowClear(true)
+      },
+      { target: selectRef },
+    )
+    useEventListener(
+      'mouseleave',
+      (e: Event) => {
+        e.stopPropagation()
+        e.preventDefault()
+        setShowClear(false)
+      },
+      { target: selectRef },
+    )
+
+    useClickAway(() => setVisible(false), selectRef, {
+      event: 'click',
+    })
 
     /**
      * isEmpty only work in modelvalue as empty
      */
     watchEffect(() => {
       const hasValue = !!props.modelValue
-      hasValue && setEmpty(false)
+      setEmpty(hasValue ? false : true)
     })
 
     const setStyle = computed(() => {
@@ -123,6 +152,17 @@ export default createComponent({
     })
 
     const updateModelValue = (val: string) => {
+      const { multiple, modelValue } = props
+      if (multiple) {
+        const value = modelValue.slice() as Array<string>
+        const index = value.indexOf(val)
+        if (index !== -1) {
+          value.splice(index, 1)
+        } else {
+          value.push(val)
+        }
+        return emit('update:modelValue', value)
+      }
       emit('update:modelValue', val)
     }
 
@@ -144,6 +184,14 @@ export default createComponent({
     const setChange = (value: SelectEvent) => emit('change', value)
 
     provider({ updateModelValue, setChange, setVisible })
+
+    const handleClick = (e: Event) => {
+      if (props.disabled) return
+      e.stopPropagation()
+      e.preventDefault()
+      const show = visible.value
+      setVisible(!show)
+    }
 
     /**
      * control show main context
@@ -180,7 +228,9 @@ export default createComponent({
      */
     const showRightIcon = computed(() => {
       const { clearable, disabled, modelValue, multiple } = props
-      return clearable && !disabled && modelValue && !multiple
+      return (
+        clearable && !disabled && modelValue && !multiple && showClear.value
+      )
     })
 
     const renderRightIcon = () => {
@@ -191,9 +241,18 @@ export default createComponent({
     }
 
     return () => (
-      <div class={setClass.value} ref={selectRef} style={setStyle.value}>
+      <div
+        class={setClass.value}
+        ref={selectRef}
+        style={setStyle.value}
+        onClick={handleClick}
+      >
         {isEmpty.value ? renderPlaceHolder() : renderNodes()}
-        <div style={{ display: 'none' }}> {slots.default?.()}</div>
+        <SelectDropDown
+          v-slots={slots}
+          visible={visible.value}
+          parentRef={selectRef.value}
+        />
         {renderRightIcon()}
       </div>
     )
