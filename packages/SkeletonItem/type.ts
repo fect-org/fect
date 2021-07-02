@@ -12,4 +12,3 @@ const variable = tuple(
   'caption',
 )
 export type Variable = typeof variable[number]
-
