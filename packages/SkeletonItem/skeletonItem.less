@@ -1,0 +1,66 @@
+.skeleton__content {
+  .fect-skeleton__item {
+    width: 100%;
+    border-radius: calc(var(--fay-radius) / 2);
+    border-radius: calc(var(--fay-radius) / 2);
+    margin-top: 10px;
+    background-color: var(--accents-2);
+    &.animated {
+      background-image: linear-gradient(
+        270deg,
+        var(--accents-1),
+        var(--accents-2),
+        var(--accents-2),
+        var(--accents-1)
+      );
+      background-size: 400% 100%;
+      animation: load 5s ease-in-out infinite;
+      transition: opacity 300ms ease-out;
+      @keyframes load {
+        0% {
+          background-position: 200% 0;
+        }
+        to {
+          background-position: -200% 0;
+        }
+      }
+    }
+    &.p,
+    .rect {
+      height: 16px;
+    }
+    &.text {
+      height: 13px;
+    }
+    &.h1 {
+      height: 20px;
+    }
+    &.h3 {
+      height: 18px;
+    }
+    &.circle {
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      line-height: 36px;
+    }
+    &.image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--fay-radius);
+      svg {
+        width: 22%;
+        height: 22%;
+        color: var(--accents-3) !important;
+      }
+    }
+    &.button {
+      height: 40px;
+      width: 64px;
+    }
+    &.caption {
+      height: 12px;
+    }
+  }
+}

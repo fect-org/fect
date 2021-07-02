@@ -67,7 +67,7 @@ const querySelectSize = (size: NormalSizes) => {
 export default createComponent({
   props: {
     modelValue: {
-      type: [Array, String],
+      type: [String, Array] as PropType<string | string[]>,
       default: () => [],
     },
     placeholder: {
