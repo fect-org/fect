@@ -16,7 +16,7 @@ branches:
     - master
 
 install:
-  - yarn
+  - npm
 
 script:
-  - yarn report
+  - npm report
