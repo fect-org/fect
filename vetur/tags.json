@@ -252,5 +252,18 @@
       "type",
       "colors"
     ]
+  },
+  "fe-skeleton": {
+    "attributes": [
+      "loading",
+      "rows",
+      "animated",
+      "rowsWidth"
+    ]
+  },
+  "fe-skeletonItem": {
+    "attributes": [
+      "variable"
+    ]
   }
 }

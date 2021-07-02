@@ -486,5 +486,25 @@
   "fe-progress/type": {
     "type": "string",
     "description": "预定义的状体类型 , 可选值为`default`,`success`,`warning`,`error`, 默认值: `default`"
+  },
+  "fe-skeleton/loading": {
+    "type": "boolean",
+    "description": "控制是否显示真实的 `DOM`, 默认值:`false`"
+  },
+  "fe-skeleton/rows": {
+    "type": "number",
+    "description": "骨架屏段落数量 , 默认值:`0`"
+  },
+  "fe-skeleton/animated": {
+    "type": "boolean",
+    "description": "是否启用骨架屏动画 , 默认值:`false`"
+  },
+  "fe-skeleton/rowsWidth": {
+    "type": "number | string | (string|number)[]",
+    "description": "段落占位图宽度，可传数组来设置每一行的宽度 , 默认值:`100%`"
+  },
+  "fe-skeletonItem/variable": {
+    "type": "string",
+    "description": "显示的占位元素的样式 ,可选值为`p`,`text`,`h1`,`h3`,`rect`,`circle`,`image`,`button`,`caption`, 默认值: `text`"
   }
 }
