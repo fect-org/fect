@@ -1,6 +1,10 @@
 <template>
   <div>
     <div class="icons-grid">
+      <div class="search-content">
+        <search class="search-icon" />
+        <fe-input class="input" placeholder="搜索图标" v-model="val" />
+      </div>
       <icon-cell
         :icon="item"
         v-for="(item, i) in icons"
@@ -19,7 +23,7 @@
 </template>
 
 <script>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import iconsPool from './icon'
 import IconCell from './icons-cell'
 
@@ -31,14 +35,21 @@ export default {
   setup() {
     const show = ref(false)
     const iconName = ref(null)
+    const val = ref('')
     const setVisible = (pre) => (show.value = pre)
-    const icons = iconsPool
+    const icons = ref(iconsPool)
     const handleClick = (name) => {
       setVisible(true)
       iconName.value = name
     }
-    // const modalTitle = computed(() => )
-    const snippetText = computed(() => `< ${iconName.value} />`)
+
+    const snippetText = computed(() => `<${iconName.value} />`)
+
+    watch(
+      val,
+      (pre) => (icons.value = iconsPool.filter((icon) => icon.includes(pre))),
+    )
+
     return {
       iconName,
       show,
@@ -46,6 +57,7 @@ export default {
       setVisible,
       icons,
       handleClick,
+      val,
     }
   },
 }
@@ -57,5 +69,24 @@ export default {
   flex-wrap: wrap;
   margin-top: var(--fay-gap-half);
   justify-content: space-around;
+}
+.search-content {
+  display: inline;
+  position: relative;
+  width: 100%;
+
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1%;
+  }
+  .input {
+    box-sizing: border-box;
+    width: 100%;
+    /deep/input {
+      padding-left: 25px !important;
+    }
+  }
 }
 </style>
