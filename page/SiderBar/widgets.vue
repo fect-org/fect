@@ -8,8 +8,8 @@
       <github size="18" />
     </fe-link>
     <span class="fect-doc__widgets-icons" @click="changeHandler">
-      <sun size="18" v-if="themeIcon === 'sun'" />
-      <moon size="18" v-show="themeIcon === 'moon'" />
+      <sun size="18" v-show="theme === 'sun'" />
+      <moon size="18" v-show="theme === 'moon'" />
     </span>
   </div>
 </template>
@@ -18,14 +18,12 @@
 import { useProvider } from '@fect-ui/vue-hooks'
 import { useTheme } from '../../packages/utils'
 import { LayoutProvide, READONLY_DOCS_LAYOUT_KEY } from '../Layout/type'
-import { defineComponent, ref, watchEffect } from 'vue'
-import { ThemeIcon } from './type'
+import { computed, defineComponent, ref, watchEffect } from 'vue'
 
 export default defineComponent({
   name: 'Widgets',
   setup() {
     const isDark = ref<boolean>(false)
-    const themeIcon = ref<ThemeIcon>('moon')
 
     const setTheme = (theme: string) => localStorage.setItem('theme', theme)
 
@@ -47,16 +45,21 @@ export default defineComponent({
       if (next === 'light' || next === null) {
         isDark.value = true
         setTheme('dark')
-        themeIcon.value = 'sun'
         return
       }
       isDark.value = false
       setTheme('light')
-      themeIcon.value = 'moon'
     }
 
+    const theme = computed(() => {
+      if (isDark.value) {
+        return 'sun'
+      }
+      return 'moon'
+    })
+
     return {
-      themeIcon,
+      theme,
       changeHandler,
     }
   },

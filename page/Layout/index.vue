@@ -44,6 +44,8 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
+@import url('./code.css');
+
 @breakpoint: 650px;
 .fect-doc__layout {
   margin: 0 auto;

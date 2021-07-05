@@ -41,11 +41,11 @@ import {
   ComponentPublicInstance,
 } from 'vue'
 import { useClipboard, useProvider } from '@fect-ui/vue-hooks'
-import Prism from 'vue-prism-component'
+// import Prism from 'vue-prism-component'
 import { CodeShowProvide, READONLY_DOCS_CODESHOW_KEY } from './type'
 
 export default defineComponent({
-  components: { Prism },
+  // components: { Prism },
   setup() {
     const visible = ref<boolean>(false)
     const { context } = useProvider<CodeShowProvide>(READONLY_DOCS_CODESHOW_KEY)
@@ -81,7 +81,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@import url('./code.css');
 @import url('./animation.less');
 </style>
 

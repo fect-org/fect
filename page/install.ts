@@ -3,8 +3,10 @@ import Attributes from './Attributes/index.vue'
 import AttributesTitle from './Attributes/attributes-title.vue'
 import CodeShow from './CodeShow/index.vue'
 import Logo from './Logo/index.vue'
+import Prism from 'vue-prism-component'
 
-const components = [Attributes, AttributesTitle, CodeShow, Logo]
+Prism.name = 'Prism'
+const components = [Attributes, AttributesTitle, CodeShow, Logo, Prism]
 
 const install = (vue: App) => {
   components.map((component) => {
