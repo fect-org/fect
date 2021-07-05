@@ -23,7 +23,8 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx",
-    "packages/**/*"
+    "packages/**/*",
+    "page/**/*"
   ],
   "exclude": ["node_modules", "src/**/*.js", "src/**/*.jsx"]
 }
