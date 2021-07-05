@@ -1,6 +1,51 @@
-@breakpoint: 650px;
+<template>
+  <div class="fect-doc__layout">
+    <tabbar-mobile @click="mobileTabClickHandler" />
+    <aside :class="`fect-doc__siderbar ${isMobileScroll}`">
+      <sider-bar />
+    </aside>
+    <div class="fect-side__shadow"></div>
+    <main class="fect-doc__main">
+      <div>
+        <slot />
+      </div>
+    </main>
+  </div>
+</template>
 
-.f_doc_layout {
+<script lang="ts">
+import { computed, defineComponent, ref } from 'vue'
+import { createProvider } from '@fect-ui/vue-hooks'
+import { READONLY_DOCS_LAYOUT_KEY } from './type'
+import siderBar from '../SiderBar/index.vue'
+import tabbarMobile from '../SiderBar/tabbar-mobile.vue'
+export default defineComponent({
+  components: { siderBar, tabbarMobile },
+  setup(props, { slots }) {
+    const isScroll = ref(false)
+    const theme = ref(localStorage.getItem('theme'))
+    const { provider } = createProvider(READONLY_DOCS_LAYOUT_KEY)
+    const mobileTabClickHandler = () => (isScroll.value = !isScroll.value)
+    const changeThemeHandler = (cur: string) => (theme.value = cur)
+
+    const isMobileScroll = computed(() => (isScroll.value ? 'isAcive' : ''))
+
+    provider({
+      mobileTabClickHandler,
+      changeThemeHandler,
+      theme,
+    })
+    return {
+      isMobileScroll,
+      mobileTabClickHandler,
+    }
+  },
+})
+</script>
+
+<style lang="less" scoped>
+@breakpoint: 650px;
+.fect-doc__layout {
   margin: 0 auto;
   max-width: var(--fay-page-width);
   padding: 0 var(--fay-gap);
@@ -25,8 +70,7 @@
     font-weight: 600;
   }
 }
-
-.f_doc-sidebar {
+.fect-doc__siderbar {
   width: 200px;
   position: fixed;
   top: 100px;
@@ -36,22 +80,16 @@
   z-index: 100;
   overflow: auto;
   &::-webkit-scrollbar {
-    // width: 5px;
     width: 0;
   }
-  // &::-webkit-scrollbar-thumb {
-  //   background: var(--accents-2);
-  //   border-radius: 10px;
-  // }
 }
-.f_doc-side-shadow {
+.fect-side__shadow {
   width: 200px;
   margin-right: 20px;
   flex-shrink: 0;
   height: 100vh;
 }
-
-.f_doc-main {
+.fect-doc__main {
   display: flex;
   max-width: calc(100% - 220px);
   flex-direction: column;
@@ -62,12 +100,12 @@
 }
 
 @media only screen and (max-width: @breakpoint) {
-  .f_doc_layout {
+  .fect-doc__layout {
     max-width: 100%;
     width: 100%;
     padding: 0rem 1rem;
   }
-  .f_doc-sidebar {
+  .fect-doc__siderbar {
     position: fixed;
     top: 0;
     left: 0;
@@ -79,7 +117,6 @@
     padding: 0 var(--fay-gap);
     padding-top: var(--fay-gap);
     height: 0;
-
     background-color: var(--primary-background);
     &::-webkit-scrollbar {
       width: 0;
@@ -87,21 +124,21 @@
     &.isAcive {
       top: 3.7rem;
       height: calc(100vh - 3.9rem);
-      // padding-bottom: 1.7rem;
       transition: height 250ms ease;
       overflow: auto;
       z-index: 20;
     }
   }
-  .f_doc-side-shadow {
+  .fect-side__shadow {
     width: 0;
     margin: 0;
     display: none;
   }
-  .f_doc-main {
+  .fect-doc__main {
     margin-top: 6rem;
     width: 90vw;
     max-width: 90vw;
     padding: 0;
   }
 }
+</style>
