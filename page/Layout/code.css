@@ -1,0 +1,27 @@
+code[class*='language-'],
+pre[class*='language-'] {
+  color: var(--accents-4);
+}
+.token.tag {
+  color: var(--highlight-pink);
+}
+
+.token.punctuation {
+  color: var(--warning-light);
+}
+
+.token.operator {
+  color: var(--highlight-pink);
+}
+
+.token.keyword {
+  color: var(--success-default);
+}
+
+.token.string {
+  color: var(--fay-code-color);
+}
+
+.token.plain-text {
+  color: var(--accents-3);
+}
