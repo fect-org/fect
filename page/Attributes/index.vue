@@ -1,6 +1,38 @@
+<template>
+  <div>
+    <fe-spacer :y="2" />
+    <div class="fect-doc__api-attrs">
+      <slot />
+    </div>
+    <fe-spacer :y="1" />
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, onMounted } from 'vue'
+
+export default defineComponent({
+  name: 'feAttributes',
+  setup() {
+    onMounted(() => {
+      const codes = document.querySelectorAll('inlinecode')
+      codes.forEach((code) => {
+        const content = code.textContent as string
+        const codeEl = document.createElement('code')
+        codeEl.innerHTML = content
+        if (code.parentNode) {
+          code.parentNode.replaceChild(codeEl, code)
+        }
+      })
+    })
+  },
+})
+</script>
+
+<style lang="less" scoped>
 @breakpoint: 650px;
 
-.f_doc-api_attrs {
+.fect-doc__api-attrs {
   width: 100%;
   table {
     margin-right: var(--fay-gap);
@@ -54,16 +86,15 @@
   }
 }
 
-.f_doc-api_attrs thead th td {
+.fect-doc__api-attrs thead th td {
   height: 2.5rem;
 }
-
-.f_doc-api_attrs tbody tr td {
+.fect-doc__api-attrs tbody tr td {
   height: 3px;
 }
 
 @media only screen and (max-width: @breakpoint) {
-  .f_doc-api_attrs {
+  .fect-doc__api-attrs {
     overflow-x: scroll;
     table {
       white-space: nowrap;
@@ -75,3 +106,4 @@
     }
   }
 }
+</style>
