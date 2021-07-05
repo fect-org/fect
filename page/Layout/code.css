@@ -9,6 +9,12 @@ pre[class*='language-'] {
 .token.punctuation {
   color: var(--warning-light);
 }
+.token.attr-name {
+  color: var(--warning-light);
+}
+.token.attr-value {
+  color: var(--success-dark);
+}
 
 .token.operator {
   color: var(--highlight-pink);
