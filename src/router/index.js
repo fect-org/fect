@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { collectRoute } from '../../scripts/collectRouter'
-const path = require.context('../../docs/zh-cn/', true, /.mdx$/)
+// const path = require.context('../../docs/zh-cn/', true, /.md$/)
+const path = require.context('../../docs/zh-cn', true, /.md$/)
+
+collectRoute(path)
 
 const routes = [
   { path: '/', redirect: { name: 'Introduce' } },

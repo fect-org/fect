@@ -1,0 +1,32 @@
+# Button / 按钮
+
+用于触发一个操作
+
+<fe-code-show title="默认的" name="ex-button-default" desc="默认Button包含一个动画效果。" />
+
+<fe-code-show title="加载中" name="ex-button-loading" desc="Button按钮支持加载状态。" />
+
+<fe-code-show title="禁用" name="ex-button-disabled"  desc="禁止Button的一切操作" />
+
+<fe-code-show title="阴影" name="ex-button-shadow" desc="使用阴影凸显层级" />
+
+<fe-code-show title="类型" name="ex-button-type" desc="不同状态下的按钮" />
+
+<fe-code-show title="尺寸" name="ex-button-size" desc="不同大小下的按钮" />
+
+<fe-attributes>
+
+<fe-attributes-title title="Button Props" />
+
+| 属性         | 描述           | 类型                   | 可选值                                     | 默认      |
+| ------------ | -------------- | ---------------------- | ------------------------------------------ | --------- |
+| **type**     | 按钮属性       | `string`               | `'default', 'success', 'warning', 'error'` | `default` |
+| **size**     | 按钮大小       | `string`               | `'mini','small','medium','large'`          | `medium`  |
+| **auto**     | 自动缩放宽度   | `boolean`              | `'true','false'`                           | `false`   |
+| **disabled** | 是否禁用按钮   | `boolean`              | `'true','false'`                           | `false`   |
+| **shadow**   | 是否显示阴影   | `boolean`              | `'true','false'`                           | `false`   |
+| **loading**  | 是否启用加载中 | `boolean`              | `'true','false'`                           | `false`   |
+| _click_      | 点击事件       | `MouseEventHandler`    | `-`                                        | `-`       |
+| ...          | 原生属性       | `ButtonHTMLAttributes` | `'id','class',...`                         | `-`       |
+
+</fe-attributes>
