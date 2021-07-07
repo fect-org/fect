@@ -17,7 +17,7 @@ import Anchor from '../Anchor/index.vue'
 import CodeComponent from './code-component.vue'
 import CodePreview from './code-preview.vue'
 export default defineComponent({
-  name: 'feCodeShow',
+  name: 'FeCodeShow',
   components: { Anchor, CodeComponent, CodePreview },
   props: {
     title: {

@@ -7,7 +7,7 @@ export const meta = {
   group:'',
 }
 
-<fe-CodeShow
+<fe-code-show
   title="默认的"
   name="ex-<%=h.changeCase.lcFirst(name) %>-default"
 />

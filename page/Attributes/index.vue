@@ -9,29 +9,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'feAttributes',
-  setup() {
-    onMounted(() => {
-      const codes = document.querySelectorAll('inlinecode')
-      codes.forEach((code) => {
-        const content = code.textContent as string
-        const codeEl = document.createElement('code')
-        codeEl.innerHTML = content
-        if (code.parentNode) {
-          code.parentNode.replaceChild(codeEl, code)
-        }
-      })
-    })
-  },
+  name: 'FeAttributes',
+  setup() {},
 })
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 @breakpoint: 650px;
-
+// scoped
 .fect-doc__api-attrs {
   width: 100%;
   table {

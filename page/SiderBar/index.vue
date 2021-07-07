@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue'
-import docs from '../../docs/index'
+import { zhRoutes } from '../../docs/zh-cn/index'
 import widgets from './widgets.vue'
 import activeCate from '../ActiveCate/index.vue'
 
@@ -24,7 +24,8 @@ export default defineComponent({
   components: { widgets, activeCate },
   name: 'SiderBar',
   setup() {
-    const Routes = reactive({ routes: docs['zh-cn'] })
+    // docs['zh-cn']
+    const Routes = reactive({ routes: zhRoutes })
     return {
       ...toRefs(Routes),
     }

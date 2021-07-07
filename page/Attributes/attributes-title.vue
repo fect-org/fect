@@ -10,7 +10,7 @@ import { defineComponent } from 'vue'
 import Anchor from '../Anchor/index.vue'
 
 export default defineComponent({
-  name: 'feAttributesTitle',
+  name: 'FeAttributesTitle',
   components: { Anchor },
   props: {
     title: {
