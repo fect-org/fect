@@ -1,6 +1,5 @@
-import { computed, toRefs } from 'vue'
-import { useRouter } from 'vue-router'
-import { createNameSpace } from '../utils'
+import { computed, getCurrentInstance } from 'vue'
+import { createNameSpace, useRoute } from '../utils'
 import './link.less'
 
 const [createComponent] = createNameSpace('Link')
@@ -20,7 +19,7 @@ export default createComponent({
     block: Boolean,
   },
   setup(props, { attrs, slots }) {
-    const route = useRouter()
+    const route = useRoute()
 
     const setClass = computed(() => {
       const names: string[] = []
@@ -35,9 +34,7 @@ export default createComponent({
       return props.href
     })
 
-    const goToHandler = () => {
-      if (props.to) route.push(props.to)
-    }
+    const goToHandler = () => props.to && route()
 
     return () => (
       <a

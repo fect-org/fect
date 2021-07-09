@@ -4,6 +4,8 @@ node_modules
 lib
 es
 types
+source
+tempo
 # local env files
 .env.local
 .env.*.local
