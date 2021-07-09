@@ -20,3 +20,4 @@ install:
 
 script:
   - npm run build:lib
+  - npm run coverage
