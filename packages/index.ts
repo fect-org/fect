@@ -1,55 +1,126 @@
-
-import { App } from 'vue';
-
-import './utils/styles/index.css';
-import Avatar from './Avatar';
-import AvatarGroup from './AvatarGroup';
-import Badge from './Badge';
-import BadgeAnchor from './BadgeAnchor';
-import Breadcrumbs from './Breadcrumbs';
-import BreadcrumbsItem from './BreadcrumbsItem';
-import Button from './Button';
-import Capacity from './Capacity';
-import Card from './Card';
-import CheckBox from './CheckBox';
-import CheckboxGroup from './CheckboxGroup';
-import Code from './Code';
-import Col from './Col';
-import Dot from './Dot';
-import Image from './Image';
-import Input from './Input';
-import Link from './Link';
-import Loading from './Loading';
-import Modal from './Modal';
-import Pagination from './Pagination';
-import Progress from './Progress';
-import Radio from './Radio';
-import RadioGroup from './RadioGroup';
-import Row from './Row';
-import Select from './Select';
-import SelectOption from './SelectOption';
-import Skeleton from './Skeleton';
-import SkeletonItem from './SkeletonItem';
-import Snippet from './Snippet';
-import Spacer from './Spacer';
-import Switch from './Switch';
-import Tab from './Tab';
-import Tabs from './Tabs';
-import Tag from './Tag';
-import Toast from './Toast';
-const components = [Avatar,AvatarGroup,Badge,BadgeAnchor,Breadcrumbs,BreadcrumbsItem,Button,Capacity,Card,CheckBox,CheckboxGroup,Code,Col,Dot,Image,Input,Link,Loading,Modal,Pagination,Progress,Radio,RadioGroup,Row,Select,SelectOption,Skeleton,SkeletonItem,Snippet,Spacer,Switch,Tab,Tabs,Tag,Toast];
-const install = (app:App)=>{
-  components.forEach((c:any) => {
-    if (c.install) {
-      app.use(c);
-    } else if (c.name) {
-      app.component(c.name, c);
+import { App } from 'vue'
+import './utils/styles/index.css'
+import Avatar from './avatar'
+import AvatarGroup from './avatar-group'
+import Badge from './badge'
+import BadgeAnchor from './badge-anchor'
+import Breadcrumbs from './breadcrumbs'
+import BreadcrumbsItem from './breadcrumbs-item'
+import Button from './button'
+import Capacity from './capacity'
+import Card from './card'
+import Checkbox from './checkbox'
+import CheckboxGroup from './checkbox-group'
+import Code from './code'
+import Col from './col'
+import Dot from './dot'
+import Image from './image'
+import Input from './input'
+import Link from './link'
+import Loading from './loading'
+import Modal from './modal'
+import Pagination from './pagination'
+import Progress from './progress'
+import Radio from './radio'
+import RadioGroup from './radio-group'
+import Row from './row'
+import Select from './select'
+import SelectOption from './select-option'
+import Skeleton from './skeleton'
+import SkeletonItem from './skeletonItem'
+import Snippet from './snippet'
+import Spacer from './spacer'
+import Switch from './switch'
+import Tab from './tab'
+import Tabs from './tabs'
+import Tag from './tag'
+import Toast from './toast'
+const components = [
+  Avatar,
+  AvatarGroup,
+  Badge,
+  BadgeAnchor,
+  Breadcrumbs,
+  BreadcrumbsItem,
+  Button,
+  Capacity,
+  Card,
+  Checkbox,
+  CheckboxGroup,
+  Code,
+  Col,
+  Dot,
+  Image,
+  Input,
+  Link,
+  Loading,
+  Modal,
+  Pagination,
+  Progress,
+  Radio,
+  RadioGroup,
+  Row,
+  Select,
+  SelectOption,
+  Skeleton,
+  SkeletonItem,
+  Snippet,
+  Spacer,
+  Switch,
+  Tab,
+  Tabs,
+  Tag,
+  Toast,
+]
+const install = (app: App) => {
+  components.map((component: any) => {
+    if (component.install) {
+      app.use(component)
+    } else if (component.name) {
+      app.component(component.name, component)
     }
-  });
-};
+  })
+}
 
-export { install };
+export {
+  install,
+  Avatar,
+  AvatarGroup,
+  Badge,
+  BadgeAnchor,
+  Breadcrumbs,
+  BreadcrumbsItem,
+  Button,
+  Capacity,
+  Card,
+  Checkbox,
+  CheckboxGroup,
+  Code,
+  Col,
+  Dot,
+  Image,
+  Input,
+  Link,
+  Loading,
+  Modal,
+  Pagination,
+  Progress,
+  Radio,
+  RadioGroup,
+  Row,
+  Select,
+  SelectOption,
+  Skeleton,
+  SkeletonItem,
+  Snippet,
+  Spacer,
+  Switch,
+  Tab,
+  Tabs,
+  Tag,
+  Toast,
+}
 
-export default { install }
-
-export { Avatar,AvatarGroup,Badge,BadgeAnchor,Breadcrumbs,BreadcrumbsItem,Button,Capacity,Card,CheckBox,CheckboxGroup,Code,Col,Dot,Image,Input,Link,Loading,Modal,Pagination,Progress,Radio,RadioGroup,Row,Select,SelectOption,Skeleton,SkeletonItem,Snippet,Spacer,Switch,Tab,Tabs,Tag,Toast };
+export default {
+  install,
+}

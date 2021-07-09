@@ -3,54 +3,60 @@
  * collect all component and create at packages/index.js
  */
 
-const fs = require('fs-extra')
-const path = require('path')
-const { compose, concat, filter, map } = require('./reducer')
-const packagePath = path.join(__dirname, '../packages')
-const resolvePath = path.join(packagePath, './index.ts')
+const { readdirSync, writeFile } = require('fs-extra')
+const { resolve } = require('path')
+
+const packageEntry = resolve(__dirname, '../packages')
+const resolvePath = resolve(packageEntry, './index.ts')
 const IGNORE_DIR = ['utils', 'index.ts']
 
-const importTemp = `
-  import {App} from 'vue';\n
-  import \'./utils/styles/index.css\';\n`
+const PASCAL_REG = /(\w)(.+)/g
 
-const installTemp = `const install =(app:App)=>{
-    components.forEach((c:any) => {
-      if (c.install) {
-        app.use(c);
-      } else if (c.name) {
-        app.component(c.name, c);
-      }
-    });
-  };\n
-  export { install };\n
-  export default { install }\n
-  `
-
-const shouldCollect = (d) => !IGNORE_DIR.includes(d)
-
-const composeTemp = (d) => {
-  const filePath = `./${d}`
-  const temp = `import ${d} from "${filePath}";\n`
-  return temp
+const genImport = (components, names) => {
+  return components
+    .map((name, idx) => `import ${name} from './${names[idx]}';`)
+    .join('\n')
 }
 
-const collectOut = (d) => {
-  const r = d.filter((r) => shouldCollect(r))
-  const out = `export {${r}};\n`
-  return out
-}
-
-const Reducer = compose(filter(shouldCollect), map(composeTemp))
-
-const resolveImport = (dir) =>
-  importTemp + dir.reduce(Reducer(concat), []).join(' ')
+const genExport = (names) => names.map((name) => name).join(',\n  ')
 
 ;(async () => {
-  const files = await fs.readdir(packagePath)
-  const r = await resolveImport(files)
-  const out = await collectOut(files)
-  const arr = `const components = [${files.filter((v) => shouldCollect(v))}];\n`
-  const v = r + arr + installTemp + out
-  fs.writeFile(resolvePath, v)
+  const components = readdirSync(packageEntry).filter(
+    (dir) => !IGNORE_DIR.includes(dir),
+  )
+
+  // eg : avatar-group =>AvatarGroup
+  const names = components.map((dir) =>
+    dir
+      .replace(PASCAL_REG, (_, k, k1) => k.toUpperCase() + k1)
+      .replace(/-(\w)/g, (_, k) => k.toUpperCase()),
+  )
+
+  const content = `
+  import {App} from 'vue';
+  import './utils/styles/index.css';
+  ${genImport(names, components)}
+  const components = [${genExport(names)}];
+  const install = (app:App) => {
+    components.map((component:any) => {
+      if (component.install) {
+        app.use(component)
+      } else if(component.name) {
+        app.component(component.name , component)
+      }
+    })
+  };
+
+  export {
+    install,
+    ${genExport(names)}
+  };
+
+  export default {
+    install,
+  };
+
+  `
+
+  await writeFile(resolvePath, content)
 })()
