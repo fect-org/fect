@@ -1,7 +1,7 @@
 import { PropType } from 'vue'
 import { createProvider } from '@fect-ui/vue-hooks'
 import { createNameSpace } from '../utils'
-import SkeletonItem from '../skeletonItem'
+import SkeletonItem from '../skeleton-item'
 
 const [createComponent] = createNameSpace('Skeleton')
 
