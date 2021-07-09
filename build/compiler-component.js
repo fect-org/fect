@@ -21,7 +21,8 @@ const filterComponent = () => {
     .map((dir) => isDir(resolve(PACKAGE_PATH, dir)) && dir)
     .filter((dir) => dir)
     .map((dir) => {
-      const outPath = resolve(SourcePath, dir.toLocaleLowerCase())
+      // .toLocaleLowerCase()
+      const outPath = resolve(SourcePath, dir)
       const sourcePath = resolve(PACKAGE_PATH, dir)
       copySync(sourcePath, outPath)
     })
@@ -66,6 +67,7 @@ const buildCjs = async () => {
 ;(async () => {
   await remove(SourcePath)
   await remove(esPath)
+  await remove(libPath)
   await filterComponent()
   setNodeEnv('production')
   await buildEsm()
