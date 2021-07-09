@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Breadcrumbs should be support different sizes 1`] = `
+<nav class="fect-nav_container" style="font-size: 12px;">0</nav>
+<nav class="fect-nav_container" style="font-size: 14px;">1</nav>
+<nav class="fect-nav_container" style="font-size: 16px;">2</nav>
+<nav class="fect-nav_container" style="font-size: 18px;">3</nav>
+`;

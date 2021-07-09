@@ -1,0 +1,66 @@
+.fect-snippet {
+  position: relative;
+  max-width: 100%;
+  width: initial;
+  padding: var(--fay-gap-half);
+  border-radius: var(--fay-radius);
+  background-color: var(--primary-background);
+  border: 1px solid var(--accents-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+
+  &.success {
+    border-color: var(--success-default);
+    color: var(--success-default);
+    &.fill {
+      background-color: var(--success-default);
+      color: var(--primary-background);
+    }
+  }
+  &.warning {
+    border-color: var(--warning-default);
+    color: var(--warning-default);
+    &.fill {
+      background-color: var(--warning-default);
+      color: var(--primary-background);
+    }
+  }
+  &.error {
+    border-color: var(--error-default);
+    color: var(--error-default);
+    &.fill {
+      background-color: var(--error-default);
+      color: var(--primary-background);
+    }
+  }
+  &.disabled {
+    cursor: not-allowed;
+  }
+  > span {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    font-size: 0.92rem;
+    white-space: nowrap;
+    width: 90%;
+    overflow: hidden;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    span {
+      margin-right: var(--fay-gap-quarter);
+    }
+  }
+}
+
+.fect-snippet {
+  .fect-snippet_copy {
+    transition: opacity 0.2s ease 0s;
+    &:hover {
+      opacity: 0.65;
+    }
+  }
+}

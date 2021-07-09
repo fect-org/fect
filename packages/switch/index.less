@@ -1,0 +1,96 @@
+.fect-switch {
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+  user-select: none;
+  width: 40px;
+  height: 16px;
+  border-radius: 15px;
+  vertical-align: middle;
+  background-color: var(--accents-2);
+  cursor: pointer;
+  transition-delay: 0.12s;
+  transition-duration: 0.2s;
+  transition-property: background, border;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  &.checked {
+    background-color: var(--accents-4);
+    box-shadow: none;
+    &:not(.disabled) {
+      background-color: #067df7;
+    }
+  }
+  &.disabled {
+    cursor: not-allowed;
+  }
+  .fect-switch-checkBox {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    &:checked + .fect-swtich-slider {
+      top: 50%;
+      left: 26px;
+      &.mini {
+        left: 11px;
+      }
+      &.small {
+        left: 23px;
+      }
+      &.large {
+        left: 32.5px;
+      }
+    }
+  }
+  .fect-swtich-slider {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1px;
+    border-radius: 50%;
+    height: 13px;
+    width: 13px;
+    background-color: var(--primary-background);
+    transition: left 280ms cubic-bezier(0, 0, 0.2, 1);
+
+    &.disabled {
+      background-color: var(--accents-1);
+    }
+    &.checked {
+      background-color: var(--accents-2);
+      &:not(.disabled) {
+        background-color: var(--primary-background);
+      }
+    }
+    & .mini {
+      height: 10px;
+      width: 10px;
+    }
+    & .small {
+      height: 10px;
+      width: 10px;
+    }
+    & .large {
+      height: 14.5px;
+      width: 14.5px;
+    }
+  }
+}
+
+.fect-switch {
+  &.mini {
+    width: 25px;
+    height: 14px;
+  }
+
+  &.small {
+    width: 37px;
+    height: 14px;
+  }
+
+  &.large {
+    width: 47px;
+    height: 17.5px;
+  }
+}

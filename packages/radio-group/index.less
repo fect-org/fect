@@ -1,0 +1,14 @@
+.fect-radio-group {
+  display: flex;
+  flex-direction: column;
+  & .fect-radio:not(.fect-radio:first-of-type) {
+    margin-top: 15px;
+  }
+  &.useRow {
+    flex-direction: row;
+    & .fect-radio:not(.fect-radio:first-of-type) {
+      margin-left: 15px;
+      margin-top: 0;
+    }
+  }
+}

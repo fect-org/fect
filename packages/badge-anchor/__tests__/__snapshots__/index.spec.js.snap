@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BadgeAnchor should be support placement 1`] = `
+<div class="fect-badge_anchor">
+  <p>Test Info</p><sup style="position: absolute; top: 0px; right: 0px; transform: translate(50%, -50%); transform-origin: 100% 0%; z-index: 1;"><span class="fect-dot fect-badge" style="font-size: 14px;"><!----></span></sup>
+</div>
+<div class="fect-badge_anchor">
+  <p>Test Info</p><sup style="position: absolute; top: 0px; left: 0px; transform: translate(-50%, -50%); transform-origin: 0% 0%; z-index: 1;"><span class="fect-dot fect-badge" style="font-size: 14px;"><!----></span></sup>
+</div>
+<div class="fect-badge_anchor">
+  <p>Test Info</p><sup style="position: absolute; right: 0px; bottom: 0px; transform: translate(50%, 50%); transform-origin: 100% 100%; z-index: 1;"><span class="fect-dot fect-badge" style="font-size: 14px;"><!----></span></sup>
+</div>
+<div class="fect-badge_anchor">
+  <p>Test Info</p><sup style="position: absolute; left: 0px; bottom: 0px; transform: translate(-50%, 50%); transform-origin: 0% 100%; z-index: 1;"><span class="fect-dot fect-badge" style="font-size: 14px;"><!----></span></sup>
+</div>
+`;

@@ -1,0 +1,32 @@
+.fect-link {
+  display: inline-flex;
+  line-height: inherit;
+  color: inherit;
+  width: fit-content;
+  text-decoration: none;
+  transition: color 200ms ease 0ms;
+  &.underline {
+    &:active,
+    &:focus,
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &.color {
+    color: var(--success-default);
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: var(--success-light);
+  }
+  &.block {
+    padding: 8px;
+    border-radius: 5px;
+    // padding: calc(20 * 0.8) calc(20 * 1.7);
+    &:hover {
+      background-color: #0076ff1a;
+    }
+  }
+}
