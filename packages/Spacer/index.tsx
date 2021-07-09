@@ -1,6 +1,6 @@
 import { computed, CSSProperties } from 'vue'
 import { createNameSpace } from '../utils'
-import './spacer.less'
+import './index.less'
 
 const [createComponent] = createNameSpace('Spacer')
 

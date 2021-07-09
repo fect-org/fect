@@ -1,8 +1,8 @@
 import { computed, watchEffect, ref } from 'vue'
 import { useProvider } from '@fect-ui/vue-hooks'
 import { createNameSpace } from '../utils'
-import { TabsProvide, READONLY_TABS_KEY } from '../Tabs/index'
-import './tab.less'
+import { TabsProvide, READONLY_TABS_KEY } from '../tabs/index'
+import './index.less'
 const [createComponent] = createNameSpace('Tab')
 
 export default createComponent({

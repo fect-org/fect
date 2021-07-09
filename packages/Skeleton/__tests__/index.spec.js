@@ -1,5 +1,5 @@
 import Skeleton from '../index'
-import SkeletonItem from '../../SkeletonItem'
+import SkeletonItem from '../../skeletonItem'
 import { mount } from '@vue/test-utils'
 
 describe('Skeleton', () => {

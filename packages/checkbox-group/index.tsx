@@ -3,7 +3,7 @@ import { createNameSpace } from '../utils'
 import { createProvider } from '@fect-ui/vue-hooks'
 import { NormalSizes } from '../utils/theme/propTypes'
 const [createComponent] = createNameSpace('CheckboxGroup')
-import './checkbox-group.less'
+import './index.less'
 
 export const READONLY_CHECKBOX_KEY = 'checkboxKey'
 

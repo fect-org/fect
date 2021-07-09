@@ -1,8 +1,8 @@
 import { watchEffect } from 'vue'
 import { useProvider } from '@fect-ui/vue-hooks'
-import { READONLY_SELECT_KEY, SelectProvide } from '../Select'
+import { READONLY_SELECT_KEY, SelectProvide } from '../select'
 import { createNameSpace } from '../utils'
-import './selectOption.less'
+import './index.less'
 
 const [createComponent] = createNameSpace('Option')
 

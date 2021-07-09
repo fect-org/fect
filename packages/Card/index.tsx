@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 import { createNameSpace } from '../utils'
 import CardContent from './card-content'
-import './card.less'
+import './index.less'
 
 const [createComponent] = createNameSpace('Card')
 

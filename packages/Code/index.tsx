@@ -1,6 +1,6 @@
 import { createNameSpace } from '../utils'
 const [createComponent] = createNameSpace('Code')
-import './code.less'
+import './index.less'
 
 export default createComponent({
   props: {

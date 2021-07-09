@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { ref } from 'vue'
 import CheckboxGroup from '../index'
-import Checkbox from '../../CheckBox'
+import Checkbox from '../../checkbox'
 describe('CheckboxGroup', () => {
   it('should be render as element', () => {
     const el = mount(<CheckboxGroup />)

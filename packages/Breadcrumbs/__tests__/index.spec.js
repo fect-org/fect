@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import Breadcrumbs from '../index'
-import BreadcrumbsItem from '../../BreadcrumbsItem'
+import BreadcrumbsItem from '../../breadcrumbs-item'
 
 describe('Breadcrumbs', () => {
   it('should be render as element', () => {

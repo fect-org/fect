@@ -7,9 +7,9 @@ import {
   READONLY_CHECKBOX_KEY,
   CheckboxGroupProvide,
   CheckboxEvent,
-} from '../CheckboxGroup'
+} from '../checkbox-group'
 import CheckIcon from './checkbox-icon'
-import './checkbox.less'
+import './index.less'
 
 const [createComponent] = createNameSpace('Checkbox')
 

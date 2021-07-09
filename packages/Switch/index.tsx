@@ -1,7 +1,7 @@
 import { computed, ref, PropType } from 'vue'
 import { createNameSpace } from '../utils'
 import { NormalSizes } from '../utils/theme/propTypes'
-import './switch.less'
+import './index.less'
 
 const [createComponent] = createNameSpace('Switch')
 

@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 
-import Loading from '../Loading'
+import Loading from '../loading'
 
 const ButtonLoading = defineComponent({
   setup(props, { attrs }) {

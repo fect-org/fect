@@ -2,7 +2,7 @@ import { computed, PropType, CSSProperties } from 'vue'
 import { createNameSpace } from '../utils'
 import { createProvider } from '@fect-ui/vue-hooks'
 import { NormalSizes } from '../utils/theme/propTypes'
-import './breadcrumbs.less'
+import './index.less'
 
 const [createComponent] = createNameSpace('Breadcrumbs')
 

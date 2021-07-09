@@ -3,7 +3,7 @@ import { createProvider } from '@fect-ui/vue-hooks'
 import { READONLY_MODAL_KEY } from './type'
 import ModalWrapper from './modal-wrapper'
 
-import './modal.less'
+import './index.less'
 import { Transition } from 'vue'
 
 const [createComponent] = createNameSpace('Modal')

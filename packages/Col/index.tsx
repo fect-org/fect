@@ -1,8 +1,8 @@
 import { computed, ref, PropType, CSSProperties } from 'vue'
 import { useProvider } from '@fect-ui/vue-hooks'
 import { createNameSpace } from '../utils'
-import { RowProvide, READONLY_LAYOUT_KEY } from '../Row'
-import './col.less'
+import { RowProvide, READONLY_LAYOUT_KEY } from '../row'
+import './index.less'
 
 const [createComponent] = createNameSpace('Col')
 

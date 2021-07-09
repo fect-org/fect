@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 import { useProvider } from '@fect-ui/vue-hooks'
-import Link from '../Link'
+import Link from '../link'
 import { ImageProvide, READONLY_IMAGE_KEY } from './type'
 import HttpIcons from './image-browser-icon'
 

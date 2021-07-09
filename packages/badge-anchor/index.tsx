@@ -3,7 +3,7 @@ import { createNameSpace } from '../utils'
 import { createProvider } from '@fect-ui/vue-hooks'
 import { PlaceTypes } from '../utils/theme/propTypes'
 
-import './badgeAnchor.less'
+import './index.less'
 
 const [createComponent] = createNameSpace('BadgeAnchor')
 

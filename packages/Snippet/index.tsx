@@ -3,8 +3,8 @@ import { useClipboard } from '@fect-ui/vue-hooks'
 import { createNameSpace } from '../utils'
 import { NormalTypes, SnippetCopyTypes } from '../utils/theme/propTypes'
 import SnippetIcon from './snippet-icon'
-import Toast from '../Toast'
-import './snippet.less'
+import Toast from '../toast'
+import './index.less'
 
 const [createComponent] = createNameSpace('Snippet')
 
