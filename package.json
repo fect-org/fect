@@ -1,6 +1,6 @@
 {
   "name": "@fect-ui/vue",
-  "version": "0.1.0-alpha.5",
+  "version": "0.1.0-alpha.7",
   "description": "Minimalist UI components built on Vue",
   "author": "Fect Org",
   "scripts": {
@@ -16,8 +16,10 @@
     "build:doc": "vue-cli-service build",
     "build:types": "tsc -p ./scripts",
     "build:lib": "node ./build/compiler-component.js && node ./build/compiler-entry.js",
-    "build:umd": "webpack --config ./build/webpack.config.js",
-    "build": "npm run build:lib && npm run build:umd && npm run build:types"
+    "build:umd": "vue-cli-service build --target lib --dest tempo  --name fect ./packages/index.ts && node ./build/compiler-umd.js",
+    "clean:tempo": "node ./build/clean-dir.js",
+    "build": "npm run build:lib && npm run build:umd && npm run clean:tempo",
+    "build:pkg": "npm run build && npm run types"
   },
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -61,7 +63,6 @@
     "codecov": "^3.8.2",
     "core-js": "^3.6.5",
     "css-loader": "^5.1.1",
-    "css-minimizer-webpack-plugin": "^3.0.2",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^6.7.2",
     "eslint-config-kagura": "^1.0.3",
@@ -74,7 +75,6 @@
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "lint-staged": "^9.5.0",
-    "mini-css-extract-plugin": "^2.1.0",
     "postcss": "^8.3.0",
     "prismjs": "^1.23.0",
     "raw-loader": "^4.0.2",
@@ -85,9 +85,7 @@
     "vue-jest": "^5.0.0-0",
     "vue-loader": "^16.1.2",
     "vue-prism-component": "^2.0.0",
-    "vue-router": "^4.0.8",
-    "webpack": "^5.43.0",
-    "webpack-cli": "^4.7.2"
+    "vue-router": "^4.0.8"
   },
   "peerDependencies": {
     "vue": "^3.0.0"

@@ -1,7 +1,7 @@
 import { createComponent } from './component'
 
 const createNameSpace = (name: string) => {
-  const declareName = `fe-${name}`
+  const declareName = `fe-${name.toLocaleLowerCase()}`
   return [createComponent(declareName)]
 }
 
