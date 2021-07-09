@@ -1,5 +1,5 @@
 import Select from '../index'
-import Option from '../../select-option'
+import Option from '../../select-option/index'
 import { ref } from 'vue'
 import { mount } from '@vue/test-utils'
 

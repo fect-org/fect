@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import AvatarGroup from '../index'
-import Avatar from '../../avatar'
+import Avatar from '../../avatar/index'
 
 const NUMBER_COUNT = 10
 
