@@ -1,6 +1,6 @@
 import { defineComponent, ref } from 'vue'
 import { useProvider } from '@fect-ui/vue-hooks'
-import Button from '../Button'
+import Button from '../button'
 import { READONLY_MODAL_KEY, ModalProvide } from './type'
 
 const ModalAction = defineComponent({

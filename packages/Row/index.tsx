@@ -2,7 +2,7 @@ import { computed, PropType, CSSProperties } from 'vue'
 import { createProvider } from '@fect-ui/vue-hooks'
 import { createNameSpace } from '../utils'
 import { JustifyTypes, AlignTypes } from '../utils/theme/propTypes'
-import './row.less'
+import './index.less'
 
 const [createComponent] = createNameSpace('Row')
 

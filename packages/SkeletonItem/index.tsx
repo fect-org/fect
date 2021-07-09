@@ -3,8 +3,8 @@ import { useProvider } from '@fect-ui/vue-hooks'
 import { createNameSpace } from '../utils'
 import { Variable } from './type'
 import ImageSkeleton from './image-skeleton'
-import { READONLY_SKELETON_KEY, SkeletonProvide } from '../Skeleton'
-import './skeletonItem.less'
+import { READONLY_SKELETON_KEY, SkeletonProvide } from '../skeleton'
+import './index.less'
 
 const [createComponent] = createNameSpace('SkeletonItem')
 

@@ -2,7 +2,7 @@ import { PropType, Teleport, CSSProperties, computed } from 'vue'
 import { createNameSpace } from '../utils'
 import { NormalTypes } from '../utils/theme/propTypes'
 
-import './toast.less'
+import './index.less'
 
 const [createComponent] = createNameSpace('Toast')
 

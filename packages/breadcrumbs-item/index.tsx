@@ -1,10 +1,10 @@
 import { ref, watchEffect } from 'vue'
 import { createNameSpace } from '../utils'
 import { useProvider } from '@fect-ui/vue-hooks'
-import { BreadcrumbsProvide, READONLY_BREADCRUMBS_KEY } from '../Breadcrumbs'
-import Link from '../Link'
+import { BreadcrumbsProvide, READONLY_BREADCRUMBS_KEY } from '../breadcrumbs'
+import Link from '../link'
 import Separator from './breadcrumbs-spearator'
-import './breadcrumbs-item.less'
+import './index.less'
 
 const [createComponent] = createNameSpace('BreadcrumbsItem')
 

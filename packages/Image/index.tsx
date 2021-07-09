@@ -4,7 +4,7 @@ import { createNameSpace } from '../utils'
 import ImgSkeleton from './image-skeleton'
 import ImageBrowser from './image-browser'
 import { BrowserColors, READONLY_IMAGE_KEY } from './type'
-import './image.less'
+import './index.less'
 
 const [createComponent] = createNameSpace('Image')
 
@@ -130,8 +130,8 @@ export default createComponent({
       <>
         {(props.useBrowser && (
           <ImageBrowser {...attrs}>{renderNormal()}</ImageBrowser>
-        ))
-          || renderNormal()}
+        )) ||
+          renderNormal()}
       </>
     )
   },

@@ -6,7 +6,7 @@ import PasswordIcon from './password-icon'
 import IconContent from './icon-content'
 import InputLabel from './input-label'
 import InputBlockLabel from './input-block-label'
-import './input.less'
+import './index.less'
 import { CustomCSSProperties } from '../utils/base'
 
 const [createComponent] = createNameSpace('Input')

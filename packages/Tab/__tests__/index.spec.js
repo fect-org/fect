@@ -1,5 +1,5 @@
 import Tab from '../index'
-import Tabs from '../../Tabs'
+import Tabs from '../../tabs'
 import { mount } from '@vue/test-utils'
 import { ref } from 'vue'
 describe('Tabs', () => {

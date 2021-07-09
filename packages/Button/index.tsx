@@ -3,7 +3,7 @@ import { createNameSpace } from '../utils'
 import { ButtonTypes, NormalSizes } from '../utils/theme/propTypes'
 import ButtonDrip from './button-drip'
 import ButtonLoading from './button-loading'
-import './button.less'
+import './index.less'
 
 const [createComponent] = createNameSpace('Button')
 

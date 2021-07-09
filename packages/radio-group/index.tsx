@@ -2,7 +2,7 @@ import { ref, PropType, Ref } from 'vue'
 import { createProvider } from '@fect-ui/vue-hooks'
 import { createNameSpace } from '../utils'
 import { NormalSizes } from '../utils/theme/propTypes'
-import './radioGroup.less'
+import './index.less'
 
 const [createComponent] = createNameSpace('RadioGroup')
 

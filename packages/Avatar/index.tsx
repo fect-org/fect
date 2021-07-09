@@ -4,7 +4,7 @@ import { NormalSizes } from '../utils/theme/propTypes'
 
 const [createComponent] = createNameSpace('Avatar')
 
-import './avatar.less'
+import './index.less'
 
 export default createComponent({
   props: {

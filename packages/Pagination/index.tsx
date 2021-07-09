@@ -8,7 +8,7 @@ import PaginationPages from './pagination-pages'
 import PaginationNext from './pagination-next'
 import PaginationPrev from './pagination-previous'
 import PaginationSimple from './pagination-simple'
-import './pagination.less'
+import './index.less'
 
 const [createComponent] = createNameSpace('Pagination')
 

@@ -1,7 +1,7 @@
 import { computed, CSSProperties, PropType } from 'vue'
 import { createNameSpace } from '../utils'
 import { NormalTypes } from '../utils/theme/propTypes'
-import './tag.less'
+import './index.less'
 
 const [createComponent] = createNameSpace('Tag')
 

@@ -11,7 +11,7 @@ import SelectIcon from './select-icon'
 import SelcetClearableIcon from './select-clear-icon'
 import SelectMultiple from './select-multiple'
 import SelectDropDown from './select-dropdown'
-import './select.less'
+import './index.less'
 
 const [createComponent] = createNameSpace('Select')
 

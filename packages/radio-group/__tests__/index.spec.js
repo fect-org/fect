@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { ref } from 'vue'
 import RadioGroup from '../index'
-import Radio from '../../Radio'
+import Radio from '../../radio'
 
 describe('RadioGroup', () => {
   it('should be render as element', () => {

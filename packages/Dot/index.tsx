@@ -1,7 +1,7 @@
 import { PropType } from 'vue'
 import { createNameSpace } from '../utils'
 import { NormalTypes } from '../utils/theme/propTypes'
-import './dot.less'
+import './index.less'
 
 const [createComponent] = createNameSpace('Dot')
 

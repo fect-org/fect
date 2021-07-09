@@ -5,8 +5,8 @@ import { NormalSizes, NormalTypes } from '../utils/theme/propTypes'
 import {
   BadgeAnchorProvide,
   READONLY_BADGE_ANCHOR_KEY,
-} from '../BadgeAnchor/index'
-import './badge.less'
+} from '../badge-anchor/index'
+import './index.less'
 
 const [createComponent] = createNameSpace('Badge')
 

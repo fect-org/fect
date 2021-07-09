@@ -6,8 +6,8 @@ import {
   RadioGroupProvide,
   READNONLY_RADIO_GROUP_KEY,
   RadioEvent,
-} from '../RadioGroup'
-import './radio.less'
+} from '../radio-group'
+import './index.less'
 import { CustomCSSProperties } from '../utils/base'
 
 const [createComponent] = createNameSpace('Radio')

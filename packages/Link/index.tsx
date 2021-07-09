@@ -1,6 +1,6 @@
 import { computed, getCurrentInstance } from 'vue'
 import { createNameSpace, useRoute } from '../utils'
-import './link.less'
+import './index.less'
 
 const [createComponent] = createNameSpace('Link')
 

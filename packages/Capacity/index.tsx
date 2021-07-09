@@ -1,6 +1,6 @@
 import { computed } from 'vue'
 import { createNameSpace } from '../utils'
-import './capacity.less'
+import './index.less'
 
 const [createComponent] = createNameSpace('Capacity')
 

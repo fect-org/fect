@@ -3,7 +3,7 @@ import { createProvider } from '@fect-ui/vue-hooks'
 import { createNameSpace } from '../utils'
 import { ComponentInstance } from '../utils/base'
 import TabsTitle, { TabTitleEmit } from './tabs-title'
-import './tabs.less'
+import './index.less'
 const [createComponent] = createNameSpace('Tabs')
 
 export const READONLY_TABS_KEY = 'tabsKey'
