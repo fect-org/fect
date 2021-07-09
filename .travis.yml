@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-  - 12.16.1
+  - 14.5.0
 
 cache:
   directories:
@@ -19,4 +19,4 @@ install:
   - npm install
 
 script:
-  - npm run report
+  - npm run build:lib

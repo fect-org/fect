@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import BadgeAnchor from '../index'
-import Badge from '../../badge'
+import Badge from '../../badge/index'
 
 describe('BadgeAnchor', () => {
   it('should be render as element', () => {

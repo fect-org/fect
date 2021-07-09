@@ -11,12 +11,14 @@ describe('RadioGroup', () => {
   })
 
   it('should be support initialValue', () => {
-    const wrapper = mount(
-      <RadioGroup initialValue={1}>
-        <Radio value={1}></Radio>
-        <Radio value={2}></Radio>
-      </RadioGroup>,
-    )
+    const wrapper = mount({
+      render: () => (
+        <RadioGroup initialValue={1}>
+          <Radio value={1}></Radio>
+          <Radio value={2}></Radio>
+        </RadioGroup>
+      ),
+    })
 
     expect(wrapper.html()).toMatchSnapshot()
     const els = wrapper.findAll('.fect-radio-point')
@@ -24,17 +26,21 @@ describe('RadioGroup', () => {
   })
 
   it('should be support useRow', () => {
-    const wrapper = mount(<RadioGroup useRow={true}></RadioGroup>)
+    const wrapper = mount({
+      render: () => <RadioGroup useRow={true}></RadioGroup>,
+    })
     expect(wrapper.find('.fect-radio-group').classes('useRow')).toBe(true)
   })
 
   it('should be support disabled', () => {
-    const wrapper = mount(
-      <RadioGroup disabled={true}>
-        <Radio value={1} />
-        <Radio value={2} />
-      </RadioGroup>,
-    )
+    const wrapper = mount({
+      render: () => (
+        <RadioGroup disabled={true}>
+          <Radio value={1} />
+          <Radio value={2} />
+        </RadioGroup>
+      ),
+    })
 
     const labels = wrapper.findAll('label')
     expect(labels[0].classes('disabled')).toBeTruthy()
@@ -49,7 +55,7 @@ describe('RadioGroup', () => {
       render() {
         return (
           <>
-            {this.sizeList.map((item) => (
+            {this.sizeList.map((item: any) => (
               <RadioGroup size={item} key={item}>
                 <Radio value={item} />
               </RadioGroup>
@@ -68,7 +74,7 @@ describe('RadioGroup', () => {
       emits: ['change'],
       setup(props, { emit }) {
         const test = ref(0)
-        const handlerChange = (next) => {
+        const handlerChange = (next: any) => {
           test.value = next
           emit('change', next)
         }

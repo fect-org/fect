@@ -1,4 +1,3 @@
-import { watchEffect } from 'vue'
 import { useProvider } from '@fect-ui/vue-hooks'
 import { READONLY_SELECT_KEY, SelectProvide } from '../select'
 import { createNameSpace } from '../utils'
