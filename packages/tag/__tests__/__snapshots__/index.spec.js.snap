@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tag should be render as element 1`] = `<div class="fect-tag">Test</div>`;
+
+exports[`Tag should support different type 1`] = `
+<div class="fect-tag">0</div>
+<div class="fect-tag">1</div>
+<div class="fect-tag">2</div>
+<div class="fect-tag">3</div>
+`;
+
+exports[`Tag should support invert  1`] = `
+<div class="fect-tag" style="border-color: transparent;">0</div>
+<div class="fect-tag" style="border-color: transparent;">1</div>
+<div class="fect-tag" style="border-color: transparent;">2</div>
+<div class="fect-tag" style="border-color: transparent;">3</div>
+`;

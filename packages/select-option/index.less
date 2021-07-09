@@ -1,0 +1,22 @@
+.fect-option {
+  display: flex;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: var(--select-fontSize);
+  height: calc(1.688 * var(--fay-gap));
+  padding: 0 var(--fay-gap-half);
+  background-color: var(--primary-background);
+  color: var(--accents-5);
+  user-select: none;
+  border: 0;
+  cursor: pointer;
+  &.disabled {
+    cursor: not-allowed;
+    background-color: var(--accents-1);
+  }
+  &:hover:not(.disabled) {
+    background-color: var(--accents-1);
+    color: var(--primary-foreground);
+  }
+}

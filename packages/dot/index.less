@@ -1,0 +1,29 @@
+.fect-dot-wrapper {
+  display: inline-flex;
+  align-items: center;
+
+  .fect-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    user-select: none;
+    &.default {
+      background-color: var(--accents-2);
+    }
+    &.success {
+      background-color: var(--success-default);
+    }
+    &.warning {
+      background-color: var(--warning-default);
+    }
+    &.error {
+      background-color: var(--error-default);
+    }
+  }
+  .fect-dot-ctx {
+    margin-left: 8px;
+    font-size: 1rem;
+    text-transform: capitalize;
+  }
+}

@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tabs should support hide divider 1`] = `
+<div class="fect-tabs_container">
+  <header class="tabs_header hide-divider"></header>
+  <div class="fect-tab_wrapper ">
+    <!---->
+  </div>
+</div>
+`;

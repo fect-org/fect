@@ -1,0 +1,26 @@
+.fect-nav_container {
+  margin: 0;
+  padding: 0;
+  line-height: inherit;
+  color: var(--accents-4);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.fect-nav_container {
+  .fect-bread_separator {
+    display: inline-flex;
+    margin: 0 8px;
+    user-select: none;
+    pointer-events: none;
+    align-items: center;
+  }
+  .fect-braed_item {
+    &:last-child {
+      .fect-bread_separator {
+        display: none;
+      }
+    }
+  }
+}
