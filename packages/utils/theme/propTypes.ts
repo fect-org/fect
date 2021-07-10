@@ -38,6 +38,8 @@ const snippetStyleTypes = tuple(
 
 const placeTypes = tuple('topLeft', 'topRight', 'bottomLeft', 'bottomRight')
 
+const loadingTypes = tuple('default', 'cube', 'wave')
+
 export {
   tuple,
   buttonTypes,
@@ -49,7 +51,9 @@ export {
   snippetCopyTypes,
   snippetStyleTypes,
   placeTypes,
+  loadingTypes,
 }
+
 export type ButtonTypes = typeof buttonTypes[number]
 export type NormalSizes = typeof normalSizes[number]
 export type NormalTypes = typeof normalTypes[number]
@@ -59,3 +63,4 @@ export type AlignTypes = typeof alignTypes[number]
 export type SnippetCopyTypes = typeof snippetCopyTypes[number]
 export type SnippetStyleTypes = typeof snippetStyleTypes[number]
 export type PlaceTypes = typeof placeTypes[number]
+export type LoadingTypes = typeof loadingTypes[number]
