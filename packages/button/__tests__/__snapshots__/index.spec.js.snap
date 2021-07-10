@@ -47,3 +47,19 @@ exports[`Button should be render as Element 1`] = `
   <!---->
 </button>
 `;
+
+exports[`Button should be support loadType 1`] = `
+<button class="fect-btn default medium">
+  <!---->
+  <!---->
+  <!---->
+</button>
+`;
+
+exports[`Button should be support loadType 2`] = `
+<button class="fect-btn default medium">
+  <!---->
+  <!---->
+  <!---->
+</button>
+`;

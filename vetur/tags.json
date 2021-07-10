@@ -45,7 +45,8 @@
       "auto",
       "disabled",
       "shadow",
-      "loading"
+      "loading",
+      "loadType"
     ]
   },
   "fe-capacity": {
@@ -136,7 +137,8 @@
     "attributes": [
       "size",
       "type",
-      "color"
+      "color",
+      "loadType"
     ]
   },
   "fe-modal": {
