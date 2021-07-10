@@ -27,7 +27,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import FectUI from '@fect-ui/vue'
-import '@fect-ui/vue/index.css'
+import '@fect-ui/vue/main.css'
 
 createApp(App)
   .use(FectUI)
