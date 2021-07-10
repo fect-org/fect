@@ -9,8 +9,8 @@
 ```javascript
 import { createApp } from 'vue'
 import App from './App.vue'
-import { Button } from '@fect-ui/vue'
-import '@fect-ui/themes/main.css'
+import Button from '@fect-ui/vue/lib/button'
+import '@fect-ui/themes'
 import '@fect-ui/vue/lib/Button/index.css'
 
 createApp(App)
@@ -33,9 +33,9 @@ npm i babel-plugin-import -D
    plugins: [
     [
       'import',
-      {
+     {
         libraryName: '@fect-ui/vue',
-        libraryDirectory: 'lib',
+        libraryDirectory: 'es',
         style: (name) => `${name}/index.css`,
       },
     ],
@@ -43,9 +43,40 @@ npm i babel-plugin-import -D
 }
 ```
 
-接着你可以在代码中直接引入 Fect 组件，插件会自动将代码转化为按需引入的形式
+<fe-dot type="warning" /> 在 Vite 项目中按需引入组件
+
+vite-plugin-style-import 是一款类似于 babel-plugin-import 的 vite 插件
+由于需要`babel`的支持所以需要在 vite 项目里面安装
+
+<fe-snippet text="yarn add @babel/runtime -D"  width="300px" />
+<fe-spacer/>
+<fe-snippet text="yarn add vite-plugin-style-import -D"  width="300px" />
+
+```js
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import styleImport from 'vite-plugin-style-import'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    vue(),
+    styleImport({
+      libs: [
+        {
+          libraryName: '@fect-ui/vue',
+          esModule: true,
+          resolveStyle: (name) => `@fect-ui/vue/es/${name}/index.css`,
+        },
+      ],
+    }),
+  ],
+})
+```
+
+接着你可以在代码中直接引入 Fect 组件，插件会自动将代码转化为按需引入的形式。
 
 ```javascript
-import '@fect-ui/themes/main.css'
+import '@fect-ui/themes'
 import { Tab, Tabs } from '@fect-ui/vue'
 ```
