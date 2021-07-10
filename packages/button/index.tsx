@@ -1,6 +1,10 @@
 import { computed, ref, PropType } from 'vue'
 import { createNameSpace } from '../utils'
-import { ButtonTypes, NormalSizes } from '../utils/theme/propTypes'
+import {
+  ButtonTypes,
+  LoadingTypes,
+  NormalSizes,
+} from '../utils/theme/propTypes'
 import ButtonDrip from './button-drip'
 import ButtonLoading from './button-loading'
 import './index.less'
@@ -21,6 +25,10 @@ export default createComponent({
     shadow: Boolean,
     loading: Boolean,
     auto: Boolean,
+    loadType: {
+      type: String as PropType<LoadingTypes>,
+      default: 'deafult',
+    },
   },
   emits: ['click'],
   setup(props, { slots, emit }) {
@@ -69,7 +77,7 @@ export default createComponent({
         onClick={clickHandler}
       >
         {/* color={props.type} */}
-        {props.loading && <ButtonLoading />}
+        {props.loading && <ButtonLoading loadType={props.loadType} />}
         {drapShow.value && (
           <ButtonDrip
             x={drapX.value}

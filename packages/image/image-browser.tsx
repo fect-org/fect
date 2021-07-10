@@ -7,7 +7,7 @@ import HttpIcons from './image-browser-icon'
 const ImageBrowser = defineComponent({
   setup(props, { attrs, slots }) {
     const { context } = useProvider<ImageProvide>(READONLY_IMAGE_KEY)
-    console.log(context)
+
     const {
       inputBgColor,
       titleColor,

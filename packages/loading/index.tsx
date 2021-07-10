@@ -1,6 +1,10 @@
-import { PropType, ref } from 'vue'
+import { computed, PropType, ref, CSSProperties } from 'vue'
 import { createNameSpace } from '../utils'
-import { NormalSizes, NormalTypes } from '../utils/theme/propTypes'
+import {
+  NormalSizes,
+  NormalTypes,
+  LoadingTypes,
+} from '../utils/theme/propTypes'
 import './index.less'
 
 const [createComponent] = createNameSpace('Loading')
@@ -15,25 +19,82 @@ export default createComponent({
       type: String as PropType<NormalTypes>,
       default: 'default',
     },
+    loadType: {
+      type: String as PropType<LoadingTypes>,
+      default: 'default',
+    },
     color: {
       type: String,
       default: '',
     },
   },
   setup(props) {
-    const safeColor = ref<boolean>(!!props.color)
+    const setColor = computed(() => {
+      const { color } = props
+      if (color) {
+        return {
+          background: color,
+        } as CSSProperties
+      }
+      return ''
+    })
 
-    return () => (
-      <div class="fect-loading-container">
-        <span class={'loading'}>
+    const setClass = computed(() => {
+      const { size, type } = props
+      const names = []
+      names.push(type)
+      names.push(size)
+      return names.join(' ')
+    })
+
+    const defaultLoad = () => {
+      return (
+        <>
           {new Array(3).fill(0).map((item, i) => (
+            <i class={setClass.value} style={setColor.value} key={item + i}></i>
+          ))}
+        </>
+      )
+    }
+
+    const cubeLoad = () => {
+      return (
+        <>
+          {new Array(4).fill(0).map((item, i) => (
             <i
-              class={`${props.size} ${props.type}`}
-              style={{ backgroundColor: `${safeColor.value && props.color}` }}
+              class={`loading__cube ${setClass.value}`}
+              style={setColor.value}
               key={item + i}
             ></i>
           ))}
-        </span>
+        </>
+      )
+    }
+
+    const waveLoad = () => {
+      return (
+        <>
+          {new Array(5).fill(0).map((item, i) => (
+            <i
+              class={`loading__wave ${setClass.value}`}
+              style={setColor.value}
+              key={item + i}
+            ></i>
+          ))}
+        </>
+      )
+    }
+
+    const renderLoad = computed(() => {
+      const { loadType } = props
+      if (loadType === 'cube') return cubeLoad()
+      if (loadType === 'wave') return waveLoad()
+      return defaultLoad()
+    })
+
+    return () => (
+      <div class="fect-loading-container">
+        <span class={'loading'}>{renderLoad.value}</span>
       </div>
     )
   },
