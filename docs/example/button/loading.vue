@@ -1,9 +1,9 @@
 <template>
   <div>
-    <fe-button loading size="large">Button</fe-button>
-    <fe-spacer y="{0.5}" />
-    <fe-button loading>Button</fe-button>
-    <fe-spacer y="{0.5}" />
+    <fe-button loading size="large" load-type="cube">Button</fe-button>
+    <fe-spacer :y="0.5" />
+    <fe-button loading load-type="wave">Button</fe-button>
+    <fe-spacer :y="0.5" />
     <fe-button loading size="small">Button</fe-button>
   </div>
 </template>

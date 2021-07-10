@@ -93,4 +93,20 @@ describe('Button', () => {
     await wrapper.find('.fect-btn').trigger('click')
     expect(wrapper.find('.fect-btn').text()).toBe('1')
   })
+  it('should be support loadType', () => {
+    const cube = mount(Button, {
+      props: {
+        loadType: 'cube',
+      },
+    })
+    const wave = mount(Button, {
+      props: {
+        loadType: 'wave',
+      },
+    })
+    expect(cube.html()).toMatchSnapshot()
+    expect(cube.findAll('.loading__cube')).toBeTruthy()
+    expect(wave.html()).toMatchSnapshot()
+    expect(wave.findAll('.loading__wave')).toBeTruthy()
+  })
 })

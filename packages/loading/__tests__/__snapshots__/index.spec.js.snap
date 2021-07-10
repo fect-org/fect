@@ -1,19 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Loading should be render as element 1`] = `<div class="fect-loading-container"><span class="loading"><i class="medium default"></i><i class="medium default"></i><i class="medium default"></i></span></div>`;
+exports[`Loading should be render as element 1`] = `<div class="fect-loading-container"><span class="loading"><i class="default medium"></i><i class="default medium"></i><i class="default medium"></i></span></div>`;
 
 exports[`Loading should be support different sizes 1`] = `
-<div class="fect-loading-container"><span class="loading"><i class="mini default"></i><i class="mini default"></i><i class="mini default"></i></span></div>
-<div class="fect-loading-container"><span class="loading"><i class="small default"></i><i class="small default"></i><i class="small default"></i></span></div>
-<div class="fect-loading-container"><span class="loading"><i class="medium default"></i><i class="medium default"></i><i class="medium default"></i></span></div>
-<div class="fect-loading-container"><span class="loading"><i class="large default"></i><i class="large default"></i><i class="large default"></i></span></div>
+<div class="fect-loading-container"><span class="loading"><i class="default mini"></i><i class="default mini"></i><i class="default mini"></i></span></div>
+<div class="fect-loading-container"><span class="loading"><i class="default small"></i><i class="default small"></i><i class="default small"></i></span></div>
+<div class="fect-loading-container"><span class="loading"><i class="default medium"></i><i class="default medium"></i><i class="default medium"></i></span></div>
+<div class="fect-loading-container"><span class="loading"><i class="default large"></i><i class="default large"></i><i class="default large"></i></span></div>
 `;
+
+exports[`Loading should be support loadType 1`] = `<div class="fect-loading-container"><span class="loading"><i class="loading__cube default medium"></i><i class="loading__cube default medium"></i><i class="loading__cube default medium"></i><i class="loading__cube default medium"></i></span></div>`;
+
+exports[`Loading should be support loadType 2`] = `<div class="fect-loading-container"><span class="loading"><i class="loading__wave default medium"></i><i class="loading__wave default medium"></i><i class="loading__wave default medium"></i><i class="loading__wave default medium"></i><i class="loading__wave default medium"></i></span></div>`;
 
 exports[`Loading should be support types 1`] = `
-<div class="fect-loading-container"><span class="loading"><i class="medium default"></i><i class="medium default"></i><i class="medium default"></i></span></div>
-<div class="fect-loading-container"><span class="loading"><i class="medium success"></i><i class="medium success"></i><i class="medium success"></i></span></div>
-<div class="fect-loading-container"><span class="loading"><i class="medium warning"></i><i class="medium warning"></i><i class="medium warning"></i></span></div>
-<div class="fect-loading-container"><span class="loading"><i class="medium error"></i><i class="medium error"></i><i class="medium error"></i></span></div>
+<div class="fect-loading-container"><span class="loading"><i class="default medium"></i><i class="default medium"></i><i class="default medium"></i></span></div>
+<div class="fect-loading-container"><span class="loading"><i class="success medium"></i><i class="success medium"></i><i class="success medium"></i></span></div>
+<div class="fect-loading-container"><span class="loading"><i class="warning medium"></i><i class="warning medium"></i><i class="warning medium"></i></span></div>
+<div class="fect-loading-container"><span class="loading"><i class="error medium"></i><i class="error medium"></i><i class="error medium"></i></span></div>
 `;
 
-exports[`Loading should be support use custom color 1`] = `<div class="fect-loading-container"><span class="loading"><i class="medium default" style="background-color: pink;"></i><i class="medium default" style="background-color: pink;"></i><i class="medium default" style="background-color: pink;"></i></span></div>`;
+exports[`Loading should be support use custom color 1`] = `<div class="fect-loading-container"><span class="loading"><i class="default medium" style="background: pink;"></i><i class="default medium" style="background: pink;"></i><i class="default medium" style="background: pink;"></i></span></div>`;

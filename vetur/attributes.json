@@ -83,6 +83,10 @@
     "type": "boolean",
     "description": "是否启用加载状态 , 默认值:`false` "
   },
+  "fe-button/loadType": {
+    "type": "string",
+    "description": "设置加载中的风格 , 可选值为`default`,`cube`,`wave` , 默认值:`default` "
+  },
   "fe-capacity/value": {
     "type": "string | number",
     "description": "当前的容量值 , 默认值:`0` "
@@ -254,6 +258,10 @@
   "fe-loading/color": {
     "type": "string",
     "description": "自定义指示器颜色 , 默认值:`-`"
+  },
+  "fe-loading/loadType": {
+    "type": "string",
+    "description": "不同风格的指示器 , 可选值为`default`,`cube`,`wave` , 默认值:`default` "
   },
   "fe-modal/v-model:visible": {
     "type": "string",

@@ -63,6 +63,22 @@ describe('Loading', () => {
     const el = wrapper.find('i')
     expect(wrapper.html()).toMatchSnapshot()
     expect(wrapper.vm.cusColor).toEqual('pink')
-    expect(el.attributes('style')).toBe('background-color: pink;')
+    expect(el.attributes('style')).toBe('background: pink;')
+  })
+  it('should be support loadType', () => {
+    const cube = mount(Loading, {
+      props: {
+        loadType: 'cube',
+      },
+    })
+    const wave = mount(Loading, {
+      props: {
+        loadType: 'wave',
+      },
+    })
+    expect(cube.html()).toMatchSnapshot()
+    expect(cube.findAll('.loading__cube')).toBeTruthy()
+    expect(wave.html()).toMatchSnapshot()
+    expect(wave.findAll('.loading__wave')).toBeTruthy()
   })
 })

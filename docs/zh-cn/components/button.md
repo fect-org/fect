@@ -18,15 +18,16 @@
 
 <fe-attributes-title title="Button Props" />
 
-| 属性         | 描述           | 类型                   | 可选值                                     | 默认      |
-| ------------ | -------------- | ---------------------- | ------------------------------------------ | --------- |
-| **type**     | 按钮属性       | `string`               | `'default', 'success', 'warning', 'error'` | `default` |
-| **size**     | 按钮大小       | `string`               | `'mini','small','medium','large'`          | `medium`  |
-| **auto**     | 自动缩放宽度   | `boolean`              | `'true','false'`                           | `false`   |
-| **disabled** | 是否禁用按钮   | `boolean`              | `'true','false'`                           | `false`   |
-| **shadow**   | 是否显示阴影   | `boolean`              | `'true','false'`                           | `false`   |
-| **loading**  | 是否启用加载中 | `boolean`              | `'true','false'`                           | `false`   |
-| _click_      | 点击事件       | `MouseEventHandler`    | `-`                                        | `-`       |
-| ...          | 原生属性       | `ButtonHTMLAttributes` | `'id','class',...`                         | `-`       |
+| 属性          | 描述             | 类型                   | 可选值                                     | 默认      |
+| ------------- | ---------------- | ---------------------- | ------------------------------------------ | --------- |
+| **type**      | 按钮属性         | `string`               | `'default', 'success', 'warning', 'error'` | `default` |
+| **size**      | 按钮大小         | `string`               | `'mini','small','medium','large'`          | `medium`  |
+| **auto**      | 自动缩放宽度     | `boolean`              | `'true','false'`                           | `false`   |
+| **disabled**  | 是否禁用按钮     | `boolean`              | `'true','false'`                           | `false`   |
+| **shadow**    | 是否显示阴影     | `boolean`              | `'true','false'`                           | `false`   |
+| **loading**   | 是否启用加载中   | `boolean`              | `'true','false'`                           | `false`   |
+| **load-type** | 设置加载中的风格 | `string`               | `'default','cube','wave'`                  | `default` |
+| _click_       | 点击事件         | `MouseEventHandler`    | `-`                                        | `-`       |
+| ...           | 原生属性         | `ButtonHTMLAttributes` | `'id','class',...`                         | `-`       |
 
 </fe-attributes>
