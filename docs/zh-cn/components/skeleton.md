@@ -1,3 +1,5 @@
+# Skeleton / 骨架屏
+
 <fe-code-show
 title="默认的"
 desc="基础的骨架效果"
