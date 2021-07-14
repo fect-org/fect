@@ -1,10 +1,10 @@
 ---
-to: packages/<%= name %>/index.jsx
+to: packages/<%= name %>/index.tsx
 ---
 
-import { computed, toRefs } from 'vue'
+import { computed } from 'vue'
 import { createNameSpace } from '../utils'
-import './<%= h.changeCase.lcFirst(name) %>.less'
+import './index.less'
 
 const [createComponent] = createNameSpace('<%= name %>')
 

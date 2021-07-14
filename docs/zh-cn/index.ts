@@ -78,6 +78,7 @@ export const zhRoutes: Routes[] = [
         route: { name: 'Skeleton' },
       },
       { title: '标签 Tag', group: '数据展示', route: { name: 'Tag' } },
+      { title: '轮播 Swipe', group: '数据展示', route: { name: 'Swipe' } },
     ],
   },
   {

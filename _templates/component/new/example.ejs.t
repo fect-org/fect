@@ -1,15 +1,15 @@
 ---
-to: docs/example/<%=h.changeCase.lcFirst(name) %>/default.vue
+to: docs/example/<%=name %>/default.vue
 ---
 
 <template>
   <div>
-    <fe-<%=h.changeCase.lcFirst(name) %>>1</fe-<%=h.changeCase.lcFirst(name) %>>
+    <fe-<%=name %>>1</fe-<%=name %>>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ex-<%=h.changeCase.lcFirst(name) %>-default',
+  name: 'ex-<%=name %>-default',
 }
 </script>

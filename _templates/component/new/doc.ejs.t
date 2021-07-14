@@ -1,5 +1,5 @@
 ---
-to: docs/zh-cn/components/<%=h.changeCase.lcFirst(name) %>.mdx
+to: docs/zh-cn/components/<%=name %>.md
 ---
 
 export const meta = {
@@ -9,5 +9,5 @@ export const meta = {
 
 <fe-code-show
   title="默认的"
-  name="ex-<%=h.changeCase.lcFirst(name) %>-default"
+  name="ex-<%=name %>-default"
 />
