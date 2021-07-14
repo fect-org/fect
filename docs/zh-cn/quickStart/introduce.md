@@ -2,14 +2,14 @@
 
 ### 什么是 Fect UI -Vue
 
-`@fect-ui/vue`是根据`Geist-ui/vue`作为设计依赖对 vue2 版本进行升级的一个`Vue3`UI 库。
-
-Vercel 的设计非常简约,当我在使用`GeistUI/react`就十分喜欢这个风格,因此萌发了`Vue3`版本的想法。现在你可以在`Vue3`中随意使用这些组件。
+`@fect-ui/vue`是根据<fe-link href="https://vue.geist-ui.dev/en-us/introduction" target="_blank">
+<fe-code>Geist-ui/vue</fe-code>
+</fe-link>作为设计依赖对 vue2 版本进行升级的一个`Vue3`UI 库。项目基于`typescript`,拥有更完备的类型提示和对编译器的友好支持,
+相较 vue2 版本组件库进行了交互的优化。
 
 **Fect Org** 是非官方组织,且所有项目是开源的。
 
 <fe-logo />
-<br />
 
 ### 开源许可
 
