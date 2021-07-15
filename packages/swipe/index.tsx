@@ -4,8 +4,9 @@ import {
   ref,
   Ref,
   watch,
-  watchEffect,
   onUnmounted,
+  onMounted,
+  nextTick,
 } from 'vue'
 import { createProvider } from '@fect-ui/vue-hooks'
 import { createNameSpace, useRect } from '../utils'
@@ -16,12 +17,8 @@ export const READONLY_SWIPE_KEY = 'swipeKey'
 
 export type SwipeProvide = {
   index: Ref<number>
-}
-
-type Move = {
-  pace?: number
-  offset?: number
-  changeEvent?: boolean
+  height: Ref<number>
+  width: Ref<number>
 }
 
 type Placement = 'prev' | 'next'
@@ -62,17 +59,14 @@ export default createComponent({
     indicatorColor: String,
   },
   emits: ['change'],
-  setup(props, { attrs, slots, emit }) {
-    // <ComponentInstance>
-    const { provider, children } = createProvider(READONLY_SWIPE_KEY)
-
-    let starTime: number
+  setup(props, { slots, emit }) {
+    const { provider, children } = createProvider<ComponentInstance>(
+      READONLY_SWIPE_KEY,
+    )
 
     const swipeRef = ref<HTMLDivElement>()
 
     const index = ref<number>(0)
-
-    const size = ref<number>(0)
 
     const translate = ref<number>(0)
 
@@ -80,16 +74,34 @@ export default createComponent({
 
     const count = computed(() => children.length)
 
+    const height = ref<number>(0)
+    const width = ref<number>(0)
+    const canSwipe = ref<boolean>(false)
+
+    /**
+     * set dom rect
+     */
+    onMounted(() => {
+      const rect = useRect(swipeRef)
+      height.value = rect.height
+      width.value = rect.width
+    })
     provider({
       index,
+      width,
+      height,
     })
 
-    const calibrationPosition = (f?: () => void) => {
-      const offsetLeft = translate.value >= size.value
-      const offsetRight = translate.value <= -trackSize.value
-      const leftTranslate = 0
-      const rightTranslate = -(trackSize.value - size.value)
+    const calibrationPosition = (fn?: () => void) => {
+      index.value = boundaryIndex(index.value + 1)
+      //  const overLeft = translate.value >= size.value
+      //       const overRight = translate.value <= -trackSize.value
+      //       const leftTranslate = 0
+      //       const rightTranslate = -(trackSize.value - size.value)
+      // eslint-disable-next-line no-unused-expressions
+      fn?.()
     }
+
     let timer: any
 
     const startAutoplay = () => {
@@ -104,36 +116,38 @@ export default createComponent({
 
     const stopAutoPlay = () => timer && clearTimeout(timer)
 
-    // mobile event
-
-    const handleTouchStar = (evt: TouchEvent) => {
-      if (!props.touchable) return
-      // eslint-disable-next-line prefer-destructuring
-      const { clientX, clientY } = evt.touches[0]
-      // state.starX = clientX
-      // state.starY = clientY
-      // console.log(state)
-      starTime = Date.now()
-      console.log(evt)
-      stopAutoPlay()
-    }
-
-    const handleTouchMove = (evt: TouchEvent) => {
-      if (props.touchable) {
-      }
-    }
-
-    const handleTouchEnd = (evt: Event) => {
-      if (!props.touchable) return
-    }
-
     const translateUpdate = (type: Placement) => {
       if (count.value <= 1) return
       const { loop } = props
       const currentIndex = index.value
-      console.log(type)
-      calibrationPosition()
-      // calibrationPosition(() => {})
+
+      calibrationPosition(() => {
+        if (type === 'next') {
+          // if (currentIndex === count.value - 1 && loop) {
+          //   children[0].setTranslate(trackSize.value)
+          //   translate.value = count.value * -width.value
+
+          //   return
+          // }
+          // if (currentIndex !== count.value - 1) {
+          //   translate.value = currentIndex * -width.value
+          // }
+          translate.value = currentIndex * -width.value
+          return
+        }
+
+        if (type === 'prev') {
+          // if (currentIndex === 0 && loop) {
+          //   // children[0].setTranslate(-trackSize.value)
+          //   translate.value = -width.value
+          //   return
+          // }
+          // if (currentIndex !== 0) {
+          //   translate.value = index.value * -width.value
+          // }
+          translate.value = index.value * -width.value
+        }
+      })
     }
 
     /**
@@ -144,8 +158,7 @@ export default createComponent({
       let status: Placement = 'prev'
       if (idx > index.value) status = 'next'
       index.value = idx
-      console.log(index.value)
-      // translateUpdate(status)
+      translateUpdate(status)
     }
 
     const renderIndicator = () => {
@@ -153,8 +166,6 @@ export default createComponent({
         return slots.indicator()
       }
       if (props.showIndicators && count.value) {
-        // when active set active color
-
         const style = (idx: number) => {
           const { indicatorColor, indicatorHeight, indicatorWidth } = props
           const active = index.value === idx
@@ -185,44 +196,40 @@ export default createComponent({
     const boundaryIndex = (val: number): number => {
       const { loop } = props
       if (val < 0) {
-        return children.length
+        return loop ? count.value - 1 : 0
       }
-      if (val > children.length - 1) {
-        return 0
+      if (val > count.value - 1) {
+        return loop ? 0 : count.value - 1
       }
       return val
     }
 
     const initialIndex = () => {
+      canSwipe.value = true
       index.value = boundaryIndex(props.initalValue)
-      translate.value = index.value * -count.value
+      // translate.value = index.value * -count.value
     }
 
     const initial = () => {
-      const rect = useRect(swipeRef)
-
-      if (rect.width) {
-        size.value = rect.width
-        trackSize.value = rect.width * count.value
-        // initialIndex()
-        // startAutoplay()
-      }
+      nextTick(() => {
+        trackSize.value = width.value * count.value
+        children.map((swipe) => swipe.setTranslate(0))
+        initialIndex()
+        startAutoplay()
+      })
     }
 
     watch(index, (pre) => emit('change', pre))
 
-    watchEffect(initial)
+    watch(() => count.value, initial)
 
     onUnmounted(stopAutoPlay)
 
     const setTrackStyle = computed(() => {
-      const rect = useRect(swipeRef)
-      const offset = index.value * size.value
-
       const style: CSSProperties = {
-        height: `${rect.height}px`,
+        height: `${height.value}px`,
         width: `${trackSize.value}px`,
-        transform: `translateX(-${offset}px)`,
+        transform: `translateX(${translate.value}px)`,
         transitionDuration: '300ms',
       }
       return style
@@ -230,14 +237,7 @@ export default createComponent({
 
     return () => (
       <div class="fect-swipe" ref={swipeRef}>
-        <div
-          class="fect-swipe__track"
-          onTouchstart={handleTouchStar}
-          onTouchmove={handleTouchMove}
-          onTouchend={handleTouchEnd}
-          onTouchcancel={handleTouchEnd}
-          style={setTrackStyle.value}
-        >
+        <div class="fect-swipe__track" style={setTrackStyle.value}>
           {slots.default?.()}
         </div>
         {renderIndicator()}
