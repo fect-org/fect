@@ -1,12 +1,15 @@
 <template>
   <div>
     <!-- :show-indicators="false" -->
-    <fe-swipe class="my-swipe" :autoplay="2000">
+    <fe-swipe class="my-swipe" :autoplay="2000" indicatorColor="pink">
       <fe-swipeItem>
         <img src="https://varlet.gitee.io/varlet-ui/cat.jpg" alt="" />
       </fe-swipeItem>
       <fe-swipeItem>
-        <img src="https://varlet.gitee.io/varlet-ui/cat3.jpg" alt="" />
+        <img
+          src="https://user-images.githubusercontent.com/52351095/125737838-6e79bf33-4064-41e4-b5ac-e7776ab71eb4.gif"
+          alt=""
+        />
       </fe-swipeItem>
       <fe-swipeItem>
         <img

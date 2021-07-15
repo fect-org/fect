@@ -10,7 +10,7 @@ export default createComponent({
   props: {},
   emits: ['click'],
   setup(props, { attrs, slots, emit }) {
-    const { context } = useProvider<SwipeProvide>(READONLY_SWIPE_KEY)
+    const { context, idx } = useProvider<SwipeProvide>(READONLY_SWIPE_KEY)
 
     const translate = ref<number>(0)
 
@@ -22,11 +22,16 @@ export default createComponent({
 
     const setStyle = computed(() => {
       const style: CSSProperties = {
-        height: '200px',
-        width: '350px',
+        height: `${context?.height.value}px`,
+        width: `${context?.width.value}px`,
+        transform: `translateX(${translate.value}px)`,
       }
       return style
     })
+
+    const setTranslate = (val: number) => (translate.value = val)
+
+    useExpose({ setTranslate })
 
     return () => (
       <div class="fect-swipe-item" style={setStyle.value}>
