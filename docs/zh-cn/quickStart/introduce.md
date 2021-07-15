@@ -13,4 +13,4 @@
 
 ### 开源许可
 
-项目使用 [MIT LICENSE](https://github.com/fect-org/Yuki/blob/master/LICENSE) 许可证.
+项目使用 [MIT LICENSE](https://github.com/fay-org/fect/blob/master/LICENSE) 许可证.
