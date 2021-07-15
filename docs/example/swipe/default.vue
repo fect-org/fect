@@ -1,14 +1,21 @@
 <template>
   <div>
-    <fe-swipe class="my-swipe">
+    <!-- :show-indicators="false" -->
+    <fe-swipe class="my-swipe" :autoplay="2000">
+      <fe-swipeItem>
+        <img src="https://varlet.gitee.io/varlet-ui/cat.jpg" alt="" />
+      </fe-swipeItem>
+      <fe-swipeItem>
+        <img src="https://varlet.gitee.io/varlet-ui/cat3.jpg" alt="" />
+      </fe-swipeItem>
       <fe-swipeItem>
         <img
-          src="https://user-images.githubusercontent.com/52351095/118687359-7e809480-b837-11eb-8083-b0504ec79652.png"
+          src="https://user-images.githubusercontent.com/52351095/125226123-0ef0c800-e303-11eb-9ba9-c9f647390986.gif"
           alt=""
         />
       </fe-swipeItem>
       <fe-swipeItem>
-        <img src="https://varlet.gitee.io/varlet-ui/cat3.jpg" alt="" />
+        <img src="https://varlet.gitee.io/varlet-ui/cat2.jpg" alt="" />
       </fe-swipeItem>
     </fe-swipe>
   </div>
