@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Swipe should be support custom indicatorSize 1`] = `
+<div class="fect-swipe">
+  <div class="fect-swipe__track" style="height: 0px; width: 0px; transform: translateX(0px); transition-duration: 300ms;">
+    <div class="fect-swipe-item" style="height: 0px; width: 0px; transform: translateX(0px);">
+      <!---->
+    </div>
+  </div>
+  <!---->
+</div>
+`;
+
+exports[`Swipe should be support indicatorColor 1`] = `
+<div class="fect-swipe">
+  <div class="fect-swipe__track" style="height: 0px; width: 0px; transform: translateX(0px); transition-duration: 300ms;">
+    <div class="fect-swipe-item" style="height: 0px; width: 0px; transform: translateX(0px);">
+      <!---->
+    </div>
+  </div>
+  <!---->
+</div>
+`;

@@ -29,13 +29,10 @@ export default createComponent({
   props: {
     duration: {
       type: Number,
-      default: 4500,
+      default: 300,
     },
     autoplay: Number,
-    loop: {
-      type: Boolean,
-      default: true,
-    },
+    loop: Boolean,
     indicatorWidth: {
       type: String,
       default: '8px',
@@ -47,10 +44,6 @@ export default createComponent({
     initalValue: {
       type: Number,
       default: 0,
-    },
-    touchable: {
-      type: Boolean,
-      default: true,
     },
     showIndicators: {
       type: Boolean,
@@ -76,6 +69,7 @@ export default createComponent({
 
     const height = ref<number>(0)
     const width = ref<number>(0)
+
     const canSwipe = ref<boolean>(false)
 
     /**
@@ -92,14 +86,19 @@ export default createComponent({
       height,
     })
 
-    const calibrationPosition = (fn?: () => void) => {
-      index.value = boundaryIndex(index.value + 1)
-      //  const overLeft = translate.value >= size.value
-      //       const overRight = translate.value <= -trackSize.value
-      //       const leftTranslate = 0
-      //       const rightTranslate = -(trackSize.value - size.value)
-      // eslint-disable-next-line no-unused-expressions
-      fn?.()
+    const calibrationPosition = (fn: () => void) => {
+      const overLeft = translate.value >= width.value
+      const overRight = translate.value <= -trackSize.value
+      const leftTranslate = 0
+      const rightTranslate = -(trackSize.value - width.value)
+
+      if (overLeft || overRight) {
+        translate.value = overRight ? leftTranslate : rightTranslate
+        children[0].setTranslate(0)
+        children[count.value - 1].setTranslate(0)
+      }
+
+      fn()
     }
 
     let timer: any
@@ -116,36 +115,36 @@ export default createComponent({
 
     const stopAutoPlay = () => timer && clearTimeout(timer)
 
-    const translateUpdate = (type: Placement) => {
+    const translateUpdate = (type: Placement, place = 1) => {
+      console.log(type)
       if (count.value <= 1) return
       const { loop } = props
       const currentIndex = index.value
 
       calibrationPosition(() => {
         if (type === 'next') {
-          // if (currentIndex === count.value - 1 && loop) {
-          //   children[0].setTranslate(trackSize.value)
-          //   translate.value = count.value * -width.value
-
-          //   return
-          // }
-          // if (currentIndex !== count.value - 1) {
-          //   translate.value = currentIndex * -width.value
-          // }
-          translate.value = currentIndex * -width.value
-          return
+          index.value = boundaryIndex(currentIndex + place)
+          // the last item
+          if (currentIndex === count.value - 1 && loop) {
+            children[0].setTranslate(trackSize.value)
+            translate.value = count.value * -width.value
+            return
+          }
+          if (currentIndex !== count.value - 1) {
+            translate.value = index.value * -width.value
+          }
         }
-
         if (type === 'prev') {
-          // if (currentIndex === 0 && loop) {
-          //   // children[0].setTranslate(-trackSize.value)
-          //   translate.value = -width.value
-          //   return
-          // }
-          // if (currentIndex !== 0) {
-          //   translate.value = index.value * -width.value
-          // }
-          translate.value = index.value * -width.value
+          index.value = boundaryIndex(currentIndex - place)
+
+          if (currentIndex === 0 && loop) {
+            children[count.value - 1].setTranslate(-trackSize.value)
+            translate.value = width.value
+            return
+          }
+          if (currentIndex !== 0) {
+            translate.value = index.value * -width.value
+          }
         }
       })
     }
@@ -155,10 +154,13 @@ export default createComponent({
      */
     const indicatorHandler = (idx: number) => {
       if (count.value <= 1 || idx === index.value) return
+
       let status: Placement = 'prev'
+      idx = idx < 0 ? 0 : idx
+      idx = idx >= count.value ? count.value : idx
       if (idx > index.value) status = 'next'
-      index.value = idx
-      translateUpdate(status)
+
+      translateUpdate(status, Math.abs(idx - index.value))
     }
 
     const renderIndicator = () => {
@@ -207,7 +209,7 @@ export default createComponent({
     const initialIndex = () => {
       canSwipe.value = true
       index.value = boundaryIndex(props.initalValue)
-      // translate.value = index.value * -count.value
+      translate.value = index.value * -count.value
     }
 
     const initial = () => {
@@ -230,7 +232,7 @@ export default createComponent({
         height: `${height.value}px`,
         width: `${trackSize.value}px`,
         transform: `translateX(${translate.value}px)`,
-        transitionDuration: '300ms',
+        transitionDuration: `${props.duration}ms`,
       }
       return style
     })
