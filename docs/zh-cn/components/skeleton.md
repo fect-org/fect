@@ -1,5 +1,7 @@
 # Skeleton / 骨架屏
 
+在需要等待加载内容的位置设置一个骨架屏
+
 <fe-code-show
 title="默认的"
 desc="基础的骨架效果"

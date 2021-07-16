@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fe-swipe class="my-swipe">
+    <fe-swipe class="my-swipe" :autoplay="2000" loop>
       <fe-swipeItem>
         <img
           src="https://user-images.githubusercontent.com/52351095/125877241-833f059b-4bad-4761-8151-c0ee5bc6342b.gif"
@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: 'ex-swipe-default',
+  name: 'ex-swipe-loop',
 }
 </script>
 
