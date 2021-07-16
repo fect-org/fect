@@ -514,5 +514,37 @@
   "fe-skeletonItem/variable": {
     "type": "string",
     "description": "显示的占位元素的样式 ,可选值为`p`,`text`,`h1`,`h3`,`rect`,`circle`,`image`,`button`,`caption`, 默认值: `text`"
+  },
+  "fe-swipe/duration": {
+    "type": "number",
+    "description": "切换过度时间(毫秒) , 默认值 `300`"
+  },
+  "fe-swipe/autoplay": {
+    "type": "number",
+    "description": "自动播放间隔时间(毫秒)"
+  },
+  "fe-swipe/loop": {
+    "type": "boolean",
+    "description": "是否开启循环轮播 , 默认值:`false`"
+  },
+  "fe-swipe/indicatorHeight": {
+    "type": "string",
+    "description": "指示器的高度 , 默认值:`8px`"
+  },
+  "fe-swipe/indicatorWidth": {
+    "type": "string",
+    "description": "指示器的宽度 , 默认值:`8px`"
+  },
+  "fe-swipe/initalValue": {
+    "type": "number",
+    "description": "初始化显示的索引 , 默认值:`0`"
+  },
+  "fe-swipe/showIndicators": {
+    "type": "boolean",
+    "description": "是否显示指示器 , 默认值:`true`"
+  },
+  "fe-swipe/indicatorColor": {
+    "type": "string",
+    "description": "设置指示器的颜色 , 默认值:`-`"
   }
 }

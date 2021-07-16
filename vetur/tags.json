@@ -267,5 +267,20 @@
     "attributes": [
       "variable"
     ]
+  },
+  "fe-swipe": {
+    "attributes": [
+      "duration",
+      "autoplay",
+      "loop",
+      "indicatorWidth",
+      "indicatorHeight",
+      "initalValue",
+      "showIndicators",
+      "indicatorColor"
+    ]
+  },
+  "fe-swipeItem": {
+    "attributes": []
   }
 }
