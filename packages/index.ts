@@ -14,6 +14,7 @@ import Checkbox from './checkbox';
 import CheckboxGroup from './checkbox-group';
 import Code from './code';
 import Col from './col';
+import Collapse from './collapse';
 import Dot from './dot';
 import Image from './image';
 import Input from './input';
@@ -51,6 +52,7 @@ const components = [Avatar,
   CheckboxGroup,
   Code,
   Col,
+  Collapse,
   Dot,
   Image,
   Input,
@@ -100,6 +102,7 @@ export {
   CheckboxGroup,
   Code,
   Col,
+  Collapse,
   Dot,
   Image,
   Input,
