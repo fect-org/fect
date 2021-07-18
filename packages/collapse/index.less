@@ -1,0 +1,42 @@
+.fect-collapse {
+  padding: var(--fay-gap) 0;
+  border: 1px solid var(--fay-border);
+  border-left: none;
+  border-right: none;
+  &--shadow {
+    box-shadow: var(--fay-shadowSmall);
+    border: none;
+    border-radius: var(--fay-radius);
+    padding: var(--fay-gap);
+  }
+  &__view {
+    cursor: pointer;
+    outline: none;
+
+    .title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--primary-foreground);
+      h3 {
+        font-weight: 450;
+        margin: 0;
+        font-size: 25px;
+      }
+    }
+
+    .subtitle {
+      color: var(--accents-5);
+      margin: 0;
+    }
+  }
+
+  &__svg {
+    transition: transform 200ms ease;
+    transform: rotateZ(0deg);
+    &--active {
+      transition: transform 200ms ease;
+      transform: rotateZ(-180deg);
+    }
+  }
+}

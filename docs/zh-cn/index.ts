@@ -48,7 +48,14 @@ export const zhRoutes: Routes[] = [
   },
   {
     name: '表面',
-    children: [{ title: '卡片 Card', group: '表面', route: { name: 'Card' } }],
+    children: [
+      { title: '卡片 Card', group: '表面', route: { name: 'Card' } },
+      {
+        title: '折叠框 Collapse',
+        group: '表面',
+        route: { name: 'Collapse' },
+      },
+    ],
   },
   {
     name: '表单',
