@@ -2,8 +2,9 @@
   <div>
     <fe-collapse
       shadow
-      title="hello world"
-      subtitle="1234567"
+      title="HTML"
+      subtitle="HyperText Markup Language"
+      subTag="code"
       v-model:visible="show"
     >
       HTML（超文本标记语言——HyperText Markup Language）是构成 Web
