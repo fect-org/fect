@@ -57,6 +57,7 @@ export default createComponent({
           value={el.value || idx}
           key={idx}
           active={currentChecked.value}
+          disabled={el.disabled}
           onClick={setCurrent}
         />
       ))

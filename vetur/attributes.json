@@ -455,6 +455,10 @@
     "type": "string",
     "description": "绑定选项卡的标识符 , 默认值:`-`"
   },
+  "fe-tab/disabled": {
+    "type": "boolean",
+    "description": "禁用当前选项卡 , 默认值:`false`"
+  },
   "fe-tag/text": {
     "type": "string",
     "description": "标签内容 , 默认值:`-`"
