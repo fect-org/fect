@@ -230,7 +230,8 @@
   "fe-tab": {
     "attributes": [
       "title",
-      "value"
+      "value",
+      "disabled"
     ]
   },
   "fe-tag": {

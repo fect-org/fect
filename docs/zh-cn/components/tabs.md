@@ -10,6 +10,11 @@
 
 <fe-code-show
   title="分割线"
+  name="ex-tabs-disabled"
+/>
+
+<fe-code-show
+  title="分割线"
   name="ex-tabs-divider"
   desc="隐藏默认的分割线"
 />
@@ -32,10 +37,11 @@
 
 <fe-attributes-title title="Tab Props" />
 
-| 属性      | 描述               | 类型                | 可选值               | 默认 |
-| --------- | ------------------ | ------------------- | -------------------- | ---- |
-| **title** | 选项卡的文字描述   | `'string'`          | `-`                  | `-`  |
-| **value** | 绑定选项卡的标识符 | `'string','number'` | `-`                  | `-`  |
-| ...       | 原生属性           | `HTMLAttributes`    | `'class','name',...` | `-`  |
+| 属性         | 描述               | 类型                | 可选值               | 默认    |
+| ------------ | ------------------ | ------------------- | -------------------- | ------- |
+| **title**    | 选项卡的文字描述   | `'string'`          | `-`                  | `-`     |
+| **value**    | 绑定选项卡的标识符 | `'string','number'` | `-`                  | `-`     |
+| **disabled** | 禁用当前选项卡     | `'boolean'`         | `'true','false'`     | `false` |
+| ...          | 原生属性           | `HTMLAttributes`    | `'class','name',...` | `-`     |
 
 </fe-attributes>
