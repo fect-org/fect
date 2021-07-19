@@ -61,6 +61,15 @@
       "shadow"
     ]
   },
+  "fe-collapse": {
+    "attributes": [
+      "title",
+      "subtitle",
+      "subTag",
+      "v-model:visible",
+      "shadow"
+    ]
+  },
   "fe-checkbox": {
     "attributes": [
       "v-model",

@@ -103,6 +103,26 @@
     "type": "boolean",
     "description": "是否总是显示阴影 , 默认值:`false` "
   },
+  "fe-collapse/title": {
+    "type": "string",
+    "description": "标题值 , 该属性必选 "
+  },
+  "fe-collapse/subtitle": {
+    "type": "string",
+    "description": "子标题内容 "
+  },
+  "fe-collapse/subTag": {
+    "type": "string",
+    "description": "自定义子标题容器元素 "
+  },
+  "fe-collapse/v-model:visible": {
+    "type": "boolean",
+    "description": "控制折叠框展开, 默认值:`false`"
+  },
+  "fe-collapse/shadow": {
+    "type": "boolean",
+    "description": "设置阴影模式, 默认值:`false`"
+  },
   "fe-checkbox/v-model": {
     "type": "boolean",
     "description": "是否选中 , 默认值:`false` "

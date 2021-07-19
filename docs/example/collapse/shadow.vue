@@ -1,6 +1,7 @@
 <template>
   <div>
     <fe-collapse
+      shadow
       title="HTML"
       subtitle="HyperText Markup Language"
       subTag="code"
@@ -17,7 +18,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-collapse-default',
+  name: 'ex-collapse-shadow',
   setup() {
     const show = ref(false)
     return {
