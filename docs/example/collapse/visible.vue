@@ -17,9 +17,9 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-collapse-default',
+  name: 'ex-collapse-visible',
   setup() {
-    const show = ref(false)
+    const show = ref(true)
     return {
       show,
     }
