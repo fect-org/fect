@@ -1,38 +1,13 @@
-import {
-  computed,
-  onMounted,
-  ref,
-  Ref,
-  unref,
-  watch,
-  CSSProperties,
-  PropType,
-} from 'vue'
-import { createNameSpace, useRect } from '../utils'
+import { computed, ref, PropType, watch } from 'vue'
+import { createNameSpace, useRealShape } from '../utils'
 import CollapseIcon from './collapse-icon'
 import './index.less'
 
 const [createComponent] = createNameSpace('Collapse')
 
-const getRealShape = (el: Element | Ref<Element | undefined>) => {
-  const element = unref(el) as Element
-  const rect = useRect(element)
-  const { width, height } = window.getComputedStyle(element)
-
-  const getStyleVal = (str: string, parentNum: number) => {
-    if (!str) return 0
-    const strVal = str.includes('px')
-      ? +str.split('px')[0]
-      : str.includes('%')
-        ? +str.split('%')[0] * parentNum * 0.01
-        : str
-
-    return Number.isNaN(+strVal) ? 0 : +strVal
-  }
-  return {
-    width: getStyleVal(`${width}`, rect.width),
-    height: getStyleVal(`${height}`, rect.height),
-  }
+type Shape = {
+  width: number
+  height: number
 }
 
 export default createComponent({
@@ -52,37 +27,48 @@ export default createComponent({
       console.error('[Fect] title must be in <Collapse>.')
     }
 
-    console.log(props.subTag)
+    const expandRef = ref<HTMLDivElement>()
 
-    const ContentRef = ref<HTMLDivElement>()
+    const height = ref<string | number>(props.visible ? 'auto' : 0)
 
-    const contentWidth = ref<number>(0)
-    const contentHeight = ref<number>(0)
-
-    const expand = ref<boolean>(false)
+    const setHeight = (val: string | number) => (height.value = val)
 
     const setCollapseClass = computed(() => {
       if (props.shadow) return 'fect-collapse--shadow'
       return 'fect-collapse'
     })
 
-    const setExpandStyle = computed(() => {
-      const style: CSSProperties = {
-        visibility: props.visible ? 'visible' : 'hidden',
-        height: props.visible ? 'auto' : 0,
-        transition: 'height 200ms ease',
-      }
-      return style
-    })
-
-    const setContentClass = computed(() => {
-      if (props.visible) return 'fect-collapse__content--expand'
-      return 'fect-collapse__content'
-    })
-
     const clickHandler = () => {
       emit('update:visible', !props.visible)
     }
+
+    /**
+     * visible attrs will control the expand element height value
+     *
+     * in first time will set child height value , and if visible as
+     * true will set auto . as down
+     * and in false will set zero as up
+     *
+     */
+
+    watch(
+      () => props.visible,
+      (pre) => {
+        const shape = useRealShape(expandRef) as Shape
+        if (pre) {
+          const entryTimer = setTimeout(() => {
+            setHeight(`${shape.height}px`)
+            clearTimeout(entryTimer)
+          }, 200 / 30)
+        } else {
+          setHeight(`${shape.height}px`)
+          const leaveTimer = setTimeout(() => {
+            setHeight(0)
+            clearTimeout(leaveTimer)
+          }, 200 / 30)
+        }
+      },
+    )
 
     return () => (
       <div class={setCollapseClass.value}>
@@ -105,12 +91,17 @@ export default createComponent({
             </div>
           )}
         </div>
+
         <div
-          class={setContentClass.value}
-          // ref={ContentRef}
-          style={setExpandStyle.value}
+          class="fect-collapse__expand"
+          style={{
+            visibility: props.visible ? 'visible' : 'hidden',
+            height: height.value,
+          }}
         >
-          <div>{slots.default?.()}</div>
+          <div class="fect-collapse__content" ref={expandRef}>
+            {slots.default?.()}
+          </div>
         </div>
       </div>
     )

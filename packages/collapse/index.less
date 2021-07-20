@@ -39,21 +39,23 @@
       transform: rotateZ(-180deg);
     }
   }
-  &__content {
+
+  &__expand {
     padding: 0;
     margin: 0;
     overflow: hidden;
-    &--expand {
-      font-size: 16px;
-      line-height: 25px;
-      padding: var(--fay-gap) 0;
-      visibility: visible;
-      &:first-child {
-        margin-top: 0;
-      }
-      &:last-child {
-        margin-bottom: 0;
-      }
+    transition: height 200ms ease;
+  }
+  &__content {
+    font-size: 16px;
+    line-height: 25px;
+    padding: var(--fay-gap) 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }
