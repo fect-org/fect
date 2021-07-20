@@ -14,7 +14,7 @@ export default createComponent({
   props: {
     title: {
       type: String,
-      required: true,
+      default: '',
     },
     subtitle: String,
     subTag: String as PropType<keyof HTMLElementTagNameMap>,
@@ -23,9 +23,9 @@ export default createComponent({
   },
   emits: ['update:visible'],
   setup(props, { slots, emit }) {
-    if (process.env.NODE_ENV !== 'production' && !props.title) {
-      console.error('[Fect] title must be in <Collapse>.')
-    }
+    // if (process.env.NODE_ENV !== 'production' && !props.title) {
+    //   console.error('[Fect] title must be in <Collapse>.')
+    // }
 
     const expandRef = ref<HTMLDivElement>()
 
