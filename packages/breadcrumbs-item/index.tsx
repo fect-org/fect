@@ -1,7 +1,10 @@
 import { ref, watchEffect } from 'vue'
 import { createNameSpace } from '../utils'
 import { useProvider } from '@fect-ui/vue-hooks'
-import { BreadcrumbsProvide, READONLY_BREADCRUMBS_KEY } from '../breadcrumbs/index'
+import {
+  BreadcrumbsProvide,
+  READONLY_BREADCRUMBS_KEY,
+} from '../breadcrumbs/index'
 import Link from '../link'
 import Separator from './breadcrumbs-spearator'
 import './index.less'
@@ -45,7 +48,7 @@ export default createComponent({
 
     const withoutLinkRender = () => {
       return (
-        <span class="fect-braed_item">
+        <span class="fect-breadcrumbs__item">
           {slots.default?.()}
           <Separator>{context.separator}</Separator>
         </span>
@@ -54,7 +57,7 @@ export default createComponent({
 
     const linkRender = () => {
       return (
-        <div class="fect-braed_item ">
+        <div class="fect-breadcrumbs__item">
           <Link to={props.to} href={props.href} class="withLink">
             {slots.default?.()}
           </Link>

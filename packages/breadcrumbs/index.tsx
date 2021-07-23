@@ -43,7 +43,7 @@ export default createComponent({
     })
 
     return () => (
-      <nav class="fect-nav_container" style={safeSize.value}>
+      <nav class="fect-breadcrumbs" style={safeSize.value}>
         {slots.default?.()}
       </nav>
     )

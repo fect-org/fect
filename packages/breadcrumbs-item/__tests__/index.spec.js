@@ -18,8 +18,8 @@ describe('BreadcrumbsItem', () => {
       </Breadcrumbs>,
     )
     expect(wrapper.html()).toMatchSnapshot()
-    expect(wrapper.find('.fect-braed_item').html()).toBe(
-      '<span class="fect-braed_item"><!----><div class="fect-bread_separator">/</div></span>',
+    expect(wrapper.find('.fect-breadcrumbs__item').html()).toBe(
+      '<span class="fect-breadcrumbs__item"><!----><div class="fect-breadcrumbs__separator">/</div></span>',
     )
   })
 })
