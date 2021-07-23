@@ -114,9 +114,9 @@ export default createComponent({
             onChange={handleChange}
             disabled={isDisabled.value}
           ></input>
-          <span class={'fect-radio-name'}>
+          <span class={'fect-radio__name'}>
             <span
-              class={`fect-radio-point ${isDisabled.value ? 'disabled' : ''} ${
+              class={`fect-radio__point ${isDisabled.value ? 'disabled' : ''} ${
                 selfChecked.value ? 'active' : ''
               }`}
             />

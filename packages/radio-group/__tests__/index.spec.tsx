@@ -21,7 +21,7 @@ describe('RadioGroup', () => {
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-    const els = wrapper.findAll('.fect-radio-point')
+    const els = wrapper.findAll('.fect-radio__point')
     expect(els[0].classes('active')).toBeTruthy()
   })
 
@@ -29,7 +29,7 @@ describe('RadioGroup', () => {
     const wrapper = mount({
       render: () => <RadioGroup useRow={true}></RadioGroup>,
     })
-    expect(wrapper.find('.fect-radio-group').classes('useRow')).toBe(true)
+    expect(wrapper.find('.fect-radio__group').classes('useRow')).toBe(true)
   })
 
   it('should be support disabled', () => {
@@ -98,10 +98,5 @@ describe('RadioGroup', () => {
     const labels = wrapper.findAll('[type="radio"]')
     await labels[0].trigger('change')
     expect(wrapper.vm.test).toBeTruthy()
-    // expect(wrapper.vm.test).toEqual(1)
-    // expect(wrapper.emitted().change[0]).toBeTruthy()
-    // await labels[1].trigger('change')
-    // expect(wrapper.vm.test).toEqual(2)
-    // expect(wrapper.emitted().change[2]).toEqual([2])
   })
 })

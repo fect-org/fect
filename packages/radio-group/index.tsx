@@ -48,7 +48,7 @@ export default createComponent({
     const updateState = (nextVal: RadioEvent) => emit('change', nextVal)
     provider({ props, updateState, groupValue })
     return () => (
-      <div class={`fect-radio-group ${props.useRow ? 'useRow' : ''}`}>
+      <div class={`fect-radio__group ${props.useRow ? 'useRow' : ''}`}>
         {slots.default?.()}
       </div>
     )

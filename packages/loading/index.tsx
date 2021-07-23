@@ -93,7 +93,7 @@ export default createComponent({
     })
 
     return () => (
-      <div class="fect-loading-container">
+      <div class="fect-loading">
         <span class={'loading'}>{renderLoad.value}</span>
       </div>
     )

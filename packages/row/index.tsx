@@ -38,10 +38,10 @@ export default createComponent({
     const setClass = computed(() => {
       let _class = ''
       if (props.justify !== 'start') {
-        _class += ` fect-justify-${props.justify}`
+        _class += ` fect-justify--${props.justify}`
       }
       if (props.align !== 'top') {
-        _class += ` fect-align-${props.align}`
+        _class += ` fect-align--${props.align}`
       }
       return _class.trim()
     })
