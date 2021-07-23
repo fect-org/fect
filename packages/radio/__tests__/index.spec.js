@@ -43,7 +43,7 @@ describe('Radio', () => {
   it('should be support cheked', () => {
     const wrapper = mount(<Radio value={'test'} checked={true} />)
     expect(wrapper.html()).toContain(
-      '<span class="fect-radio-point  active"></span>',
+      '<span class="fect-radio__point  active"></span>',
     )
   })
 

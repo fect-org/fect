@@ -2,28 +2,27 @@
   display: flex;
   position: relative;
   box-sizing: border-box;
-}
 
-.fect-justify-center {
-  justify-content: center;
-}
-
-.fect-justify-end {
-  justify-content: flex-end;
-}
-
-.fect-justify-space-around {
-  justify-content: space-around;
-}
-
-.fect-justify-space-between {
-  justify-content: space-between;
-}
-
-.fect-align-middle {
-  align-items: center;
-}
-
-.fect-align-bottom {
-  align-items: flex-end;
+  .fect-justify {
+    &--center {
+      justify-content: center;
+    }
+    &--end {
+      justify-content: flex-end;
+    }
+    &--space-around {
+      justify-content: space-around;
+    }
+    &--space-between {
+      justify-content: space-between;
+    }
+  }
+  .fect-align {
+    &--middle {
+      align-items: center;
+    }
+    &--bottom {
+      align-items: flex-end;
+    }
+  }
 }
