@@ -26,7 +26,7 @@ describe('Breadcrumbs', () => {
       },
     })
 
-    const els = wrapper.findAll('.fect-nav_container')
+    const els = wrapper.findAll('.fect-breadcrumbs')
     expect(els[0].attributes('style')).toBe('font-size: 12px;')
     expect(els[1].attributes('style')).toBe('font-size: 14px;')
     expect(els[2].attributes('style')).toBe('font-size: 16px;')
@@ -41,6 +41,6 @@ describe('Breadcrumbs', () => {
         <BreadcrumbsItem />
       </Breadcrumbs>,
     )
-    expect(wrapper.find('.fect-bread_separator').text()).toBe('>')
+    expect(wrapper.find('.fect-breadcrumbs__separator').text()).toBe('>')
   })
 })
