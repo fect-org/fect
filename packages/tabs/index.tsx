@@ -64,9 +64,11 @@ export default createComponent({
     }
 
     return () => (
-      <div class="fect-tabs_container">
+      <div class="fect-tabs">
         <header
-          class={`tabs_header ${props.hideDivider ? 'hide-divider' : ''}`}
+          class={`fect-tabs__header  fect-tabs__header--${
+            props.hideDivider ? 'hide-divider' : ''
+          }`}
         >
           {renderNav()}
         </header>

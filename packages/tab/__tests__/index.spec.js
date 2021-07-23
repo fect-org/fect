@@ -19,7 +19,9 @@ describe('Tabs', () => {
       </Tabs>,
     )
     expect(wrapper.html()).toMatchSnapshot()
-    expect(wrapper.find('header').classes('hide-divider')).toBe(true)
+    expect(
+      wrapper.find('header').classes('fect-tabs__header--hide-divider'),
+    ).toBe(true)
   })
 
   it('should support custom active and value', async () => {

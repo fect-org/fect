@@ -14,9 +14,9 @@ export default createComponent({
   },
   setup(props, { slots }) {
     return () => (
-      <div class="fect-dot-wrapper">
-        <span class={`fect-dot ${props.type}`}></span>
-        <span class="fect-dot-ctx">{slots.default?.()}</span>
+      <div class="fect-dot">
+        <span class={`fect-dot__circle fect-dot__circle--${props.type}`}></span>
+        <span class="fect-dot__ctx">{slots.default?.()}</span>
       </div>
     )
   },

@@ -60,6 +60,6 @@ export default createComponent({
   setup(props, { slots }) {
     const { provider } = createProvider(READONLY_BADGE_ANCHOR_KEY)
     provider(getTransform(props.placement))
-    return () => <div class="fect-badge_anchor">{slots.default?.()}</div>
+    return () => <div class="fect-badge__anchor">{slots.default?.()}</div>
   },
 })
