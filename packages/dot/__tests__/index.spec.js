@@ -38,7 +38,7 @@ describe('Dot', () => {
     })
 
     const el = wrapper
-      .find('.fect-dot-ctx')
+      .find('.fect-dot__ctx')
       .find('span')
       .text()
     expect(el).toBe('success')
