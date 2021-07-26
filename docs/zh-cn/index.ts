@@ -42,6 +42,7 @@ export const zhRoutes: Routes[] = [
   {
     name: '布局',
     children: [
+      { title: '栅格 Grid', group: '布局', route: { name: 'Grid' } },
       { title: '布局 Layout', group: '布局', route: { name: 'Layout' } },
       { title: '间距 Spacer', group: '布局', route: { name: 'Spacer' } },
     ],

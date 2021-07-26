@@ -1,22 +1,70 @@
 .fect-grid {
-  padding: var(--fay-grid-spacing);
+  margin: 0;
+  box-sizing: border-box;
+  padding: var(--fect-gap-unit);
   &__container {
     display: flex;
     box-sizing: border-box;
   }
+  &--xs {
+    flex-grow: var(--fect-xs-grow);
+    max-width: var(--fect-xs-width);
+    flex-basis: var(--fect-xs-basis);
+    display: var(--fect-xs-display);
+  }
 }
 
 @media only screen and(max-width:650px) {
+  .fect-grid {
+    &--xs {
+      flex-grow: var(--fect-xs-grow);
+      max-width: var(--fect-xs-width);
+      flex-basis: var(--fect-xs-basis);
+      display: var(--fect-xs-display);
+    }
+  }
 }
 
 @media only screen and(min-width:650px) {
+  .fect-grid {
+    &--sm {
+      flex-grow: var(--fect-sm-grow);
+      max-width: var(--fect-sm-width);
+      flex-basis: var(--fect-sm-basis);
+      display: var(--fect-sm-display);
+    }
+  }
 }
 
 @media only screen and(min-width:900px) {
+  .fect-grid {
+    &--md {
+      flex-grow: var(--fect-md-grow);
+      max-width: var(--fect-md-width);
+      flex-basis: var(--fect-md-basis);
+      display: var(--fect-md-display);
+    }
+  }
 }
 
 @media only screen and(min-width:1280px) {
+  .fect-grid {
+    &--lg {
+      flex-grow: var(--fect-lg-grow);
+      max-width: var(--fect-lg-width);
+      flex-basis: var(--fect-lg-basis);
+      display: var(--fect-lg-display);
+    }
+  }
 }
 
 @media only screen and(min-width:1920px) {
+  .fect-grid {
+    &--xl {
+      flex-grow: var(--fect-xl-grow);
+      max-width: var(--fect-xl-width);
+      flex-basis: var(--fect-xl-basis);
+      display: var(--fect-xl-display);
+    }
+  }
 }
