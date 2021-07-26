@@ -16,6 +16,7 @@ import Code from './code';
 import Col from './col';
 import Collapse from './collapse';
 import Dot from './dot';
+import Grid from './grid';
 import Image from './image';
 import Input from './input';
 import Link from './link';
@@ -54,6 +55,7 @@ const components = [Avatar,
   Col,
   Collapse,
   Dot,
+  Grid,
   Image,
   Input,
   Link,
@@ -104,6 +106,7 @@ export {
   Col,
   Collapse,
   Dot,
+  Grid,
   Image,
   Input,
   Link,
