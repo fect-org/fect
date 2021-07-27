@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue'
 import { createNameSpace } from '../utils'
 import { CustomCSSProperties } from '../utils/base'
-import {  sizes } from './type'
+import { sizes } from './type'
 import { props } from './props'
 import './index.less'
 
@@ -19,14 +19,14 @@ const getItemLayout = (
     const ratio = width > 100 ? '100%' : width < 0 ? '0' : `${width}%`
     return {
       [`--fect-${key}-grow`]: 0,
-      [`--fect-${key}-dispaly`]: display,
+      [`--fect-${key}-display`]: display,
       [`--fect-${key}-width`]: `${ratio}`,
       [`--fect-${key}-basis`]: `${ratio}`,
     }
   }
   return {
     [`--fect-${key}-grow`]: 1,
-    [`--fect-${key}-dispaly`]: display,
+    [`--fect-${key}-display`]: display,
     [`--fect-${key}-width`]: '100%',
     [`--fect-${key}-basis`]: '0',
   }
@@ -38,7 +38,7 @@ export default createComponent({
     const setClass = computed(() => {
       const { container } = props
       const classes = sizes.map((size) => {
-        const hasSize = props[size] ? true : false
+        const hasSize = props[size] || typeof props[size] === 'number'
         if (hasSize) {
           return `fect-grid--${size}`
         }
@@ -69,7 +69,7 @@ export default createComponent({
         xl: getItemLayout(xl, 'xl'),
       }
       const styles = sizes.map((size) => {
-        const hasSize = props[size] ? true : false
+        const hasSize = props[size] || typeof props[size] === 'number'
         if (hasSize) {
           return layout[size]
         }
@@ -78,9 +78,7 @@ export default createComponent({
 
       const containerStyle: CustomCSSProperties = {
         '--fect-gap-unit': `calc(${gap} * var(--fay-gap-quarter))`,
-        'display': 'flex',
         'flex-wrap': `${wrap}`,
-        'boxSizing': 'border-box',
         'margin': 'calc(-1 * var(--fect-gap-unit))',
         'width': 'calc(100% + var(--fect-gap-unit) * 2)',
       }

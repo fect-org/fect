@@ -23,7 +23,7 @@ export const props = {
   },
   alignItems: {
     type: String as PropType<AlignTypes>,
-    default: 'baseline',
+    default: 'stretch',
   },
   alignContent: {
     type: String as PropType<AlignContentTypes>,
@@ -31,7 +31,7 @@ export const props = {
   },
   direction: {
     type: String as PropType<DirectionTypes>,
-    default: 'flex-start',
+    default: 'row',
   },
   xs: {
     type: [Number, Boolean],
