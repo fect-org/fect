@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Grid shoud be render as element 1`] = `
+<div class="fect-grid__container" style="justify-content: flex-start; align-content: flex-start; flex-direction: row; align-items: stretch; --fect-gap-unit: calc(0 * var(--fay-gap-quarter)); flex-wrap: wrap;">
+  <div class="fect-grid" style="justify-content: flex-start; align-content: flex-start; flex-direction: row; align-items: stretch;">T</div>
+</div>
+`;
+
+exports[`Grid should be support align 1`] = `
+<div class="fect-grid__container" style="justify-content: flex-start; align-content: flex-start; flex-direction: row; align-items: stretch; --fect-gap-unit: calc(0 * var(--fay-gap-quarter)); flex-wrap: wrap;">
+  <div class="fect-grid fect-grid--xl" style="--fect-xl-grow: 0; --fect-xl-display: inherit;; --fect-xl-width: 12.5%; --fect-xl-basis: 12.5%; justify-content: flex-end; align-content: flex-start; flex-direction: row; align-items: stretch;">T</div>
+</div>
+`;
+
+exports[`Grid should be support breakPoints 1`] = `
+<div class="fect-grid__container" style="justify-content: flex-start; align-content: flex-start; flex-direction: row; align-items: stretch; --fect-gap-unit: calc(0 * var(--fay-gap-quarter)); flex-wrap: wrap;">
+  <div class="fect-grid fect-grid--xs fect-grid--sm fect-grid--md fect-grid--lg fect-grid--xl" style="--fect-xs-grow: 0; --fect-xs-display: inherit;; --fect-xs-width: 4.166666666666667%; --fect-xs-basis: 4.166666666666667%; --fect-sm-grow: 0; --fect-sm-display: inherit;; --fect-sm-width: 8.333333333333334%; --fect-sm-basis: 8.333333333333334%; --fect-md-grow: 0; --fect-md-display: inherit;; --fect-md-width: 12.5%; --fect-md-basis: 12.5%; --fect-lg-grow: 0; --fect-lg-display: inherit;; --fect-lg-width: 16.666666666666668%; --fect-lg-basis: 16.666666666666668%; --fect-xl-grow: 0; --fect-xl-display: inherit;; --fect-xl-width: 20.833333333333336%; --fect-xl-basis: 20.833333333333336%; justify-content: flex-start; align-content: flex-start; flex-direction: row; align-items: stretch;">T</div>
+</div>
+`;

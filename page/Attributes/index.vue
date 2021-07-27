@@ -1,10 +1,9 @@
 <template>
   <div>
-    <fe-spacer :y="2" />
+    <fe-spacer :y="1" />
     <div class="fect-doc__api-attrs">
       <slot />
     </div>
-    <fe-spacer :y="1" />
   </div>
 </template>
 
