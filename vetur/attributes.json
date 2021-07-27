@@ -570,5 +570,53 @@
   "fe-swipe/indicatorColor": {
     "type": "string",
     "description": "设置指示器的颜色 , 默认值:`-`"
+  },
+  "fe-grid/container": {
+    "type": "boolean",
+    "description": "设置grid组件为容器, 默认值:`false`"
+  },
+  "fe-grid/gap": {
+    "type": "number",
+    "description": "设置grid子组件的间距, 默认值:`0`"
+  },
+  "fe-grid/wrap": {
+    "type": "string",
+    "description": "CSS 属性 `flex-wrap`, 可选值为`wrap`,`nowrap`,`wrap-reverse` , 默认值:`wrap`"
+  },
+  "fe-grid/justify": {
+    "type": "string",
+    "description": "CSS 属性 `justify-content`, 可选值为`flex-start`,`center`,`flex-end`,`space-between`,`space-around`,`space-evenly` , 默认值:`flex-start`"
+  },
+  "fe-grid/alignItems": {
+    "type": "string",
+    "description": "CSS 属性 `align-items`, 可选值为`flex-start`,`center`,`flex-end`,`stretch`,`baseline` , 默认值:`stretch`"
+  },
+  "fe-grid/alignContent": {
+    "type": "string",
+    "description": "CSS 属性 `align-content`, 可选值为`flex-start`,`center`,`flex-end`,`stretch`,`space-around`,`space-between` , 默认值:`flex-start`"
+  },
+  "fe-grid/direction": {
+    "type": "string",
+    "description": "CSS 属性 `flex-direction`, 可选值为`row`,`row-reverse`,`column`,`column-reverse` , 默认值:`row`"
+  },
+  "fe-grid/xs": {
+    "type": "number|boolean",
+    "description": "栅格宽度，影响 xs 断点与更宽的屏幕,可选值为`0-24` , 默认值:`false`"
+  },
+  "fe-grid/sm": {
+    "type": "number|boolean",
+    "description": "栅格宽度，影响 sm 断点与更宽的屏幕,可选值为`0-24` , 默认值:`false`"
+  },
+  "fe-grid/md": {
+    "type": "number|boolean",
+    "description": "栅格宽度，影响 md 断点与更宽的屏幕,可选值为`0-24` , 默认值:`false`"
+  },
+  "fe-grid/lg": {
+    "type": "number|boolean",
+    "description": "栅格宽度，影响 lg 断点与更宽的屏幕,可选值为`0-24` , 默认值:`false`"
+  },
+  "fe-grid/xl": {
+    "type": "number|boolean",
+    "description": "栅格宽度，影响 xl 断点与更宽的屏幕,可选值为`0-24` , 默认值:`false`"
   }
 }

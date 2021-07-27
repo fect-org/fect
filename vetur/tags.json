@@ -292,5 +292,21 @@
   },
   "fe-swipeItem": {
     "attributes": []
+  },
+  "fe-grid": {
+    "attributes": [
+      "container",
+      "gap",
+      "wrap",
+      "justify",
+      "alignItems",
+      "alignContent",
+      "direction",
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl"
+    ]
   }
 }

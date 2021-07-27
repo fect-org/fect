@@ -26,7 +26,6 @@ const alignContentTypes = tuple(
   'flex-end',
   'space-between',
   'space-around',
-  'space-evenly',
 )
 
 const directionTypes = tuple('row', 'row-reverse', 'column', 'column-reverse')
@@ -45,4 +44,3 @@ export type WrapTypes = typeof wrapTypes[number]
 
 export type DirectionTypes = typeof directionTypes[number]
 
-export type Sizes = typeof sizes[number]
