@@ -18,6 +18,7 @@ export interface SwitchEvent {
 
 export default createComponent({
   props: {
+    modelValue: Boolean,
     checked: Boolean,
     size: {
       type: String as PropType<NormalSizes>,
@@ -25,7 +26,7 @@ export default createComponent({
     },
     disabled: Boolean,
   },
-  emits: ['change'],
+  emits: ['change', 'update:modelValue'],
   setup(props, { emit }) {
     const selfChecked = ref<boolean>(props.checked)
     const changeHandler = (e: Event) => {
@@ -53,13 +54,13 @@ export default createComponent({
     return () => (
       <label class={`fect-switch ${setClass.value}`}>
         <input
-          class={`fect-switch-checkBox ${props.size}`}
+          class={`fect-switch__checkbox ${props.size}`}
           type="checkBox"
           checked={selfChecked.value}
           disabled={props.disabled}
           onChange={changeHandler}
         />
-        <div class={`fect-swtich-slider ${setClass.value}`}></div>
+        <div class={`fect-switch__slider ${setClass.value}`}></div>
       </label>
     )
   },
