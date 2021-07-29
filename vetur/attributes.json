@@ -447,9 +447,17 @@
     "type": "boolean",
     "description": "行内模式 , 默认值:`false`"
   },
-  "fe-switch/checked": {
-    "type": "boolean",
-    "description": "是否选中 , 默认值:`false`"
+  "fe-switch/v-model": {
+    "type": "any",
+    "description": "切换状态对应的值 , 默认值:`-`"
+  },
+  "fe-switch/checked-value": {
+    "type": "any",
+    "description": "选中时对应的值 , 默认值:`true`"
+  },
+  "fe-switch/inactive-value": {
+    "type": "any",
+    "description": "未选中时对应的值 , 默认值:`false`"
   },
   "fe-switch/size": {
     "type": "string",

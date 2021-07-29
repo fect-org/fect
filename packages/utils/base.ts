@@ -1,4 +1,4 @@
-import { ComponentPublicInstance, CSSProperties } from 'vue'
+import { ComponentPublicInstance, CSSProperties, PropType } from 'vue'
 
 export type ComponentInstance = ComponentPublicInstance<{}, any>
 
@@ -7,3 +7,5 @@ interface Customprop {
 }
 
 export type CustomCSSProperties = CSSProperties & Customprop
+
+export const UnknowProp = (null as unknown) as PropType<unknown>

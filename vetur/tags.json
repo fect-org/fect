@@ -225,7 +225,9 @@
   },
   "fe-switch": {
     "attributes": [
-      "checked",
+      "v-model",
+      "inactive-value",
+      "checked-value",
       "size",
       "disabed"
     ]
