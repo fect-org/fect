@@ -16,7 +16,7 @@ describe('Snippet', () => {
         return (
           <>
             {this.types.map((type, idx) => (
-              <Snippet text={idx} type={type} key={idx} />
+              <Snippet text={type} type={type} key={idx} />
             ))}
           </>
         )

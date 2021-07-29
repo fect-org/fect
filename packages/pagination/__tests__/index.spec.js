@@ -88,8 +88,8 @@ describe('Pagination', () => {
       setup() {
         return {
           customSlots: {
-            prev: <h4>Custom Prev</h4>,
-            next: <h3>Custom Next</h3>,
+            prev: () => <h4>Custom Prev</h4>,
+            next: () => <h3>Custom Next</h3>,
           },
         }
       },
