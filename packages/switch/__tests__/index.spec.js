@@ -1,11 +1,12 @@
 import { mount } from '@vue/test-utils'
 import Switch from '../index'
+import { ref } from 'vue'
 
 describe('Switch', () => {
   it('should be render as element', () => {
-    const swtich = mount(Switch)
-    expect(swtich.html()).toMatchSnapshot()
-    expect(() => swtich.unmount()).not.toThrow()
+    const _switch = mount(Switch)
+    expect(_switch.html()).toMatchSnapshot()
+    expect(() => _switch.unmount()).not.toThrow()
   })
 
   it('should be support different sizes', () => {
@@ -33,15 +34,34 @@ describe('Switch', () => {
 
   it('should be support disbaled', () => {
     const wrapper = mount(<Switch disabled={true} />)
-    const el = wrapper.find('.fect-swtich-slider')
+    const el = wrapper.find('.fect-switch__slider')
     expect(el.classes('disabled')).toBe(true)
   })
 
   it('should emit event change', async () => {
-    const wrapper = mount(<Switch />)
-    const el = wrapper.find('.fect-swtich-slider')
-    expect(el.classes('checked')).toBe(false)
-    await wrapper.find('[type="checkBox"]').trigger('change')
-    expect(el.classes('checked')).toBe(true)
+    const checked = ref(0)
+    const wrapper = mount(Switch, {
+      props: {
+        modelValue: checked,
+      },
+    })
+    expect(wrapper.vm.modelValue).toBe(0)
+    await wrapper.find('.fect-switch').trigger('click')
+    expect(wrapper.emitted('update:modelValue')[0][0]).toBe(true)
+    await wrapper.setProps({ modelValue: true })
+    await wrapper.find('.fect-switch').trigger('click')
+    expect(wrapper.emitted('update:modelValue')[1][0]).toBe(false)
+  })
+
+  it('should be support custom active and inactive value', async () => {
+    const wrapper = mount(Switch)
+    expect(wrapper.vm.checkedValue).toBe(true)
+    expect(wrapper.vm.inactiveValue).toBe(false)
+    await wrapper.setProps({
+      checkedValue: 1,
+      inactiveValue: 2,
+    })
+    expect(wrapper.vm.checkedValue).toBe(1)
+    expect(wrapper.vm.inactiveValue).toBe(2)
   })
 })

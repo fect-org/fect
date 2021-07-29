@@ -1,12 +1,16 @@
-import { computed, ref, PropType } from 'vue'
-import { createNameSpace } from '../utils'
+/* eslint-disable no-unused-expressions */
+import { computed, PropType } from 'vue'
+import { createNameSpace, format } from '../utils'
+import { UnknowProp } from '../utils/base'
 import { NormalSizes } from '../utils/theme/propTypes'
 import './index.less'
 
 const [createComponent] = createNameSpace('Switch')
 
+const { hasEmptry } = format
+
 interface SwitchEventTarget {
-  checked: boolean
+  checked: unknown // may be any value
 }
 
 export interface SwitchEvent {
@@ -18,8 +22,15 @@ export interface SwitchEvent {
 
 export default createComponent({
   props: {
-    modelValue: Boolean,
-    checked: Boolean,
+    modelValue: UnknowProp,
+    checkedValue: {
+      type: UnknowProp,
+      default: true,
+    },
+    inactiveValue: {
+      type: UnknowProp,
+      default: false,
+    },
     size: {
       type: String as PropType<NormalSizes>,
       default: 'medium',
@@ -28,35 +39,45 @@ export default createComponent({
   },
   emits: ['change', 'update:modelValue'],
   setup(props, { emit }) {
-    const selfChecked = ref<boolean>(props.checked)
+    const isChecked = () => props.modelValue === props.checkedValue
+
     const changeHandler = (e: Event) => {
+      const reverse = isChecked() ? props.inactiveValue : props.checkedValue
+      emit('update:modelValue', reverse)
       const selfEvent: SwitchEvent = {
         target: {
-          checked: !selfChecked.value,
+          checked: props.modelValue,
         },
         stopPropagation: e.stopPropagation,
         preventDefault: e.preventDefault,
         nativeEvent: e,
       }
-      selfChecked.value = !selfChecked.value
       emit('change', selfEvent)
+    }
+
+    const switchHandler = (e: Event) => {
+      e.preventDefault()
+      e.stopPropagation()
+      const { modelValue, disabled } = props
+      const isEmpty = hasEmptry(modelValue)
+      if (isEmpty || disabled) return
+      changeHandler(e)
     }
 
     const setClass = computed(() => {
       const names: string[] = []
       props.size && names.push(props.size)
       props.disabled && names.push('disabled')
-      selfChecked.value && names.push('checked')
-
+      isChecked() && names.push('checked')
       return names.join(' ')
     })
 
     return () => (
-      <label class={`fect-switch ${setClass.value}`}>
+      <label class={`fect-switch ${setClass.value}`} onClick={switchHandler}>
         <input
           class={`fect-switch__checkbox ${props.size}`}
           type="checkBox"
-          checked={selfChecked.value}
+          checked={isChecked()}
           disabled={props.disabled}
           onChange={changeHandler}
         />
