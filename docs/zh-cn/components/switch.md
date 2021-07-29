@@ -12,12 +12,14 @@
   
 <fe-attributes-title title="Spacer Props" />
 
-| 属性         | 描述     | 类型                  | 可选值                               | 默认    |
-| ------------ | -------- | --------------------- | ------------------------------------ | ------- |
-| **checked**  | 是否选中 | `boolean`             | `'true','false'`                     | `false` |
-| **size**     | 开关大小 | `string`              | `'mini', 'small', 'medium', 'large'` | `false` |
-| **disabled** | 禁用交互 | `boolean`             | `'true','false'`                     | `false` |
-| **change**   | 开关事件 | `SwitchEvent`         | `-`                                  | `-`     |
-| ...          | 原生属性 | `LabelHTMLAttributes` | `'class','name',...`                 | `-`     |
+| 属性               | 描述             | 类型                  | 可选值                               | 默认     |
+| ------------------ | ---------------- | --------------------- | ------------------------------------ | -------- |
+| **v-model**        | 切换状态对应的值 | `any`                 | `-`                                  | `-`      |
+| **checked-value**  | 选中时对应的值   | `any`                 | `-`                                  | `true`   |
+| **inactive-value** | 未选中时对应的值 | `any`                 | `-`                                  | `false`  |
+| **size**           | 开关大小         | `string`              | `'mini', 'small', 'medium', 'large'` | `medium` |
+| **disabled**       | 禁用交互         | `boolean`             | `'true','false'`                     | `false`  |
+| **change**         | 开关事件         | `SwitchEvent`         | `-`                                  | `-`      |
+| ...                | 原生属性         | `LabelHTMLAttributes` | `'class','name',...`                 | `-`      |
 
 </fe-attributes>
