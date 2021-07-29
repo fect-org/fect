@@ -32,8 +32,8 @@ describe('Modal', () => {
       setup() {
         return {
           customSlots: {
-            title: 'Custom Title',
-            action: <h3>Custom Action</h3>,
+            title: () => 'Custom Title',
+            action: () => <h3>Custom Action</h3>,
           },
         }
       },
@@ -60,7 +60,7 @@ describe('Modal', () => {
             <button id="btn" onClick={this.handlerClick}>
               Button
             </button>
-            <Modal title="Test" v-model={[this.show, 'visible']} ></Modal>
+            <Modal title="Test" v-model={[this.show, 'visible']}></Modal>
           </div>
         )
       },
