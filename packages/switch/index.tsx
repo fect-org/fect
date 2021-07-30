@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 import { computed, PropType } from 'vue'
 import { createNameSpace, format } from '../utils'
 import { UnknowProp } from '../utils/base'
