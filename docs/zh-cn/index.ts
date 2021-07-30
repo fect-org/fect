@@ -64,6 +64,7 @@ export const zhRoutes: Routes[] = [
       { title: '复选框 Checkbox', group: '表单', route: { name: 'Checkbox' } },
       { title: '输入框 Input', group: '表单', route: { name: 'Input' } },
       { title: '单选框 Radio', group: '表单', route: { name: 'Radio' } },
+      { title: '评分 Rating', group: '表单', route: { name: 'Rating' } },
       { title: '选择器 Select', group: '表单', route: { name: 'Select' } },
       { title: '开关 Switch', group: '表单', route: { name: 'Switch' } },
     ],
