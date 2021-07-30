@@ -26,6 +26,7 @@ import Pagination from './pagination';
 import Progress from './progress';
 import Radio from './radio';
 import RadioGroup from './radio-group';
+import Rating from './rating';
 import Row from './row';
 import Select from './select';
 import SelectOption from './select-option';
@@ -65,6 +66,7 @@ const components = [Avatar,
   Progress,
   Radio,
   RadioGroup,
+  Rating,
   Row,
   Select,
   SelectOption,
@@ -116,6 +118,7 @@ export {
   Progress,
   Radio,
   RadioGroup,
+  Rating,
   Row,
   Select,
   SelectOption,
