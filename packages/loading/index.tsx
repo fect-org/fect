@@ -51,7 +51,11 @@ export default createComponent({
       return (
         <>
           {new Array(3).fill(0).map((item, i) => (
-            <i class={setClass.value} style={setColor.value} key={item + i}></i>
+            <i
+              class={`loading__default ${setClass.value}`}
+              style={setColor.value}
+              key={item + i}
+            ></i>
           ))}
         </>
       )
@@ -94,7 +98,7 @@ export default createComponent({
 
     return () => (
       <div class="fect-loading">
-        <span class={'loading'}>{renderLoad.value}</span>
+        <span class="loading">{renderLoad.value}</span>
       </div>
     )
   },
