@@ -2,10 +2,10 @@
   <div>
     <fe-pagination v-model="initialPage" count="10">
       <template #prev>
-        <fect-icon icon="arrowLeftCircle" />
+        <arrowLeftCircle />
       </template>
       <template #next>
-        <fect-icon icon="arrowRightCircle" />
+        <arrowRightCircle />
       </template>
     </fe-pagination>
   </div>
