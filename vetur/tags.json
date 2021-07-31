@@ -186,6 +186,15 @@
       "size"
     ]
   },
+  "fe-rating": {
+    "attributes": [
+      "type",
+      "icon",
+      "count",
+      "v-model",
+      "locked"
+    ]
+  },
   "fe-select": {
     "attributes": [
       "v-model",

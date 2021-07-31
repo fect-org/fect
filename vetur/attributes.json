@@ -363,6 +363,26 @@
     "type": "string",
     "description": "组内所有单选框大小 , 可选值为`mini`,`small`,`medium`,`large`,  默认值: `medium`"
   },
+  "fe-rating/type": {
+    "type": "string",
+    "description": "不同类型的评分,  可选值为`default`,`success`,`warning`,`error`, 默认值: `default`"
+  },
+  "fe-rating/icon": {
+    "type": "Element",
+    "description": "自定义设置图标, 默认值:`-`"
+  },
+  "fe-rating/count": {
+    "type": "number",
+    "description": "设指定评分的最大值, 默认值:`5`"
+  },
+  "fe-rating/v-model": {
+    "type": "number",
+    "description": "评分的值, 默认值:`0`"
+  },
+  "fe-rating/locked": {
+    "type": "boolean",
+    "description": "设置只读, 默认值:`false`"
+  },
   "fe-select/v-model": {
     "type": "string | string[]",
     "description": "选择器的值 , 默认值: `-`"
