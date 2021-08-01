@@ -12,6 +12,8 @@ describe('Row', () => {
     const wrapper = mount(Row, {
       props: {
         tag: 'span',
+        justify: 'end',
+        align: 'middle',
       },
     })
     expect(wrapper.find('span')).toBeTruthy()

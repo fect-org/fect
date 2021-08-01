@@ -2,4 +2,8 @@
 
 exports[`Spacer shoul be render as element 1`] = `<span class="fect-spacer" style="display: block;"></span>`;
 
+exports[`Spacer should be display right spacing when x or y are minus 1`] = `<span class="fect-spacer" style="display: block;"></span>`;
+
+exports[`Spacer should be display right spacing when x or y are string 1`] = `<span class="fect-spacer" style="display: block;"></span>`;
+
 exports[`Spacer should be support x and y 1`] = `<span class="fect-spacer" style="display: block;"></span><span class="fect-spacer" style="display: block;"></span>`;

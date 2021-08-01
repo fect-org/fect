@@ -22,4 +22,17 @@ describe('BreadcrumbsItem', () => {
       '<span class="fect-breadcrumbs__item"><!----><div class="fect-breadcrumbs__separator">/</div></span>',
     )
   })
+  it('should be render error when breadcrumbsItem without breadcrumbs', () => {
+    const wrapper = mount(<BreadcrumbsItem />)
+    expect(() => wrapper.mount()).toThrowError()
+  })
+
+  it('should render item with link', () => {
+    const wrapper = mount(
+      <Breadcrumbs>
+        <BreadcrumbsItem href="#" />
+      </Breadcrumbs>,
+    )
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 })

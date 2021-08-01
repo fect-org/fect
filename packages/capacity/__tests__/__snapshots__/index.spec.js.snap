@@ -2,4 +2,6 @@
 
 exports[`Capacity should render title attrs 1`] = `<div title="40%" class="fect-capacity"><span style="width: 40%;"></span></div>`;
 
+exports[`Capacity should render title attrs 2`] = `<div title="80%" class="fect-capacity"><span style="width: 80%;"></span></div>`;
+
 exports[`Capacity should support custom color 1`] = `<div title="30%" class="fect-capacity"><span style="background-color: pink; width: 30%;"></span></div>`;
