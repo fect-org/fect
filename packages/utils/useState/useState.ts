@@ -1,11 +1,13 @@
-import { ref, readonly } from 'vue'
+import { ref, readonly, UnwrapRef, Ref } from 'vue'
 
-const useState = <T>(initialState: any): any => {
-  const _state = ref<T>(initialState)
-  const _dispath = (val: any) => {
-    _state.value = val
+type Dispatch<T> = (val: T) => void
+
+const useState = <T>(initialState: T) => {
+  const state = ref<T>(initialState)
+  const dispath = (val: T) => {
+    state.value = val as UnwrapRef<T>
   }
-  return [readonly(_state), _dispath]
+  return [readonly(state), dispath] as [Ref<T>, Dispatch<T>]
 }
 
 export { useState }
