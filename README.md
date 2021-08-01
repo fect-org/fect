@@ -13,6 +13,9 @@ src="https://user-images.githubusercontent.com/52351095/118687359-7e809480-b837-
 <a href="https://www.npmjs.com/package/@fect-ui/vue">
   <img alt="NPM (SCOPED)" src="https://img.shields.io/npm/v/@fect-ui/vue?color=%230761d1&logoColor=%23000000&style=for-the-badge" />
 </a>
+ <a href="https://www.npmjs.com/package/@fect-ui/vue">
+  <img alt="GZIP" src="https://img.shields.io/bundlephobia/min/@fect-ui/vue?style=for-the-badge" />
+</a>
 </p>
 
 <p align="center">
