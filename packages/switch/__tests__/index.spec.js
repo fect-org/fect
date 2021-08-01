@@ -32,10 +32,12 @@ describe('Switch', () => {
     expect(els[3].classes('large')).toBe(true)
   })
 
-  it('should be support disbaled', () => {
+  it('should be support disbaled', async () => {
     const wrapper = mount(<Switch disabled={true} />)
     const el = wrapper.find('.fect-switch__slider')
     expect(el.classes('disabled')).toBe(true)
+    await wrapper.find('.fect-switch').trigger('click')
+    expect(wrapper.emitted('update:modelValue')).toBeFalsy()
   })
 
   it('should emit event change', async () => {

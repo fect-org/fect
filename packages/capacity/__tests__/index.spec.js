@@ -7,7 +7,7 @@ describe('Capacity', () => {
     expect(() => capacity.unmount()).not.toThrow()
   })
 
-  it('should render title attrs', () => {
+  it('should render title attrs', async () => {
     const wrapper = mount({
       render() {
         return <Capacity value="40" />
@@ -15,6 +15,10 @@ describe('Capacity', () => {
     })
     const el = wrapper.find('.fect-capacity')
     expect(el.attributes('title')).toBe('40%')
+    expect(wrapper.html()).toMatchSnapshot()
+    await wrapper.setProps({
+      value: 80,
+    })
     expect(wrapper.html()).toMatchSnapshot()
   })
 

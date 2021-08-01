@@ -9,10 +9,11 @@ describe('Spacer', () => {
   })
 
   it('should be support inline style', () => {
-    const wrapper = mount(<Spacer inline />)
-    // expect(wrapper.find('.fect-spacer').html()).toContain(
-    //   '"<span class="fect-spacer " style="display: inline-block;"></span>'
-    // )
+    const wrapper = mount(Spacer, {
+      props: {
+        inline: true,
+      },
+    })
     expect(wrapper.find('.fect-spacer').attributes('style')).toEqual(
       'display: inline-block;',
     )
@@ -32,10 +33,21 @@ describe('Spacer', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should be support attrs class', () => {
-    const wrapper = mount(<Spacer class="test" />)
-    expect(wrapper.find('.fect-spacer').attributes('class')).toEqual(
-      'fect-spacer test',
-    )
+  it('should be display right spacing when x or y are minus', () => {
+    const wrapper = mount(Spacer, {
+      props: {
+        x: -0.5,
+      },
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('should be display right spacing when x or y are string', () => {
+    const wrapper = mount(Spacer, {
+      props: {
+        x: ('111' as unknown) as number,
+      },
+    })
+    expect(wrapper.html()).toMatchSnapshot()
   })
 })
