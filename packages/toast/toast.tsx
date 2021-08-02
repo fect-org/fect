@@ -48,7 +48,7 @@ export default createComponent({
 
     return () => (
       <div class="fect-toast" style={setBgColor.value}>
-        <div class="fect-toast-message">{props.text}</div>
+        <div class="fect-toast__message">{props.text}</div>
       </div>
     )
   },

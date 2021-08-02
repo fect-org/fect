@@ -13,10 +13,10 @@ export default createComponent({
     const showCount = ref<boolean>(!!props.count)
 
     return () => (
-      <div class="fect-ava-group">
+      <div class="fect-avatar__group">
         {slots.default?.()}
         {showCount.value && (
-          <span class={'fect-ava-counter'}>+{props.count}</span>
+          <span class={'fect-avatar__counter'}>+{props.count}</span>
         )}
       </div>
     )

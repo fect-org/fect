@@ -10,7 +10,9 @@ export type ToastOptions = {
 }
 
 const insertToArea = (duraion: number | string | undefined) => {
-  const toastEl = document.querySelector('.fect-toast-container') as HTMLElement
+  const toastEl = document.querySelector(
+    '.fect-toast__container',
+  ) as HTMLElement
   return new Promise((resolve) => {
     /**
      * unload all element at the end of the timer
@@ -36,9 +38,9 @@ const createInstance = (options: ToastOptions) => {
 }
 
 const getInstance = (options: ToastOptions) => {
-  const area = initMountArea('fect-toast-area')
+  const area = initMountArea('fect-toast__area')
   const { mountNode } = createInstance(options)
-  mountNode.classList.add('fect-toast-container')
+  mountNode.classList.add('fect-toast__container')
   const timer = setTimeout(() => {
     mountNode.classList.add('visible')
     clearTimeout(timer)

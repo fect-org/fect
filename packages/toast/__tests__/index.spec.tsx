@@ -1,4 +1,5 @@
 import Toast from '../toast'
+import { NormalTypes } from '../../utils/theme/propTypes'
 import { mount } from '@vue/test-utils'
 describe('Toast', () => {
   it('should render as element', () => {
@@ -8,13 +9,15 @@ describe('Toast', () => {
       },
     })
     expect(wrapper.html()).toMatchSnapshot()
-    expect(wrapper.find('.fect-toast-message').text()).toBe('Test Message')
+    expect(wrapper.find('.fect-toast__message').text()).toBe('Test Message')
   })
 
   it('should support different types', () => {
     const wrapper = mount({
       setup() {
-        return { types: ['default', 'success', 'warning', 'error'] }
+        return {
+          types: ['default', 'success', 'warning', 'error'] as NormalTypes[],
+        }
       },
       render() {
         return (
