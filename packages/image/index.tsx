@@ -128,10 +128,11 @@ export default createComponent({
 
     return () => (
       <>
-        {(props.useBrowser && (
+        {props.useBrowser ? (
           <ImageBrowser {...attrs}>{renderNormal()}</ImageBrowser>
-        )) ||
-          renderNormal()}
+        ) : (
+          renderNormal()
+        )}
       </>
     )
   },
