@@ -1,0 +1,35 @@
+.fect-button {
+  box-sizing: border-box;
+  display: inline-block;
+  font-weight: 400;
+  user-select: none;
+  text-transform: capitalize;
+  white-space: nowrap;
+  text-align: center;
+  outline: none;
+  width: auto;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 15px;
+  color: var(--accents-5);
+  padding: 0 25px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: border 0.2s, background 0.2s, color 0.2s ease-out;
+  &--success {
+    border-color: var(--success-default);
+    background-color: var(--success-default);
+    color: #fff;
+  }
+  &--warning {
+    border-color: var(--warning-default);
+    background-color: var(--warning-default);
+    color: #fff;
+  }
+  &--error {
+    background-color: var(--error-default);
+    border-color: var(--error-default);
+    color: #fff;
+  }
+}
