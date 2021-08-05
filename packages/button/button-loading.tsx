@@ -1,15 +1,17 @@
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import { LoadingTypes } from '../utils/theme/propTypes'
 import Loading from '../loading'
 
 const ButtonLoading = defineComponent({
   props: {
-    loadType: String,
+    loadType: {
+      type: String as PropType<LoadingTypes>,
+    },
   },
-  setup(props, { attrs }) {
+  setup(props) {
     return () => (
-      <div class="fect-btn-loading">
-        <Loading loadType={props.loadType as LoadingTypes} />
+      <div class="fect-button__loading">
+        <Loading loadType={props.loadType} />
       </div>
     )
   },
