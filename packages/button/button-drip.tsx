@@ -1,6 +1,5 @@
 import { defineComponent, computed, ref, onMounted, PropType } from 'vue'
 
-
 type Completed = () => any
 
 const ButtonDrip = defineComponent({
@@ -29,7 +28,7 @@ const ButtonDrip = defineComponent({
     })
 
     return () => (
-      <div ref={dripRef} class="fect-button-drip">
+      <div ref={dripRef} class="fect-button__drip">
         <svg width="20" height="20" viewBox="0 0 20 20" style={setPlace.value}>
           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g fill="var(--accents-2)">
