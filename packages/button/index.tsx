@@ -1,82 +1,79 @@
-import { computed, ref, PropType } from 'vue'
-import { createNameSpace } from '../utils'
-import {
-  ButtonTypes,
-  LoadingTypes,
-  NormalSizes,
-} from '../utils/theme/propTypes'
-import ButtonDrip from './button-drip'
+import { computed, ref } from 'vue'
+import { createNameSpace, useState } from '../utils'
+import { CustomCSSProperties } from '../utils/base'
+import { props } from './props'
 import ButtonLoading from './button-loading'
-import './index.less'
+import ButtonDrip from './button-drip'
+import { queryHoverColor } from './style'
 
+import './index.less'
+import ButtonIcon from './button-icon'
 const [createComponent] = createNameSpace('Button')
 
+type Icon = keyof HTMLElementTagNameMap
+
 export default createComponent({
-  props: {
-    type: {
-      type: String as PropType<ButtonTypes>,
-      default: 'default',
-    },
-    size: {
-      type: String as PropType<NormalSizes>,
-      default: 'medium',
-    },
-    disabled: Boolean,
-    shadow: Boolean,
-    loading: Boolean,
-    auto: Boolean,
-    loadType: {
-      type: String as PropType<LoadingTypes>,
-      default: 'deafult',
-    },
-  },
+  props,
   emits: ['click'],
   setup(props, { slots, emit }) {
     const buttonRef = ref<HTMLButtonElement>()
-    const drapShow = ref<boolean>(false) // control drap component display
-    const drapX = ref<number>(0)
-    const drapY = ref<number>(0)
+    const [drapShow, setDrapShow] = useState<boolean>(false)
+    const [drapX, setDrapX] = useState<number>(0)
+    const [drapY, setDrapY] = useState<number>(0)
 
-    const setClass = computed(() => {
-      const names: string[] = []
-      props.loading && names.push('loading')
-      props.shadow && names.push('shadow')
-      props.disabled && names.push('disabled')
-      props.auto && names.push('auto')
-      props.type && names.push(props.type)
-      props.size && names.push(props.size)
+    const clickHandler = (e: MouseEvent) => {
+      const { disabled, loading, shadow, ghost, effect } = props
+      if (disabled || loading) return
+      const showDrip = !shadow && !ghost && effect
+      if (showDrip) {
+        setDrapShow(true)
+        const rect = buttonRef.value?.getBoundingClientRect()!
+        setDrapX(e.clientX - rect.left)
+        setDrapY(e.clientY - rect.top)
+      }
+      emit('click', e)
+    }
+
+    /**
+     * set ghost disabled shadow className
+     */
+    const setButtonStatus = computed(() => {
+      const { ghost, disabled, shadow, auto, loading } = props
+      const names = []
+      disabled && names.push('is-disabled')
+      ghost && names.push('is-ghost')
+      shadow && names.push('is-shadow')
+      auto && names.push('is-auto')
+      loading && names.push('is-loading')
       return names.join(' ')
     })
 
-    const clickHandler = (e: MouseEvent) => {
-      // hide drip when button in shadow status
-      if (props.disabled || props.loading) return
-      const showDrip = !props.shadow
-      if (showDrip) {
-        const rect = buttonRef.value?.getBoundingClientRect()
-        drapShow.value = true
-        drapX.value = e.clientX - rect!.left
-        drapY.value = e.clientY - rect!.top
-        emit('click', e)
+    const setStyle = computed(() => {
+      const { type, ghost } = props
+      const { bg, border, color } = queryHoverColor(type, ghost)
+      const style: CustomCSSProperties = {
+        '--button-hover-bg': bg,
+        '--button-hover-border': border,
+        '--button-hover-color': color,
       }
-    }
+      return style
+    })
 
     const dripCompleteHandler = () => {
       setTimeout(() => {
-        drapShow.value = false
-        drapX.value = 0
-        drapY.value = 0
+        setDrapShow(false)
+        setDrapX(0)
+        setDrapY(0)
       }, 500)
     }
 
     return () => (
       <button
-        disabled={props.disabled}
-        class={`fect-btn ${setClass.value}`}
+        class={`fect-button fect-button--${props.type} fect-button--${props.size} ${setButtonStatus.value}`}
         ref={buttonRef}
+        style={setStyle.value}
         onClick={clickHandler}
       >
-        {/* color={props.type} */}
         {props.loading && <ButtonLoading loadType={props.loadType} />}
         {drapShow.value && (
           <ButtonDrip
@@ -85,6 +82,7 @@ export default createComponent({
             onCompleted={dripCompleteHandler}
           />
         )}
+        {props.icon && <ButtonIcon icon={props.icon as Icon} />}
         {slots.default?.()}
       </button>
     )

@@ -11,7 +11,7 @@ const ButtonLoading = defineComponent({
   setup(props) {
     return () => (
       <div class="fect-button__loading">
-        <Loading loadType={props.loadType} />
+        <Loading loadType={props.loadType} color="var(--button-load-color)" />
       </div>
     )
   },

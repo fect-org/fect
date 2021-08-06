@@ -25,5 +25,8 @@ export const props = {
     type: String as PropType<LoadingTypes>,
     default: 'deafult',
   },
-  effect: Boolean,
+  effect: {
+    type: Boolean,
+    default: true,
+  },
 }
