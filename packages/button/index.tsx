@@ -59,11 +59,16 @@ export default createComponent({
       return style
     })
 
+    const reset = () => {
+      setDrapShow(false)
+      setDrapX(0)
+      setDrapY(0)
+    }
+
     const dripCompleteHandler = () => {
-      setTimeout(() => {
-        setDrapShow(false)
-        setDrapX(0)
-        setDrapY(0)
+      const timer = setTimeout(() => {
+        reset()
+        clearTimeout(timer)
       }, 500)
     }
 

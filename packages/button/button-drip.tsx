@@ -1,4 +1,5 @@
-import { defineComponent, computed, ref, onMounted, PropType } from 'vue'
+import { defineComponent, computed, ref, PropType } from 'vue'
+import { useEventListener } from '@fect-ui/vue-hooks'
 
 type Completed = () => any
 
@@ -8,7 +9,7 @@ const ButtonDrip = defineComponent({
     y: Number,
     onCompleted: {
       type: Function as PropType<Completed>,
-      require: true,
+      required: true,
     },
   },
   setup(props) {
@@ -19,13 +20,8 @@ const ButtonDrip = defineComponent({
       const left = Number.isNaN(+props.x!) ? 0 : props.x! - 10
       return { top, left }
     })
-    onMounted(() => {
-      if (!dripRef.value) return
-      if (props.onCompleted) {
-        dripRef.value.addEventListener('animationend', props.onCompleted())
-        dripRef.value.removeEventListener('animationend', props.onCompleted())
-      }
-    })
+
+    useEventListener('animationend', props.onCompleted(), { target: dripRef })
 
     return () => (
       <div ref={dripRef} class="fect-button__drip">

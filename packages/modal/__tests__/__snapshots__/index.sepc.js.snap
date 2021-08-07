@@ -13,10 +13,12 @@ exports[`Modal props should be supported 1`] = `
         <div class="fect-modal_content">
           <!---->
         </div>
-        <footer class="fect-modal_action__container"><button class="fect-btn default medium modal_action__btn">
+        <footer class="fect-modal_action__container"><button class="fect-button fect-button--default fect-button--medium modal_action__btn" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);">
+            <!---->
             <!---->
             <!---->Cancel
-          </button><button class="fect-btn default medium modal_action__btn">
+          </button><button class="fect-button fect-button--default fect-button--medium modal_action__btn" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);">
+            <!---->
             <!---->
             <!---->Done
           </button></footer>
@@ -39,10 +41,12 @@ exports[`Modal should be render as element 1`] = `
         <div class="fect-modal_content">
           <!---->
         </div>
-        <footer class="fect-modal_action__container"><button class="fect-btn default medium modal_action__btn">
+        <footer class="fect-modal_action__container"><button class="fect-button fect-button--default fect-button--medium modal_action__btn" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);">
+            <!---->
             <!---->
             <!---->cancel
-          </button><button class="fect-btn default medium modal_action__btn">
+          </button><button class="fect-button fect-button--default fect-button--medium modal_action__btn" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);">
+            <!---->
             <!---->
             <!---->done
           </button></footer>

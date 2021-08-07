@@ -1,4 +1,4 @@
-import { ButtonTypes, NormalSizes } from '../utils/theme/propTypes'
+import { ButtonTypes } from '../utils/theme/propTypes'
 
 type ButtonColorGroup = {
   bg: string
