@@ -67,6 +67,18 @@
     "type": "string ",
     "description": "按钮大小 ,可选值为`mini`,`small`,`medium`,`large`, 默认值: `medium`"
   },
+  "fe-button/ghost": {
+    "type": "boolean",
+    "description": "反转按钮颜色 , 默认值:`false`"
+  },
+  "fe-button/effect": {
+    "type": "boolean",
+    "description": "是否显示动画效果 , 默认值:`true`"
+  },
+  "fe-button/icon": {
+    "type": "any",
+    "description": "在按钮内显示图标 , 默认值:`-`"
+  },
   "fe-button/auto": {
     "type": "boolean",
     "description": "自动缩放按钮宽度 , 默认值:`false` "

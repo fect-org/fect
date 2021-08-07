@@ -12,7 +12,11 @@
 
 <fe-code-show title="类型" name="ex-button-type" desc="不同状态下的按钮" />
 
+<fe-code-show title="幽灵" name="ex-button-ghost" desc="底色与主色相反的透明按钮" />
+
 <fe-code-show title="尺寸" name="ex-button-size" desc="不同大小下的按钮" />
+
+<fe-code-show title="图标" name="ex-button-icon" desc="按钮内的图标色彩和大小将会被自动设置" />
 
 <fe-attributes>
 
@@ -22,6 +26,9 @@
 | ------------- | ---------------- | ---------------------- | ------------------------------------------ | --------- |
 | **type**      | 按钮属性         | `string`               | `'default', 'success', 'warning', 'error'` | `default` |
 | **size**      | 按钮大小         | `string`               | `'mini','small','medium','large'`          | `medium`  |
+| **ghost**     | 反转按钮颜色     | `boolean`              | `'true','false'`                           | `false`   |
+| **effect**    | 是否显示动画效果 | `boolean`              | `'true','false'`                           | `true`    |
+| **icon**      | 在按钮内显示图标 | `HTMLElement`          |                                            | `-`       |
 | **auto**      | 自动缩放宽度     | `boolean`              | `'true','false'`                           | `false`   |
 | **disabled**  | 是否禁用按钮     | `boolean`              | `'true','false'`                           | `false`   |
 | **shadow**    | 是否显示阴影     | `boolean`              | `'true','false'`                           | `false`   |

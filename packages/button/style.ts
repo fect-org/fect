@@ -6,7 +6,7 @@ type ButtonColorGroup = {
   color: string
 }
 
-export const queryButtonColor = (type: ButtonTypes) => {
+export const queryGhostColor = (type: ButtonTypes) => {
   const colors: { [key in ButtonTypes]?: ButtonColorGroup } = {
     success: {
       bg: 'var(--success-default)',
@@ -26,8 +26,6 @@ export const queryButtonColor = (type: ButtonTypes) => {
   }
   return colors[type]
 }
-
-export const queryGhostColor = (type: ButtonTypes) => {}
 
 export const queryHoverColor = (type: ButtonTypes, ghost: boolean) => {
   const colors: { [key in ButtonTypes]: ButtonColorGroup } = {

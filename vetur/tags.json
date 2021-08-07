@@ -42,6 +42,9 @@
     "attributes": [
       "type",
       "size",
+      "ghost",
+      "effect",
+      "icon",
       "auto",
       "disabled",
       "shadow",
