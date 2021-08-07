@@ -5,6 +5,7 @@ module.exports = {
     '!packages/utils/**/*',
     '!packages/index.ts',
     '!packages/**/type.ts',
+    '!packages/**/style.ts',
   ],
   preset: '@vue/cli-plugin-unit-jest/presets/typescript-and-babel',
   transform: {
