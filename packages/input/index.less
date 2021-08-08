@@ -3,54 +3,6 @@
   display: inline-block;
   box-sizing: border-box;
   -webkit-box-align: center;
-  .input_container {
-    display: inline-flex;
-    align-items: center;
-    width: inherit;
-    height: calc(var(--heightRatio) * var(--fay-gap));
-  }
-  .input_wrapper {
-    display: inline-flex;
-    vertical-align: middle;
-    align-items: center;
-    height: 100%;
-    flex: 1;
-    user-select: none;
-    border: 1px solid var(--fay-border);
-    border-radius: var(--fay-radius);
-    transition: border 0.2s ease 0s, color 0.2s ease 0s;
-    padding: 0;
-    &.hover {
-      border-color: var(--accents-5);
-    }
-    &.disabled {
-      cursor: not-allowed;
-      background-color: var(--accents-1);
-      border-color: var(--accents-2);
-    }
-  }
-
-  .input_wrapper {
-    input {
-      margin: 4px 10px;
-      box-shadow: none;
-      background-color: transparent;
-      border: none;
-      outline: none;
-      border-radius: 0;
-      width: 100%;
-      min-width: 0;
-      height: 100%;
-      -webkit-appearance: none;
-      color: var(--primary-foreground);
-      &::placeholder {
-        color: var(--accents-3);
-      }
-      &.disabled {
-        cursor: not-allowed;
-      }
-    }
-  }
   label {
     display: block;
     font-weight: normal;
@@ -66,40 +18,77 @@
       margin-bottom: 0;
     }
   }
-}
-
-.fect-input {
-  .input_container {
-    .input-label {
-      display: inline-flex;
-      width: initial;
+  &__container {
+    display: inline-flex;
+    align-items: center;
+    width: inherit;
+    height: calc(var(--heightRatio) * var(--fay-gap));
+  }
+  &__wrapper {
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
+    height: 100%;
+    flex: 1;
+    user-select: none;
+    border: 1px solid var(--fay-border);
+    border-radius: var(--fay-radius);
+    transition: border 0.2s ease 0s, color 0.2s ease 0s;
+    padding: 0;
+    input {
+      margin: 4px 10px;
+      box-shadow: none;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      border-radius: 0;
+      width: 100%;
+      min-width: 0;
       height: 100%;
-      align-items: center;
-      pointer-events: none;
-      margin: 0;
-      padding: 0 var(--fay-gap-half);
-      color: var(--accents-4);
-      background-color: var(--accents-1);
-      border-top-left-radius: var(--fay-radius);
-      border-bottom-left-radius: var(--fay-radius);
-      border-top: 1px solid var(--fay-border);
-      border-left: 1px solid var(--fay-border);
-      border-bottom: 1px solid var(--fay-border);
-      line-height: 1;
-      &.suffix {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        border-top-right-radius: var(--fay-radius);
-        border-bottom-right-radius: var(--fay-radius);
-        border-left: 0;
-        border-right: 1px solid var(--fay-border);
+      -webkit-appearance: none;
+      color: var(--primary-foreground);
+      &::placeholder {
+        color: var(--accents-3);
+      }
+
+      &.disabled {
+        cursor: not-allowed;
+        background-color: var(--accents-1);
+        border-color: var(--accents-2);
       }
     }
+    &.hover {
+      border-color: var(--accents-5);
+    }
   }
-}
 
-.fect-input {
-  .input-icon {
+  &__label {
+    display: inline-flex;
+    width: initial;
+    height: 100%;
+    align-items: center;
+    pointer-events: none;
+    margin: 0;
+    padding: 0 var(--fay-gap-half);
+    color: var(--accents-4);
+    background-color: var(--accents-1);
+    border-top-left-radius: var(--fay-radius);
+    border-bottom-left-radius: var(--fay-radius);
+    border-top: 1px solid var(--fay-border);
+    border-left: 1px solid var(--fay-border);
+    border-bottom: 1px solid var(--fay-border);
+    line-height: 1;
+    &.suffix {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-top-right-radius: var(--fay-radius);
+      border-bottom-right-radius: var(--fay-radius);
+      border-left: 0;
+      border-right: 1px solid var(--fay-border);
+    }
+  }
+
+  &__icon {
     box-sizing: content-box;
     display: flex;
     align-items: center;
@@ -110,10 +99,8 @@
     line-height: 1;
     position: relative;
   }
-}
 
-.fect-input {
-  .input__clear-icon {
+  &__clear-icon {
     padding: 0 var(--fay-gap-half);
     margin: 0;
     display: inline-flex;

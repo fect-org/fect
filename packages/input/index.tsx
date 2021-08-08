@@ -1,5 +1,5 @@
 import { computed, ref, watchEffect, PropType } from 'vue'
-import { createNameSpace } from '../utils'
+import { createNameSpace, useState } from '../utils'
 import { NormalSizes } from '../utils/theme/propTypes'
 import ClearableIcon from './clearable-icon'
 import PasswordIcon from './password-icon'
@@ -61,20 +61,18 @@ export default createComponent({
   emits: ['change', 'blur', 'focus', 'clearClick', 'update:modelValue'],
   setup(props, { slots, emit, attrs }) {
     const inputRef = ref<HTMLInputElement>()
-    const hover = ref<boolean>(false)
-    const selfType = ref<string>(props.type)
-    const passwordVisible = ref<boolean>(false)
-    const fontSize = ref<string>()
-    const heightRatio = ref<string>()
-    const hasPrefix = ref<boolean>(!!props.prefix)
-    const hasSuffix = ref<boolean>(!!props.suffix)
-
-    const setHoverable = (pre: boolean) => (hover.value = pre)
+    const [hover, setHover] = useState<boolean>(false)
+    const [selfType, setSelfType] = useState<string>(props.type)
+    const [ratio, setRatio] = useState<string>()
+    const [fontSize, setFontSize] = useState<string>()
+    const [passwordVisible, setPasswordVisible] = useState<boolean>(false)
+    const [hasPrefix] = useState<boolean>(!!props.prefix)
+    const [hasSuffix] = useState<boolean>(!!props.suffix)
 
     watchEffect(() => {
-      const { heightRatio: Ratio, fontSize: Size } = queryInputSize(props.size)
-      heightRatio.value = Ratio
-      fontSize.value = Size
+      const { heightRatio, fontSize } = queryInputSize(props.size)
+      setRatio(heightRatio)
+      setFontSize(fontSize)
     })
 
     const updatelValue = (val: string | number) => {
@@ -93,12 +91,12 @@ export default createComponent({
       updatelValue((e.target as HTMLInputElement).value)
 
     const focusHandler = (e: Event) => {
-      setHoverable(true)
+      setHover(true)
       emit('focus', e)
     }
 
     const blurHandler = (e: Event) => {
-      setHoverable(false)
+      setHover(false)
       emit('blur', e)
     }
 
@@ -132,10 +130,10 @@ export default createComponent({
         ...attrs,
       }
 
-      const setPasswordVisible = () => {
-        passwordVisible.value = !passwordVisible.value
-        if (passwordVisible.value) return (selfType.value = 'text')
-        return (selfType.value = 'password')
+      const passwordVisibleChanger = () => {
+        setPasswordVisible(!passwordVisible.value)
+        if (passwordVisible.value) return setSelfType('text')
+        return setSelfType('password')
       }
 
       return (
@@ -155,7 +153,7 @@ export default createComponent({
           )}
           {props.type === 'password' && (
             <IconContent
-              onClick={setPasswordVisible}
+              onClick={passwordVisibleChanger}
               clickable={props.disabled || props.readonly}
             >
               <PasswordIcon visible={passwordVisible.value} />
@@ -190,15 +188,15 @@ export default createComponent({
     return () => (
       <div
         class="fect-input"
-        style={{ '--heightRatio': heightRatio.value } as CustomCSSProperties}
+        style={{ '--heightRatio': ratio.value } as CustomCSSProperties}
       >
         {slots.default && <InputBlockLabel v-slots={slots} />}
-        <div class={'input_container'}>
+        <div class={'fect-input__container'}>
           {hasPrefix.value && (
             <InputLabel fontSize={fontSize.value}>{props.prefix}</InputLabel>
           )}
           <div
-            class={`input_wrapper ${hover.value ? 'hover' : ''} ${
+            class={`fect-input__wrapper ${hover.value ? 'hover' : ''} ${
               props.disabled ? 'disabled' : ''
             }`}
             style={haslabel.value}
