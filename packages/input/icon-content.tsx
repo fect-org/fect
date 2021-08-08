@@ -16,7 +16,7 @@ const IconContent = defineComponent({
 
     return () => (
       <div
-        class="input-icon"
+        class="fect-input__icon"
         style={baseStyle.value}
         onClick={(e) => emit('click', e)}
       >
