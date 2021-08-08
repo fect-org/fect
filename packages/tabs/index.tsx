@@ -1,6 +1,6 @@
-import { ref, watch, Ref } from 'vue'
+import { watch, Ref } from 'vue'
 import { createProvider } from '@fect-ui/vue-hooks'
-import { createNameSpace } from '../utils'
+import { createNameSpace, useState } from '../utils'
 import { ComponentInstance } from '../utils/base'
 import TabsTitle, { TabTitleEmit } from './tabs-title'
 import './index.less'
@@ -13,7 +13,7 @@ export type TabsProvide = {
     active: string | number
     hideDivider: boolean
   }
-  currentChecked: Ref<string | number>
+  checked: Ref<string | number>
 }
 
 export default createComponent({
@@ -26,16 +26,16 @@ export default createComponent({
   },
   emits: ['change', 'update:active', 'click'],
   setup(props, { slots, emit }) {
-    const currentChecked = ref<string | number>(props.active)
+    const [checked, setChecked] = useState<string | number>(props.active)
 
     const { provider, children } = createProvider<ComponentInstance>(
       READONLY_TABS_KEY,
     )
-    provider({ props, currentChecked })
+    provider({ props, checked })
 
     const setCurrent = (data: TabTitleEmit) => {
       const { value, e } = data
-      currentChecked.value = value
+      setChecked(value)
       const selfEvent = {
         target: {
           checkValue: value,
@@ -48,7 +48,7 @@ export default createComponent({
       emit('click', selfEvent)
     }
 
-    watch(currentChecked, (pre) => emit('change', pre))
+    watch(checked, (cur) => emit('change', cur))
 
     const renderNav = () => {
       return children.map((el, idx) => (
@@ -56,7 +56,7 @@ export default createComponent({
           title={el.title}
           value={el.value || idx}
           key={idx}
-          active={currentChecked.value}
+          active={checked.value}
           disabled={el.disabled}
           onClick={setCurrent}
         />

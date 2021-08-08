@@ -1,6 +1,6 @@
-import { computed, watchEffect, ref } from 'vue'
+import { computed, watchEffect } from 'vue'
 import { useProvider } from '@fect-ui/vue-hooks'
-import { createNameSpace } from '../utils'
+import { createNameSpace, useState } from '../utils'
 import { TabsProvide, READONLY_TABS_KEY } from '../tabs/index'
 import './index.less'
 const [createComponent] = createNameSpace('Tab')
@@ -19,7 +19,7 @@ export default createComponent({
   },
   setup(props, { slots }) {
     const { context, idx } = useProvider<TabsProvide>(READONLY_TABS_KEY)
-    const selfIndex = ref<string | number>(props.value)
+    const [selfValue, setSelfValue] = useState<string | number>(props.value)
     if (!context) {
       if (process.env.NODE_ENV !== 'production') {
         console.error('[Fect] <Tab> must be a child component of <Tabs>.')
@@ -29,15 +29,14 @@ export default createComponent({
     /**
      * it will  use index of components while value is empty
      */
-    watchEffect(() => {
-      if (selfIndex.value === '') return (selfIndex.value = idx)
-    })
-    const isDisabled = computed(() => {
-      return context.currentChecked.value === selfIndex.value ? '' : 'none'
+    watchEffect(() => !selfValue.value && setSelfValue(idx))
+    const setHidden = computed(() => {
+      const checked = context.checked.value === selfValue.value
+      return checked ? '' : 'none'
     })
 
     return () => (
-      <div class={`fect-tab ${isDisabled.value}`}>{slots.default?.()}</div>
+      <div class={`fect-tab ${setHidden.value}`}>{slots.default?.()}</div>
     )
   },
 })
