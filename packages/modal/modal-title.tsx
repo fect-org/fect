@@ -6,8 +6,8 @@ const ModalTitle = defineComponent({
   setup() {
     const { context } = useProvider<ModalProvide>(READONLY_MODAL_KEY)
     return () => (
-      <div class="fect-modal_title__container">
-        <h2 class="modal_title">{context?.props.title}</h2>
+      <div class="fect-modal__title">
+        <h2 class="title">{context?.props.title}</h2>
       </div>
     )
   },

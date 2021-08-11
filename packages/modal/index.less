@@ -1,126 +1,81 @@
-.fect-dialog_root {
-  height: 100vh;
-  width: 100vw;
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  overflow: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  z-index: 1000;
-
-  .fect-dialog-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: black;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    opacity: var(--fay-portalOpacity);
-    pointer-events: none;
-
-    &.responsive {
-      background-color: transparent;
-      z-index: 10;
-      opacity: 0;
-      pointer-events: unset;
-    }
+.modal-fade {
+  &-enter-active,
+  &-leave-active {
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+      transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  }
+  &-enter-from,
+  &-leave,
+  &-leave-active {
+    opacity: 0;
+    transform: translate3d(0px, -50px, 0px);
   }
 }
 
-.fect-dialog-backdrop-enter-active,
-.fect-dialog-backdrop-leave-active {
-  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s;
-}
+.fect-modal {
+  &__root {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 1000;
+  }
 
-.fect-dialog-backdrop-enter,
-.fect-dialog-backdrop-leave,
-.fect-dialog-backdrop-leave-active {
-  opacity: 0;
-}
-
-.fect-modal_wrapper {
-  max-width: 100%;
-  vertical-align: middle;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  box-sizing: border-box;
-  background-color: var(--primary-background);
-  color: var(--primary-foreground);
-  border-radius: var(--fay-radius);
-  box-shadow: var(--fay-shadowLarge);
-  z-index: 100;
-
-  .fect-modal_content {
+  &__wrapper {
+    max-width: 100%;
+    vertical-align: middle;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-sizing: border-box;
+    background-color: var(--primary-background);
+    color: var(--primary-foreground);
+    box-shadow: var(--fay-shadowLarge);
+    border-radius: var(--fay-radius);
+  }
+  &__content {
     padding: var(--fay-gap) var(--fay-gap) var(--fay-gap-half);
     position: relative;
     text-align: left;
     box-sizing: border-box;
   }
-}
-
-@media only screen and (max-width: 420px) {
-  .fect-modal_wrapper {
-    max-width: 90vw !important;
+  &__title {
+    max-width: 100%;
+    .title {
+      padding-top: var(--fay-gap);
+      width: 100%;
+      font-size: 22px;
+      line-height: 1.6;
+      font-weight: normal;
+      text-align: center;
+      margin: 0;
+      display: inline-flex;
+      flex-shrink: 0;
+      justify-content: center;
+      align-items: center;
+      word-break: break-word;
+      text-transform: capitalize;
+      color: var(--primary-foreground);
+    }
   }
-}
-
-.fect-dialog_slide-enter-active,
-.fect-dialog_slide-leave-active {
-  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s;
-}
-
-.fect-dialog_slide-enter-from,
-.fect-dialog_slide-leave,
-.fect-dialog_slide-leave-active {
-  opacity: 0;
-  transform: translate3d(0px, -30px, 0px);
-}
-
-.fect-modal_title__container {
-  max-width: 100%;
-  .modal_title {
-    padding-top: var(--fay-gap);
+  &__action {
+    display: flex;
+    overflow: hidden;
     width: 100%;
-    font-size: 22px;
-    line-height: 1.6;
-    font-weight: normal;
-    text-align: center;
-    margin: 0;
-    display: inline-flex;
-    flex-shrink: 0;
-    justify-content: center;
-    align-items: center;
-    word-break: break-word;
-    text-transform: capitalize;
-    color: var(--primary-foreground);
+    height: 60px;
+    border-top: 1px solid var(--accents-2);
+    border-bottom-left-radius: var(--fay-radius);
+    border-bottom-right-radius: var(--fay-radius);
   }
-}
-
-.fect-modal_action__container {
-  display: flex;
-  overflow: hidden;
-  width: 100%;
-  height: 60px;
-  border-top: 1px solid var(--accents-2);
-  border-bottom-left-radius: var(--fay-radius);
-  border-bottom-right-radius: var(--fay-radius);
-
-  .modal_action__btn + .modal_action__btn {
-    border-left: 1px solid var(--accents-2);
-  }
-
-  .modal_action__btn {
+  &__button {
     font-size: 13px;
     border: none;
     color: var(--primary-foreground);
@@ -134,12 +89,19 @@
     height: 100%;
     border-radius: 0;
     min-width: 0;
-
+    + &__button {
+      border-left: 1px solid var(--accents-2);
+    }
     &:hover,
     &:focus {
       background-color: var(--accents-1) !important;
       color: var(--primary-foreground) !important;
       border-color: transparent !important;
+    }
+  }
+  @media only screen and (max-width: 420px) {
+    &__wrapper {
+      max-width: 90vw !important;
     }
   }
 }
