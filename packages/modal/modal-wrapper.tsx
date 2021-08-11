@@ -1,7 +1,8 @@
-import { defineComponent, Transition } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { useProvider } from '@fect-ui/vue-hooks'
-import ModalTitle from './modal-title'
 import ModalAction from './modal-action'
+import ModalTitle from './modal-title'
+
 import { READONLY_MODAL_KEY, ModalProvide } from './type'
 
 const ModalWrapper = defineComponent({
@@ -10,34 +11,38 @@ const ModalWrapper = defineComponent({
 
     const renderTitle = () => {
       const titleSlot = slots['title']
-      return (
-        (titleSlot && (
-          <div class="fect-modal_title__container">{titleSlot()}</div>
-        )) || <ModalTitle />
+      return titleSlot ? (
+        <div class="fect-modal__title">{titleSlot()}</div>
+      ) : (
+        <ModalTitle />
       )
     }
 
     const renderAction = () => {
       const actionSlot = slots['action']
-      return (actionSlot && actionSlot()) || <ModalAction />
+      return actionSlot ? actionSlot() : <ModalAction />
     }
 
     const renderWrapper = () => {
       const { width } = context?.props!
       return (
-        <div role="dialog" class="fect-modal_wrapper" style={{ width }}>
+        <div
+          role="dialog"
+          tabindex={-1}
+          class="fect-modal__wrapper"
+          style={{ width }}
+        >
           {renderTitle()}
-          <div class="fect-modal_content"> {slots.default?.()}</div>
+          <div class="fect-modal__content">{slots.default?.()}</div>
           {renderAction()}
         </div>
       )
     }
 
-    return () => (
-      <Transition name="fect-dialog_slide">
-        {context?.props.visible && renderWrapper()}
-      </Transition>
-    )
+    return () => {
+      const { selfVisible } = context!
+      return <>{selfVisible.value && renderWrapper()}</>
+    }
   },
 })
 
