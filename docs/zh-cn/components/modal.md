@@ -16,14 +16,15 @@
 
 <fe-attributes-title title="Modal Props" />
 
-| 属性                | 描述           | 类型             | 可选值             | 默认     |
-| ------------------- | -------------- | ---------------- | ------------------ | -------- |
-| **v-model:visible** | 显示与隐藏     | `Boolean`        | `'true','false'`   | `false`  |
-| **title**           | 标题           | `string`         | `-`                | `-`      |
-| **width**           | 对话框宽度     | `string`         | `-`                | `420px`  |
-| **cancel**          | 取消按钮的文字 | `string`         | `-`                | `cancel` |
-| **done**            | 确定按钮的文字 | `string`         | `-`                | `done`   |
-| ...                 | 原生属性       | `HTMLAttributes` | `'class','id',...` | `-`      |
+| 属性                | 描述                 | 类型             | 可选值             | 默认     |
+| ------------------- | -------------------- | ---------------- | ------------------ | -------- |
+| **v-model:visible** | 显示与隐藏           | `boolean`        | `'true','false'`   | `false`  |
+| **title**           | 标题                 | `string`         | `-`                | `-`      |
+| **width**           | 对话框宽度           | `string`         | `-`                | `420px`  |
+| **cancel**          | 取消按钮的文字       | `string`         | `-`                | `cancel` |
+| **done**            | 确定按钮的文字       | `string`         | `-`                | `done`   |
+| **teleport**        | 指定对话框挂载的节点 | `HTMLElement`    | `-`                | `body`   |
+| ...                 | 原生属性             | `HTMLAttributes` | `'class','id',...` | `-`      |
 
 </fe-attributes>
 

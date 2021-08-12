@@ -6,7 +6,7 @@ interface Props {
   width: string
   cancel: string
   done: string
-  to: keyof HTMLElementTagNameMap
+  teleport: keyof HTMLElementTagNameMap
 }
 
 export type ModalProvide = {

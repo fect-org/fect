@@ -315,6 +315,10 @@
     "type": "string",
     "description": "对话框确定按钮的文字 , 默认值:`done`"
   },
+  "fe-modal/teleport": {
+    "type": "string",
+    "description": "指定对话框挂载的节点 , 默认值:`body`"
+  },
   "fe-pagination/v-model": {
     "type": "number",
     "description": "当前页码 , 默认值:`1`"

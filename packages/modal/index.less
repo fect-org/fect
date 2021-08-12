@@ -1,12 +1,10 @@
 .modal-fade {
   &-enter-active,
   &-leave-active {
-    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-      transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
   &-enter-from,
-  &-leave,
-  &-leave-active {
+  &-leave-to {
     opacity: 0;
     transform: translate3d(0px, -50px, 0px);
   }
