@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal should be support custom slots 1`] = `
+<div class="container">
+  <!--teleport start-->
+  <!--teleport end-->
+  <transition-stub>
+    <div class="fect-teleport__overlay"></div>
+  </transition-stub>
+  <transition-stub>
+    <div class="fect-modal__root" role="popup">
+      <div role="dialog" tabindex="-1" class="fect-modal__wrapper" style="width: 400px;">
+        <div class="fect-modal__title">Custom Title</div>
+        <div class="fect-modal__content">
+          <!---->
+        </div>
+        <h3>Custom Action</h3>
+      </div>
+    </div>
+  </transition-stub>
+</div>
+`;
+
+exports[`Modal should be support normal props 1`] = `
+<div class="container">
+  <!--teleport start-->
+  <!--teleport end-->
+  <transition-stub>
+    <div class="fect-teleport__overlay"></div>
+  </transition-stub>
+  <transition-stub>
+    <div class="fect-modal__root" role="popup">
+      <div role="dialog" tabindex="-1" class="fect-modal__wrapper" style="width: 500px;">
+        <div class="fect-modal__title">
+          <h2 class="title">Test Modal</h2>
+        </div>
+        <div class="fect-modal__content">
+          <!---->
+        </div>
+        <footer class="fect-modal__action"><button class="fect-button fect-button--default fect-button--medium fect-modal__button" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);">
+            <!---->
+            <!---->
+            <!---->Cancel
+          </button><button class="fect-button fect-button--default fect-button--medium fect-modal__button" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);">
+            <!---->
+            <!---->
+            <!---->Done
+          </button></footer>
+      </div>
+    </div>
+  </transition-stub>
+</div>
+`;

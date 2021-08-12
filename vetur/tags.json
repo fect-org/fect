@@ -159,7 +159,8 @@
       "title",
       "width",
       "cancel",
-      "done"
+      "done",
+      "teleport"
     ]
   },
   "fe-pagination": {

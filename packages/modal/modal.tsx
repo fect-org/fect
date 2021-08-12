@@ -27,7 +27,7 @@ export default createComponent({
       type: String,
       default: 'done',
     },
-    to: {
+    teleport: {
       type: String as PropType<keyof HTMLElementTagNameMap>,
       default: 'body',
     },
@@ -42,7 +42,7 @@ export default createComponent({
 
     watch(
       () => props.visible,
-      (cur) => setSelfVisible(cur)
+      (cur) => setSelfVisible(cur),
     )
     watch(selfVisible, (cur) => emit('update:visible', cur))
 
@@ -54,7 +54,7 @@ export default createComponent({
 
     return () => (
       <Teleport
-        teleport={props.to}
+        teleport={props.teleport}
         overlay
         popupClass="fect-modal__root"
         transition="modal-fade"
