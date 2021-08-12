@@ -40,6 +40,7 @@ import Switch from './switch';
 import Tab from './tab';
 import Tabs from './tabs';
 import Tag from './tag';
+import Teleport from './teleport';
 import Toast from './toast';
 const components = [Avatar,
   AvatarGroup,
@@ -80,6 +81,7 @@ const components = [Avatar,
   Tab,
   Tabs,
   Tag,
+  Teleport,
   Toast];
 const install = (app:App) => {
   components.map((component:any) => {
@@ -132,6 +134,7 @@ export {
   Tab,
   Tabs,
   Tag,
+  Teleport,
   Toast,
 };
 
