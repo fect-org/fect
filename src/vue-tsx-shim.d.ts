@@ -38,5 +38,6 @@ declare module 'vue' {
     onMouseenter?: EventHandler
     onMouseleave?: EventHandler
     onClear?: EventHandler
+    onPopupClick?: EventHandler
   }
 }

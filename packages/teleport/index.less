@@ -1,0 +1,42 @@
+@keyframes overlay-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes overlay-fade-out {
+}
+
+.fect--lock {
+  overflow: hidden;
+}
+
+.overlay-fade {
+  &-enter-active {
+    animation: 0.2s overlay-fade-in both ease-out;
+  }
+
+  &-leave-active {
+    animation: 0.2s overlay-fade-out ease-in;
+  }
+}
+
+.fect-teleport {
+  &__overlay {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    overflow: hidden;
+  }
+}
