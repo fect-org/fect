@@ -1,6 +1,8 @@
 import { computed, ref, PropType, watch } from 'vue'
-import { createNameSpace, useRealShape } from '../utils'
+import { createNameSpace, useRealShape, useState } from '../utils'
+import { useProvider } from '@fect-ui/vue-hooks'
 import CollapseIcon from './collapse-icon'
+import { READONLY_COLLAPSE_KEY, CollapseProvide } from '../collapse-group'
 import './index.less'
 
 const [createComponent] = createNameSpace('Collapse')
@@ -9,6 +11,8 @@ type Shape = {
   width: number
   height: number
 }
+
+type Height = string | number
 
 export default createComponent({
   props: {
@@ -27,11 +31,11 @@ export default createComponent({
     //   console.error('[Fect] title must be in <Collapse>.')
     // }
 
+    const { context, idx } = useProvider<CollapseProvide>(READONLY_COLLAPSE_KEY)
+
     const expandRef = ref<HTMLDivElement>()
 
-    const height = ref<string | number>(props.visible ? 'auto' : 0)
-
-    const setHeight = (val: string | number) => (height.value = val)
+    const [height, setHeight] = useState<Height>(props.visible ? 'auto' : 0)
 
     const setCollapseClass = computed(() => {
       if (props.shadow) return 'fect-collapse--shadow'
@@ -39,8 +43,19 @@ export default createComponent({
     })
 
     const clickHandler = () => {
+      if (context) return context.setCurrentChecked(idx)
       emit('update:visible', !props.visible)
     }
+
+    const visible = computed(() => {
+      if (context) {
+        const valueArr = context!.checked.value
+        const visible = valueArr.indexOf(idx) !== -1
+        setHeight(visible ? 'auto' : 0)
+        return visible
+      }
+      return props.visible
+    })
 
     /**
      * visible attrs will control the expand element height value
@@ -51,24 +66,21 @@ export default createComponent({
      *
      */
 
-    watch(
-      () => props.visible,
-      (pre) => {
-        const shape = useRealShape(expandRef) as Shape
-        if (pre) {
-          const entryTimer = setTimeout(() => {
-            setHeight(`${shape.height}px`)
-            clearTimeout(entryTimer)
-          }, 200 / 30)
-        } else {
+    watch(visible, (pre) => {
+      const shape = useRealShape(expandRef) as Shape
+      if (pre) {
+        const entryTimer = setTimeout(() => {
           setHeight(`${shape.height}px`)
-          const leaveTimer = setTimeout(() => {
-            setHeight(0)
-            clearTimeout(leaveTimer)
-          }, 200 / 30)
-        }
-      },
-    )
+          clearTimeout(entryTimer)
+        }, 200 / 30)
+      } else {
+        setHeight(`${shape.height}px`)
+        const leaveTimer = setTimeout(() => {
+          setHeight(0)
+          clearTimeout(leaveTimer)
+        }, 200 / 30)
+      }
+    })
 
     return () => (
       <div class={setCollapseClass.value}>
@@ -79,7 +91,7 @@ export default createComponent({
         >
           <div class="title">
             <h3>{props.title}</h3>
-            <CollapseIcon active={props.visible} />
+            <CollapseIcon active={visible.value} />
           </div>
           {props.subtitle && (
             <div class="subtitle">
@@ -95,7 +107,7 @@ export default createComponent({
         <div
           class="fect-collapse__expand"
           style={{
-            visibility: props.visible ? 'visible' : 'hidden',
+            visibility: visible.value ? 'visible' : 'hidden',
             height: height.value,
           }}
         >
