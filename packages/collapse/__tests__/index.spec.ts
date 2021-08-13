@@ -1,11 +1,17 @@
 import { mount } from '@vue/test-utils'
 import Collapse from '../index'
+import CollapseGroup from '../../collapse-group'
 
 describe('Collapse', () => {
   it('should be render as a element', () => {
-    const wrapper = mount(Collapse)
+    const wrapper = mount(Collapse, {
+      props: {
+        title: 'test',
+      },
+    })
     expect(() => wrapper.unmount()).not.toThrow()
   })
+
   it('should be support title and subtitle', () => {
     const wrapper = mount(Collapse, {
       props: {
@@ -43,5 +49,37 @@ describe('Collapse', () => {
     expect(wrapper.find('.fect-collapse__expand').attributes('style')).toBe(
       'visibility: hidden; height: 0px;',
     )
+  })
+  it('should be support accordion model', async () => {
+    const wrapper = mount({
+      components: {
+        [Collapse.name]: Collapse,
+        [CollapseGroup.name]: CollapseGroup,
+      },
+      data() {
+        return { show: [0], accordion: true }
+      },
+      template: `
+      <div class="container">
+        <fe-collapseGroup v-model="show" :accordion="accordion">
+          <fe-collapse title="Test">
+            123456
+          </fe-collapse>
+          <fe-collapse title="Test1">
+            1
+          </fe-collapse>
+        </fe-collapseGroup>
+      </div>
+      `,
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+    const els = wrapper.findAll('.fect-collapse__view')
+    await els[0].trigger('click')
+    expect(wrapper.vm.show.length).toBe(0)
+    await els[1].trigger('click')
+    expect(wrapper.vm.show).toEqual([1])
+    await wrapper.setData({ accordion: false })
+    await els[0].trigger('click')
+    expect(wrapper.vm.show).toEqual([1, 0])
   })
 })

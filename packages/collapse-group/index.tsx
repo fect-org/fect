@@ -19,7 +19,7 @@ export default createComponent({
       default: true,
     },
     modelValue: {
-      type: Array as PropType<Number[]>,
+      type: [Array] as PropType<number[]>,
       default: () => [],
     },
   },
