@@ -20,6 +20,12 @@
   name="ex-collapse-shadow"
 />
 
+<fe-code-show
+  title="手风琴"
+  desc="一组具有手风琴效果的折叠框"
+  name="ex-collapse-accordion"
+/>
+
 <fe-attributes>
 
 <fe-attributes-title title="Collapse Props" />
