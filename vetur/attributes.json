@@ -115,6 +115,14 @@
     "type": "boolean",
     "description": "是否总是显示阴影 , 默认值:`false` "
   },
+  "fe-collapseGroup/v-model": {
+    "type": "array",
+    "description": "当前激活的面板 , 默认值:`-`"
+  },
+  "fe-collapseGroup/accordion": {
+    "type": "boolean",
+    "description": "手风琴模式 (一次最多打开一个) , 默认值:`true`"
+  },
   "fe-collapse/title": {
     "type": "string",
     "description": "标题值 , 该属性必选 "

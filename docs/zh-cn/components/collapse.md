@@ -40,3 +40,15 @@
 | ...                 | 原生属性             | `HTMLAttributes` | `'class','id',...` | `-`     |
 
 </fe-attributes>
+
+<fe-attributes>
+
+<fe-attributes-title title="CollapseGroup Props" />
+
+| 属性          | 描述                          | 类型             | 可选值             | 默认     |
+| ------------- | ----------------------------- | ---------------- | ------------------ | -------- |
+| **accordion** | 手风琴模式 (一次最多打开一个) | `boolean`        | `'true','false'`   | `'true'` |
+| **v-model**   | 当前激活的面板                | `number[]`       | `-`                | `[]`     |
+| ...           | 原生属性                      | `HTMLAttributes` | `'class','id',...` | `-`      |
+
+</fe-attributes>

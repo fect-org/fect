@@ -73,6 +73,12 @@
       "shadow"
     ]
   },
+  "fe-collapseGroup": {
+    "attributes": [
+      "v-model",
+      "accordion"
+    ]
+  },
   "fe-checkbox": {
     "attributes": [
       "v-model",
