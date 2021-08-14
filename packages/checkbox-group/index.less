@@ -1,15 +1,17 @@
-.fect-checkbox_group {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.fect-checkbox {
+  &__group {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    &.useRow {
+      flex-direction: row;
+      .fect-checkbox:not(.fect-checkbox:first-of-type) {
+        margin-left: 15px;
+        margin-top: 0;
+      }
+    }
+  }
   .fect-checkbox:not(.fect-checkbox:first-of-type) {
     margin-top: 15px;
-  }
-  &.useRow {
-    flex-direction: row;
-    .fect-checkbox:not(.fect-checkbox:first-of-type) {
-      margin-left: 15px;
-      margin-top: 0;
-    }
   }
 }

@@ -1,5 +1,5 @@
-import { PropType } from 'vue'
-import { createNameSpace } from '../utils'
+import { PropType, Ref, watch } from 'vue'
+import { createNameSpace, useState } from '../utils'
 import { createProvider } from '@fect-ui/vue-hooks'
 import { NormalSizes } from '../utils/theme/propTypes'
 const [createComponent] = createNameSpace('CheckboxGroup')
@@ -26,8 +26,9 @@ export type CheckboxGroupProvide = {
     size: NormalSizes
     useRow: boolean
   }
-  updateParentValue: (val: unknown[]) => void
-  handlerParentChange: (e: CheckboxEvent) => void
+  parentValue: Ref<string[]>
+  updateParentValue: (val: string, checked: boolean) => void
+  parentChangeHandler: (e: CheckboxEvent) => void
 }
 
 export default createComponent({
@@ -45,15 +46,36 @@ export default createComponent({
   },
   emits: ['change', 'update:modelValue'],
   setup(props, { slots, emit }) {
+    const [parentValue, setParentValue] = useState<string[]>(props.modelValue)
+
     const { provider } = createProvider(READONLY_CHECKBOX_KEY)
 
-    const updateParentValue = (pre: unknown[]) => emit('update:modelValue', pre)
-    const handlerParentChange = (e: CheckboxEvent) => emit('change', e)
+    const updateParentValue = (val: string, checked: boolean) => {
+      const value = parentValue.value.slice()
+      const index = value.indexOf(val)
+      const exist = index !== -1
+      if (checked) {
+        !exist && value.push(val)
+      }
+      if (!checked) {
+        exist && value.splice(index, 1)
+      }
+      setParentValue(value)
+    }
+    const parentChangeHandler = (e: CheckboxEvent) => {
+      const event = {
+        ...e,
+        target: { value: parentValue },
+      }
+      emit('change', event)
+    }
 
-    provider({ props, updateParentValue, handlerParentChange })
+    provider({ props, updateParentValue, parentValue, parentChangeHandler })
+
+    watch(parentValue, (cur) => emit('update:modelValue', cur))
 
     return () => (
-      <div class={`fect-checkbox_group ${props.useRow ? 'useRow' : ''}`}>
+      <div class={`fect-checkbox__group ${props.useRow ? 'useRow' : ''}`}>
         {slots.default?.()}
       </div>
     )
