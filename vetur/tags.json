@@ -182,7 +182,7 @@
   },
   "fe-radio": {
     "attributes": [
-      "checked",
+      "v-model:checked",
       "disabed",
       "value",
       "size"
@@ -190,7 +190,7 @@
   },
   "fe-radioGroup": {
     "attributes": [
-      "initialValue",
+      "modelValue",
       "useRow",
       "disabed",
       "size"

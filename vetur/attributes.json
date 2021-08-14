@@ -355,7 +355,7 @@
     "type": "string",
     "description": "分页器下一页的文字 ,  默认值: `Next`"
   },
-  "fe-radio/checked": {
+  "fe-radio/v-model:checked": {
     "type": "boolean",
     "description": "是否选中单选框(仅在单选时有效) ,  默认值: `false`"
   },
@@ -371,8 +371,8 @@
     "type": "string",
     "description": "单选框的大小 , 可选值为`mini`,`small`,`medium`,`large`,  默认值: `medium`"
   },
-  "fe-radioGroup/initialValue": {
-    "type": "string",
+  "fe-radioGroup/v-model": {
+    "type": "string | number",
     "description": "初始值 ,   默认值: `-`"
   },
   "fe-radioGroup/useRow": {
