@@ -1,10 +1,10 @@
-import { computed, ref, watchEffect, PropType } from 'vue'
+import { computed, watchEffect, PropType, watch } from 'vue'
 import { useProvider } from '@fect-ui/vue-hooks'
-import { createNameSpace } from '../utils'
+import { createNameSpace, useState } from '../utils'
 import { NormalSizes } from '../utils/theme/propTypes'
 import {
   RadioGroupProvide,
-  READNONLY_RADIO_GROUP_KEY,
+  READNONLY_RADIO_KEY,
   RadioEvent,
 } from '../radio-group'
 import './index.less'
@@ -32,93 +32,84 @@ export default createComponent({
       default: 'medium',
     },
   },
-  emits: ['change'],
+  emits: ['change', 'update:checked'],
   setup(props, { emit, slots }) {
-    const radioValue = ref<string | number>(props.value)
-    const radioSize = ref<NormalSizes>(props.size)
-    const isDisabled = ref<boolean>(props.disabled)
-    const selfChecked = ref<boolean>(!!props.checked)
+    const [selfChecked, setSelfChecked] = useState<boolean>(props.checked)
 
-    const { context } = useProvider<RadioGroupProvide>(
-      READNONLY_RADIO_GROUP_KEY,
-    )
+    const { context } = useProvider<RadioGroupProvide>(READNONLY_RADIO_KEY)
 
-    const changeStatus = () => {
-      const { disabled, size, initialValue } = context!.props
-      isDisabled.value = disabled
-      radioSize.value = size
-      /** refactor */
-      const parentValue = initialValue || null
-      if (context?.groupValue.value) {
-        selfChecked.value = context.groupValue.value === props.value
-      }
-      if (!context?.groupValue.value) {
-        if (parentValue) selfChecked.value = parentValue === props.value
-      }
-    }
+    const selfSize = computed(() => {
+      if (context) return context.props.size
+      return props.size
+    })
 
-    /**
-     * when component init,it will execute once.
-     * watchEffect will executed auto when the dependence is changed
-     */
+    const selfValue = computed(() => {
+      if (context) return context.props.modelValue
+      return props.value
+    })
+
+    const selfDisabled = computed(() => {
+      if (context) return context.props.disabled
+      return props.disabled
+    })
 
     if (context) {
-      watchEffect(changeStatus)
-    }
-    /**
-     * without radioGroup
-     */
-    if (!context) {
       watchEffect(() => {
-        selfChecked.value = props.checked ? true : false
+        setSelfChecked(context.parentValue.value === props.value)
       })
     }
 
-    const handleChange = (e: Event) => {
-      if (isDisabled.value) return
-      selfChecked.value = !selfChecked.value
+    /**
+     * Extract logic and put it into the group for processing
+     */
+
+    const changeHandler = (e: Event) => {
+      if (selfDisabled.value) return
       const radioEvent: RadioEvent = {
-        target: {
-          checked: selfChecked.value,
-        },
+        target: {},
         stopPropagation: e.stopPropagation,
         preventDefault: e.preventDefault,
         nativeEvent: e,
       }
       if (context) {
-        context.groupValue.value = props.value
-        context.updateState
-          && context.updateState({
-            ...radioEvent,
-            target: { checkedVal: radioValue.value },
-          })
+        context.updateState({
+          ...radioEvent,
+          target: { checkedVal: props.value, checked: !selfChecked.value },
+        })
+        context.setCurrentValue(props.value)
+        return
       }
-      if (!context) {
-        emit('change', radioEvent)
-      }
+      setSelfChecked(!selfChecked.value)
+      emit('change', {
+        ...radioEvent,
+        target: { checked: selfChecked.value },
+      })
     }
+
     const setRadioSize = computed(() => {
-      const size = queryRadioSize(radioSize.value)
+      const size = queryRadioSize(selfSize.value)
       const style: CustomCSSProperties = {}
       style['--radioSize'] = size
       return style
     })
 
+    watch(selfChecked, (cur) => emit('update:checked', cur))
+
     return () => (
       <div class="fect-radio" style={setRadioSize.value}>
-        <label class={`${isDisabled.value ? 'disabled' : ''}`}>
+        <label class={`${selfDisabled.value ? 'disabled' : ''}`}>
           <input
             type="radio"
-            value={radioValue.value}
+            value={selfValue.value}
             checked={selfChecked.value}
-            onChange={handleChange}
-            disabled={isDisabled.value}
+            onChange={changeHandler}
+            disabled={selfDisabled.value}
           ></input>
           <span class={'fect-radio__name'}>
             <span
-              class={`fect-radio__point ${isDisabled.value ? 'disabled' : ''} ${
-                selfChecked.value ? 'active' : ''
-              }`}
+              class={`fect-radio__point ${
+                selfDisabled.value ? 'disabled' : ''
+              } ${selfChecked.value ? 'active' : ''}`}
             />
             {slots.default?.()}
           </span>

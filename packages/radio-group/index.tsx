@@ -1,22 +1,25 @@
-import { ref, PropType, Ref } from 'vue'
+import { PropType, Ref } from 'vue'
 import { createProvider } from '@fect-ui/vue-hooks'
-import { createNameSpace } from '../utils'
+import { createNameSpace, useState } from '../utils'
 import { NormalSizes } from '../utils/theme/propTypes'
 import './index.less'
 
 const [createComponent] = createNameSpace('RadioGroup')
 
-export const READNONLY_RADIO_GROUP_KEY = 'radioGroupKey'
+export const READNONLY_RADIO_KEY = 'radioKey'
+
+type Parent = number | string
 
 export type RadioGroupProvide = {
   props: {
-    initialValue: string | number
+    modelValue: string | number
     useRow: boolean
     disabled: boolean
     size: NormalSizes
   }
   updateState: (val: RadioEvent) => void
-  groupValue: Ref<unknown>
+  parentValue: Ref<Parent>
+  setCurrentValue: (val: Parent) => void
 }
 
 interface RadioEeventTarget {
@@ -33,7 +36,7 @@ export interface RadioEvent {
 
 export default createComponent({
   props: {
-    initialValue: [String, Number],
+    modelValue: [String, Number],
     useRow: Boolean,
     disabled: Boolean,
     size: {
@@ -41,12 +44,19 @@ export default createComponent({
       default: 'medium',
     },
   },
-  emits: ['change'],
+  emits: ['change', 'update:modelValue'],
   setup(props, { slots, emit }) {
-    const groupValue = ref(null)
-    const { provider } = createProvider(READNONLY_RADIO_GROUP_KEY)
+    const [parentValue, setParentValue] = useState<Parent>(props.modelValue)
+    const { provider } = createProvider(READNONLY_RADIO_KEY)
     const updateState = (nextVal: RadioEvent) => emit('change', nextVal)
-    provider({ props, updateState, groupValue })
+
+    const setCurrentValue = (val: string | number) => {
+      setParentValue(val)
+      emit('update:modelValue', parentValue)
+    }
+
+    provider({ props, updateState, setCurrentValue, parentValue })
+
     return () => (
       <div class={`fect-radio__group ${props.useRow ? 'useRow' : ''}`}>
         {slots.default?.()}
