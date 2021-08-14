@@ -51,5 +51,7 @@ describe('CheckboxGroup', () => {
     expect(wrapper.vm.parent).toEqual(['shanghai'])
     await els[1].trigger('change')
     expect(wrapper.vm.parent).toEqual([])
+    await els[0].trigger('change')
+    expect(wrapper.vm.parent).toEqual(['shanghai'])
   })
 })
