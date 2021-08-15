@@ -166,7 +166,8 @@
       "width",
       "cancel",
       "done",
-      "teleport"
+      "teleport",
+      "overlay"
     ]
   },
   "fe-pagination": {

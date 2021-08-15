@@ -31,6 +31,10 @@ export default createComponent({
       type: String as PropType<keyof HTMLElementTagNameMap>,
       default: 'body',
     },
+    overlay: {
+      type: Boolean,
+      default: true,
+    },
   },
   emits: ['update:visible'],
   setup(props, { attrs, slots, emit }) {
@@ -55,7 +59,8 @@ export default createComponent({
     return () => (
       <Teleport
         teleport={props.teleport}
-        overlay
+        overlay={props.overlay}
+        scroll={selfVisible.value}
         popupClass="fect-modal__root"
         transition="modal-fade"
         v-model={[selfVisible.value, 'show']}
