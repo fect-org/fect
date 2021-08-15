@@ -10,11 +10,12 @@ const Wrapper = {
     [Modal.name]: Modal,
   },
   data() {
-    return { show: false, mounted: false }
+    return { show: false, mounted: false, overlay: true }
   },
   template: `
   <div class="container">
     <fe-modal v-model:visible="show"
+      :overlay="overlay"
       title="Test Modal"
       teleport=".container"
       cancel="Cancel"
@@ -30,8 +31,10 @@ describe('Modal', () => {
     const wrapper = mount(Wrapper, { attachTo: document.body })
     await wrapper.setData({ show: true })
     await wrapper.setData({ mounted: true })
+    await wrapper.setData({ overlay: false })
     expect(wrapper.html()).toMatchSnapshot()
     expect(wrapper.find('.title').text()).toBe('Test Modal')
+    expect(wrapper.find('.fect-teleport__overlay').exists()).toBe(false)
     expect(wrapper.findAll('.fect-modal__button')[0].text()).toBe('Cancel')
     expect(wrapper.findAll('.fect-modal__button')[1].text()).toBe('Done')
     expect(() => wrapper.unmount).not.toThrow()

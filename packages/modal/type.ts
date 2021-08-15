@@ -7,6 +7,7 @@ interface Props {
   cancel: string
   done: string
   teleport: keyof HTMLElementTagNameMap
+  overlay: boolean
 }
 
 export type ModalProvide = {

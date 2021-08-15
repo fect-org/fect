@@ -25,9 +25,7 @@ exports[`Modal should be support normal props 1`] = `
 <div class="container">
   <!--teleport start-->
   <!--teleport end-->
-  <transition-stub>
-    <div class="fect-teleport__overlay"></div>
-  </transition-stub>
+  <!---->
   <transition-stub>
     <div class="fect-modal__root" role="popup">
       <div role="dialog" tabindex="-1" class="fect-modal__wrapper" style="width: 500px;">

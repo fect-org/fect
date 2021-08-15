@@ -327,6 +327,10 @@
     "type": "string",
     "description": "指定对话框挂载的节点 , 默认值:`body`"
   },
+  "fe-modal/overlay": {
+    "type": "boolean",
+    "description": "是否显示遮罩层 , 默认值:`true`"
+  },
   "fe-pagination/v-model": {
     "type": "number",
     "description": "当前页码 , 默认值:`1`"
