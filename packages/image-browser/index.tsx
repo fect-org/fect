@@ -70,7 +70,7 @@ export default createComponent({
     const renderTitle = () => {
       const { title } = props
       return (
-        <div class="title" style={{ color: titleColor }}>
+        <div class="fect-image__title" style={{ color: titleColor }}>
           <span>{title}</span>
         </div>
       )
@@ -78,7 +78,10 @@ export default createComponent({
 
     const renderAddress = () => {
       return (
-        <div class="address-input" style={{ backgroundColor: inputBgColor }}>
+        <div
+          class="fect-image__input"
+          style={{ backgroundColor: inputBgColor }}
+        >
           <span class="https">
             <HttpIcons />
           </span>
@@ -99,13 +102,14 @@ export default createComponent({
     return () => (
       <div class="fect-image__browser">
         <header
+          class="fect-image__traffic"
           style={{
             color,
             backgroundColor: barBgColor,
             borderBottomColor: borderColor,
           }}
         >
-          <div class="traffic">
+          <div class="traffic__content">
             <span class="close" role="browser-close" />
             <span class="mini" role="browser-mini" />
             <span class="full" role="browser-full" />

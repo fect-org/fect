@@ -1,15 +1,8 @@
 <template>
   <div>
-    <fe-image
-      :src="img"
-      width="540px"
-      height="246px"
-      useBrowser
-      invert
-      target="__blank"
-      url="https://vue.miaya.com"
-      skeleton
-    ></fe-image>
+    <fe-imageBrowser invert target="__blank" url="https://vue.miaya.art">
+      <fe-image :src="img" width="540px" height="246px" skeleton></fe-image>
+    </fe-imageBrowser>
   </div>
 </template>
 

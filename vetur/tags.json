@@ -111,12 +111,15 @@
       "width",
       "height",
       "skeleton",
-      "maxDelay",
-      "useBrowser",
-      "title",
+      "maxDelay"
+    ]
+  },
+  "fe-imageBrowser": {
+    "attributes": [
       "url",
       "showFullLink",
-      "invert"
+      "invert",
+      "title"
     ]
   },
   "fe-input": {
