@@ -19,6 +19,7 @@ import CollapseGroup from './collapse-group';
 import Dot from './dot';
 import Grid from './grid';
 import Image from './image';
+import ImageBrowser from './image-browser';
 import Input from './input';
 import Link from './link';
 import Loading from './loading';
@@ -61,6 +62,7 @@ const components = [Avatar,
   Dot,
   Grid,
   Image,
+  ImageBrowser,
   Input,
   Link,
   Loading,
@@ -115,6 +117,7 @@ export {
   Dot,
   Grid,
   Image,
+  ImageBrowser,
   Input,
   Link,
   Loading,
