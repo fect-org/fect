@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImageBrowser if the URL address is incorrect, the original value is displayed 1`] = `
+<div classs="container">
+  <div class="fect-image__browser">
+    <header class="fect-image__traffic">
+      <div class="traffic__content"><span class="close" role="browser-close"></span><span class="mini" role="browser-mini"></span><span class="full" role="browser-full"></span></div>
+      <div class="fect-image__input"><span class="https"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M5 10.2H19V21H5V10.2Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 12C13.933 12 15.5 10.3882 15.5 8.4C15.5 6.41177 13.933 4.8 12 4.8C10.067 4.8 8.5 6.41177 8.5 8.4C8.5 10.3882 10.067 12 12 12ZM12 13.8C14.8995 13.8 17.25 11.3823 17.25 8.4C17.25 5.41766 14.8995 3 12 3C9.10051 3 6.75 5.41766 6.75 8.4C6.75 11.3823 9.10051 13.8 12 13.8Z"></path></svg></span><a class="fect-link " href="123">123</a></div>
+    </header>
+    <div class="fect-image" style="width: 540px; height: 246px;">
+      <!----><img src="" width="0" height="0" style="display: block;">
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ImageBrowser should be support invert and showFullLink 1`] = `
+<div classs="container">
+  <div class="fect-image__browser">
+    <header class="fect-image__traffic">
+      <div class="traffic__content"><span class="close" role="browser-close"></span><span class="mini" role="browser-mini"></span><span class="full" role="browser-full"></span></div>
+      <div class="fect-image__input"><span class="https"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M5 10.2H19V21H5V10.2Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 12C13.933 12 15.5 10.3882 15.5 8.4C15.5 6.41177 13.933 4.8 12 4.8C10.067 4.8 8.5 6.41177 8.5 8.4C8.5 10.3882 10.067 12 12 12ZM12 13.8C14.8995 13.8 17.25 11.3823 17.25 8.4C17.25 5.41766 14.8995 3 12 3C9.10051 3 6.75 5.41766 6.75 8.4C6.75 11.3823 9.10051 13.8 12 13.8Z"></path></svg></span><a class="fect-link " href="https://www.miaya.art">https://www.miaya.art</a></div>
+    </header>
+    <div class="fect-image" style="width: 540px; height: 246px;">
+      <!----><img src="" width="0" height="0" style="display: block;">
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ImageBrowser should only render title when without url 1`] = `
+<div classs="container">
+  <div class="fect-image__browser">
+    <header class="fect-image__traffic">
+      <div class="traffic__content"><span class="close" role="browser-close"></span><span class="mini" role="browser-mini"></span><span class="full" role="browser-full"></span></div>
+      <div class="fect-image__title"><span class="">Fect</span></div>
+    </header>
+    <div class="fect-image" style="width: 540px; height: 246px;">
+      <!----><img src="" width="0" height="0" style="display: block;">
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ImageBrowser should render as a element 1`] = `
+<div classs="container">
+  <div class="fect-image__browser">
+    <header class="fect-image__traffic">
+      <div class="traffic__content"><span class="close" role="browser-close"></span><span class="mini" role="browser-mini"></span><span class="full" role="browser-full"></span></div>
+      <div class="fect-image__input"><span class="https"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M5 10.2H19V21H5V10.2Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 12C13.933 12 15.5 10.3882 15.5 8.4C15.5 6.41177 13.933 4.8 12 4.8C10.067 4.8 8.5 6.41177 8.5 8.4C8.5 10.3882 10.067 12 12 12ZM12 13.8C14.8995 13.8 17.25 11.3823 17.25 8.4C17.25 5.41766 14.8995 3 12 3C9.10051 3 6.75 5.41766 6.75 8.4C6.75 11.3823 9.10051 13.8 12 13.8Z"></path></svg></span><a class="fect-link " href="https://www.miaya.art">www.miaya.art</a></div>
+    </header>
+    <div class="fect-image" style="width: 540px; height: 246px;">
+      <!----><img src="" width="0" height="0" style="display: block;">
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ImageBrowser should render empty when title and url is empty 1`] = `
+<div classs="container">
+  <div class="fect-image__browser">
+    <header class="fect-image__traffic">
+      <div class="traffic__content"><span class="close" role="browser-close"></span><span class="mini" role="browser-mini"></span><span class="full" role="browser-full"></span></div>
+      <!---->
+    </header>
+    <div class="fect-image" style="width: 540px; height: 246px;">
+      <!----><img src="" width="0" height="0" style="display: block;">
+    </div>
+  </div>
+</div>
+`;
