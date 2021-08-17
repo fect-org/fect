@@ -5,9 +5,7 @@ const ButtonIcon = defineComponent({
     icon: String as PropType<keyof HTMLElementTagNameMap>,
   },
   setup(props) {
-    return () => (
-      <span class="fect-button__icon">{props.icon && <props.icon />}</span>
-    )
+    return () => <span class="fect-button__icon">{props.icon}</span>
   },
 })
 

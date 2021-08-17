@@ -2,11 +2,11 @@
   <div>
     <fe-rating :count="2" />
     <fe-spacer />
-    <fe-rating :icon="setGithub()" type="success" :count="3" />
+    <fe-rating :icon="Github" type="success" :count="3" />
     <fe-spacer />
-    <fe-rating :icon="setGitLab()" type="warning" :count="4" />
+    <fe-rating :icon="GitLab" type="warning" :count="4" />
     <fe-spacer />
-    <fe-rating :icon="setHeart()" type="error" />
+    <fe-rating :icon="Heart" type="error" />
   </div>
 </template>
 
@@ -14,10 +14,10 @@
 export default {
   name: 'ex-rating-type',
   setup() {
-    const setGithub = () => <github />
-    const setGitLab = () => <gitlab />
-    const setHeart = () => <heart />
-    return { setGithub, setGitLab, setHeart }
+    const Github = <github />
+    const GitLab = <gitlab />
+    const Heart = <heart />
+    return { Github, GitLab, Heart }
   },
 }
 </script>
