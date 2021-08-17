@@ -82,11 +82,11 @@ describe('Button', () => {
   it('should be support icon', () => {
     const wrapper = mount({
       data: () => ({
-        github,
+        icon: () => <github />,
       }),
       template: `
       <div class="container">
-        <fe-button :icon="github">Button</fe-button>
+        <fe-button :icon="icon()">Button</fe-button>
       </div>`,
       components: {
         [Button.name]: Button,

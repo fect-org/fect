@@ -1,8 +1,9 @@
-import { defineComponent, PropType } from 'vue'
+import { UnknowProp } from '../utils/base'
+import { defineComponent } from 'vue'
 
 const ButtonIcon = defineComponent({
   props: {
-    icon: String as PropType<keyof HTMLElementTagNameMap>,
+    icon: UnknowProp,
   },
   setup(props) {
     return () => <span class="fect-button__icon">{props.icon}</span>
