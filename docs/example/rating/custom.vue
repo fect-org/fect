@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fe-rating v-model="val" :icon="setIcon()" locked @change="handleChange" />
+    <fe-rating v-model="val" :icon="icon" locked @change="handleChange" />
   </div>
 </template>
 
@@ -10,8 +10,8 @@ export default {
   name: 'ex-rating-custom',
   setup() {
     const val = ref(3)
-    const setIcon = () => <github />
-    return { val, setIcon }
+    const icon = <github />
+    return { val, icon }
   },
 }
 </script>

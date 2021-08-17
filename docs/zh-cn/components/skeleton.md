@@ -53,8 +53,8 @@ name="ex-skeleton-more"
 <fe-attributes>
 <fe-attributes-title title="VariableTypes" />
 
-| 类型 可选值       |
-| ----------------- |
+| 类型              | 可选值                                                               |
+| ----------------- | -------------------------------------------------------------------- |
 | **VariableTypes** | `'p', 'text', 'h1', 'h3','rect','circle','image','button','caption'` |
 
 </fe-attributes>
