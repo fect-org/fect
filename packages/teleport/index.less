@@ -9,6 +9,12 @@
 }
 
 @keyframes overlay-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 .fect--lock {
@@ -17,11 +23,11 @@
 
 .overlay-fade {
   &-enter-active {
-    animation: 0.2s overlay-fade-in both ease-out;
+    animation: 0.3s overlay-fade-in both ease-out;
   }
 
   &-leave-active {
-    animation: 0.2s overlay-fade-out ease-in;
+    animation: 0.3s overlay-fade-out both ease-in;
   }
 }
 
