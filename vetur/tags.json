@@ -154,6 +154,15 @@
       "block"
     ]
   },
+  "fe-drawer": {
+    "attributes": [
+      "v-model",
+      "overlay",
+      "placement",
+      "round",
+      "disabled-overlay-click"
+    ]
+  },
   "fe-loading": {
     "attributes": [
       "size",

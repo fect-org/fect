@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Drawer should be support normal props 1`] = `
+<div class="container">
+  <!--teleport start-->
+  <!--teleport end-->
+  <transition-stub>
+    <div class="fect-teleport__overlay"></div>
+  </transition-stub>
+  <transition-stub>
+    <div class="fect-drawer__root" role="popup">
+      <div class="fect-drawer__wrapper fect-drawer__wrapper--right round" style="--drawer-transfrom: translate3d(100%, -50%, 0);" role="dialog" teleport=".container"><span> Test </span></div>
+    </div>
+  </transition-stub>
+</div>
+`;
