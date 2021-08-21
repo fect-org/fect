@@ -283,6 +283,26 @@
     "type": "boolean",
     "description": "是否为块级元素, 默认值:`false`"
   },
+  "fe-drawer/v-model": {
+    "type": "boolean",
+    "description": "是否显示弹出层 , 默认值:`false`"
+  },
+  "fe-drawer/overlay": {
+    "type": "boolean",
+    "description": "是否显示遮罩层 , 默认值:`true`"
+  },
+  "fe-drawer/placement": {
+    "type": "string",
+    "description": "弹出位置 , 可选值为`top`,`left`,`right`,`bottom` , 默认值:`right`"
+  },
+  "fe-drawer/round": {
+    "type": "boolean",
+    "description": "是否显示圆角 , 默认值:`true`"
+  },
+  "fe-drawer/disable-overlay-click": {
+    "type": "boolean",
+    "description": "是否禁用点击遮罩层后关闭 , 默认值:`false`"
+  },
   "fe-loading/size": {
     "type": "string",
     "description": "指示器的大小 , 可选值为`mini`,`small`,`medium`,`large`, 默认值: `medium`"

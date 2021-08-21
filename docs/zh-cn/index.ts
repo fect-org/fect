@@ -93,6 +93,7 @@ export const zhRoutes: Routes[] = [
   {
     name: '布告',
     children: [
+      { title: '抽屉 Drawer', group: '布告', route: { name: 'Drawer' } },
       { title: '加载 Loading', group: '布告', route: { name: 'Loading' } },
       { title: '对话框 Modal', group: '布告', route: { name: 'Modal' } },
       { title: '进度条 Progress', group: '布告', route: { name: 'Progress' } },
