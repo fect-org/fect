@@ -1,5 +1,79 @@
+.drawer-fade {
+  &-enter-active {
+    transition-timing-function: ease-out;
+  }
+  &-leave-active {
+    transition-timing-function: ease-in;
+  }
+  &-enter-from,
+  &-leave-active {
+    // transition: all 0.3s ease;
+    transform: var(--drawer-transfrom);
+  }
+}
+
 .fect-drawer {
+  &__root {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+  }
   &__wrapper {
-    
+    position: fixed;
+    max-height: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-y: auto;
+    --drawer-padding: calc(1.35 * 16px);
+    padding: var(--drawer-padding);
+    margin: 0;
+    background-color: var(--primary-background);
+    transition: transform 0.3s;
+    &--top {
+      top: 0;
+      left: 0;
+      width: 100%;
+      &.round {
+        border-radius: 0 0 15px 15px;
+      }
+    }
+    &--bottom {
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      &.round {
+        border-radius: 15px 15px 0 0;
+      }
+    }
+    &--left {
+      height: 100%;
+      top: 50%;
+      left: 0;
+      transform: translate3d(0, -50%, 0);
+      &.round {
+        border-radius: 0px 15px 15px 0;
+      }
+    }
+    &--right {
+      height: 100%;
+      top: 50%;
+      right: 0;
+      transform: translate3d(0, -50%, 0);
+      &.round {
+        border-radius: 15px 0 0 15px;
+      }
+    }
+  }
+  &__close {
+    position: absolute;
+    cursor: pointer;
+    svg {
+      color: var(--accents-5);
+    }
   }
 }

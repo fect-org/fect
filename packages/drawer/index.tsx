@@ -9,22 +9,39 @@ const [createComponent] = createNameSpace('Drawer')
 
 export default createComponent({
   props,
-  emits: ['update:modelValue', 'clickCloseIcon'],
+  emits: ['update:modelValue'],
   setup(props, { slots, emit, attrs }) {
     const [visible, setVisible] = useState<boolean>(props.modelValue)
 
-    return (
+    watch(
+      () => props.modelValue,
+      (cur) => setVisible(cur),
+    )
+
+    watch(visible, (cur) => emit('update:modelValue', cur))
+
+    const poupClickHandler = (e: Event) => {
+      if (props.disableOverlayClick) return
+      const el = e.target as HTMLElement
+      if (el.className !== 'fect-drawer__root') return
+      setVisible(!visible.value)
+    }
+
+    return () => (
       <Teleport
         teleport="body"
         overlay={props.overlay}
         scroll={visible.value}
-        v-model={[visible.value, 'show']}
+        show={visible.value}
+        popupClass="fect-drawer__root"
+        transition="drawer-fade"
+        onPopupClick={poupClickHandler}
       >
         <DrawerWrapper
-          visible={visible.value}
           placement={props.placement}
-          {...attrs}
+          round={props.round}
           v-slots={slots}
+          {...attrs}
         />
       </Teleport>
     )
