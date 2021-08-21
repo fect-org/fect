@@ -17,6 +17,7 @@ import Col from './col';
 import Collapse from './collapse';
 import CollapseGroup from './collapse-group';
 import Dot from './dot';
+import Drawer from './drawer';
 import Grid from './grid';
 import Image from './image';
 import ImageBrowser from './image-browser';
@@ -60,6 +61,7 @@ const components = [Avatar,
   Collapse,
   CollapseGroup,
   Dot,
+  Drawer,
   Grid,
   Image,
   ImageBrowser,
@@ -115,6 +117,7 @@ export {
   Collapse,
   CollapseGroup,
   Dot,
+  Drawer,
   Grid,
   Image,
   ImageBrowser,

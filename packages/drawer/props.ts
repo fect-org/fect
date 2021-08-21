@@ -18,6 +18,5 @@ export const props = {
     type: Boolean,
     default: true,
   },
-  closeable: Boolean,
   disableOverlayClick: Boolean,
 }
