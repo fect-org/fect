@@ -37,6 +37,7 @@ import Skeleton from './skeleton';
 import SkeletonItem from './skeleton-item';
 import Snippet from './snippet';
 import Spacer from './spacer';
+import Spinner from './spinner';
 import Swipe from './swipe';
 import SwipeItem from './swipe-item';
 import Switch from './switch';
@@ -81,6 +82,7 @@ const components = [Avatar,
   SkeletonItem,
   Snippet,
   Spacer,
+  Spinner,
   Swipe,
   SwipeItem,
   Switch,
@@ -137,6 +139,7 @@ export {
   SkeletonItem,
   Snippet,
   Spacer,
+  Spinner,
   Swipe,
   SwipeItem,
   Switch,
