@@ -182,6 +182,9 @@
       "overlay"
     ]
   },
+  "fe-spinner": {
+    "attributes": []
+  },
   "fe-pagination": {
     "attributes": [
       "v-model",
