@@ -39,10 +39,7 @@ const ModalWrapper = defineComponent({
       )
     }
 
-    return () => {
-      const { selfVisible } = context!
-      return <>{selfVisible.value && renderWrapper()}</>
-    }
+    return () => renderWrapper()
   },
 })
 
