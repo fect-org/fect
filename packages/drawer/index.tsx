@@ -1,8 +1,10 @@
-import { watch } from 'vue'
+import { watch, computed } from 'vue'
 import { createNameSpace, useState } from '../utils'
+import { CustomCSSProperties } from '../utils/base'
 import { props } from './props'
 import Teleport from '../teleport'
 import DrawerWrapper from './drawer-wrapper'
+import { getDrawerTransfrom } from './style'
 import './index.less'
 
 const [createComponent] = createNameSpace('Drawer')
@@ -12,6 +14,14 @@ export default createComponent({
   emits: ['update:modelValue'],
   setup(props, { slots, emit, attrs }) {
     const [visible, setVisible] = useState<boolean>(props.modelValue)
+
+    const setDrawerStyle = computed(() => {
+      const { placement } = props
+      const styles: CustomCSSProperties = {
+        '--drawer-transfrom': getDrawerTransfrom(placement),
+      }
+      return styles
+    })
 
     watch(
       () => props.modelValue,
@@ -36,6 +46,7 @@ export default createComponent({
         popupClass="fect-drawer__root"
         transition="drawer-fade"
         onPopupClick={poupClickHandler}
+        style={setDrawerStyle.value}
       >
         <DrawerWrapper
           placement={props.placement}

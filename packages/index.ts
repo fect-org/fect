@@ -1,6 +1,6 @@
 
+import '@fect-ui/themes';
 import { App } from 'vue';
-import './utils/styles/index.css';
 import Avatar from './avatar';
 import AvatarGroup from './avatar-group';
 import Badge from './badge';

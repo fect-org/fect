@@ -1,13 +1,14 @@
 .drawer-fade {
   &-enter-active {
+    transition: transform 0.35s;
     transition-timing-function: ease-out;
   }
   &-leave-active {
+    transition: transform 0.35s;
     transition-timing-function: ease-in;
   }
   &-enter-from,
   &-leave-active {
-    // transition: all 0.3s ease;
     transform: var(--drawer-transfrom);
   }
 }
@@ -33,7 +34,6 @@
     padding: var(--drawer-padding);
     margin: 0;
     background-color: var(--primary-background);
-    transition: transform 0.3s;
     &--top {
       top: 0;
       left: 0;
@@ -67,13 +67,6 @@
       &.round {
         border-radius: 15px 0 0 15px;
       }
-    }
-  }
-  &__close {
-    position: absolute;
-    cursor: pointer;
-    svg {
-      color: var(--accents-5);
     }
   }
 }

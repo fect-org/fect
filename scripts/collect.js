@@ -33,8 +33,8 @@ const genExport = (names) => names.map((name) => name).join(',\n  ')
   )
 
   const content = `
+  import '@fect-ui/themes';
   import {App} from 'vue';
-  import './utils/styles/index.css';
   ${genImport(names, components)}
   const components = [${genExport(names)}];
   const install = (app:App) => {
