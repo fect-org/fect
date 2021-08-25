@@ -8,7 +8,7 @@ const [createComponent] = createNameSpace('Teleport')
 export default createComponent({
   props,
   emits: ['popupClick'],
-  setup(props, { emit, slots }) {
+  setup(props, { emit, slots, attrs }) {
     // contrl overlay dispaly
 
     const popupRef = ref<HTMLDivElement>()
@@ -47,6 +47,7 @@ export default createComponent({
             ref={popupRef}
             role="popup"
             onClick={clickHandler}
+            {...attrs}
           >
             {slots.default?.()}
           </div>
