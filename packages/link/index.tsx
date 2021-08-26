@@ -1,4 +1,4 @@
-import { computed, getCurrentInstance } from 'vue'
+import { computed } from 'vue'
 import { createNameSpace, useRoute } from '../utils'
 import './index.less'
 

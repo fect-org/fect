@@ -1,4 +1,4 @@
-import { computed, ref, CSSProperties, PropType } from 'vue'
+import { computed, CSSProperties, PropType } from 'vue'
 import { createNameSpace } from '../utils'
 import { useProvider } from '@fect-ui/vue-hooks'
 import { NormalSizes, NormalTypes } from '../utils/theme/propTypes'
@@ -46,7 +46,11 @@ export default createComponent({
     const { context } = useProvider<BadgeAnchorProvide>(
       READONLY_BADGE_ANCHOR_KEY,
     )
-    const hasParent = ref<boolean>(Boolean(context))
+
+    const hasParent = computed(()=>{
+      if (context) return true
+      return false
+    })
 
     const setStyle = computed(() => {
       const styles: CSSProperties = {

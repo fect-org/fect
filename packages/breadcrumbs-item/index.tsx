@@ -1,5 +1,5 @@
-import { ref, watchEffect } from 'vue'
-import { createNameSpace } from '../utils'
+import {  watchEffect } from 'vue'
+import { createNameSpace ,useState } from '../utils'
 import { useProvider } from '@fect-ui/vue-hooks'
 import {
   BreadcrumbsProvide,
@@ -23,18 +23,15 @@ export default createComponent({
     },
   },
   setup(props, { slots, attrs }) {
-    const hasLink = ref<boolean>(false)
+    const [hasLink,setHasLink]  = useState<boolean>(false)
 
     const { context } = useProvider<BreadcrumbsProvide>(
       READONLY_BREADCRUMBS_KEY,
     )
 
     watchEffect(() => {
-      /**
-       * use Boolean to  display ,magic implicit convert is no encourage
-       */
       const isNull = Boolean(props?.to) || props.href !== ''
-      hasLink.value = isNull
+      setHasLink(isNull)
     })
 
     if (!context) {
@@ -58,7 +55,7 @@ export default createComponent({
     const linkRender = () => {
       return (
         <div class="fect-breadcrumbs__item">
-          <Link to={props.to} href={props.href} class="withLink">
+          <Link to={props.to} href={props.href} class="withLink" {...attrs}>
             {slots.default?.()}
           </Link>
           <Separator>{context.separator}</Separator>

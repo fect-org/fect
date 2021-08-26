@@ -1,5 +1,5 @@
-import { PropType, ref, computed } from 'vue'
-import { createNameSpace } from '../utils'
+import { PropType, computed } from 'vue'
+import { createNameSpace ,useState } from '../utils'
 import { NormalSizes } from '../utils/theme/propTypes'
 
 const [createComponent] = createNameSpace('Avatar')
@@ -22,10 +22,10 @@ export default createComponent({
     className: String,
   },
   setup(props, { attrs }) {
-    const showText = ref<boolean>(!props.src)
 
-    const safeText = (text: string): string =>
-      text.length <= 4 ? text : text.slice(0, 3)
+    const [showText]  = useState<boolean>(!props.src)
+
+    const safeText = (text: string) =>text.length <= 4 ? text : text.slice(0, 3)
 
     const setClass = computed(() => {
       const names: string[] = [props.size]

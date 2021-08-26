@@ -1,5 +1,5 @@
-import { ref } from 'vue'
-import { createNameSpace } from '../utils'
+
+import { createNameSpace ,useState } from '../utils'
 
 const [createComponent] = createNameSpace('AvatarGroup')
 
@@ -10,7 +10,7 @@ export default createComponent({
     count: [String, Number],
   },
   setup(props, { slots }) {
-    const showCount = ref<boolean>(!!props.count)
+    const [showCount] = useState<boolean>(!!props.count)
 
     return () => (
       <div class="fect-avatar__group">
