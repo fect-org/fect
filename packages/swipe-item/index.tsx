@@ -7,7 +7,6 @@ import './index.less'
 const [createComponent] = createNameSpace('SwipeItem')
 
 export default createComponent({
-  props: {},
   emits: ['click'],
   setup(props, { attrs, slots, emit }) {
     const { context, idx } = useProvider<SwipeProvide>(READONLY_SWIPE_KEY)
