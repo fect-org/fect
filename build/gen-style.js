@@ -8,7 +8,7 @@ const {
   writeFileSync,
 } = require('fs-extra')
 const postcss = require('postcss')
-const { replaceExt } = require('./utils')
+const { replaceExt } = require('./constant')
 
 const POST_CSS_CONFIG = require('../postcss.config')
 
