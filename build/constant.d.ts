@@ -29,3 +29,5 @@ export declare const replaceStyleInJs:(code:string,ext?:string)=>string
 export declare const isScript:(suffix:string)=>boolean
 
 export declare const isStyle:(suffix:string)=>void
+
+export declare const  fillExt:(entry:string)=>string

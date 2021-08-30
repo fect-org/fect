@@ -19,5 +19,5 @@ install:
   - npm install
 
 script:
-  - npm run build:lib
+  - npm run build:pkg
   - npm run report

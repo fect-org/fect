@@ -10,22 +10,22 @@ const {
 const execa = require('execa')
 const { join } = require('path')
 const ora = require('ora')
-const { transformAsync } = require('@babel/core')
 const {
   CJS_PATH,
   ESM_PATH,
   TMP_PATH,
+  PACKAGE_PATH,
   setBabelEnv,
   normalizePath,
   isTestDir,
   isDir,
   isScript,
-  replaceExt,
   isStyle,
-  PACKAGE_PATH,
 } = require('./constant')
 const { replaceStyleInJs } = require('./constant')
 const { compileStyle } = require('./gen-style')
+const { GenStyleDeps } = require('./gen-style-deps')
+const { compilerJs } = require('./compiler-js')
 
 class Bundler {
   constructor({ entry, mode }) {
@@ -34,28 +34,16 @@ class Bundler {
     this.output = ''
   }
 
-  async compilerJs(filePath) {
-    try {
-      const code = await readFile(filePath, 'utf8')
-      const res = await transformAsync(code, { filename: filePath })
-      const jsFilePath = replaceExt(filePath, '.js')
-      removeSync(filePath)
-      outputFileSync(jsFilePath, res.code)
-    } catch (error) {
-      throw error
-    }
-  }
-
   async changeCode(filePath) {
     let code
     code = await readFile(filePath, 'utf8')
-    code = replaceStyleInJs(code)
+    code = replaceStyleInJs(code, 'import "./style/index"')
     outputFileSync(filePath, code)
   }
 
   async compilerFile(file) {
     if (isScript(file)) {
-      return this.compilerJs(file)
+      return compilerJs(file)
     }
     if (isStyle(file)) {
       return compileStyle(file)
@@ -93,6 +81,7 @@ class Bundler {
     setBabelEnv('esmodule')
     this.output = ESM_PATH
     await this.compilerComponent()
+    await GenStyleDeps.getStyleDeps(this.output)
   }
 
   /**
@@ -102,6 +91,7 @@ class Bundler {
     setBabelEnv('commonjs')
     this.output = CJS_PATH
     await this.compilerComponent()
+    await GenStyleDeps.getStyleDeps(this.output)
   }
 
   async genUMD() {
