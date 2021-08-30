@@ -22,6 +22,6 @@
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   "include": ["../src/*.d.ts"],
-  "files": ["../packages/index.ts"],
+  "files": ["../tmp/index.ts"],
   "exclude": ["node_modules"]
 }

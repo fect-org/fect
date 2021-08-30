@@ -1,7 +1,6 @@
-const { remove } = require('fs-extra')
 const { Bundler } = require('./bundler')
 const { cleanBuild } = require('./clean-build')
-const { PACKAGE_PATH, TMP_PATH } = require('./constant')
+const { PACKAGE_PATH } = require('./constant')
 const { setNodeEnv } = require('./constant')
 
 ;(async () => {
@@ -9,8 +8,7 @@ const { setNodeEnv } = require('./constant')
   setNodeEnv('production')
   const bundler = new Bundler({
     entry: PACKAGE_PATH,
-    mode: 'esmodule',
+    mode: '', // todo  in future version , we will set it as a commonander
   })
   await bundler.run()
-  await remove(TMP_PATH)
 })()

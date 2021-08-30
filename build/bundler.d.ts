@@ -1,4 +1,4 @@
-import type { BabelEnv } from './constant.d'
+import type { BabelEnv } from './constant'
 
 export type BundlerTypes = {
   entry:string
