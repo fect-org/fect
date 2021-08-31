@@ -16,13 +16,10 @@ const DiffWrapper = {
       sizes: ['mini', 'small', 'medium', 'large'],
     }
   },
-  template: `<>
-    {this.sizes.map((size, idx) => (
-      <Breadcrumbs size={size} key={idx}>
-        {idx}
-      </Breadcrumbs>
-    ))}
-  </>`,
+  template: `
+    <fe-breadcrumbs v-for="(size, idx) in sizes" :size="size" :key="idx">
+      {idx}
+    </fe-breadcrumbs>`,
 }
 
 const Wrapper = {
@@ -30,10 +27,10 @@ const Wrapper = {
     [Breadcrumbs.name]: Breadcrumbs,
     [BreadcrumbsItem.name]: BreadcrumbsItem,
   },
-  template: `<Breadcrumbs separator=">">
-    <BreadcrumbsItem />
-    <BreadcrumbsItem />
-  </Breadcrumbs>`,
+  template: `<fe-breadcrumbs separator=">">
+    <fe-breadcrumbsItem />
+    <fe-breadcrumbsItem />
+  </fe-breadcrumbs>`,
 }
 
 describe('Breadcrumbs', () => {
