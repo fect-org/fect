@@ -2,29 +2,48 @@ import { mount } from '@vue/test-utils'
 import Breadcrumbs from '../index'
 import BreadcrumbsItem from '../../breadcrumbs-item'
 
+const BreadcrumbsTest = {
+  template: '<Breadcrumbs />',
+}
+
+const DiffWrapper = {
+  components: {
+    [Breadcrumbs.name]: Breadcrumbs,
+    [BreadcrumbsItem.name]: BreadcrumbsItem,
+  },
+  data () {
+    return {
+      sizes: ['mini', 'small', 'medium', 'large'],
+    }
+  },
+  template: `<>
+    {this.sizes.map((size, idx) => (
+      <Breadcrumbs size={size} key={idx}>
+        {idx}
+      </Breadcrumbs>
+    ))}
+  </>`,
+}
+
+const Wrapper = {
+  components: {
+    [Breadcrumbs.name]: Breadcrumbs,
+    [BreadcrumbsItem.name]: BreadcrumbsItem,
+  },
+  template: `<Breadcrumbs separator=">">
+    <BreadcrumbsItem />
+    <BreadcrumbsItem />
+  </Breadcrumbs>`,
+}
+
 describe('Breadcrumbs', () => {
   it('should be render as element', () => {
-    const braedcrumbs = mount(<Breadcrumbs />)
+    const braedcrumbs = mount(BreadcrumbsTest)
     expect(() => braedcrumbs.unmount()).not.toThrow()
   })
 
   it('should be support different sizes', () => {
-    const wrapper = mount({
-      setup() {
-        return { sizes: ['mini', 'small', 'medium', 'large'] }
-      },
-      render() {
-        return (
-          <>
-            {this.sizes.map((size, idx) => (
-              <Breadcrumbs size={size} key={idx}>
-                {idx}
-              </Breadcrumbs>
-            ))}
-          </>
-        )
-      },
-    })
+    const wrapper = mount(DiffWrapper)
 
     const els = wrapper.findAll('.fect-breadcrumbs')
     expect(els[0].attributes('style')).toBe('font-size: 12px;')
@@ -35,12 +54,7 @@ describe('Breadcrumbs', () => {
   })
 
   it('should be support custom separator', () => {
-    const wrapper = mount(
-      <Breadcrumbs separator=">">
-        <BreadcrumbsItem />
-        <BreadcrumbsItem />
-      </Breadcrumbs>,
-    )
+    const wrapper = mount(Wrapper)
     expect(wrapper.find('.fect-breadcrumbs__separator').text()).toBe('>')
   })
 })
