@@ -21,11 +21,13 @@ const {
   isDir,
   isScript,
   isStyle,
+  setNodeEnv,
+  replaceStyleInJs,
 } = require('./constant')
-const { replaceStyleInJs } = require('./constant')
 const { compileStyle } = require('./gen-style')
 const { GenStyleDeps } = require('./gen-style-deps')
 const { compilerJs } = require('./compiler-js')
+const { cleanBuild } = require('./clean-build')
 
 class Bundler {
   constructor({ entry, mode }) {
@@ -147,6 +149,7 @@ class Bundler {
   ]
 
   async run() {
+    setNodeEnv('production')
     let idx = 0
     await copy(this.entry, TMP_PATH)
     await this.compilerDir(TMP_PATH)
@@ -162,7 +165,10 @@ class Bundler {
         throw error
       }
     }
-    return idx === 4 && removeSync(TMP_PATH)
+    idx === 4 && removeSync(TMP_PATH)
+  }
+  static async cleanBuild() {
+    await cleanBuild()
   }
 }
 

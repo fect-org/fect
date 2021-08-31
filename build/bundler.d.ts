@@ -10,4 +10,5 @@ export declare class Bundler {
   mode: BabelEnv
   constructor({ entry,mode }:BundlerTypes)
   run():Promise<void>
+  static cleanBuild():Promise<void>
 }
