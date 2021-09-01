@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dot should be render as a element 1`] = `<div class="fect-dot"><span class="fect-dot__circle fect-dot__circle--default"></span><span class="fect-dot__ctx"><!----></span></div>`;
+
+exports[`Dot should support different type 1`] = `
+<div class="container">
+  <div class="fect-dot" type-data="success"><span class="fect-dot__circle fect-dot__circle--success"></span><span class="fect-dot__ctx"><span>success</span></span></div>
+</div>
+`;
