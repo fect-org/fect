@@ -18,7 +18,7 @@ const DiffWrapper = {
   },
   template: `
     <fe-breadcrumbs v-for="(size, idx) in sizes" :size="size" :key="idx">
-      {idx}
+      {{idx}}
     </fe-breadcrumbs>`,
 }
 
