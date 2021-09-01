@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tag component props should be work correctly 1`] = `
+<div class="container">
+  <div class="fect-tag" type-data="success" style="border-color: transparent;">hello world</div>
+</div>
+`;
