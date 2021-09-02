@@ -27,17 +27,10 @@ const Wrapper = {
     [Breadcrumbs.name]: Breadcrumbs,
     [BreadcrumbsItem.name]: BreadcrumbsItem,
   },
-<<<<<<< HEAD:packages/breadcrumbs/__tests__/index.spec.ts
   template: `<fe-breadcrumbs separator=">">
     <fe-breadcrumbsItem />
     <fe-breadcrumbsItem />
   </fe-breadcrumbs>`,
-=======
-  template: `<Breadcrumbs separator=">">
-    <BreadcrumbsItem />
-    <BreadcrumbsItem />
-  </Breadcrumbs>`,
->>>>>>> test(breadcrumbs): update breadcrumbs unit test case with ts:packages/breadcrumbs/__tests__/index.spec.ts
 }
 
 describe('Breadcrumbs', () => {
