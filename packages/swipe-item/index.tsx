@@ -14,9 +14,12 @@ export default createComponent({
     const [translate, setTranslate] = useState<number>(0)
 
     if (!context) {
-      console.error(
-        '[Fect] <SwipeItem /> must be a child component of <Swipe />',
-      )
+      if (process.env.NODE_ENV !== 'production') {
+        console.error(
+          '[Fect] <SwipeItem /> must be a child component of <Swipe />',
+        )
+      }
+      return
     }
 
     const setStyle = computed(() => {

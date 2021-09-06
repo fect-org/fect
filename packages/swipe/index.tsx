@@ -16,6 +16,12 @@ import './index.less'
 
 const [createComponent] = createNameSpace('Swipe')
 
+const nextTickFrame = (fn: FrameRequestCallback) => {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(fn)
+  })
+}
+
 export default createComponent({
   props,
   emits: ['change'],
@@ -58,12 +64,10 @@ export default createComponent({
         children[0].setTranslate(0)
         children[length.value - 1].setTranslate(0)
       }
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          setLocked(false)
-          // eslint-disable-next-line no-unused-expressions
-          fn?.()
-        })
+      nextTickFrame(() => {
+        setLocked(false)
+        // eslint-disable-next-line no-unused-expressions
+        fn?.()
       })
     }
 
@@ -86,29 +90,25 @@ export default createComponent({
      */
 
     const next = (preidx: number, loop: boolean) => {
-      calibrationPosition(() => {
-        if (preidx === length.value - 1 && loop) {
-          children[0].setTranslate(trackSize.value)
-          setTranslate(length.value * -size.value)
-          return
-        }
-        if (preidx !== length.value - 1) {
-          setTranslate(index.value * -size.value)
-        }
-      })
+      if (preidx === length.value - 1 && loop) {
+        children[0].setTranslate(trackSize.value)
+        setTranslate(length.value * -size.value)
+        return
+      }
+      if (preidx !== length.value - 1) {
+        setTranslate(index.value * -size.value)
+      }
     }
 
     const prev = (preidx: number, loop: boolean) => {
-      calibrationPosition(() => {
-        if (preidx === 0 && loop) {
-          children[length.value - 1].setTranslate(-trackSize.value)
-          setTranslate(size.value)
-          return
-        }
-        if (preidx !== 0) {
-          setTranslate(index.value * -size.value)
-        }
-      })
+      if (preidx === 0 && loop) {
+        children[length.value - 1].setTranslate(-trackSize.value)
+        setTranslate(size.value)
+        return
+      }
+      if (preidx !== 0) {
+        setTranslate(index.value * -size.value)
+      }
     }
 
     const updateTranslate = (type: Placement) => {
@@ -120,8 +120,10 @@ export default createComponent({
         ? boundaryIndex(currentIndex + 1)
         : boundaryIndex(currentIndex - 1)
       setIndex(idx)
-      if (direction) return next(currentIndex, loop)
-      return prev(currentIndex, loop)
+      calibrationPosition(() => {
+        if (direction) return next(currentIndex, loop)
+        return prev(currentIndex, loop)
+      })
     }
 
     /**
@@ -131,9 +133,8 @@ export default createComponent({
       if (length.value <= 1 || idx === index.value) return
       idx = idx >= length.value ? length.value : idx
       const status: Placement = idx > index.value ? 'next' : 'prev'
-      ;[...Array(Math.abs(idx - index.value))].map(() =>
-        updateTranslate(status),
-      )
+      const tasks = [...Array(Math.abs(idx - index.value))]
+      tasks.map(() => updateTranslate(status))
     }
 
     const renderIndicator = () => {
@@ -177,9 +178,7 @@ export default createComponent({
       const translate = index * -size.value
       setIndex(boundaryIndex(index))
       setTranslate(translate)
-      requestAnimationFrame(() => {
-        setLocked(false)
-      })
+      nextTickFrame(() => setLocked(false))
     }
 
     /**
@@ -190,9 +189,9 @@ export default createComponent({
         const { width } = useRealShape(swipeRef) as Shape
         setSize(width)
         setTrackSize(width * length.value)
+        initializeIndex()
+        startAutoPlay()
       })
-      initializeIndex()
-      startAutoPlay()
     }
 
     watch(index, (pre) => emit('change', pre))
