@@ -16,7 +16,7 @@ exports[`Swipe component props should be work correctly 1`] = `
 exports[`Swipe component should processing boundary index correctly 1`] = `
 <div class="container">
   <div class="fect-swipe" style="height: 200px; width: 350px;">
-    <div class="fect-swipe__track" style="width: 1050px; transform: translateX(-1750px); transition-duration: 0ms;">
+    <div class="fect-swipe__track" style="width: 1050px; transform: translateX(1400px); transition-duration: 0ms;">
       <div class="fect-swipe-item" style="width: 350px; transform: translateX(0px);"> 1 </div>
       <div class="fect-swipe-item" style="width: 350px; transform: translateX(0px);"> 2 </div>
       <div class="fect-swipe-item" style="width: 350px; transform: translateX(0px);"> 3 </div>
@@ -29,12 +29,12 @@ exports[`Swipe component should processing boundary index correctly 1`] = `
 exports[`Swipe should be render as a element 1`] = `
 <div class="container">
   <div class="fect-swipe" style="height: 200px; width: 350px;">
-    <div class="fect-swipe__track" style="width: 0px; transform: translateX(0px); transition-duration: 300ms;">
-      <div class="fect-swipe-item" style="width: 0px; transform: translateX(0px);"> 1 </div>
-      <div class="fect-swipe-item" style="width: 0px; transform: translateX(0px);"> 2 </div>
-      <div class="fect-swipe-item" style="width: 0px; transform: translateX(0px);"> 3 </div>
+    <div class="fect-swipe__track" style="width: 1050px; transform: translateX(0px); transition-duration: 0ms;">
+      <div class="fect-swipe-item" style="width: 350px; transform: translateX(0px);"> 1 </div>
+      <div class="fect-swipe-item" style="width: 350px; transform: translateX(0px);"> 2 </div>
+      <div class="fect-swipe-item" style="width: 350px; transform: translateX(0px);"> 3 </div>
     </div>
-    <!---->
+    <div class="fect-swipe__indicators"><span class="fect-swipe__indicator" style="width: 8px; height: 8px; opacity: 1;"></span><span class="fect-swipe__indicator" style="width: 8px; height: 8px; opacity: 0.3;"></span><span class="fect-swipe__indicator" style="width: 8px; height: 8px; opacity: 0.3;"></span></div>
   </div>
 </div>
 `;
@@ -48,6 +48,19 @@ exports[`Swipe should be support custom indicator color 1`] = `
       <div class="fect-swipe-item" style="width: 350px; transform: translateX(0px);"> 3 </div>
     </div>
     <div class="fect-swipe__indicators"><span class="fect-swipe__indicator" style="background-color: red; width: 8px; height: 8px; opacity: 1;"></span><span class="fect-swipe__indicator" style="background-color: red; width: 8px; height: 8px; opacity: 0.3;"></span><span class="fect-swipe__indicator" style="background-color: red; width: 8px; height: 8px; opacity: 0.3;"></span></div>
+  </div>
+</div>
+`;
+
+exports[`Swipe should support autoplay 1`] = `
+<div class="container">
+  <div class="fect-swipe" style="height: 200px; width: 350px;">
+    <div class="fect-swipe__track" style="width: 1050px; transform: translateX(0px); transition-duration: 0ms;">
+      <div class="fect-swipe-item" style="width: 350px; transform: translateX(0px);"> 1 </div>
+      <div class="fect-swipe-item" style="width: 350px; transform: translateX(0px);"> 2 </div>
+      <div class="fect-swipe-item" style="width: 350px; transform: translateX(0px);"> 3 </div>
+    </div>
+    <div class="fect-swipe__indicators"><span class="fect-swipe__indicator" style="width: 8px; height: 8px; opacity: 1;"></span><span class="fect-swipe__indicator" style="width: 8px; height: 8px; opacity: 0.3;"></span><span class="fect-swipe__indicator" style="width: 8px; height: 8px; opacity: 0.3;"></span></div>
   </div>
 </div>
 `;

@@ -1,6 +1,7 @@
-import { mount } from '@vue/test-utils'
+import { flushPromises, mount } from '@vue/test-utils'
 import Swipe from '..'
 import SwipeItem from '../../swipe-item'
+import { later } from '../../../tests'
 
 const Wrapper = {
   components: {
@@ -10,7 +11,7 @@ const Wrapper = {
   data() {
     return {
       loop: false,
-      autoplay: '',
+      autoplay: 0,
       indicatorDisplay: true,
       indicatorColor: '',
       initialValue: 0,
@@ -18,7 +19,8 @@ const Wrapper = {
   },
   template: `
    <div class="container" >
-    <fe-swipe :loop="loop" 
+    <fe-swipe 
+    :loop="loop" 
     :autoplay="autoplay" 
     :indicator-display="indicatorDisplay"
     :indicator-color="indicatorColor"
@@ -40,15 +42,19 @@ const Wrapper = {
 }
 
 describe('Swipe', () => {
-  it('should be render as a element', () => {
+  it('should be render as a element', async () => {
     const wrapper = mount(Wrapper)
+    await flushPromises()
     expect(wrapper.html()).toMatchSnapshot()
     expect(() => wrapper.unmount()).not.toThrow()
+    wrapper.unmount()
   })
   it('should be support custom indicator color', async () => {
     const wrapper = mount(Wrapper)
     await wrapper.setData({ indicatorColor: 'red' })
+    await flushPromises()
     expect(wrapper.html()).toMatchSnapshot()
+    wrapper.unmount()
   })
 
   it('component props should be work correctly', async () => {
@@ -58,35 +64,40 @@ describe('Swipe', () => {
       indicatorDisplay: false,
       autoplay: 2000,
     })
+    await flushPromises()
     expect(wrapper.html()).toMatchSnapshot()
+    wrapper.unmount()
   })
   it('component should processing boundary index correctly', async () => {
     const wrapper = mount(Wrapper)
     await wrapper.setData({
       loop: true,
-      autoplay: 2000,
-      initialValue: 5,
+      autoPlay: 2000,
+      initialValue: -1,
     })
-    const el = wrapper.find('.fect-swipe__track')
-    expect(el.attributes('style')).toBe(
-      'width: 1050px; transform: translateX(0px); transition-duration: 0ms;',
-    )
-    await wrapper.setData({ initialValue: -1 })
-    expect(el.attributes('style')).toBe(
-      'width: 1050px; transform: translateX(-1750px); transition-duration: 0ms;',
-    )
-    await wrapper.setData({ loop: false, initialValue: 1, autoplay: '' })
+    await flushPromises()
     const indicators = wrapper.findAll('.fect-swipe__indicator')
     await indicators[0].trigger('click')
-    // expect(el.attributes('style')).toBe(
-    //   'width: 1050px; transform: translateX(-700px); transition-duration: 0ms;',
-    // )
     expect(wrapper.html()).toMatchSnapshot()
+    wrapper.unmount()
   })
+
   it('component swipeItem should emitter a click event', async () => {
     const wrapper = mount(Wrapper)
+    await flushPromises()
     const els = wrapper.findAll('.fect-swipe-item')
     await els[0].trigger('click')
     expect(wrapper.emitted()).toBeTruthy()
+    wrapper.unmount()
+  })
+  it('should support autoplay', async () => {
+    const wrapper = mount(Wrapper)
+    await wrapper.setData({
+      loop: true,
+      autoplay: 2000,
+    })
+    await flushPromises()
+    await later()
+    expect(wrapper.html()).toMatchSnapshot()
   })
 })
