@@ -15,6 +15,8 @@ const {
   ESM_PATH,
   TMP_PATH,
   PACKAGE_PATH,
+  DECLARATION_PATH,
+  TSCONFIG_PATH,
   setBabelEnv,
   normalizePath,
   isTestDir,
@@ -125,8 +127,9 @@ class Bundler {
   }
 
   async genDTS() {
-    const tsconfig = join(__dirname, '..', 'scripts/tsconfig.json')
-    await execa('tsc', ['-p', tsconfig])
+    const declaration = await readFile(DECLARATION_PATH)
+    outputFileSync(TSCONFIG_PATH, declaration)
+    await execa('tsc', ['-p', TSCONFIG_PATH])
   }
 
   tasks = [
@@ -166,6 +169,7 @@ class Bundler {
       }
     }
     idx === 4 && removeSync(TMP_PATH)
+    removeSync(TSCONFIG_PATH)
   }
   static async cleanBuild() {
     await cleanBuild()

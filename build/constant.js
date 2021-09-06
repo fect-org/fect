@@ -11,6 +11,10 @@ const PACKAGE_PATH = join(__dirname, '..', 'packages')
 
 const TMP_PATH = join(__dirname, '..', 'tmp')
 
+const DECLARATION_PATH = join(__dirname, 'declaration.json')
+
+const TSCONFIG_PATH = join(__dirname, '..', 'scripts', 'tsconfig.json')
+
 const normalizePath = (path) => path.replace(/\\/g, '/')
 
 const setBabelEnv = (env) => (process.env.BABEL_ENV = env)
@@ -52,6 +56,8 @@ module.exports = {
   PACKAGE_PATH,
   TMP_PATH,
   DTS_PATH,
+  DECLARATION_PATH,
+  TSCONFIG_PATH,
   normalizePath,
   setBabelEnv,
   setNodeEnv,
