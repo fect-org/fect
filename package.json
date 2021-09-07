@@ -12,7 +12,6 @@
     "coverage": "npm run test:unit -- --coverage",
     "release": "npm publish --access public --non-interactive",
     "report": "npm run coverage && codecov",
-    "setup": "hygen component new --name",
     "build:doc": "vue-cli-service build",
     "build:pkg": "node ./build/index.js"
   },
