@@ -24,14 +24,14 @@ At any time, you think it's ok, you can start the following steps to submit your
 
 #### **Create component**
 
-1. Run `Yarn setup {COMPONENT_NAME}` and it will create a folder in `packages`.
-2. Run `Yarn collect` and it will automatic add `import` to `packages/index.js`
+1. Create a component folder in `packages`.
+2. Run `Yarn collect` and it will automatic add `import` to `packages/index.ts`
 3. Create a document file in `docs/zh-cn` and `docs/example`,it will automatic logon.
 4. Restart local server view changes: `yarn serve`.
 
 #### **Create testcase**
 
-1. This repository is using jest as unit test, So you don't need to introduce extra uni test lib.
+1. This repository is using jest as unit test, So you don't need to introduce extra unit test lib.
 2. If you are creating a new component,and complete it,the testcase is required.
 3. If you only modify components,please note update **test snapshot**: `yarn test:unit -u`.
 4. Please check coverage locally before submit.
@@ -41,6 +41,10 @@ At any time, you think it's ok, you can start the following steps to submit your
 > How can I update remote origin ?
 
 - refer to [here](https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes).
+
+> How to choose the target banch of PR ?
+
+- If this is a feature, set to `main` branch. All the others are set to `rc` branch.
 
 ### Get stuck
 
