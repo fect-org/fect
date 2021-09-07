@@ -2,150 +2,127 @@ import {
   computed,
   CSSProperties,
   ref,
-  Ref,
   watch,
   onUnmounted,
   onMounted,
   nextTick,
 } from 'vue'
 import { createProvider } from '@fect-ui/vue-hooks'
-import { createNameSpace, useRect } from '../utils'
+import { createNameSpace, useState, useRealShape } from '../utils'
 import { ComponentInstance } from '../utils/base'
+import { READONLY_SWIPE_KEY, Shape, Placement } from './type'
+import { props } from './props'
 import './index.less'
-
-export const READONLY_SWIPE_KEY = 'swipeKey'
-
-export type SwipeProvide = {
-  index: Ref<number>
-  height: Ref<number>
-  width: Ref<number>
-}
-
-type Placement = 'prev' | 'next'
 
 const [createComponent] = createNameSpace('Swipe')
 
+const nextTickFrame = (fn: FrameRequestCallback) => {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(fn)
+  })
+}
+
 export default createComponent({
-  props: {
-    duration: {
-      type: Number,
-      default: 300,
-    },
-    autoplay: Number,
-    loop: Boolean,
-    indicatorWidth: {
-      type: String,
-      default: '8px',
-    },
-    indicatorHeight: {
-      type: String,
-      default: '8px',
-    },
-    initalValue: {
-      type: Number,
-      default: 0,
-    },
-    showIndicators: {
-      type: Boolean,
-      default: true,
-    },
-    indicatorColor: String,
-  },
+  props,
   emits: ['change'],
   setup(props, { slots, emit }) {
-    const { provider, children } = createProvider<ComponentInstance>(
-      READONLY_SWIPE_KEY,
-    )
+    const parent = createProvider<ComponentInstance>(READONLY_SWIPE_KEY)
+    const { provider, children } = parent
 
     const swipeRef = ref<HTMLDivElement>()
+    /**  why not set initialValue as inital index ,
+     *   because the props value may be overstep
+     **/
+    const [index, setIndex] = useState<number>(0)
+    const [locked, setLocked] = useState<boolean>(false)
+    const [translate, setTranslate] = useState<number>(0)
+    const [trackSize, setTrackSize] = useState<number>(0)
+    const [size, setSize] = useState<number>(0)
 
-    const index = ref<number>(0)
+    //  children length
+    const length = computed(() => children.length)
 
-    const translate = ref<number>(0)
+    provider({ index, trackSize, size })
 
-    const trackSize = ref<number>(0)
+    const boundaryIndex = (index: number) => {
+      const { loop } = props
+      const presetIdx = length.value - 1
+      if (index < 0) return loop ? presetIdx : 0
+      if (index > presetIdx) return loop ? 0 : presetIdx
+      return index
+    }
 
-    const count = computed(() => children.length)
-
-    const height = ref<number>(0)
-    const width = ref<number>(0)
-
-    const canSwipe = ref<boolean>(false)
-
-    /**
-     * set dom rect
-     */
-    onMounted(() => {
-      const rect = useRect(swipeRef)
-      height.value = rect.height
-      width.value = rect.width
-    })
-    provider({
-      index,
-      width,
-      height,
-    })
-
-    const calibrationPosition = (fn: () => void) => {
-      const overLeft = translate.value >= width.value
+    const calibrationPosition = (fn?: () => void) => {
+      const overLeft = translate.value >= size.value
       const overRight = translate.value <= -trackSize.value
       const leftTranslate = 0
-      const rightTranslate = -(trackSize.value - width.value)
-
+      const rightTranslate = -(-trackSize.value - size.value)
+      setLocked(true)
       if (overLeft || overRight) {
-        translate.value = overRight ? leftTranslate : rightTranslate
+        setLocked(true)
+        setTranslate(overRight ? leftTranslate : rightTranslate)
         children[0].setTranslate(0)
-        children[count.value - 1].setTranslate(0)
+        children[length.value - 1].setTranslate(0)
       }
-
-      fn()
+      nextTickFrame(() => {
+        setLocked(false)
+        // eslint-disable-next-line no-unused-expressions
+        fn?.()
+      })
     }
 
     let timer: any
 
-    const startAutoplay = () => {
+    const startAutoPlay = () => {
       const { autoplay } = props
-      if (!autoplay || count.value <= 1) return
+      if (!autoplay || length.value <= 1) return
       stopAutoPlay()
       timer = setTimeout(() => {
-        translateUpdate('next')
-        startAutoplay()
+        updateTranslate('next')
+        startAutoPlay()
       }, autoplay)
     }
 
     const stopAutoPlay = () => timer && clearTimeout(timer)
 
-    const translateUpdate = (type: Placement, place = 1) => {
-      console.log(type)
-      if (count.value <= 1) return
+    /**
+     * control item direction
+     */
+
+    const next = (preidx: number, loop: boolean) => {
+      if (preidx === length.value - 1 && loop) {
+        children[0].setTranslate(trackSize.value)
+        setTranslate(length.value * -size.value)
+        return
+      }
+      if (preidx !== length.value - 1) {
+        setTranslate(index.value * -size.value)
+      }
+    }
+
+    const prev = (preidx: number, loop: boolean) => {
+      if (preidx === 0 && loop) {
+        children[length.value - 1].setTranslate(-trackSize.value)
+        setTranslate(size.value)
+        return
+      }
+      if (preidx !== 0) {
+        setTranslate(index.value * -size.value)
+      }
+    }
+
+    const updateTranslate = (type: Placement) => {
+      if (length.value <= 1) return
       const { loop } = props
       const currentIndex = index.value
-
+      const direction = type === 'next'
+      const idx = direction
+        ? boundaryIndex(currentIndex + 1)
+        : boundaryIndex(currentIndex - 1)
+      setIndex(idx)
       calibrationPosition(() => {
-        if (type === 'next') {
-          index.value = boundaryIndex(currentIndex + place)
-          // the last item
-          if (currentIndex === count.value - 1 && loop) {
-            children[0].setTranslate(trackSize.value)
-            translate.value = count.value * -width.value
-            return
-          }
-          if (currentIndex !== count.value - 1) {
-            translate.value = index.value * -width.value
-          }
-        }
-        if (type === 'prev') {
-          index.value = boundaryIndex(currentIndex - place)
-
-          if (currentIndex === 0 && loop) {
-            children[count.value - 1].setTranslate(-trackSize.value)
-            translate.value = width.value
-            return
-          }
-          if (currentIndex !== 0) {
-            translate.value = index.value * -width.value
-          }
-        }
+        if (direction) return next(currentIndex, loop)
+        return prev(currentIndex, loop)
       })
     }
 
@@ -153,39 +130,38 @@ export default createComponent({
      * indircator click Event
      */
     const indicatorHandler = (idx: number) => {
-      if (count.value <= 1 || idx === index.value) return
-
-      let status: Placement = 'prev'
-      idx = idx < 0 ? 0 : idx
-      idx = idx >= count.value ? count.value : idx
-      if (idx > index.value) status = 'next'
-
-      translateUpdate(status, Math.abs(idx - index.value))
+      if (length.value <= 1 || idx === index.value) return
+      idx = idx >= length.value ? length.value : idx
+      const status: Placement = idx > index.value ? 'next' : 'prev'
+      const tasks = [...Array(Math.abs(idx - index.value))]
+      tasks.map(() => updateTranslate(status))
     }
 
     const renderIndicator = () => {
       if (slots.indicator) {
         return slots.indicator()
       }
-      if (props.showIndicators && count.value) {
-        const style = (idx: number) => {
-          const { indicatorColor, indicatorHeight, indicatorWidth } = props
+      const { indicatorDisplay } = props
+      if (indicatorDisplay && length.value) {
+        const setStyle = (idx: number) => {
           const active = index.value === idx
+          const { indicatorColor, indicatorSize } = props
           return {
-            backgroundColor: active ? indicatorColor : undefined,
-            width: indicatorWidth,
-            height: indicatorHeight,
+            backgroundColor: indicatorColor
+              ? indicatorColor
+              : 'var(--success-default)',
+            width: indicatorSize,
+            height: indicatorSize,
+            opacity: active ? 1 : 0.3,
           } as CSSProperties
         }
 
         return (
           <div class="fect-swipe__indicators">
-            {[...new Array(count.value)].map((_, i) => (
+            {[...Array(length.value)].map((_, i) => (
               <span
-                class={`fect-swipe__indicator ${
-                  index.value === i ? 'active' : ''
-                }`}
-                style={style(i)}
+                class="fect-swipe__indicator"
+                style={setStyle(i)}
                 key={i}
                 onClick={() => indicatorHandler(i)}
               ></span>
@@ -195,44 +171,47 @@ export default createComponent({
       }
     }
 
-    const boundaryIndex = (val: number): number => {
-      const { loop } = props
-      if (val < 0) {
-        return loop ? count.value - 1 : 0
-      }
-      if (val > count.value - 1) {
-        return loop ? 0 : count.value - 1
-      }
-      return val
+    const initializeIndex = () => {
+      setLocked(true)
+      const { initialValue } = props
+      const index = Number(initialValue)
+      const translate = index * -size.value
+      setIndex(boundaryIndex(index))
+      setTranslate(translate)
+      nextTickFrame(() => setLocked(false))
     }
 
-    const initialIndex = () => {
-      canSwipe.value = true
-      index.value = boundaryIndex(props.initalValue)
-      translate.value = index.value * -count.value
-    }
-
-    const initial = () => {
+    /**
+     * In this version we only provide horizontal
+     */
+    const resize = () => {
       nextTick(() => {
-        trackSize.value = width.value * count.value
-        children.map((swipe) => swipe.setTranslate(0))
-        initialIndex()
-        startAutoplay()
+        const { width } = useRealShape(swipeRef) as Shape
+        setSize(width)
+        setTrackSize(width * length.value)
+        initializeIndex()
+        startAutoPlay()
       })
     }
 
     watch(index, (pre) => emit('change', pre))
 
-    watch(() => count.value, initial)
+    watch(() => length.value, resize)
 
-    onUnmounted(stopAutoPlay)
+    onMounted(() => {
+      window.addEventListener('resize', resize)
+    })
+
+    onUnmounted(() => {
+      window.removeEventListener('resize', resize)
+      stopAutoPlay()
+    })
 
     const setTrackStyle = computed(() => {
       const style: CSSProperties = {
-        height: `${height.value}px`,
         width: `${trackSize.value}px`,
         transform: `translateX(${translate.value}px)`,
-        transitionDuration: `${props.duration}ms`,
+        transitionDuration: locked.value ? '0ms' : `${props.duration}ms`,
       }
       return style
     })
