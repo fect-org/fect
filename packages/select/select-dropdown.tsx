@@ -1,16 +1,13 @@
-import { defineComponent, ref, Teleport, watch, Ref } from 'vue'
+import { defineComponent, ref, Teleport, onMounted, nextTick, watch } from 'vue'
 import { useRect, useResize } from '../utils'
 
-type ElementRef = Element | Ref<Element | undefined>
-
-const getRect = (ref: ElementRef) => {
-  const rect = useRect(ref)
-  const scrollElement = document.documentElement
+const getRect = (ref: Element) => {
+  const { width, height, top, left } = useRect(ref)
   return {
-    ...rect,
-    width: rect.width || rect.right - rect.left,
-    top: rect.bottom + scrollElement.scrollTop,
-    left: rect.left + scrollElement.scrollLeft,
+    width,
+    height,
+    left,
+    top: top + height,
   }
 }
 
@@ -24,21 +21,23 @@ const SelectDropDown = defineComponent({
     const { width, height } = useResize()
 
     const setPosition = () => {
-      if (props.parentRef && dropdownRef.value) {
-        const { width, top, left } = getRect(props.parentRef)
-        const style = {
-          width: `${width}px`,
-          top: `${top + 2}px`,
-          left: `${left}px`,
+      nextTick(() => {
+        if (props.parentRef && dropdownRef.value) {
+          const { width, top, left } = getRect(props.parentRef)
+          const style = {
+            width: `${width}px`,
+            top: `${top + 2}px`,
+            left: `${left}px`,
+          }
+          dropdownRef.value.style.width = style.width
+          dropdownRef.value.style.top = style.top
+          dropdownRef.value.style.left = style.left
         }
-        dropdownRef.value.style.width = style.width
-        dropdownRef.value.style.top = style.top
-        dropdownRef.value.style.left = style.left
-      }
+      })
     }
 
-    watch(() => props.visible, setPosition)
-    watch([width, height], setPosition, { immediate: true })
+    onMounted(setPosition)
+    watch([width, height], setPosition)
 
     return () => (
       <Teleport to="body">
