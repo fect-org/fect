@@ -1,24 +1,45 @@
-import { computed, ref, watch } from 'vue'
+import { computed, PropType, ref, watchEffect } from 'vue'
 import {
   createProvider,
   useClickAway,
   useEventListener,
 } from '@fect-ui/vue-hooks'
-import { createNameSpace, useState } from '../utils'
+import { createNameSpace } from '../utils'
 import { NormalSizes } from '../utils/theme/propTypes'
 import { CustomCSSProperties, ComponentInstance } from '../utils/base'
 import SelectIcon from './select-icon'
 import SelcetClearableIcon from './select-clear-icon'
 import SelectMultiple from './select-multiple'
 import SelectDropDown from './select-dropdown'
-import { props } from './props'
-import { READONLY_SELECT_KEY, SizeStyle } from './type'
 import './index.less'
 
 const [createComponent] = createNameSpace('Select')
 
+export const READONLY_SELECT_KEY = 'selectKey'
+
+interface SelectEvent {
+  target: {
+    value: string
+  }
+  stopPropagation: () => void
+  preventDefault: () => void
+  nativeEvent: Event
+}
+
+export type SelectProvide = {
+  setVisible: (status: boolean) => void
+  updateModelValue: (value: string) => void
+  setChange: (event: SelectEvent) => void
+}
+
+type SizeStyle = {
+  height: string
+  fontSize: string
+  minWidth: string
+}
+
 const querySelectSize = (size: NormalSizes) => {
-  const sizes: Record<NormalSizes, SizeStyle> = {
+  const sizes: { [key in NormalSizes]: SizeStyle } = {
     mini: {
       height: 'calc(1 * var(--fay-gap))',
       fontSize: '12px',
@@ -40,39 +61,77 @@ const querySelectSize = (size: NormalSizes) => {
       minWidth: '200px',
     },
   }
-  return sizes[size] || sizes['medium']
+  return sizes[size]
 }
 
 export default createComponent({
-  props,
+  props: {
+    modelValue: {
+      type: [String, Array] as PropType<string | string[]>,
+      default: () => [],
+    },
+    placeholder: {
+      type: String,
+      default: '',
+    },
+    multiple: Boolean,
+    size: {
+      type: String as PropType<NormalSizes>,
+      default: 'medium',
+    },
+    width: {
+      type: String,
+      default: 'initial',
+    },
+    clearable: {
+      type: Boolean,
+      default: true,
+    },
+    disabled: Boolean,
+  },
   emits: ['change', 'update:modelValue'],
-  setup(props, { slots, emit }) {
+  setup(props, { attrs, slots, emit }) {
+    const { provider, children } = createProvider<ComponentInstance>(
+      READONLY_SELECT_KEY,
+    )
     const selectRef = ref<HTMLDivElement>()
+    const visible = ref<boolean>(false)
+    const isEmpty = ref<boolean>(false)
+    const showClear = ref(false)
 
-    const parent = createProvider<ComponentInstance>(READONLY_SELECT_KEY)
-    const { provider, children } = parent
+    const setVisible = (cur: boolean) => (visible.value = cur)
+    const setEmpty = (cur: boolean) => (isEmpty.value = cur)
+    const setShowClear = (state: boolean) => (showClear.value = state)
 
-    const [value, setValue] = useState<string | string[]>(props.modelValue)
-    const [visible, setVisible] = useState<boolean>(false)
-    const [clean, setClean] = useState<boolean>(false)
-
-    const empty = computed(() => !props.modelValue)
-
-    const cleanHandler = (e: Event, status: boolean) => {
-      e.stopPropagation()
-      e.preventDefault()
-      setClean(status)
-    }
-
-    useEventListener('mouseenter', (e) => cleanHandler(e, true), {
-      target: selectRef,
-    })
-    useEventListener('mouseleave', (e) => cleanHandler(e, false), {
-      target: selectRef,
-    })
+    useEventListener(
+      'mouseenter',
+      (e: Event) => {
+        e.stopPropagation()
+        e.preventDefault()
+        setShowClear(true)
+      },
+      { target: selectRef },
+    )
+    useEventListener(
+      'mouseleave',
+      (e: Event) => {
+        e.stopPropagation()
+        e.preventDefault()
+        setShowClear(false)
+      },
+      { target: selectRef },
+    )
 
     useClickAway(() => setVisible(false), selectRef, {
       event: 'click',
+    })
+
+    /**
+     * isEmpty only work in modelvalue as empty
+     */
+    watchEffect(() => {
+      const hasValue = !!props.modelValue
+      setEmpty(hasValue ? false : true)
     })
 
     const setStyle = computed(() => {
@@ -92,39 +151,47 @@ export default createComponent({
       return names.join(' ')
     })
 
+    const updateModelValue = (val: string) => {
+      const { multiple, modelValue } = props
+      if (multiple) {
+        const value = modelValue.slice() as Array<string>
+        const index = value.indexOf(val)
+        if (index !== -1) {
+          value.splice(index, 1)
+        } else {
+          value.push(val)
+        }
+        return emit('update:modelValue', value)
+      }
+      emit('update:modelValue', val)
+    }
+
+    const queryChecked = computed(() => {
+      return children.filter((child: ComponentInstance) => {
+        /**
+         * user may may pass in null
+         */
+        if (props.modelValue === null) return
+        if ([...props.modelValue].includes(child.value)) return child
+      })
+    })
+
     const clearIconHandler = () => {
       setVisible(false)
-      setValue('')
+      updateModelValue('')
     }
 
-    const setParentValue = (val: string) => {
-      const { modelValue, multiple } = props
-      if (!multiple) return setValue(val)
-      let prelist
-      prelist = modelValue.slice() as string[]
-      const exist = prelist.indexOf(val as string) !== -1
-      if (exist) prelist = prelist.filter((v) => v !== val)
-      if (!exist) prelist.push(val as string)
-      setValue(prelist)
-    }
+    const setChange = (value: SelectEvent) => emit('change', value)
 
-    provider({ setVisible, setParentValue })
+    provider({ updateModelValue, setChange, setVisible })
 
-    const clickHandler = (e: Event) => {
+    const handleClick = (e: Event) => {
       if (props.disabled) return
       e.stopPropagation()
       e.preventDefault()
-      setVisible(!visible.value)
+      const show = visible.value
+      setVisible(!show)
     }
-
-    watch(value, (cur) => emit('update:modelValue', cur))
-
-    watch(value, (cur) => emit('change', cur))
-
-    const queryChecked = computed(() => {
-      const list = [...props.modelValue]
-      return children.filter((child) => list.includes(child.value))
-    })
 
     /**
      * control show main context
@@ -134,36 +201,43 @@ export default createComponent({
     )
 
     const renderNodes = () => {
+      const classes = (props.multiple && 'fect-multiple__container') || 'value'
       const { multiple, clearable } = props
-      const list = queryChecked.value
-      if (!multiple) {
-        return <span class="value">{list.map((_) => _.label)}</span>
-      }
-      return list.map((_) => (
-        <SelectMultiple
-          onClear={() => setParentValue(_.value)}
-          clearable={clearable}
-        >
-          {_.label}
-        </SelectMultiple>
-      ))
+      return (
+        <span class={classes}>
+          {queryChecked.value.map((child) => (
+            <>
+              {multiple ? (
+                <SelectMultiple
+                  onClear={() => updateModelValue(child.value)}
+                  clearable={clearable}
+                >
+                  {child.label}
+                </SelectMultiple>
+              ) : (
+                child.label
+              )}
+            </>
+          ))}
+        </span>
+      )
     }
 
     /**
-     * control clearable icon dispaly
+     * show right icons
      */
-
-    const showClose = computed(() => {
+    const showRightIcon = computed(() => {
       const { clearable, disabled, modelValue, multiple } = props
-      return clearable && !disabled && modelValue && !multiple && clean.value
+      return (
+        clearable && !disabled && modelValue && !multiple && showClear.value
+      )
     })
 
     const renderRightIcon = () => {
-      if (showClose.value) {
+      if (showRightIcon.value) {
         return <SelcetClearableIcon onClick={clearIconHandler} />
       }
-      const classes = visible.value ? 'click' : ''
-      return <SelectIcon class={classes} />
+      return <SelectIcon class={(visible.value && 'click') || ''} />
     }
 
     return () => (
@@ -171,9 +245,9 @@ export default createComponent({
         class={setClass.value}
         ref={selectRef}
         style={setStyle.value}
-        onClick={clickHandler}
+        onClick={handleClick}
       >
-        {empty.value ? renderPlaceHolder() : renderNodes()}
+        {isEmpty.value ? renderPlaceHolder() : renderNodes()}
         <SelectDropDown
           v-slots={slots}
           visible={visible.value}
