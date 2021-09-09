@@ -1,5 +1,5 @@
 import { useProvider } from '@fect-ui/vue-hooks'
-import { READONLY_SELECT_KEY, SelectProvide } from '../select'
+import { READONLY_SELECT_KEY, SelectProvide } from '../select/type'
 import { createNameSpace } from '../utils'
 import './index.less'
 
@@ -17,22 +17,13 @@ export default createComponent({
   },
   setup(props, { slots }) {
     const { context } = useProvider<SelectProvide>(READONLY_SELECT_KEY)
-    const { setChange, setVisible, updateModelValue } = context!
+    const { setVisible, setParentValue } = context!
 
     const handleClick = (e: Event) => {
       if (props.disabled) return
       if (props.value) {
-        const targetEvent = {
-          target: {
-            value: props.value,
-          },
-          stopPropagation: e.stopPropagation,
-          preventDefault: e.preventDefault,
-          nativeEvent: e,
-        }
         setVisible(false)
-        updateModelValue(props.value)
-        setChange(targetEvent)
+        setParentValue(props.value)
       }
     }
     return () => (

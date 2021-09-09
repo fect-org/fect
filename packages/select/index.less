@@ -31,9 +31,6 @@
       var(--fay-gap-quarter) var(--fay-gap-half);
     box-sizing: border-box;
   }
-}
-
-.fect-select {
   .value {
     display: inline-flex;
     flex: 1;
@@ -47,7 +44,7 @@
 
     width: calc(100% - 18px);
   }
-  .fect-select__placeholder {
+  &__placeholder {
     color: var(--accents-3);
     overflow: hidden;
     text-overflow: ellipsis;
@@ -56,10 +53,7 @@
     font-size: var(--select-fontSize);
     line-height: var(--select-height);
   }
-}
-
-.fect-select {
-  .fect-select__icon-context {
+  &__icon-context {
     position: absolute;
     right: var(--fay-gap-quarter);
     font-size: var(--select-fontSize);
@@ -75,16 +69,13 @@
       transform: translateY(-50%) rotate(180deg);
     }
   }
-}
-
-.fect-select {
   .fect-multiple__container {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     margin-right: var(--fay-gap-half);
   }
-  .fect-select__item {
+  &__item {
     display: inline-flex;
     height: calc(var(--select-fontSize) * 2);
     justify-items: center;
@@ -97,7 +88,7 @@
     background-color: var(--accents-2);
     color: var(--accents-6);
   }
-  .fect-select__clearIcon {
+  &__clearIcon {
     padding: 0;
     padding-left: var(--fay-gap-quarter);
     margin: 0;
@@ -118,15 +109,14 @@
       height: 18px;
     }
   }
-}
-
-.fect-select__dropdown {
-  position: absolute;
-  z-index: 1200;
-  width: 100%;
-  background-color: var(--primary-background);
-  border-radius: var(--fay-radius);
-  overflow-y: auto;
-  box-shadow: var(--fay-shadowLarge);
-  padding: var(--fay-gap-quarter) 0;
+  &__dropdown {
+    position: absolute;
+    z-index: 200;
+    width: 100%;
+    background-color: var(--primary-background);
+    border-radius: var(--fay-radius);
+    overflow-y: auto;
+    box-shadow: var(--fay-shadowLarge);
+    padding: var(--fay-gap-quarter) 0;
+  }
 }
