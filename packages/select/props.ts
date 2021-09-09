@@ -4,7 +4,7 @@ import { NormalSizes } from '../utils/theme/propTypes'
 export const props = {
   modelValue: {
     type: [String, Array] as PropType<string | string[]>,
-    default: () => [],
+    default: '',
   },
   placeholder: {
     type: String,
@@ -14,10 +14,6 @@ export const props = {
   size: {
     type: String as PropType<NormalSizes>,
     default: 'medium',
-  },
-  width: {
-    type: String,
-    default: 'initial',
   },
   clearable: {
     type: Boolean,

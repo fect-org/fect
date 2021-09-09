@@ -18,6 +18,7 @@ const SelectDropDown = defineComponent({
   props: {
     visible: Boolean,
     parentRef: HTMLDivElement,
+    teleport: String,
   },
   setup(props, { slots }) {
     const dropdownRef = ref<HTMLDivElement>()
@@ -41,7 +42,7 @@ const SelectDropDown = defineComponent({
     watch([width, height], setPosition, { immediate: true })
 
     return () => (
-      <Teleport to="body">
+      <Teleport to={props.teleport}>
         <div
           class="fect-select__dropdown"
           ref={dropdownRef}

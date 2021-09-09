@@ -4,7 +4,7 @@ import {
   useClickAway,
   useEventListener,
 } from '@fect-ui/vue-hooks'
-import { createNameSpace, useState } from '../utils'
+import { createNameSpace, useState, useExpose } from '../utils'
 import { NormalSizes } from '../utils/theme/propTypes'
 import { CustomCSSProperties, ComponentInstance } from '../utils/base'
 import SelectIcon from './select-icon'
@@ -55,6 +55,7 @@ export default createComponent({
     const [value, setValue] = useState<string | string[]>(props.modelValue)
     const [visible, setVisible] = useState<boolean>(false)
     const [clean, setClean] = useState<boolean>(false)
+    const [teleport, setTeleport] = useState<string>('body')
 
     const empty = computed(() => !props.modelValue)
 
@@ -92,6 +93,9 @@ export default createComponent({
       return names.join(' ')
     })
 
+    /**
+     * may click delete when the drop-down box appears
+     */
     const clearIconHandler = () => {
       setVisible(false)
       setValue('')
@@ -140,12 +144,14 @@ export default createComponent({
         return <span class="value">{list.map((_) => _.label)}</span>
       }
       return list.map((_) => (
-        <SelectMultiple
-          onClear={() => setParentValue(_.value)}
-          clearable={clearable}
-        >
-          {_.label}
-        </SelectMultiple>
+        <span class="fect-multiple__container">
+          <SelectMultiple
+            onClear={() => setParentValue(_.value)}
+            clearable={clearable}
+          >
+            {_.label}
+          </SelectMultiple>
+        </span>
       ))
     }
 
@@ -166,6 +172,8 @@ export default createComponent({
       return <SelectIcon class={classes} />
     }
 
+    useExpose({ setTeleport })
+
     return () => (
       <div
         class={setClass.value}
@@ -175,6 +183,7 @@ export default createComponent({
       >
         {empty.value ? renderPlaceHolder() : renderNodes()}
         <SelectDropDown
+          teleport={teleport.value}
           v-slots={slots}
           visible={visible.value}
           parentRef={selectRef.value}
