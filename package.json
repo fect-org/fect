@@ -7,7 +7,7 @@
     "serve": "vue-cli-service serve",
     "test:unit": "set NODE_ENV=test &&  vue-cli-service test:unit",
     "lint": "eslint \"{packages,_page,src,scripts}/**/*.{js,jsx,vue}\"",
-    "collect": "node scripts/collect.js && eslint --fix --ext .ts packages/index.ts",
+    "collect": "node ./build/collect.js && eslint --fix --ext .ts packages/index.ts",
     "commit": "git-cz",
     "coverage": "npm run test:unit -- --coverage",
     "release": "npm publish --access public --non-interactive",
