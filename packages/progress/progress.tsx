@@ -50,7 +50,7 @@ export default defineComponent({
       default: 100,
     },
     colors: {
-      type: Object as PropType<ProgressColros>,
+      type: Object,
       default: () => {},
     },
     type: {

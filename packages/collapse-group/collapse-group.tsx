@@ -1,6 +1,6 @@
 import { PropType, Ref, watch, defineComponent } from 'vue'
 import { createProvider } from '@fect-ui/vue-hooks'
-import { createNameSpace, useState, createName } from '../utils'
+import { useState, createName } from '../utils'
 import './index.less'
 
 export const READONLY_COLLAPSE_KEY = 'collapseKey'
