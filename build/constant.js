@@ -13,7 +13,9 @@ const TMP_PATH = join(__dirname, '..', 'tmp')
 
 const DECLARATION_PATH = join(__dirname, 'declaration.json')
 
-const TSCONFIG_PATH = join(__dirname, '..', 'scripts', 'tsconfig.json')
+const SCRIPT_PATH = join(__dirname, '..', 'scripts')
+
+const TSCONFIG_PATH = join(SCRIPT_PATH, 'tsconfig.json')
 
 const normalizePath = (path) => path.replace(/\\/g, '/')
 
@@ -58,6 +60,7 @@ module.exports = {
   DTS_PATH,
   DECLARATION_PATH,
   TSCONFIG_PATH,
+  SCRIPT_PATH,
   normalizePath,
   setBabelEnv,
   setNodeEnv,

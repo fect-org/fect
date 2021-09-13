@@ -17,6 +17,7 @@ const {
   PACKAGE_PATH,
   DECLARATION_PATH,
   TSCONFIG_PATH,
+  SCRIPT_PATH,
   setBabelEnv,
   normalizePath,
   isTestDir,
@@ -134,16 +135,16 @@ class Bundler {
 
   tasks = [
     {
-      text: 'Build Declaration Outputs',
-      task: this.genDTS,
-    },
-    {
       text: 'Build ESModule Outputs',
       task: this.genESM,
     },
     {
       text: 'Build Commonjs Outputs',
       task: this.genCommon,
+    },
+    {
+      text: 'Build Declaration Outputs',
+      task: this.genDTS,
     },
     {
       text: 'Build UMD Outputs',
@@ -169,7 +170,7 @@ class Bundler {
       }
     }
     idx === 4 && removeSync(TMP_PATH)
-    removeSync(TSCONFIG_PATH)
+    removeSync(SCRIPT_PATH)
   }
   static async cleanBuild() {
     await cleanBuild()
