@@ -86,6 +86,7 @@ describe('Swipe', () => {
     const wrapper = mount(Wrapper)
     await flushPromises()
     const els = wrapper.findAll('.fect-swipe-item')
+    console.log(els)
     await els[0].trigger('click')
     expect(wrapper.emitted()).toBeTruthy()
     wrapper.unmount()

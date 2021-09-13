@@ -1,14 +1,15 @@
-import { PropType, watch } from 'vue'
+import { PropType, watch, defineComponent } from 'vue'
 import { createProvider } from '@fect-ui/vue-hooks'
-import { createNameSpace, useState } from '../utils'
+import { useState, createName } from '../utils'
 import { READONLY_MODAL_KEY } from './type'
 import ModalWrapper from './modal-wrapper'
 import Teleport from '../teleport'
 import './index.less'
 
-const [createComponent] = createNameSpace('Modal')
+const name = createName('Modal')
 
-export default createComponent({
+export default defineComponent({
+  name,
   props: {
     visible: Boolean,
     title: {

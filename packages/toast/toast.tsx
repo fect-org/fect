@@ -1,13 +1,13 @@
-import { PropType, Teleport, CSSProperties, computed } from 'vue'
-import { createNameSpace } from '../utils'
+import { PropType, defineComponent, CSSProperties, computed } from 'vue'
+import { createName } from '../utils'
 import { NormalTypes } from '../utils/theme/propTypes'
 
 import './index.less'
 
-const [createComponent] = createNameSpace('Toast')
+const name = createName('Toast')
 
 const renderBgColor = (type: NormalTypes) => {
-  const bgColorsPool: { [key in NormalTypes]: string } = {
+  const bgColorsPool: Record<NormalTypes, string> = {
     default: 'var(--primary-background)',
     success: 'var(--success-default)',
     warning: 'var(--warning-default)',
@@ -32,7 +32,8 @@ const renderBgColor = (type: NormalTypes) => {
   } as CSSProperties
 }
 
-export default createComponent({
+export default defineComponent({
+  name,
   props: {
     text: {
       type: [String, Number],
