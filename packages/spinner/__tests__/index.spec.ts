@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 
-import Spinner from '..'
+import Spinner from '../spinner'
 
 describe('Spinner', () => {
   it('should be render as a element', () => {

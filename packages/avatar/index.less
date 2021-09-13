@@ -8,27 +8,6 @@
   border: 1px solid var(--accents-2);
   background-color: var(--accents-2);
   vertical-align: top;
-  img {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-  span {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    font-size: 1em;
-    color: var(--primary-foreground);
-    text-align: center;
-    transform: translate(-50%, -50%) scale(0.65);
-    white-space: nowrap;
-    user-select: none;
-  }
-}
-
-.fect-avatar {
   &.mini {
     width: 20px;
     height: 20px;
@@ -48,5 +27,23 @@
     & + & {
       margin-left: -10px;
     }
+  }
+  img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-size: 1em;
+    color: var(--primary-foreground);
+    text-align: center;
+    transform: translate(-50%, -50%) scale(0.65);
+    white-space: nowrap;
+    user-select: none;
   }
 }
