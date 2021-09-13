@@ -14,6 +14,8 @@ export const DTS_PATH: string
 
 export const DECLARATION_PATH: string
 
+export const SCRIPT_PATH: string
+
 export const TSCONFIG_PATH: string
 
 export declare const normalizePath: (path: string) => string
