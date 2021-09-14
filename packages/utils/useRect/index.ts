@@ -1,6 +1,6 @@
 import { Ref, unref } from 'vue'
 
-type ElementRef = Element | Ref<Element | undefined>
+export type ElementRef = Element | Ref<Element | undefined>
 
 type RectProvide = {
   width: number

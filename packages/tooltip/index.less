@@ -1,0 +1,58 @@
+.fect-tooltip {
+  width: max-content;
+  display: inline-block;
+  &__content {
+    position: absolute;
+    box-sizing: border-box;
+    border-radius: var(--fay-radius);
+    padding: 0;
+    z-index: 200;
+    width: auto;
+    height: auto;
+    &:not(.default) {
+      color: var(--primary-background);
+    }
+    &.default {
+      box-shadow: var(--fay-shadowMedium);
+      background-color: var(--primary-background);
+    }
+    &.success {
+      background-color: var(--success-default);
+    }
+    &.warning {
+      background-color: var(--warning-default);
+    }
+    &.error {
+      background-color: var(--error-default);
+    }
+  }
+  &__inner {
+    --horizontal-side: calc(var(--fay-gap-quarter) * 1.8);
+    --vertical-side: calc(var(--fay-gap-quarter) * 1.5);
+    position: relative;
+    box-sizing: border-box;
+    font-size: 16px;
+    height: 100%;
+    padding: var(--vertical-side) var(--horizontal-side);
+  }
+  &__arrow-icon {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 7px 6px 0;
+    &.default {
+      border-color: transparent var(--primary-background) transparent
+        transparent;
+    }
+    &.success {
+      border-color: transparent var(--success-default) transparent transparent;
+    }
+    &.warning {
+      border-color: transparent var(--warning-default) transparent transparent;
+    }
+    &.error {
+      border-color: transparent var(--error-default) transparent transparent;
+    }
+  }
+}

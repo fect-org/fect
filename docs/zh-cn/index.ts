@@ -79,6 +79,11 @@ export const zhRoutes: Routes[] = [
         group: '数据展示',
         route: { name: 'Capacity' },
       },
+      {
+        title: '文字提示 Tooltip',
+        group: '数据展示',
+        route: { name: 'Tooltip' },
+      },
       { title: '点 Dot', group: '数据展示', route: { name: 'Dot' } },
       { title: '图片 Image', group: '数据展示', route: { name: 'Image' } },
       {
