@@ -1,6 +1,7 @@
-import { mount } from '@vue/test-utils'
+import { mount, flushPromises } from '@vue/test-utils'
 import Collapse from '../index'
 import CollapseGroup from '../../collapse-group'
+import { later } from '../../../tests'
 
 describe('Collapse', () => {
   it('should be render as a element', () => {
@@ -75,7 +76,12 @@ describe('Collapse', () => {
     expect(wrapper.html()).toMatchSnapshot()
     const els = wrapper.findAll('.fect-collapse__view')
     await els[0].trigger('click')
+    await flushPromises()
+    await later()
     expect(wrapper.vm.show.length).toBe(0)
+    await els[0].trigger('click')
+    await flushPromises()
+    await later()
     await els[1].trigger('click')
     expect(wrapper.vm.show).toEqual([1])
     await wrapper.setData({ accordion: false })
