@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tooltip component props should work correctly 1`] = `
+<div class="container">
+  <div class="fect-tooltip"> Test dom
+    <!--teleport start-->
+    <!--teleport end-->
+  </div>
+  <!---->
+  <transition-stub>
+    <div class="fect-tooltip__content default" role="popup" style="display: none;">
+      <div class="fect-tooltip__inner "><span class="fect-tooltip__arrow-icon default" style="left: 50%; bottom: 3px; transform: translate(-50%, 100%) rotate(-90deg);"></span>test infomation</div>
+    </div>
+  </transition-stub>
+</div>
+`;
+
+exports[`Tooltip component props should work correctly 2`] = `
+<div class="container">
+  <div class="fect-tooltip"> Test dom
+    <!--teleport start-->
+    <!--teleport end-->
+  </div>
+  <transition-stub>
+    <div class="fect-tooltip__content default" role="popup" style="--tooltip-icon-offset-x: 0px; --tooltip-icon-offset-y: 0px; top: -12px; left: 0px; transform: translate(-50%, -100%); display: none;">
+      <div class="fect-tooltip__inner "><span class="fect-tooltip__arrow-icon default" style="left: 50%; bottom: 3px; transform: translate(-50%, 100%) rotate(-90deg);"></span>test infomation</div>
+    </div>
+  </transition-stub>
+  <!---->
+</div>
+`;
+
+exports[`Tooltip should be render as a element 1`] = `
+<div class="fect-tooltip">
+  <!---->
+  <!--teleport start-->
+  <!--teleport end-->
+</div>
+`;
+
+exports[`Tooltip should be support click or mouse event 1`] = `
+<div class="container">
+  <div class="fect-tooltip"> Test dom
+    <!--teleport start-->
+    <!--teleport end-->
+  </div>
+  <!---->
+  <transition-stub>
+    <div class="fect-tooltip__content default" role="popup" style="display: none;">
+      <div class="fect-tooltip__inner "><span class="fect-tooltip__arrow-icon default" style="left: 50%; bottom: 3px; transform: translate(-50%, 100%) rotate(-90deg);"></span>test infomation</div>
+    </div>
+  </transition-stub>
+</div>
+`;
+
+exports[`Tooltip should be support click or mouse event 2`] = `
+<div class="container">
+  <div class="fect-tooltip"> Test dom
+    <!--teleport start-->
+    <!--teleport end-->
+  </div>
+  <transition-stub>
+    <div class="fect-tooltip__content default" role="popup" style="display: none;">
+      <div class="fect-tooltip__inner "><span class="fect-tooltip__arrow-icon default" style="left: 50%; bottom: 3px; transform: translate(-50%, 100%) rotate(-90deg);"></span>test infomation</div>
+    </div>
+  </transition-stub>
+  <!---->
+</div>
+`;

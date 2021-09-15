@@ -1,5 +1,11 @@
 import { defineComponent, computed, ref, watch } from 'vue'
-import { useState, createName, getPosition, useResize } from '../utils'
+import {
+  useState,
+  createName,
+  getPosition,
+  useResize,
+  useExpose,
+} from '../utils'
 import { useClickAway } from '@fect-ui/vue-hooks'
 import { CustomCSSProperties } from '../utils/base'
 import { queryPlacement, queryArrowPlacement } from './style'
@@ -23,6 +29,7 @@ export default defineComponent({
     const [show, setShow] = useState<boolean>(props.visible)
     const [rect, setRect] = useState<TooltipPosition>({})
     const [iconOffset, setIconOffset] = useState<Record<IconOffset, string>>({})
+    const [teleport, setTeleport] = useState<string>('body')
 
     const updateRect = () => {
       const { placement, offset } = props
@@ -83,17 +90,17 @@ export default defineComponent({
      */
     const renderContent = () => {
       const contentSlot = slots['content']
-      const { visibleArrow, content, portalClass, teleport, type } = props
+      const { visibleArrow, content, portalClass, type } = props
       return (
         <Teleport
-          teleport={teleport}
+          teleport={teleport.value}
           scroll={false}
           popupClass={`fect-tooltip__content ${type}`}
           onPopupClick={preventHandler}
           style={setContentStyle.value}
           show={show.value}
           ref={contentRef}
-          onMouseleave={(e) => mouseEventHandler(false)}
+          onMouseleave={() => mouseEventHandler(false)}
         >
           <div class={`fect-tooltip__inner ${portalClass}`}>
             {visibleArrow && renderArrowIcon()}
@@ -131,6 +138,13 @@ export default defineComponent({
     watch(show, (cur) => {
       emit('update:visible', cur)
       emit('change', cur)
+    })
+
+    useExpose({
+      clickHandler,
+      mouseEventHandler,
+      setTeleport,
+      updateRect,
     })
 
     return () => (

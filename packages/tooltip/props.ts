@@ -39,8 +39,4 @@ export const props = {
     type: String,
     default: '',
   },
-  teleport: {
-    type: String,
-    default: 'body',
-  },
 }
