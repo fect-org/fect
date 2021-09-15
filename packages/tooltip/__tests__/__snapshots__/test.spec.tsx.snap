@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tooltip should be support slots content 1`] = `
+<div class="fect-tooltip">
+  <!---->
+  <!--teleport start-->
+  <!--teleport end-->
+</div>
+`;
