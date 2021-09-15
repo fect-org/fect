@@ -50,7 +50,7 @@
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-standard": "^5.1.2",
     "@vue/eslint-config-typescript": "^5.0.2",
-    "@vue/test-utils": "^2.0.0-0",
+    "@vue/test-utils": "^2.0.0-rc.14",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
     "chalk": "^4.1.0",
