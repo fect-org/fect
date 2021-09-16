@@ -95,14 +95,14 @@ export default defineComponent({
         <Teleport
           teleport={teleport.value}
           scroll={false}
-          popupClass={`fect-tooltip__content ${type}`}
+          popupClass={`fect-tooltip__content ${portalClass} ${type}`}
           onPopupClick={preventHandler}
           style={setContentStyle.value}
           show={show.value}
           ref={contentRef}
           onMouseleave={() => mouseEventHandler(false)}
         >
-          <div class={`fect-tooltip__inner ${portalClass}`}>
+          <div class="fect-tooltip__inner">
             {visibleArrow && renderArrowIcon()}
             {contentSlot ? contentSlot() : content}
           </div>
@@ -153,6 +153,7 @@ export default defineComponent({
         ref={tooltipRef}
         onClick={() => clickHandler(!show.value)}
         onMouseenter={() => mouseEventHandler(true)}
+        // onMouseleave={() => mouseEventHandler(false)}
       >
         {slots.default?.()}
         {renderContent()}

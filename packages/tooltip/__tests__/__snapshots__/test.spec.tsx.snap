@@ -7,8 +7,8 @@ exports[`Tooltip bidirectional binding should be supported 1`] = `
     <!--teleport end-->
   </div>
   <transition-stub>
-    <div class="fect-tooltip__content default" role="popup" style="--tooltip-icon-offset-x: 0px; --tooltip-icon-offset-y: 0px; top: -12px; left: 0px; transform: translate(-50%, -100%);">
-      <div class="fect-tooltip__inner "><span class="fect-tooltip__arrow-icon default" style="left: 50%; bottom: 3px; transform: translate(-50%, 100%) rotate(-90deg);"></span>testinfo</div>
+    <div class="fect-tooltip__content  default" role="popup" style="--tooltip-icon-offset-x: 0px; --tooltip-icon-offset-y: 0px; top: -12px; left: 0px; transform: translate(-50%, -100%);">
+      <div class="fect-tooltip__inner"><span class="fect-tooltip__arrow-icon default" style="left: 50%; bottom: 3px; transform: translate(-50%, 100%) rotate(-90deg);"></span>testinfo</div>
     </div>
   </transition-stub>
   <!---->
