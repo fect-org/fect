@@ -40,3 +40,16 @@ export type ParentDomRect = {
   width: number
   height: number
 }
+
+export type TooltipProps = {
+  visible: boolean
+  content: string
+  offset: number
+  type: TooltipTypes
+  placement: PlacementTypes
+  visibleArrow: boolean
+  trigger: TriggerTypes
+  showAfter: number
+  hideAfter: number
+  portalClass: string
+}

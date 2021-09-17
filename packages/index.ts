@@ -26,6 +26,7 @@ import Link from './link';
 import Loading from './loading';
 import Modal from './modal';
 import Pagination from './pagination';
+import Popover from './popover';
 import Progress from './progress';
 import Radio from './radio';
 import RadioGroup from './radio-group';
@@ -72,6 +73,7 @@ const components = [Avatar,
   Loading,
   Modal,
   Pagination,
+  Popover,
   Progress,
   Radio,
   RadioGroup,
@@ -130,6 +132,7 @@ export {
   Loading,
   Modal,
   Pagination,
+  Popover,
   Progress,
   Radio,
   RadioGroup,
