@@ -26,7 +26,7 @@
     "vetur/"
   ],
   "dependencies": {
-    "@fect-ui/themes": "1.0.8-beta.0",
+    "@fect-ui/themes": "^1.1.0",
     "@fect-ui/vue-hooks": "0.0.2"
   },
   "devDependencies": {
