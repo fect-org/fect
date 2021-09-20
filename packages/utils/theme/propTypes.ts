@@ -6,8 +6,6 @@ const tuple = <T extends string[]>(...args: T): T => {
   return args
 }
 
-const buttonTypes = tuple('default', 'success', 'warning', 'error')
-
 const normalSizes = tuple('mini', 'small', 'medium', 'large')
 
 const normalTypes = tuple('default', 'success', 'warning', 'error')
@@ -42,7 +40,6 @@ const loadingTypes = tuple('default', 'cube', 'wave')
 
 export {
   tuple,
-  buttonTypes,
   normalSizes,
   normalTypes,
   themeTypes,
@@ -54,9 +51,9 @@ export {
   loadingTypes,
 }
 
-export type ButtonTypes = typeof buttonTypes[number]
 export type NormalSizes = typeof normalSizes[number]
 export type NormalTypes = typeof normalTypes[number]
+export type ButtonTypes = NormalTypes | 'secondary'
 export type ThemeTypes = typeof themeTypes[number]
 export type JustifyTypes = typeof justifyTypes[number]
 export type AlignTypes = typeof alignTypes[number]
