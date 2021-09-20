@@ -82,6 +82,20 @@
       --button-load-color: var(--error-default);
     }
   }
+  &--secondary {
+    border-color: var(--dark-default);
+    background-color: var(--dark-default);
+    color: #fff;
+    --button-load-bg: var(--dark-default);
+    --button-load-color: #fff;
+    &.is-ghost {
+      background-color: var(--primary-background);
+      border-color: var(--dark-default);
+      color: var(--dark-default);
+      --button-load-bg: var(--primary-background);
+      --button-load-color: var(--dark-default);
+    }
+  }
   &--mini {
     width: initial;
     min-width: 85px;

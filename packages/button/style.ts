@@ -23,6 +23,11 @@ export const queryGhostColor = (type: ButtonTypes) => {
       border: 'var(--primary-background)',
       color: '#fff',
     },
+    secondary: {
+      bg: 'var(--lite-default)',
+      border: 'var(--dark-default)',
+      color: '#fff',
+    },
   }
   return colors[type]
 }
@@ -48,6 +53,11 @@ export const queryHoverColor = (type: ButtonTypes, ghost: boolean) => {
       bg: 'var(--primary-background)',
       border: 'var(--error-default)',
       color: 'var(--error-default)',
+    },
+    secondary: {
+      bg: 'var(--lite-default)',
+      border: 'var(--dark-default)',
+      color: 'var(--primary-foreground)',
     },
   }
   return (ghost ? queryGhostColor(type) : colors[type]) || colors.default
