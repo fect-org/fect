@@ -3,12 +3,15 @@
     opacity: 0;
     transform: scale(1);
   }
+
   30% {
     opacity: 1;
   }
+
   80% {
     opacity: 0.5;
   }
+
   100% {
     transform: scale(28);
     opacity: 0;
@@ -33,6 +36,7 @@
   transition: background-color 200ms ease 0ms, box-shadow 200ms ease 0ms,
     border 200ms ease 0ms, color 200ms ease 0ms;
   border: 1px solid;
+
   &--default {
     border-color: var(--accents-2);
     background-color: var(--primary-background);
@@ -40,12 +44,14 @@
     --button-load-bg: var(--accents-1);
     --button-load-color: var(--accents-5);
   }
+
   &--success {
     border-color: var(--success-default);
     background-color: var(--success-default);
     color: #fff;
     --button-load-bg: var(--success-default);
     --button-load-color: #fff;
+
     &.is-ghost {
       background-color: var(--primary-background);
       border-color: var(--success-default);
@@ -54,12 +60,14 @@
       --button-load-color: var(--success-default);
     }
   }
+
   &--warning {
     border-color: var(--warning-default);
     background-color: var(--warning-default);
     color: #fff;
     --button-load-bg: var(--warning-default);
     --button-load-color: #fff;
+
     &.is-ghost {
       background-color: var(--primary-background);
       border-color: var(--warning-default);
@@ -68,12 +76,14 @@
       --button-load-color: var(--warning-default);
     }
   }
+
   &--error {
     background-color: var(--error-default);
     border-color: var(--error-default);
     color: #fff;
     --button-load-bg: var(--error-default);
     --button-load-color: #fff;
+
     &.is-ghost {
       background-color: var(--primary-background);
       border-color: var(--error-default);
@@ -82,12 +92,14 @@
       --button-load-color: var(--error-default);
     }
   }
+
   &--secondary {
     border-color: var(--dark-default);
     background-color: var(--dark-default);
-    color: #fff;
+    color: var(--primary-background);
     --button-load-bg: var(--dark-default);
-    --button-load-color: #fff;
+    --button-load-color: var(--primary-background);
+
     &.is-ghost {
       background-color: var(--primary-background);
       border-color: var(--dark-default);
@@ -96,6 +108,7 @@
       --button-load-color: var(--dark-default);
     }
   }
+
   &--mini {
     width: initial;
     min-width: 85px;
@@ -104,6 +117,7 @@
     height: 30px;
     --button-icon-height: 30px;
   }
+
   &--small {
     width: initial;
     min-width: 150px;
@@ -112,6 +126,7 @@
     height: 35px;
     --button-icon-height: 35px;
   }
+
   &--medium {
     width: initial;
     min-width: 200px;
@@ -120,6 +135,7 @@
     height: 40px;
     --button-icon-height: 40px;
   }
+
   &--large {
     width: initial;
     min-width: 250px;
@@ -128,6 +144,7 @@
     height: 45px;
     --button-icon-height: 45px;
   }
+
   &.is-disabled {
     cursor: not-allowed;
     color: #ccc;
@@ -137,18 +154,22 @@
 
   &.is-shadow {
     box-shadow: var(--fay-shadowSmall);
+
     &:hover {
       box-shadow: var(--fay-shadowMedium);
       transform: translateY(-1px);
     }
   }
+
   &.is-auto {
     width: auto;
     min-width: auto;
   }
+
   &.is-loading {
     pointer-events: none;
   }
+
   &:not(.is-shadow, .is-disabled, .is-loading):hover,
   &:not(.is-shadow, .is-disabled, .is-loading):focus {
     color: var(--button-hover-color);
@@ -173,6 +194,7 @@
     top: 0;
     right: 0;
     bottom: 0;
+
     svg {
       position: absolute;
       animation: 350ms ease-in button-expand;
@@ -181,6 +203,7 @@
       height: 16px;
     }
   }
+
   &__icon {
     position: absolute;
     top: 50%;
@@ -191,6 +214,7 @@
     align-items: center;
     color: var(--button-load-color);
     z-index: 1;
+
     svg {
       background: transparent;
       height: calc(var(--button-icon-height) / 2.35);

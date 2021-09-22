@@ -6,32 +6,28 @@
   box-sizing: border-box;
   border-radius: 5px;
   border: 1px solid var(--accents-2);
-}
 
-.fect-card {
   &.hoverable {
-    // box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
     &:hover {
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      box-shadow: var(--fay-shadowMedium);
     }
   }
-  &.shadow {
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
-    border-color: transparent;
-    // &:hover {
-    //   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-    // }
-  }
-}
 
-.fect-card {
-  .fect-card-content {
+  &.shadow {
+    box-shadow: var(--fay-shadowSmall);
+    border-color: transparent;
+  }
+
+
+  &__content {
     width: 100%;
-    padding: 16pt;
+    padding: var(--fay-gap);
     box-sizing: border-box;
+
     & *:first-child {
       margin-top: 0;
     }
+
     & *:last-child {
       margin-bottom: 0;
     }
