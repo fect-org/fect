@@ -2,7 +2,7 @@
 
 exports[`Card should be render as a element 1`] = `
 <div class="fect-card ">
-  <div class="fect-card-content">
+  <div class="fect-card__content">
     <!---->
   </div>
 </div>

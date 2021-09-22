@@ -1,6 +1,5 @@
 import { computed, defineComponent } from 'vue'
 import { createName } from '../utils'
-import CardContent from './card-content'
 import './index.less'
 
 const name = createName('Card')
@@ -18,9 +17,10 @@ export default defineComponent({
       props.hoverable && names.push('hoverable')
       return names.join(' ')
     })
+
     return () => (
       <div class={`fect-card ${setClass.value}`}>
-        <CardContent v-slots={slots} />
+        <div class="fect-card__content">{slots.default?.()}</div>
       </div>
     )
   },
