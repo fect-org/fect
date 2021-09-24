@@ -1,5 +1,5 @@
 import { PropType } from 'vue'
-import { NormalSizes } from '../utils/theme/propTypes'
+import { NormalSizes } from '../utils'
 
 export const props = {
   modelValue: {

@@ -1,10 +1,5 @@
 import { PropType } from 'vue'
-import {
-  NormalSizes,
-  ButtonTypes,
-  LoadingTypes,
-} from '../utils/theme/propTypes'
-import { UnknowProp } from '../utils/base'
+import { NormalSizes, ButtonTypes, LoadingTypes, UnknowProp } from '../utils'
 
 export const props = {
   type: {

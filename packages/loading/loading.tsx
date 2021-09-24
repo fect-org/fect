@@ -1,10 +1,6 @@
 import { computed, PropType, defineComponent, CSSProperties } from 'vue'
 import { createName } from '../utils'
-import {
-  NormalSizes,
-  NormalTypes,
-  LoadingTypes,
-} from '../utils/theme/propTypes'
+import { NormalSizes, NormalTypes, LoadingTypes } from '../utils'
 import './index.less'
 
 const name = createName('Loading')

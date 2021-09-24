@@ -5,9 +5,9 @@ import {
   getPosition,
   useResize,
   useExpose,
+  CustomCSSProperties,
 } from '../utils'
 import { useClickAway } from '@fect-ui/vue-hooks'
-import { CustomCSSProperties } from '../utils/base'
 import { queryPlacement, queryArrowPlacement } from './style'
 import { Teleport } from '../teleport'
 import { props } from './props'

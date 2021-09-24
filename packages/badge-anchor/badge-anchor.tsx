@@ -1,7 +1,6 @@
 import { PropType, defineComponent } from 'vue'
-import { createName } from '../utils'
+import { createName, PlaceTypes } from '../utils'
 import { createProvider } from '@fect-ui/vue-hooks'
-import { PlaceTypes } from '../utils/theme/propTypes'
 
 import './index.less'
 

@@ -1,6 +1,4 @@
-import { theme } from '../utils/theme'
-
-const { tuple } = theme
+import { tuple } from '../utils'
 
 const justifyTypes = tuple(
   'flex-start',
@@ -43,4 +41,3 @@ export type AlignContentTypes = typeof alignContentTypes[number]
 export type WrapTypes = typeof wrapTypes[number]
 
 export type DirectionTypes = typeof directionTypes[number]
-

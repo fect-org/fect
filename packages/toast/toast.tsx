@@ -1,6 +1,5 @@
 import { PropType, defineComponent, CSSProperties, computed } from 'vue'
-import { createName } from '../utils'
-import { NormalTypes } from '../utils/theme/propTypes'
+import { createName, NormalTypes } from '../utils'
 
 import './index.less'
 

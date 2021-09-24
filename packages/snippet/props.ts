@@ -1,5 +1,5 @@
 import { PropType } from 'vue'
-import { NormalTypes, SnippetCopyTypes } from '../utils/theme/propTypes'
+import { NormalTypes, SnippetCopyTypes } from '../utils'
 
 export const props = {
   text: {

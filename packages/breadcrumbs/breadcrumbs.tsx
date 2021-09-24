@@ -1,7 +1,6 @@
 import { computed, PropType, CSSProperties, defineComponent } from 'vue'
-import { createName } from '../utils'
+import { createName, NormalSizes } from '../utils'
 import { createProvider } from '@fect-ui/vue-hooks'
-import { NormalSizes } from '../utils/theme/propTypes'
 import './index.less'
 
 const name = createName('Breadcrumbs')

@@ -1,10 +1,7 @@
 import { defineComponent, computed, ref } from 'vue'
 import { useProvider } from '@fect-ui/vue-hooks'
-import { color } from '../utils'
-import { CustomCSSProperties } from '../utils/base'
+import { addColorAlpha, CustomCSSProperties } from '../utils'
 import { READONLY_PAGINATION_KEY, PaginationProvide } from './type'
-
-const { addColorAlpha } = color
 
 const hoverable = (): string[] => {
   const hover = addColorAlpha('#0070f3', 0.1)

@@ -1,13 +1,16 @@
 import { computed, ref, watchEffect, PropType, defineComponent } from 'vue'
-import { useState, createName } from '../utils'
-import { NormalSizes } from '../utils/theme/propTypes'
+import {
+  useState,
+  createName,
+  CustomCSSProperties,
+  NormalSizes,
+} from '../utils'
 import ClearableIcon from './clearable-icon'
 import PasswordIcon from './password-icon'
 import IconContent from './icon-content'
 import InputLabel from './input-label'
 import InputBlockLabel from './input-block-label'
 import './index.less'
-import { CustomCSSProperties } from '../utils/base'
 
 const name = createName('Input')
 

@@ -1,4 +1,3 @@
-import * as theme from './propTypes'
-import * as useTheme from './setTheme'
-import * as color from './color'
-export { theme, color, useTheme }
+export * from './color'
+export * from './propTypes'
+export * from './setTheme'

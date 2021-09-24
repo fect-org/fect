@@ -1,7 +1,11 @@
 import { computed, PropType, watch, defineComponent } from 'vue'
-import { useState, createName } from '../utils'
-import { NormalTypes } from '../utils/theme/propTypes'
-import { UnknowProp, CustomCSSProperties } from '../utils/base'
+import {
+  useState,
+  createName,
+  UnknowProp,
+  CustomCSSProperties,
+  NormalTypes,
+} from '../utils'
 import RatingIcon from './rating-icon'
 
 import './index.less'

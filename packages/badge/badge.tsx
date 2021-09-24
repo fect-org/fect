@@ -1,7 +1,6 @@
 import { computed, defineComponent, CSSProperties, PropType } from 'vue'
-import { createName } from '../utils'
+import { createName, NormalSizes, NormalTypes } from '../utils'
 import { useProvider } from '@fect-ui/vue-hooks'
-import { NormalSizes, NormalTypes } from '../utils/theme/propTypes'
 import {
   BadgeAnchorProvide,
   READONLY_BADGE_ANCHOR_KEY,
