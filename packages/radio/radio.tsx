@@ -1,7 +1,6 @@
 import { computed, watchEffect, PropType, watch, defineComponent } from 'vue'
 import { useProvider } from '@fect-ui/vue-hooks'
-import { createName, useState } from '../utils'
-import { NormalSizes } from '../utils/theme/propTypes'
+import { createName, useState, NormalSizes } from '../utils'
 import {
   RadioGroupProvide,
   READNONLY_RADIO_KEY,

@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { useProvider } from '@fect-ui/vue-hooks'
-import { useTheme } from '../../packages/utils'
+import { setLightTheme, setDarkTheme } from '../../packages/utils'
 import { LayoutProvide, READONLY_DOCS_LAYOUT_KEY } from '../Layout/type'
 import { computed, defineComponent, ref, watchEffect } from 'vue'
 
@@ -34,7 +34,6 @@ export default defineComponent({
       if (_theme) {
         isDark.value = _theme.includes('dark')
       }
-      const { setLightTheme, setDarkTheme } = useTheme
       // eslint-disable-next-line no-unused-expressions
       isDark.value ? setDarkTheme() : setLightTheme()
       context!.changeThemeHandler(_theme)

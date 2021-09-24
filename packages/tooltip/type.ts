@@ -1,4 +1,4 @@
-import { NormalTypes } from '../utils/theme/propTypes'
+import { NormalTypes } from '../utils'
 
 export type TooltipTypes = NormalTypes | 'secondary' | 'dark' | 'lite'
 

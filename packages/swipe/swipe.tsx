@@ -9,8 +9,7 @@ import {
   defineComponent,
 } from 'vue'
 import { createProvider } from '@fect-ui/vue-hooks'
-import { useState, useRealShape, createName } from '../utils'
-import { ComponentInstance } from '../utils/base'
+import { useState, useRealShape, createName, ComponentInstance } from '../utils'
 import { READONLY_SWIPE_KEY, Shape, Placement } from './type'
 import { props } from './props'
 import './index.less'

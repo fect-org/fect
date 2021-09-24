@@ -1,6 +1,5 @@
 import { computed, ref, defineComponent } from 'vue'
-import { useState, createName } from '../utils'
-import { CustomCSSProperties } from '../utils/base'
+import { useState, createName, CustomCSSProperties } from '../utils'
 import { props } from './props'
 import ButtonLoading from './button-loading'
 import ButtonDrip from './button-drip'

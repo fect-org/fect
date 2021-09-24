@@ -4,9 +4,14 @@ import {
   useClickAway,
   useEventListener,
 } from '@fect-ui/vue-hooks'
-import { createName, useState, useExpose } from '../utils'
-import { NormalSizes } from '../utils/theme/propTypes'
-import { CustomCSSProperties, ComponentInstance } from '../utils/base'
+import {
+  createName,
+  useState,
+  useExpose,
+  CustomCSSProperties,
+  ComponentInstance,
+  NormalSizes,
+} from '../utils'
 import SelectIcon from './select-icon'
 import SelcetClearableIcon from './select-clear-icon'
 import SelectMultiple from './select-multiple'

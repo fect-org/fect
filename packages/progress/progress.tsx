@@ -1,6 +1,5 @@
 import { computed, CSSProperties, PropType, defineComponent } from 'vue'
-import { createName } from '../utils'
-import { NormalTypes } from '../utils/theme/propTypes'
+import { createName, NormalTypes } from '../utils'
 import './index.less'
 
 interface ProgressColros {

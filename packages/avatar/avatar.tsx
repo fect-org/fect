@@ -1,6 +1,5 @@
 import { PropType, computed, defineComponent } from 'vue'
-import { useState, createName } from '../utils'
-import { NormalSizes } from '../utils/theme/propTypes'
+import { useState, createName, NormalSizes } from '../utils'
 import './index.less'
 
 const name = createName('Avatar')

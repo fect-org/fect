@@ -1,4 +1,4 @@
-import { UnknowProp } from '../utils/base'
+import { UnknowProp } from '../utils'
 import { defineComponent } from 'vue'
 
 const ButtonIcon = defineComponent({

@@ -1,4 +1,4 @@
-import { tuple } from '../utils/theme/propTypes'
+import { tuple } from '../utils'
 import { PropType } from 'vue'
 
 export const placement = tuple('top', 'right', 'left', 'bottom')

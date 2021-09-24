@@ -1,1 +1,1 @@
-export * as format from './string'
+export * from './string'

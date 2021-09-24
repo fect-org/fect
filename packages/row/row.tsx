@@ -1,7 +1,6 @@
 import { computed, PropType, CSSProperties, defineComponent } from 'vue'
 import { createProvider } from '@fect-ui/vue-hooks'
-import { createName } from '../utils'
-import { JustifyTypes, AlignTypes } from '../utils/theme/propTypes'
+import { createName, JustifyTypes, AlignTypes } from '../utils'
 import './index.less'
 
 const name = createName('Row')

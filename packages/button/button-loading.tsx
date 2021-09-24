@@ -1,5 +1,5 @@
 import { defineComponent, PropType } from 'vue'
-import { LoadingTypes } from '../utils/theme/propTypes'
+import { LoadingTypes } from '../utils'
 import Loading from '../loading'
 
 const ButtonLoading = defineComponent({

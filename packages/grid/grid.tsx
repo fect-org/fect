@@ -20,8 +20,8 @@ const getItemLayout = (
     return {
       [`--fect-${key}-grow`]: 0,
       [`--fect-${key}-display`]: display,
-      [`--fect-${key}-width`]: `${ratio}`,
-      [`--fect-${key}-basis`]: `${ratio}`,
+      [`--fect-${key}-width`]: ratio,
+      [`--fect-${key}-basis`]: ratio,
     }
   }
   return {

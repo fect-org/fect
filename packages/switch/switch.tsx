@@ -1,12 +1,8 @@
 import { computed, PropType, defineComponent } from 'vue'
-import { format, createName } from '../utils'
-import { UnknowProp } from '../utils/base'
-import { NormalSizes } from '../utils/theme/propTypes'
+import { hasEmptry, createName, UnknowProp, NormalSizes } from '../utils'
 import './index.less'
 
 const name = createName('Switch')
-
-const { hasEmptry } = format
 
 interface SwitchEventTarget {
   checked: unknown // may be any value

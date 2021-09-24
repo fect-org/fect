@@ -1,6 +1,5 @@
 import { watch, computed, defineComponent } from 'vue'
-import { useState, createName } from '../utils'
-import { CustomCSSProperties } from '../utils/base'
+import { useState, createName, CustomCSSProperties } from '../utils'
 import { props } from './props'
 import Teleport from '../teleport'
 import DrawerWrapper from './drawer-wrapper'

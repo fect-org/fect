@@ -1,7 +1,6 @@
 import { PropType, Ref, watch, defineComponent } from 'vue'
-import { useState, createName } from '../utils'
+import { useState, createName, NormalSizes } from '../utils'
 import { createProvider } from '@fect-ui/vue-hooks'
-import { NormalSizes } from '../utils/theme/propTypes'
 import './index.less'
 
 const name = createName('CheckboxGroup')

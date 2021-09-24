@@ -8,10 +8,13 @@ import {
   defineComponent,
 } from 'vue'
 import { createProvider } from '@fect-ui/vue-hooks'
-import { createName } from '../utils'
-import { NormalSizes } from '../utils/theme/propTypes'
+import {
+  createName,
+  NormalSizes,
+  CustomCSSProperties,
+  ComponentInstance,
+} from '../utils'
 import { READONLY_PAGINATION_KEY, PaginationSize } from './type'
-import { CustomCSSProperties, ComponentInstance } from '../utils/base'
 import PaginationPages from './pagination-pages'
 import PaginationNext from './pagination-next'
 import PaginationPrev from './pagination-previous'

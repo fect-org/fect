@@ -1,4 +1,4 @@
-import { tuple } from '../utils/theme/propTypes'
+import { tuple } from '../utils'
 
 const variable = tuple(
   'p',
