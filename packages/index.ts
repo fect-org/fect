@@ -3,6 +3,7 @@ import '@fect-ui/themes';
 import { App } from 'vue';
 import Avatar from './avatar';
 import AvatarGroup from './avatar-group';
+import BackTop from './back-top';
 import Badge from './badge';
 import BadgeAnchor from './badge-anchor';
 import Breadcrumbs from './breadcrumbs';
@@ -50,6 +51,7 @@ import Toast from './toast';
 import Tooltip from './tooltip';
 const components = [Avatar,
   AvatarGroup,
+  BackTop,
   Badge,
   BadgeAnchor,
   Breadcrumbs,
@@ -109,6 +111,7 @@ export {
   install,
   Avatar,
   AvatarGroup,
+  BackTop,
   Badge,
   BadgeAnchor,
   Breadcrumbs,
