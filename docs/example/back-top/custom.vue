@@ -1,8 +1,9 @@
 <template>
-  <div style="height: 50vh; overflow-y: scroll;">
-    <fe-back-top>
-      <div>UP</div>
+  <div>
+    <fe-back-top :bottom="100">
+      <div class="fect-back-top-custom">UP</div>
     </fe-back-top>
+    Scroll down to see the bottom-right button.
   </div>
 </template>
 
@@ -11,3 +12,16 @@ export default {
   name: 'ex-back-top-custom',
 }
 </script>
+
+<style lang="less" scoped>
+  .fect-back-top-custom {
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    border-radius: 4px;
+    background-color: #1088e9;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+  }
+</style>

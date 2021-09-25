@@ -8,11 +8,11 @@
   desc="最简单的用法"
 />
 
-<!-- <fe-code-show
+<fe-code-show
   title="自定义的"
   name="ex-back-top-custom"
   desc="可以自定义回到顶部按钮的样式，限制宽高：40px * 40px"
-/> -->
+/>
 
 <fe-attributes>
   
@@ -22,6 +22,8 @@
 | -------- | ------------------ | --------------------------- | --------------------------- | --------- |
 | **duration** | 回到顶部的速度(数值越大所用时间越长)           | `number`                    | `-` | `4`  |
 | **target** | 设置需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数           | `() => HTMLElement` | `-` | `() => window` |
-| **visibilityHeight**  | 滚动高度达到此参数值才出现 BackTop | `number`                 | `-`                         | `400`       |
+| **visibilityHeight**  | 滚动高度达到此参数值才出现 BackTop | `number`                 | `-`                         | `200`       |
+| **right**  | 控制其显示位置, 距离页面右边距 | `number`                 | `-`                         | `40`       |
+| **bottom**  | 控制其显示位置, 距离页面底部距离 | `number`                 | `-`                         | `40`       |
 
 </fe-attributes>
