@@ -1,4 +1,4 @@
-import { PropType, defineComponent, computed, ref, onMounted, onBeforeUnmount } from 'vue'
+import { PropType, defineComponent, computed, ref, onMounted, onBeforeUnmount, CSSProperties } from 'vue'
 import { createName } from '../utils'
 
 import './index.less'
@@ -8,7 +8,6 @@ const name = createName('BackTop')
 interface ScrollToOptions {
   /** Scroll container, default as window */
   getContainer?: () => HTMLElement | Window | Document;
-  /** Animation duration, default as 450 */
   duration?: number;
   scrollTopTimer?: any;
 }
@@ -19,15 +18,17 @@ export default defineComponent({
     duration: Number,
     target: Function as PropType<() => (HTMLElement | Window | Document)>,
     visibilityHeight: Number,
+    right: Number,
+    bottom: Number,
   },
   emits: ['click'],
   setup(props, { slots, emit }) {
     const ButtonRef = ref<HTMLElement>()
     const duration = Number(props.duration || 4)
-    const visibilityHeight = Number(props.visibilityHeight || 400)
-    const visible = ref<boolean>(false)
+    const visibilityHeight = Number(props.visibilityHeight || 200)
+    const visible = ref<boolean>(visibilityHeight < 50)
     let timer: any
-
+    
     const isWindow = (obj: any) => {
       return obj !== null && obj !== undefined && obj === obj.window;
     }
@@ -74,7 +75,7 @@ export default defineComponent({
         ]
       }
       return result
-    }   
+    }
 
     const scrollTo = (y: number, options: ScrollToOptions = {}) => {
       const { getContainer = () => window, duration = 4, scrollTopTimer } = options
@@ -111,25 +112,46 @@ export default defineComponent({
       (handleScroll as any).cancel();
     })
 
+    const positionStyle = computed(() => {
+      const { right = 40, bottom = 40 } = props
+      const style: CSSProperties = {
+        right: `${right}px`,
+        bottom: `${bottom}px`,
+      }
+      return style
+    })
+
+    const renderCustom = () => {
+      // when slots.prev is exists, it will use custom prve render
+      const customSlot = slots.default
+      return (
+        <>
+          {customSlot ? (
+            customSlot()
+          ) : (
+            <div class="fect-back-top__content">
+              <span class="fect-back-top__icon">
+                <svg viewBox="64 64 896 896" width="1.5rem" height="1.5rem" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M859.9 168H164.1c-4.5 0-8.1 3.6-8.1 8v60c0 4.4 3.6 8 8.1 8h695.8c4.5 0 8.1-3.6 8.1-8v-60c0-4.4-3.6-8-8.1-8zM518.3 355a8 8 0 00-12.6 0l-112 141.7a7.98 7.98 0 006.3 12.9h73.9V848c0 4.4 3.6 8 8 8h60c4.4 0 8-3.6 8-8V509.7H624c6.7 0 10.4-7.7 6.3-12.9L518.3 355z"
+                  >
+                  </path>
+                </svg>
+              </span>
+            </div>
+          )}
+        </>
+      )
+    }
+
     return () => (
       <div 
         class="fect-back-top"
         ref={ButtonRef}
+        style={positionStyle.value}
         onClick={scrollToTopHandler}
       >
-        {slots.default?.()}
-        {visible.value && 
-          (<div class="fect-back-top__content">
-            <span class="fect-back-top__icon">
-              <svg viewBox="64 64 896 896" focusable="false" data-icon="vertical-align-top" width="1.5rem" height="1.5rem" fill="currentColor" aria-hidden="true">
-                <path
-                  d="M859.9 168H164.1c-4.5 0-8.1 3.6-8.1 8v60c0 4.4 3.6 8 8.1 8h695.8c4.5 0 8.1-3.6 8.1-8v-60c0-4.4-3.6-8-8.1-8zM518.3 355a8 8 0 00-12.6 0l-112 141.7a7.98 7.98 0 006.3 12.9h73.9V848c0 4.4 3.6 8 8 8h60c4.4 0 8-3.6 8-8V509.7H624c6.7 0 10.4-7.7 6.3-12.9L518.3 355z"
-                >
-                </path>
-              </svg>
-            </span>
-          </div>)
-        }
+        {visible.value && renderCustom()}
       </div>
     )
   },
