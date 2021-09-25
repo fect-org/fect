@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BackTop should be render as element 1`] = `
+<div class="fect-back-top" style="right: 40px; bottom: 40px;">
+  <div class="fect-back-top__content"><span class="fect-back-top__icon"><svg viewBox="64 64 896 896" width="1.5rem" height="1.5rem" fill="currentColor" aria-hidden="true"><path d="M859.9 168H164.1c-4.5 0-8.1 3.6-8.1 8v60c0 4.4 3.6 8 8.1 8h695.8c4.5 0 8.1-3.6 8.1-8v-60c0-4.4-3.6-8-8.1-8zM518.3 355a8 8 0 00-12.6 0l-112 141.7a7.98 7.98 0 006.3 12.9h73.9V848c0 4.4 3.6 8 8 8h60c4.4 0 8-3.6 8-8V509.7H624c6.7 0 10.4-7.7 6.3-12.9L518.3 355z"></path></svg></span></div>
+</div>
+`;
+
+exports[`BackTop should be support custom slots 1`] = `
+<div class="container" style="height: 100px; overflow: auto;">
+  <div style="height: 10000px; width: 100%;">
+    <div class="fect-back-top" style="right: 50px; bottom: 50px;"> Custom Context </div>
+  </div>
+</div>
+`;
+
+exports[`BackTop should support props right and bottom 1`] = `
+<div class="container" style="height: 100px; overflow: auto;">
+  <div style="height: 10000px; width: 100%;">
+    <div class="fect-back-top" style="right: 50px; bottom: 50px;"> Custom Context </div>
+  </div>
+</div>
+`;
