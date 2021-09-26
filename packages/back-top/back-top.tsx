@@ -1,5 +1,6 @@
 import { PropType, defineComponent, computed, ref, onMounted, onBeforeUnmount, CSSProperties } from 'vue'
-import { createName } from '../utils'
+import { createName, useState, useExpose } from '../utils'
+import { useEventListener } from '@fect-ui/vue-hooks'
 
 import './index.less'
 
@@ -24,10 +25,15 @@ export default defineComponent({
   emits: ['click'],
   setup(props, { slots, emit }) {
     const ButtonRef = ref<HTMLElement>()
-    const duration = Number(props.duration || 4)
-    const visibilityHeight = Number(props.visibilityHeight || 200)
-    const visible = ref<boolean>(visibilityHeight < 50)
-    let timer: any
+    const duration = computed(() => {
+      const { duration = 4 } = props
+      return Number(duration)
+    })
+    const visibilityHeight = computed(() => {
+      const { visibilityHeight = 200 } = props
+      return Number(visibilityHeight)
+    })
+    const [visible, setVisible] = useState<boolean>(visibilityHeight.value < 50)
     
     const isWindow = (obj: any) => {
       return obj !== null && obj !== undefined && obj === obj.window;
@@ -38,19 +44,7 @@ export default defineComponent({
 
     const handleScroll = (e: Event | { target: any }) => {
       const scrollTop = getScroll(e.target, true)
-      visible.value = scrollTop > visibilityHeight!
-    }
-  
-    const bindScrollEvent = () => {
-      const { target } = props
-      const getTarget = target || getDefaultTarget
-      const container = getTarget()
-      timer = addEventListener('scroll', (e: Event) => {
-        handleScroll(e);
-      })
-      handleScroll({
-        target: container,
-      })
+      setVisible(scrollTop > visibilityHeight.value)
     }
 
     const getScroll = (
@@ -77,11 +71,11 @@ export default defineComponent({
       return result
     }
 
-    const scrollTo = (y: number, options: ScrollToOptions = {}) => {
-      const { getContainer = () => window, duration = 4, scrollTopTimer } = options
+    const scrollTo = (y: number, options: ScrollToOptions) => {
+      const { getContainer = () => window } = options
       const container = getContainer()
       const scrollTop = getScroll(container, true)
-      const nextScrollTop = scrollTop - (scrollTop / duration);
+      const nextScrollTop = scrollTop - (scrollTop / duration.value);
 
       if (isWindow(container)) {
         (container as Window).scrollTo(window.pageXOffset, nextScrollTop)
@@ -90,26 +84,40 @@ export default defineComponent({
       } else {
         (container as HTMLElement).scrollTop = nextScrollTop
       }
-      scrollTop === 0 && clearInterval(scrollTopTimer)
+      if (scrollTop !== 0) {
+        let scrollTopTimer: any = null;
+        clearTimeout(scrollTopTimer);
+        scrollTopTimer = setTimeout(() => scrollTo(0, {
+          getContainer: props.target || getDefaultTarget,
+          duration: duration.value,
+        }), 30)
+      }
     }
 
     const scrollToTopHandler = (e: MouseEvent) => {
-      const scrollTopTimer = setInterval(() => scrollTo(0, {
+      scrollTo(0, {
         getContainer: props.target || getDefaultTarget,
-        duration,
-        scrollTopTimer,
-      }), 30)
-
+        duration: duration.value,
+      })
+      
       emit('click', e)
     }
 
-    onMounted(() => {
-      bindScrollEvent()
-    })
+    useEventListener(
+      'scroll',
+      (e: Event) => handleScroll(e),
+    ) 
 
-    onBeforeUnmount(() => {
-      timer && timer.remove()
-      (handleScroll as any).cancel();
+    useExpose({ handleScroll })
+
+    onMounted(() => {
+      const { target } = props
+      const getTarget = target || getDefaultTarget
+      const container = getTarget()
+
+      handleScroll({
+        target: container,
+      })
     })
 
     const positionStyle = computed(() => {
