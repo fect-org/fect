@@ -121,6 +121,7 @@ export const zhRoutes: Routes[] = [
         route: { name: 'Pagination' },
       },
       { title: '选项卡 Tabs', group: '导航', route: { name: 'Tabs' } },
+      { title: '回到顶部 BackTop', group: '导航', route: { name: 'BackTop' } },
     ],
   },
 ]
