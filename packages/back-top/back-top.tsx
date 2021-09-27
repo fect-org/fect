@@ -12,7 +12,7 @@ export type Place = 'x' | 'y'
 
 interface ScrollToOptions {
   /** Scroll container, default as window */
-  getContainer?: () => ScrollTarget | undefined
+  getContainer?: () => ScrollTarget
   duration?: number
   scrollTopTimer?: any
 }
@@ -49,12 +49,6 @@ export default defineComponent({
 
     const isWindow = (obj: any) => {
       return obj !== null && obj !== undefined && obj === obj.window
-    }
-
-    const getTarget = () => {
-      if (!ButtonRef.value) return
-      const { target } = props
-      return target() || ButtonRef.value.ownerDocument
     }
 
     const handleScroll = (target: ScrollTarget) => {
@@ -94,7 +88,7 @@ export default defineComponent({
         clearTimeout(scrollTopTimer)
         scrollTopTimer = setTimeout(() => {
           return scrollTo(0, {
-            getContainer: getTarget,
+            getContainer: props.target,
             duration: props.duration,
           })
         }, 30)
@@ -105,7 +99,7 @@ export default defineComponent({
       e.stopPropagation()
       e.preventDefault()
       scrollTo(0, {
-        getContainer: getTarget,
+        getContainer: props.target,
         duration: props.duration,
       })
 
@@ -117,7 +111,9 @@ export default defineComponent({
      * when scroll to a distance , the component will be visible
      */
     useEventListener('scroll', () => {
-      const container = getTarget()!
+      if (!ButtonRef.value) return
+      const { target } = props
+      const container = target() || ButtonRef.value.ownerDocument
       handleScroll(container)
     })
 
