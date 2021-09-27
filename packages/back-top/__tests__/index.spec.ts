@@ -1,99 +1,59 @@
+/**
+ *  how to test vuejs props default as  a function .
+ * see : https://stackoverflow.com/questions/64434035/testing-vuejs-prop-default-that-is-anonymous-function-in-jest
+ */
+
 import BackTop from '..'
 import { mount, flushPromises } from '@vue/test-utils'
 import { later } from '../../../tests'
 
-const CustomWrapper = {
-  components:{
-    [BackTop.name]:BackTop,
-  },
-  data(){
-    return {
+const Wrapper = (slots?: any) => {
+  return {
+    components: {
+      [BackTop.name]: BackTop,
+    },
+    data: () => ({
       right: 50,
       bottom: 50,
       visibilityHeight: 10,
-    }
-  },
-  template:`<div class="container" ref="scrollTarget" style="height: 100px; overflow: auto">
-    <div style="height: 10000px; width: 100%;">
-      <fe-back-top ref="target" :right="right" :bottom="bottom" :visibilityHeight="visibilityHeight" >
-        Custom Context
-      </fe-back-top>
-    </div>
-  </div>`,
-}
-
-const Wrapper = {
-  components:{
-    [BackTop.name]:BackTop,
-  },
-  data(){
-    return {
-      duration: 1,
-      right: 50,
-      bottom: 50,
-    }
-  },
-  template:`<div class="container" ref="scrollTarget" style="height: 100px; overflow: auto">
-    <div style="height: 10000px; width: 100%;">
-      <fe-back-top ref="target" :target="() => $refs.scrollTarget" :duration="duration" :right="right" :bottom="bottom" :visibilityHeight="visibilityHeight" >
-        Custom Context
-      </fe-back-top>
-    </div>
-  </div>`,
+    }),
+    template: `<div class="container" ref="container" style="height:500px;">
+      <fe-backTop ref="backTopRef" :target="()=>$refs.container" :right="right" :bottom="bottom" :visibilityHeight="visibilityHeight">
+        ${slots}
+      </fe-backTop>
+    </div>`,
+  }
 }
 
 describe('BackTop', () => {
-  it('should be render as element', () => {
-    const wrapper = mount(BackTop, { 
-      props: {
-        visibilityHeight: 10,
-      },
-    })
+  it('should be render as a element', () => {
+    const wrapper = mount(Wrapper(), { attachTo: document.body })
     expect(wrapper.html()).toMatchSnapshot()
     expect(() => wrapper.unmount()).not.toThrow()
   })
-  it('should support props right and bottom', () => {
-    const wrapper = mount(BackTop, { 
-      props: {
-        right: 50,
-        bottom: 50,
-        visibilityHeight: 10,
-      },
+  it('normal props and slots should work correctly', () => {
+    // fect-back-top__icon
+    const wrapper = mount(Wrapper('test'), { attachTo: document.body })
+    const el = wrapper.find('.fect-back-top')
+    expect(el.attributes('style')).toBe('right: 50px; bottom: 50px;')
+    expect(wrapper.html()).toMatchSnapshot()
+    wrapper.unmount()
+  })
+
+  it('scroll event should be work', async () => {
+    const wrapper = mount(Wrapper(), { attachTo: document.body })
+    await wrapper.setData({
+      visibilityHeight: 0,
     })
-    const el = wrapper.find('.fect-back-top')
-    expect(el.attributes('style')).toBe(
-      'right: 50px; bottom: 50px;',
-    )
-    expect(wrapper.html()).toMatchSnapshot()
-  })
-  it('should be support custom slots',async () => {
-    const wrapper = mount(CustomWrapper)
-    const el = wrapper.find('.fect-back-top')
-    expect(el.text()).toBe('Custom Context')
-    expect(wrapper.html()).toMatchSnapshot()
-  })
-  it('should be support scroll visible',async () => {
-    const wrapper = mount(Wrapper)
-    const el = wrapper.find('.fect-back-top')
-    expect(el.text()).toBe('')
 
-    const refs = wrapper.vm.$refs as any
     const {
-      target: { handleScroll },
-    } = refs
-    refs.scrollTarget.scrollTop = 2000
-    await handleScroll({ target: refs.scrollTarget })
+      backTopRef: { handleScroll },
+    } = wrapper.vm.$refs as any
+    await handleScroll(wrapper.vm.$refs.container)
+    // wrapper.
     await flushPromises()
-    await later()
-    expect(el.text()).toBe('Custom Context')
-
-    await el.trigger('click')
-    await flushPromises()
-    await later()
-    await handleScroll({ target: refs.scrollTarget })
-    await flushPromises()
-    await later()
-    expect(el.text()).toBe('')
     expect(wrapper.html()).toMatchSnapshot()
+
+    wrapper.unmount()
   })
 })
