@@ -3,18 +3,18 @@ const {
   removeSync,
   copy,
   remove,
-  readdirSync,
   outputFileSync,
   readFile,
 } = require('fs-extra')
-const execa = require('execa')
+const webpack = require('webpack')
 const { join } = require('path')
 const ora = require('ora')
+const { exec } = require('child_process')
+
 const {
   CJS_PATH,
   ESM_PATH,
   TMP_PATH,
-  PACKAGE_PATH,
   DECLARATION_PATH,
   TSCONFIG_PATH,
   SCRIPT_PATH,
@@ -31,6 +31,7 @@ const { compileStyle } = require('./gen-style')
 const { GenStyleDeps } = require('./gen-style-deps')
 const { compilerJs } = require('./compiler-js')
 const { cleanBuild } = require('./clean-build')
+const { getUMDConfig } = require('./config/webpack.umd')
 
 class Bundler {
   constructor({ entry, mode }) {
@@ -73,6 +74,19 @@ class Bundler {
     )
   }
 
+  async compilerUMD(mini = false) {
+    return new Promise((resolve, reject) => {
+      const config = getUMDConfig(mini)
+      webpack(config, (err, stats) => {
+        if (err || stats?.hasErrors()) {
+          reject(err || stats?.toString())
+        } else {
+          resolve()
+        }
+      })
+    })
+  }
+
   async compilerComponent() {
     await copy(TMP_PATH, this.output)
     await this.compilerDir(this.output)
@@ -100,37 +114,16 @@ class Bundler {
   }
 
   async genUMD() {
-    const entry = join(PACKAGE_PATH, 'index.ts')
-    await execa('vue-cli-service', [
-      'build',
-      '--target',
-      'lib',
-      '--dest',
-      TMP_PATH,
-      '--name',
-      'fect',
-      entry,
-    ])
-    await Promise.all(
-      readdirSync(TMP_PATH).map(async (file) => {
-        const fullPath = normalizePath(join(TMP_PATH, file))
-        if (file.endsWith('.css')) {
-          await copy(fullPath, join(CJS_PATH, './main.css'))
-        }
-        if (file.endsWith('.min.js')) {
-          await copy(fullPath, join(CJS_PATH, './fect.min.js'))
-        }
-        if (file.endsWith('.umd.js')) {
-          await copy(fullPath, join(CJS_PATH, './fect.js'))
-        }
-      }),
-    )
+    setBabelEnv('esmodule')
+    await this.compilerUMD(false)
+    await this.compilerUMD(true)
   }
 
   async genDTS() {
     const declaration = await readFile(DECLARATION_PATH)
     outputFileSync(TSCONFIG_PATH, declaration)
-    await execa('tsc', ['-p', TSCONFIG_PATH])
+    await exec('tsc', ['-p', TSCONFIG_PATH])
+    // await execa('tsc', ['-p', TSCONFIG_PATH])
   }
 
   tasks = [
