@@ -123,7 +123,6 @@ class Bundler {
     const declaration = await readFile(DECLARATION_PATH)
     outputFileSync(TSCONFIG_PATH, declaration)
     await exec('tsc', ['-p', TSCONFIG_PATH])
-    // await execa('tsc', ['-p', TSCONFIG_PATH])
   }
 
   tasks = [

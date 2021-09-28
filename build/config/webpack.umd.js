@@ -1,8 +1,14 @@
 const { join } = require('path')
 const { ESM_PATH, CJS_PATH } = require('../constant')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const CSS_BASE_LOADERS = [
-  'style-loader',
+  {
+    loader: MiniCssExtractPlugin.loader,
+    options: {
+      esModule: true,
+    },
+  },
   'css-loader',
   {
     loader: 'postcss-loader',
@@ -53,11 +59,7 @@ const getUMDConfig = (mini = false) => {
           sideEffects: true,
           use: CSS_BASE_LOADERS,
         },
-        {
-          test: /\.less$/,
-          sideEffects: true,
-          use: [...CSS_BASE_LOADERS, 'less-loader'],
-        },
+     
       ],
     },
     externals: {
@@ -72,6 +74,7 @@ const getUMDConfig = (mini = false) => {
     optimization: {
       minimize: mini,
     },
+    plugins: [new MiniCssExtractPlugin({ filename: 'main.css' })],
   }
 }
 
