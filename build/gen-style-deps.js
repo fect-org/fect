@@ -1,43 +1,21 @@
-const { readdirSync, outputFileSync, readFile } = require('fs-extra')
-const { join } = require('path')
-const { PACKAGE_PATH } = require('./constant')
-const { transformAsync } = require('@babel/core')
-const { compilerJs } = require('./compiler-js')
+const { outputFileSync, readFile, remove } = require('fs-extra')
+const { join, dirname } = require('path')
 
-/**
- * collect component deployed , and gen dir to export
- */
+const compilerStyleDeps = async (file) => {
+  const data = await readFile(file, 'utf8')
+  const deps = JSON.parse(JSON.parse(data)).style
+  const depsKeys = Object.keys(deps)
+  const { BABEL_ENV } = process.env
 
-class GenStyleDeps {
-  constructor() {}
-  static async analyzeComponentDeps(component, path) {
-    const components = join(path, component)
-    const files = readdirSync(components).filter((_) => _.endsWith('.css'))
-    const genStyle = () =>
-      files
-        .map((style) => {
-          const dep = `import '../${style}';\n`
-          return dep
-        })
-        .join('')
-    const styles = genStyle()
-    const output = join(components, 'style', 'index.js')
-    outputFileSync(output, styles)
-    await compilerJs(output)
-  }
-
-  static getComponents() {
-    const ignoredList = ['utils', 'index.ts']
-    const dirs = readdirSync(PACKAGE_PATH)
-    return dirs.filter((dir) => !ignoredList.includes(dir))
-  }
-
-  static async getStyleDeps(path) {
-    const components = GenStyleDeps.getComponents()
-    return Promise.all(
-      components.map((cop) => GenStyleDeps.analyzeComponentDeps(cop, path)),
-    )
-  }
+  const styles = depsKeys
+    .map((key) => {
+      if (BABEL_ENV === 'commonjs') return `require("${deps[key]}");\n`
+      return `import "${deps[key]}";\n`
+    })
+    .join('')
+  const output = join(dirname(file), 'style', 'index.js')
+  outputFileSync(output, styles)
+  await remove(file)
 }
 
-module.exports = { GenStyleDeps }
+module.exports = { compilerStyleDeps }
