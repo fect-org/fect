@@ -17,6 +17,8 @@ const SCRIPT_PATH = join(__dirname, '..', 'scripts')
 
 const TSCONFIG_PATH = join(SCRIPT_PATH, 'tsconfig.json')
 
+const IMPORT_REG = /import\s+?(?:(?:(?:[\w*\s{},]*)\s+from(\s+)?)|)(?:(?:".*?")|(?:'.*?'))[\s]*?(?:;|$|)/g
+
 const normalizePath = (path) => path.replace(/\\/g, '/')
 
 const setBabelEnv = (env) => (process.env.BABEL_ENV = env)
@@ -61,6 +63,7 @@ module.exports = {
   DECLARATION_PATH,
   TSCONFIG_PATH,
   SCRIPT_PATH,
+  IMPORT_REG,
   normalizePath,
   setBabelEnv,
   setNodeEnv,

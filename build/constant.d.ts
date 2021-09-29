@@ -18,6 +18,8 @@ export const SCRIPT_PATH: string
 
 export const TSCONFIG_PATH: string
 
+export const IMPORT_REG: string
+
 export declare const normalizePath: (path: string) => string
 
 export declare const setBabelEnv: (env: BabelEnv) => void

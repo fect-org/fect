@@ -1,3 +1,1 @@
-export declare class GenStyleDeps {
-  static getStyleDeps(path:string):Promise<void>
-}
+export declare const compilerStyleDeps: (file: string) => void
