@@ -144,7 +144,7 @@ class Bundler {
     const analyzeComponentDeps = (component) => {
       const componentPath = join(path, component)
       styleDeps['style'] = {
-        [component]: './index.css',
+        [component]: '../index.css',
       }
       const file = readdirSync(componentPath)
       file.map((item) => {
