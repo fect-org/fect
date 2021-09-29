@@ -26,9 +26,6 @@ module.exports = {
         },
       ],
     },
-    output: {
-      libraryExport: 'default',
-    },
     performance: {
       hints: process.env.NODE_ENV === 'production' ? false : 'warning',
     },

@@ -1,8 +1,9 @@
 /**
  * author :XeryYue
- * collect all component and create at packages/index.ts
+ * collect all component , package version . create at packages/index.ts
  */
 
+const { version } = require('../package.json') // package  version
 const { readdirSync, writeFile } = require('fs-extra')
 const { join } = require('path')
 const { PACKAGE_PATH } = require('./constant')
@@ -15,29 +16,32 @@ const PASCAL_REG = /(\w)(.+)/g
 
 const genImport = (components, names) => {
   return components
-    .map((name, idx) => `import ${name} from './${names[idx]}';`)
+    .map((name, idx) => `import { ${name} } from './${names[idx]}';`)
     .join('\n')
 }
 
-const genExport = (names) => names.map((name) => name).join(',\n  ')
+const genExport = (dirs) =>
+  dirs.map((dir) => `export * from './${dir}';`).join('\n ')
 
 ;(async () => {
-  const components = readdirSync(PACKAGE_PATH).filter(
-    (dir) => !IGNORE_DIR.includes(dir),
-  )
+  // filter all component dirs
+  const dirs = readdirSync(PACKAGE_PATH).filter((_) => !IGNORE_DIR.includes(_))
 
   // eg : avatar-group =>AvatarGroup
-  const names = components.map((dir) =>
-    dir
+  const pascalNames = dirs.map((dir) => {
+    return dir
       .replace(PASCAL_REG, (_, k, k1) => k.toUpperCase() + k1)
-      .replace(/-(\w)/g, (_, k) => k.toUpperCase()),
-  )
+      .replace(/-(\w)/g, (_, k) => k.toUpperCase())
+  })
 
   const content = `
+
+  const version = '${version}' ;
+
    import '@fect-ui/themes';
    import {App} from 'vue';
-   ${genImport(names, components)}
-   const components = [${genExport(names)}];
+   ${genImport(pascalNames, dirs)}
+   const components = [${pascalNames.map((_) => _)}];
    const install = (app:App) => {
      components.map((component:any) => {
        if (component.install) {
@@ -48,13 +52,16 @@ const genExport = (names) => names.map((name) => name).join(',\n  ')
      })
    };
 
+   ${genExport(dirs)}
+
    export {
      install,
-     ${genExport(names)}
+     version
    };
 
    export default {
      install,
+     version,
    };
 
    `
