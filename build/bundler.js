@@ -9,7 +9,7 @@ const {
 const webpack = require('webpack')
 const { join } = require('path')
 const ora = require('ora')
-const { exec } = require('child_process')
+const { spawn } = require('child_process')
 
 const {
   CJS_PATH,
@@ -122,7 +122,9 @@ class Bundler {
   async genDTS() {
     const declaration = await readFile(DECLARATION_PATH)
     outputFileSync(TSCONFIG_PATH, declaration)
-    await exec('tsc', ['-p', TSCONFIG_PATH])
+    spawn('tsc', ['-p', TSCONFIG_PATH], {
+      shell: true,
+    })
   }
 
   tasks = [
@@ -149,6 +151,7 @@ class Bundler {
     let idx = 0
     await copy(this.entry, TMP_PATH)
     await this.compilerDir(TMP_PATH)
+
     for (const key in this.tasks) {
       const { text, task } = this.tasks[key]
       const spinner = ora(text).start()
