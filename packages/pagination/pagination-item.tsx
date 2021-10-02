@@ -1,4 +1,4 @@
-import { defineComponent, computed, ref } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { useProvider } from '@fect-ui/vue-hooks'
 import { addColorAlpha, CustomCSSProperties } from '../utils'
 import { READONLY_PAGINATION_KEY, PaginationProvide } from './type'
@@ -16,7 +16,6 @@ const PaginationItem = defineComponent({
   },
   emits: ['click', 'mouseenter', 'mouseleave'],
   setup(props, { emit, slots }) {
-    const ButtonRef = ref<HTMLButtonElement>()
     const { context } = useProvider<PaginationProvide>(READONLY_PAGINATION_KEY)
 
     const gethoverable = computed(() => {
@@ -27,18 +26,13 @@ const PaginationItem = defineComponent({
       } as CustomCSSProperties
     })
 
-    const handleClick = (e: Event) => emit('click', e)
-
     const queryClass = computed(() => {
-      const className = ['disabled', 'active']
-      if (props.disabled) {
-        return className[0]
-      }
-      return props.active ? className[1] : ''
+      if (props.disabled) return 'disabled'
+      return props.active ? 'active' : ''
     })
 
     const queryModeClass = computed(() => {
-      return context!.simple.value
+      return context!.props.simple
         ? 'pagination-simple__side'
         : 'pagination-item__button'
     })
@@ -46,10 +40,9 @@ const PaginationItem = defineComponent({
     return () => (
       <li>
         <button
-          ref={ButtonRef}
           class={`${queryModeClass.value} ${queryClass.value} `}
           style={gethoverable.value}
-          onClick={handleClick}
+          onClick={(e) => emit('click', e)}
           onMouseenter={(e) => emit('mouseenter', e)}
           onMouseleave={(e) => emit('mouseleave', e)}
         >

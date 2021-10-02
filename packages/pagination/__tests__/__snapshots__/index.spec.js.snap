@@ -87,7 +87,7 @@ exports[`Pagination should support simple mode 1`] = `
 <nav class="fect-pagination" style="font-size: 14px; --pagination-size: 32px;">
   <ul>
     <li><button class="pagination-simple__side disabled " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">Prev</button></li>
-    <li class="pagination-simple__desc">1/1</li>
+    <li class="pagination-simple__desc">1 / 1</li>
     <li><button class="pagination-simple__side disabled " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">Next</button></li>
   </ul>
 </nav>

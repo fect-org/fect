@@ -1,5 +1,6 @@
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent } from 'vue'
 import PaginationItem from './pagination-item'
+import { useState } from '../utils'
 
 const PaginationEllipsis = defineComponent({
   props: {
@@ -10,15 +11,10 @@ const PaginationEllipsis = defineComponent({
     /**
      * control show ellipsis or show arrow
      */
-    const showMore = ref<boolean>(false)
-    const setShowMore = (status: boolean) => (showMore.value = status)
+    const [showMore, setShowMore] = useState<boolean>(false)
 
     const getSVGClass = computed(() => {
-      const className = ['more', 'before']
-      if (props.isBefore) {
-        return className.join(' ')
-      }
-      return className[0]
+      return props.isBefore ? 'more before' : 'more'
     })
 
     const handleClick = (e: Event) => {

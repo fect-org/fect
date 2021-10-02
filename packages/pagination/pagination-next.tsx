@@ -9,8 +9,8 @@ const PaginationNext = defineComponent({
 
     return () => (
       <PaginationItem
-        disabled={context!.isLast.value}
-        onClick={() => context!.sideUpdatePage('next')}
+        disabled={context!.end.value}
+        onClick={() => context!.updateSidePage('next')}
       >
         {slots.default?.()}
       </PaginationItem>

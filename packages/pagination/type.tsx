@@ -1,26 +1,29 @@
 import { Ref } from 'vue'
-import { NormalSizes } from '../utils/theme/propTypes'
+import { NormalSizes } from '../utils'
 
 export interface PaginationSize {
   font: string
   width: string
 }
 
-interface Props {
-  modelValue: Ref<number>
-  count: Ref<string | number>
-  size: Ref<NormalSizes>
-  prevText: Ref<string>
-  nextText: Ref<string>
-  simple: Ref<boolean>
-  limit: Ref<number>
+type Props = {
+  modelValue: number
+  count: string | number
+  size: NormalSizes
+  prevText: string
+  nextText: string
+  simple: boolean
+  limit: number
 }
 
 export type PaginationProvide = {
   setCurrentPage: (val: number) => number
-  sideUpdatePage: (type: string) => void
-  isFirst: Ref<boolean>
-  isLast: Ref<boolean>
-} & Props
+  updateSidePage: (type: string) => void
+  head: Ref<boolean>
+  end: Ref<boolean>
+  props: Props
+}
+
+export type SideEvent = 'prev' | 'next'
 
 export const READONLY_PAGINATION_KEY = 'paginationKey'
