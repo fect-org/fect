@@ -3,76 +3,87 @@ import { useProvider } from '@fect-ui/vue-hooks'
 import PaginationItem from './pagination-item'
 import PaginationEllipsis from './pagination-ellipsis'
 import { READONLY_PAGINATION_KEY, PaginationProvide } from './type'
+import { useState } from '../utils'
 
 const PaginationPages = defineComponent({
   props: {
-    current: [Number],
-    count: [String, Number],
-    limit: Number,
+    current: {
+      type: Number,
+      required: true,
+    },
+    count: {
+      type: [Number],
+      required: true,
+    },
+    limit: {
+      type: Number,
+      required: true,
+    },
   },
   setup(props, { slots, emit }) {
-    const showBeforeEllipsis = ref<boolean>(false)
-    const showAfterEllipsis = ref<boolean>(false)
-    const isLess = ref<boolean>(false) // control less or normal
+    const [beforeEllipsis, setBeforeEllipsis] = useState<boolean>(false)
+
+    const [afterEllipsis, setAfterEllipsis] = useState<boolean>(false)
 
     const { context } = useProvider<PaginationProvide>(READONLY_PAGINATION_KEY)
-    const setPage = (page: number) => context?.setCurrentPage(page)
+    const setParentPage = (page: number) => context?.setCurrentPage(page)
 
+    /**
+     * limit as default is 7 , so it will show visiblePage
+     * 5
+     */
     const visbilePage = computed(() => {
-      const limit = Number(props.limit)
+      const { limit } = props
       return (limit % 2 === 0 ? limit - 1 : limit) - 2
     })
 
-    watchEffect(() => {
-      const count = Number(props.count)
-      const current = Number(props.current)
-      const limit = Number(props.limit)
-      const middleNum = (visbilePage.value + 1) / 2
-      showBeforeEllipsis.value = false
-      showAfterEllipsis.value = false
-      isLess.value = Number(count) < Number(limit) ? true : false
-      if (count > limit) {
-        if (current > middleNum + 1) {
-          showBeforeEllipsis.value = true
-        }
-        if (current < count - middleNum) {
-          showAfterEllipsis.value = true
-        }
-      }
-    })
-    const pagers = computed(() => {
-      const count = Number(props.count)
-      const current = Number(props.current)
-      const limit = Number(props.limit)
-      const showBefore = showBeforeEllipsis.value
-      const showAfter = showAfterEllipsis.value
-      const middleNum = (visbilePage.value + 1) / 2
-      const pageArr = []
-      if (showBefore && showAfter) {
-        const offset = middleNum - 1
-        for (let i = current; i <= current + offset; i++) {
-          pageArr.push(i)
-        }
-        return pageArr
-      }
-      if (showBefore && !showAfter) {
-        for (let i = current; i <= count - 1; i++) {
-          pageArr.push(i)
-        }
-        return pageArr
-      }
+    // dispaly limit value older then count value
 
-      if (!showBefore && showAfter) {
-        for (let i = 2; i < limit; i++) {
-          pageArr.push(i)
-        }
-        return pageArr
-      }
-      for (let i = 2; i < count; i++) {
-        pageArr.push(i)
-      }
+    const overlaod = computed(() => (props.limit > props.count ? true : false))
 
-      return pageArr
+    const setEllipsisState = () => {
+      const { count, current } = props
+      const cursor = (visbilePage.value + 1) / 2
+
+      // only work in normal mode. When overload as false
+      if (!overlaod.value) {
+        setBeforeEllipsis(current > cursor + 1 ? true : false)
+        setAfterEllipsis(current < count - cursor ? true : false)
+      }
+    }
+
+    watchEffect(setEllipsisState)
+
+    //  work in normal .
+    const dispalyedPage = computed(() => {
+      const { count, current, limit } = props
+      const showBefore = beforeEllipsis.value
+      const showAfter = afterEllipsis.value
+      const cursor = (visbilePage.value + 1) / 2
+      const offset = cursor - 1
+      const showBeforeAndAfter = showBefore && showAfter
+      const onlyShowBefore = showBefore && !showAfter
+      const onlyShowAfter = showAfter && !showBefore
+
+      const pageNum = showBeforeAndAfter
+        ? current + offset
+        : onlyShowBefore
+          ? count - 1
+          : onlyShowAfter
+            ? limit
+            : count
+
+      const control = showBeforeAndAfter || onlyShowBefore
+      return [...Array(pageNum)].reduce(
+        (acc: number[], cur: number, idx: number) => {
+          idx += 1
+
+          if (control && idx >= current) acc.push(idx)
+          if (!control && idx >= 2) acc.push(idx)
+          return acc
+        },
+        [],
+      ) as number[]
     })
 
     /**
@@ -85,7 +96,7 @@ const PaginationPages = defineComponent({
         <PaginationItem
           active={value === active}
           key={`pagination-item-${value}`}
-          onClick={() => setPage(value)}
+          onClick={() => setParentPage(value)}
         >
           {value}
         </PaginationItem>
@@ -97,7 +108,7 @@ const PaginationPages = defineComponent({
         <PaginationEllipsis
           key={`pagination-ellipsis-${key}`}
           isBefore={isBefore}
-          onClick={() => setPage(value)}
+          onClick={() => setParentPage(value)}
         />
       )
     }
@@ -106,31 +117,32 @@ const PaginationPages = defineComponent({
      * when limit value older than count value use it
      */
     const renderlessLimit = () => {
-      return [...new Array(Number(props.count))].map((_, index) => {
-        const value = index + 1
-        const current = Number(props.current)
-        return renderItem(value, current)
-      })
+      const { current } = props
+
+      return Array(props.count)
+        .fill(0)
+        .map((_, index) => {
+          const value = index + 1
+          return renderItem(value, current)
+        })
     }
 
     const renderNormal = () => {
-      const current = Number(props.current)
-      const count = Number(props.count)
+      const { current, count } = props
       const beforeValue = current - 5 >= 1 ? current - 5 : 1
       const afterValue = current + 5 <= count ? current + 5 : count
       return (
         <>
           {renderItem(1, current)}
-          {showBeforeEllipsis.value &&
-            renderEllipsis(beforeValue, 'before', true)}
-          {pagers.value.map((page) => renderItem(page, current))}
-          {showAfterEllipsis.value && renderEllipsis(afterValue, 'after')}
-          {renderItem(Number(count), current)}
+          {beforeEllipsis.value && renderEllipsis(beforeValue, 'before', true)}
+          {dispalyedPage.value.map((page) => renderItem(page, current))}
+          {afterEllipsis.value && renderEllipsis(afterValue, 'after')}
+          {renderItem(count, current)}
         </>
       )
     }
 
-    return () => <>{isLess.value ? renderlessLimit() : renderNormal()}</>
+    return () => <>{overlaod.value ? renderlessLimit() : renderNormal()}</>
   },
 })
 

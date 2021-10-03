@@ -9,8 +9,8 @@ const PaginationPrev = defineComponent({
 
     return () => (
       <PaginationItem
-        disabled={context!.isFirst.value}
-        onClick={() => context!.sideUpdatePage('prev')}
+        disabled={context!.head.value}
+        onClick={() => context!.updateSidePage('prev')}
       >
         {slots.default?.()}
       </PaginationItem>

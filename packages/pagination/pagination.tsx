@@ -1,27 +1,26 @@
-import {
-  computed,
-  watch,
-  ref,
-  watchEffect,
-  toRefs,
-  PropType,
-  defineComponent,
-} from 'vue'
+import { computed, watch, PropType, defineComponent, Slot } from 'vue'
 import { createProvider } from '@fect-ui/vue-hooks'
 import {
   createName,
   NormalSizes,
+  useState,
   CustomCSSProperties,
   ComponentInstance,
 } from '../utils'
-import { READONLY_PAGINATION_KEY, PaginationSize } from './type'
+import { READONLY_PAGINATION_KEY, PaginationSize, SideEvent } from './type'
 import PaginationPages from './pagination-pages'
 import PaginationNext from './pagination-next'
 import PaginationPrev from './pagination-previous'
-import PaginationSimple from './pagination-simple'
+
 import './index.less'
 
 const name = createName('Pagination')
+
+const COUNT_LOG
+  = '[Fect] <Pagination> the minimum count value must be more than 1 .'
+
+const LIMIT_LOG
+  = '[Fect] <Pagination> the minimum limit value must be more than 3 .'
 
 const queryPaginationSize = (size: NormalSizes) => {
   const sizes: Record<NormalSizes, PaginationSize> = {
@@ -33,6 +32,13 @@ const queryPaginationSize = (size: NormalSizes) => {
   return sizes[size]
 }
 
+const getEdgeCase = (rule: any, log: string) => {
+  const DEV = process.env.NODE_ENV !== 'production'
+  const next = DEV && rule
+  next && console.error(log)
+  return
+}
+
 export default defineComponent({
   name,
   props: {
@@ -42,7 +48,8 @@ export default defineComponent({
       default: 1,
     },
     count: {
-      type: [String, Number],
+      // page num
+      type: Number,
       default: 1,
     },
     size: {
@@ -56,41 +63,29 @@ export default defineComponent({
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { slots, emit }) {
-    const { provider } = createProvider<ComponentInstance>(
-      READONLY_PAGINATION_KEY,
-    )
-    const currentPage = ref<number>(props.modelValue)
+    const parent = createProvider<ComponentInstance>(READONLY_PAGINATION_KEY)
+
+    const { provider } = parent
+
     /**
      * control prev and next button disabled style
      */
 
-    const isFirst = ref<boolean>(false)
-    const isLast = ref<boolean>(false)
+    const [currentPage, setCurrentPage] = useState<number>(props.modelValue)
+
+    const head = computed(() => currentPage.value <= 1)
+    const end = computed(() => currentPage.value >= props.count)
 
     /**
      * check safe limit value
      */
-    if (process.env.NODE_ENV !== 'production' && props.count < 1) {
-      console.error(
-        '[Fect] <Pagination> the minimum count value must be more than 1 .',
-      )
-      return
-    }
-    if (
-      process.env.NODE_ENV !== 'production'
-      && props.limit <= 2
-      && !props.simple
-    ) {
-      console.error(
-        '[Fect] <Pagination> the minimum limit value must be more than 3 .',
-      )
-      return
-    }
 
-    const setCurrentPage = (val: number) => (currentPage.value = val)
+    getEdgeCase(props.count < 1, COUNT_LOG)
+
+    getEdgeCase(props.limit <= 2 && !props.simple, LIMIT_LOG)
 
     // func use in prev and next
-    const sideUpdatePage = (type: string) => {
+    const updateSidePage = (type: SideEvent) => {
       const cur = currentPage.value
       if (type === 'prev' && currentPage.value > 1) {
         setCurrentPage(cur - 1)
@@ -102,16 +97,10 @@ export default defineComponent({
 
     provider({
       setCurrentPage,
-      sideUpdatePage,
-      ...toRefs(props),
-      isFirst,
-      isLast,
-    })
-
-    watchEffect(() => {
-      const page = currentPage.value
-      isFirst.value = page <= 1
-      isLast.value = page >= props.count
+      updateSidePage,
+      head,
+      end,
+      props,
     })
 
     watch(currentPage, (page) => {
@@ -123,23 +112,26 @@ export default defineComponent({
       const { font: fontSize, width } = queryPaginationSize(props.size)
       const style: CustomCSSProperties = {
         fontSize,
+        '--pagination-size': width,
       }
-      style['--pagination-size'] = width
       return style
     })
 
+    const renderSide = (eventType: SideEvent, slot: Slot) => (
+      <li
+        class="paginatuon-slots__custom"
+        onClick={() => updateSidePage(eventType)}
+      >
+        {slot()}
+      </li>
+    )
+
     const renderPrev = () => {
-      // when slots.prev is exists, it will use custom prve render
       const prevSlot = slots['prev']
       return (
         <>
           {prevSlot ? (
-            <li
-              class="paginatuon-slots__custom"
-              onClick={() => sideUpdatePage('prev')}
-            >
-              {prevSlot()}
-            </li>
+            <>{renderSide('prev', prevSlot)}</>
           ) : (
             <PaginationPrev>{props.prevText}</PaginationPrev>
           )}
@@ -148,17 +140,11 @@ export default defineComponent({
     }
 
     const renderNext = () => {
-      // when slots.next is exists, it will use custom next render
       const nextSlot = slots['next']
       return (
         <>
           {nextSlot ? (
-            <li
-              class="paginatuon-slots__custom"
-              onClick={() => sideUpdatePage('next')}
-            >
-              {nextSlot()}
-            </li>
+            <>{renderSide('next', nextSlot)}</>
           ) : (
             <PaginationNext>{props.nextText}</PaginationNext>
           )}
@@ -167,16 +153,18 @@ export default defineComponent({
     }
 
     const renderPage = () => {
-      const isSimple = props.simple
+      const { simple, count, limit } = props
       return (
         <>
-          {isSimple ? (
-            <PaginationSimple />
+          {simple ? (
+            <li class="pagination-simple__desc">
+              {currentPage.value} / {count}
+            </li>
           ) : (
             <PaginationPages
-              current={props.modelValue}
-              count={props.count}
-              limit={props.limit}
+              current={currentPage.value}
+              count={count}
+              limit={limit}
             />
           )}
         </>
