@@ -137,7 +137,7 @@ const PaginationPages = defineComponent({
           {beforeEllipsis.value && renderEllipsis(beforeValue, 'before', true)}
           {dispalyedPage.value.map((page) => renderItem(page, current))}
           {afterEllipsis.value && renderEllipsis(afterValue, 'after')}
-          {renderItem(Number(count), current)}
+          {renderItem(count, current)}
         </>
       )
     }

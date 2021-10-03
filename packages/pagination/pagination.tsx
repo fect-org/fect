@@ -16,11 +16,11 @@ import './index.less'
 
 const name = createName('Pagination')
 
-const COUNT_LOG =
-  '[Fect] <Pagination> the minimum count value must be more than 1 .'
+const COUNT_LOG
+  = '[Fect] <Pagination> the minimum count value must be more than 1 .'
 
-const LIMIT_LOG =
-  '[Fect] <Pagination> the minimum limit value must be more than 3 .'
+const LIMIT_LOG
+  = '[Fect] <Pagination> the minimum limit value must be more than 3 .'
 
 const queryPaginationSize = (size: NormalSizes) => {
   const sizes: Record<NormalSizes, PaginationSize> = {
@@ -29,7 +29,7 @@ const queryPaginationSize = (size: NormalSizes) => {
     medium: { font: '14px', width: '32px' },
     large: { font: '16px', width: '38.5px' },
   }
-  return sizes[size] || sizes['medium']
+  return sizes[size]
 }
 
 const getEdgeCase = (rule: any, log: string) => {
