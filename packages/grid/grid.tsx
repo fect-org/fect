@@ -79,7 +79,7 @@ export default defineComponent({
 
       const containerStyle: CustomCSSProperties = {
         '--fect-gap-unit': `calc(${gap} * var(--fay-gap-quarter))`,
-        'flex-wrap': `${wrap}`,
+        'flex-wrap': wrap,
         'margin': 'calc(-1 * var(--fect-gap-unit))',
         'width': 'calc(100% + var(--fect-gap-unit) * 2)',
       }
