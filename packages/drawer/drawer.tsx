@@ -1,5 +1,10 @@
-import { watch, computed, defineComponent } from 'vue'
-import { useState, createName, CustomCSSProperties } from '../utils'
+import { watch, computed, defineComponent, ref } from 'vue'
+import {
+  useState,
+  createName,
+  CustomCSSProperties,
+  ComponentInstance,
+} from '../utils'
 import { props } from './props'
 import Teleport from '../teleport'
 import DrawerWrapper from './drawer-wrapper'
@@ -13,6 +18,8 @@ export default defineComponent({
   props,
   emits: ['update:modelValue'],
   setup(props, { slots, emit, attrs }) {
+    const drawerRef = ref<ComponentInstance>()
+
     const [visible, setVisible] = useState<boolean>(props.modelValue)
 
     const setDrawerStyle = computed(() => {
@@ -32,8 +39,8 @@ export default defineComponent({
 
     const poupClickHandler = (e: Event) => {
       if (props.disableOverlayClick) return
-      const el = e.target as HTMLElement
-      if (el.className !== 'fect-drawer__root') return
+      const element = drawerRef.value!.$el
+      if (element && element.contains(e.target as Node)) return
       setVisible(!visible.value)
     }
 
@@ -52,6 +59,7 @@ export default defineComponent({
           placement={props.placement}
           round={props.round}
           v-slots={slots}
+          ref={drawerRef}
           {...attrs}
         />
       </Teleport>
