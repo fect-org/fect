@@ -97,10 +97,11 @@ export default defineComponent({
           scroll={false}
           popupClass={`fect-tooltip__content ${portalClass} ${type}`}
           onPopupClick={preventHandler}
+          onMouseenter={() => mouseEventHandler(true)}
+          onMouseleave={() => mouseEventHandler(false)}
           style={setContentStyle.value}
           show={show.value}
           ref={contentRef}
-          onMouseleave={() => mouseEventHandler(false)}
         >
           <div class="fect-tooltip__inner">
             {visibleArrow && renderArrowIcon()}
@@ -133,7 +134,11 @@ export default defineComponent({
     const mouseEventHandler = (state: boolean) =>
       props.trigger === 'hover' && updateShow(state)
 
-    useClickAway(() => clickHandler(false), tooltipRef)
+    /**
+     * in mobile, mouseEvent can't wrok correctly , it
+     * will be translate as click event .
+     */
+    useClickAway(() => updateShow(false), tooltipRef)
 
     watch(show, (cur) => {
       emit('update:visible', cur)
@@ -153,7 +158,7 @@ export default defineComponent({
         ref={tooltipRef}
         onClick={() => clickHandler(!show.value)}
         onMouseenter={() => mouseEventHandler(true)}
-        // onMouseleave={() => mouseEventHandler(false)}
+        onMouseleave={() => mouseEventHandler(false)}
       >
         {slots.default?.()}
         {renderContent()}
