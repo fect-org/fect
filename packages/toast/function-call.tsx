@@ -1,7 +1,15 @@
 import FeToast from './toast'
-import { App } from 'vue'
-import { initMountArea, mountComponent, withInstall } from '../utils'
-import { NormalTypes } from '../utils/theme/propTypes'
+import { App, Component, watchEffect, computed, watch } from 'vue'
+import {
+  createNode,
+  withInstall,
+  NormalTypes,
+  createPortal,
+  useState,
+} from '../utils'
+import { omit } from '../popover/props'
+
+export type ToastType = NormalTypes
 
 export type ToastOptions = {
   text?: string | number
@@ -9,57 +17,72 @@ export type ToastOptions = {
   duration?: string | number
 }
 
-const insertToArea = (duraion: number | string | undefined) => {
-  const toastEl = document.querySelector(
-    '.fect-toast__container',
-  ) as HTMLElement
-  return new Promise((resolve) => {
-    /**
-     * unload all element at the end of the timer
-     * support custom duration
-     */
-    const _t = Number(duraion) || 4500
-    const _timer = setTimeout(() => {
-      toastEl.setAttribute('style', 'opacity: 0;')
-      clearTimeout(_timer)
-      resolve(true)
-    }, _t)
-  })
-}
+export type StaticToastOptions = Omit<ToastOptions, 'type'>
 
-const createInstance = (options: ToastOptions) => {
-  const { mountNode } = mountComponent({
+export type ToastProps = Omit<ToastOptions, 'duration'>
+
+export const merged = (...rest: any[]) =>
+  rest.reduce((acc, cur) => Object.assign(acc, cur), {})
+
+const queue: ToastProps[] = []
+
+const Toast = (options: ToastOptions) => {
+  // set max queue
+  if (queue.length > 10) queue.splice(10, 1)
+  const container = createNode('fect-toast__area')
+  queue.push(omit(options, 'duration'))
+  const content: Component = {
     setup() {
-      return () => <FeToast {...options} />
+      const [visible, setVisible] = useState<boolean>(false)
+
+      const [hide, setHide] = useState<boolean>(false)
+
+      watchEffect((onInvalidate) => {
+        const timer = setTimeout(() => {
+          setVisible(true)
+          clearTimeout(timer)
+        }, 0)
+        onInvalidate(() => {
+          clearTimeout(timer)
+        })
+      })
+
+      watchEffect((onInvalidate) => {
+        const timer = setTimeout(() => {
+          setHide(true)
+          clearTimeout(timer)
+        }, Number(options.duration) || 4500)
+        onInvalidate(() => {
+          clearTimeout(timer)
+        })
+      })
+
+      watch(hide, (pre) => {
+        if (pre) queue.length = 0
+      })
+
+      const setOpacity = computed(() => (hide.value ? 0 : 1))
+
+      return () => (
+        <div>
+          {queue.map((item, idx) => (
+            <div
+              class={`fect-toast__container ${visible.value ? 'visible' : ''}`}
+              style={{ opacity: setOpacity.value }}
+              data-index={idx}
+            >
+              <FeToast {...item} />
+            </div>
+          ))}
+        </div>
+      )
     },
-  })
-
-  return { mountNode }
+  }
+  createPortal(content, container)
 }
 
-const getInstance = (options: ToastOptions) => {
-  const area = initMountArea('fect-toast__area')
-  const { mountNode } = createInstance(options)
-  mountNode.classList.add('fect-toast__container')
-  const timer = setTimeout(() => {
-    mountNode.classList.add('visible')
-    clearTimeout(timer)
-  }, 0)
-  area.appendChild(mountNode)
-  insertToArea(options.duration).then((res) => {
-    if (res) {
-      area.removeChild(mountNode)
-      if (area.childNodes.length === 0) document.body.removeChild(area)
-    }
-  })
-}
-
-const Toast = (options: ToastOptions) => getInstance(options)
-
-const createMethods = (type: NormalTypes) => (options: ToastOptions) => {
-  Object.assign(options, { type })
-  Toast(options)
-}
+const createMethods = (type: NormalTypes) => (options: StaticToastOptions) =>
+  Toast(merged(options, { type }))
 
 /**
  * static methods
