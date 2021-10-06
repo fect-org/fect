@@ -55,7 +55,7 @@ describe('Tooltip', () => {
     expect(wrapper.find('.fect-tooltip__inner').text()).toBe('test infomation')
     await mouseEventHandler(false)
     await wrapper.setData({
-      hover: 'click',
+      trigger: 'click',
       visibleArrow: false,
       showAfter: 500,
     })
@@ -63,6 +63,14 @@ describe('Tooltip', () => {
     const el = wrapper.find('.fect-tooltip__content')
     await el.trigger('click')
     expect(wrapper.find('.fect-tooltip__inner').text()).toBeTruthy()
+    await clickHandler(false)
+    await wrapper.setData({
+      trigger: 'hover',
+      visible: true,
+    })
+    await wrapper.find('.fect-tooltip').trigger('mouseleave')
+    await wrapper.find('.fect-tooltip').trigger('mouseenter')
+    await el.trigger('mouseenter')
     await clickHandler(false)
     wrapper.unmount()
   })
