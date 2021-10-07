@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils'
 import Snippet from '..'
+import { later } from '../../../tests'
 
 const Wrapper = {
   components: {
@@ -46,8 +47,18 @@ describe('Snippet', () => {
       copy: 'prevent',
     })
     expect(wrapper.find('.fect-snippet_copy').exists()).toBe(false)
+
+    await wrapper.setData({
+      copy: 'silent',
+    })
+    const el = wrapper.find('.fect-snippet__copy')
+    await el.trigger('click')
     await wrapper.setData({
       copy: 'default',
     })
+    await el.trigger('click')
+    expect(document.querySelector('.fect-toast__area')).toBeTruthy()
+    expect(wrapper.html()).toMatchSnapshot()
+    wrapper.unmount()
   })
 })

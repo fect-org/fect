@@ -7,6 +7,7 @@ const name = createName('Spinner')
 
 export default defineComponent({
   name,
+  props: {},
   setup(props, { slots }) {
     const renderDot = () =>
       new Array(12).fill(0).map((_, idx) => <span key={`spinner-${idx}`} />)
