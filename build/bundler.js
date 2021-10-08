@@ -10,7 +10,7 @@ const {
   outputJSONSync,
 } = require('fs-extra')
 const webpack = require('webpack')
-const { join } = require('path')
+const { join, dirname, basename } = require('path')
 const ora = require('ora')
 const { spawn } = require('child_process')
 
@@ -55,6 +55,7 @@ class Bundler {
 
   async compilerFile(file) {
     if (/\.(json)/g.test(file)) {
+      // return file
       return compilerStyleDeps(file)
     }
     if (isScript(file)) {
@@ -137,39 +138,52 @@ class Bundler {
 
   async genStyleDeps(path) {
     const IGNORE_DIR = ['utils', 'index.ts']
-    const styleDeps = {}
     const REG = /import (\w+) from/g
     const compoents = readdirSync(path).filter((_) => !IGNORE_DIR.includes(_))
+    const styleDeps = {}
 
-    const analyzeComponentDeps = (component) => {
-      const componentPath = join(path, component)
-      styleDeps['style'] = {
+    /**
+     *
+     * @param {string} filePath
+     */
+
+    const setDeps = (filePath) => {
+      // only work on .tsx file as component
+      if (!filePath.endsWith('.tsx')) return
+      const dirPath = dirname(filePath)
+      const dirPathJson = join(dirPath, 'style.json')
+      const component = basename(dirPath)
+      const code = readFileSync(filePath, 'utf8')
+
+      const imports = code.match(IMPORT_REG) || []
+      styleDeps[component] = {
+        ...styleDeps[component],
         [component]: '../index.css',
       }
-      const file = readdirSync(componentPath)
-      file.map((item) => {
-        if (!item.includes('.ts' || '.tsx')) return
-        const filePath = join(componentPath, item)
-        const code = readFileSync(filePath, 'utf-8')
-        const imports = code.match(IMPORT_REG) || []
-        // set deps
-        imports.forEach((_) =>
-          _.replace(REG, (_, k) => {
-            k = k.toLowerCase()
-            if (compoents.includes(k)) {
-              styleDeps['style'] = {
-                [component]: '../index.css',
-                [k]: `../../${k}/index.css`,
-              }
+      imports.map((_) => {
+        // eslint-disable-next-line prefer-destructuring
+        const deps = _.match(REG)
+        if (deps) {
+          const depsComponent = deps[0]
+            .match(/\s\w+\s/g)[0]
+            .replace(/\s/g, '')
+            .toLowerCase()
+          if (compoents.includes(depsComponent)) {
+            styleDeps[component] = {
+              ...styleDeps[component],
+              [depsComponent]: `../../${depsComponent}/index.css`,
             }
-            // eslint-disable-next-line comma-dangle
-          })
-        )
+          }
+        }
       })
-      outputJSONSync(`${componentPath}/style.json`, JSON.stringify(styleDeps))
+      outputJSONSync(dirPathJson, styleDeps[component])
     }
 
-    await Promise.all(compoents.map((cop) => analyzeComponentDeps(cop)))
+    const analyzeDeps = (component) => {
+      const dir = join(path, component)
+      this.compilerDir(dir, setDeps)
+    }
+    await Promise.all(compoents.map((cop) => analyzeDeps(cop)))
   }
 
   tasks = [
