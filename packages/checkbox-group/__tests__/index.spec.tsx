@@ -4,12 +4,16 @@ import CheckboxGroup from '../index'
 import Checkbox from '../../checkbox'
 describe('CheckboxGroup', () => {
   it('should be render as element', () => {
-    const el = mount(<CheckboxGroup />)
+    const el = mount(CheckboxGroup)
     expect(() => el.unmount()).not.toThrow()
   })
 
   it('should be support useRow', () => {
-    const el = mount(<CheckboxGroup useRow />)
+    const el = mount(CheckboxGroup, {
+      props: {
+        useRow: true,
+      },
+    })
     expect(el.find('.useRow').exists()).toBe(true)
     expect(el.html()).toMatchSnapshot()
   })
