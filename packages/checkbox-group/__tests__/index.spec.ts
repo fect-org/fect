@@ -1,5 +1,4 @@
 import Checkbox from '../../checkbox'
-import CheckboxGroup from '../index'
 import { mount } from '@vue/test-utils'
 
 describe('Checkbox', () => {

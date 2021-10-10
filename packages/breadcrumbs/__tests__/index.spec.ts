@@ -11,7 +11,7 @@ const DiffWrapper = {
     [Breadcrumbs.name]: Breadcrumbs,
     [BreadcrumbsItem.name]: BreadcrumbsItem,
   },
-  data () {
+  data() {
     return {
       sizes: ['mini', 'small', 'medium', 'large'],
     }
@@ -29,7 +29,7 @@ const Wrapper = {
   },
   template: `<fe-breadcrumbs separator=">">
     <fe-breadcrumbsItem />
-    <fe-breadcrumbsItem />
+    <fe-breadcrumbsItem href="#" />
   </fe-breadcrumbs>`,
 }
 
@@ -53,5 +53,12 @@ describe('Breadcrumbs', () => {
   it('should be support custom separator', () => {
     const wrapper = mount(Wrapper)
     expect(wrapper.find('.fect-breadcrumbs__separator').text()).toBe('>')
+  })
+  it('should be render error when breadcrumbsItem without breadcrumbs', () => {
+    const wrapper = mount({
+      components: { [BreadcrumbsItem.name]: BreadcrumbsItem },
+      template: '<fe-breadcrumbsItem />',
+    })
+    expect(() => wrapper.get('.fect-breadcrumbs__item')).toThrowError()
   })
 })

@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import Grid from '../'
+import Grid from '..'
 
 describe('Grid', () => {
   it('shoud be render as element', () => {
