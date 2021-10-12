@@ -20,7 +20,6 @@ const {
   TMP_PATH,
   DECLARATION_PATH,
   TSCONFIG_PATH,
-  SCRIPT_PATH,
   IMPORT_REG,
   setBabelEnv,
   normalizePath,
@@ -226,7 +225,6 @@ class Bundler {
     }
 
     idx === 4 && removeSync(TMP_PATH)
-    removeSync(SCRIPT_PATH)
   }
   static async cleanBuild() {
     await cleanBuild()

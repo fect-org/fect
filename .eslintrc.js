@@ -1,26 +1,26 @@
 module.exports = {
-  'root': true,
+  root: true,
 
-  'env': {
+  env: {
     node: true,
   },
 
-  'extends': [
+  extends: [
     'plugin:vue/vue3-essential',
     'kagura',
     // '@vue/standard'
   ],
 
-  'parserOptions': {
+  parserOptions: {
     parser: '@typescript-eslint/parser',
   },
 
-  'rules': {
+  rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
   },
 
-  'overrides': [
+  overrides: [
     {
       files: [
         '**/__tests__/*.{j,t}s?(x)',
@@ -32,9 +32,5 @@ module.exports = {
     },
   ],
 
-  'extends': [
-    'plugin:vue/vue3-essential',
-    'kagura',
-    '@vue/typescript',
-  ],
+  extends: ['plugin:vue/vue3-essential', 'kagura', '@vue/typescript'],
 }
