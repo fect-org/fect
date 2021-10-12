@@ -7,13 +7,13 @@
     "serve": "vue-cli-service serve",
     "test:unit": "set NODE_ENV=test &&  vue-cli-service test:unit",
     "lint": "eslint \"{packages,_page,src,scripts}/**/*.{js,jsx,vue}\"",
-    "collect": "node ./build/collect.js && eslint --fix --ext .ts packages/index.ts",
+    "collect": "node ./scripts/collect.js && eslint --fix --ext .ts packages/index.ts",
     "commit": "git-cz",
     "coverage": "npm run test:unit -- --coverage",
     "release": "npm publish --access public --non-interactive",
     "report": "npm run coverage && codecov",
     "build:doc": "vue-cli-service build",
-    "build:pkg": "node ./build/index.js"
+    "build:pkg": "node ./scripts/index.js"
   },
   "main": "lib/index.js",
   "module": "es/index.js",

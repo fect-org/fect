@@ -1,9 +1,11 @@
 const Prism = require('prismjs')
+const { join } = require('path')
 
 module.exports = {
   productionSourceMap: false,
   parallel: false,
   configureWebpack: {
+    entry: join(__dirname, 'packages', 'website', 'src', 'main.ts'),
     module: {
       rules: [
         {
