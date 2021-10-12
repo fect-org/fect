@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { useProvider } from '@fect-ui/vue-hooks'
-import { setLightTheme, setDarkTheme } from '../../packages/utils'
+import { setLightTheme, setDarkTheme } from '../../../vue/components/utils'
 import { LayoutProvide, READONLY_DOCS_LAYOUT_KEY } from '../Layout/type'
 import { computed, defineComponent, ref, watchEffect } from 'vue'
 

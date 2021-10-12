@@ -7,7 +7,7 @@ const ESM_PATH = join(__dirname, '..', 'es')
 
 const DTS_PATH = join(__dirname, '..', 'types')
 
-const PACKAGE_PATH = join(__dirname, '..', 'packages')
+const PACKAGE_PATH = join(__dirname, '..', 'packages', 'vue', 'components')
 
 const TMP_PATH = join(__dirname, '..', 'tmp')
 
@@ -15,7 +15,7 @@ const DECLARATION_PATH = join(__dirname, 'declaration.json')
 
 const SCRIPT_PATH = join(__dirname, '..', 'scripts')
 
-const TSCONFIG_PATH = join(SCRIPT_PATH, 'tsconfig.json')
+const TSCONFIG_PATH = join(TMP_PATH, 'tsconfig.json')
 
 const IMPORT_REG = /import\s+?(?:(?:(?:[\w*\s{},]*)\s+from(\s+)?)|)(?:(?:".*?")|(?:'.*?'))[\s]*?(?:;|$|)/g
 
