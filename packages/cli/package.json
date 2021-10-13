@@ -1,0 +1,41 @@
+{
+  "name": "@fect-ui/cli",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "XeryYue <812137533@qq.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XeryYue/fect.git"
+  },
+  "scripts": {
+    "watch": "tsc --watch",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/plugin-transform-runtime": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "@babel/preset-typescript": "^7.13.0",
+    "@babel/runtime": "^7.14.0",
+    "@types/node": "^16.10.5",
+    "@vue/compiler-sfc": "^3.2.20",
+    "chalk": "^4.1.2",
+    "commander": "^8.2.0",
+    "eslint": "^8.0.0",
+    "eslint-config-kagura": "^1.0.3",
+    "fs-extra": "^10.0.0",
+    "jest": "^27.2.5",
+    "less": "^4.1.2",
+    "ora": "^6.0.1",
+    "vue-jest": "^3.0.7",
+    "vue-loader": "^16.8.1"
+  },
+  "devDependencies": {
+    "@types/babel__core": "^7.1.16",
+    "@types/fs-extra": "^9.0.13"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  }
+}

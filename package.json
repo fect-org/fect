@@ -5,12 +5,15 @@
   "author": "XeryYue",
   "main": "index.js",
   "npmClient": "yarn",
+  "useWorkspaces": true,
   "workspaces": [
     "packages/*"
   ],
-  "useWorkspaces": true,
   "license": "MIT",
   "scripts": {
+    "build:cli": "lerna exec --scope @fect-ui/cli -- yarn build",
+    "watch:cli": "lerna exec --scope @fect-ui/cli -- yarn watch",
+    "clean": "lerna clean",
     "commit": "git-cz"
   },
   "config": {
@@ -26,5 +29,10 @@
     "husky": "^7.0.2",
     "lerna": "^4.0.0",
     "lint-staged": "^11.2.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "kagura"
+    ]
   }
 }
