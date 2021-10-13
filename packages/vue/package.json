@@ -1,0 +1,12 @@
+{
+  "name": "@fect-ui/vue",
+  "version": "1.0.3",
+  "description": "Minimalist UI components built on Vue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "XeryYue",
+  "license": "MIT"
+}

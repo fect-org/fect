@@ -1,120 +1,30 @@
 {
-  "name": "@fect-ui/vue",
-  "version": "1.0.3",
-  "description": "Minimalist UI components built on Vue",
-  "author": "Fect Org",
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "test:unit": "set NODE_ENV=test &&  vue-cli-service test:unit",
-    "lint": "eslint \"{packages,scripts}/**/*.{js,jsx,vue}\"",
-    "collect": "node ./scripts/collect.js && eslint --fix --ext .ts packages/vue/**/index.ts",
-    "commit": "git-cz",
-    "coverage": "npm run test:unit -- --coverage",
-    "release": "npm publish --access public --non-interactive",
-    "report": "npm run coverage && codecov",
-    "build:doc": "vue-cli-service build",
-    "build:pkg": "npm run collect && node ./scripts/index.js"
-  },
-  "main": "lib/index.js",
-  "module": "es/index.js",
-  "types": "types/index.d.ts",
-  "files": [
-    "LICENSE",
-    "lib/",
-    "es/",
-    "types/",
-    "vetur/"
+  "name": "root",
+  "private": true,
+  "version": "1.0.0",
+  "author": "XeryYue",
+  "main": "index.js",
+  "npmClient": "yarn",
+  "workspaces": [
+    "packages/*"
   ],
-  "dependencies": {
-    "@fect-ui/themes": "^1.1.0",
-    "@fect-ui/vue-hooks": "0.0.2"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.13.8",
-    "@babel/plugin-transform-runtime": "^7.14.3",
-    "@babel/preset-env": "^7.14.4",
-    "@babel/preset-typescript": "^7.13.0",
-    "@babel/runtime": "^7.14.0",
-    "@fect-ui/markdown-loader": "0.0.1",
-    "@fect-ui/vue-icons": "^0.1.7",
-    "@types/jest": "^24.0.19",
-    "@typescript-eslint/eslint-plugin": "^4.28.5",
-    "@typescript-eslint/parser": "^4.28.5",
-    "@vue/babel-plugin-jsx": "^1.0.3",
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-plugin-typescript": "^4.5.13",
-    "@vue/cli-plugin-unit-jest": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
-    "@vue/eslint-config-standard": "^5.1.2",
-    "@vue/eslint-config-typescript": "^5.0.2",
-    "@vue/test-utils": "^2.0.0-rc.14",
-    "babel-eslint": "^10.1.0",
-    "babel-loader": "^8.2.2",
-    "chalk": "^4.1.0",
-    "codecov": "^3.8.2",
-    "core-js": "^3.6.5",
-    "css-loader": "^5.1.1",
-    "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^6.7.2",
-    "eslint-config-kagura": "^1.0.3",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "eslint-plugin-vue": "^7.0.0-0",
-    "fs-extra": "^9.1.0",
-    "jest-environment-jsdom-sixteen": "^2.0.0",
-    "less": "^3.0.4",
-    "less-loader": "^5.0.0",
-    "lint-staged": "^9.5.0",
-    "mini-css-extract-plugin": "^0.9.0",
-    "ora": "^5.4.1",
-    "postcss": "^8.3.0",
-    "prismjs": "^1.23.0",
-    "raw-loader": "^4.0.2",
-    "style-loader": "^2.0.0",
-    "tslib": "^2.2.0",
-    "typescript": "~4.1.5",
-    "vue": "^3.0.0",
-    "vue-jest": "^5.0.0-0",
-    "vue-loader": "^16.1.2",
-    "vue-prism-component": "^2.0.0",
-    "vue-router": "^4.0.8"
-  },
-  "peerDependencies": {
-    "vue": "^3.0.0"
+  "useWorkspaces": true,
+  "license": "MIT",
+  "scripts": {
+    "commit": "git-cz"
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "./node_modules/cz-lerna-changelog"
     }
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "homepage": "https://github.com/fay-org/fect",
-  "keywords": [
-    "vue component",
-    "fect",
-    "vue ui"
-  ],
-  "license": "MIT",
-  "lint-staged": {
-    "*.{js,jsx,vue}": [
-      "vue-cli-service lint",
-      "git add"
-    ]
-  },
-  "public": true,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fay-org/fect"
-  },
-  "vetur": {
-    "tags": "vetur/tags.json",
-    "attributes": "vetur/attributes.json"
+  "devDependencies": {
+    "@commitlint/cli": "^13.2.1",
+    "@commitlint/config-conventional": "^13.2.0",
+    "commitizen": "^4.2.4",
+    "cz-lerna-changelog": "^2.0.3",
+    "husky": "^7.0.2",
+    "lerna": "^4.0.0",
+    "lint-staged": "^11.2.3"
   }
 }

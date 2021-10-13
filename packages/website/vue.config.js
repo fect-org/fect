@@ -5,7 +5,7 @@ module.exports = {
   productionSourceMap: false,
   parallel: false,
   configureWebpack: {
-    entry: join(__dirname, 'packages', 'website', 'src', 'main.ts'),
+    entry: join(__dirname, 'src', 'main.ts'),
     module: {
       rules: [
         {
@@ -19,7 +19,7 @@ module.exports = {
                   return Prism.highlight(
                     str,
                     Prism.languages.javascript,
-                    'javascript',
+                    'javascript'
                   )
                 },
               },

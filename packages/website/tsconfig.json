@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "outDir": "/",
+      "jsx": "preserve",
+      "target": "esnext",
+      "module": "esnext",
+      "strict": true,
+      "allowJs": true,
+      "noImplicitThis": true,
+      "importHelpers": true,
+      "esModuleInterop": true,
+      "moduleResolution": "node",
+      "paths": {
+        "@/*": ["src/*"]
+      },
+      "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+    },
+    "exclude": ["node_modules"]
+}
+  
