@@ -3,10 +3,6 @@ import { join } from 'path'
 
 export const CWD = cwd()
 
-/**
- * build esm cjs packages we set it as default user can't change it
- */
-
 export const ESM_PATH = join(CWD, 'es')
 
 export const CJS_PATH = join(CWD, 'lib')
@@ -19,4 +15,6 @@ export const SCRIPTS_EXTENSIONS = ['.tsx', '.ts', '.jsx', '.js']
 
 export const VITE_RESOLVE_EXTENSIONS = [...SCRIPTS_EXTENSIONS, '.json', '.less', '.vue', '.css']
 
+export const NONRC_REG = /(.?)(non).+\.(js|ts)/g
 
+export const NON_DEFAULT_PATH = join(__dirname, '..', 'config', 'non.config.js')

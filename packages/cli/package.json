@@ -10,7 +10,8 @@
   },
   "scripts": {
     "watch": "tsc --watch",
-    "build": "tsc"
+    "build": "tsc",
+    "dev": "node ./lib/shared/get-config.js"
   },
   "dependencies": {
     "@babel/core": "^7.13.8",
@@ -18,7 +19,8 @@
     "@babel/preset-env": "^7.14.4",
     "@babel/preset-typescript": "^7.13.0",
     "@babel/runtime": "^7.14.0",
-    "@types/node": "^16.10.5",
+    "@vitejs/plugin-vue": "1.9.2",
+    "@vitejs/plugin-vue-jsx": "1.1.8",
     "@vue/babel-plugin-jsx": "^1.0.7",
     "@vue/compiler-sfc": "^3.2.20",
     "chalk": "^4.1.2",
@@ -38,6 +40,7 @@
   "devDependencies": {
     "@types/babel__core": "^7.1.16",
     "@types/fs-extra": "^9.0.13",
+    "@types/node": "^16.10.5",
     "@types/lodash": "^4.14.175"
   },
   "peerDependencies": {

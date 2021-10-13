@@ -1,5 +1,5 @@
 import { InlineConfig } from 'vite'
-import { CWD, VITE_RESOLVE_EXTENSIONS, UMD_PATH } from '@/shared/constant'
+import { CWD, VITE_RESOLVE_EXTENSIONS, UMD_PATH } from '../../shared/constant'
 
 export const useDevConfig = (): InlineConfig => {
  return {
