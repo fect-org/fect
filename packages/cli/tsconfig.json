@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "baseUrl": ".",
         "outDir": "./lib",
         "target": "ES2015",
         "module": "CommonJS",
@@ -10,7 +11,10 @@
         "importHelpers": true,
         "allowJs": true,
         "jsx": "preserve",
-        "lib": ["esnext", "dom"]
+        "lib": ["esnext", "dom"],
+        "paths": {
+            "@/*": ["src/*"]
+          },
     },
     "include": ["src/**/*"]
 }
