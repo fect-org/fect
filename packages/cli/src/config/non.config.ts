@@ -21,13 +21,22 @@ export type NonConfig = {
    * 热启动
    */
   hot?: boolean
+  /**
+   * 库打包模式
+   */
+  // library?: boolean
+  // /**
+  //  * 生成库的格式 'umd'|'esmodule'|'commonjs'|'default'
+  //  */
+  // mode?: 'umd' | 'esmodule' | 'commonjs' | 'default'
 }
 
 const config: NonConfig = {
-  name: 'Fect',
+  name: 'fect',
   entry: join(CWD, 'src', 'main.js'),
   port: 8080,
   hot: false,
+  // library: false,
 }
 
 export default config

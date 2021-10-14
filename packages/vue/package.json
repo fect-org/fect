@@ -4,9 +4,17 @@
   "description": "Minimalist UI components built on Vue",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "collect": "non collect",
+    "build": "non compile"
   },
   "keywords": [],
   "author": "XeryYue",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@fect-ui/cli": "^1.0.0"
+  },
+  "dependencies": {
+    "@fect-ui/themes": "^1.1.0",
+    "@fect-ui/vue-hooks": "^0.0.2"
+  }
 }

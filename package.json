@@ -13,7 +13,7 @@
   "scripts": {
     "build:cli": "lerna exec --scope @fect-ui/cli -- yarn build",
     "watch:cli": "lerna exec --scope @fect-ui/cli -- yarn watch",
-    "dev:cli": "lerna exec --scope @fect-ui/cli -- yarn dev",
+    "build:ui": "lerna exec --scope @fect-ui/vue -- yarn build",
     "clean": "lerna clean",
     "commit": "git-cz"
   },
