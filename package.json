@@ -29,7 +29,8 @@
     "cz-lerna-changelog": "^2.0.3",
     "husky": "^7.0.2",
     "lerna": "^4.0.0",
-    "lint-staged": "^11.2.3"
+    "lint-staged": "^11.2.3",
+    "vue": "^3.2.20"
   },
   "eslintConfig": {
     "extends": [
