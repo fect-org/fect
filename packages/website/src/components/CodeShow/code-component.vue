@@ -15,12 +15,12 @@ export default defineComponent({
     const renderRef = ref<ComponentPublicInstance & { _: any }>()
     const { context } = useProvider<CodeShowProvide>(READONLY_DOCS_CODESHOW_KEY)
     const { name, setpreViewCode } = context!
-    onMounted(() => {
-      if (renderRef.value) {
-        const codes = renderRef.value._.type._meta().default
-        setpreViewCode(codes)
-      }
-    })
+    // onMounted(() => {
+    //   if (renderRef.value) {
+    //     const codes = renderRef.value._.type._meta().default
+    //     setpreViewCode(codes)
+    //   }
+    // })
 
     return {
       renderRef,

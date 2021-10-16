@@ -6,11 +6,12 @@
 
 <script>
 import { ref } from 'vue'
+import { github } from '@fect-ui/vue-icons'
 export default {
-  name: 'ex-rating-custom',
+  name: 'ExRatingCustom',
   setup() {
     const val = ref(3)
-    const icon = <github />
+    const icon = github
     return { val, icon }
   },
 }

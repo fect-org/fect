@@ -3,6 +3,7 @@
  */
 import { join } from 'path'
 import { CWD } from '../shared/constant'
+import { Plugin } from 'vite'
 
 export type NonConfig = {
   /**
@@ -17,21 +18,14 @@ export type NonConfig = {
    * 启动端口
    */
   port?: number
-  /**
-   * 库打包模式
-   */
-  // library?: boolean
-  // /**
-  //  * 生成库的格式 'umd'|'esmodule'|'commonjs'|'default'
-  //  */
-  // mode?: 'umd' | 'esmodule' | 'commonjs' | 'default'
+
+  plugins?: Plugin[]
 }
 
 const config: NonConfig = {
   name: 'fect',
   entry: join(CWD, 'src', 'main.js'),
   port: 8080,
-  // library: false,
 }
 
 export default config
