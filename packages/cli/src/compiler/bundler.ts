@@ -93,24 +93,18 @@ export class Bundler {
 
     const setDeps = (filePath: string) => {
       // only work on .tsx file as component
-      if (!['.tsx', '.css', '.less'].includes(extname(filePath))) return
+      if (!['.tsx', '.less'].includes(extname(filePath))) return
       const dirPath = dirname(filePath)
       const dirPathJson = join(dirPath, 'style.json')
       const component = basename(dirPath)
       const code = readFileSync(filePath, 'utf8')
       const imports = (filePath.endsWith('.tsx') && code.match(IMPORT_REG)) || []
-      const hasStyle = filePath.endsWith('.less') || filePath.endsWith('.css')
-      if (hasStyle) {
-        styleDeps[component] = {
-          ...styleDeps[component],
-          [component]: '../index.css',
-        }
-      } else {
-        styleDeps[component] = {
-          ...styleDeps[component],
-        }
+      const hasStyle = filePath.endsWith('.less')
+      const defaultStyle = hasStyle ? '../index.css' : ''
+      styleDeps[component] = {
+        ...styleDeps[component],
+        [component]: defaultStyle,
       }
-
       imports.map((_) => {
         // eslint-disable-next-line prefer-destructuring
         const deps = _.match(REG)
@@ -118,7 +112,10 @@ export class Bundler {
           const depsComponent = deps[0]
             .match(/\s\w+\s/g)[0]
             .replace(/\s/g, '')
+            .replace(/[A-Z]/g, (_) => '-' + _)
             .toLowerCase()
+            .substr(1)
+
           if (compoents.includes(depsComponent)) {
             styleDeps[component] = {
               ...styleDeps[component],
@@ -195,10 +192,10 @@ export class Bundler {
       text: 'Build Declaration Outputs',
       task: this.genDTS,
     },
-    {
-      text: 'Build UMD Outputs',
-      task: this.genUMD,
-    },
+    // {
+    //   text: 'Build UMD Outputs',
+    //   task: this.genUMD,
+    // },
   ]
 
   async run() {
@@ -220,8 +217,6 @@ export class Bundler {
         process.exit(1)
       }
     }
-    await this.genESM()
-    removeSync(TMP_PATH)
     idx === done && removeSync(TMP_PATH)
   }
 

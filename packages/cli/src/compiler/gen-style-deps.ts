@@ -8,6 +8,7 @@ export const compilerStyleDeps = async (filePath: string) => {
 
   const styles = depsKeys
     .map((key) => {
+      if (!data[key]) return
       if (BABEL_ENV === 'commonjs') return `require("${data[key]}");\n`
       return `import "${data[key]}";\n`
     })

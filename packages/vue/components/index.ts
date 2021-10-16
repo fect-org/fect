@@ -1,125 +1,167 @@
+const version = '1.0.3'
 
-   
-     const version = '1.0.3' ;
-   
-      import '@fect-ui/themes';
-      import {App} from 'vue';
-      import { Avatar } from './avatar';
-import { AvatarGroup } from './avatar-group';
-import { BackTop } from './back-top';
-import { Badge } from './badge';
-import { BadgeAnchor } from './badge-anchor';
-import { Breadcrumbs } from './breadcrumbs';
-import { BreadcrumbsItem } from './breadcrumbs-item';
-import { Button } from './button';
-import { Capacity } from './capacity';
-import { Card } from './card';
-import { Checkbox } from './checkbox';
-import { CheckboxGroup } from './checkbox-group';
-import { Code } from './code';
-import { Col } from './col';
-import { Collapse } from './collapse';
-import { CollapseGroup } from './collapse-group';
-import { Dot } from './dot';
-import { Drawer } from './drawer';
-import { Grid } from './grid';
-import { Image } from './image';
-import { ImageBrowser } from './image-browser';
-import { Input } from './input';
-import { Link } from './link';
-import { Loading } from './loading';
-import { Modal } from './modal';
-import { Pagination } from './pagination';
-import { Popover } from './popover';
-import { Progress } from './progress';
-import { Radio } from './radio';
-import { RadioGroup } from './radio-group';
-import { Rating } from './rating';
-import { Row } from './row';
-import { Select } from './select';
-import { SelectOption } from './select-option';
-import { Skeleton } from './skeleton';
-import { SkeletonItem } from './skeleton-item';
-import { Snippet } from './snippet';
-import { Spacer } from './spacer';
-import { Spinner } from './spinner';
-import { Swipe } from './swipe';
-import { SwipeItem } from './swipe-item';
-import { Switch } from './switch';
-import { Tab } from './tab';
-import { Tabs } from './tabs';
-import { Tag } from './tag';
-import { Teleport } from './teleport';
-import { Toast } from './toast';
-import { Tooltip } from './tooltip';
-      const components = [Avatar,AvatarGroup,BackTop,Badge,BadgeAnchor,Breadcrumbs,BreadcrumbsItem,Button,Capacity,Card,Checkbox,CheckboxGroup,Code,Col,Collapse,CollapseGroup,Dot,Drawer,Grid,Image,ImageBrowser,Input,Link,Loading,Modal,Pagination,Popover,Progress,Radio,RadioGroup,Rating,Row,Select,SelectOption,Skeleton,SkeletonItem,Snippet,Spacer,Spinner,Swipe,SwipeItem,Switch,Tab,Tabs,Tag,Teleport,Toast,Tooltip];
-      const install = (app:App) => {
-        components.map((component:any) => {
-          if (component.install) {
-            app.use(component)
-          } else if(component.name) {
-            app.component(component.name , component)
-          }
-        })
-      };
-   
-      export * from './avatar';
- export * from './avatar-group';
- export * from './back-top';
- export * from './badge';
- export * from './badge-anchor';
- export * from './breadcrumbs';
- export * from './breadcrumbs-item';
- export * from './button';
- export * from './capacity';
- export * from './card';
- export * from './checkbox';
- export * from './checkbox-group';
- export * from './code';
- export * from './col';
- export * from './collapse';
- export * from './collapse-group';
- export * from './dot';
- export * from './drawer';
- export * from './grid';
- export * from './image';
- export * from './image-browser';
- export * from './input';
- export * from './link';
- export * from './loading';
- export * from './modal';
- export * from './pagination';
- export * from './popover';
- export * from './progress';
- export * from './radio';
- export * from './radio-group';
- export * from './rating';
- export * from './row';
- export * from './select';
- export * from './select-option';
- export * from './skeleton';
- export * from './skeleton-item';
- export * from './snippet';
- export * from './spacer';
- export * from './spinner';
- export * from './swipe';
- export * from './swipe-item';
- export * from './switch';
- export * from './tab';
- export * from './tabs';
- export * from './tag';
- export * from './teleport';
- export * from './toast';
- export * from './tooltip';
-   
-      export {
-        install,
-        version
-      };
-   
-      export default {
-        install,
-        version,
-      };
-   
-      
+import '@fect-ui/themes'
+import { App } from 'vue'
+import { Avatar } from './avatar'
+import { AvatarGroup } from './avatar-group'
+import { BackTop } from './back-top'
+import { Badge } from './badge'
+import { BadgeAnchor } from './badge-anchor'
+import { Breadcrumbs } from './breadcrumbs'
+import { BreadcrumbsItem } from './breadcrumbs-item'
+import { Button } from './button'
+import { Capacity } from './capacity'
+import { Card } from './card'
+import { Checkbox } from './checkbox'
+import { CheckboxGroup } from './checkbox-group'
+import { Code } from './code'
+import { Col } from './col'
+import { Collapse } from './collapse'
+import { CollapseGroup } from './collapse-group'
+import { Dot } from './dot'
+import { Drawer } from './drawer'
+import { Grid } from './grid'
+import { Image } from './image'
+import { ImageBrowser } from './image-browser'
+import { Input } from './input'
+import { Link } from './link'
+import { Loading } from './loading'
+import { Modal } from './modal'
+import { Pagination } from './pagination'
+import { Popover } from './popover'
+import { Progress } from './progress'
+import { Radio } from './radio'
+import { RadioGroup } from './radio-group'
+import { Rating } from './rating'
+import { Row } from './row'
+import { Select } from './select'
+import { SelectOption } from './select-option'
+import { Skeleton } from './skeleton'
+import { SkeletonItem } from './skeleton-item'
+import { Snippet } from './snippet'
+import { Spacer } from './spacer'
+import { Spinner } from './spinner'
+import { Swipe } from './swipe'
+import { SwipeItem } from './swipe-item'
+import { Switch } from './switch'
+import { Tab } from './tab'
+import { Tabs } from './tabs'
+import { Tag } from './tag'
+import { Teleport } from './teleport'
+import { Toast } from './toast'
+import { Tooltip } from './tooltip'
+const components = [
+  Avatar,
+  AvatarGroup,
+  BackTop,
+  Badge,
+  BadgeAnchor,
+  Breadcrumbs,
+  BreadcrumbsItem,
+  Button,
+  Capacity,
+  Card,
+  Checkbox,
+  CheckboxGroup,
+  Code,
+  Col,
+  Collapse,
+  CollapseGroup,
+  Dot,
+  Drawer,
+  Grid,
+  Image,
+  ImageBrowser,
+  Input,
+  Link,
+  Loading,
+  Modal,
+  Pagination,
+  Popover,
+  Progress,
+  Radio,
+  RadioGroup,
+  Rating,
+  Row,
+  Select,
+  SelectOption,
+  Skeleton,
+  SkeletonItem,
+  Snippet,
+  Spacer,
+  Spinner,
+  Swipe,
+  SwipeItem,
+  Switch,
+  Tab,
+  Tabs,
+  Tag,
+  Teleport,
+  Toast,
+  Tooltip,
+]
+const install = (app: App) => {
+  components.map((component: any) => {
+    if (component.install) {
+      app.use(component)
+    } else if (component.name) {
+      app.component(component.name, component)
+    }
+  })
+}
+
+export * from './avatar'
+export * from './avatar-group'
+export * from './back-top'
+export * from './badge'
+export * from './badge-anchor'
+export * from './breadcrumbs'
+export * from './breadcrumbs-item'
+export * from './button'
+export * from './capacity'
+export * from './card'
+export * from './checkbox'
+export * from './checkbox-group'
+export * from './code'
+export * from './col'
+export * from './collapse'
+export * from './collapse-group'
+export * from './dot'
+export * from './drawer'
+export * from './grid'
+export * from './image'
+export * from './image-browser'
+export * from './input'
+export * from './link'
+export * from './loading'
+export * from './modal'
+export * from './pagination'
+export * from './popover'
+export * from './progress'
+export * from './radio'
+export * from './radio-group'
+export * from './rating'
+export * from './row'
+export * from './select'
+export * from './select-option'
+export * from './skeleton'
+export * from './skeleton-item'
+export * from './snippet'
+export * from './spacer'
+export * from './spinner'
+export * from './swipe'
+export * from './swipe-item'
+export * from './switch'
+export * from './tab'
+export * from './tabs'
+export * from './tag'
+export * from './teleport'
+export * from './toast'
+export * from './tooltip'
+
+export { install, version }
+
+export default {
+  install,
+  version,
+}

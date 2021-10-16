@@ -25,15 +25,15 @@ export default defineComponent({
 
     const { context } = useProvider<LayoutProvide>(READONLY_DOCS_LAYOUT_KEY)
     const { mobileTabClickHandler } = context!
-    watchEffect(() => {
-      if (typeof props.to !== 'string') {
-        const { route } = props.to as RouteContext
-        isActive.value = router.currentRoute.value.name === route.name
-      }
-      if (isActive.value) {
-        document.title = `${props.routeName} | Vue - Fect UI`
-      }
-    })
+    // watchEffect(() => {
+    //   if (typeof props.to !== 'string') {
+    //     const { route } = props.to as RouteContext
+    //     isActive.value = router.currentRoute.value.name === route.name
+    //   }
+    //   if (isActive.value) {
+    //     document.title = `${props.routeName} | Vue - Fect UI`
+    //   }
+    // })
 
     const name = computed(() => {
       const { route } = props.to as RouteContext

@@ -1,14 +1,10 @@
 <template>
   <div class="fect-doc__sider">
     <widgets />
-    <div
-      v-for="(route, idx) in routes"
-      :key="route + idx"
-      class="fect-doc__route-content"
-    >
+    <div v-for="(route, idx) in routes" :key="route + idx" class="fect-doc__route-content">
       <span class="title">{{ route.name }}</span>
-      <div class="route__children" v-for="_ in route.children" :key="_">
-        <active-cate :to="_" :routeName="_.title" />
+      <div v-for="_ in route.children" :key="_" class="route__children">
+        <active-cate :to="_" :route-name="_.title" />
       </div>
     </div>
   </div>
@@ -16,13 +12,13 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue'
-import { zhRoutes } from '../../docs/zh-cn/index'
+import { zhRoutes } from '../../../docs/zh-cn/index'
 import widgets from './widgets.vue'
 import activeCate from '../ActiveCate/index.vue'
 
 export default defineComponent({
-  components: { widgets, activeCate },
   name: 'SiderBar',
+  components: { widgets, activeCate },
   setup() {
     // docs['zh-cn']
     const Routes = reactive({ routes: zhRoutes })

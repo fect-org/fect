@@ -3,6 +3,10 @@
  */
 
 import { createServer } from 'vite'
-import {} from 'lodash'
+import { useDevConfig } from '../config/@vite/vite.config'
 
-export const dev = async () => {}
+export const dev = async () => {
+  const serve = await createServer(useDevConfig())
+  await serve.listen()
+  serve.printUrls()
+}

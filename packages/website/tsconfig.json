@@ -1,21 +1,21 @@
 {
-    "compilerOptions": {
-      "baseUrl": ".",
-      "outDir": "/",
-      "jsx": "preserve",
-      "target": "esnext",
-      "module": "esnext",
-      "strict": true,
-      "allowJs": true,
-      "noImplicitThis": true,
-      "importHelpers": true,
-      "esModuleInterop": true,
-      "moduleResolution": "node",
-      "paths": {
-        "@/*": ["src/*"]
-      },
-      "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "/",
+    "jsx": "preserve",
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "allowJs": true,
+    "noImplicitThis": true,
+    "importHelpers": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "paths": {
+      "@/*": ["src/*"]
     },
-    "exclude": ["node_modules"]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+  },
+  "include": ["src/*", "src/page/*"],
+  "exclude": ["node_modules"]
 }
-  

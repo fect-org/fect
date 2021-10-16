@@ -1,5 +1,7 @@
 import { join } from 'path'
 import { InlineConfig } from 'vite'
+import Vue from '@vitejs/plugin-vue'
+import Jsx from '@vitejs/plugin-vue-jsx'
 import { CWD, VITE_RESOLVE_EXTENSIONS, UMD_PATH, ESM_PATH } from '../../shared/constant'
 import { getNonConf } from '../../shared/get-config'
 
@@ -11,8 +13,14 @@ export const useDevConfig = (): InlineConfig => {
       alias: {},
     },
     server: {
-      port: 5000,
+      port: getNonConf('port'),
     },
+    plugins: [
+      Vue({
+        include: [/\.vue$/, /\.md$/],
+      }),
+      Jsx(),
+    ],
   }
 }
 

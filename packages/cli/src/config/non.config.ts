@@ -18,10 +18,6 @@ export type NonConfig = {
    */
   port?: number
   /**
-   * 热启动
-   */
-  hot?: boolean
-  /**
    * 库打包模式
    */
   // library?: boolean
@@ -35,7 +31,6 @@ const config: NonConfig = {
   name: 'fect',
   entry: join(CWD, 'src', 'main.js'),
   port: 8080,
-  hot: false,
   // library: false,
 }
 

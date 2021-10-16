@@ -5,9 +5,13 @@ module.exports = {
     node: true,
   },
   root: true,
-  extends: ['plugin:vue/vue3-recommended', 'plugin:@typescript-eslint/recommended', 'prettier', 'kagura'],
+  extends: ['plugin:@typescript-eslint/recommended', 'plugin:vue/vue3-recommended', 'prettier', 'kagura'],
+  // parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
+    ecmaVersion: 2019,
+    sourceType: 'module',
+    extraFileExtensions: ['.vue'],
   },
   overrides: [
     {

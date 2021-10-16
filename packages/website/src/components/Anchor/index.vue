@@ -1,9 +1,9 @@
 <template>
-  <div class="fect-doc__anchor" ref="anchorRef">
+  <div ref="anchorRef" class="fect-doc__anchor">
     <fe-link>
       <slot />
     </fe-link>
-    <span class="fect-doc__anchor-virtual" :id="tar" />
+    <span :id="tar" class="fect-doc__anchor-virtual" />
     <span class="fect-doc__anchor-icon">
       <svg
         viewBox="0 0 24 24"
@@ -18,9 +18,7 @@
         style="color: currentColor"
       >
         <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
-        <path
-          d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"
-        /></svg
+        <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" /></svg
     ></span>
   </div>
 </template>

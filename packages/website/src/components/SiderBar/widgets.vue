@@ -1,22 +1,18 @@
 <template>
   <div class="fect-doc__widgets">
-    <fe-link
-      href="https://github.com/fay-org/fect"
-      target="_blank"
-      class="fect-doc__widgets-icons"
-    >
+    <fe-link href="https://github.com/fay-org/fect" target="_blank" class="fect-doc__widgets-icons">
       <github size="18" />
     </fe-link>
     <span class="fect-doc__widgets-icons" @click="changeHandler">
-      <sun size="18" v-show="theme === 'sun'" />
-      <moon size="18" v-show="theme === 'moon'" />
+      <sun v-show="theme === 'sun'" size="18" />
+      <moon v-show="theme === 'moon'" size="18" />
     </span>
   </div>
 </template>
 
 <script lang="ts">
 import { useProvider } from '@fect-ui/vue-hooks'
-import { setLightTheme, setDarkTheme } from '../../../vue/components/utils'
+import { setLightTheme, setDarkTheme } from '@fect-ui/vue/components/utils'
 import { LayoutProvide, READONLY_DOCS_LAYOUT_KEY } from '../Layout/type'
 import { computed, defineComponent, ref, watchEffect } from 'vue'
 

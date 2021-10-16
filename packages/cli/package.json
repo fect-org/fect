@@ -11,6 +11,11 @@
   "bin": {
     "non": "./lib/index.js"
   },
+  "files": [
+    "lib",
+    "preset.js",
+    "ReADME.md"
+  ],
   "scripts": {
     "watch": "tsc --watch",
     "build": "tsc",
@@ -41,8 +46,7 @@
     "ora": "5.4.1",
     "prettier": "^2.4.1",
     "vite": "^2.6.7",
-    "vue-jest": "^3.0.7",
-    "vue-loader": "^16.8.1"
+    "vue-jest": "^3.0.7"
   },
   "devDependencies": {
     "@types/babel__core": "^7.1.16",
