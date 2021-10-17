@@ -1,0 +1,16 @@
+{
+  "name": "@fect-ui/vue-hooks",
+  "version": "0.0.2",
+  "description": "Minimalist Vue Compostion Hooks",
+  "author": "XeryYue",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "typings": "types/index.d.ts",
+  "keywords": [],
+  "scripts": {
+    "build": "non compile"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.11"
+  }
+}
