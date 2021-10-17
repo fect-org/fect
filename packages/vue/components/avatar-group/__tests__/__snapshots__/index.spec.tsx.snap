@@ -3,10 +3,10 @@
 exports[`AvatarGroup should be work as avatar container 1`] = `
 <div class="fect-avatar__group">
   <div class="fect-avatar medium stacked ">
-    <!----><span class="fect-avatar-text ">a</span>
+    <!----><span class="fect-avatar-text">a</span>
   </div>
   <div class="fect-avatar medium stacked ">
-    <!----><span class="fect-avatar-text ">b</span>
+    <!----><span class="fect-avatar-text">b</span>
   </div><span class="fect-avatar__counter">+10</span>
 </div>
 `;

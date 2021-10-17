@@ -12,9 +12,9 @@
   "license": "MIT",
   "scripts": {
     "build:cli": "lerna exec --scope @fect-ui/cli -- yarn build",
-    "watch:cli": "lerna exec --scope @fect-ui/cli -- yarn watch",
     "build:ui": "lerna exec --scope @fect-ui/vue -- yarn build",
     "collect": "lerna exec --scope @fect-ui/vue -- yarn collect",
+    "test": "lerna exec --scope @fect-ui/vue -- yarn test",
     "dev": "lerna exec --scope @fect-ui/website -- yarn dev",
     "clean": "lerna clean",
     "commit": "git-cz"
