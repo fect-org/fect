@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander'
-import { collect, compile, dev, jest, lint } from './commands'
+import { collect, compile, dev, jest, lint, build } from './commands'
 
 const program = new Command()
 
@@ -14,5 +14,6 @@ program.command('dev').description('Preview site on development environment').ac
 program.command('test').option('-u', 'update jest Snapshot').description('run unit tests with jest').action(jest)
 
 program.command('lint').description('Lint code style').action(lint)
+program.command('build').description('Build site ').action(build)
 
 program.parse()

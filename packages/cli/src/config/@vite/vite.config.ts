@@ -25,7 +25,21 @@ export const useDevConfig = (): InlineConfig => {
   }
 }
 
-// export const useSiteConfig = () => {}
+export const useBuildConfig = (): InlineConfig => {
+  const devConf = useDevConfig()
+  return {
+    ...devConf,
+    base: './',
+    mode: 'production',
+    build: {
+      sourcemap: 'inline',
+      brotliSize: false,
+      rollupOptions: {
+        input: { main: getNonConf('entry') },
+      },
+    },
+  }
+}
 
 /**
  * compile umd
