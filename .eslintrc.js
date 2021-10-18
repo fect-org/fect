@@ -28,5 +28,7 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-extra-semi': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    'no-non-null-assertion': true,
+    'no-mixed-operators': 0,
   },
 }

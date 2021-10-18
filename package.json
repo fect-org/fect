@@ -18,7 +18,8 @@
     "test": "lerna exec --scope @fect-ui/vue -- yarn test",
     "dev": "lerna exec --scope @fect-ui/website -- yarn dev",
     "clean": "lerna clean",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "lint": "non lint"
   },
   "config": {
     "commitizen": {
