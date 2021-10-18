@@ -18,8 +18,7 @@
   ],
   "scripts": {
     "watch": "tsc --watch",
-    "build": "tsc",
-    "dev": "node ./lib/shared/get-config.js"
+    "build": "tsc"
   },
   "dependencies": {
     "@babel/core": "^7.13.8",

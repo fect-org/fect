@@ -7,6 +7,7 @@
   "module": "es/index.js",
   "typings": "types/index.d.ts",
   "keywords": [],
+  "license": "MIT",
   "scripts": {
     "build": "non compile"
   },

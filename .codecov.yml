@@ -1,0 +1,10 @@
+codecov:
+  require_ci_to_pass: yes
+  status:
+    patch: false
+  comment:
+    layout: 'reach, diff, flags, files'
+    behavior: default
+    require_changes: false
+    branches:
+      - 'master'

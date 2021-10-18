@@ -200,8 +200,8 @@ export class Bundler {
 
   async run() {
     setNodeENV('production')
-    const done = this.tasks.length
-    let idx = 0
+    // const done = this.tasks.length
+    // let idx = 0
     await copy(this.entry, TMP_PATH)
     await this.compilerDir(TMP_PATH, this.changeCode)
     await this.genStyleDeps(TMP_PATH)
@@ -211,13 +211,13 @@ export class Bundler {
       try {
         await task.call(this)
         spinner.succeed(text)
-        idx++
+        // idx++
       } catch (error) {
         console.error(error)
         process.exit(1)
       }
     }
-    idx === done && removeSync(TMP_PATH)
+    // idx === done && removeSync(TMP_PATH)
   }
 
   async clean() {
