@@ -8,6 +8,5 @@ import { setNodeENV } from '../shared/constant'
 
 export const jest = (argv: string[]) => {
   setNodeENV('test')
-  console.log(argv)
   run(Object.keys(argv))
 }

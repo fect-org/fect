@@ -4,9 +4,9 @@ import { lstatSync } from 'fs-extra'
 
 // env function
 
-export const setNodeENV = (env: string) => (process.env.NODE_ENV = env)
+export const setNodeENV = (env: 'production' | 'development' | 'test') => (process.env.NODE_ENV = env)
 
-export const setBabelEnv = (env: string) => (process.env.BABEL_ENV = env)
+export const setBabelEnv = (env: 'commonjs' | 'esmodule') => (process.env.BABEL_ENV = env)
 
 export const CWD = cwd()
 

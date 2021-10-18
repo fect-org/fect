@@ -1,49 +1,52 @@
+import { spawn } from 'child_process'
 import {
   copy,
-  readdir,
   remove,
+  removeSync,
+  readdir,
   readFile,
   outputFileSync,
-  readFileSync,
-  removeSync,
-  readdirSync,
   outputJSONSync,
+  readdirSync,
+  readFileSync,
 } from 'fs-extra'
-import ora from 'ora'
-import { join, dirname, basename, extname } from 'path'
-import { build } from 'vite'
-import { spawn } from 'child_process'
-
-import { getNonConf } from '../shared/get-config'
-
+import { join, dirname, extname, basename } from 'path'
+import { getNonConf, USER_NON_PATH } from '../shared/get-config'
+import { Formats } from '../config/non.config'
+import { logErr, logWarn } from '../shared/logger'
 import {
   setNodeENV,
   TMP_PATH,
+  ESM_PATH,
+  CJS_PATH,
+  DTS_PATH,
   normalizePath,
   isDir,
   isTestDir,
   replaceStyleInJs,
   setBabelEnv,
-  ESM_PATH,
-  CJS_PATH,
   IMPORT_REG,
   isScript,
   isStyle,
-  DTS_PATH,
   DECLARATION_PATH,
   TSCONFIG_PATH,
 } from '../shared/constant'
+
 import { compilerStyle } from './compiler-style'
 import { compilerJs } from './compiler-js'
 import { compilerStyleDeps } from './gen-style-deps'
-import { useUMDconfig } from '../config/@vite/vite.config'
+import ora from 'ora'
 
 export class Bundler {
   entry: string
   output: string
+  library: boolean
+  formats: Formats
+
   constructor() {
     this.entry = getNonConf('entry')
-    this.output = ''
+    this.library = getNonConf('library')
+    this.formats = getNonConf('formats')
   }
 
   async changeCode(filePath) {
@@ -68,7 +71,7 @@ export class Bundler {
     return file
   }
 
-  async compilerDir(dir, cb) {
+  async compilerDir(dir: string, cb) {
     const files = await readdir(dir)
     await Promise.all(
       files.map((file) => {
@@ -78,9 +81,8 @@ export class Bundler {
           if (isDir(filePath)) return this.compilerDir(filePath, cb)
           return cb.call(this, filePath)
         } catch (error) {
-          console.log(error)
+          logErr(error)
         }
-        // eslint-disable-next-line comma-dangle
       })
     )
   }
@@ -134,93 +136,129 @@ export class Bundler {
     await Promise.all(compoents.map((cop) => analyzeDeps(cop)))
   }
 
+  /**
+   * it will remove all dist dir before user run
+   */
+  private beforeRun() {
+    if (!this.library)
+      return logErr(`[Non Error!] you can not use it when your set library as false in your config at ${USER_NON_PATH}`)
+    const formats: Formats[] = ['cjs', 'default', 'es', 'umd']
+    if (!formats.includes(this.formats))
+      return logErr(`[Non Error!] can't read right format in ${USER_NON_PATH}. Props formats: ${getNonConf('formats')}`)
+    return new Promise(async (resolve) => {
+      const paths = [TMP_PATH, CJS_PATH, ESM_PATH, DTS_PATH]
+      await Promise.all(paths.map((path) => remove(path)))
+      resolve(true)
+    })
+  }
+
+  /**
+   * return should do task
+   */
+  private get tasks() {
+    const tasks = [
+      {
+        text: 'Build ESModule Outputs',
+        task: () => this.genESM(),
+        name: 'es',
+      },
+      {
+        text: 'Build Commonjs Outputs',
+        task: () => this.genCJS(),
+        name: 'cjs',
+      },
+      {
+        text: 'Build Declaration Outputs',
+        task: () => this.genDTS(),
+      },
+      {
+        text: 'Build UMD Outputs',
+        task: () => this.genUMD(),
+        name: 'umd',
+      },
+    ]
+    if (this.formats === 'default') return tasks
+
+    const filterTasks = tasks.reduce((acc, cur) => {
+      if (cur.name === this.formats) acc.push(cur)
+      !cur.name && acc.push(cur)
+      return acc
+    }, [])
+
+    return filterTasks
+  }
+
   async compilerComponent() {
     await copy(TMP_PATH, this.output)
-    await this.compilerDir(this.output, this.compilerFile)
+    this.compilerDir(this.output, this.compilerFile)
   }
 
-  async genUMD() {
-    setBabelEnv('esmodule')
-    const entry = join(ESM_PATH, 'index.js')
-    const entryMeta = readFileSync(entry, 'utf-8')
-    const umdJs = join(ESM_PATH, 'umd.js')
-    const ignored = ['utils', 'index.js']
-    const stylePaths = readdirSync(ESM_PATH)
-      .filter((v) => !ignored.includes(v))
-      .map((file) => `import './${file}/style/index.js';\n`)
-      .join()
-      .replace(/,/g, '')
-
-    const content = `
-    ${entryMeta}
-    ${stylePaths}
-    `
-    outputFileSync(umdJs, content)
-    await build(useUMDconfig(true))
-    await build(useUMDconfig())
-    remove(umdJs)
-  }
-
-  async genESM() {
+  private async genESM() {
+    console.log(2)
     setBabelEnv('esmodule')
     this.output = ESM_PATH
     await this.compilerComponent()
   }
 
-  async genCommon() {
+  private async genCJS() {
     setBabelEnv('commonjs')
+    console.log(1)
     this.output = CJS_PATH
     await this.compilerComponent()
   }
-  async genDTS() {
+
+  private async genDTS() {
+    console.log(3)
     const declaration = await readFile(DECLARATION_PATH)
     outputFileSync(TSCONFIG_PATH, declaration)
-    spawn('tsc', ['-p', TSCONFIG_PATH], {
-      shell: true,
-    })
-  }
-  tasks = [
-    {
-      text: 'Build ESModule Outputs',
-      task: this.genESM,
-    },
-    {
-      text: 'Build Commonjs Outputs',
-      task: this.genCommon,
-    },
-    {
-      text: 'Build Declaration Outputs',
-      task: this.genDTS,
-    },
-    // {
-    //   text: 'Build UMD Outputs',
-    //   task: this.genUMD,
-    // },
-  ]
 
-  async run() {
-    setNodeENV('production')
-    // const done = this.tasks.length
-    // let idx = 0
-    await copy(this.entry, TMP_PATH)
-    await this.compilerDir(TMP_PATH, this.changeCode)
-    await this.genStyleDeps(TMP_PATH)
-    for (const key in this.tasks) {
-      const { text, task } = this.tasks[key]
-      const spinner = ora(text).start()
+    return new Promise((resolve) =>
+      spawn('tsc', ['-p', TSCONFIG_PATH], {
+        shell: true,
+      }).on('close', () => resolve(true))
+    )
+  }
+
+  private genUMD() {}
+
+  private initlize() {
+    return new Promise(async (resolve) => {
       try {
-        await task.call(this)
-        spinner.succeed(text)
-        // idx++
+        await Promise.all([this.compilerDir(TMP_PATH, this.changeCode)])
+        resolve(true)
       } catch (error) {
-        console.error(error)
+        logErr(error)
         process.exit(1)
       }
-    }
-    // idx === done && removeSync(TMP_PATH)
+    })
   }
 
-  async clean() {
-    Promise.all([TMP_PATH, CJS_PATH, ESM_PATH, DTS_PATH].map((path) => remove(path)))
+  async run() {
+    await this.beforeRun()
+    setNodeENV('production')
+    await copy(this.entry, TMP_PATH)
+    // compiler tmp dir and gen Style deps
+    let idx = 0
+    await this.initlize()
+    this.tasks.reduce(
+      (previous, { text, task }) =>
+        previous.then(() => {
+          const spinner = ora(text).start()
+          try {
+            task()
+            spinner.succeed(text)
+            idx++
+          } catch (error) {
+            logErr(error)
+            process.exit(1)
+          }
+        }),
+      Promise.resolve()
+    )
+    if (idx === this.tasks.length) {
+      console.log(idx)
+      return removeSync(TMP_PATH)
+    }
+    // removeSync(TMP_PATH)
   }
 }

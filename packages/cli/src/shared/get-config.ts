@@ -33,3 +33,5 @@ export const getNonConf = (key: NonKey) => {
   const mergedConf = merge(defaultConf, config)
   return get(mergedConf, key, {})
 }
+
+export const USER_NON_PATH = getuserNonrc()

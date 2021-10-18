@@ -13,7 +13,7 @@ export const lint = async () => {
     const prettier = await execa('prettier', ['--write', '.'])
     prettier.on('spawn', () => (spinner = ora('star prettier code style').start()))
     prettier.on('exit', () => spinner.succeed('code has already prettier'))
-    // // use eslint check and fix code .
+    // use eslint check and fix code .
 
     const eslint = await execa('eslint', ['packages/**/*.{js,jsx,vue,ts,tsx}', '--fix', '--ext', SCRIPT_LANG.join('')])
     eslint.on('spawn', () => (spinner = ora('start lint code').start()))
