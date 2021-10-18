@@ -48,7 +48,7 @@ export default defineComponent({
 
     watch(
       () => props.visible,
-      (cur) => setSelfVisible(cur),
+      (cur) => setSelfVisible(cur)
     )
     watch(selfVisible, (cur) => emit('update:visible', cur))
 

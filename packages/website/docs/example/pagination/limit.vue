@@ -2,13 +2,7 @@
   <div>
     <fe-pagination v-model="initialPage" count="10" :limit="3"></fe-pagination>
     <fe-pagination v-model="initialPage" count="10" :limit="5"></fe-pagination>
-    <fe-pagination
-      v-model="initialPage"
-      count="10"
-      :limit="8"
-      prev-text="上一页"
-      next-text="下一页"
-    ></fe-pagination>
+    <fe-pagination v-model="initialPage" count="10" :limit="8" prev-text="上一页" next-text="下一页"></fe-pagination>
   </div>
 </template>
 

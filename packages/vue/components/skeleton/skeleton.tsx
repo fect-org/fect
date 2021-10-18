@@ -26,9 +26,7 @@ export default defineComponent({
       default: true,
     },
     rowsWidth: {
-      type: [Number, String, Array] as PropType<
-        number | string | (number | string)[]
-      >,
+      type: [Number, String, Array] as PropType<number | string | (number | string)[]>,
       default: DEFAULT_ROW_WIDTH,
     },
   },
@@ -59,9 +57,7 @@ export default defineComponent({
       const Rows: Array<JSX.Element | undefined> = []
       const { rows } = props
       Rows.length = rows
-      return Rows.fill(undefined).map((_, i) => (
-        <SkeletonItem style={{ width: setWidth(getRowWidth(i)) }} />
-      ))
+      return Rows.fill(undefined).map((_, i) => <SkeletonItem style={{ width: setWidth(getRowWidth(i)) }} />)
     }
 
     return () => {
@@ -74,9 +70,7 @@ export default defineComponent({
       }
       return (
         <div class="fect-skeleton">
-          <div class="skeleton__content">
-            {hasSkeleton ? hasSkeleton() : renderRows()}
-          </div>
+          <div class="skeleton__content">{hasSkeleton ? hasSkeleton() : renderRows()}</div>
         </div>
       )
     }

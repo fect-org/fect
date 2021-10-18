@@ -1,11 +1,4 @@
-import {
-  onMounted,
-  unref,
-  onDeactivated,
-  onBeforeUnmount,
-  Ref,
-  watch,
-} from 'vue'
+import { onMounted, unref, onDeactivated, onBeforeUnmount, Ref, watch } from 'vue'
 
 import { useState } from '../useState'
 
@@ -21,11 +14,7 @@ export type Listener<E = Event> = {
   (evt: E): void
 }
 
-export const useEventListener = (
-  event: string,
-  listener: EventListener,
-  options: Options = {}
-) => {
+export const useEventListener = (event: string, listener: EventListener, options: Options = {}) => {
   const { target = window } = options
   // , setElSnapshot
   // const [elSnapshot, setElSnapshot] = useState<ElementRef>(unref(target))

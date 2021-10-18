@@ -54,13 +54,7 @@ export default defineComponent({
       return queryBrowserColors(invert)
     })
 
-    const {
-      inputBgColor,
-      titleColor,
-      color,
-      borderColor,
-      barBgColor,
-    } = setColors.value
+    const { inputBgColor, titleColor, color, borderColor, barBgColor } = setColors.value
 
     const addressLink = computed(() => {
       const { showFullLink, url } = props
@@ -79,10 +73,7 @@ export default defineComponent({
 
     const renderAddress = () => {
       return (
-        <div
-          class="fect-image__input"
-          style={{ backgroundColor: inputBgColor }}
-        >
+        <div class="fect-image__input" style={{ backgroundColor: inputBgColor }}>
           <span class="https">
             <HttpIcons />
           </span>

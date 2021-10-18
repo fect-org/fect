@@ -1,11 +1,5 @@
 import { computed, PropType, watch, defineComponent } from 'vue'
-import {
-  useState,
-  createName,
-  UnknowProp,
-  CustomCSSProperties,
-  NormalTypes,
-} from '../utils'
+import { useState, createName, UnknowProp, CustomCSSProperties, NormalTypes } from '../utils'
 import RatingIcon from './rating-icon'
 
 import './index.less'
@@ -50,7 +44,7 @@ export default defineComponent({
 
     watch(
       () => props.modelValue,
-      (pre) => emit('change', pre),
+      (pre) => emit('change', pre)
     )
 
     const setSvgFillColor = computed(() => {
@@ -87,9 +81,7 @@ export default defineComponent({
 
       return (
         <div
-          class={`fect-rating__box ${setActived(key)} ${
-            locked ? 'is-locked' : ''
-          }`}
+          class={`fect-rating__box ${setActived(key)} ${locked ? 'is-locked' : ''}`}
           key={key}
           style={setSvgFillColor.value}
           onClick={() => clickHandler(key + 1)}

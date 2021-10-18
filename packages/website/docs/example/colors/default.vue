@@ -1,16 +1,9 @@
 <template>
   <fe-row class="color-ctx">
-    <fe-col
-      v-for="(color, idx) in colors"
-      :key="color + idx"
-      class="color-item"
-      :style="style(color, idx)"
-    >
+    <fe-col v-for="(color, idx) in colors" :key="color + idx" class="color-item" :style="style(color, idx)">
       <h4>{{ color.name }}</h4>
       <span @click="handleCopy(color.value)">{{ color.value }}</span>
-      <span @click="handleCopy(color.value)">{{
-        colorValue(color.value)
-      }}</span>
+      <span @click="handleCopy(color.value)">{{ colorValue(color.value) }}</span>
     </fe-col>
   </fe-row>
 </template>
@@ -43,8 +36,7 @@ export default {
     const style = (color, idx) => {
       const Style = {
         backgroundColor: color.value,
-        color:
-          idx > 5 ? ' var(--primary-background)' : 'var(--primary-foreground)',
+        color: idx > 5 ? ' var(--primary-background)' : 'var(--primary-foreground)',
       }
       return Style
     }

@@ -2,10 +2,7 @@ import { computed, ref, PropType, watch, defineComponent } from 'vue'
 import { useRealShape, useState, createName } from '../utils'
 import { useProvider } from '@fect-ui/vue-hooks'
 import CollapseIcon from './collapse-icon'
-import {
-  READONLY_COLLAPSE_KEY,
-  CollapseProvide,
-} from '../collapse-group/collapse-group'
+import { READONLY_COLLAPSE_KEY, CollapseProvide } from '../collapse-group/collapse-group'
 import './index.less'
 
 const name = createName('Collapse')
@@ -88,23 +85,13 @@ export default defineComponent({
 
     return () => (
       <div class={setCollapseClass.value}>
-        <div
-          class="fect-collapse__view"
-          role="collapseButton"
-          onClick={clickHandler}
-        >
+        <div class="fect-collapse__view" role="collapseButton" onClick={clickHandler}>
           <div class="title">
             <h3>{props.title}</h3>
             <CollapseIcon active={visible.value} />
           </div>
           {props.subtitle && (
-            <div class="subtitle">
-              {props.subTag ? (
-                <props.subTag>{props.subtitle}</props.subTag>
-              ) : (
-                props.subtitle
-              )}
-            </div>
+            <div class="subtitle">{props.subTag ? <props.subTag>{props.subtitle}</props.subTag> : props.subtitle}</div>
           )}
         </div>
 

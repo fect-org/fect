@@ -57,10 +57,6 @@ export default defineComponent({
 
     provider({ props, updateState, setCurrentValue, parentValue })
 
-    return () => (
-      <div class={`fect-radio__group ${props.useRow ? 'useRow' : ''}`}>
-        {slots.default?.()}
-      </div>
-    )
+    return () => <div class={`fect-radio__group ${props.useRow ? 'useRow' : ''}`}>{slots.default?.()}</div>
   },
 })

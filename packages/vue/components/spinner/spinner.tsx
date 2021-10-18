@@ -9,8 +9,7 @@ export default defineComponent({
   name,
   props: {},
   setup(props, { slots }) {
-    const renderDot = () =>
-      new Array(12).fill(0).map((_, idx) => <span key={`spinner-${idx}`} />)
+    const renderDot = () => new Array(12).fill(0).map((_, idx) => <span key={`spinner-${idx}`} />)
 
     return () => (
       <div class="fect-spinner">

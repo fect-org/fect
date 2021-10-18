@@ -36,8 +36,6 @@ export default defineComponent({
       return checked ? '' : 'none'
     })
 
-    return () => (
-      <div class={`fect-tab ${setHidden.value}`}>{slots.default?.()}</div>
-    )
+    return () => <div class={`fect-tab ${setHidden.value}`}>{slots.default?.()}</div>
   },
 })

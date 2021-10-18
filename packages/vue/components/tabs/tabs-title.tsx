@@ -33,11 +33,7 @@ const TabsTitle = defineComponent({
     })
 
     return () => (
-      <div
-        role="tab"
-        class={`fect-tabs__title ${setTitleStatus.value}`}
-        onClick={(e) => handleClick(e)}
-      >
+      <div role="tab" class={`fect-tabs__title ${setTitleStatus.value}`} onClick={(e) => handleClick(e)}>
         {props.title}
       </div>
     )

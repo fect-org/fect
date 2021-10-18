@@ -48,11 +48,7 @@ export const sortChildren = (
   })
 }
 
-export const createProvider = <
-  T extends ComponentPublicInstance = ComponentPublicInstance
->(
-  key: string | symbol
-) => {
+export const createProvider = <T extends ComponentPublicInstance = ComponentPublicInstance>(key: string | symbol) => {
   const publicChildren: T[] = reactive([])
   const internalChildren: ComponentInternalInstance[] = reactive([])
   const parent = getCurrentInstance()!

@@ -38,11 +38,7 @@ export default defineComponent({
     }
 
     return () => (
-      <Tooltip
-        onChange={changeHandler}
-        v-slots={{ content: slots.default?.() }}
-        {...popoverProps}
-      >
+      <Tooltip onChange={changeHandler} v-slots={{ content: slots.default?.() }} {...popoverProps}>
         {slots.widget?.()}
       </Tooltip>
     )

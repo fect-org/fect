@@ -2,23 +2,14 @@
   <div class="fect-doc__codepreview">
     <details :open="visible">
       <summary @click="handlerClick">
-        <fe-row
-          justify="space-between"
-          style="width:100%;height:100%;"
-          align="middle"
-        >
+        <fe-row justify="space-between" style="width: 100%; height: 100%" align="middle">
           <fe-col class="action">
-            <span
-              class="arrow"
-              :style="{ transform: `rotate(${visible ? 90 : 0}deg)` }"
-            >
-              <chevron-right
-            /></span>
+            <span class="arrow" :style="{ transform: `rotate(${visible ? 90 : 0}deg)` }"> <chevron-right /></span>
             <span>浏览代码</span>
             <!-- ${visible ? 'active' : ''} -->
             <copy
               class="icons-transform"
-              style="marginLeft:auto;marginRight:20px;"
+              style="marginleft: auto; marginright: 20px"
               v-show="visible"
               size="20"
               @click="handlerCopyClick"
@@ -34,12 +25,7 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  ref,
-  getCurrentInstance,
-  ComponentPublicInstance,
-} from 'vue'
+import { defineComponent, ref, getCurrentInstance, ComponentPublicInstance } from 'vue'
 import { useClipboard, useProvider } from '@fect-ui/vue-hooks'
 // import Prism from 'vue-prism-component'
 import { CodeShowProvide, READONLY_DOCS_CODESHOW_KEY } from './type'

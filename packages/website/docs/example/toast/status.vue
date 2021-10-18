@@ -4,17 +4,11 @@
       <div>
         <fe-button @click="handlerClick('default')">Show</fe-button>
         <fe-spacer />
-        <fe-button @click="handlerClick('success')" type="success"
-          >Show</fe-button
-        >
+        <fe-button @click="handlerClick('success')" type="success">Show</fe-button>
         <fe-spacer />
-        <fe-button @click="handlerClick('warning')" type="warning"
-          >Show</fe-button
-        >
+        <fe-button @click="handlerClick('warning')" type="warning">Show</fe-button>
         <fe-spacer />
-        <fe-button @click="handlerClick('error')" type="error"
-          >Show</fe-button
-        >
+        <fe-button @click="handlerClick('error')" type="error">Show</fe-button>
       </div>
     </fe-col>
   </fe-row>

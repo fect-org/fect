@@ -29,9 +29,7 @@ export default defineComponent({
     })
     return () => (
       <div title={`${props.value}%`} class="fect-capacity">
-        <span
-          style={{ backgroundColor: setColor.value, width: `${props.value}%` }}
-        ></span>
+        <span style={{ backgroundColor: setColor.value, width: `${props.value}%` }}></span>
       </div>
     )
   },

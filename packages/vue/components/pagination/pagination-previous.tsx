@@ -8,10 +8,7 @@ const PaginationPrev = defineComponent({
     const { context } = useProvider<PaginationProvide>(READONLY_PAGINATION_KEY)
 
     return () => (
-      <PaginationItem
-        disabled={context!.head.value}
-        onClick={() => context!.updateSidePage('prev')}
-      >
+      <PaginationItem disabled={context!.head.value} onClick={() => context!.updateSidePage('prev')}>
         {slots.default?.()}
       </PaginationItem>
     )

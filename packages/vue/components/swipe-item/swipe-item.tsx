@@ -16,9 +16,7 @@ export default defineComponent({
 
     if (!context) {
       if (process.env.NODE_ENV !== 'production') {
-        console.error(
-          '[Fect] <SwipeItem /> must be a child component of <Swipe />',
-        )
+        console.error('[Fect] <SwipeItem /> must be a child component of <Swipe />')
       }
       return
     }
@@ -41,11 +39,7 @@ export default defineComponent({
     useExpose({ setTranslate })
 
     return () => (
-      <div
-        class="fect-swipe-item"
-        style={setStyle.value}
-        onClick={clickHandler}
-      >
+      <div class="fect-swipe-item" style={setStyle.value} onClick={clickHandler}>
         {slots.default?.()}
       </div>
     )

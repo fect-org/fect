@@ -16,6 +16,6 @@
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
-  "include": ["src","../../shims/*"],
+  "include": ["src", "../../shims/*"],
   "exclude": ["node_modules"]
 }

@@ -11,11 +11,7 @@ const ModalWrapper = defineComponent({
 
     const renderTitle = () => {
       const titleSlot = slots['title']
-      return titleSlot ? (
-        <div class="fect-modal__title">{titleSlot()}</div>
-      ) : (
-        <ModalTitle />
-      )
+      return titleSlot ? <div class="fect-modal__title">{titleSlot()}</div> : <ModalTitle />
     }
 
     const renderAction = () => {
@@ -26,12 +22,7 @@ const ModalWrapper = defineComponent({
     const renderWrapper = () => {
       const { width } = context?.props!
       return (
-        <div
-          role="dialog"
-          tabindex={-1}
-          class="fect-modal__wrapper"
-          style={{ width }}
-        >
+        <div role="dialog" tabindex={-1} class="fect-modal__wrapper" style={{ width }}>
           {renderTitle()}
           <div class="fect-modal__content">{slots.default?.()}</div>
           {renderAction()}

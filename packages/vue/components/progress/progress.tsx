@@ -8,11 +8,7 @@ interface ProgressColros {
 
 const name = createName('Progress')
 
-const queryColors = (
-  ratio: number,
-  type: NormalTypes,
-  colors: ProgressColros,
-) => {
+const queryColors = (ratio: number, type: NormalTypes, colors: ProgressColros) => {
   const defaultColors: { [key in NormalTypes]: string } = {
     default: 'var(--primary-foreground)',
     success: 'var(--success-default)',
@@ -59,17 +55,11 @@ export default defineComponent({
   },
 
   setup(props, { attrs }) {
-    const setPercentValue = computed(
-      () => `${queryProportions(props.value, props.max)}%`,
-    )
+    const setPercentValue = computed(() => `${queryProportions(props.value, props.max)}%`)
 
     const setStyle = computed(() => {
       const { type, colors } = props
-      const color = queryColors(
-        queryProportions(props.value, props.max) as number,
-        type,
-        colors || {},
-      )
+      const color = queryColors(queryProportions(props.value, props.max) as number, type, colors || {})
       return {
         backgroundColor: color,
         width: setPercentValue.value,
@@ -78,12 +68,7 @@ export default defineComponent({
 
     return () => (
       <div class="fect-progress">
-        <div
-          class="fect-progress__inner"
-          title={setPercentValue.value}
-          style={setStyle.value}
-          {...attrs}
-        ></div>
+        <div class="fect-progress__inner" title={setPercentValue.value} style={setStyle.value} {...attrs}></div>
         <progress value={props.value} max={props.max}></progress>
       </div>
     )

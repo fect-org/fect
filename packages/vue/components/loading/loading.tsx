@@ -48,11 +48,7 @@ export default defineComponent({
       return (
         <>
           {new Array(3).fill(0).map((item, i) => (
-            <i
-              class={`loading__default ${setClass.value}`}
-              style={setColor.value}
-              key={item + i}
-            ></i>
+            <i class={`loading__default ${setClass.value}`} style={setColor.value} key={item + i}></i>
           ))}
         </>
       )
@@ -62,11 +58,7 @@ export default defineComponent({
       return (
         <>
           {new Array(4).fill(0).map((item, i) => (
-            <i
-              class={`loading__cube ${setClass.value}`}
-              style={setColor.value}
-              key={item + i}
-            ></i>
+            <i class={`loading__cube ${setClass.value}`} style={setColor.value} key={item + i}></i>
           ))}
         </>
       )
@@ -76,11 +68,7 @@ export default defineComponent({
       return (
         <>
           {new Array(5).fill(0).map((item, i) => (
-            <i
-              class={`loading__wave ${setClass.value}`}
-              style={setColor.value}
-              key={item + i}
-            ></i>
+            <i class={`loading__wave ${setClass.value}`} style={setColor.value} key={item + i}></i>
           ))}
         </>
       )

@@ -28,9 +28,7 @@ export default defineComponent({
   setup(props, { slots, emit }) {
     const [checked, setChecked] = useState<string | number>(props.active)
 
-    const { provider, children } = createProvider<ComponentInstance>(
-      READONLY_TABS_KEY,
-    )
+    const { provider, children } = createProvider<ComponentInstance>(READONLY_TABS_KEY)
     provider({ props, checked })
 
     const setCurrent = (data: TabTitleEmit) => {
@@ -65,11 +63,7 @@ export default defineComponent({
 
     return () => (
       <div class="fect-tabs">
-        <header
-          class={`fect-tabs__header  fect-tabs__header--${
-            props.hideDivider ? 'hide-divider' : ''
-          }`}
-        >
+        <header class={`fect-tabs__header  fect-tabs__header--${props.hideDivider ? 'hide-divider' : ''}`}>
           {renderNav()}
         </header>
         {slots.default?.()}

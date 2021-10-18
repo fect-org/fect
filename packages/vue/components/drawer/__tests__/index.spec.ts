@@ -38,7 +38,7 @@ describe('Drawer', () => {
       </div>
       `,
       },
-      { attachTo: document.body },
+      { attachTo: document.body }
     )
 
     await wrapper.setData({ visible: true })

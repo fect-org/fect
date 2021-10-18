@@ -22,10 +22,7 @@ const ClearableIcon = defineComponent({
     }
 
     return () => (
-      <div
-        class={`fect-input__clear-icon ${clearableStyle.value}`}
-        onClick={handleClick}
-      >
+      <div class={`fect-input__clear-icon ${clearableStyle.value}`} onClick={handleClick}>
         <svg
           viewBox="0 0 24 24"
           stroke="currentColor"

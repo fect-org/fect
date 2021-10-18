@@ -1,11 +1,7 @@
 import { computed, watchEffect, PropType, watch, defineComponent } from 'vue'
 import { useProvider } from '@fect-ui/vue-hooks'
 import { createName, useState, NormalSizes } from '../utils'
-import {
-  RadioGroupProvide,
-  READNONLY_RADIO_KEY,
-  RadioEvent,
-} from '../radio-group/radio-group'
+import { RadioGroupProvide, READNONLY_RADIO_KEY, RadioEvent } from '../radio-group/radio-group'
 import './index.less'
 import { CustomCSSProperties } from '../utils/base'
 
@@ -107,9 +103,7 @@ export default defineComponent({
           ></input>
           <span class={'fect-radio__name'}>
             <span
-              class={`fect-radio__point ${
-                selfDisabled.value ? 'disabled' : ''
-              } ${selfChecked.value ? 'active' : ''}`}
+              class={`fect-radio__point ${selfDisabled.value ? 'disabled' : ''} ${selfChecked.value ? 'active' : ''}`}
             />
             {slots.default?.()}
           </span>

@@ -31,11 +31,7 @@ export type UseEventListenerOptions = {
   target?: EventTarget | Ref<EventTarget | undefined>
 }
 
-const useEventListener = (
-  event: string,
-  listener: EventListener,
-  options: UseEventListenerOptions = {}
-): void => {}
+const useEventListener = (event: string, listener: EventListener, options: UseEventListenerOptions = {}): void => {}
 ```
 
 ### 参数

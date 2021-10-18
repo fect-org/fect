@@ -44,7 +44,7 @@
 <fe-attributes-title title="NormalTypes" />
 
 | 类型 可选值     |
-| --------------- |
+| --------------- | ------------------------------------------ |
 | **NormalTypes** | `'default', 'success', 'warning', 'error'` |
 
 </fe-attributes>

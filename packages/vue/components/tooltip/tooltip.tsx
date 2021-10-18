@@ -1,12 +1,5 @@
 import { defineComponent, computed, ref, watch } from 'vue'
-import {
-  useState,
-  createName,
-  getPosition,
-  useResize,
-  useExpose,
-  CustomCSSProperties,
-} from '../utils'
+import { useState, createName, getPosition, useResize, useExpose, CustomCSSProperties } from '../utils'
 import { useClickAway } from '@fect-ui/vue-hooks'
 import { queryPlacement, queryArrowPlacement } from './style'
 import { Teleport } from '../teleport'
@@ -78,12 +71,7 @@ export default defineComponent({
     }
 
     // render arrow Node
-    const renderArrowIcon = () => (
-      <span
-        class={`fect-tooltip__arrow-icon ${props.type}`}
-        style={setArrowRect.value}
-      />
-    )
+    const renderArrowIcon = () => <span class={`fect-tooltip__arrow-icon ${props.type}`} style={setArrowRect.value} />
 
     /**
      * render content Node
@@ -128,11 +116,9 @@ export default defineComponent({
       handler(leave)
     }
 
-    const clickHandler = (state: boolean) =>
-      props.trigger === 'click' && updateShow(state)
+    const clickHandler = (state: boolean) => props.trigger === 'click' && updateShow(state)
 
-    const mouseEventHandler = (state: boolean) =>
-      props.trigger === 'hover' && updateShow(state)
+    const mouseEventHandler = (state: boolean) => props.trigger === 'hover' && updateShow(state)
 
     /**
      * in mobile, mouseEvent can't wrok correctly , it

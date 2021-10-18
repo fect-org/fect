@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="fect-doc__tab-mobile"
-    :style="{ boxShadow: ` 0 2px 5px 0 ${theme}` }"
-  >
+  <div class="fect-doc__tab-mobile" :style="{ boxShadow: ` 0 2px 5px 0 ${theme}` }">
     <div class="fect-doc__tab-icons" @click="tapHandler">
       <navigation size="22" color="var(--accents-7)" />
     </div>

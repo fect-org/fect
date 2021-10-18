@@ -43,9 +43,7 @@ describe('Input', () => {
       },
     })
     expect(wrapper.html()).toMatchSnapshot()
-    expect(wrapper.find('label').html()).toContain(
-      '<label><span>Test</span></label>',
-    )
+    expect(wrapper.find('label').html()).toContain('<label><span>Test</span></label>')
   })
   it('should be support prefix and suffix label', () => {
     const wrapper = mount({
@@ -58,9 +56,7 @@ describe('Input', () => {
         [Input.name]: Input,
       },
     })
-    expect(wrapper.findAll('.fect-input__label')[1].classes('suffix')).toBe(
-      true,
-    )
+    expect(wrapper.findAll('.fect-input__label')[1].classes('suffix')).toBe(true)
   })
   it('should set input from value', () => {
     const wrapper = mount(Input, {

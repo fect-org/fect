@@ -1,13 +1,4 @@
-import {
-  computed,
-  CSSProperties,
-  ref,
-  watch,
-  onUnmounted,
-  onMounted,
-  nextTick,
-  defineComponent,
-} from 'vue'
+import { computed, CSSProperties, ref, watch, onUnmounted, onMounted, nextTick, defineComponent } from 'vue'
 import { createProvider } from '@fect-ui/vue-hooks'
 import { useState, useRealShape, createName, ComponentInstance } from '../utils'
 import { READONLY_SWIPE_KEY, Shape, Placement } from './type'
@@ -117,9 +108,7 @@ export default defineComponent({
       const { loop } = props
       const currentIndex = index.value
       const direction = type === 'next'
-      const idx = direction
-        ? boundaryIndex(currentIndex + 1)
-        : boundaryIndex(currentIndex - 1)
+      const idx = direction ? boundaryIndex(currentIndex + 1) : boundaryIndex(currentIndex - 1)
       setIndex(idx)
       calibrationPosition(() => {
         if (direction) return next(currentIndex, loop)
@@ -148,9 +137,7 @@ export default defineComponent({
           const active = index.value === idx
           const { indicatorColor, indicatorSize } = props
           return {
-            backgroundColor: indicatorColor
-              ? indicatorColor
-              : 'var(--success-default)',
+            backgroundColor: indicatorColor ? indicatorColor : 'var(--success-default)',
             width: indicatorSize,
             height: indicatorSize,
             opacity: active ? 1 : 0.3,

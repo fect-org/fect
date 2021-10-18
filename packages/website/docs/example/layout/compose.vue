@@ -1,5 +1,5 @@
 <template>
-  <fe-row style="margin-bottom:10px;" gutter="15">
+  <fe-row style="margin-bottom: 10px" gutter="15">
     <fe-col span="16">
       <div class="ex-col"></div>
     </fe-col>
@@ -7,7 +7,7 @@
       <div class="ex-col"></div>
     </fe-col>
   </fe-row>
-  <fe-row style="margin-bottom:10px;" gutter="15">
+  <fe-row style="margin-bottom: 10px" gutter="15">
     <fe-col span="8">
       <div class="ex-col"></div>
     </fe-col>

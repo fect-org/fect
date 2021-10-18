@@ -1,23 +1,12 @@
 <template>
   <div>
     <fe-row>
-      <fe-col
-        class="ex-col"
-        v-for="(ex, idx) in 2"
-        :key="ex + idx"
-        :style="rightColor(idx)"
-      >
+      <fe-col class="ex-col" v-for="(ex, idx) in 2" :key="ex + idx" :style="rightColor(idx)">
         <fe-spacer />
       </fe-col>
     </fe-row>
-    <fe-row style="margin-top:10px">
-      <fe-col
-        class="ex-col"
-        v-for="(ex, idx) in 2"
-        :key="ex + idx"
-        :span="!idx ? 3 : 21"
-        :style="rightColor(idx)"
-      >
+    <fe-row style="margin-top: 10px">
+      <fe-col class="ex-col" v-for="(ex, idx) in 2" :key="ex + idx" :span="!idx ? 3 : 21" :style="rightColor(idx)">
         <fe-spacer />
       </fe-col>
     </fe-row>

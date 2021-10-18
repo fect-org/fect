@@ -43,21 +43,10 @@ describe('Skeleton', () => {
   })
 
   it('should render different type skeletonItem', () => {
-    const types: Variable[] = [
-      'p',
-      'text',
-      'h1',
-      'h3',
-      'rect',
-      'circle',
-      'image',
-      'button',
-      'caption',
-    ]
+    const types: Variable[] = ['p', 'text', 'h1', 'h3', 'rect', 'circle', 'image', 'button', 'caption']
 
     const slots = {
-      skeleton: () =>
-        types.map((type, idx) => <SkeletonItem key={idx} variable={type} />),
+      skeleton: () => types.map((type, idx) => <SkeletonItem key={idx} variable={type} />),
     }
     const wrapper = mount(Skeleton, {
       slots,

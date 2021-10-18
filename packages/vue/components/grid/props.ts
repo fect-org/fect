@@ -1,11 +1,5 @@
 import { PropType } from 'vue'
-import {
-  AlignContentTypes,
-  JustifyTypes,
-  WrapTypes,
-  AlignTypes,
-  DirectionTypes,
-} from './type'
+import { AlignContentTypes, JustifyTypes, WrapTypes, AlignTypes, DirectionTypes } from './type'
 
 export const props = {
   container: Boolean,

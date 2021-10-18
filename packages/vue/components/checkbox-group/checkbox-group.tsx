@@ -75,10 +75,6 @@ export default defineComponent({
 
     watch(parentValue, (cur) => emit('update:modelValue', cur))
 
-    return () => (
-      <div class={`fect-checkbox__group ${props.useRow ? 'useRow' : ''}`}>
-        {slots.default?.()}
-      </div>
-    )
+    return () => <div class={`fect-checkbox__group ${props.useRow ? 'useRow' : ''}`}>{slots.default?.()}</div>
   },
 })

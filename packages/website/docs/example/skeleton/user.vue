@@ -24,7 +24,6 @@ export default {
   align-items: center;
   width: max-content;
   max-width: 100%;
-
 }
 .names {
   margin-left: var(--fay-gap-half);

@@ -1,17 +1,6 @@
 import { computed, ref, watch, defineComponent } from 'vue'
-import {
-  createProvider,
-  useClickAway,
-  useEventListener,
-} from '@fect-ui/vue-hooks'
-import {
-  createName,
-  useState,
-  useExpose,
-  CustomCSSProperties,
-  ComponentInstance,
-  NormalSizes,
-} from '../utils'
+import { createProvider, useClickAway, useEventListener } from '@fect-ui/vue-hooks'
+import { createName, useState, useExpose, CustomCSSProperties, ComponentInstance, NormalSizes } from '../utils'
 import SelectIcon from './select-icon'
 import SelcetClearableIcon from './select-clear-icon'
 import SelectMultiple from './select-multiple'
@@ -139,9 +128,7 @@ export default defineComponent({
     /**
      * control show main context
      */
-    const renderPlaceHolder = () => (
-      <span class="value fect-select__placeholder">{props.placeholder}</span>
-    )
+    const renderPlaceHolder = () => <span class="value fect-select__placeholder">{props.placeholder}</span>
 
     const renderNodes = () => {
       const { multiple, clearable } = props
@@ -151,10 +138,7 @@ export default defineComponent({
       }
       return list.map((_) => (
         <span class="fect-multiple__container">
-          <SelectMultiple
-            onClear={() => setParentValue(_.value)}
-            clearable={clearable}
-          >
+          <SelectMultiple onClear={() => setParentValue(_.value)} clearable={clearable}>
             {_.label}
           </SelectMultiple>
         </span>
@@ -181,19 +165,9 @@ export default defineComponent({
     useExpose({ setTeleport })
 
     return () => (
-      <div
-        class={setClass.value}
-        ref={selectRef}
-        style={setStyle.value}
-        onClick={clickHandler}
-      >
+      <div class={setClass.value} ref={selectRef} style={setStyle.value} onClick={clickHandler}>
         {empty.value ? renderPlaceHolder() : renderNodes()}
-        <SelectDropDown
-          teleport={teleport.value}
-          v-slots={slots}
-          visible={visible.value}
-          parentRef={selectRef.value}
-        />
+        <SelectDropDown teleport={teleport.value} v-slots={slots} visible={visible.value} parentRef={selectRef.value} />
         {renderRightIcon()}
       </div>
     )
