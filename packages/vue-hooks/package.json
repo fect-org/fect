@@ -11,6 +11,9 @@
   "scripts": {
     "build": "non compile"
   },
+  "devDependencies": {
+    "@fect-ui/cli": "1.0.0"
+  },
   "peerDependencies": {
     "vue": "^3.0.11"
   }

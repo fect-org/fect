@@ -17,13 +17,13 @@ describe('Toast', () => {
     expect(document.querySelector('.fect-toast__area')).toBeTruthy()
   })
 
-  // it('should destroy all toast queue after hidden', async () => {
-  //   Toast({
-  //     text: 'test',
-  //   })
-  //   await later(5000)
-  //   expect(document.querySelector('.fect-toast__container')).toBeFalsy()
-  // })
+  it('should destroy all toast queue after hidden', async () => {
+    Toast({
+      text: 'test',
+    })
+    await later(5000)
+    expect(document.querySelector('.fect-toast__container')).toBeFalsy()
+  })
 
   it('toast queue can not break 11', async () => {
     Array(11)

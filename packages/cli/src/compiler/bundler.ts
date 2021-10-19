@@ -190,11 +190,10 @@ export class Bundler {
 
   async compilerComponent() {
     await copy(TMP_PATH, this.output)
-    this.compilerDir(this.output, this.compilerFile)
+    await this.compilerDir(this.output, this.compilerFile)
   }
 
   private async genESM() {
-    console.log(2)
     setBabelEnv('esmodule')
     this.output = ESM_PATH
     await this.compilerComponent()
@@ -202,13 +201,11 @@ export class Bundler {
 
   private async genCJS() {
     setBabelEnv('commonjs')
-    console.log(1)
     this.output = CJS_PATH
     await this.compilerComponent()
   }
 
   private async genDTS() {
-    console.log(3)
     const declaration = await readFile(DECLARATION_PATH)
     outputFileSync(TSCONFIG_PATH, declaration)
 
@@ -238,27 +235,22 @@ export class Bundler {
     setNodeENV('production')
     await copy(this.entry, TMP_PATH)
     // compiler tmp dir and gen Style deps
-    let idx = 0
     await this.initlize()
-    this.tasks.reduce(
-      (previous, { text, task }) =>
-        previous.then(() => {
-          const spinner = ora(text).start()
-          try {
-            task()
-            spinner.succeed(text)
-            idx++
-          } catch (error) {
-            logErr(error)
-            process.exit(1)
-          }
-        }),
-      Promise.resolve()
-    )
-    if (idx === this.tasks.length) {
-      console.log(idx)
-      return removeSync(TMP_PATH)
-    }
-    // removeSync(TMP_PATH)
+    this.tasks
+      .reduce(
+        (previous, { text, task }) =>
+          previous.then(async () => {
+            const spinner = ora(text).start()
+            try {
+              await task()
+              spinner.succeed(text)
+            } catch (error) {
+              logErr(error)
+              process.exit(1)
+            }
+          }),
+        Promise.resolve()
+      )
+      .finally(() => removeSync(TMP_PATH))
   }
 }

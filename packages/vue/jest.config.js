@@ -9,4 +9,5 @@ module.exports = {
   ],
   collectCoverage: true,
   preset: '@fect-ui/cli/lib/config/@jest',
+  testTimeout: 20000,
 }
