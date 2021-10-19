@@ -20,6 +20,8 @@ install:
 
 script:
   - yarn cli
+  - yarn clean
+  - yarn
   - yarn hooks
   - yarn test
   - curl -Os https://uploader.codecov.io/latest/linux/codecov

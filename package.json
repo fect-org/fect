@@ -17,7 +17,7 @@
     "hooks": "cd packages/vue-hooks && yarn build",
     "test": "cd packages/vue &&  yarn test",
     "dev": "lerna exec --scope @fect-ui/website -- yarn dev",
-    "clean": "lerna clean",
+    "clean": "lerna clean --yes",
     "commit": "git-cz",
     "lint": "non lint"
   },
