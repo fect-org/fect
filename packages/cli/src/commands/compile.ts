@@ -1,6 +1,5 @@
-import { Bundler } from '../compiler/bundler'
+import { bundler } from '../compiler/bundler'
 
-export const compile = async () => {
-  const bundler = new Bundler()
-  await bundler.run()
+export const compile = () => {
+  bundler()
 }

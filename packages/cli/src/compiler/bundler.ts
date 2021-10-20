@@ -9,11 +9,13 @@ import {
   outputJSONSync,
   readdirSync,
   readFileSync,
+  pathExistsSync,
 } from 'fs-extra'
 import { join, dirname, extname, basename } from 'path'
 import { getNonConf, USER_NON_PATH } from '../shared/get-config'
 import { Formats } from '../config/non.config'
-import { logErr, logWarn } from '../shared/logger'
+import { logErr } from '../shared/logger'
+import { EventEmitter } from './bus'
 import {
   setNodeENV,
   TMP_PATH,
@@ -35,15 +37,18 @@ import {
 import { compilerStyle } from './compiler-style'
 import { compilerJs } from './compiler-js'
 import { compilerStyleDeps } from './gen-style-deps'
+import { useUMDconfig } from '../config/@vite/vite.config'
 import ora from 'ora'
+import { build } from 'vite'
 
-export class Bundler {
+export class Bundler extends EventEmitter {
   entry: string
   output: string
   library: boolean
   formats: Formats
 
   constructor() {
+    super()
     this.entry = getNonConf('entry')
     this.library = getNonConf('library')
     this.formats = getNonConf('formats')
@@ -55,6 +60,18 @@ export class Bundler {
     code = replaceStyleInJs(code, '')
     outputFileSync(filePath, code)
     return
+  }
+
+  private asyncEmitter(evt) {
+    return new Promise((resolve, reject) => {
+      super.emit(evt, () => {
+        try {
+          resolve(true)
+        } catch (error) {
+          reject(error)
+        }
+      })
+    })
   }
 
   async compilerFile(file) {
@@ -95,13 +112,15 @@ export class Bundler {
 
     const setDeps = (filePath: string) => {
       // only work on .tsx file as component
-      if (!['.tsx', '.less'].includes(extname(filePath))) return
+      if (!['.tsx'].includes(extname(filePath))) return
       const dirPath = dirname(filePath)
+
       const dirPathJson = join(dirPath, 'style.json')
       const component = basename(dirPath)
       const code = readFileSync(filePath, 'utf8')
       const imports = (filePath.endsWith('.tsx') && code.match(IMPORT_REG)) || []
-      const hasStyle = filePath.endsWith('.less')
+      const stylePath = join(dirPath, 'index.less')
+      const hasStyle = pathExistsSync(stylePath)
       const defaultStyle = hasStyle ? '../index.css' : ''
       styleDeps[component] = {
         ...styleDeps[component],
@@ -136,19 +155,22 @@ export class Bundler {
     await Promise.all(compoents.map((cop) => analyzeDeps(cop)))
   }
 
-  /**
-   * it will remove all dist dir before user run
-   */
   private beforeRun() {
-    if (!this.library)
-      return logErr(`[Non Error!] you can not use it when your set library as false in your config at ${USER_NON_PATH}`)
-    const formats: Formats[] = ['cjs', 'default', 'es', 'umd']
-    if (!formats.includes(this.formats))
-      return logErr(`[Non Error!] can't read right format in ${USER_NON_PATH}. Props formats: ${getNonConf('formats')}`)
-    return new Promise(async (resolve) => {
+    super.on('beforeRun', async (next) => {
+      if (!this.library) {
+        return logErr(
+          `[Non Error!] you can not use it when your set library as false in your config at ${USER_NON_PATH}`
+        )
+      }
+      const formats: Formats[] = ['cjs', 'default', 'es', 'umd', 'noumd']
+      if (!formats.includes(this.formats)) {
+        return logErr(
+          `[Non Error!] can't read right format in ${USER_NON_PATH}. Props formats: ${getNonConf('formats')}`
+        )
+      }
       const paths = [TMP_PATH, CJS_PATH, ESM_PATH, DTS_PATH]
       await Promise.all(paths.map((path) => remove(path)))
-      resolve(true)
+      await next()
     })
   }
 
@@ -178,7 +200,7 @@ export class Bundler {
       },
     ]
     if (this.formats === 'default') return tasks
-
+    if (this.formats === 'noumd') return tasks.splice(0, 3)
     const filterTasks = tasks.reduce((acc, cur) => {
       if (cur.name === this.formats) acc.push(cur)
       !cur.name && acc.push(cur)
@@ -216,26 +238,53 @@ export class Bundler {
     )
   }
 
-  private genUMD() {}
+  private async genUMD() {
+    setBabelEnv('esmodule')
+    const entry = join(ESM_PATH, 'index.js')
+    const entryMeta = readFileSync(entry, 'utf-8')
+    const umdJs = join(ESM_PATH, 'umd.js')
+    const ignored = ['utils', 'index.js']
+    const stylePaths = readdirSync(ESM_PATH)
+      .filter((v) => !ignored.includes(v))
+      .map((file) => `import './${file}/style/index.js';\n`)
+      .join()
+      .replace(/,/g, '')
+
+    const content = `
+  ${entryMeta}
+  ${stylePaths}
+  `
+    outputFileSync(umdJs, content)
+    await build(useUMDconfig(true))
+    await build(useUMDconfig())
+    remove(umdJs)
+  }
 
   private initlize() {
-    return new Promise(async (resolve) => {
-      try {
-        await Promise.all([this.compilerDir(TMP_PATH, this.changeCode)])
-        resolve(true)
-      } catch (error) {
-        logErr(error)
-        process.exit(1)
-      }
+    super.on('initlize', async (next) => {
+      await Promise.all([this.compilerDir(TMP_PATH, this.changeCode), this.genStyleDeps(TMP_PATH)])
+      await next()
     })
   }
 
+  private copyTMP() {
+    super.on('copy', async (next) => {
+      await copy(this.entry, TMP_PATH)
+      await next()
+    })
+  }
+
+  /**
+   * make func run as a promise function.
+   */
   async run() {
-    await this.beforeRun()
     setNodeENV('production')
-    await copy(this.entry, TMP_PATH)
-    // compiler tmp dir and gen Style deps
-    await this.initlize()
+    this.beforeRun()
+    this.initlize()
+    this.copyTMP()
+    await this.asyncEmitter('beforeRun')
+    await this.asyncEmitter('copy')
+    await this.asyncEmitter('initlize')
     this.tasks
       .reduce(
         (previous, { text, task }) =>
@@ -253,4 +302,9 @@ export class Bundler {
       )
       .finally(() => removeSync(TMP_PATH))
   }
+}
+
+export const bundler = () => {
+  const bundler = new Bundler()
+  bundler.run()
 }

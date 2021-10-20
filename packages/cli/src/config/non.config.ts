@@ -5,7 +5,7 @@ import { join } from 'path'
 import { CWD } from '../shared/constant'
 import { Plugin } from 'vite'
 
-export type Formats = 'es' | 'cjs' | 'umd' | 'default'
+export type Formats = 'es' | 'cjs' | 'umd' | 'default' | 'noumd'
 
 export type NonConfig = {
   /**
