@@ -5,9 +5,7 @@
       <div class="drawer">
         <h2>标题</h2>
         <h5>子标题</h5>
-        <div>
-          一个Geek风格的UI组件库
-        </div>
+        <div>一个Geek风格的UI组件库</div>
       </div>
     </fe-drawer>
   </div>

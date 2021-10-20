@@ -33,10 +33,7 @@ export default defineComponent({
     }
 
     return () => (
-      <div
-        class={`fect-snippet ${getSnippetClass.value}`}
-        style={{ width: props.width }}
-      >
+      <div class={`fect-snippet ${getSnippetClass.value}`} style={{ width: props.width }}>
         <span>
           {props.symbol && <span>{props.symbol}</span>}
           {props.text}

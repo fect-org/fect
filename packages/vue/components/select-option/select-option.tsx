@@ -29,10 +29,7 @@ export default defineComponent({
       }
     }
     return () => (
-      <div
-        class={`fect-option ${props.disabled ? 'disabled' : ''}`}
-        onClick={handleClick}
-      >
+      <div class={`fect-option ${props.disabled ? 'disabled' : ''}`} onClick={handleClick}>
         {props.label}
       </div>
     )

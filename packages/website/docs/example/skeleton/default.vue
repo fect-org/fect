@@ -1,10 +1,6 @@
 <template>
   <div>
-    <fe-skeleton
-      :loading="load"
-      rows="3"
-      :rows-width="['100%', '80%', '60%']"
-    />
+    <fe-skeleton :loading="load" rows="3" :rows-width="['100%', '80%', '60%']" />
   </div>
 </template>
 

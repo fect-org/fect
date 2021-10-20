@@ -17,10 +17,7 @@ const DrawerWrapper = defineComponent({
     })
 
     return () => (
-      <div
-        class={`fect-drawer__wrapper fect-drawer__wrapper--${props.placement} ${setRounder.value}`}
-        role="dialog"
-      >
+      <div class={`fect-drawer__wrapper fect-drawer__wrapper--${props.placement} ${setRounder.value}`} role="dialog">
         {slots.default?.()}
       </div>
     )

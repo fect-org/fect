@@ -5,15 +5,10 @@
         <search class="search-icon" />
         <fe-input class="input" placeholder="搜索图标" v-model="val" />
       </div>
-      <icon-cell
-        :icon="item"
-        v-for="(item, i) in icons"
-        :key="i"
-        @click="handleClick"
-      />
+      <icon-cell :icon="item" v-for="(item, i) in icons" :key="i" @click="handleClick" />
     </div>
     <fe-modal :title="iconName" v-model:visible="show">
-      <div style="margin-bottom:16pt;">
+      <div style="margin-bottom: 16pt">
         <p>使用:</p>
         <fe-snippet :text="snippetText" width="100%" />
       </div>
@@ -45,10 +40,7 @@ export default {
 
     const snippetText = computed(() => `<${iconName.value} />`)
 
-    watch(
-      val,
-      (pre) => (icons.value = iconsPool.filter((icon) => icon.includes(pre))),
-    )
+    watch(val, (pre) => (icons.value = iconsPool.filter((icon) => icon.includes(pre))))
 
     return {
       iconName,

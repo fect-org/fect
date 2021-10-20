@@ -1,0 +1,21 @@
+{
+  "name": "@fect-ui/vue",
+  "version": "1.0.3",
+  "description": "Minimalist UI components built on Vue",
+  "main": "index.js",
+  "scripts": {
+    "collect": "non collect",
+    "build": "non compile",
+    "test": "non test -u"
+  },
+  "keywords": [],
+  "author": "XeryYue",
+  "license": "MIT",
+  "devDependencies": {
+    "@fect-ui/cli": "^1.0.0"
+  },
+  "dependencies": {
+    "@fect-ui/themes": "^1.1.0",
+    "@fect-ui/vue-hooks": "^0.0.2"
+  }
+}

@@ -21,9 +21,7 @@ export default defineComponent({
 
     if (!context) {
       if (process.env.NODE_ENV !== 'production') {
-        console.error(
-          '[Fect] <SkeletonItem> must be a child component of <Skeleton>.',
-        )
+        console.error('[Fect] <SkeletonItem> must be a child component of <Skeleton>.')
       }
       return
     }
@@ -38,9 +36,7 @@ export default defineComponent({
     })
 
     return () => (
-      <div class={`fect-skeleton__item ${setStyle.value}`}>
-        {props.variable === 'image' && <ImageSkeleton />}
-      </div>
+      <div class={`fect-skeleton__item ${setStyle.value}`}>{props.variable === 'image' && <ImageSkeleton />}</div>
     )
   },
 })

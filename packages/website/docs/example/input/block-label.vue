@@ -4,7 +4,7 @@
     <fe-spacer :y="0.5" />
     <fe-input placeholder="GitHub Actions">
       <fe-dot type="success">
-        <fe-code style="font-size:12px;">Deployment</fe-code>
+        <fe-code style="font-size: 12px">Deployment</fe-code>
       </fe-dot>
     </fe-input>
   </div>

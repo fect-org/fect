@@ -2,11 +2,7 @@ import { computed, watchEffect, PropType, watch, defineComponent } from 'vue'
 import { useProvider } from '@fect-ui/vue-hooks'
 import { useState, createName, CustomCSSProperties } from '../utils'
 import { NormalSizes } from '../utils/theme/propTypes'
-import {
-  READONLY_CHECKBOX_KEY,
-  CheckboxGroupProvide,
-  CheckboxEvent,
-} from '../checkbox-group/checkbox-group'
+import { READONLY_CHECKBOX_KEY, CheckboxGroupProvide, CheckboxEvent } from '../checkbox-group/checkbox-group'
 import CheckIcon from './checkbox-icon'
 import './index.less'
 
@@ -93,14 +89,8 @@ export default defineComponent({
     })
 
     return () => (
-      <label
-        class={`fect-checkbox ${selfDisabled.value ? 'disabled' : ''}`}
-        style={setCheckBoxBaseSize.value}
-      >
-        <CheckIcon
-          class={`${selfDisabled.value ? 'disabled' : ''}`}
-          checked={selfChecked.value}
-        />
+      <label class={`fect-checkbox ${selfDisabled.value ? 'disabled' : ''}`} style={setCheckBoxBaseSize.value}>
+        <CheckIcon class={`${selfDisabled.value ? 'disabled' : ''}`} checked={selfChecked.value} />
         <input
           type="checkbox"
           disabled={selfDisabled.value}

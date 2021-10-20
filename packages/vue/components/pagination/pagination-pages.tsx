@@ -65,25 +65,16 @@ const PaginationPages = defineComponent({
       const onlyShowBefore = showBefore && !showAfter
       const onlyShowAfter = showAfter && !showBefore
 
-      const pageNum = showBeforeAndAfter
-        ? current + offset
-        : onlyShowBefore
-          ? count - 1
-          : onlyShowAfter
-            ? limit
-            : count
+      const pageNum = showBeforeAndAfter ? current + offset : onlyShowBefore ? count - 1 : onlyShowAfter ? limit : count
 
       const control = showBeforeAndAfter || onlyShowBefore
-      return [...Array(pageNum)].reduce(
-        (acc: number[], cur: number, idx: number) => {
-          idx += 1
+      return [...Array(pageNum)].reduce((acc: number[], cur: number, idx: number) => {
+        idx += 1
 
-          if (control && idx >= current) acc.push(idx)
-          if (!control && idx >= 2) acc.push(idx)
-          return acc
-        },
-        [],
-      ) as number[]
+        if (control && idx >= current) acc.push(idx)
+        if (!control && idx >= 2) acc.push(idx)
+        return acc
+      }, []) as number[]
     })
 
     /**
@@ -93,11 +84,7 @@ const PaginationPages = defineComponent({
      */
     const renderItem = (value: number, active: number) => {
       return (
-        <PaginationItem
-          active={value === active}
-          key={`pagination-item-${value}`}
-          onClick={() => setParentPage(value)}
-        >
+        <PaginationItem active={value === active} key={`pagination-item-${value}`} onClick={() => setParentPage(value)}>
           {value}
         </PaginationItem>
       )

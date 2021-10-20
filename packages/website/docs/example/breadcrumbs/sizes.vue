@@ -1,11 +1,6 @@
 <template>
   <div>
-    <fe-breadcrumbs
-      separator="/"
-      :size="ex"
-      v-for="(ex, idx) in sizes"
-      :key="ex + idx"
-    >
+    <fe-breadcrumbs separator="/" :size="ex" v-for="(ex, idx) in sizes" :key="ex + idx">
       <fe-breadcrumbsItem>Home</fe-breadcrumbsItem>
       <fe-breadcrumbsItem>Catalog</fe-breadcrumbsItem>
       <fe-breadcrumbsItem>Page</fe-breadcrumbsItem>

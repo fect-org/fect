@@ -1,0 +1,21 @@
+{
+  "name": "@fect-ui/website",
+  "version": "1.0.0",
+  "description": "A Website ",
+  "main": "index.js",
+  "scripts": {
+    "dev": "non dev"
+  },
+  "keywords": [],
+  "author": "XeryYue",
+  "license": "MIT",
+  "devDependencies": {
+    "prismjs": "^1.23.0",
+    "vue-prism-component": "^2.0.0",
+    "vue-router": "^4.0.8",
+    "@fect-ui/cli": "1.0.0",
+    "@fect-ui/vue-icons": "^0.1.7",
+    "@fect-ui/vue-hooks": "^0.0.2",
+    "vite-plugin-md": "^0.11.1"
+  }
+}

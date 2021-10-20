@@ -32,9 +32,7 @@ const PaginationItem = defineComponent({
     })
 
     const queryModeClass = computed(() => {
-      return context!.props.simple
-        ? 'pagination-simple__side'
-        : 'pagination-item__button'
+      return context!.props.simple ? 'pagination-simple__side' : 'pagination-item__button'
     })
 
     return () => (

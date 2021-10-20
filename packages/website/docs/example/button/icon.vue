@@ -7,9 +7,9 @@
 <script>
 import { github } from '@fect-ui/vue-icons'
 export default {
-  name: 'ex-button-icon',
+  name: 'ExButtonIcon',
   setup() {
-    const icon = () => <github />
+    const icon = github
     return { icon }
   },
 }

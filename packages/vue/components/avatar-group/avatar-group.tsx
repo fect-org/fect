@@ -16,9 +16,7 @@ export default defineComponent({
     return () => (
       <div class="fect-avatar__group">
         {slots.default?.()}
-        {showCount.value && (
-          <span class={'fect-avatar__counter'}>+{props.count}</span>
-        )}
+        {showCount.value && <span class={'fect-avatar__counter'}>+{props.count}</span>}
       </div>
     )
   },

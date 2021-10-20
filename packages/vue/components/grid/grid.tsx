@@ -9,10 +9,7 @@ const name = createName('Grid')
 
 type Layout = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
-const getItemLayout = (
-  val: number | boolean,
-  key: Layout,
-): CustomCSSProperties => {
+const getItemLayout = (val: number | boolean, key: Layout): CustomCSSProperties => {
   const display = val === 0 ? 'none' : 'inherit;'
   if (typeof val === 'number') {
     const width = (100 / 24) * val
@@ -80,8 +77,8 @@ export default defineComponent({
       const containerStyle: CustomCSSProperties = {
         '--fect-gap-unit': `calc(${gap} * var(--fay-gap-quarter))`,
         'flex-wrap': wrap,
-        'margin': 'calc(-1 * var(--fect-gap-unit))',
-        'width': 'calc(100% + var(--fect-gap-unit) * 2)',
+        margin: 'calc(-1 * var(--fect-gap-unit))',
+        width: 'calc(100% + var(--fect-gap-unit) * 2)',
       }
       if (container) {
         return [...styles, CssFlexProps.value, containerStyle]

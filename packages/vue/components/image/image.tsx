@@ -56,9 +56,7 @@ export default defineComponent({
 
     const renderNormal = () => (
       <div class="fect-image" style={setStyle.value}>
-        {showSkeleton.value && (
-          <ImgSkeleton opacity={loading.value ? 0.5 : 0} />
-        )}
+        {showSkeleton.value && <ImgSkeleton opacity={loading.value ? 0.5 : 0} />}
         <img
           ref={imgRef}
           src={props.src}

@@ -14,9 +14,7 @@ describe('Spacer', () => {
         inline: true,
       },
     })
-    expect(wrapper.find('.fect-spacer').attributes('style')).toEqual(
-      'display: inline-block;',
-    )
+    expect(wrapper.find('.fect-spacer').attributes('style')).toEqual('display: inline-block;')
   })
 
   it('should be support x and y', () => {
@@ -45,7 +43,7 @@ describe('Spacer', () => {
   it('should be display right spacing when x or y are string', () => {
     const wrapper = mount(Spacer, {
       props: {
-        x: ('111' as unknown) as number,
+        x: '111' as unknown as number,
       },
     })
     expect(wrapper.html()).toMatchSnapshot()

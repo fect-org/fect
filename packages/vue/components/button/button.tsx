@@ -76,13 +76,7 @@ export default defineComponent({
         onClick={clickHandler}
       >
         {props.loading && <ButtonLoading loadType={props.loadType} />}
-        {drapShow.value && (
-          <ButtonDrip
-            x={drapX.value}
-            y={drapY.value}
-            onCompleted={dripCompleteHandler}
-          />
-        )}
+        {drapShow.value && <ButtonDrip x={drapX.value} y={drapY.value} onCompleted={dripCompleteHandler} />}
         {props.icon && <ButtonIcon icon={props.icon as Icon} />}
         {slots.default?.()}
       </button>

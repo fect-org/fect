@@ -1,12 +1,6 @@
 import { computed, watch, PropType, defineComponent, Slot } from 'vue'
 import { createProvider } from '@fect-ui/vue-hooks'
-import {
-  createName,
-  NormalSizes,
-  useState,
-  CustomCSSProperties,
-  ComponentInstance,
-} from '../utils'
+import { createName, NormalSizes, useState, CustomCSSProperties, ComponentInstance } from '../utils'
 import { READONLY_PAGINATION_KEY, PaginationSize, SideEvent } from './type'
 import PaginationPages from './pagination-pages'
 import PaginationNext from './pagination-next'
@@ -16,11 +10,9 @@ import './index.less'
 
 const name = createName('Pagination')
 
-const COUNT_LOG
-  = '[Fect] <Pagination> the minimum count value must be more than 1 .'
+const COUNT_LOG = '[Fect] <Pagination> the minimum count value must be more than 1 .'
 
-const LIMIT_LOG
-  = '[Fect] <Pagination> the minimum limit value must be more than 3 .'
+const LIMIT_LOG = '[Fect] <Pagination> the minimum limit value must be more than 3 .'
 
 const queryPaginationSize = (size: NormalSizes) => {
   const sizes: Record<NormalSizes, PaginationSize> = {
@@ -118,38 +110,19 @@ export default defineComponent({
     })
 
     const renderSide = (eventType: SideEvent, slot: Slot) => (
-      <li
-        class="paginatuon-slots__custom"
-        onClick={() => updateSidePage(eventType)}
-      >
+      <li class="paginatuon-slots__custom" onClick={() => updateSidePage(eventType)}>
         {slot()}
       </li>
     )
 
     const renderPrev = () => {
       const prevSlot = slots['prev']
-      return (
-        <>
-          {prevSlot ? (
-            <>{renderSide('prev', prevSlot)}</>
-          ) : (
-            <PaginationPrev>{props.prevText}</PaginationPrev>
-          )}
-        </>
-      )
+      return <>{prevSlot ? <>{renderSide('prev', prevSlot)}</> : <PaginationPrev>{props.prevText}</PaginationPrev>}</>
     }
 
     const renderNext = () => {
       const nextSlot = slots['next']
-      return (
-        <>
-          {nextSlot ? (
-            <>{renderSide('next', nextSlot)}</>
-          ) : (
-            <PaginationNext>{props.nextText}</PaginationNext>
-          )}
-        </>
-      )
+      return <>{nextSlot ? <>{renderSide('next', nextSlot)}</> : <PaginationNext>{props.nextText}</PaginationNext>}</>
     }
 
     const renderPage = () => {
@@ -161,11 +134,7 @@ export default defineComponent({
               {currentPage.value} / {count}
             </li>
           ) : (
-            <PaginationPages
-              current={currentPage.value}
-              count={count}
-              limit={limit}
-            />
+            <PaginationPages current={currentPage.value} count={count} limit={limit} />
           )}
         </>
       )

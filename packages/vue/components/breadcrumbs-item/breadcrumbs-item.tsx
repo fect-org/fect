@@ -1,10 +1,7 @@
 import { watchEffect, defineComponent } from 'vue'
 import { useState, createName } from '../utils'
 import { useProvider } from '@fect-ui/vue-hooks'
-import {
-  BreadcrumbsProvide,
-  READONLY_BREADCRUMBS_KEY,
-} from '../breadcrumbs/breadcrumbs'
+import { BreadcrumbsProvide, READONLY_BREADCRUMBS_KEY } from '../breadcrumbs/breadcrumbs'
 import Link from '../link'
 import Separator from './breadcrumbs-spearator'
 import './index.less'
@@ -26,9 +23,7 @@ export default defineComponent({
   setup(props, { slots, attrs }) {
     const [hasLink, setHasLink] = useState<boolean>(false)
 
-    const { context } = useProvider<BreadcrumbsProvide>(
-      READONLY_BREADCRUMBS_KEY,
-    )
+    const { context } = useProvider<BreadcrumbsProvide>(READONLY_BREADCRUMBS_KEY)
 
     watchEffect(() => {
       const isNull = Boolean(props?.to) || props.href !== ''
@@ -37,9 +32,7 @@ export default defineComponent({
 
     if (!context) {
       if (process.env.NODE_ENV !== 'production') {
-        console.error(
-          '[Fect] <BreadcrumbsItem> must be a child component of <Breadcrumbs>.',
-        )
+        console.error('[Fect] <BreadcrumbsItem> must be a child component of <Breadcrumbs>.')
       }
       return
     }
@@ -64,8 +57,6 @@ export default defineComponent({
       )
     }
 
-    return () => (
-      <>{hasLink.value ? <>{linkRender()}</> : <>{withoutLinkRender()}</>}</>
-    )
+    return () => <>{hasLink.value ? <>{linkRender()}</> : <>{withoutLinkRender()}</>}</>
   },
 })

@@ -1,10 +1,7 @@
 import { computed, defineComponent, CSSProperties, PropType } from 'vue'
 import { createName, NormalSizes, NormalTypes } from '../utils'
 import { useProvider } from '@fect-ui/vue-hooks'
-import {
-  BadgeAnchorProvide,
-  READONLY_BADGE_ANCHOR_KEY,
-} from '../badge-anchor/badge-anchor'
+import { BadgeAnchorProvide, READONLY_BADGE_ANCHOR_KEY } from '../badge-anchor/badge-anchor'
 import './index.less'
 
 const name = createName('Badge')
@@ -75,23 +72,13 @@ export default defineComponent({
 
     const renderElement = () => {
       return (
-        <span
-          {...attrs}
-          class={`${props.dot ? 'fect-dot' : ''} fect-badge`}
-          style={setStyle.value}
-        >
+        <span {...attrs} class={`${props.dot ? 'fect-dot' : ''} fect-badge`} style={setStyle.value}>
           {!props.dot && slots.default?.()}
         </span>
       )
     }
     return () => (
-      <>
-        {hasParent.value ? (
-          <sup style={placementStyle.value}>{renderElement()}</sup>
-        ) : (
-          <>{renderElement()}</>
-        )}
-      </>
+      <>{hasParent.value ? <sup style={placementStyle.value}>{renderElement()}</sup> : <>{renderElement()}</>}</>
     )
   },
 })

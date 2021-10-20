@@ -23,8 +23,7 @@ export default defineComponent({
   setup(props, { attrs }) {
     const [showText] = useState<boolean>(!props.src)
 
-    const safeText = (text: string) =>
-      text.length <= 4 ? text : text.slice(0, 3)
+    const safeText = (text: string) => (text.length <= 4 ? text : text.slice(0, 3))
 
     const setClass = computed(() => {
       const names: string[] = [props.size]
@@ -35,9 +34,7 @@ export default defineComponent({
 
     return () => (
       <div class={`fect-avatar ${setClass.value} ${props.className || ''}`}>
-        {!showText.value && (
-          <img src={props.src} draggable="false" {...attrs} />
-        )}
+        {!showText.value && <img src={props.src} draggable="false" {...attrs} />}
         {showText.value && (
           <span class={'fect-avatar-text '} {...attrs}>
             {safeText(props.text)}

@@ -13,9 +13,7 @@ import Button from '@fect-ui/vue/lib/button'
 import '@fect-ui/themes'
 import '@fect-ui/vue/lib/Button/index.css'
 
-createApp(App)
-  .use(Button)
-  .mount('#app')
+createApp(App).use(Button).mount('#app')
 ```
 
 <fe-dot type="warning" />方式二:通过 babel 插件按需引入组件

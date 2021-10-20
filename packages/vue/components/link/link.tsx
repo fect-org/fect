@@ -38,11 +38,7 @@ export default defineComponent({
     const goToHandler = () => props.to && route()
 
     return () => (
-      <a
-        class={`fect-link ${setClass.value}`}
-        href={safeHref.value}
-        onClick={goToHandler}
-      >
+      <a class={`fect-link ${setClass.value}`} href={safeHref.value} onClick={goToHandler}>
         {slots.default?.()}
       </a>
     )

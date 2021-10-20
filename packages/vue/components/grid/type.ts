@@ -1,30 +1,10 @@
 import { tuple } from '../utils'
 
-const justifyTypes = tuple(
-  'flex-start',
-  'center',
-  'flex-end',
-  'space-between',
-  'space-around',
-  'space-evenly',
-)
+const justifyTypes = tuple('flex-start', 'center', 'flex-end', 'space-between', 'space-around', 'space-evenly')
 
-const alignTypes = tuple(
-  'flex-start',
-  'center',
-  'flex-end',
-  'stretch',
-  'baseline',
-)
+const alignTypes = tuple('flex-start', 'center', 'flex-end', 'stretch', 'baseline')
 
-const alignContentTypes = tuple(
-  'stretch',
-  'flex-start',
-  'center',
-  'flex-end',
-  'space-between',
-  'space-around',
-)
+const alignContentTypes = tuple('stretch', 'flex-start', 'center', 'flex-end', 'space-between', 'space-around')
 
 const directionTypes = tuple('row', 'row-reverse', 'column', 'column-reverse')
 

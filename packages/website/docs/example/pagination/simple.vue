@@ -1,7 +1,6 @@
 <template>
   <div>
-    <fe-pagination v-model="initialPage" simple size="large" count="10">
-    </fe-pagination>
+    <fe-pagination v-model="initialPage" simple size="large" count="10"> </fe-pagination>
   </div>
 </template>
 

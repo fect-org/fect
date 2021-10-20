@@ -8,4 +8,4 @@ interface Customprop {
 
 export type CustomCSSProperties = CSSProperties & Customprop
 
-export const UnknowProp = (null as unknown) as PropType<unknown>
+export const UnknowProp = null as unknown as PropType<unknown>

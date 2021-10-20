@@ -43,11 +43,7 @@ const SelectDropDown = defineComponent({
 
     return () => (
       <Teleport to={props.teleport}>
-        <div
-          class="fect-select__dropdown"
-          ref={dropdownRef}
-          v-show={props.visible}
-        >
+        <div class="fect-select__dropdown" ref={dropdownRef} v-show={props.visible}>
           {slots.default?.()}
         </div>
       </Teleport>

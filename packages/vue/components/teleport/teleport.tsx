@@ -42,14 +42,7 @@ export default defineComponent({
 
       return (
         <Transition name={transition}>
-          <div
-            v-show={props.show}
-            class={popupClass}
-            ref={popupRef}
-            role="popup"
-            onClick={clickHandler}
-            {...attrs}
-          >
+          <div v-show={props.show} class={popupClass} ref={popupRef} role="popup" onClick={clickHandler} {...attrs}>
             {slots.default?.()}
           </div>
         </Transition>

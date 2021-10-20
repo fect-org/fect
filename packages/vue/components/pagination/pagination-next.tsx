@@ -8,10 +8,7 @@ const PaginationNext = defineComponent({
     const { context } = useProvider<PaginationProvide>(READONLY_PAGINATION_KEY)
 
     return () => (
-      <PaginationItem
-        disabled={context!.end.value}
-        onClick={() => context!.updateSidePage('next')}
-      >
+      <PaginationItem disabled={context!.end.value} onClick={() => context!.updateSidePage('next')}>
         {slots.default?.()}
       </PaginationItem>
     )

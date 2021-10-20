@@ -60,7 +60,7 @@ describe('Modal', () => {
         </div>
       `,
       },
-      { attachTo: document.body },
+      { attachTo: document.body }
     )
 
     await wrapper.setData({ show: true })

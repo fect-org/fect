@@ -1,7 +1,6 @@
 const CAMELIZERE = /-(\w)/g
 
-const camelize = (str: string): string =>
-  str.replace(CAMELIZERE, (_, key) => key.toUpperCase())
+const camelize = (str: string): string => str.replace(CAMELIZERE, (_, key) => key.toUpperCase())
 
 const hasEmptry = (str: any): boolean => {
   if (typeof str === 'undefined') return true

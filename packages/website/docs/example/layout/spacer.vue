@@ -1,11 +1,6 @@
 <template>
   <div>
-    <fe-row
-      style="margin-bottom:10px;"
-      gutter="15"
-      v-for="temp in 2"
-      :key="temp"
-    >
+    <fe-row style="margin-bottom: 10px" gutter="15" v-for="temp in 2" :key="temp">
       <fe-col v-for="(ex, idx) in 3" :key="idx">
         <div class="ex-block"></div>
       </fe-col>

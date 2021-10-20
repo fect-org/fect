@@ -3,7 +3,7 @@
 exports[`Progress component props should work correctly 1`] = `
 <div class="container">
   <div class="fect-progress" type-data="error">
-    <div class="fect-progress__inner" title="60.00%" style="width: 60.00%; background-color: red;" type-data="error"></div><progress value="60" max="100"></progress>
+    <div class="fect-progress__inner" title="60.00%" style="width: 60.00%; background-color: red;" type-data="error"></div><progress max="100" value="60"></progress>
   </div>
 </div>
 `;

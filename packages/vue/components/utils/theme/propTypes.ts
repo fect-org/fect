@@ -12,27 +12,13 @@ const normalTypes = tuple('default', 'success', 'warning', 'error')
 
 const themeTypes = tuple('dark', 'light')
 
-const justifyTypes = tuple(
-  'start',
-  'end',
-  'center',
-  'space-around',
-  'space-between',
-)
+const justifyTypes = tuple('start', 'end', 'center', 'space-around', 'space-between')
 
 const alignTypes = tuple('top', 'middle', 'bottom')
 
 const snippetCopyTypes = tuple('default', 'silent', 'prevent')
 
-const snippetStyleTypes = tuple(
-  'default',
-  'secondary',
-  'success',
-  'warning',
-  'error',
-  'lite',
-  'dark',
-)
+const snippetStyleTypes = tuple('default', 'secondary', 'success', 'warning', 'error', 'lite', 'dark')
 
 const placeTypes = tuple('topLeft', 'topRight', 'bottomLeft', 'bottomRight')
 

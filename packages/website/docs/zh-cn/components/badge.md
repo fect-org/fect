@@ -55,7 +55,7 @@
 <fe-attributes-title title="NormalSizes" />
 
 | 类型 可选值     |
-| --------------- |
+| --------------- | ------------------------------------ |
 | **NormalSizes** | `'mini', 'small', 'medium', 'large'` |
 
 </fe-attributes>

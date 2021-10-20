@@ -1,10 +1,5 @@
 import { watch, computed, defineComponent, ref } from 'vue'
-import {
-  useState,
-  createName,
-  CustomCSSProperties,
-  ComponentInstance,
-} from '../utils'
+import { useState, createName, CustomCSSProperties, ComponentInstance } from '../utils'
 import { props } from './props'
 import Teleport from '../teleport'
 import DrawerWrapper from './drawer-wrapper'
@@ -32,7 +27,7 @@ export default defineComponent({
 
     watch(
       () => props.modelValue,
-      (cur) => setVisible(cur),
+      (cur) => setVisible(cur)
     )
 
     watch(visible, (cur) => emit('update:modelValue', cur))
@@ -55,13 +50,7 @@ export default defineComponent({
         onPopupClick={poupClickHandler}
         style={setDrawerStyle.value}
       >
-        <DrawerWrapper
-          placement={props.placement}
-          round={props.round}
-          v-slots={slots}
-          ref={drawerRef}
-          {...attrs}
-        />
+        <DrawerWrapper placement={props.placement} round={props.round} v-slots={slots} ref={drawerRef} {...attrs} />
       </Teleport>
     )
   },

@@ -1,10 +1,5 @@
 import { computed, ref, watchEffect, PropType, defineComponent } from 'vue'
-import {
-  useState,
-  createName,
-  CustomCSSProperties,
-  NormalSizes,
-} from '../utils'
+import { useState, createName, CustomCSSProperties, NormalSizes } from '../utils'
 import ClearableIcon from './clearable-icon'
 import PasswordIcon from './password-icon'
 import IconContent from './icon-content'
@@ -91,8 +86,7 @@ export default defineComponent({
       }
     }
 
-    const InputHandler = (e: Event) =>
-      updatelValue((e.target as HTMLInputElement).value)
+    const InputHandler = (e: Event) => updatelValue((e.target as HTMLInputElement).value)
 
     const focusHandler = (e: Event) => {
       setHover(true)
@@ -156,10 +150,7 @@ export default defineComponent({
             />
           )}
           {props.type === 'password' && (
-            <IconContent
-              onClick={passwordVisibleChanger}
-              clickable={props.disabled || props.readonly}
-            >
+            <IconContent onClick={passwordVisibleChanger} clickable={props.disabled || props.readonly}>
               <PasswordIcon visible={passwordVisible.value} />
             </IconContent>
           )}
@@ -190,19 +181,12 @@ export default defineComponent({
     })
 
     return () => (
-      <div
-        class="fect-input"
-        style={{ '--heightRatio': ratio.value } as CustomCSSProperties}
-      >
+      <div class="fect-input" style={{ '--heightRatio': ratio.value } as CustomCSSProperties}>
         {slots.default && <InputBlockLabel v-slots={slots} />}
         <div class={'fect-input__container'}>
-          {hasPrefix.value && (
-            <InputLabel fontSize={fontSize.value}>{props.prefix}</InputLabel>
-          )}
+          {hasPrefix.value && <InputLabel fontSize={fontSize.value}>{props.prefix}</InputLabel>}
           <div
-            class={`fect-input__wrapper ${hover.value ? 'hover' : ''} ${
-              props.disabled ? 'disabled' : ''
-            }`}
+            class={`fect-input__wrapper ${hover.value ? 'hover' : ''} ${props.disabled ? 'disabled' : ''}`}
             style={haslabel.value}
           >
             {renderInput()}

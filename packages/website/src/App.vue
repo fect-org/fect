@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import * as Component from '../page/index'
+import * as Component from './components/index'
 export default {
   components: {
     ...Component,

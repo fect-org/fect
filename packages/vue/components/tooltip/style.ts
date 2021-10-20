@@ -1,15 +1,6 @@
-import {
-  PlacementTypes,
-  TooltipPosition,
-  ParentDomRect,
-  TolltipIconPosition,
-} from './type'
+import { PlacementTypes, TooltipPosition, ParentDomRect, TolltipIconPosition } from './type'
 
-export const queryPlacement = (
-  place: PlacementTypes,
-  rect: ParentDomRect,
-  offset: number,
-) => {
+export const queryPlacement = (place: PlacementTypes, rect: ParentDomRect, offset: number) => {
   const positions: Record<PlacementTypes, TooltipPosition> = {
     top: {
       top: `${rect.top - offset}px`,
@@ -79,7 +70,7 @@ export const queryArrowPlacement = (
   place: PlacementTypes,
   offsetX: string,
   offsetY: string,
-  offsetAbsolute = '3px',
+  offsetAbsolute = '3px'
 ) => {
   const positions: Record<PlacementTypes, Partial<TolltipIconPosition>> = {
     top: {

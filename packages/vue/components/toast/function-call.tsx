@@ -1,12 +1,6 @@
 import FeToast from './toast'
 import { App, Component, watchEffect, computed, watch } from 'vue'
-import {
-  createNode,
-  withInstall,
-  NormalTypes,
-  createPortal,
-  useState,
-} from '../utils'
+import { createNode, withInstall, NormalTypes, createPortal, useState } from '../utils'
 import { omit } from '../popover/props'
 
 export type ToastType = NormalTypes
@@ -21,8 +15,7 @@ export type StaticToastOptions = Omit<ToastOptions, 'type'>
 
 export type ToastProps = Omit<ToastOptions, 'duration'>
 
-export const merged = (...rest: any[]) =>
-  rest.reduce((acc, cur) => Object.assign(acc, cur), {})
+export const merged = (...rest: any[]) => rest.reduce((acc, cur) => Object.assign(acc, cur), {})
 
 const queue: ToastProps[] = []
 
@@ -81,8 +74,7 @@ const Toast = (options: ToastOptions) => {
   createPortal(content, container)
 }
 
-const createMethods = (type: NormalTypes) => (options: StaticToastOptions) =>
-  Toast(merged(options, { type }))
+const createMethods = (type: NormalTypes) => (options: StaticToastOptions) => Toast(merged(options, { type }))
 
 /**
  * static methods
