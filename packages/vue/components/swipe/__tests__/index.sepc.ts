@@ -97,8 +97,8 @@ describe('Swipe', () => {
       loop: true,
       autoplay: 2000,
     })
-    await flushPromises()
-    await later()
+    // await flushPromises()
+    // await later()
     expect(wrapper.html()).toMatchSnapshot()
   })
 })
