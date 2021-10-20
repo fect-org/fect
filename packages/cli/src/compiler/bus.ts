@@ -31,7 +31,7 @@ export class EventEmitter {
   emit(event: string, ...args) {
     const listeners = []
     const eventNames = Object.keys(this.listeners)
-    eventNames.forEach((evtName, idx) => {
+    eventNames.forEach((evtName) => {
       if (evtName === event) {
         Array.prototype.push.apply(listeners, this.listeners[evtName])
       }
@@ -40,8 +40,9 @@ export class EventEmitter {
   }
   detach(event: string, fn: Listener) {
     const eventNames = Object.keys(this.listeners)
-    if (!eventNames.includes(event))
+    if (!eventNames.includes(event)) {
       return logWarn(`Please afferent Right event name to detach .Can't found event ${event}`)
+    }
     this.listeners[event].forEach((context, idx) => {
       if (context.callback === fn) {
         this.listeners[event].splice(idx, 1)

@@ -6,4 +6,3 @@ export const build = async () => {
   setNodeENV('production')
   await viteBuild(useBuildConfig())
 }
-
