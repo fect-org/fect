@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "target": "ES6",
+      "outDir": "./types",
+      "module": "commonjs",
+      "strict": true,
+      "declaration": true,
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "importHelpers": true,
+      "emitDeclarationOnly": true,
+      "moduleResolution": "Node",
+      "lib": ["esnext", "dom"]
+    },
+    "include": ["src/**/*"]
+  }
+  
