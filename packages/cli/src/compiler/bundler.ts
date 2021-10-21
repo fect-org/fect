@@ -150,6 +150,7 @@ export class Bundler extends EventEmitter {
 
     const analyzeDeps = (component) => {
       const dir = join(path, component)
+      if (!isDir(dir)) return
       this.compilerDir(dir, setDeps)
     }
     await Promise.all(compoents.map((cop) => analyzeDeps(cop)))
@@ -274,6 +275,27 @@ export class Bundler extends EventEmitter {
     })
   }
 
+  private runTasks() {
+    super.on('runTasks', () => {
+      this.tasks
+        .reduce(
+          (previous, { text, task }) =>
+            previous.then(async () => {
+              const spinner = ora(text).start()
+              try {
+                await task()
+                spinner.succeed(text)
+              } catch (error) {
+                logErr(error)
+                process.exit(1)
+              }
+            }),
+          Promise.resolve()
+        )
+        .finally(() => removeSync(TMP_PATH))
+    })
+  }
+
   /**
    * make func run as a promise function.
    */
@@ -282,25 +304,11 @@ export class Bundler extends EventEmitter {
     this.beforeRun()
     this.initlize()
     this.copyTMP()
+    this.runTasks()
     await this.asyncEmitter('beforeRun')
     await this.asyncEmitter('copy')
     await this.asyncEmitter('initlize')
-    this.tasks
-      .reduce(
-        (previous, { text, task }) =>
-          previous.then(async () => {
-            const spinner = ora(text).start()
-            try {
-              await task()
-              spinner.succeed(text)
-            } catch (error) {
-              logErr(error)
-              process.exit(1)
-            }
-          }),
-        Promise.resolve()
-      )
-      .finally(() => removeSync(TMP_PATH))
+    await this.asyncEmitter('runTasks')
   }
 }
 
