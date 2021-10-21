@@ -7,9 +7,9 @@
 
 import { camelize } from '../format/string'
 
-export const COMPONENT_PREFFIX_NAME = 'fe'
+export const COMPONENT_PREFIX_NAME = 'fe'
 
 export const createName = (name: string) => {
   name = name.charAt(0).toLocaleLowerCase() + name.slice(1)
-  return camelize(`-${COMPONENT_PREFFIX_NAME}-${name}`)
+  return camelize(`-${COMPONENT_PREFIX_NAME}-${name}`)
 }
