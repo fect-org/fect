@@ -2,15 +2,15 @@
 
 评分组件
 
-<fe-code-show title="默认的" name="ex-rating-default"/>
+<playground title="默认的" name="ex-rating-default"/>
 
-<fe-code-show 
+<playground 
 title="自定义图标"
 name="ex-rating-custom"
 desc="通过icon属性传入DOM设置自定义图标"
 />
 
-<fe-code-show 
+<playground 
 title="不同类型的"
 name="ex-rating-type"
 desc="通过type属性设置不同风格的组件"

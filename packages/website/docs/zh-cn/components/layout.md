@@ -2,15 +2,15 @@
 
 以简易的方式构建页面布局
 
-<fe-code-show title="默认的" desc="row组件可以创建一个行容器" name="ex-layout-default" />
+<playground title="默认的" desc="row组件可以创建一个行容器" name="ex-layout-default" />
 
-<fe-code-show title="列" desc="col组件可以创建不同宽度的列容器" name="ex-layout-column" />
+<playground title="列" desc="col组件可以创建不同宽度的列容器" name="ex-layout-column" />
 
-<fe-code-show title="间距" desc="在row组件上指定子元素 (列) 的间距" name="ex-layout-spacer" />
+<playground title="间距" desc="在row组件上指定子元素 (列) 的间距" name="ex-layout-spacer" />
 
-<fe-code-show title="组合" desc="使用 1/24 列完成布局" name="ex-layout-compose" />
+<playground title="组合" desc="使用 1/24 列完成布局" name="ex-layout-compose" />
 
-<fe-code-show title="对齐" desc="使用 justify 与 align 属性以不同方式对齐列" name="ex-layout-align" />
+<playground title="对齐" desc="使用 justify 与 align 属性以不同方式对齐列" name="ex-layout-align" />
 
 <fe-attributes>
 

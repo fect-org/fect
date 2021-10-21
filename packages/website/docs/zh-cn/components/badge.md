@@ -2,25 +2,25 @@
 
 显示一个徽标(它具有提示的意义)
 
-<fe-code-show
+<playground
   title="默认的"
   name="ex-badge-default"
   desc="展示一个数字或者一段文字"
 />
 
-<fe-code-show
+<playground
   title="类型"
   name="ex-badge-type"
   desc="以不同的色彩表达不同的状态"
 />
 
-<fe-code-show
+<playground
   title="大小"
   name="ex-badge-size"
   desc="不同大小的徽标组件"
 />
 
-<fe-code-show
+<playground
   title="锚点"
   name="ex-badge-anchor"
   desc="提供一个固定徽标的容器"

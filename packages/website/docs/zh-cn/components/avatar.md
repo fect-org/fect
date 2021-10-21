@@ -2,13 +2,13 @@
 
 展示用户头像信息
 
-<fe-code-show title="默认的" name="ex-avatar-default" desc="Avatar 组件包含了圆形与方形" />
+<playground title="默认的" name="ex-avatar-default" desc="Avatar 组件包含了圆形与方形" />
 
-<fe-code-show title="大小" name="ex-avatar-size" desc="你可以指定组件大小"  />
+<playground title="大小" name="ex-avatar-size" desc="你可以指定组件大小"  />
 
-<fe-code-show title="文本" name="ex-avatar-text" desc="在头像框内用文本替代" />
+<playground title="文本" name="ex-avatar-text" desc="在头像框内用文本替代" />
 
-<fe-code-show title="头像组" name="ex-avatar-stacked" desc="多个头像框可以堆叠在一起" />
+<playground title="头像组" name="ex-avatar-stacked" desc="多个头像框可以堆叠在一起" />
 
 <fe-attributes>
 

@@ -2,9 +2,9 @@
 
 固定在屏幕边缘的可交互元素组
 
-<fe-code-show title="默认的" name="ex-drawer-default" />
+<playground title="默认的" name="ex-drawer-default" />
 
-<fe-code-show title="定位" name="ex-drawer-placement" />
+<playground title="定位" name="ex-drawer-placement" />
 
 <fe-attributes>
 

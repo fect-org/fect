@@ -1,15 +1,15 @@
-<fe-code-show
+<playground
   title="默认的"
   name="ex-progress-default"
 />
 
-<fe-code-show
+<playground
   title="类型"
   desc="我们预置了一些不同风格的进度条"
   name="ex-progress-types"
 />
 
-<fe-code-show
+<playground
   title="动态色彩"
   desc="你可以指定进度条在任何范围内的颜色"
   name="ex-progress-colors"

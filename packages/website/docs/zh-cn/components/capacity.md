@@ -2,9 +2,9 @@
 
 显示一个容量指示器
 
-<fe-code-show title="默认的" name="ex-capacity-default" />
+<playground title="默认的" name="ex-capacity-default" />
 
-<fe-code-show title="固定颜色" name="ex-capacity-color" desc="指定一个默认颜色进行覆盖" />
+<playground title="固定颜色" name="ex-capacity-color" desc="指定一个默认颜色进行覆盖" />
 
 <fe-attributes>
 

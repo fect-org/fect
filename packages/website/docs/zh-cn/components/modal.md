@@ -2,15 +2,15 @@
 
 弹出显示需要注意的通知项
 
-<fe-code-show
+<playground
   title="默认的"
   name="ex-modal-default"
   desc="使用v-model:visible控制显示隐藏"
 />
 
-<fe-code-show title="定制化" name="ex-modal-custom" desc="使用插槽定制内容" />
+<playground title="定制化" name="ex-modal-custom" desc="使用插槽定制内容" />
 
-<!-- <fe-code-show title="指令" name="ex-modal-direct" desc="使用指令唤醒modal" /> -->
+<!-- <playground title="指令" name="ex-modal-direct" desc="使用指令唤醒modal" /> -->
 
 <fe-attributes>
 

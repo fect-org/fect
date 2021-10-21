@@ -1,0 +1,79 @@
+<template>
+  <fe-card class="fect-doc__playground" shadow>
+    <div class="fect-doc__playground-title">
+      <h3>
+        <anchor>{{ title }}</anchor>
+      </h3>
+      <p>{{ desc }}</p>
+    </div>
+    <div class="fect-doc__playground-meta">
+      <component :is="name" ref="renderRef" />
+      <prview v-if="displayPreview" :code="code" />
+    </div>
+  </fe-card>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref, ComponentPublicInstance } from 'vue'
+import { useState } from '@fect-ui/vue-hooks'
+import Anchor from '../anchor/index.vue'
+import Prview from './preview.vue'
+export default defineComponent({
+  name: 'Playground',
+  components: {
+    Anchor,
+    Prview,
+  },
+  props: {
+    title: {
+      type: String,
+      default: '',
+    },
+    name: String,
+    desc: {
+      type: String,
+      default: '',
+    },
+    displayPreview: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  setup(props, { slots }) {
+    const renderRef = ref<ComponentPublicInstance & { _: any }>()
+
+    const [code, setCode] = useState<string>()
+
+    return { renderRef, code }
+  },
+})
+</script>
+
+<style lang="less" scoped>
+.fect-doc {
+  &__playground {
+    margin: var(--fay-gap) 0;
+  }
+  &__playground-title {
+    h3 {
+      margin: 0;
+      line-height: 1rem;
+      font-size: 1.25rem;
+      font-weight: 400;
+    }
+  }
+  &__playground-meta {
+    margin: var(--fay-gap-half) 0;
+    box-sizing: border-box;
+    > div {
+      padding: var(--fay-gap-half);
+    }
+  }
+  @media only screen and (max-width: 650px) {
+    &__playground {
+      width: 100%;
+      margin: var(--fay-gap-half);
+    }
+  }
+}
+</style>

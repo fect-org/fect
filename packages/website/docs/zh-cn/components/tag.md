@@ -2,17 +2,17 @@
 
 标记文档的状态与功能
 
-<fe-code-show
+<playground
 title="默认的"
 name="ex-tag-default"
 />
 
-<fe-code-show
+<playground
 title="类型"
 name="ex-tag-type"
 />
 
-<fe-code-show
+<playground
 title="类型"
 name="ex-tag-invert"
 />

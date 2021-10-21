@@ -2,11 +2,11 @@
 
 基础的组件容器
 
-<fe-code-show title="默认的" desc="基础的组件容器" name="ex-card-default" />
+<playground title="默认的" desc="基础的组件容器" name="ex-card-default" />
 
-<fe-code-show title="可悬停的" name="ex-card-hoverable" />
+<playground title="可悬停的" name="ex-card-hoverable" />
 
-<fe-code-show title="阴影" desc="给组件容器添加阴影" name="ex-card-shadow"/>
+<playground title="阴影" desc="给组件容器添加阴影" name="ex-card-shadow"/>
 
 <fe-attributes>
 

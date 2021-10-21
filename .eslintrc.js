@@ -8,10 +8,10 @@ module.exports = {
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:vue/vue3-recommended',
-    'plugin:prettier/recommended',
+    'prettier',
+    'prettier/vue',
     'kagura',
   ],
-  // parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
     ecmaVersion: 2019,
@@ -29,7 +29,11 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'vue/require-default-prop': 0,
+    'vue/comment-directive': 'off',
+    'vue/no-v-html': 'off',
+    'vue/attributes-order': 'off',
+    'vue/require-default-prop': 'off',
+    'vue/require-explicit-emits': 'off',
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-extra-semi': 'off',
     '@typescript-eslint/no-explicit-any': 'off',

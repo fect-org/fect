@@ -2,10 +2,10 @@
 
 用于展示图象数据
 
-<fe-code-show title="默认的" name="ex-image-default" />
-<fe-code-show title="骨架" name="ex-image-skeleton" />
-<fe-code-show title="浏览器风格" desc="为图片增加浏览器风格的外装饰" name="ex-image-browser" />
-<fe-code-show title="反转的浏览器风格" name="ex-image-invert" />
+<playground title="默认的" name="ex-image-default" />
+<playground title="骨架" name="ex-image-skeleton" />
+<playground title="浏览器风格" desc="为图片增加浏览器风格的外装饰" name="ex-image-browser" />
+<playground title="反转的浏览器风格" name="ex-image-invert" />
 
 <fe-attributes>
 

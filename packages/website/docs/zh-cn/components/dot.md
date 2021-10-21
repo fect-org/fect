@@ -2,9 +2,9 @@
 
 点可以表达语句的状态，或是仅用于分类装饰
 
-<fe-code-show title="默认的" name="ex-dot-default" />
+<playground title="默认的" name="ex-dot-default" />
 
-<fe-code-show title="基础的" desc="dot支持插槽" name="ex-dot-base" />
+<playground title="基础的" desc="dot支持插槽" name="ex-dot-base" />
 
 <fe-attributes>
 

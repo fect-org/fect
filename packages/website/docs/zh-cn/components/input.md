@@ -2,29 +2,29 @@
 
 处理用户的输入数据
 
-<fe-code-show title="默认的" name="ex-input-default" desc="基础的输入字段" />
-<fe-code-show title="大小" name="ex-input-size" desc="不同大小的输入框" />
-<fe-code-show
+<playground title="默认的" name="ex-input-default" desc="基础的输入字段" />
+<playground title="大小" name="ex-input-size" desc="不同大小的输入框" />
+<playground
   title="标签"
   name="ex-input-inline-label"
   desc="在输入框内显示短小地行内文本"
 />
-<fe-code-show
+<playground
   title="禁用交互"
   name="ex-input-unwriteable"
   desc="禁用输入框地所有交互效果"
 />
-<fe-code-show
+<playground
   title="块级标签"
   name="ex-input-block-label"
   desc="为标签自定义更多样式"
 />
-<fe-code-show
+<playground
   title="清除按钮"
   name="ex-input-clearable"
   desc="在输入框内增加一个用于清除文本的按钮"
 />
-<fe-code-show title="密码" name="ex-input-password" desc="显示或隐藏密码文本" />
+<playground title="密码" name="ex-input-password" desc="显示或隐藏密码文本" />
 
 <fe-attributes>
 

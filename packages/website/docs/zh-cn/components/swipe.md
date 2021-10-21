@@ -2,13 +2,13 @@
 
 显示一组需要展示的图象数据
 
-<fe-code-show
+<playground
   title="默认的"
   name="ex-swipe-default"
   desc="具备基础风格的轮播图"
 />
 
-<fe-code-show
+<playground
   title="自动的"
   name="ex-swipe-loop"
   desc="通过loop开启循环轮播"

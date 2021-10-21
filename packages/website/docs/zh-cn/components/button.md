@@ -2,21 +2,21 @@
 
 用于触发一个操作
 
-<fe-code-show title="默认的" name="ex-button-default" desc="默认Button包含一个动画效果。" />
+<playground title="默认的" name="ex-button-default" desc="默认Button包含一个动画效果。" />
 
-<fe-code-show title="加载中" name="ex-button-loading" desc="Button按钮支持加载状态。" />
+<playground title="加载中" name="ex-button-loading" desc="Button按钮支持加载状态。" />
 
-<fe-code-show title="禁用" name="ex-button-disabled"  desc="禁止Button的一切操作" />
+<playground title="禁用" name="ex-button-disabled"  desc="禁止Button的一切操作" />
 
-<fe-code-show title="阴影" name="ex-button-shadow" desc="使用阴影凸显层级" />
+<playground title="阴影" name="ex-button-shadow" desc="使用阴影凸显层级" />
 
-<fe-code-show title="类型" name="ex-button-type" desc="不同状态下的按钮" />
+<playground title="类型" name="ex-button-type" desc="不同状态下的按钮" />
 
-<fe-code-show title="幽灵" name="ex-button-ghost" desc="底色与主色相反的透明按钮" />
+<playground title="幽灵" name="ex-button-ghost" desc="底色与主色相反的透明按钮" />
 
-<fe-code-show title="尺寸" name="ex-button-size" desc="不同大小下的按钮" />
+<playground title="尺寸" name="ex-button-size" desc="不同大小下的按钮" />
 
-<fe-code-show title="图标" name="ex-button-icon" desc="按钮内的图标色彩和大小将会被自动设置" />
+<playground title="图标" name="ex-button-icon" desc="按钮内的图标色彩和大小将会被自动设置" />
 
 <fe-attributes>
 

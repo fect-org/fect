@@ -2,21 +2,21 @@
 
 显示可拷贝的命令行代码片段
 
-<fe-code-show title="默认的" desc="展示一个命令" name="ex-snippet-default" />
+<playground title="默认的" desc="展示一个命令" name="ex-snippet-default" />
 
-<fe-code-show
+<playground
   title="拷贝"
   desc="片段具有拷贝功能,同时支持静默拷贝和禁止"
   name="ex-snippet-copy"
 />
 
-<fe-code-show
+<playground
   title="类型"
   desc="以颜色区分不同的类型"
   name="ex-snippet-type"
 />
 
-<fe-code-show
+<playground
   title="填充"
   name="ex-snippet-filled"
 />

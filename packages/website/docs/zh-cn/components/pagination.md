@@ -2,31 +2,31 @@
 
 多个页面之间的导航与鉴别
 
-<fe-code-show
+<playground
   title="默认的"
   name="ex-pagination-default"
   desc="基础的分页"
 />
 
-<fe-code-show
+<playground
   title="朴素"
   name="ex-pagination-simple"
   desc="朴素的分页器"
 />
 
-<fe-code-show
+<playground
   title="限制"
   name="ex-pagination-limit"
   desc="调整最大可展示页面数"
 />
 
-<fe-code-show
+<playground
   title="自定义的"
   name="ex-pagination-custom"
   desc="使用插槽定制按钮"
 />
 
-<fe-code-show
+<playground
   title="尺寸"
   name="ex-pagination-size"
   desc="不同大小的分页器"

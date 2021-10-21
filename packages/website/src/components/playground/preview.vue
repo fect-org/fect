@@ -1,0 +1,78 @@
+<template>
+  <div class="fect-doc__playground-preview">
+    <div class="fect-doc__playground-operations">
+      <codesandbox size="20" />
+      <copy size="20" @click="copyClickHandler" />
+      <icon-code size="20" @click="previewClickHandler" />
+    </div>
+    <div>
+      <div v-show="visible" class="meta"></div>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, getCurrentInstance, ComponentPublicInstance } from 'vue'
+import { useClipboard, useState } from '@fect-ui/vue-hooks'
+import { code as Code } from '@fect-ui/vue-icons'
+export default defineComponent({
+  name: 'Preview',
+  components: {
+    iconCode: Code,
+  },
+  props: {
+    code: {
+      type: String,
+      default: '',
+    },
+  },
+  setup(props) {
+    const [visible, setVisible] = useState<boolean>(false)
+    const { proxy } = getCurrentInstance()!
+    const { copyText } = useClipboard()
+    const previewClickHandler = () => {
+      setVisible(!visible.value)
+    }
+    const copyClickHandler = () => {
+      copyText(props.code)
+      if (proxy) {
+        const { $toast } = proxy as ComponentPublicInstance<{
+          $toast: any
+        }>
+        $toast.success({ text: 'copy success~' })
+      }
+    }
+
+    return {
+      visible,
+      copyClickHandler,
+      previewClickHandler,
+    }
+  },
+})
+</script>
+
+<style lang="less" scoped>
+.fect-doc {
+  &__playground-preview {
+    border-top: 1px solid var(--accents-2);
+    border-bottom-left-radius: var(--fay-radius);
+    border-bottom-right-radius: var(--fay-radius);
+    p {
+      text-align: center;
+      user-select: none;
+      cursor: pointer;
+      font-size: 0.875rem;
+    }
+    .meta {
+      margin-top: var(--fay-gap-half);
+    }
+  }
+  &__playground-operations {
+    text-align: right;
+    svg {
+      margin-right: 10px;
+    }
+  }
+}
+</style>

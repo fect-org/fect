@@ -2,18 +2,18 @@
 
 显示选项卡的内容
 
-<fe-code-show
+<playground
   title="默认的"
   name="ex-tabs-default"
   desc="切换显示不同的内容"
 />
 
-<fe-code-show
+<playground
   title="分割线"
   name="ex-tabs-disabled"
 />
 
-<fe-code-show
+<playground
   title="分割线"
   name="ex-tabs-divider"
   desc="隐藏默认的分割线"

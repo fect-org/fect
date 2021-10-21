@@ -1,21 +1,21 @@
-<fe-code-show
+<playground
 title="默认的"
 name="ex-select-default"
 />
 
-<fe-code-show
+<playground
   title="多选的"
   desc="组件支持同时选中多个值"
   name="ex-select-multiple"
 />
 
-<fe-code-show
+<playground
   title="禁用的"
   desc="禁用所有的交互"
   name="ex-select-disabled"
 />
 
-<fe-code-show
+<playground
   title="禁用选项"
   desc="禁用指定的选项"
   name="ex-select-disableOption"

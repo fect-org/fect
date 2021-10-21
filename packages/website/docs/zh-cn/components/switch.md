@@ -2,11 +2,11 @@
 
 显示布尔值的开关控件
 
-<fe-code-show title="默认的" name="ex-switch-default" />
+<playground title="默认的" name="ex-switch-default" />
 
-<fe-code-show title="禁用" name="ex-switch-disabled" />
+<playground title="禁用" name="ex-switch-disabled" />
 
-<fe-code-show title="尺寸" desc="switch组件支持修改大小" name="ex-switch-size" />
+<playground title="尺寸" desc="switch组件支持修改大小" name="ex-switch-size" />
 
 <fe-attributes>
   

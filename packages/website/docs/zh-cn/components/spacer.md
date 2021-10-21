@@ -2,9 +2,9 @@
 
 为排版提供标准化的间距
 
-<fe-code-show  title="默认的" name="ex-spacer-default"/>
+<playground  title="默认的" name="ex-spacer-default"/>
 
-<fe-code-show  title="水平的" name="ex-spacer-horizontal"/>
+<playground  title="水平的" name="ex-spacer-horizontal"/>
 
 <fe-attributes>
   

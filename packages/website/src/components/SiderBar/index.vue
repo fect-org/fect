@@ -1,10 +1,9 @@
 <template>
   <div class="fect-doc__sider">
-    <widgets />
     <div v-for="(route, idx) in routes" :key="route + idx" class="fect-doc__route-content">
       <span class="title">{{ route.name }}</span>
-      <div v-for="_ in route.children" :key="_" class="route__children">
-        <active-cate :to="_" :route-name="_.title" />
+      <div class="fect-doc__route-children" v-for="_ in route.children" :key="_">
+        <active-cate :to="_" :routeName="_.title" />
       </div>
     </div>
   </div>
@@ -12,15 +11,13 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue'
-import { zhRoutes } from '../../../docs/zh-cn/index'
-import widgets from './widgets.vue'
+import { zhRoutes } from '../../../docs/zh-cn'
 import activeCate from '../ActiveCate/index.vue'
 
 export default defineComponent({
+  components: { activeCate },
   name: 'SiderBar',
-  components: { widgets, activeCate },
   setup() {
-    // docs['zh-cn']
     const Routes = reactive({ routes: zhRoutes })
     return {
       ...toRefs(Routes),
@@ -30,19 +27,37 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-.fect-doc__route-content {
-  margin-bottom: var(--fay-gap);
-
-  .title {
-    text-transform: uppercase;
-    letter-spacing: 1.3px;
-    font-size: 0.82rem;
-    color: var(--accents-4);
-    margin-bottom: var(--fay-half-gap);
+.fect-doc {
+  &__sider {
+    width: 200px;
+    position: fixed;
+    flex-shrink: 0;
+    overflow: auto;
+    box-sizing: border-box;
+    top: 120px;
+    bottom: var(--fay-gap-half);
+    border-right: 1px solid var(--accents-2);
+    &::-webkit-scrollbar {
+      width: 0;
+    }
   }
-  .route__children {
+  @media only screen and (max-width: 650px) {
+    &__sider {
+      display: none;
+    }
+  }
+  &__route-content {
+    margin-bottom: var(--fay-gap);
+    .title {
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      font-size: 0.82rem;
+      color: var(--accents-4);
+      margin-bottom: var(--fay-half-gap);
+    }
+  }
+  &__route-children {
     margin-top: 0.5rem;
-    // margin-bottom: var(--fay-gap);
   }
 }
 </style>

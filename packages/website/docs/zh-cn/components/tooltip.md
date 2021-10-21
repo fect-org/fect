@@ -2,11 +2,11 @@
 
 在悬停时显示额外的提示信息 。
 
-<fe-code-show title="默认的" desc="基础示例" name="ex-tooltip-default" />
+<playground title="默认的" desc="基础示例" name="ex-tooltip-default" />
 
-<fe-code-show title="触发方式" desc="具有不同的触发方式" name="ex-tooltip-trigger" />
+<playground title="触发方式" desc="具有不同的触发方式" name="ex-tooltip-trigger" />
 
-<fe-code-show title="变体" desc="具有不同的状态" name="ex-tooltip-variable" />
+<playground title="变体" desc="具有不同的状态" name="ex-tooltip-variable" />
 
 <fe-attributes>
 

@@ -2,13 +2,13 @@
 
 表示动作正在后台运行
 
-<fe-code-show title="默认的" name="ex-loading-default" />
+<playground title="默认的" name="ex-loading-default" />
 
-<fe-code-show title="类型" desc="可以指定指示器的类型" name="ex-loading-type" />
+<playground title="类型" desc="可以指定指示器的类型" name="ex-loading-type" />
 
-<fe-code-show title="尺寸" desc="可以指定指示器的尺寸" name="ex-loading-size" />
+<playground title="尺寸" desc="可以指定指示器的尺寸" name="ex-loading-size" />
 
-<fe-code-show title="样式" desc="可以选择不同样式的指示器" name="ex-loading-load"/>
+<playground title="样式" desc="可以选择不同样式的指示器" name="ex-loading-load"/>
 
 <fe-attributes>
 

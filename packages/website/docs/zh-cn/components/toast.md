@@ -2,11 +2,11 @@
 
 显示重要的全局通知信息。
 
-<fe-code-show title="默认的" desc="基础的Toast控件" name="ex-toast-default" />
+<playground title="默认的" desc="基础的Toast控件" name="ex-toast-default" />
 
-<fe-code-show title="不同状态的" name="ex-toast-status" />
+<playground title="不同状态的" name="ex-toast-status" />
 
-<fe-code-show title="支持静态方法" desc="Toast控件支持静态方法调用" name="ex-toast-static" />
+<playground title="支持静态方法" desc="Toast控件支持静态方法调用" name="ex-toast-static" />
 
 <fe-attributes>
   

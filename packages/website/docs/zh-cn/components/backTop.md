@@ -2,13 +2,13 @@
 
 返回页面顶部的操作按钮
 
-<fe-code-show
+<playground
   title="默认的"
   name="ex-back-top-default"
   desc="最简单的用法"
 />
 
-<fe-code-show
+<playground
   title="自定义的"
   name="ex-back-top-custom"
   desc="可以自定义回到顶部按钮的样式，限制宽高：40px * 40px"

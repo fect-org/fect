@@ -2,19 +2,19 @@
 
 用于表示多个可选项
 
-<fe-code-show
+<playground
 title="默认的"
 desc="通过 v-model 设置属性的初始状态"
 name="ex-checkbox-default"
 />
 
-<fe-code-show
+<playground
 title="大小"
 desc="不同大小的复选框"
 name="ex-checkbox-size"
 />
 
-<fe-code-show
+<playground
 title="组"
 desc="管理一组Checkbox"
 name="ex-checkbox-group"

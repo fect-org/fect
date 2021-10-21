@@ -2,11 +2,11 @@
 
 提供用户输入的选择项
 
-<fe-code-show title="默认的" name="ex-radio-default"/>
+<playground title="默认的" name="ex-radio-default"/>
 
-<fe-code-show title="组" desc="一组可控选择的数值" name="ex-radio-group"/>
+<playground title="组" desc="一组可控选择的数值" name="ex-radio-group"/>
 
-<fe-code-show title="更多风格的" name="ex-radio-more"/>
+<playground title="更多风格的" name="ex-radio-more"/>
 
 <fe-attributes>
 

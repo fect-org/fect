@@ -2,13 +2,13 @@
 
 网页之间的超链接
 
-<fe-code-show title="默认的" name="ex-link-default"/>
+<playground title="默认的" name="ex-link-default"/>
 
-<fe-code-show  title="高亮" desc="以不同的颜色区分链接" name="ex-link-color" />
+<playground  title="高亮" desc="以不同的颜色区分链接" name="ex-link-color" />
 
-<fe-code-show  title="不同风格的" desc="链接的风格" name="ex-link-more" />
+<playground  title="不同风格的" desc="链接的风格" name="ex-link-more" />
 
-<fe-code-show  title="路由跳转" desc="link组件提供了vueRouter push的路由跳转方式" name="ex-link-to" />
+<playground  title="路由跳转" desc="link组件提供了vueRouter push的路由跳转方式" name="ex-link-to" />
 
 <fe-attributes>
 

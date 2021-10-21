@@ -12,11 +12,11 @@
   </fe-tab>
 </fe-tabs>
 
-<fe-code-show title="引入图标库" name="ex-icons-default" />
-<fe-code-show title="色彩" name="ex-icons-colors" />
-<fe-code-show title="大小" name="ex-icons-sizes" />
+<playground title="引入图标库" name="ex-icons-default" />
+<playground title="色彩" name="ex-icons-colors" />
+<playground title="大小" name="ex-icons-sizes" />
 
-<fe-code-show
+<playground
   title="图标画廊"
   name="ex-icons-list"
   hiddenCode
