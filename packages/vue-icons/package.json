@@ -3,9 +3,7 @@
   "version": "1.0.7",
   "author": "XeryYue",
   "scripts": {
-    "build": "ts-node index.ts && yarn collect && non compile && yarn clean",
-    "collect": "ts-node src/collect",
-    "clean": "rm -rf svg && rm -rf packages"
+    "build": "ts-node index.ts && rm -rf svg && rm -rf packages"
   },
   "license": "MIT",
   "devDependencies": {

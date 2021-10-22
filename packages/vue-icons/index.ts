@@ -1,4 +1,4 @@
-import { generator } from './src/gen-svg'
+import { build } from './src/bundler'
 
 //  iife ~
-;(() => generator())()
+;(() => build())()

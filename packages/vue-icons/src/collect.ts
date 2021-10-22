@@ -29,7 +29,7 @@ const installTemp = `const install =(app:App)=>{
  export default { install }\n
  `
 
-export default (async () => {
+export const collect = async () => {
   const files = await fs.readdir(packagePath)
   const name = files
     .filter((v) => v !== 'index.ts')
@@ -42,4 +42,4 @@ export default (async () => {
   const exports = `export {${name}};\n`
   const outer = importTemp + imports + components + installTemp + exports
   await fs.outputFile(resolvePath, outer)
-})()
+}

@@ -1,6 +1,6 @@
 import https from 'https'
 import { join } from 'path'
-import { writeFileSync, remove } from 'fs-extra'
+import { remove } from 'fs-extra'
 
 const sourcePath = join(__dirname, '..', 'sourcemap')
 
