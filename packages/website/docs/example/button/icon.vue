@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fe-button :icon="icon()">Button</fe-button>
+    <!-- <fe-button :icon="icon()">Button</fe-button> -->
   </div>
 </template>
 

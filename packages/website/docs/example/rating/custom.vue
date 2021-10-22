@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fe-rating v-model="val" :icon="icon" locked @change="handleChange" />
+    <!-- <fe-rating v-model="val" :icon="icon" locked @change="handleChange" /> -->
   </div>
 </template>
 

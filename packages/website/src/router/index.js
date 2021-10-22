@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 const path = import.meta.globEager('../../docs/zh-cn/**/*.md')
 
 const collectRoute = (context) => {
@@ -16,8 +16,7 @@ const collectRoute = (context) => {
 const routes = [{ path: '/', redirect: { name: 'Introduce' } }, ...collectRoute(path)]
 
 const router = createRouter({
-  history: createWebHashHistory(),
-  // history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes,
   scrollBehavior,
 })
