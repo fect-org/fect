@@ -9,11 +9,14 @@ describe('Rating', () => {
   })
 
   it('should be support custom Icon render', () => {
-    const custom = () => <github />
-    const wrapper = mount(Rating, {
-      props: {
-        icon: custom(),
+    const wrapper = mount({
+      components: {
+        [Rating.name]: Rating,
+        [github.name]: github,
       },
+      template: `<fe-rating>
+        <template #icon><github /></template>
+      </fe-rating>`,
     })
     expect(wrapper.html()).toMatchSnapshot()
   })

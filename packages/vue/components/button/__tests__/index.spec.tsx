@@ -81,16 +81,17 @@ describe('Button', () => {
 
   it('should be support icon', () => {
     const wrapper = mount({
-      data: () => ({
-        icon: () => <github />,
-      }),
-      template: `
-      <div class="container">
-        <fe-button :icon="icon()">Button</fe-button>
-      </div>`,
       components: {
         [Button.name]: Button,
+        github,
       },
+      template: `
+      <div class="container">
+        <fe-button icon="github">
+          <template #icon><github /></template>
+            Button
+        </fe-button>
+      </div>`,
     })
     expect(wrapper.html()).toMatchSnapshot()
   })

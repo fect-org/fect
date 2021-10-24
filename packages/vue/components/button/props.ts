@@ -1,5 +1,5 @@
 import { PropType } from 'vue'
-import { NormalSizes, ButtonTypes, LoadingTypes, UnknowProp } from '../utils'
+import { NormalSizes, ButtonTypes, LoadingTypes } from '../utils'
 
 export const props = {
   type: {
@@ -15,7 +15,6 @@ export const props = {
   shadow: Boolean,
   auto: Boolean,
   disabled: Boolean,
-  icon: UnknowProp,
   loadType: {
     type: String as PropType<LoadingTypes>,
     default: 'deafult',

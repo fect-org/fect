@@ -1,5 +1,5 @@
 import { computed, PropType, watch, defineComponent } from 'vue'
-import { useState, createName, UnknowProp, CustomCSSProperties, NormalTypes } from '../utils'
+import { useState, createName, CustomCSSProperties, NormalTypes } from '../utils'
 import RatingIcon from './rating-icon'
 
 import './index.less'
@@ -28,10 +28,6 @@ export default defineComponent({
       type: String as PropType<NormalTypes>,
       default: 'default',
     },
-    icon: {
-      type: UnknowProp,
-      default: <RatingIcon />,
-    },
     count: {
       type: Number,
       default: 5,
@@ -39,7 +35,7 @@ export default defineComponent({
     locked: Boolean,
   },
   emits: ['change', 'update:modelValue'],
-  setup(props, { emit }) {
+  setup(props, { emit, slots }) {
     const [currentValue, setCurrentValue] = useState<number>(props.modelValue)
 
     watch(
@@ -77,7 +73,9 @@ export default defineComponent({
     }
 
     const renderIcon = (key: number) => {
-      const { icon, locked } = props
+      const { locked } = props
+
+      const icon = slots['icon']
 
       return (
         <div
@@ -88,7 +86,7 @@ export default defineComponent({
           onMouseenter={() => mouseEnterHanlder(key + 1)}
           onMouseleave={mouseLeaveHandler}
         >
-          {icon}
+          {icon ? icon() : <RatingIcon />}
         </div>
       )
     }

@@ -6,10 +6,8 @@ import ButtonDrip from './button-drip'
 import { queryHoverColor } from './style'
 
 import './index.less'
-import ButtonIcon from './button-icon'
-const name = createName('Button')
 
-type Icon = keyof HTMLElementTagNameMap
+const name = createName('Button')
 
 export default defineComponent({
   name,
@@ -68,6 +66,12 @@ export default defineComponent({
       }, 500)
     }
 
+    const IconRender = () => {
+      const icon = slots['icon']
+      if (icon) return <div class="fect-button__icon">{slots.icon?.()}</div>
+      return null
+    }
+
     return () => (
       <button
         class={`fect-button fect-button--${props.type} fect-button--${props.size} ${setButtonStatus.value}`}
@@ -77,7 +81,7 @@ export default defineComponent({
       >
         {props.loading && <ButtonLoading loadType={props.loadType} />}
         {drapShow.value && <ButtonDrip x={drapX.value} y={drapY.value} onCompleted={dripCompleteHandler} />}
-        {props.icon && <ButtonIcon icon={props.icon as Icon} />}
+        <IconRender />
         {slots.default?.()}
       </button>
     )
