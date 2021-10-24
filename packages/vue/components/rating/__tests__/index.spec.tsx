@@ -12,7 +12,7 @@ describe('Rating', () => {
     const wrapper = mount({
       components: {
         [Rating.name]: Rating,
-        [github.name]: github,
+        github,
       },
       template: `<fe-rating>
         <template #icon><github /></template>

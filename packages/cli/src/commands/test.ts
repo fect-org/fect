@@ -8,5 +8,5 @@ import { setNodeENV } from '../shared/constant'
 
 export const jest = (argv: string[]) => {
   setNodeENV('test')
-  run(Object.keys(argv))
+  run(['--updateSnapshot'])
 }

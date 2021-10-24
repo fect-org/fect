@@ -87,7 +87,7 @@ describe('Button', () => {
       },
       template: `
       <div class="container">
-        <fe-button icon="github">
+        <fe-button>
           <template #icon><github /></template>
             Button
         </fe-button>

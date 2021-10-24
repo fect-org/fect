@@ -65,7 +65,7 @@ exports[`Button should be support different sizes 1`] = `
 `;
 
 exports[`Button should be support icon 1`] = `
-<div class="container"><button class="fect-button fect-button--default fect-button--medium" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" icon="github">
+<div class="container"><button class="fect-button fect-button--default fect-button--medium " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);">
     <!---->
     <!---->
     <div class="fect-button__icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24">

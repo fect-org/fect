@@ -8,7 +8,7 @@
   "scripts": {
     "collect": "non collect",
     "build": "non compile",
-    "test": "non test -u"
+    "test": "non test"
   },
   "keywords": [
     "vue component",
