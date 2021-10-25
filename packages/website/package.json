@@ -4,7 +4,8 @@
   "description": "A Website ",
   "main": "index.js",
   "scripts": {
-    "dev": "non dev"
+    "dev": "non dev",
+    "build": "non build"
   },
   "keywords": [],
   "author": "XeryYue",
