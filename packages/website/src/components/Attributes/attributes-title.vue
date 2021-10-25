@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Anchor from '../Anchor/index.vue'
+import Anchor from '../anchor/index.vue'
 
 export default defineComponent({
   name: 'FeAttributesTitle',
