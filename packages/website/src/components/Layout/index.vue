@@ -1,8 +1,7 @@
 <template>
   <div class="fect-doc__layout">
-    <tabbar-mobile @click="mobileTabClickHandler" />
     <aside :class="`fect-doc__siderbar ${isMobileScroll}`">
-      <sider-bar />
+      <side-bar />
     </aside>
     <div class="fect-side__shadow"></div>
     <main class="fect-doc__main">
@@ -17,27 +16,23 @@
 import { computed, defineComponent, ref } from 'vue'
 import { createProvider } from '@fect-ui/vue-hooks'
 import { READONLY_DOCS_LAYOUT_KEY } from './type'
-import siderBar from '../SiderBar/index.vue'
-import tabbarMobile from '../SiderBar/tabbar-mobile.vue'
+import SideBar from '../side-bar/index.vue'
 export default defineComponent({
-  components: { siderBar, tabbarMobile },
+  components: { SideBar },
   setup(props, { slots }) {
     const isScroll = ref(false)
     const theme = ref(localStorage.getItem('theme'))
     const { provider } = createProvider(READONLY_DOCS_LAYOUT_KEY)
-    const mobileTabClickHandler = () => (isScroll.value = !isScroll.value)
     const changeThemeHandler = (cur: string) => (theme.value = cur)
 
     const isMobileScroll = computed(() => (isScroll.value ? 'isAcive' : ''))
 
     provider({
-      mobileTabClickHandler,
       changeThemeHandler,
       theme,
     })
     return {
       isMobileScroll,
-      mobileTabClickHandler,
     }
   },
 })

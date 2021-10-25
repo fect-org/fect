@@ -3,24 +3,37 @@
     <div v-for="(route, idx) in routes" :key="route + idx" class="fect-doc__route-content">
       <span class="title">{{ route.name }}</span>
       <div class="fect-doc__route-children" v-for="_ in route.children" :key="_">
-        <active-cate :to="_" :routeName="_.title" />
+        <active-cate :to="_.route.name" :routeName="_.title" :color="setActive(_.route.name)" />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue'
+import { useRouter } from 'vue-router'
+import { defineComponent, reactive, toRefs, watch } from 'vue'
 import { zhRoutes } from '../../../docs/zh-cn'
-import activeCate from '../ActiveCate/index.vue'
+import ActiveCate from './active-cate.vue'
+import { useState } from '@fect-ui/vue-hooks'
 
 export default defineComponent({
-  components: { activeCate },
-  name: 'SiderBar',
+  components: { ActiveCate },
+  name: 'SideBar',
   setup() {
     const Routes = reactive({ routes: zhRoutes })
+    const router = useRouter()
+    const [title, setTitle] = useState<string>('')
+    const setActive = (route) => {
+      const active = router.currentRoute.value.name === route
+      active && setTitle(`${route} | Vue - Fect UI`)
+      return active
+    }
+
+    watch(title, (pre) => (document.title = pre))
+
     return {
       ...toRefs(Routes),
+      setActive,
     }
   },
 })
@@ -36,7 +49,6 @@ export default defineComponent({
     box-sizing: border-box;
     top: 120px;
     bottom: var(--fay-gap-half);
-    border-right: 1px solid var(--accents-2);
     &::-webkit-scrollbar {
       width: 0;
     }
