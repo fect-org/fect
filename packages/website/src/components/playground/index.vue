@@ -1,11 +1,13 @@
 <template>
+  <div class="fect-doc__playground-title">
+    <h3>
+      <anchor>{{ title }}</anchor>
+    </h3>
+    <p>{{ desc }}</p>
+  </div>
+
+  <div class="fect-doc__playground"></div>
   <fe-card class="fect-doc__playground" shadow>
-    <div class="fect-doc__playground-title">
-      <h3>
-        <anchor>{{ title }}</anchor>
-      </h3>
-      <p>{{ desc }}</p>
-    </div>
     <div class="fect-doc__playground-meta">
       <component :is="name" ref="renderRef" />
       <prview v-if="displayPreview" :code="code" />
@@ -58,8 +60,12 @@ export default defineComponent({
     h3 {
       margin: 0;
       line-height: 1rem;
-      font-size: 1.25rem;
+      font-size: 1.125rem;
       font-weight: 400;
+    }
+    p {
+      margin-bottom: 0;
+      font-size: 0.875rem;
     }
   }
   &__playground-meta {
@@ -72,7 +78,6 @@ export default defineComponent({
   @media only screen and (max-width: 650px) {
     &__playground {
       width: 100%;
-      margin: var(--fay-gap-half);
     }
   }
 }

@@ -100,7 +100,6 @@ export default defineComponent({
   .fect-doc__layout {
     max-width: 100%;
     width: 100%;
-    padding: 0rem 1rem;
   }
   .fect-doc__siderbar {
     position: fixed;
