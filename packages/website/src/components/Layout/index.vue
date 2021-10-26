@@ -8,6 +8,7 @@
         <slot />
       </div>
       <!-- widget list -->
+      <div class="fect-doc__widget-list">123</div>
     </main>
   </div>
 </template>
@@ -19,22 +20,10 @@ import { READONLY_DOCS_LAYOUT_KEY } from './type'
 import NavBar from '../nav-bar/index.vue'
 import SideBar from '../side-bar/index.vue'
 export default defineComponent({
+  name: 'Layout',
   components: { SideBar, NavBar },
   setup(props, { slots }) {
-    const isScroll = ref(false)
-    const theme = ref(localStorage.getItem('theme'))
-    const { provider } = createProvider(READONLY_DOCS_LAYOUT_KEY)
-    const changeThemeHandler = (cur: string) => (theme.value = cur)
-
-    const isMobileScroll = computed(() => (isScroll.value ? 'isAcive' : ''))
-
-    provider({
-      changeThemeHandler,
-      theme,
-    })
-    return {
-      isMobileScroll,
-    }
+    const {} = createProvider(READONLY_DOCS_LAYOUT_KEY)
   },
 })
 </script>
@@ -53,19 +42,22 @@ export default defineComponent({
     top: 0;
     left: 0;
     right: 0;
+    padding-top: 64px;
   }
   &__main {
     display: flex;
-    max-width: calc(100% - 220px);
-    flex-direction: column;
+    width: 100%;
     padding-left: 200px;
-    padding-top: 64px;
-    flex: 0 0 100%;
     padding-bottom: 150px;
   }
   &__article {
+    flex: 2;
     box-sizing: border-box;
     max-width: 50rem;
+  }
+  &__widget-list {
+    position: relative;
+    flex: 1;
   }
   @media only screen and (max-width: 650px) {
     &__layout {
@@ -76,6 +68,16 @@ export default defineComponent({
       max-width: 100%;
       padding-bottom: 50px;
       padding-left: 0;
+      display: block;
+    }
+
+    &__widget-list {
+      display: none;
+    }
+  }
+  @media only screen and (min-width: 1440px) {
+    &__layout {
+      max-width: 80%;
     }
   }
 }

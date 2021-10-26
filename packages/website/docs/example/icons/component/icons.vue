@@ -76,7 +76,7 @@ export default {
   .input {
     box-sizing: border-box;
     width: 100%;
-    /deep/input {
+    :deep(input) {
       padding-left: 25px !important;
     }
   }

@@ -8,8 +8,14 @@
         <fe-link>指南</fe-link>
         <fe-link>组件</fe-link>
         <fe-link>Engilsh</fe-link>
-        <div class="fect-doc__github-card">
-          <github size="20" />
+        <div class="fect-doc__svg-card" @click="changeHandler">
+          <sun v-show="theme === 'light-theme'" size="20" />
+          <moon v-show="theme === 'dark-theme'" size="20" />
+        </div>
+        <div class="fect-doc__svg-card">
+          <fe-link href="https://github.com/fay-org/fect" target="_blank">
+            <github size="20" />
+          </fe-link>
         </div>
       </nav>
     </fe-col>
@@ -18,9 +24,19 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { useTheme } from '@fect-ui/vue/components/utils'
 
 export default defineComponent({
-  setup(props) {},
+  setup(props) {
+    const { theme, themeChange } = useTheme()
+
+    const changeHandler = () => themeChange()
+
+    return {
+      theme,
+      changeHandler,
+    }
+  },
 })
 </script>
 
@@ -67,15 +83,50 @@ export default defineComponent({
       }
     }
   }
-  &__github-card {
-    display: inline;
+  &__svg-card {
+    display: inline-block;
     height: 100%;
     cursor: pointer;
     padding: 0 var(--fay-gap);
     box-sizing: border-box;
     position: relative;
+    > .fect-link {
+      color: var(--primary-foreground);
+    }
     svg {
-      transform: translate(-25%, 25%);
+      transform: translate(0, 25%);
+    }
+  }
+
+  @media only screen and (max-width: 650px) {
+    &__article {
+      height: 100%;
+      align-items: center;
+      display: flex;
+      > nav {
+        line-height: 64px;
+        > .fect-link {
+          padding: 0 var(--fay-gap-half);
+          height: 100%;
+        }
+      }
+    }
+    &__svg-card {
+      padding: 0 var(--fay-gap-half);
+    }
+  }
+
+  @media only screen and (min-width: 1440px) {
+    &__navbar {
+      padding: 0;
+      margin: 0 auto;
+      padding: 0 calc(var(--fay-gap) * 2);
+    }
+    &__article {
+      > nav {
+        box-sizing: border-box;
+        padding-right: 10%;
+      }
     }
   }
 }

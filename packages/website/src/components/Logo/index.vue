@@ -8,21 +8,19 @@ const dark = 'https://user-images.githubusercontent.com/52351095/124437265-7a89e
 
 import { defineComponent, ref, watchEffect } from 'vue'
 import { useProvider } from '@fect-ui/vue-hooks'
-import { LayoutProvide, READONLY_DOCS_LAYOUT_KEY } from '../Layout/type'
 
 export default defineComponent({
   name: 'feLogo',
   setup() {
     const img = ref<string>(light)
-    const { context } = useProvider<LayoutProvide>(READONLY_DOCS_LAYOUT_KEY)
-    watchEffect(() => {
-      const theme = context!.theme.value
-      if (theme === 'dark') {
-        img.value = dark
-        return
-      }
-      img.value = light
-    })
+    // watchEffect(() => {
+    //   const theme = context!.theme.value
+    //   if (theme === 'dark') {
+    //     img.value = dark
+    //     return
+    //   }
+    //   img.value = light
+    // })
     return { img }
   },
 })

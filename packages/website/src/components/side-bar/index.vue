@@ -1,6 +1,5 @@
 <template>
   <div class="fect-doc__sider">
-    <widgets />
     <div v-for="(route, idx) in routes" :key="route + idx" class="fect-doc__route-content">
       <span class="title">{{ route.name }}</span>
       <div class="fect-doc__route-children" v-for="_ in route.children" :key="_">
@@ -15,11 +14,10 @@ import { useRouter } from 'vue-router'
 import { defineComponent, reactive, toRefs, watch } from 'vue'
 import { zhRoutes } from '../../../docs/zh-cn'
 import ActiveCate from './active-cate.vue'
-import Widgets from './widgets.vue'
 import { useState } from '@fect-ui/vue-hooks'
 
 export default defineComponent({
-  components: { ActiveCate, Widgets },
+  components: { ActiveCate },
   name: 'SideBar',
   setup() {
     const Routes = reactive({ routes: zhRoutes })
