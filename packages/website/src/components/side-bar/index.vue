@@ -1,8 +1,8 @@
 <template>
   <div class="fect-doc__sider">
-    <div v-for="(route, idx) in routes" :key="route + idx" class="fect-doc__route-content">
+    <div v-for="(route, idx) in routes" :key="idx + route.name" class="fect-doc__route-content">
       <span class="title">{{ route.name }}</span>
-      <div class="fect-doc__route-children" v-for="_ in route.children" :key="_">
+      <div class="fect-doc__route-children" v-for="_ in route.children" :key="_.title">
         <active-cate :to="_.route.name" :routeName="_.title" :color="setActive(_.route.name)" />
       </div>
     </div>
@@ -23,7 +23,7 @@ export default defineComponent({
     const Routes = reactive({ routes: zhRoutes })
     const router = useRouter()
     const [title, setTitle] = useState<string>('')
-    const setActive = (route) => {
+    const setActive = (route: string) => {
       const active = router.currentRoute.value.name === route
       active && setTitle(`${route} | Vue - Fect UI`)
       return active

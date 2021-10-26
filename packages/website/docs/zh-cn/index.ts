@@ -1,13 +1,13 @@
 type Child = {
-  title: String
-  group: String
+  title: string
+  group: string
   route: {
-    name: String
+    name: string
   }
 }
 
 type Routes = {
-  name: String
+  name: string
   children: Child[]
 }
 
