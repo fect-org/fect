@@ -1,7 +1,7 @@
 <template>
   <div class="fect-doc__playground-title">
     <h3>
-      <anchor>{{ title }}</anchor>
+      <href-anchor>{{ title }}</href-anchor>
     </h3>
     <p>{{ desc }}</p>
   </div>
@@ -18,12 +18,12 @@
 <script lang="ts">
 import { defineComponent, ref, ComponentPublicInstance } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import Anchor from '../anchor/index.vue'
+import HrefAnchor from '../href-anchor/index.vue'
 import Prview from './preview.vue'
 export default defineComponent({
   name: 'Playground',
   components: {
-    Anchor,
+    HrefAnchor,
     Prview,
   },
   props: {
