@@ -1,11 +1,11 @@
 <template>
   <div class="fect-doc__active-cate">
-    <fe-link :to="to" :color="color">{{ routeName }}</fe-link>
+    <fe-link :to="pushTo" :color="color">{{ routeName }}</fe-link>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 
 export default defineComponent({
   name: 'ActiveCate',
@@ -20,7 +20,14 @@ export default defineComponent({
     },
     color: Boolean,
   },
-  setup(props) {},
+  setup(props) {
+    const pushTo = computed(() => {
+      return {
+        name: props.to,
+      }
+    })
+    return { pushTo }
+  },
 })
 </script>
 

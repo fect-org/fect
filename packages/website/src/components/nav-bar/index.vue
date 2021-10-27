@@ -1,12 +1,14 @@
 <template>
   <fe-row class="fect-doc__navbar" align="middle">
     <fe-col :span="4" class="fect-doc__aside">
-      <h1>Fect</h1>
+      <fe-link :to="goHomeHandler()">
+        <h1>Fect</h1>
+      </fe-link>
     </fe-col>
     <fe-col class="fect-doc__article" :span="20">
       <nav>
         <fe-link>指南</fe-link>
-        <fe-link>组件</fe-link>
+        <fe-link :to="goTo()">组件</fe-link>
         <fe-link>Engilsh</fe-link>
         <div class="fect-doc__svg-card" @click="changeHandler">
           <sun v-show="theme === 'light-theme'" size="20" />
@@ -32,9 +34,21 @@ export default defineComponent({
 
     const changeHandler = () => themeChange()
 
+    const goHomeHandler = () => {
+      return { path: '/' }
+    }
+
+    const goTo = () => {
+      return {
+        name: 'Avatar',
+      }
+    }
+
     return {
       theme,
       changeHandler,
+      goTo,
+      goHomeHandler,
     }
   },
 })
@@ -57,6 +71,9 @@ export default defineComponent({
   }
   &__aside {
     height: inherit;
+    > .fect-link {
+      color: initial;
+    }
     h1 {
       height: 100%;
       margin: 0;

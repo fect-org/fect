@@ -17,7 +17,6 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { useProvider } from '@fect-ui/vue-hooks'
 
 export default defineComponent({
   name: 'AttributeList',

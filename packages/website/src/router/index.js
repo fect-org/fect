@@ -6,14 +6,27 @@ const collectRoute = (context) => {
     const sourceName = p.match(/\w+(?=.md)/g).toString()
     const routeName = sourceName.charAt(0).toUpperCase() + sourceName.slice(1)
     return {
-      path: `/${routeName}`,
+      path: routeName.toLowerCase(),
       name: routeName,
       component: () => context[p],
     }
   })
 }
+// redirect: { name: 'Introduce' }
+const routes = [
+  { path: '/', redirect: { path: '/zh-cn' } },
+  {
+    path: '/zh-cn',
+    component: () => import('../components/layout/home.vue'),
+  },
+  {
+    path: '/zh-cn/components',
+    component: () => import('../components/layout/layout.vue'),
+    children: [...collectRoute(path)],
+  },
+]
 
-const routes = [{ path: '/', redirect: { name: 'Introduce' } }, ...collectRoute(path)]
+console.log(routes)
 
 const router = createRouter({
   history: createWebHistory(),
