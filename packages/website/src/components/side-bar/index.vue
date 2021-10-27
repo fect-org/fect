@@ -1,6 +1,6 @@
 <template>
   <div class="fect-doc__sider">
-    <div v-for="(route, idx) in routes" :key="idx + route.name" class="fect-doc__route-content">
+    <div v-for="(route, idx) in routeList" :key="idx + route.name" class="fect-doc__route-content">
       <span class="title">{{ route.name }}</span>
       <div class="fect-doc__route-children" v-for="_ in route.children" :key="_.title">
         <active-cate :to="_.route.name" :routeName="_.title" :color="setActive(_.route.name)" />
@@ -10,19 +10,19 @@
 </template>
 
 <script lang="ts">
-import { useRouter, useRoute } from 'vue-router'
-import { defineComponent, onMounted, reactive, toRefs, watch } from 'vue'
+import { useRouter } from 'vue-router'
+import { defineComponent, watch, computed } from 'vue'
 import { zhRoutes, zhGuideRoutes } from '../../../docs/zh-cn'
 import ActiveCate from './active-cate.vue'
-import { useState } from '@fect-ui/vue-hooks'
+import { useProvider, useState } from '@fect-ui/vue-hooks'
+import { webSiteProvide, WEB_SITE_KEY } from '../utils/website-context'
 
 export default defineComponent({
   components: { ActiveCate },
   name: 'SideBar',
   setup() {
-    const Routes = reactive({ routes: zhRoutes })
+    const { context } = useProvider<webSiteProvide>(WEB_SITE_KEY)
     const router = useRouter()
-    const route = useRoute()
     const [title, setTitle] = useState<string>('')
     const setActive = (route: string) => {
       const active = router.currentRoute.value.name === route
@@ -30,19 +30,15 @@ export default defineComponent({
       return active
     }
 
-    watch(
-      () => route.path,
-      (pre) => {
-        const guide = pre.includes('guide')
-        if (guide) Routes.routes = zhGuideRoutes
-      },
-      { immediate: true }
-    )
+    const routeList = computed(() => {
+      if (context.deploy.value === 'guide') return zhGuideRoutes
+      return zhRoutes
+    })
 
     watch(title, (pre) => (document.title = pre))
 
     return {
-      ...toRefs(Routes),
+      routeList,
       setActive,
     }
   },

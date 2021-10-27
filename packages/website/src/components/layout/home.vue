@@ -8,38 +8,47 @@
     </div>
 
     <fe-row align="middle" justify="space-around" class="fect-doc__description">
+      <!--  -->
       <fe-col :span="6">
-        <fe-card shadow>
-          <h4>
-            <div class="feature_icon">
-              <package />
-            </div>
-            Guide
-          </h4>
-          <p>View the design guidelines.</p></fe-card
-        >
+        <fe-link :to="routeHandler('guide')">
+          <fe-card shadow hoverable>
+            <h4>
+              <div class="feature_icon">
+                <package />
+              </div>
+              Guide
+            </h4>
+            <p>View the design guidelines.</p>
+          </fe-card>
+        </fe-link>
       </fe-col>
+      <!--  -->
       <fe-col :span="6">
-        <fe-card shadow>
-          <h4>
-            <div class="feature_icon">
-              <feather />
-            </div>
-            Components
-          </h4>
-          <p>Ever-increasing list of concise and aesthetic components.</p>
-        </fe-card>
+        <fe-link :to="routeHandler('components')">
+          <fe-card shadow hoverable>
+            <h4>
+              <div class="feature_icon">
+                <feather />
+              </div>
+              Components
+            </h4>
+            <p>Ever-increasing list of concise and aesthetic components.</p>
+          </fe-card>
+        </fe-link>
       </fe-col>
+      <!--  -->
       <fe-col :span="6">
-        <fe-card shadow>
-          <h4>
-            <div class="feature_icon">
-              <github />
-            </div>
-            Open Sourced
-          </h4>
-          <p>Fect is open sourced and available free under MIT licence.</p>
-        </fe-card>
+        <fe-link :href="routeHandler()" target="_blank">
+          <fe-card shadow hoverable>
+            <h4>
+              <div class="feature_icon">
+                <github />
+              </div>
+              Open Sourced
+            </h4>
+            <p>Fect is open sourced and available free under MIT licence.</p>
+          </fe-card>
+        </fe-link>
       </fe-col>
     </fe-row>
   </div>
@@ -47,9 +56,17 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { webSiteProvide, WEB_SITE_KEY } from '../utils/website-context'
+import { useProvider } from '@fect-ui/vue-hooks'
 
 export default defineComponent({
   name: 'Home',
+  setup() {
+    const { context } = useProvider<webSiteProvide>(WEB_SITE_KEY)
+    return {
+      routeHandler: context.parentRouteHandler,
+    }
+  },
 })
 </script>
 
@@ -77,6 +94,12 @@ export default defineComponent({
     margin-top: calc(var(--fay-gap) * 5);
     > .fect-col {
       height: 150px;
+      .fect-link {
+        display: block;
+        height: inherit;
+        width: 100%;
+        color: initial;
+      }
       .fect-card {
         height: inherit;
         h4 {

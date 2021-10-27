@@ -4,9 +4,7 @@
     <div class="fect-doc__article">
       <router-view />
     </div>
-    <div class="fect-doc__widget-list">
-      <attribute-list :data="attributes" />
-    </div>
+    <div class="fect-doc__widget-list"></div>
   </main>
 </template>
 
@@ -14,16 +12,11 @@
 import { defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import SideBar from '../side-bar/index.vue'
-import AttributeList from '../side-bar/attribute-list.vue'
 
 export default defineComponent({
   name: 'Layout',
-  components: { SideBar, AttributeList },
-  setup(props, { slots }) {
-    const [attributes, setAttributes] = useState<string[]>([])
-
-    return { attributes }
-  },
+  components: { SideBar },
+  setup(props, { slots }) {},
 })
 </script>
 
@@ -36,7 +29,7 @@ export default defineComponent({
     padding-bottom: 150px;
   }
   &__article {
-    flex: 2;
+    flex: 3;
     box-sizing: border-box;
     max-width: 50rem;
   }

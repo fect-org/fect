@@ -7,10 +7,45 @@
 
 <script>
 import NavBar from './components/nav-bar/index.vue'
-
+import { useState, createProvider } from '@fect-ui/vue-hooks'
+import { useRoute } from 'vue-router'
+import { watch } from 'vue'
+import { WEB_SITE_KEY } from './components/utils/website-context'
 export default {
   components: {
     NavBar,
+  },
+  setup() {
+    const route = useRoute()
+    const [deploy, setDeploy] = useState('home')
+
+    const { provider } = createProvider(WEB_SITE_KEY)
+
+    const parentRouteHandler = (type) => {
+      if (type === 'guide') {
+        return {
+          name: 'Introduce',
+        }
+      }
+      if (type === 'components') {
+        return { name: 'Button' }
+      }
+      if (type === 'home') return { path: '/' }
+
+      return 'https://github.com/fay-org/fect'
+    }
+
+    provider({ deploy, parentRouteHandler })
+
+    watch(
+      () => route.path,
+      (pre) => {
+        if (pre === '/') return
+        const deploy = pre.split('/')[2]
+        setDeploy(deploy)
+      },
+      { immediate: true }
+    )
   },
 }
 </script>
@@ -36,6 +71,7 @@ body::-webkit-scrollbar {
   @media only screen and (max-width: 650px) {
     &__layout {
       padding: 0;
+      padding-top: 64px;
       max-width: 90vw;
     }
   }
