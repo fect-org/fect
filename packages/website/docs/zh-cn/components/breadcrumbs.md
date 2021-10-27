@@ -16,9 +16,9 @@
   desc="与 vueRouter 结合使用的示例"
 />
 
-<fe-attributes>
+<attributes>
   
-<fe-attributes-title title="Breadcrumbs Props" />
+<attributes-title title="Breadcrumbs Props" />
 
 | 属性          | 描述     | 类型             | 可选值                           | 默认     |
 | ------------- | -------- | ---------------- | -------------------------------- | -------- |
@@ -26,11 +26,11 @@
 | **separator** | 分隔符   | `string`         | `-`                              | `/`      |
 | ...           | 原生属性 | `HTMLAttributes` | `'class','id',...`               | `-`      |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="BreadcrumbsItem Props" />
+<attributes-title title="BreadcrumbsItem Props" />
 
 | 属性     | 描述               | 类型                | 可选值              | 默认 |
 | -------- | ------------------ | ------------------- | ------------------- | ---- |
@@ -38,4 +38,4 @@
 | **to**   | Vue 路由跳转(push) | `'string','object'` | `-`                 | `-`  |
 | ...      | 原生属性           | `LinkAttributes`    | `'target','id',...` | `-`  |
 
-</fe-attributes>
+</attributes>

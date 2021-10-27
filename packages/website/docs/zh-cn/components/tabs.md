@@ -19,9 +19,9 @@
   desc="隐藏默认的分割线"
 />
 
-<fe-attributes>
+<attributes>
   
-<fe-attributes-title title="Tabs Props" />
+<attributes-title title="Tabs Props" />
 
 | 属性               | 描述                     | 类型                | 可选值               | 默认    |
 | ------------------ | ------------------------ | ------------------- | -------------------- | ------- |
@@ -31,11 +31,11 @@
 | **click**          | 选项卡点击事件           | `TabsEvent`         | `-`                  | `-`     |
 | ...                | 原生属性                 | `HTMLAttributes`    | `'class','name',...` | `-`     |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="Tab Props" />
+<attributes-title title="Tab Props" />
 
 | 属性         | 描述               | 类型                | 可选值               | 默认    |
 | ------------ | ------------------ | ------------------- | -------------------- | ------- |
@@ -44,4 +44,4 @@
 | **disabled** | 禁用当前选项卡     | `'boolean'`         | `'true','false'`     | `false` |
 | ...          | 原生属性           | `HTMLAttributes`    | `'class','name',...` | `-`     |
 
-</fe-attributes>
+</attributes>

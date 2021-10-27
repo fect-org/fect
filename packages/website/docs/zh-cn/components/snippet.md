@@ -21,9 +21,9 @@
   name="ex-snippet-filled"
 />
 
-<fe-attributes>
+<attributes>
   
-<fe-attributes-title title="Snippet Props" />
+<attributes-title title="Snippet Props" />
 
 | 属性          | 描述               | 类型                        | 可选值                           | 默认        |
 | ------------- | ------------------ | --------------------------- | -------------------------------- | ----------- |
@@ -37,14 +37,14 @@
 | **toastType** | 拷贝提示的样式     | [NormalTypes](#normaltypes) | [NormalTypes](#normaltypes)      | `default`   |
 | ...           | 原生属性           | `HTMLAttributes`            | `'class','id',...`               | `-`         |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="NormalTypes" />
+<attributes-title title="NormalTypes" />
 
 | 类型 可选值     |
 | --------------- | ------------------------------------------ |
 | **NormalTypes** | `'default', 'success', 'warning', 'error'` |
 
-</fe-attributes>
+</attributes>

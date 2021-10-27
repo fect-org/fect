@@ -10,9 +10,9 @@
 
 <playground title="头像组" name="ex-avatar-stacked" desc="多个头像框可以堆叠在一起" />
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="Avatar Props" />
+<attributes-title title="Avatar Props" />
 
 | 属性          | 描述                    | 类型                | 可选值                            | 默认     |
 | ------------- | ----------------------- | ------------------- | --------------------------------- | -------- |
@@ -24,15 +24,15 @@
 | **className** | 图像容器设置 class      | `string`            | -                                 | `-`      |
 | ...           | 原生属性                | `ImgHTMLAttributes` | `'alt','class',...`               | `-`      |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="AvatarGroup Props" />
+<attributes-title title="AvatarGroup Props" />
 
 | 属性      | 描述     | 类型              | 可选值              | 默认 |
 | --------- | -------- | ----------------- | ------------------- | ---- |
 | **count** | 数量     | `string`,`number` | --                  | --   |
 | ...       | 原生属性 | `HTMLAttributes`  | `'alt','class',...` | `-`  |
 
-</fe-attributes>
+</attributes>

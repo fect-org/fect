@@ -26,8 +26,8 @@ desc="大多时候, 骨架屏都被用来渲染列表, 当我们需要在从服�
 name="ex-skeleton-more"
 />
 
-<fe-attributes>
-<fe-attributes-title title="Skeleton Props" />
+<attributes>
+<attributes-title title="Skeleton Props" />
 
 | 属性          | 描述                                       | 类型                                        | 可选值             | 默认      |
 | ------------- | ------------------------------------------ | ------------------------------------------- | ------------------ | --------- |
@@ -37,24 +37,24 @@ name="ex-skeleton-more"
 | **rowsWidth** | 段落占位图宽度，可传数组来设置每一行的宽度 | `number` , `string` , `string[]`,`number[]` | `100%`             | `initial` |
 | ...           | 原生属性                                   | `HTMLAttributes`                            | `'class','id',...` | `-`       |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="SkeletonItem Props" />
+<attributes-title title="SkeletonItem Props" />
 
 | 属性         | 描述                 | 类型                            | 可选值                          | 默认   |
 | ------------ | -------------------- | ------------------------------- | ------------------------------- | ------ |
 | **variable** | 显示的占位元素的样式 | [VariableTypes](#variabletypes) | [VariableTypes](#variabletypes) | `text` |
 | ...          | 原生属性             | `HTMLAttributes`                | `'class','id',...`              | `-`    |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
-<fe-attributes-title title="VariableTypes" />
+<attributes>
+<attributes-title title="VariableTypes" />
 
 | 类型              | 可选值                                                               |
 | ----------------- | -------------------------------------------------------------------- |
 | **VariableTypes** | `'p', 'text', 'h1', 'h3','rect','circle','image','button','caption'` |
 
-</fe-attributes>
+</attributes>

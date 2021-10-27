@@ -27,9 +27,9 @@
   name="ex-grid-auto"
  />
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="Grid Props" />
+<attributes-title title="Grid Props" />
 
 | 属性             | 描述                                 | 类型             | 可选值                                  | 默认值       |
 | ---------------- | ------------------------------------ | ---------------- | --------------------------------------- | ------------ |
@@ -47,61 +47,61 @@
 | **xl**           | 栅格宽度，影响 `xl` 断点与更宽的屏幕 | `number`         | `0 - 24`, `boolean`                     | `false`      |
 | ...              | 原生属性                             | `HTMLAttributes` | `'id', 'class', ...`                    | -            |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
   
-<fe-attributes-title title="WrapTypes" />
+<attributes-title title="WrapTypes" />
 
 | 类型          | 可选值                             |     |
 | ------------- | ---------------------------------- | --- |
 | **WrapTypes** | `'nowrap', 'wrap', 'wrap-reverse'` |     |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="JustifyTypes" />
+<attributes-title title="JustifyTypes" />
 
 | 类型             | 可选值                                                                           |     |
 | ---------------- | -------------------------------------------------------------------------------- | --- |
 | **JustifyTypes** | `'flex-start','center','flex-end','space-between','space-around','space-evenly'` |     |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="AlignTypes" />
+<attributes-title title="AlignTypes" />
 
 | 类型           | 可选值                                                   |     |
 | -------------- | -------------------------------------------------------- | --- |
 | **AlignTypes** | `'flex-start','center','flex-end','stretch', 'baseline'` |     |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="AlignContentTypes" />
+<attributes-title title="AlignContentTypes" />
 
 | 类型           | 可选值                                                                       |     |
 | -------------- | ---------------------------------------------------------------------------- | --- |
 | **AlignTypes** | `'stretch','flex-start','center','flex-end', 'space-between','space-around'` |     |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="DirectionTypes" />
+<attributes-title title="DirectionTypes" />
 
 | 类型           | 可选值                                             |     |
 | -------------- | -------------------------------------------------- | --- |
 | **AlignTypes** | `'row', 'row-reverse', 'column', 'column-reverse'` |     |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="断点值" />
+<attributes-title title="断点值" />
 
 <fe-card>
   
@@ -120,4 +120,4 @@ xl: { min: '1920px', max: '10000px' },
 
 </fe-card>
 
-</fe-attributes>
+</attributes>

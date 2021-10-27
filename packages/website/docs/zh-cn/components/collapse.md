@@ -26,9 +26,9 @@
   name="ex-collapse-accordion"
 />
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="Collapse Props" />
+<attributes-title title="Collapse Props" />
 
 | 属性                | 描述                 | 类型             | 可选值             | 默认    |
 | ------------------- | -------------------- | ---------------- | ------------------ | ------- |
@@ -39,11 +39,11 @@
 | **shadow**          | 设置阴影模式         | `boolean`        | `'true','false'`   | `false` |
 | ...                 | 原生属性             | `HTMLAttributes` | `'class','id',...` | `-`     |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="CollapseGroup Props" />
+<attributes-title title="CollapseGroup Props" />
 
 | 属性          | 描述                          | 类型             | 可选值             | 默认     |
 | ------------- | ----------------------------- | ---------------- | ------------------ | -------- |
@@ -51,4 +51,4 @@
 | **v-model**   | 当前激活的面板                | `number[]`       | `-`                | `[]`     |
 | ...           | 原生属性                      | `HTMLAttributes` | `'class','id',...` | `-`      |
 
-</fe-attributes>
+</attributes>

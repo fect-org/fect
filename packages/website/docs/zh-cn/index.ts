@@ -11,7 +11,7 @@ type Routes = {
   children: Child[]
 }
 
-export const zhRoutes: Routes[] = [
+export const zhGuideRoutes: Routes[] = [
   {
     name: '快速上手',
     children: [
@@ -26,16 +26,17 @@ export const zhRoutes: Routes[] = [
   },
   {
     name: '主题',
-    children: [
-      { title: '色彩', group: '主题', route: { name: 'Colors' } },
-      { title: '图标', group: '主题', route: { name: 'Icons' } },
-    ],
+    children: [{ title: '色彩', group: '主题', route: { name: 'Colors' } }],
   },
+]
+
+export const zhRoutes: Routes[] = [
   {
     name: '通用',
     children: [
       { title: '按钮 Button', group: '通用', route: { name: 'Button' } },
       { title: '代码 Code', group: '通用', route: { name: 'Code' } },
+      { title: '图标', group: '主题', route: { name: 'Icons' } },
       { title: '片段 Snippet', group: '通用', route: { name: 'Snippet' } },
     ],
   },

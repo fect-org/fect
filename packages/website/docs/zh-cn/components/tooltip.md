@@ -8,9 +8,9 @@
 
 <playground title="变体" desc="具有不同的状态" name="ex-tooltip-variable" />
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="Tooltip Props" />
+<attributes-title title="Tooltip Props" />
 
 | 属性                | 描述                       | 类型      | 可选值                                                                                                                               | 默认         |
 | ------------------- | -------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------ |
@@ -24,15 +24,15 @@
 | **offset**          | 提示框与目标之间的偏移(px) | `number`  | `-`                                                                                                                                  | `12`         |
 | **portal-class**    | 弹出框类名                 | `string`  | `-`                                                                                                                                  | `-`          |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="Tooltip customSlots" />
+<attributes-title title="Tooltip customSlots" />
 
 <fe-card>
   Tooltip组件默认提供了<fe-code>content</fe-code>插槽。启用时<fe-code>props.content</fe-code>
   便会失效。
 </fe-card>
 
-</fe-attributes>
+</attributes>

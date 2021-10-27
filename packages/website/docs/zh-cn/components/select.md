@@ -21,9 +21,9 @@ name="ex-select-default"
   name="ex-select-disableOption"
 />
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="Select Props" />
+<attributes-title title="Select Props" />
 
 | 属性            | 描述                   | 类型                        | 可选值                      | 默认      |
 | --------------- | ---------------------- | --------------------------- | --------------------------- | --------- |
@@ -37,11 +37,11 @@ name="ex-select-default"
 | **change**      | 选项被选中所触发的事件 | `(e)=>void`                 | `-`                         | `-`       |
 | ...             | 原生属性               | `HTMLAttributes`            | `'class','id',...`          | `-`       |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="Option Props" />
+<attributes-title title="Option Props" />
 
 | 属性         | 描述           | 类型      | 可选值 | 默认    |
 | ------------ | -------------- | --------- | ------ | ------- |
@@ -49,14 +49,14 @@ name="ex-select-default"
 | **label**    | 展示的文本内容 | `string`  | `-`    | `-`     |
 | **disabled** | 是否禁用交互   | `Boolean` | `-`    | `false` |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="NormalSizes" />
+<attributes-title title="NormalSizes" />
 
 | 类型 可选值     |
 | --------------- | ------------------------------------ |
 | **NormalSizes** | `'mini', 'small', 'medium', 'large'` |
 
-</fe-attributes>
+</attributes>

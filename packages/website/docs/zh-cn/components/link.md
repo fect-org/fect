@@ -10,9 +10,9 @@
 
 <playground  title="路由跳转" desc="link组件提供了vueRouter push的路由跳转方式" name="ex-link-to" />
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="Link Props" />
+<attributes-title title="Link Props" />
 
 | 属性          | 描述               | 类型                   | 可选值                 | 默认    |
 | ------------- | ------------------ | ---------------------- | ---------------------- | ------- |
@@ -23,4 +23,4 @@
 | **block**     | 是否为块级元素     | `boolean`              | `'true','false'`       | `false` |
 | ...           | 原生属性           | `AnchorHTMLattributes` | `'rel', 'target', ...` | `-`     |
 
-</fe-attributes>
+</attributes>

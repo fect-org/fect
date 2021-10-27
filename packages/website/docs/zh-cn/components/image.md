@@ -7,9 +7,9 @@
 <playground title="浏览器风格" desc="为图片增加浏览器风格的外装饰" name="ex-image-browser" />
 <playground title="反转的浏览器风格" name="ex-image-invert" />
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="Image Props" />
+<attributes-title title="Image Props" />
 
 | 属性         | 描述                    | 类型                | 可选值                   | 默认值  |
 | ------------ | ----------------------- | ------------------- | ------------------------ | ------- |
@@ -20,11 +20,11 @@
 | **maxDelay** | 动画持续最大时间 (毫秒) | `'string','number'` | `-`                      | `3000`  |
 | ...          | 原生属性                | `ImgHTMLAttributes` | `'class','id','alt',...` | `-`     |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="ImageBrowser Props" />
+<attributes-title title="ImageBrowser Props" />
 
 | 属性             | 描述                             | 类型                   | 可选值                   | 默认值  |
 | ---------------- | -------------------------------- | ---------------------- | ------------------------ | ------- |
@@ -34,4 +34,4 @@
 | **invert**       | 反转地址栏颜色                   | `boolean`              | `'true','false'`         | `false` |
 | ...              | 原生属性                         | `AnchorHTMLattributes` | `'class','id','alt',...` | `-`     |
 
-</fe-attributes>
+</attributes>

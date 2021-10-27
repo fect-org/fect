@@ -6,9 +6,9 @@
 
 <playground title="定位" name="ex-drawer-placement" />
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="Loading Props" />
+<attributes-title title="Loading Props" />
 
 | 属性                      | 描述                     | 类型             | 可选值                          | 默认    |
 | ------------------------- | ------------------------ | ---------------- | ------------------------------- | ------- |
@@ -19,4 +19,4 @@
 | **disable-overlay-click** | 是否禁用点击遮罩层后关闭 | `boolean`        | `'true','false'`                | `false` |
 | ...                       | 原生属性                 | `HTMLAttributes` | `'class','id',...`              | `-`     |
 
-</fe-attributes>
+</attributes>

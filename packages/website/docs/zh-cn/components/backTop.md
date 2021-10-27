@@ -14,9 +14,9 @@
   desc="可以自定义回到顶部按钮的样式，限制宽高：40px * 40px"
 />
 
-<fe-attributes>
+<attributes>
   
-<fe-attributes-title title="BackTop Props" />
+<attributes-title title="BackTop Props" />
 
 | 属性                 | 描述                                                          | 类型                | 可选值 | 默认           |
 | -------------------- | ------------------------------------------------------------- | ------------------- | ------ | -------------- |
@@ -26,4 +26,4 @@
 | **right**            | 控制其显示位置, 距离页面右边距                                | `number`            | `-`    | `40`           |
 | **bottom**           | 控制其显示位置, 距离页面底部距离                              | `number`            | `-`    | `40`           |
 
-</fe-attributes>
+</attributes>

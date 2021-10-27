@@ -12,9 +12,9 @@
 
 <playground title="对齐" desc="使用 justify 与 align 属性以不同方式对齐列" name="ex-layout-align" />
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="Row Props" />
+<attributes-title title="Row Props" />
 
 | 属性        | 描述           | 类型                | 可选值                                                   | 默认    |
 | ----------- | -------------- | ------------------- | -------------------------------------------------------- | ------- |
@@ -24,11 +24,11 @@
 | **align**   | 垂直对齐方式   | `string`            | `'top', 'middle', 'bottom'`                              | `top`   |
 | ...         | 原生属性       | `HTMLAttributes`    | `'class','id',...`                                       | `-`     |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="Col Props" />
+<attributes-title title="Col Props" />
 
 | 属性       | 描述               | 类型                | 可选值             | 默认  |
 | ---------- | ------------------ | ------------------- | ------------------ | ----- |
@@ -37,4 +37,4 @@
 | **offset** | 当前列的偏移位置   | `'string','number'` | `-`                | `0`   |
 | ...        | 原生属性           | `HTMLAttributes`    | `'class','id',...` | `-`   |
 
-</fe-attributes>
+</attributes>

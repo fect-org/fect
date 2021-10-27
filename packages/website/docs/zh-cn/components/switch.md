@@ -8,9 +8,9 @@
 
 <playground title="尺寸" desc="switch组件支持修改大小" name="ex-switch-size" />
 
-<fe-attributes>
+<attributes>
   
-<fe-attributes-title title="Spacer Props" />
+<attributes-title title="Spacer Props" />
 
 | 属性               | 描述             | 类型                  | 可选值                               | 默认     |
 | ------------------ | ---------------- | --------------------- | ------------------------------------ | -------- |
@@ -22,4 +22,4 @@
 | **change**         | 开关事件         | `SwitchEvent`         | `-`                                  | `-`      |
 | ...                | 原生属性         | `LabelHTMLAttributes` | `'class','name',...`                 | `-`      |
 
-</fe-attributes>
+</attributes>

@@ -20,9 +20,9 @@ desc="管理一组Checkbox"
 name="ex-checkbox-group"
 />
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="Checkbox Props" />
+<attributes-title title="Checkbox Props" />
 
 | 属性         | 描述       | 类型                  | 可选值                               | 默认     |
 | ------------ | ---------- | --------------------- | ------------------------------------ | -------- |
@@ -33,11 +33,11 @@ name="ex-checkbox-group"
 | **change**   | 复选框事件 | `CheckboxEvent`       | `-`                                  | `-`      |
 | ...          | 原生属性   | `LabelHTMLAttributes` | `'class','name',...`                 | `-`      |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="CheckboxGroup Props" />
+<attributes-title title="CheckboxGroup Props" />
 
 | 属性         | 描述               | 类型                  | 可选值                               | 默认     |
 | ------------ | ------------------ | --------------------- | ------------------------------------ | -------- |
@@ -48,4 +48,4 @@ name="ex-checkbox-group"
 | **change**   | 复选框选中值       | `CheckboxEvent`       | `-`                                  | `-`      |
 | ...          | 原生属性           | `LabelHTMLAttributes` | `'class','name',...`                 | `-`      |
 
-</fe-attributes>
+</attributes>

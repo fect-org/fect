@@ -14,9 +14,9 @@
   desc="通过loop开启循环轮播"
 />
 
-<fe-attributes>
+<attributes>
   
-<fe-attributes-title title="Swipe Props" />
+<attributes-title title="Swipe Props" />
 
 | 属性                | 描述                   | 类型                    | 可选值             | 默认    |
 | ------------------- | ---------------------- | ----------------------- | ------------------ | ------- |
@@ -31,4 +31,4 @@
 | **change**          | 索引值变化事件         | `'SwipeEvent()=>index'` | `-`                | `-`     |
 | ...                 | 原生属性               | `HTMLAttributes`        | `'class','id',...` | `-`     |
 
-</fe-attributes>
+</attributes>

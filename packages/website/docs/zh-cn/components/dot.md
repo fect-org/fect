@@ -6,13 +6,13 @@
 
 <playground title="基础的" desc="dot支持插槽" name="ex-dot-base" />
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="Dot Props" />
+<attributes-title title="Dot Props" />
 
 | 属性     | 描述     | 类型             | 可选值                                     | 默认值    |
 | -------- | -------- | ---------------- | ------------------------------------------ | --------- |
 | **type** | 点的属性 | `'string'`       | `'default', 'success', 'warning', 'error'` | `default` |
 | ...      | 原生属性 | `HTMLAttributes` | `'class','id',...`                         | `-`       |
 
-</fe-attributes>
+</attributes>

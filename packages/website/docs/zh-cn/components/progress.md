@@ -15,8 +15,8 @@
   name="ex-progress-colors"
 />
 
-<fe-attributes>
-<fe-attributes-title title="Progress Props" />
+<attributes>
+<attributes-title title="Progress Props" />
 
 | 属性       | 描述               | 类型                        | 可选值                                     | 默认      |
 | ---------- | ------------------ | --------------------------- | ------------------------------------------ | --------- |
@@ -26,4 +26,4 @@
 | **type**   | 预定义的状体类型   | `'string'`                  | `'default', 'success', 'warning', 'error'` | `default` |
 | ...        | 原生属性           | `HTMLAttributes`            | `'class','id',...`                         | `-`       |
 
-</fe-attributes>
+</attributes>

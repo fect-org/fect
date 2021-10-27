@@ -18,9 +18,9 @@
 
 <playground title="图标" name="ex-button-icon" desc="按钮内的图标色彩和大小将会被自动设置" />
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="Button Props" />
+<attributes-title title="Button Props" />
 
 | 属性          | 描述             | 类型                   | 可选值                                     | 默认      |
 | ------------- | ---------------- | ---------------------- | ------------------------------------------ | --------- |
@@ -37,4 +37,4 @@
 | _click_       | 点击事件         | `MouseEventHandler`    | `-`                                        | `-`       |
 | ...           | 原生属性         | `ButtonHTMLAttributes` | `'id','class',...`                         | `-`       |
 
-</fe-attributes>
+</attributes>

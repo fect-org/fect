@@ -8,9 +8,9 @@
 
 <playground title="更多风格的" name="ex-radio-more"/>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="Radio Props" />
+<attributes-title title="Radio Props" />
 
 | 属性                | 描述                           | 类型                  | 可选值                               | 默认     |
 | ------------------- | ------------------------------ | --------------------- | ------------------------------------ | -------- |
@@ -21,11 +21,11 @@
 | **change**          | 选项变化事件                   | `RadioEvent`          | `-`                                  | `-`      |
 | ...                 | 原生属性                       | `InputHTMLAttributes` | `'class','alt','id',...`             | `-`      |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
   
-<fe-attributes-title title="RadioGroup Props" />
+<attributes-title title="RadioGroup Props" />
 
 | 属性         | 描述                 | 类型             | 可选值                               | 默认     |
 | ------------ | -------------------- | ---------------- | ------------------------------------ | -------- |
@@ -36,4 +36,4 @@
 | **change**   | radio 的值变化事件   | `RadioEvent`     | `-`                                  | `-`      |
 | ...          | 原生属性             | `HTMLAttributes` | `'class','id',...`                   | `-`      |
 
-</fe-attributes>
+</attributes>

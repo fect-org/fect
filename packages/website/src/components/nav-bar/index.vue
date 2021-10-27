@@ -7,7 +7,7 @@
     </fe-col>
     <fe-col class="fect-doc__article" :span="20">
       <nav>
-        <fe-link>指南</fe-link>
+        <fe-link :to="goToGuide()">指南</fe-link>
         <fe-link :to="goTo()">组件</fe-link>
         <fe-link>Engilsh</fe-link>
         <div class="fect-doc__svg-card" @click="changeHandler">
@@ -38,6 +38,12 @@ export default defineComponent({
       return { path: '/' }
     }
 
+    const goToGuide = () => {
+      return {
+        name: 'Introduce',
+      }
+    }
+
     const goTo = () => {
       return {
         name: 'Avatar',
@@ -48,6 +54,7 @@ export default defineComponent({
       theme,
       changeHandler,
       goTo,
+      goToGuide,
       goHomeHandler,
     }
   },

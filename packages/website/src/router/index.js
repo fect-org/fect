@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-const path = import.meta.globEager('../../docs/zh-cn/**/*.md')
+const path = import.meta.globEager('../../docs/zh-cn/components/*.md')
+const guide = import.meta.globEager('../../docs/zh-cn/guide/*.md')
 
 const collectRoute = (context) => {
   return Object.keys(context).map((p) => {
@@ -12,7 +13,7 @@ const collectRoute = (context) => {
     }
   })
 }
-// redirect: { name: 'Introduce' }
+
 const routes = [
   { path: '/', redirect: { path: '/zh-cn' } },
   {
@@ -24,9 +25,12 @@ const routes = [
     component: () => import('../components/layout/layout.vue'),
     children: [...collectRoute(path)],
   },
+  {
+    path: '/zh-cn/guide',
+    component: () => import('../components/layout/layout.vue'),
+    children: [...collectRoute(guide)],
+  },
 ]
-
-console.log(routes)
 
 const router = createRouter({
   history: createWebHistory(),

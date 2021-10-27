@@ -10,9 +10,9 @@
 </template>
 
 <script lang="ts">
-import { useRouter } from 'vue-router'
-import { defineComponent, reactive, toRefs, watch } from 'vue'
-import { zhRoutes } from '../../../docs/zh-cn'
+import { useRouter, useRoute } from 'vue-router'
+import { defineComponent, onMounted, reactive, toRefs, watch } from 'vue'
+import { zhRoutes, zhGuideRoutes } from '../../../docs/zh-cn'
 import ActiveCate from './active-cate.vue'
 import { useState } from '@fect-ui/vue-hooks'
 
@@ -22,12 +22,22 @@ export default defineComponent({
   setup() {
     const Routes = reactive({ routes: zhRoutes })
     const router = useRouter()
+    const route = useRoute()
     const [title, setTitle] = useState<string>('')
     const setActive = (route: string) => {
       const active = router.currentRoute.value.name === route
       active && setTitle(`${route} | Vue - Fect UI`)
       return active
     }
+
+    watch(
+      () => route.path,
+      (pre) => {
+        const guide = pre.includes('guide')
+        if (guide) Routes.routes = zhGuideRoutes
+      },
+      { immediate: true }
+    )
 
     watch(title, (pre) => (document.title = pre))
 

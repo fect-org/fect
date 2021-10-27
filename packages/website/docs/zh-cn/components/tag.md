@@ -17,9 +17,9 @@ title="类型"
 name="ex-tag-invert"
 />
 
-<fe-attributes>
+<attributes>
   
-<fe-attributes-title title="Tag Props" />
+<attributes-title title="Tag Props" />
 
 | 属性          | 描述           | 类型                                       | 推荐值                   | 默认      |
 | ------------- | -------------- | ------------------------------------------ | ------------------------ | --------- |
@@ -28,4 +28,4 @@ name="ex-tag-invert"
 | **useInvert** | 反转背景与主色 | `boolean`                                  | -                        | `false`   |
 | ...           | 原生属性       | `HTMLAttributes`                           | `'id', 'className', ...` | -         |
 
-</fe-attributes>
+</attributes>

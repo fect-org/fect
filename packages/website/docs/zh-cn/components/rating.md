@@ -16,9 +16,9 @@ name="ex-rating-type"
 desc="通过type属性设置不同风格的组件"
 />
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="Rating Props" />
+<attributes-title title="Rating Props" />
 
 | 属性        | 描述                | 类型             | 可选值                                  | 默认      |
 | ----------- | ------------------- | ---------------- | --------------------------------------- | --------- |
@@ -30,4 +30,4 @@ desc="通过type属性设置不同风格的组件"
 | **change**  | Rating 的值变化事件 | `RatingEvent`    | `-`                                     | `-`       |
 | ...         | 原生属性            | `HTMLAttributes` | `'class','id',...`                      | `-`       |
 
-</fe-attributes>
+</attributes>

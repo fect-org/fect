@@ -26,9 +26,9 @@
   desc="提供一个固定徽标的容器"
 />
 
-<fe-attributes>
+<attributes>
   
-<fe-attributes-title title="Badge Props" />
+<attributes-title title="Badge Props" />
 
 | 属性     | 描述               | 类型                        | 可选值                      | 默认      |
 | -------- | ------------------ | --------------------------- | --------------------------- | --------- |
@@ -37,35 +37,35 @@
 | **dot**  | 忽略内容并显示圆点 | `'boolean'`                 | `-`                         | `-`       |
 | ...      | 原生属性           | `HTMLAttributes`            | `'class','id',...`          | `-`       |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="BadgeAnchor Props" />
+<attributes-title title="BadgeAnchor Props" />
 
 | 属性          | 描述           | 类型             | 可选值                                               | 默认         |
 | ------------- | -------------- | ---------------- | ---------------------------------------------------- | ------------ |
 | **placement** | 固定徽标的位置 | `string`         | `'topLeft', 'topRight', 'bottomLeft', 'bottomRight'` | `'topRight'` |
 | ...           | 原生属性       | `HTMLAttributes` | `'class','id',...`                                   | `-`          |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="NormalSizes" />
+<attributes-title title="NormalSizes" />
 
 | 类型 可选值     |
 | --------------- | ------------------------------------ |
 | **NormalSizes** | `'mini', 'small', 'medium', 'large'` |
 
-</fe-attributes>
+</attributes>
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="NormalTypes" />
+<attributes-title title="NormalTypes" />
 
 | 类型            | 可选值                                     |
 | --------------- | ------------------------------------------ |
 | **NormalTypes** | `'default', 'success', 'warning', 'error'` |
 
-</fe-attributes>
+</attributes>

@@ -26,9 +26,9 @@
 />
 <playground title="密码" name="ex-input-password" desc="显示或隐藏密码文本" />
 
-<fe-attributes>
+<attributes>
 
-<fe-attributes-title title="Input Props" />
+<attributes-title title="Input Props" />
 
 | 属性           | 描述                                                                            | 类型                | 可选值             | 默认      |
 | -------------- | ------------------------------------------------------------------------------- | ------------------- | ------------------ | --------- |
@@ -40,4 +40,4 @@
 | **clearable**  | 是否展示清除按钮                                                                | `'boolean'`         | `'true','false'`   | `'false'` |
 | ...            | 原生属性[文档](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) | `InputAttributes`   | `'class','id',...` | `-`       |
 
-</fe-attributes>
+</attributes>
