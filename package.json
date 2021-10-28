@@ -15,7 +15,7 @@
     "compile": "lerna exec --scope @fect-ui/vue -- yarn build",
     "collect": "lerna exec --scope @fect-ui/vue -- yarn collect",
     "icon": "lerna exec --scope @fect-ui/vue-icons -- yarn build",
-    "build": "lerna exec --scope @fect-ui/website --yarn build",
+    "build": "lerna exec --scope @fect-ui/website -- yarn build",
     "hooks": "cd packages/vue-hooks && yarn build",
     "test": "cd packages/vue &&  yarn test",
     "dev": "lerna exec --scope @fect-ui/website -- yarn dev",

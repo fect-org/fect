@@ -9,7 +9,7 @@ const collectRoute = (context) => {
     return {
       path: routeName.toLowerCase(),
       name: routeName,
-      component: () => context[p],
+      component: context[p].default,
     }
   })
 }
