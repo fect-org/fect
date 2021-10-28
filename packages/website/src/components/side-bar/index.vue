@@ -31,7 +31,7 @@ export default defineComponent({
     }
 
     const routeList = computed(() => {
-      if (context.deploy.value === 'guide') return zhGuideRoutes
+      if (context!.deploy.value === 'guide') return zhGuideRoutes
       return zhRoutes
     })
 
@@ -61,7 +61,12 @@ export default defineComponent({
   }
   @media only screen and (max-width: 650px) {
     &__sider {
-      display: none;
+      top: 0;
+      left: 0;
+      width: 60vw;
+      height: 100%;
+      z-index: 300;
+      position: static;
     }
   }
   &__route-content {

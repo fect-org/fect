@@ -64,7 +64,7 @@ export default defineComponent({
   setup() {
     const { context } = useProvider<webSiteProvide>(WEB_SITE_KEY)
     return {
-      routeHandler: context.parentRouteHandler,
+      routeHandler: context!.parentRouteHandler,
     }
   },
 })

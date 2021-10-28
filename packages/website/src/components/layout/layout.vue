@@ -1,5 +1,9 @@
 <template>
-  <side-bar></side-bar>
+  <side-bar v-if="mobile" />
+  <fe-drawer class="drawer" placement="left" v-model="visible" :round="false">
+    <side-bar v-if="!mobile" @click="visible = false" />
+  </fe-drawer>
+  <sub-bar @click="visible = true" />
   <main class="fect-doc__main">
     <div class="fect-doc__article">
       <router-view />
@@ -9,14 +13,30 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { useState } from '@fect-ui/vue-hooks'
+import { defineComponent, ref, watch } from 'vue'
+import { useProvider } from '@fect-ui/vue-hooks'
 import SideBar from '../side-bar/index.vue'
+import SubBar from '../side-bar/mobile-widget.vue'
+import { webSiteProvide, WEB_SITE_KEY } from '../utils/website-context'
 
 export default defineComponent({
   name: 'Layout',
-  components: { SideBar },
-  setup(props, { slots }) {},
+  components: { SideBar, SubBar },
+  setup(props, { slots }) {
+    const { context } = useProvider<webSiteProvide>(WEB_SITE_KEY)
+    const visible = ref<boolean>(false)
+
+    watch(context!.mobile, (pre) => {
+      if (pre) {
+        visible.value = false
+      }
+    })
+
+    return {
+      visible,
+      mobile: context!.mobile,
+    }
+  },
 })
 </script>
 
@@ -44,7 +64,6 @@ export default defineComponent({
       padding-left: 0;
       display: block;
     }
-
     &__widget-list {
       display: none;
     }

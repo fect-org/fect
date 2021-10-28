@@ -11,6 +11,7 @@ import { useState, createProvider } from '@fect-ui/vue-hooks'
 import { useRoute } from 'vue-router'
 import { watch } from 'vue'
 import { WEB_SITE_KEY } from './components/utils/website-context'
+import { useResize } from '@fect-ui/vue/components/utils'
 export default {
   components: {
     NavBar,
@@ -18,6 +19,8 @@ export default {
   setup() {
     const route = useRoute()
     const [deploy, setDeploy] = useState('home')
+    const [mobile, setMobile] = useState(false)
+    const { width } = useResize()
 
     const { provider } = createProvider(WEB_SITE_KEY)
 
@@ -35,7 +38,7 @@ export default {
       return 'https://github.com/fay-org/fect'
     }
 
-    provider({ deploy, parentRouteHandler })
+    provider({ deploy, parentRouteHandler, mobile })
 
     watch(
       () => route.path,
@@ -43,6 +46,15 @@ export default {
         if (pre === '/') return
         const deploy = pre.split('/')[2]
         setDeploy(deploy)
+      },
+      { immediate: true }
+    )
+
+    watch(
+      width,
+      (pre) => {
+        const lay = pre <= 650 ? false : true
+        setMobile(lay)
       },
       { immediate: true }
     )
@@ -61,7 +73,6 @@ body::-webkit-scrollbar {
     box-sizing: border-box;
     margin: 0 auto;
     padding: 0 calc(var(--fay-gap) * 2);
-    display: flex;
     position: relative;
     top: 0;
     left: 0;

@@ -38,7 +38,7 @@ export default defineComponent({
     const changeHandler = () => themeChange()
 
     const setActive = (val: string) => {
-      if (val === context.deploy.value) return 'active'
+      if (val === context!.deploy.value) return 'active'
       return ''
     }
 
@@ -46,7 +46,7 @@ export default defineComponent({
       theme,
       changeHandler,
       setActive,
-      routeHandler: context.parentRouteHandler,
+      routeHandler: context!.parentRouteHandler,
     }
   },
 })

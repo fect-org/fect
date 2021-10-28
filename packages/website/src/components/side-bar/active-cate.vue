@@ -1,5 +1,5 @@
 <template>
-  <div class="fect-doc__active-cate">
+  <div class="fect-doc__active-cate" :class="color ? 'checked' : ''">
     <fe-link :to="pushTo" :color="color">{{ routeName }}</fe-link>
   </div>
 </template>
@@ -41,9 +41,18 @@ export default defineComponent({
   }
   @media only screen and (max-width: 650px) {
     &__active-cate {
-      font-size: 1rem;
-      height: 50px;
-      border-bottom: 1px solid var(--accents-2);
+      font-size: 0.875rem;
+      height: 40px;
+      border-bottom: none;
+      &.checked {
+        padding: 5px;
+        box-sizing: border-box;
+        background: var(--success-light);
+        border-radius: var(--fay-radius);
+        > .fect-link {
+          color: inherit;
+        }
+      }
     }
   }
 }

@@ -32,7 +32,7 @@ export default {
 <style scoped>
 .my-swipe {
   height: 200px;
-  width: 350px;
+  max-width: 350px;
 }
 .my-swipe img {
   height: 100%;
