@@ -20,7 +20,7 @@ export const useDevConfig = (): InlineConfig => {
         include: [/\.vue$/, /\.md$/],
       }),
       Jsx(),
-      ...getNonConf('plugins').map((plugin) => plugin.default()),
+      ...getNonConf('plugins'),
     ],
   }
 }
