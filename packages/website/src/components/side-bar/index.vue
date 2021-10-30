@@ -11,10 +11,10 @@
 
 <script lang="ts">
 import { useRouter } from 'vue-router'
-import { defineComponent, watch, computed } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { zhRoutes, zhGuideRoutes } from '../../../docs/zh-cn'
 import ActiveCate from './active-cate.vue'
-import { useProvider, useState } from '@fect-ui/vue-hooks'
+import { useProvider } from '@fect-ui/vue-hooks'
 import { webSiteProvide, WEB_SITE_KEY } from '../utils/website-context'
 
 export default defineComponent({
@@ -23,10 +23,8 @@ export default defineComponent({
   setup() {
     const { context } = useProvider<webSiteProvide>(WEB_SITE_KEY)
     const router = useRouter()
-    const [title, setTitle] = useState<string>('')
     const setActive = (route: string) => {
       const active = router.currentRoute.value.name === route
-      active && setTitle(`${route} | Vue - Fect UI`)
       return active
     }
 
@@ -34,8 +32,6 @@ export default defineComponent({
       if (context!.deploy.value === 'guide') return zhGuideRoutes
       return zhRoutes
     })
-
-    watch(title, (pre) => (document.title = pre))
 
     return {
       routeList,

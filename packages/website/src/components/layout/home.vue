@@ -1,10 +1,12 @@
 <template>
   <div class="fect-doc__home-page">
     <div class="top">
-      <p>
-        Fect is a Vue UI Library with beautifully handcrafted Vercel Component.No design skills required — everything
-        you need to create amazing applications is at your fingertips
-      </p>
+      <fe-imageBrowser url="https://vue.miaya.art">
+        <p>
+          Fect is a Vue UI Library with beautifully handcrafted Vercel Component.No design skills required — everything
+          you need to create amazing applications is at your fingertips
+        </p>
+      </fe-imageBrowser>
     </div>
 
     <fe-row align="middle" justify="space-around" class="fect-doc__description">
@@ -75,18 +77,19 @@ export default defineComponent({
   &__home-page {
     width: 100%;
     position: relative;
-    top: calc((100vh - 64px) / 4);
+    top: 50px;
 
     .top {
       width: 50%;
       margin: 0 auto;
 
       p {
-        padding: 0;
         margin: 0;
-        color: var(--accents-4);
-        font-size: 1.18rem;
-        line-height: 2.36rem;
+        color: var(--accents-6);
+        font-size: 0.875rem;
+        line-height: 2.5rem;
+        padding: var(--fay-gap);
+        height: 250px;
       }
     }
   }
@@ -102,6 +105,7 @@ export default defineComponent({
       }
       .fect-card {
         height: inherit;
+        color: var(--primary-foreground);
         h4 {
           font-weight: 600;
           margin: 0;
@@ -133,6 +137,7 @@ export default defineComponent({
   }
   @media only screen and (max-width: 650px) {
     &__home-page {
+      top: 30px;
       .top {
         width: 100%;
       }

@@ -2,6 +2,7 @@
   <fe-row class="fect-doc__navbar" align="middle">
     <fe-col :span="4" class="fect-doc__aside">
       <fe-link :to="routeHandler('home')">
+        <div class="logo"><triangle /></div>
         <h1>Fect</h1>
       </fe-link>
     </fe-col>
@@ -71,6 +72,20 @@ export default defineComponent({
     height: inherit;
     > .fect-link {
       color: initial;
+      align-items: center;
+    }
+    .logo {
+      height: 32px;
+      width: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: var(--fay-gap);
+      box-shadow: var(--fay-shadowSmall);
+      border-radius: 50%;
+      svg {
+        color: var(--primary-foreground) !important;
+      }
     }
     h1 {
       height: 100%;
@@ -132,11 +147,7 @@ export default defineComponent({
 
   @media only screen and (max-width: 650px) {
     &__article {
-      height: 100%;
-      align-items: center;
-      display: flex;
       > nav {
-        line-height: 64px;
         > .fect-link {
           padding: 0 var(--fay-gap-half);
           height: 100%;
