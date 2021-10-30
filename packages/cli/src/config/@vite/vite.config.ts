@@ -29,10 +29,10 @@ export const useBuildConfig = (): InlineConfig => {
   const devConf = useDevConfig()
   return {
     ...devConf,
-    base: './',
+    base: '/',
     mode: 'production',
     build: {
-      sourcemap: 'inline',
+      sourcemap: false,
       brotliSize: false,
       rollupOptions: {
         input: { main: getNonConf('entry') },
