@@ -59,7 +59,8 @@ export default defineComponent({
   }
   @media only screen and (max-width: 650px) {
     &__main {
-      max-width: 100%;
+      width: 90vw;
+      margin: 0 auto;
       padding-bottom: 50px;
       padding-left: 0;
       display: block;

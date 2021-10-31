@@ -138,6 +138,8 @@ export default defineComponent({
   @media only screen and (max-width: 650px) {
     &__home-page {
       top: 30px;
+      width: 90vw;
+      margin: 0 auto;
       .top {
         width: 100%;
       }

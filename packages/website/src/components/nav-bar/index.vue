@@ -146,6 +146,9 @@ export default defineComponent({
   }
 
   @media only screen and (max-width: 650px) {
+    &__navbar {
+      position: relative;
+    }
     &__article {
       > nav {
         > .fect-link {

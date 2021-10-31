@@ -28,6 +28,14 @@ export default defineComponent({
       display: flex;
       align-items: center;
       margin-bottom: -10px;
+      position: sticky;
+      top: 0;
+      left: 0;
+      z-index: 30;
+      background: var(--primary-background);
+      padding-left: 5vw;
+      box-sizing: border-box;
+      border-bottom: 1px solid var(--fay-border);
     }
   }
 }

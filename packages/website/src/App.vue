@@ -82,8 +82,6 @@ body::-webkit-scrollbar {
   @media only screen and (max-width: 650px) {
     &__layout {
       padding: 0;
-      padding-top: 64px;
-      max-width: 90vw;
     }
   }
   @media only screen and (min-width: 1440px) {
