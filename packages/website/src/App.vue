@@ -63,6 +63,7 @@ export default {
 </script>
 
 <style lang="less">
+@import url('./assets/code.css');
 body::-webkit-scrollbar {
   width: 0;
 }

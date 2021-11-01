@@ -18,16 +18,17 @@ class PluginParser {
    * @param {string} file
    * @returns {boolean}
    */
-  hasMarkdonw(file) {
+  hasMarkdown(file) {
     const reg = /.mdx?$/g
     return reg.test(file)
   }
 
   resolveMarkdownOptions() {
-    return Object.assign(
+    this.options = Object.assign(
       {
         markdownClasses: 'fect-md__wrapper',
         mardownWrapper: 'section',
+        markdownOptions: {},
       },
       this.options
     )
@@ -48,8 +49,7 @@ class PluginParser {
    */
   parserToVue(raw, createMarkdown) {
     const templateStr = this.markdwonParser(raw, createMarkdown)
-    const options = this.resolveMarkdownOptions()
-    const { markdownClasses: classes, mardownWrapper: wrapper } = options
+    const { markdownClasses: classes, mardownWrapper: wrapper } = this.options
 
     return `<template>
        <${wrapper} class="${classes}">
@@ -58,8 +58,8 @@ class PluginParser {
     </template>`
   }
   parser() {
-    //   , ...this.options.markdownOptions
-    const md = new MarkdownIt({ html: true, linkify: true, typographer: true })
+    this.resolveMarkdownOptions()
+    const md = new MarkdownIt({ html: true, linkify: true, typographer: true, ...this.options.markdownOptions })
     const that = this
 
     return {
@@ -67,7 +67,7 @@ class PluginParser {
       enforce: this.enforce,
       //   transform .md file to vue component
       transform(code, id) {
-        if (!that.hasMarkdonw(id)) return
+        if (!that.hasMarkdown(id)) return
         try {
           return that.parserToVue(code, md)
         } catch (e) {
@@ -76,7 +76,7 @@ class PluginParser {
       },
       //   make it work in hmr
       handleUpdate: async (ctx) => {
-        if (!this.hasMarkdonw(ctx.file)) return
+        if (!this.hasMarkdown(ctx.file)) return
         const reader = ctx.read
         ctx.read = async () => this.parserToVue(ctx.file, await reader())
       },
