@@ -15,7 +15,6 @@
     "vue-router": "^4.0.8",
     "@fect-ui/cli": "1.0.0",
     "@fect-ui/vue-icons": "^0.1.7",
-    "@fect-ui/vue-hooks": "^0.0.2",
-    "vite-plugin-md": "^0.11.1"
+    "@fect-ui/vue-hooks": "^0.0.2"
   }
 }
