@@ -168,10 +168,13 @@ export default defineComponent({
       margin: 0 auto;
       padding: 0 calc(var(--fay-gap) * 2);
     }
+    &__aside {
+      margin-left: 5% !important;
+    }
     &__article {
       > nav {
         box-sizing: border-box;
-        padding-right: 10%;
+        padding-right: 5%;
       }
     }
   }

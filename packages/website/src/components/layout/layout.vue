@@ -8,7 +8,6 @@
     <div class="fect-doc__article">
       <router-view />
     </div>
-    <div class="fect-doc__widget-list"></div>
   </main>
 </template>
 
@@ -49,14 +48,10 @@ export default defineComponent({
     padding-bottom: 150px;
   }
   &__article {
-    flex: 3;
     box-sizing: border-box;
     max-width: 50rem;
   }
-  &__widget-list {
-    position: relative;
-    flex: 1;
-  }
+
   @media only screen and (max-width: 650px) {
     &__main {
       width: 90vw;
@@ -65,8 +60,10 @@ export default defineComponent({
       padding-left: 0;
       display: block;
     }
-    &__widget-list {
-      display: none;
+  }
+  @media only screen and (min-width: 1440px) {
+    &__main {
+      justify-content: center;
     }
   }
 }
