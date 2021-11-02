@@ -1,5 +1,6 @@
 <template>
   <side-bar v-if="mobile" />
+  <div class="fect-doc__side-bar--shadow" />
   <fe-drawer class="drawer" placement="left" v-model="visible" :round="false">
     <side-bar v-if="!mobile" @click="visible = false" />
   </fe-drawer>
@@ -41,10 +42,17 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .fect-doc {
+  &__side-bar {
+    &--shadow {
+      width: 200px;
+      height: 100%;
+      flex-shrink: 0;
+    }
+  }
   &__main {
+    box-sizing: border-box;
     display: flex;
     width: 100%;
-    padding-left: 200px;
     padding-bottom: 150px;
   }
   &__article {

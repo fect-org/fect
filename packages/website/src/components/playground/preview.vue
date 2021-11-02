@@ -1,18 +1,19 @@
 <template>
-  <div class="fect-doc__playground-preview">
+  <div class="fect-doc__playground-preview" ref="contextRef">
     <div class="fect-doc__playground-operations">
       <copy size="20" @click="copyClickHandler" />
       <icon-code size="20" @click="previewClickHandler" />
     </div>
-    <div>
-      <pre v-show="visible"><code ref="previewRef"></code></pre>
+    <div class="raw-content">
+      <pre v-show="visible" :style="{ width: previewWidth }"><code ref="previewRef"></code></pre>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, getCurrentInstance, ComponentPublicInstance, ref, watch } from 'vue'
+import { defineComponent, getCurrentInstance, ComponentPublicInstance, ref, watch, onMounted } from 'vue'
 import { useClipboard, useState } from '@fect-ui/vue-hooks'
+import { useResize } from '@fect-ui/vue/components/utils'
 import { code as Code } from '@fect-ui/vue-icons'
 import Prism from 'prismjs'
 export default defineComponent({
@@ -28,7 +29,10 @@ export default defineComponent({
   },
   setup(props) {
     const previewRef = ref<HTMLDivElement>()
+    const contextRef = ref<HTMLDivElement>()
+    const { width } = useResize()
     const [visible, setVisible] = useState<boolean>(false)
+    const [previewWidth, setpreviewWidth] = useState<string>('auto')
     const { proxy } = getCurrentInstance()!
     const { copyText } = useClipboard()
     const previewClickHandler = () => {
@@ -44,9 +48,18 @@ export default defineComponent({
       }
     }
 
+    const updatePreviewWidth = () => {
+      if (contextRef.value) {
+        const width = `${contextRef.value.clientWidth - 30}px`
+        setpreviewWidth(width)
+      }
+    }
+
+    onMounted(updatePreviewWidth)
+    watch(width, (pre) => updatePreviewWidth())
+
     watch(visible, (pre) => {
       if (pre) {
-        console.log(pre)
         const elSnapshot = previewRef.value
         if (elSnapshot) {
           elSnapshot.innerHTML = Prism.highlight(decodeURIComponent(props.code), Prism.languages.html, 'html')
@@ -60,12 +73,18 @@ export default defineComponent({
       previewRef,
       copyClickHandler,
       previewClickHandler,
+      previewWidth,
+      contextRef,
     }
   },
 })
 </script>
 
 <style lang="less" scoped>
+.raw-content {
+  overflow: hidden;
+}
+
 .fect-doc {
   &__playground-preview {
     margin-top: var(--fay-gap);
@@ -79,8 +98,9 @@ export default defineComponent({
       font-size: 0.875rem;
     }
     pre {
-      margin-top: 5px;
       // border: 0;
+      margin: 0 auto;
+      margin-top: 5px;
       overflow-x: scroll;
       &::-webkit-scrollbar {
         width: 0;

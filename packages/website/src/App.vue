@@ -79,10 +79,12 @@ body::-webkit-scrollbar {
     left: 0;
     right: 0;
     padding-top: 64px;
+    display: flex;
   }
   @media only screen and (max-width: 650px) {
     &__layout {
       padding: 0;
+      display: block;
     }
   }
   @media only screen and (min-width: 1440px) {
