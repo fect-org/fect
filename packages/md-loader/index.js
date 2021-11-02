@@ -48,7 +48,24 @@ class PluginParser {
     const exmapleReg = /```html((.|\r|\n)*?)```/g
     const tableReg = /:::attribute((.|\r|\n)*?):::/g
     const playgroundReg = /:::playground((.|\r|\n)*?):::/g
-    return createMarkdown.render(raw).replace(/<h3/g, '<attributes-title').replace(/<\/h3/g, '</attributes-title')
+
+    const parseTable = (codeStr) => {
+      const group = codeStr
+        .replace(/<table/g, ':::<table')
+        .replace(/<h3/g, ':::<h3')
+        .split(':::')
+      return group
+        .map((fargment) => {
+          if (fargment.indexOf('<table') !== -1) {
+            return `<attributes>${fargment}</attributes>`
+          }
+          return fargment
+        })
+        .join('')
+    }
+
+    const template = parseTable(createMarkdown.render(raw))
+    return template.replace(/<h3/g, '<attributes-title').replace(/<\/h3/g, '</attributes-title')
   }
 
   /**

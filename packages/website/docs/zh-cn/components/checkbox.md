@@ -22,8 +22,6 @@ name="ex-checkbox-group"
 
 ### Checkbox Props
 
-<attributes>
-
 | 属性         | 描述       | 类型                | 可选值                               | 默认     |
 | ------------ | ---------- | ------------------- | ------------------------------------ | -------- |
 | **v-model**  | 是否选中   | `boolean`           | `'true','false'`                     | `false`  |
@@ -32,11 +30,7 @@ name="ex-checkbox-group"
 | **label**    | 标识符     | `'string','number'` | `-`                                  | `-`      |
 | **change**   | 复选框事件 | `CheckboxEvent`     | `-`                                  | `-`      |
 
-</attributes>
-
 ### CheckboxGroup Props
-
-<attributes>
 
 | 属性         | 描述               | 类型            | 可选值                               | 默认     |
 | ------------ | ------------------ | --------------- | ------------------------------------ | -------- |
@@ -45,5 +39,3 @@ name="ex-checkbox-group"
 | **disabled** | 禁用所有交互       | `boolean`       | `'true','false'`                     | `false`  |
 | **useRow**   | 水平对齐           | `boolean`       | `-`                                  | `false`  |
 | **change**   | 复选框选中值       | `CheckboxEvent` | `-`                                  | `-`      |
-
-</attributes>

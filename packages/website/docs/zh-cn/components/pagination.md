@@ -34,8 +34,6 @@
 
 ### Pagination Props
 
-<attributes>
-
 | 属性         | 描述                     | 类型                  | 可选值                               | 默认     |
 | ------------ | ------------------------ | --------------------- | ------------------------------------ | -------- |
 | **v-model**  | 当前页码                 | `number`              | `-`                                  | `1`      |
@@ -46,8 +44,6 @@
 | **prevText** | 分页器上一页的文字       | `string`              | `-`                                  | `Prev`   |
 | **nextText** | 分页器下一页的文字       | `string`              | `-`                                  | `Next`   |
 | **change**   | 分页器的事件             | `(page:number)=>void` | `-`                                  | `-`      |
-
-</attributes>
 
 ### Pagination customSlots
 

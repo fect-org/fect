@@ -19,12 +19,8 @@ name="ex-tag-invert"
 
 ### Tag Props
 
-<attributes>
-
 | 属性          | 描述           | 类型                                       | 推荐值 | 默认      |
 | ------------- | -------------- | ------------------------------------------ | ------ | --------- |
 | **text**      | 标签内容       | `String`                                   | -      | `-`       |
 | **type**      | 标签类型       | `'default', 'success', 'warning', 'error'` | -      | `default` |
 | **useInvert** | 反转背景与主色 | `boolean`                                  | -      | `false`   |
-
-</attributes>

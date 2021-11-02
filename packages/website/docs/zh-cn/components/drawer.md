@@ -8,8 +8,6 @@
 
 ### Loading Props
 
-<attributes>
-
 | 属性                      | 描述                     | 类型      | 可选值                          | 默认    |
 | ------------------------- | ------------------------ | --------- | ------------------------------- | ------- |
 | **v-model**               | 是否显示弹出层           | `boolean` | `'true','false'`                | `false` |
@@ -17,5 +15,3 @@
 | **placement**             | 弹出位置                 | `string`  | `'top','left','right','bottom'` | `right` |
 | **round**                 | 是否显示圆角             | `boolean` | `'true','false'`                | `true`  |
 | **disable-overlay-click** | 是否禁用点击遮罩层后关闭 | `boolean` | `'true','false'`                | `false` |
-
-</attributes>

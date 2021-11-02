@@ -8,10 +8,6 @@
 
 ### Dot Props
 
-<attributes>
-
 | 属性     | 描述     | 类型       | 可选值                                     | 默认值    |
 | -------- | -------- | ---------- | ------------------------------------------ | --------- |
 | **type** | 点的属性 | `'string'` | `'default', 'success', 'warning', 'error'` | `default` |
-
-</attributes>

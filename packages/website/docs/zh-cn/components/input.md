@@ -28,8 +28,6 @@
 
 ### Input Props
 
-<attributes>
-
 | 属性           | 描述                                                                            | 类型                | 可选值             | 默认      |
 | -------------- | ------------------------------------------------------------------------------- | ------------------- | ------------------ | --------- |
 | **v-model**    | 可绑定的输入值                                                                  | `'string','number'` | `-`                | `''`      |
@@ -39,5 +37,3 @@
 | **clearClick** | 清除按钮的点击事件                                                              | `(e)=>void`         | `-`                | `-`       |
 | **clearable**  | 是否展示清除按钮                                                                | `'boolean'`         | `'true','false'`   | `'false'` |
 | ...            | 原生属性[文档](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) | `InputAttributes`   | `'class','id',...` | `-`       |
-
-</attributes>

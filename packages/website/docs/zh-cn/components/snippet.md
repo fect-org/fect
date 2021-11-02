@@ -23,8 +23,6 @@
 
 ### Snippet Props
 
-<attributes>
-
 | 属性          | 描述               | 类型                        | 可选值                           | 默认        |
 | ------------- | ------------------ | --------------------------- | -------------------------------- | ----------- |
 | **text**      | 文本               | `string`                    | `-`                              | `-`         |
@@ -36,14 +34,8 @@
 | **toastText** | 拷贝提示的字符     | `String`                    | `-`                              | `-`         |
 | **toastType** | 拷贝提示的样式     | [NormalTypes](#normaltypes) | [NormalTypes](#normaltypes)      | `default`   |
 
-</attributes>
-
 ### NormalTypes
-
-<attributes>
 
 | 类型 可选值     |                                            |
 | --------------- | ------------------------------------------ |
 | **NormalTypes** | `'default', 'success', 'warning', 'error'` |
-
-</attributes>

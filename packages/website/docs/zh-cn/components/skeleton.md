@@ -41,20 +41,12 @@ name="ex-skeleton-more"
 
 ### SkeletonItem Props
 
-<attributes>
-
 | 属性         | 描述                 | 类型                            | 可选值                          | 默认   |
 | ------------ | -------------------- | ------------------------------- | ------------------------------- | ------ |
 | **variable** | 显示的占位元素的样式 | [VariableTypes](#variabletypes) | [VariableTypes](#variabletypes) | `text` |
 
-</attributes>
-
 ### VariableTypes
-
-<attributes>
 
 | 类型              | 可选值                                                               |
 | ----------------- | -------------------------------------------------------------------- |
 | **VariableTypes** | `'p', 'text', 'h1', 'h3','rect','circle','image','button','caption'` |
-
-</attributes>

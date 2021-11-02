@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <fe-spacer :y="0.5" />
-    <div class="fect-doc__api-attrs">
-      <slot />
-    </div>
+  <fe-spacer :y="0.5" />
+  <div class="fect-doc__api-attrs">
+    <slot />
   </div>
 </template>
 

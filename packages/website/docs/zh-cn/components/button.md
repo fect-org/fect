@@ -20,8 +20,6 @@
 
 ### Button Props
 
-<attributes>
-
 | 属性          | 描述             | 类型                | 可选值                                     | 默认      |
 | ------------- | ---------------- | ------------------- | ------------------------------------------ | --------- |
 | **type**      | 按钮属性         | `string`            | `'default', 'success', 'warning', 'error'` | `default` |
@@ -35,5 +33,3 @@
 | **loading**   | 是否启用加载中   | `boolean`           | `'true','false'`                           | `false`   |
 | **load-type** | 设置加载中的风格 | `string`            | `'default','cube','wave'`                  | `default` |
 | _click_       | 点击事件         | `MouseEventHandler` | `-`                                        | `-`       |
-
-</attributes>

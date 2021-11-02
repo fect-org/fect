@@ -9,8 +9,6 @@
 
 ### Image Props
 
-<attributes>
-
 | 属性         | 描述                    | 类型                | 可选值           | 默认值  |
 | ------------ | ----------------------- | ------------------- | ---------------- | ------- |
 | **src**      | 图片地址                | `string`            | `-`              | `-`     |
@@ -19,11 +17,7 @@
 | **skeleton** | 启用骨架屏动画          | `boolean`           | `'true','false'` | `false` |
 | **maxDelay** | 动画持续最大时间 (毫秒) | `'string','number'` | `-`              | `3000`  |
 
-</attributes>
-
 ### ImageBrowser Props
-
-<attributes>
 
 | 属性             | 描述                             | 类型      | 可选值           | 默认值  |
 | ---------------- | -------------------------------- | --------- | ---------------- | ------- |
@@ -31,5 +25,3 @@
 | **url**          | 在浏览器地址栏显示链接           | `string`  | `-`              | `-`     |
 | **showFullLink** | 显示完整的链接而非域名           | `boolean` | `'true','false'` | `false` |
 | **invert**       | 反转地址栏颜色                   | `boolean` | `'true','false'` | `false` |
-
-</attributes>

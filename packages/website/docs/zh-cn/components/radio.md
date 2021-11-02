@@ -10,8 +10,6 @@
 
 ### Radio Props
 
-<attributes>
-
 | 属性                | 描述                           | 类型            | 可选值                               | 默认     |
 | ------------------- | ------------------------------ | --------------- | ------------------------------------ | -------- |
 | **v-model:checked** | 是否选中单选框(仅在单选时有效) | `boolean`       | `'true','false'`                     | `false`  |
@@ -20,11 +18,7 @@
 | **size**            | 单选框的大小                   | `string`        | `'mini', 'small', 'medium', 'large'` | `medium` |
 | **change**          | 选项变化事件                   | `RadioEvent`    | `-`                                  | `-`      |
 
-</attributes>
-
 ### RadioGroup Props
-
-<attributes>
 
 | 属性         | 描述                 | 类型         | 可选值                               | 默认     |
 | ------------ | -------------------- | ------------ | ------------------------------------ | -------- |
@@ -33,5 +27,3 @@
 | **disabled** | 禁用所有单选框       | `boolean`    | `'true','false'`                     | `false`  |
 | **size**     | 组内所有单选框大小   | `string`     | `'mini', 'small', 'medium', 'large'` | `medium` |
 | **change**   | radio 的值变化事件   | `RadioEvent` | `-`                                  | `-`      |
-
-</attributes>

@@ -23,8 +23,6 @@ name="ex-select-default"
 
 ### Select Props
 
-<attributes>
-
 | 属性            | 描述                   | 类型                        | 可选值                      | 默认      |
 | --------------- | ---------------------- | --------------------------- | --------------------------- | --------- |
 | **modelValue**  | 选择器的值             | `'string','string[]'`       | `-`                         | `-`       |
@@ -36,11 +34,7 @@ name="ex-select-default"
 | **disabled**    | 是否禁用交互           | `Boolean`                   | `-`                         | `false`   |
 | **change**      | 选项被选中所触发的事件 | `(e)=>void`                 | `-`                         | `-`       |
 
-</attributes>
-
 ### Option Props
-
-<attributes>
 
 | 属性         | 描述           | 类型      | 可选值 | 默认    |
 | ------------ | -------------- | --------- | ------ | ------- |
@@ -48,14 +42,8 @@ name="ex-select-default"
 | **label**    | 展示的文本内容 | `string`  | `-`    | `-`     |
 | **disabled** | 是否禁用交互   | `Boolean` | `-`    | `false` |
 
-</attributes>
-
 ### NormalSizes
-
-<attributes>
 
 | 类型 可选值     |                                      |
 | --------------- | ------------------------------------ |
 | **NormalSizes** | `'mini', 'small', 'medium', 'large'` |
-
-</attributes>

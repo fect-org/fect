@@ -10,11 +10,7 @@
 
 ### Card Props
 
-<attributes>
-
 | 属性          | 描述                 | 类型      | 可选值 | 默认    |
 | ------------- | -------------------- | --------- | ------ | ------- |
 | **hoverable** | 是否在悬停时增加阴影 | `boolean` | `-`    | `false` |
 | **shadow**    | 是否总是显示阴影     | `boolean` | `-`    | `false` |
-
-</attributes>

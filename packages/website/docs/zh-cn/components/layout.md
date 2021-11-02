@@ -14,8 +14,6 @@
 
 ### Row Props
 
-<attributes>
-
 | 属性        | 描述           | 类型                | 可选值                                                   | 默认    |
 | ----------- | -------------- | ------------------- | -------------------------------------------------------- | ------- |
 | **tag**     | 自定义容器元素 | `HTMLElemenet`      | `-`                                                      | `div`   |
@@ -23,16 +21,10 @@
 | **justify** | 水平对齐方式   | `string`            | `'start','end','center','space-around','space-between',` | `start` |
 | **align**   | 垂直对齐方式   | `string`            | `'top', 'middle', 'bottom'`                              | `top`   |
 
-</attributes>
-
 ### Col Props
-
-<attributes>
 
 | 属性       | 描述               | 类型                | 可选值   | 默认  |
 | ---------- | ------------------ | ------------------- | -------- | ----- |
 | **tag**    | 自定义容器元素     | `HTMLElement`       | `-`      | `div` |
 | **span**   | 每列占据的网格大小 | `'string','number'` | `'0-24'` | `24`  |
 | **offset** | 当前列的偏移位置   | `'string','number'` | `-`      | `0`   |
-
-</attributes>

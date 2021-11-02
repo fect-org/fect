@@ -28,42 +28,26 @@
 
 ### Badge Props
 
-<attributes>
-
 | 属性     | 描述               | 类型                        | 可选值                      | 默认      |
 | -------- | ------------------ | --------------------------- | --------------------------- | --------- |
 | **size** | 组件大小           | `string`                    | [NormalSizes](#normalsizes) | `medium`  |
 | **type** | 组件类型           | [NormalTypes](#normaltypes) | [NormalTypes](#normaltypes) | `default` |
 | **dot**  | 忽略内容并显示圆点 | `'boolean'`                 | `-`                         | `-`       |
 
-</attributes>
-
 ### BadgeAnchor Props
-
-<attributes>
 
 | 属性          | 描述           | 类型     | 可选值                                               | 默认         |
 | ------------- | -------------- | -------- | ---------------------------------------------------- | ------------ |
 | **placement** | 固定徽标的位置 | `string` | `'topLeft', 'topRight', 'bottomLeft', 'bottomRight'` | `'topRight'` |
 
-</attributes>
-
 ### NormalSizes
-
-<attributes>
 
 | 类型 可选值     |                                      |
 | --------------- | ------------------------------------ |
 | **NormalSizes** | `'mini', 'small', 'medium', 'large'` |
 
-</attributes>
-
 ### NormalTypes
-
-<attributes>
 
 | 类型            | 可选值                                     |
 | --------------- | ------------------------------------------ |
 | **NormalTypes** | `'default', 'success', 'warning', 'error'` |
-
-</attributes>

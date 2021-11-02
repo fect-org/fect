@@ -10,8 +10,6 @@
 
 ### Switch Props
 
-<attributes>
-
 | 属性               | 描述             | 类型          | 可选值                               | 默认     |
 | ------------------ | ---------------- | ------------- | ------------------------------------ | -------- |
 | **v-model**        | 切换状态对应的值 | `any`         | `-`                                  | `-`      |
@@ -20,5 +18,3 @@
 | **size**           | 开关大小         | `string`      | `'mini', 'small', 'medium', 'large'` | `medium` |
 | **disabled**       | 禁用交互         | `boolean`     | `'true','false'`                     | `false`  |
 | **change**         | 开关事件         | `SwitchEvent` | `-`                                  | `-`      |
-
-</attributes>

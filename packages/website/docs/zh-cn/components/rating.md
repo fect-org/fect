@@ -18,8 +18,6 @@ desc="通过type属性设置不同风格的组件"
 
 ### Rating Props
 
-<attributes>
-
 | 属性        | 描述                | 类型          | 可选值                                  | 默认      |
 | ----------- | ------------------- | ------------- | --------------------------------------- | --------- |
 | **type**    | 不同类型的评分      | `string`      | `'default','success','warning','error'` | `default` |
@@ -28,5 +26,3 @@ desc="通过type属性设置不同风格的组件"
 | **v-model** | 评分的值            | `number`      | `-`                                     | `0`       |
 | **locked**  | 设置只读            | `boolean`     | `'true','false'`                        | `false`   |
 | **change**  | Rating 的值变化事件 | `RatingEvent` | `-`                                     | `-`       |
-
-</attributes>

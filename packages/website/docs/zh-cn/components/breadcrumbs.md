@@ -18,22 +18,14 @@
 
 ### Breadcrumbs Props
 
-<attributes>
-
 | 属性          | 描述     | 类型     | 可选值                           | 默认     |
 | ------------- | -------- | -------- | -------------------------------- | -------- |
 | **size**      | 组件大小 | `string` | `'mini','small,'medium','large'` | `medium` |
 | **separator** | 分隔符   | `string` | `-`                              | `/`      |
 
-</attributes>
-
 ### BreadcrumbsItem Props
-
-<attributes>
 
 | 属性     | 描述               | 类型                | 可选值 | 默认 |
 | -------- | ------------------ | ------------------- | ------ | ---- |
 | **href** | 链接地址           | `string`            | `-`    | `-`  |
 | **to**   | Vue 路由跳转(push) | `'string','object'` | `-`    | `-`  |
-
-</attributes>

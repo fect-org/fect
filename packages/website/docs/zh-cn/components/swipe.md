@@ -16,8 +16,6 @@
 
 ### Swipe Props
 
-<attributes>
-
 | 属性                | 描述                   | 类型                    | 可选值           | 默认    |
 | ------------------- | ---------------------- | ----------------------- | ---------------- | ------- |
 | **duration**        | 切换过度时间(毫秒)     | `'number'`              | `-`              | `300`   |
@@ -29,5 +27,3 @@
 | **showIndicators**  | 是否显示指示器         | `'boolean'`             | `'true','false'` | `true`  |
 | **indicatorColor**  | 设置指示器的颜色       | `'string'`              | `-`              | `-`     |
 | **change**          | 索引值变化事件         | `'SwipeEvent()=>index'` | `-`              | `-`     |
-
-</attributes>

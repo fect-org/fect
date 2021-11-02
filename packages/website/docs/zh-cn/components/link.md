@@ -12,8 +12,6 @@
 
 ### Link Props
 
-<attributes>
-
 | 属性          | 描述               | 类型                | 可选值           | 默认    |
 | ------------- | ------------------ | ------------------- | ---------------- | ------- |
 | **href**      | 链接地址           | `string`            | `-`              | `-`     |
@@ -21,5 +19,3 @@
 | **color**     | 是否高亮显示       | `boolean`           | `'true','false'` | `false` |
 | **underline** | 是否显示下划线     | `boolean`           | `'true','false'` | `false` |
 | **block**     | 是否为块级元素     | `boolean`           | `'true','false'` | `false` |
-
-</attributes>

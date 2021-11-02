@@ -29,10 +29,6 @@
 
 ### Grid Props
 
-<attributes>
-
-<attributes-title  />
-
 | 属性             | 描述                                 | 类型           | 可选值                                  | 默认值       |
 | ---------------- | ------------------------------------ | -------------- | --------------------------------------- | ------------ |
 | **container**    | 设置 grid 组件为容器, 默认值:`false` | `boolean`      | `'true','false'`                        | `false`      |
@@ -48,57 +44,35 @@
 | **lg**           | 栅格宽度，影响 `lg` 断点与更宽的屏幕 | `number`       | `0 - 24`, `boolean`                     | `false`      |
 | **xl**           | 栅格宽度，影响 `xl` 断点与更宽的屏幕 | `number`       | `0 - 24`, `boolean`                     | `false`      |
 
-</attributes>
-
 ### WrapTypes
-
-<attributes>
 
 | 类型          | 可选值                             |     |
 | ------------- | ---------------------------------- | --- |
 | **WrapTypes** | `'nowrap', 'wrap', 'wrap-reverse'` |     |
 
-</attributes>
-
 ### JustifyTypes
-
-<attributes>
 
 | 类型             | 可选值                                                                           |     |
 | ---------------- | -------------------------------------------------------------------------------- | --- |
 | **JustifyTypes** | `'flex-start','center','flex-end','space-between','space-around','space-evenly'` |     |
 
-</attributes>
-
 ### AlignTypes
-
-<attributes>
 
 | 类型           | 可选值                                                   |     |
 | -------------- | -------------------------------------------------------- | --- |
 | **AlignTypes** | `'flex-start','center','flex-end','stretch', 'baseline'` |     |
 
-</attributes>
-
 ### AlignContentTypes
-
-<attributes>
 
 | 类型           | 可选值                                                                       |     |
 | -------------- | ---------------------------------------------------------------------------- | --- |
 | **AlignTypes** | `'stretch','flex-start','center','flex-end', 'space-between','space-around'` |     |
 
-</attributes>
-
 ### DirectionTypes
-
-<attributes>
 
 | 类型           | 可选值                                             |     |
 | -------------- | -------------------------------------------------- | --- |
 | **AlignTypes** | `'row', 'row-reverse', 'column', 'column-reverse'` |     |
-
-</attributes>
 
 ### 断点值
 

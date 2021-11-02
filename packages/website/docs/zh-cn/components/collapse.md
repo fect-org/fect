@@ -28,8 +28,6 @@
 
 ### Collapse Props
 
-<attributes>
-
 | 属性                | 描述                 | 类型          | 可选值           | 默认    |
 | ------------------- | -------------------- | ------------- | ---------------- | ------- |
 | **title(必须的)**   | 标题值               | `string`      | `-`              | `-`     |
@@ -38,15 +36,9 @@
 | **v-model:visible** | 控制折叠框展开       | `boolean`     | `'true','false'` | `false` |
 | **shadow**          | 设置阴影模式         | `boolean`     | `'true','false'` | `false` |
 
-</attributes>
-
 ### CollapseGroup Props
-
-<attributes>
 
 | 属性          | 描述                          | 类型       | 可选值           | 默认     |
 | ------------- | ----------------------------- | ---------- | ---------------- | -------- |
 | **accordion** | 手风琴模式 (一次最多打开一个) | `boolean`  | `'true','false'` | `'true'` |
 | **v-model**   | 当前激活的面板                | `number[]` | `-`              | `[]`     |
-
-</attributes>
