@@ -5,13 +5,12 @@
 <playground title="默认的" desc="基础的行内代码" name="ex-code-default" />
 <playground title="代码块" desc="多行的代码块展示" name="ex-code-block" />
 
+### Code Props
+
 <attributes>
 
-<attributes-title title="Code Props" />
-
-| 属性      | 描述             | 类型             | 可选值             | 默认    |
-| --------- | ---------------- | ---------------- | ------------------ | ------- |
-| **block** | 展示多行的代码块 | `boolean`        | `'true','false'`   | `false` |
-| ...       | 原生属性         | `HTMLAttributes` | `'class','id',...` | `-`     |
+| 属性      | 描述             | 类型      | 可选值           | 默认    |
+| --------- | ---------------- | --------- | ---------------- | ------- |
+| **block** | 展示多行的代码块 | `boolean` | `'true','false'` | `false` |
 
 </attributes>

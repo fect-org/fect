@@ -8,9 +8,9 @@
 
 <playground title="变体" desc="具有不同的状态" name="ex-tooltip-variable" />
 
-<attributes>
+### Tooltip Props
 
-<attributes-title title="Tooltip Props" />
+<attributes>
 
 | 属性                | 描述                       | 类型      | 可选值                                                                                                                               | 默认         |
 | ------------------- | -------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------ |
@@ -26,13 +26,9 @@
 
 </attributes>
 
-<attributes>
-
-<attributes-title title="Tooltip customSlots" />
+### Tooltip customSlots
 
 <fe-card>
   Tooltip组件默认提供了<fe-code>content</fe-code>插槽。启用时<fe-code>props.content</fe-code>
   便会失效。
 </fe-card>
-
-</attributes>

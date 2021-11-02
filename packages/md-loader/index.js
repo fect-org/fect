@@ -45,7 +45,10 @@ class PluginParser {
    * @param {MarkdownIt} createMarkdown
    */
   markdownParser(raw, createMarkdown) {
-    return createMarkdown.render(raw)
+    const exmapleReg = /```html((.|\r|\n)*?)```/g
+    const tableReg = /:::attribute((.|\r|\n)*?):::/g
+    const playgroundReg = /:::playground((.|\r|\n)*?):::/g
+    return createMarkdown.render(raw).replace(/<h3/g, '<attributes-title').replace(/<\/h3/g, '</attributes-title')
   }
 
   /**

@@ -10,16 +10,15 @@
 
 <playground title="样式" desc="可以选择不同样式的指示器" name="ex-loading-load"/>
 
+### Loading Props
+
 <attributes>
 
-<attributes-title title="Loading Props" />
-
-| 属性          | 描述             | 类型             | 可选值                                     | 默认      |
-| ------------- | ---------------- | ---------------- | ------------------------------------------ | --------- |
-| **size**      | 指示器的大小     | `string`         | `'mini', 'small', 'medium', 'large'`       | `medium`  |
-| **type**      | 指示器类型       | `string`         | `'default', 'success', 'warning', 'error'` | `default` |
-| **color**     | 自定义指示器颜色 | `string`         | `-`                                        | `-`       |
-| **load-type** | 不同风格的指示器 | `string`         | `'default','cube','wave'`                  | `default` |
-| ...           | 原生属性         | `HTMLAttributes` | `'class','id',...`                         | `-`       |
+| 属性          | 描述             | 类型     | 可选值                                     | 默认      |
+| ------------- | ---------------- | -------- | ------------------------------------------ | --------- |
+| **size**      | 指示器的大小     | `string` | `'mini', 'small', 'medium', 'large'`       | `medium`  |
+| **type**      | 指示器类型       | `string` | `'default', 'success', 'warning', 'error'` | `default` |
+| **color**     | 自定义指示器颜色 | `string` | `-`                                        | `-`       |
+| **load-type** | 不同风格的指示器 | `string` | `'default','cube','wave'`                  | `default` |
 
 </attributes>

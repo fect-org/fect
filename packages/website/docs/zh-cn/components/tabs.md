@@ -19,29 +19,27 @@
   desc="隐藏默认的分割线"
 />
 
-<attributes>
-  
-<attributes-title title="Tabs Props" />
+### Tabs Props
 
-| 属性               | 描述                     | 类型                | 可选值               | 默认    |
-| ------------------ | ------------------------ | ------------------- | -------------------- | ------- |
-| **v-model:active** | 绑定当前选中标签的标识符 | `'number','string'` | `-`                  | `0`     |
-| **hideDivider**    | 隐藏默认分割线           | `boolean`           | `-`                  | `false` |
-| **change**         | 选项卡切换事件           | `(val)=>void`       | `-`                  | `-`     |
-| **click**          | 选项卡点击事件           | `TabsEvent`         | `-`                  | `-`     |
-| ...                | 原生属性                 | `HTMLAttributes`    | `'class','name',...` | `-`     |
+<attributes>
+
+| 属性               | 描述                     | 类型                | 可选值 | 默认    |
+| ------------------ | ------------------------ | ------------------- | ------ | ------- |
+| **v-model:active** | 绑定当前选中标签的标识符 | `'number','string'` | `-`    | `0`     |
+| **hideDivider**    | 隐藏默认分割线           | `boolean`           | `-`    | `false` |
+| **change**         | 选项卡切换事件           | `(val)=>void`       | `-`    | `-`     |
+| **click**          | 选项卡点击事件           | `TabsEvent`         | `-`    | `-`     |
 
 </attributes>
 
+### Tab Props
+
 <attributes>
 
-<attributes-title title="Tab Props" />
-
-| 属性         | 描述               | 类型                | 可选值               | 默认    |
-| ------------ | ------------------ | ------------------- | -------------------- | ------- |
-| **title**    | 选项卡的文字描述   | `'string'`          | `-`                  | `-`     |
-| **value**    | 绑定选项卡的标识符 | `'string','number'` | `-`                  | `-`     |
-| **disabled** | 禁用当前选项卡     | `'boolean'`         | `'true','false'`     | `false` |
-| ...          | 原生属性           | `HTMLAttributes`    | `'class','name',...` | `-`     |
+| 属性         | 描述               | 类型                | 可选值           | 默认    |
+| ------------ | ------------------ | ------------------- | ---------------- | ------- |
+| **title**    | 选项卡的文字描述   | `'string'`          | `-`              | `-`     |
+| **value**    | 绑定选项卡的标识符 | `'string','number'` | `-`              | `-`     |
+| **disabled** | 禁用当前选项卡     | `'boolean'`         | `'true','false'` | `false` |
 
 </attributes>

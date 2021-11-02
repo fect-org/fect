@@ -8,9 +8,9 @@
 
 <playground title="支持静态方法" desc="Toast控件支持静态方法调用" name="ex-toast-static" />
 
+### Toast Props
+
 <attributes>
-  
-<attributes-title title="Toast Props" />
 
 | 属性         | 描述             | 类型                | 可选值                                     | 默认      |
 | ------------ | ---------------- | ------------------- | ------------------------------------------ | --------- |

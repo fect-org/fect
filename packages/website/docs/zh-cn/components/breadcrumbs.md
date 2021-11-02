@@ -16,26 +16,24 @@
   desc="与 vueRouter 结合使用的示例"
 />
 
-<attributes>
-  
-<attributes-title title="Breadcrumbs Props" />
+### Breadcrumbs Props
 
-| 属性          | 描述     | 类型             | 可选值                           | 默认     |
-| ------------- | -------- | ---------------- | -------------------------------- | -------- |
-| **size**      | 组件大小 | `string`         | `'mini','small,'medium','large'` | `medium` |
-| **separator** | 分隔符   | `string`         | `-`                              | `/`      |
-| ...           | 原生属性 | `HTMLAttributes` | `'class','id',...`               | `-`      |
+<attributes>
+
+| 属性          | 描述     | 类型     | 可选值                           | 默认     |
+| ------------- | -------- | -------- | -------------------------------- | -------- |
+| **size**      | 组件大小 | `string` | `'mini','small,'medium','large'` | `medium` |
+| **separator** | 分隔符   | `string` | `-`                              | `/`      |
 
 </attributes>
 
+### BreadcrumbsItem Props
+
 <attributes>
 
-<attributes-title title="BreadcrumbsItem Props" />
-
-| 属性     | 描述               | 类型                | 可选值              | 默认 |
-| -------- | ------------------ | ------------------- | ------------------- | ---- |
-| **href** | 链接地址           | `string`            | `-`                 | `-`  |
-| **to**   | Vue 路由跳转(push) | `'string','object'` | `-`                 | `-`  |
-| ...      | 原生属性           | `LinkAttributes`    | `'target','id',...` | `-`  |
+| 属性     | 描述               | 类型                | 可选值 | 默认 |
+| -------- | ------------------ | ------------------- | ------ | ---- |
+| **href** | 链接地址           | `string`            | `-`    | `-`  |
+| **to**   | Vue 路由跳转(push) | `'string','object'` | `-`    | `-`  |
 
 </attributes>

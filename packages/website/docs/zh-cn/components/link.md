@@ -10,17 +10,16 @@
 
 <playground  title="路由跳转" desc="link组件提供了vueRouter push的路由跳转方式" name="ex-link-to" />
 
+### Link Props
+
 <attributes>
 
-<attributes-title title="Link Props" />
-
-| 属性          | 描述               | 类型                   | 可选值                 | 默认    |
-| ------------- | ------------------ | ---------------------- | ---------------------- | ------- |
-| **href**      | 链接地址           | `string`               | `-`                    | `-`     |
-| **to**        | Vue 路由跳转(push) | `'string','object'`    | `-`                    | `-`     |
-| **color**     | 是否高亮显示       | `boolean`              | `'true','false'`       | `false` |
-| **underline** | 是否显示下划线     | `boolean`              | `'true','false'`       | `false` |
-| **block**     | 是否为块级元素     | `boolean`              | `'true','false'`       | `false` |
-| ...           | 原生属性           | `AnchorHTMLattributes` | `'rel', 'target', ...` | `-`     |
+| 属性          | 描述               | 类型                | 可选值           | 默认    |
+| ------------- | ------------------ | ------------------- | ---------------- | ------- |
+| **href**      | 链接地址           | `string`            | `-`              | `-`     |
+| **to**        | Vue 路由跳转(push) | `'string','object'` | `-`              | `-`     |
+| **color**     | 是否高亮显示       | `boolean`           | `'true','false'` | `false` |
+| **underline** | 是否显示下划线     | `boolean`           | `'true','false'` | `false` |
+| **block**     | 是否为块级元素     | `boolean`           | `'true','false'` | `false` |
 
 </attributes>

@@ -26,9 +26,9 @@
 />
 <playground title="密码" name="ex-input-password" desc="显示或隐藏密码文本" />
 
-<attributes>
+### Input Props
 
-<attributes-title title="Input Props" />
+<attributes>
 
 | 属性           | 描述                                                                            | 类型                | 可选值             | 默认      |
 | -------------- | ------------------------------------------------------------------------------- | ------------------- | ------------------ | --------- |

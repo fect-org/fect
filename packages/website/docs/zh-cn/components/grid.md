@@ -27,31 +27,32 @@
   name="ex-grid-auto"
  />
 
+### Grid Props
+
 <attributes>
 
-<attributes-title title="Grid Props" />
+<attributes-title  />
 
-| 属性             | 描述                                 | 类型             | 可选值                                  | 默认值       |
-| ---------------- | ------------------------------------ | ---------------- | --------------------------------------- | ------------ |
-| **container**    | 设置 grid 组件为容器, 默认值:`false` | `boolean`        | `'true','false'`                        | `false`      |
-| **gap**          | 子组件的间距                         | `number`         | -                                       | `0`          |
-| **wrap**         | CSS 属性 "flex-wrap"，指定换行方式   | `Wrap`           | [WrapTypes](#wrapTypes)                 | `wrap`       |
-| **justify**      | CSS 属性 "justify-content"           | `Justify`        | [JustifyTypes](#justifyTypes)           | `flex-start` |
-| **alignItems**   | CSS 属性 "align-items"               | `AlignItems`     | [AlignItemsTypes](#alignitemsTypes)     | `stretch`    |
-| **alignContent** | CSS 属性 "align-content"             | `AlignContent`   | [AlignContentTypes](#aligncontentTypes) | `flex-start` |
-| **direction**    | CSS 属性 "flex-direction"            | `Direction`      | [DirectionTypes](#directionTypes)       | `row`        |
-| **xs**           | 栅格宽度，影响 `xs` 断点与更宽的屏幕 | `number`         | `0 - 24`, `boolean`                     | `false`      |
-| **sm**           | 栅格宽度，影响 `sm` 断点与更宽的屏幕 | `number`         | `0 - 24`, `boolean`                     | `false`      |
-| **md**           | 栅格宽度，影响 `md` 断点与更宽的屏幕 | `number`         | `0 - 24`, `boolean`                     | `false`      |
-| **lg**           | 栅格宽度，影响 `lg` 断点与更宽的屏幕 | `number`         | `0 - 24`, `boolean`                     | `false`      |
-| **xl**           | 栅格宽度，影响 `xl` 断点与更宽的屏幕 | `number`         | `0 - 24`, `boolean`                     | `false`      |
-| ...              | 原生属性                             | `HTMLAttributes` | `'id', 'class', ...`                    | -            |
+| 属性             | 描述                                 | 类型           | 可选值                                  | 默认值       |
+| ---------------- | ------------------------------------ | -------------- | --------------------------------------- | ------------ |
+| **container**    | 设置 grid 组件为容器, 默认值:`false` | `boolean`      | `'true','false'`                        | `false`      |
+| **gap**          | 子组件的间距                         | `number`       | -                                       | `0`          |
+| **wrap**         | CSS 属性 "flex-wrap"，指定换行方式   | `Wrap`         | [WrapTypes](#wraptypes)                 | `wrap`       |
+| **justify**      | CSS 属性 "justify-content"           | `Justify`      | [JustifyTypes](#justifytypes)           | `flex-start` |
+| **alignItems**   | CSS 属性 "align-items"               | `AlignItems`   | [AlignItemsTypes](#alignitemstypes)     | `stretch`    |
+| **alignContent** | CSS 属性 "align-content"             | `AlignContent` | [AlignContentTypes](#aligncontenttypes) | `flex-start` |
+| **direction**    | CSS 属性 "flex-direction"            | `Direction`    | [DirectionTypes](#directiontypes)       | `row`        |
+| **xs**           | 栅格宽度，影响 `xs` 断点与更宽的屏幕 | `number`       | `0 - 24`, `boolean`                     | `false`      |
+| **sm**           | 栅格宽度，影响 `sm` 断点与更宽的屏幕 | `number`       | `0 - 24`, `boolean`                     | `false`      |
+| **md**           | 栅格宽度，影响 `md` 断点与更宽的屏幕 | `number`       | `0 - 24`, `boolean`                     | `false`      |
+| **lg**           | 栅格宽度，影响 `lg` 断点与更宽的屏幕 | `number`       | `0 - 24`, `boolean`                     | `false`      |
+| **xl**           | 栅格宽度，影响 `xl` 断点与更宽的屏幕 | `number`       | `0 - 24`, `boolean`                     | `false`      |
 
 </attributes>
 
+### WrapTypes
+
 <attributes>
-  
-<attributes-title title="WrapTypes" />
 
 | 类型          | 可选值                             |     |
 | ------------- | ---------------------------------- | --- |
@@ -59,9 +60,9 @@
 
 </attributes>
 
-<attributes>
+### JustifyTypes
 
-<attributes-title title="JustifyTypes" />
+<attributes>
 
 | 类型             | 可选值                                                                           |     |
 | ---------------- | -------------------------------------------------------------------------------- | --- |
@@ -69,9 +70,9 @@
 
 </attributes>
 
-<attributes>
+### AlignTypes
 
-<attributes-title title="AlignTypes" />
+<attributes>
 
 | 类型           | 可选值                                                   |     |
 | -------------- | -------------------------------------------------------- | --- |
@@ -79,9 +80,9 @@
 
 </attributes>
 
-<attributes>
+### AlignContentTypes
 
-<attributes-title title="AlignContentTypes" />
+<attributes>
 
 | 类型           | 可选值                                                                       |     |
 | -------------- | ---------------------------------------------------------------------------- | --- |
@@ -89,9 +90,9 @@
 
 </attributes>
 
-<attributes>
+### DirectionTypes
 
-<attributes-title title="DirectionTypes" />
+<attributes>
 
 | 类型           | 可选值                                             |     |
 | -------------- | -------------------------------------------------- | --- |
@@ -99,12 +100,8 @@
 
 </attributes>
 
-<attributes>
+### 断点值
 
-<attributes-title title="断点值" />
-
-<fe-card>
-  
 <fe-code block>
 xs: { min: '0', max: '650px' },
 <br/>
@@ -117,7 +114,3 @@ lg: { min: '1280px', max: '1920px' },
 xl: { min: '1920px', max: '10000px' },
 
 </fe-code>
-
-</fe-card>
-
-</attributes>

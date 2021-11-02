@@ -26,29 +26,27 @@
   name="ex-collapse-accordion"
 />
 
+### Collapse Props
+
 <attributes>
 
-<attributes-title title="Collapse Props" />
-
-| 属性                | 描述                 | 类型             | 可选值             | 默认    |
-| ------------------- | -------------------- | ---------------- | ------------------ | ------- |
-| **title(必须的)**   | 标题值               | `string`         | `-`                | `-`     |
-| **subtitle**        | 子标题内容           | `string`         | `-`                | `-`     |
-| **subTag**          | 自定义子标题容器元素 | `HTMLElement`    | `-`                | `-`     |
-| **v-model:visible** | 控制折叠框展开       | `boolean`        | `'true','false'`   | `false` |
-| **shadow**          | 设置阴影模式         | `boolean`        | `'true','false'`   | `false` |
-| ...                 | 原生属性             | `HTMLAttributes` | `'class','id',...` | `-`     |
+| 属性                | 描述                 | 类型          | 可选值           | 默认    |
+| ------------------- | -------------------- | ------------- | ---------------- | ------- |
+| **title(必须的)**   | 标题值               | `string`      | `-`              | `-`     |
+| **subtitle**        | 子标题内容           | `string`      | `-`              | `-`     |
+| **subTag**          | 自定义子标题容器元素 | `HTMLElement` | `-`              | `-`     |
+| **v-model:visible** | 控制折叠框展开       | `boolean`     | `'true','false'` | `false` |
+| **shadow**          | 设置阴影模式         | `boolean`     | `'true','false'` | `false` |
 
 </attributes>
 
+### CollapseGroup Props
+
 <attributes>
 
-<attributes-title title="CollapseGroup Props" />
-
-| 属性          | 描述                          | 类型             | 可选值             | 默认     |
-| ------------- | ----------------------------- | ---------------- | ------------------ | -------- |
-| **accordion** | 手风琴模式 (一次最多打开一个) | `boolean`        | `'true','false'`   | `'true'` |
-| **v-model**   | 当前激活的面板                | `number[]`       | `-`                | `[]`     |
-| ...           | 原生属性                      | `HTMLAttributes` | `'class','id',...` | `-`      |
+| 属性          | 描述                          | 类型       | 可选值           | 默认     |
+| ------------- | ----------------------------- | ---------- | ---------------- | -------- |
+| **accordion** | 手风琴模式 (一次最多打开一个) | `boolean`  | `'true','false'` | `'true'` |
+| **v-model**   | 当前激活的面板                | `number[]` | `-`              | `[]`     |
 
 </attributes>

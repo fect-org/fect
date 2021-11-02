@@ -26,43 +26,41 @@
   desc="提供一个固定徽标的容器"
 />
 
+### Badge Props
+
 <attributes>
-  
-<attributes-title title="Badge Props" />
 
 | 属性     | 描述               | 类型                        | 可选值                      | 默认      |
 | -------- | ------------------ | --------------------------- | --------------------------- | --------- |
 | **size** | 组件大小           | `string`                    | [NormalSizes](#normalsizes) | `medium`  |
 | **type** | 组件类型           | [NormalTypes](#normaltypes) | [NormalTypes](#normaltypes) | `default` |
 | **dot**  | 忽略内容并显示圆点 | `'boolean'`                 | `-`                         | `-`       |
-| ...      | 原生属性           | `HTMLAttributes`            | `'class','id',...`          | `-`       |
 
 </attributes>
 
+### BadgeAnchor Props
+
 <attributes>
 
-<attributes-title title="BadgeAnchor Props" />
-
-| 属性          | 描述           | 类型             | 可选值                                               | 默认         |
-| ------------- | -------------- | ---------------- | ---------------------------------------------------- | ------------ |
-| **placement** | 固定徽标的位置 | `string`         | `'topLeft', 'topRight', 'bottomLeft', 'bottomRight'` | `'topRight'` |
-| ...           | 原生属性       | `HTMLAttributes` | `'class','id',...`                                   | `-`          |
+| 属性          | 描述           | 类型     | 可选值                                               | 默认         |
+| ------------- | -------------- | -------- | ---------------------------------------------------- | ------------ |
+| **placement** | 固定徽标的位置 | `string` | `'topLeft', 'topRight', 'bottomLeft', 'bottomRight'` | `'topRight'` |
 
 </attributes>
 
+### NormalSizes
+
 <attributes>
 
-<attributes-title title="NormalSizes" />
-
-| 类型 可选值     |
+| 类型 可选值     |                                      |
 | --------------- | ------------------------------------ |
 | **NormalSizes** | `'mini', 'small', 'medium', 'large'` |
 
 </attributes>
 
-<attributes>
+### NormalTypes
 
-<attributes-title title="NormalTypes" />
+<attributes>
 
 | 类型            | 可选值                                     |
 | --------------- | ------------------------------------------ |

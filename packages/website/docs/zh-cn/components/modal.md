@@ -12,9 +12,9 @@
 
 <!-- <playground title="指令" name="ex-modal-direct" desc="使用指令唤醒modal" /> -->
 
-<attributes>
+### Modal Props
 
-<attributes-title title="Modal Props" />
+<attributes>
 
 | 属性                | 描述                 | 类型             | 可选值             | 默认     |
 | ------------------- | -------------------- | ---------------- | ------------------ | -------- |
@@ -28,13 +28,9 @@
 
 </attributes>
 
-<attributes>
-
-<attributes-title title="Modal customSlots" />
+### Modal customSlots
 
 <fe-card>
   Modal组件默认提供了<fe-code>title,action</fe-code>插槽。启用时<fe-code>title,cancel,done</fe-code>
   便会失效。
 </fe-card>
-
-</attributes>

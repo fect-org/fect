@@ -15,8 +15,9 @@
   name="ex-progress-colors"
 />
 
+### Progress Props
+
 <attributes>
-<attributes-title title="Progress Props" />
 
 | 属性       | 描述               | 类型                        | 可选值                                     | 默认      |
 | ---------- | ------------------ | --------------------------- | ------------------------------------------ | --------- |
@@ -24,6 +25,5 @@
 | **max**    | 最大值             | `'number','string'`         | `-`                                        | `100`     |
 | **colors** | 在范围内自定义颜色 | `{ [key: number]: string }` | `-`                                        | `{}`      |
 | **type**   | 预定义的状体类型   | `'string'`                  | `'default', 'success', 'warning', 'error'` | `default` |
-| ...        | 原生属性           | `HTMLAttributes`            | `'class','id',...`                         | `-`       |
 
 </attributes>

@@ -17,15 +17,14 @@ title="类型"
 name="ex-tag-invert"
 />
 
-<attributes>
-  
-<attributes-title title="Tag Props" />
+### Tag Props
 
-| 属性          | 描述           | 类型                                       | 推荐值                   | 默认      |
-| ------------- | -------------- | ------------------------------------------ | ------------------------ | --------- |
-| **text**      | 标签内容       | `String`                                   | -                        | `-`       |
-| **type**      | 标签类型       | `'default', 'success', 'warning', 'error'` | -                        | `default` |
-| **useInvert** | 反转背景与主色 | `boolean`                                  | -                        | `false`   |
-| ...           | 原生属性       | `HTMLAttributes`                           | `'id', 'className', ...` | -         |
+<attributes>
+
+| 属性          | 描述           | 类型                                       | 推荐值 | 默认      |
+| ------------- | -------------- | ------------------------------------------ | ------ | --------- |
+| **text**      | 标签内容       | `String`                                   | -      | `-`       |
+| **type**      | 标签类型       | `'default', 'success', 'warning', 'error'` | -      | `default` |
+| **useInvert** | 反转背景与主色 | `boolean`                                  | -      | `false`   |
 
 </attributes>

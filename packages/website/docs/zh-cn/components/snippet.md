@@ -21,9 +21,9 @@
   name="ex-snippet-filled"
 />
 
+### Snippet Props
+
 <attributes>
-  
-<attributes-title title="Snippet Props" />
 
 | 属性          | 描述               | 类型                        | 可选值                           | 默认        |
 | ------------- | ------------------ | --------------------------- | -------------------------------- | ----------- |
@@ -35,15 +35,14 @@
 | **symbol**    | 组件左侧显示的字符 | `String`                    | `-`                              | `$`         |
 | **toastText** | 拷贝提示的字符     | `String`                    | `-`                              | `-`         |
 | **toastType** | 拷贝提示的样式     | [NormalTypes](#normaltypes) | [NormalTypes](#normaltypes)      | `default`   |
-| ...           | 原生属性           | `HTMLAttributes`            | `'class','id',...`               | `-`         |
 
 </attributes>
 
+### NormalTypes
+
 <attributes>
 
-<attributes-title title="NormalTypes" />
-
-| 类型 可选值     |
+| 类型 可选值     |                                            |
 | --------------- | ------------------------------------------ |
 | **NormalTypes** | `'default', 'success', 'warning', 'error'` |
 

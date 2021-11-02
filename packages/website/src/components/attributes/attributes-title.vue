@@ -1,7 +1,6 @@
 <template>
   <h4>
-    <span class="fect-doc__attr-title"> </span>
-    <anchor>{{ title }}</anchor>
+    <anchor><slot /></anchor>
   </h4>
 </template>
 
@@ -12,19 +11,14 @@ import Anchor from '../href-anchor/index.vue'
 export default defineComponent({
   name: 'AttributesTitle',
   components: { Anchor },
-  props: {
-    title: {
-      type: String,
-      default: '',
-    },
-  },
-  setup(props) {},
 })
 </script>
 
 <style lang="less" scoped>
-.fect-doc__attr-title {
+h4 {
   font-weight: 400;
-  font-size: 1.3rem;
+  font-size: 1.125rem;
+  margin: 0;
+  margin-top: var(--fay-gap);
 }
 </style>

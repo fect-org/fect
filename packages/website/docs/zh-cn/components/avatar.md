@@ -12,27 +12,25 @@
 
 <attributes>
 
-<attributes-title title="Avatar Props" />
+### Avatar Props
 
-| 属性          | 描述                    | 类型                | 可选值                            | 默认     |
-| ------------- | ----------------------- | ------------------- | --------------------------------- | -------- |
-| **stacked**   | 是否堆叠显示            | _boolean_           | -                                 | `false`  |
-| **isSquare**  | 是否为方形头像          | `boolean`           | -                                 | `false`  |
-| **size**      | 头像大小                | `string`            | `'mini','small','medium','large'` | `medium` |
-| **text**      | 文本,无图像链接才会显示 | `string`,`number`   | -                                 | `-`      |
-| **src**       | 图像链接                | `string`            | -                                 | `-`      |
-| **className** | 图像容器设置 class      | `string`            | -                                 | `-`      |
-| ...           | 原生属性                | `ImgHTMLAttributes` | `'alt','class',...`               | `-`      |
+| 属性          | 描述                    | 类型              | 可选值                            | 默认     |
+| ------------- | ----------------------- | ----------------- | --------------------------------- | -------- |
+| **stacked**   | 是否堆叠显示            | _boolean_         | -                                 | `false`  |
+| **isSquare**  | 是否为方形头像          | `boolean`         | -                                 | `false`  |
+| **size**      | 头像大小                | `string`          | `'mini','small','medium','large'` | `medium` |
+| **text**      | 文本,无图像链接才会显示 | `string`,`number` | -                                 | `-`      |
+| **src**       | 图像链接                | `string`          | -                                 | `-`      |
+| **className** | 图像容器设置 class      | `string`          | -                                 | `-`      |
 
 </attributes>
 
+### AvatarGroup Props
+
 <attributes>
 
-<attributes-title title="AvatarGroup Props" />
-
-| 属性      | 描述     | 类型              | 可选值              | 默认 |
-| --------- | -------- | ----------------- | ------------------- | ---- |
-| **count** | 数量     | `string`,`number` | --                  | --   |
-| ...       | 原生属性 | `HTMLAttributes`  | `'alt','class',...` | `-`  |
+| 属性      | 描述 | 类型              | 可选值 | 默认 |
+| --------- | ---- | ----------------- | ------ | ---- |
+| **count** | 数量 | `string`,`number` | --     | --   |
 
 </attributes>

@@ -32,8 +32,9 @@
   desc="不同大小的分页器"
 />
 
+### Pagination Props
+
 <attributes>
-<attributes-title title="Pagination Props" />
 
 | 属性         | 描述                     | 类型                  | 可选值                               | 默认     |
 | ------------ | ------------------------ | --------------------- | ------------------------------------ | -------- |
@@ -45,17 +46,12 @@
 | **prevText** | 分页器上一页的文字       | `string`              | `-`                                  | `Prev`   |
 | **nextText** | 分页器下一页的文字       | `string`              | `-`                                  | `Next`   |
 | **change**   | 分页器的事件             | `(page:number)=>void` | `-`                                  | `-`      |
-| ...          | 原生属性                 | `HTMLAttributes`      | `'class','id',...`                   | `-`      |
 
 </attributes>
 
-<attributes>
-
-<attributes-title title="Pagination customSlots" />
+### Pagination customSlots
 
 <fe-card>
   Pagination组件默认提供了<fe-code>prev,next</fe-code>插槽。启用时<fe-code>prevText,nextText</fe-code>
   便会失效。
 </fe-card>
-
-</attributes>

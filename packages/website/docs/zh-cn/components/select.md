@@ -21,9 +21,9 @@ name="ex-select-default"
   name="ex-select-disableOption"
 />
 
-<attributes>
+### Select Props
 
-<attributes-title title="Select Props" />
+<attributes>
 
 | 属性            | 描述                   | 类型                        | 可选值                      | 默认      |
 | --------------- | ---------------------- | --------------------------- | --------------------------- | --------- |
@@ -35,13 +35,12 @@ name="ex-select-default"
 | **clearable**   | 是否展示移除图标       | `Boolean`                   | `-`                         | `true`    |
 | **disabled**    | 是否禁用交互           | `Boolean`                   | `-`                         | `false`   |
 | **change**      | 选项被选中所触发的事件 | `(e)=>void`                 | `-`                         | `-`       |
-| ...             | 原生属性               | `HTMLAttributes`            | `'class','id',...`          | `-`       |
 
 </attributes>
 
-<attributes>
+### Option Props
 
-<attributes-title title="Option Props" />
+<attributes>
 
 | 属性         | 描述           | 类型      | 可选值 | 默认    |
 | ------------ | -------------- | --------- | ------ | ------- |
@@ -51,11 +50,11 @@ name="ex-select-default"
 
 </attributes>
 
+### NormalSizes
+
 <attributes>
 
-<attributes-title title="NormalSizes" />
-
-| 类型 可选值     |
+| 类型 可选值     |                                      |
 | --------------- | ------------------------------------ |
 | **NormalSizes** | `'mini', 'small', 'medium', 'large'` |
 
