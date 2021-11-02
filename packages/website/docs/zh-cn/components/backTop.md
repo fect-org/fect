@@ -2,17 +2,16 @@
 
 返回页面顶部的操作按钮
 
-<playground
-  title="默认的"
-  name="ex-back-top-default"
-  desc="最简单的用法"
-/>
+### 默认的
 
-<playground
-  title="自定义的"
-  name="ex-back-top-custom"
-  desc="可以自定义回到顶部按钮的样式，限制宽高：40px * 40px"
-/>
+最简单的用法
+
+```html
+<div>
+  <fe-back-top visibilityHeight="30" />
+  Scroll down to see the bottom-right gray button.
+</div>
+```
 
 ### BackTop Props
 

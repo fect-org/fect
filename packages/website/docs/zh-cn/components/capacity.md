@@ -2,9 +2,23 @@
 
 显示一个容量指示器
 
-<playground title="默认的" name="ex-capacity-default" />
+### 默认的
 
-<playground title="固定颜色" name="ex-capacity-color" desc="指定一个默认颜色进行覆盖" />
+```html
+<fe-capacity value="30" />
+<fe-spacer :y="0.5" />
+<fe-capacity value="60" />
+<fe-spacer :y="0.5" />
+<fe-capacity value="80" />
+```
+
+### 固定颜色
+
+指定一个默认颜色进行覆盖
+
+```html
+<fe-capacity value="30" color="green" />
+```
 
 ### Capacity Props
 

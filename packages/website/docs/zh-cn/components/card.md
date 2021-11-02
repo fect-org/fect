@@ -2,11 +2,25 @@
 
 基础的组件容器
 
-<playground title="默认的" desc="基础的组件容器" name="ex-card-default" />
+### 默认的
 
-<playground title="可悬停的" name="ex-card-hoverable" />
+基础的组件容器
 
-<playground title="阴影" desc="给组件容器添加阴影" name="ex-card-shadow"/>
+```html
+<fe-card>Context</fe-card>
+```
+
+### 可悬停的
+
+```html
+<fe-card hoverable>这是一个基础的卡片容器</fe-card>
+```
+
+### 阴影
+
+```html
+<fe-card shadow>shadow</fe-card>
+```
 
 ### Card Props
 

@@ -2,19 +2,39 @@
 
 显示用户在应用中的层级位置
 
-<playground name="ex-breadcrumbs-default" title="默认的" />
-<playground name="ex-breadcrumbs-size" title="大小" />
-<playground
-  name="ex-breadcrumbs-separator"
-  title="分隔符"
-  desc="定制字符中的分隔符"
-/>
+### 默认的
 
-<playground
-  name="ex-breadcrumbs-router"
-  title="结合VueRouter"
-  desc="与 vueRouter 结合使用的示例"
-/>
+```html
+<fe-breadcrumbs separator="/">
+  <fe-breadcrumbsItem>Home</fe-breadcrumbsItem>
+  <fe-breadcrumbsItem>Catalog</fe-breadcrumbsItem>
+  <fe-breadcrumbsItem>Page</fe-breadcrumbsItem>
+</fe-breadcrumbs>
+```
+
+### 分隔符
+
+定制字符中的分隔符
+
+```html
+<fe-breadcrumbs separator=">">
+  <fe-breadcrumbsItem>Home</fe-breadcrumbsItem>
+  <fe-breadcrumbsItem>Catalog</fe-breadcrumbsItem>
+  <fe-breadcrumbsItem>Page</fe-breadcrumbsItem>
+</fe-breadcrumbs>
+```
+
+### 结合 VueRouter
+
+与 vueRouter 结合使用的示例
+
+```html
+<fe-breadcrumbs separator="/">
+  <fe-breadcrumbsItem>Home</fe-breadcrumbsItem>
+  <fe-breadcrumbsItem to="/">Catalog</fe-breadcrumbsItem>
+  <fe-breadcrumbsItem href="https://v3.cn.vuejs.org/" target="_blank">Page</fe-breadcrumbsItem>
+</fe-breadcrumbs>
+```
 
 ### Breadcrumbs Props
 

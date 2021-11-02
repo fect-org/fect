@@ -32,4 +32,4 @@
 | **shadow**    | 是否显示阴影     | `boolean`           | `'true','false'`                           | `false`   |
 | **loading**   | 是否启用加载中   | `boolean`           | `'true','false'`                           | `false`   |
 | **load-type** | 设置加载中的风格 | `string`            | `'default','cube','wave'`                  | `default` |
-| _click_       | 点击事件         | `MouseEventHandler` | `-`                                        | `-`       |
+| **click**     | 点击事件         | `MouseEventHandler` | `-`                                        | `-`       |
