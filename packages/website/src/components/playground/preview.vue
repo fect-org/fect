@@ -35,12 +35,12 @@ export default defineComponent({
       setVisible(!visible.value)
     }
     const copyClickHandler = () => {
-      copyText(props.code)
+      copyText(decodeURIComponent(props.code))
       if (proxy) {
         const { $toast } = proxy as ComponentPublicInstance<{
           $toast: any
         }>
-        $toast.success({ text: 'copy success~' })
+        $toast.success({ text: 'Copied to clipboard!' })
       }
     }
 
