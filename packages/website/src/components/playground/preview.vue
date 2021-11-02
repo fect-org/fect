@@ -1,20 +1,20 @@
 <template>
   <div class="fect-doc__playground-preview">
     <div class="fect-doc__playground-operations">
-      <codesandbox size="20" />
       <copy size="20" @click="copyClickHandler" />
       <icon-code size="20" @click="previewClickHandler" />
     </div>
     <div>
-      <div v-show="visible" class="meta"></div>
+      <pre v-show="visible"><code ref="previewRef"></code></pre>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, getCurrentInstance, ComponentPublicInstance } from 'vue'
+import { defineComponent, getCurrentInstance, ComponentPublicInstance, ref, watch } from 'vue'
 import { useClipboard, useState } from '@fect-ui/vue-hooks'
 import { code as Code } from '@fect-ui/vue-icons'
+import Prism from 'prismjs'
 export default defineComponent({
   name: 'Preview',
   components: {
@@ -27,6 +27,7 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const previewRef = ref<HTMLDivElement>()
     const [visible, setVisible] = useState<boolean>(false)
     const { proxy } = getCurrentInstance()!
     const { copyText } = useClipboard()
@@ -43,8 +44,20 @@ export default defineComponent({
       }
     }
 
+    watch(visible, (pre) => {
+      if (pre) {
+        console.log(pre)
+        const elSnapshot = previewRef.value
+        if (elSnapshot) {
+          elSnapshot.innerHTML = Prism.highlight(decodeURIComponent(props.code), Prism.languages.html, 'html')
+        }
+        return
+      }
+    })
+
     return {
       visible,
+      previewRef,
       copyClickHandler,
       previewClickHandler,
     }
@@ -55,6 +68,7 @@ export default defineComponent({
 <style lang="less" scoped>
 .fect-doc {
   &__playground-preview {
+    margin-top: var(--fay-gap);
     border-top: 1px solid var(--accents-2);
     border-bottom-left-radius: var(--fay-radius);
     border-bottom-right-radius: var(--fay-radius);
@@ -64,12 +78,18 @@ export default defineComponent({
       cursor: pointer;
       font-size: 0.875rem;
     }
-    .meta {
-      margin-top: var(--fay-gap-half);
+    pre {
+      margin-top: 5px;
+      // border: 0;
+      overflow-x: scroll;
+      &::-webkit-scrollbar {
+        width: 0;
+      }
     }
   }
   &__playground-operations {
     text-align: right;
+    padding-top: var(--fay-gap-half);
     svg {
       margin-right: 10px;
     }

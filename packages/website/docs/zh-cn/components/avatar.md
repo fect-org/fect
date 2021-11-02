@@ -2,13 +2,44 @@
 
 展示用户头像信息
 
-<playground title="默认的" name="ex-avatar-default" />
+### 默认的
 
-<playground title="大小" name="ex-avatar-size" desc="你可以指定组件大小"  />
+展示用户的基本信息
 
-<playground title="文本" name="ex-avatar-text" desc="在头像框内用文本替代" />
+```html
+<fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" /> <fe-avatar text="fect" />
+```
 
-<playground title="头像组" name="ex-avatar-stacked" desc="多个头像框可以堆叠在一起" />
+### 尺寸
+
+指定图像的大小
+
+```html
+<fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" size="mini" />
+<fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" size="small" />
+<fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" size="medium" />
+<fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" size="large" />
+```
+
+### 组
+
+多个头像框可以堆叠在一起
+
+```html
+<fe-avatar-group>
+  <fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" size="small" stacked />
+  <fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" size="small" stacked />
+  <fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" size="small" stacked />
+  <fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" size="small" stacked />
+</fe-avatar-group>
+<fe-spacer />
+<fe-avatar-group :count="12">
+  <fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" is-square size="small" stacked />
+  <fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" is-square size="small" stacked />
+  <fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" is-square size="small" stacked />
+  <fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" is-square size="small" stacked />
+</fe-avatar-group>
+```
 
 ### Avatar Props
 

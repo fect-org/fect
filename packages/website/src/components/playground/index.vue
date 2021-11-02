@@ -1,23 +1,15 @@
 <template>
-  <div class="fect-doc__playground-title">
-    <h3>
-      <href-anchor>{{ title }}</href-anchor>
-    </h3>
-    <p>{{ desc }}</p>
-  </div>
-
   <div class="fect-doc__playground"></div>
   <fe-card class="fect-doc__playground" shadow>
     <div class="fect-doc__playground-meta">
-      <component :is="name" ref="renderRef" />
+      <slot />
       <prview v-if="displayPreview" :code="code" />
     </div>
   </fe-card>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, ComponentPublicInstance } from 'vue'
-import { useState } from '@fect-ui/vue-hooks'
+import { defineComponent } from 'vue'
 import HrefAnchor from '../href-anchor/index.vue'
 import Prview from './preview.vue'
 export default defineComponent({
@@ -40,13 +32,10 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
-  },
-  setup(props, { slots }) {
-    const renderRef = ref<ComponentPublicInstance & { _: any }>()
-
-    const [code, setCode] = useState<string>()
-
-    return { renderRef, code }
+    code: {
+      type: String,
+      default: '',
+    },
   },
 })
 </script>

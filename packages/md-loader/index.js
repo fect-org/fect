@@ -46,8 +46,6 @@ class PluginParser {
    */
   markdownParser(raw, createMarkdown) {
     const exmapleReg = /```html((.|\r|\n)*?)```/g
-    const tableReg = /:::attribute((.|\r|\n)*?):::/g
-    const playgroundReg = /:::playground((.|\r|\n)*?):::/g
 
     const parseTable = (codeStr) => {
       const group = codeStr
@@ -64,7 +62,18 @@ class PluginParser {
         .join('')
     }
 
-    const template = parseTable(createMarkdown.render(raw))
+    /**
+     *
+     * @param {string} codeStr
+     */
+    const parserPlayground = (codeStr) => {
+      codeStr = codeStr.replace(exmapleReg, (_, k) => {
+        return `<playground code="${encodeURIComponent(k)}" >${k}</playground>`
+      })
+      return codeStr
+    }
+    raw = parserPlayground(raw)
+    let template = parseTable(createMarkdown.render(raw))
     return template.replace(/<h3/g, '<attributes-title').replace(/<\/h3/g, '</attributes-title')
   }
 
