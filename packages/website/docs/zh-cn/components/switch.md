@@ -2,11 +2,31 @@
 
 显示布尔值的开关控件
 
-<playground title="默认的" name="ex-switch-default" />
+### 默认的
 
-<playground title="禁用" name="ex-switch-disabled" />
+:::playground
 
-<playground title="尺寸" desc="switch组件支持修改大小" name="ex-switch-size" />
+switch/default.vue
+
+:::
+
+### 禁用
+
+:::playground
+
+switch/disabled.vue
+
+:::
+
+### 尺寸
+
+不同尺寸的`switch`组件
+
+:::playground
+
+switch/size.vue
+
+:::
 
 ### Switch Props
 

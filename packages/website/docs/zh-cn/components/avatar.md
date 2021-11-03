@@ -6,40 +6,41 @@
 
 展示用户的基本信息
 
-```html
-<fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" /> <fe-avatar text="fect" />
-```
+:::playground
+
+avatar/default.vue
+
+:::
+
+### 文本
+
+使用文字展示图像
+
+:::playground
+
+avatar/text.vue
+
+:::
 
 ### 尺寸
 
 指定图像的大小
 
-```html
-<fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" size="mini" />
-<fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" size="small" />
-<fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" size="medium" />
-<fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" size="large" />
-```
+:::playground
+
+avatar/size.vue
+
+:::
 
 ### 组
 
 多个头像框可以堆叠在一起
 
-```html
-<fe-avatar-group>
-  <fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" size="small" stacked />
-  <fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" size="small" stacked />
-  <fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" size="small" stacked />
-  <fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" size="small" stacked />
-</fe-avatar-group>
-<fe-spacer />
-<fe-avatar-group :count="12">
-  <fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" is-square size="small" stacked />
-  <fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" is-square size="small" stacked />
-  <fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" is-square size="small" stacked />
-  <fe-avatar src="https://avatars.githubusercontent.com/u/52351095?v=4" is-square size="small" stacked />
-</fe-avatar-group>
-```
+:::playground
+
+avatar/stacked.vue
+
+:::
 
 ### Avatar Props
 

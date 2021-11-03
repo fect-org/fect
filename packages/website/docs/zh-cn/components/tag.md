@@ -2,20 +2,29 @@
 
 标记文档的状态与功能
 
-<playground
-title="默认的"
-name="ex-tag-default"
-/>
+### 默认的
 
-<playground
-title="类型"
-name="ex-tag-type"
-/>
+:::playground
 
-<playground
-title="类型"
-name="ex-tag-invert"
-/>
+tag/default.vue
+
+:::
+
+### 类型
+
+:::playground
+
+tag/type.vue
+
+:::
+
+### 反色
+
+:::playground
+
+tag/invert.vue
+
+:::
 
 ### Tag Props
 

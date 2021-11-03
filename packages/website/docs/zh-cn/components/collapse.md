@@ -2,29 +2,44 @@
 
 折叠显示大段的文本或组件内容，通常也被称为手风琴
 
-<playground
-  title="默认的"
-  desc="默认只展示标题"
-  name="ex-collapse-default"
-/>
+## 默认的
 
-<playground
-  title="展开的"
-  desc="指定初始时如何显示组件"
-  name="ex-collapse-visible"
-/>
+默认只展示标题
 
-<playground
-  title="阴影"
-  desc="给折叠框设置阴影凸显层级"
-  name="ex-collapse-shadow"
-/>
+:::playground
 
-<playground
-  title="手风琴"
-  desc="一组具有手风琴效果的折叠框"
-  name="ex-collapse-accordion"
-/>
+collapse/default.vue
+
+:::
+
+## 展开
+
+指定初始时如何显示组件
+
+:::playground
+
+collapse/visible.vue
+
+:::
+
+## 阴影
+
+给折叠框设置阴影凸显层级
+
+:::playground
+
+collapse/shadow.vue
+
+:::
+
+## 手风琴
+
+一组具有手风琴效果的折叠框
+:::playground
+
+collapse/accordion.vue
+
+:::
 
 ### Collapse Props
 

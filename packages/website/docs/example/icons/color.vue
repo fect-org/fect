@@ -9,7 +9,7 @@
 <script>
 import { github, gitlab } from '@fect-ui/vue-icons'
 export default {
-  name: 'ex-icons-colors',
+  name: 'ex-icons-color',
   components: {
     github,
     gitlab,

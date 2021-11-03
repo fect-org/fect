@@ -2,24 +2,45 @@
 
 显示可拷贝的命令行代码片段
 
-<playground title="默认的" desc="展示一个命令" name="ex-snippet-default" />
+### 默认的
 
-<playground
-  title="拷贝"
-  desc="片段具有拷贝功能,同时支持静默拷贝和禁止"
-  name="ex-snippet-copy"
-/>
+展示一个指令
 
-<playground
-  title="类型"
-  desc="以颜色区分不同的类型"
-  name="ex-snippet-type"
-/>
+:::playground
 
-<playground
-  title="填充"
-  name="ex-snippet-filled"
-/>
+snippet/default.vue
+
+:::
+
+### 拷贝
+
+片段具有拷贝功能,同时支持静默拷贝和禁止
+
+:::playground
+
+snippet/copy.vue
+
+:::
+
+### 类型
+
+以颜色区分不同的类型
+
+:::playground
+
+snippet/type.vue
+
+:::
+
+### 填充
+
+以颜色区分不同的类型
+
+:::playground
+
+snippet/filled.vue
+
+:::
 
 ### Snippet Props
 

@@ -15,7 +15,7 @@
 <script>
 import { github } from '@fect-ui/vue-icons'
 export default {
-  name: 'ex-icons-sizes',
+  name: 'ex-icons-size',
   components: {
     github,
   },

@@ -2,22 +2,33 @@
 
 显示选项卡的内容
 
-<playground
-  title="默认的"
-  name="ex-tabs-default"
-  desc="切换显示不同的内容"
-/>
+### 默认的
 
-<playground
-  title="分割线"
-  name="ex-tabs-disabled"
-/>
+切换显示不同的内容
 
-<playground
-  title="分割线"
-  name="ex-tabs-divider"
-  desc="隐藏默认的分割线"
-/>
+:::playground
+
+tabs/default.vue
+
+:::
+
+### 禁用
+
+:::playground
+
+tabs/disabled.vue
+
+:::
+
+### 分割线
+
+隐藏默认的分割线
+
+:::playground
+
+tabs/divider.vue
+
+:::
 
 ### Tabs Props
 

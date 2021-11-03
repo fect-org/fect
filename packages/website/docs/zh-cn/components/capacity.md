@@ -4,21 +4,21 @@
 
 ### 默认的
 
-```html
-<fe-capacity value="30" />
-<fe-spacer :y="0.5" />
-<fe-capacity value="60" />
-<fe-spacer :y="0.5" />
-<fe-capacity value="80" />
-```
+:::playground
+
+capacity/default.vue
+
+:::
 
 ### 固定颜色
 
 指定一个默认颜色进行覆盖
 
-```html
-<fe-capacity value="30" color="green" />
-```
+:::playground
+
+capacity/custom-color.vue
+
+:::
 
 ### Capacity Props
 

@@ -2,13 +2,43 @@
 
 网页之间的超链接
 
-<playground title="默认的" name="ex-link-default"/>
+### 默认的
 
-<playground  title="高亮" desc="以不同的颜色区分链接" name="ex-link-color" />
+:::playground
 
-<playground  title="不同风格的" desc="链接的风格" name="ex-link-more" />
+link/default.vue
 
-<playground  title="路由跳转" desc="link组件提供了vueRouter push的路由跳转方式" name="ex-link-to" />
+:::
+
+### 高亮
+
+以不同的颜色区分链接
+
+:::playground
+
+link/link-color.vue
+
+:::
+
+### 不同风格的
+
+链接的风格
+
+:::playground
+
+link/more.vue
+
+:::
+
+### 路由跳转
+
+`link` 组件提供了 vueRouter push 的路由跳转方式
+
+:::playground
+
+link/to.vue
+
+:::
 
 ### Link Props
 

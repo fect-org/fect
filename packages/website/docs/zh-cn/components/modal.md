@@ -2,13 +2,25 @@
 
 弹出显示需要注意的通知项
 
-<playground
-  title="默认的"
-  name="ex-modal-default"
-  desc="使用v-model:visible控制显示隐藏"
-/>
+### 默认的
 
-<playground title="定制化" name="ex-modal-custom" desc="使用插槽定制内容" />
+使用 v-model:visible 控制显示隐藏
+
+:::playground
+
+modal/default.vue
+
+:::
+
+### 定制化
+
+使用插槽定制内容
+
+:::playground
+
+modal/custom.vue
+
+:::
 
 <!-- <playground title="指令" name="ex-modal-direct" desc="使用指令唤醒modal" /> -->
 

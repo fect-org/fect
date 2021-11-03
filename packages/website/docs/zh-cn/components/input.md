@@ -2,29 +2,75 @@
 
 处理用户的输入数据
 
-<playground title="默认的" name="ex-input-default" desc="基础的输入字段" />
-<playground title="大小" name="ex-input-size" desc="不同大小的输入框" />
-<playground
-  title="标签"
-  name="ex-input-inline-label"
-  desc="在输入框内显示短小地行内文本"
-/>
-<playground
-  title="禁用交互"
-  name="ex-input-unwriteable"
-  desc="禁用输入框地所有交互效果"
-/>
-<playground
-  title="块级标签"
-  name="ex-input-block-label"
-  desc="为标签自定义更多样式"
-/>
-<playground
-  title="清除按钮"
-  name="ex-input-clearable"
-  desc="在输入框内增加一个用于清除文本的按钮"
-/>
-<playground title="密码" name="ex-input-password" desc="显示或隐藏密码文本" />
+### 默认的
+
+基础的输入字段
+
+:::playground
+
+input/default.vue
+
+:::
+
+### 尺寸
+
+不同尺寸的输入框
+
+:::playground
+
+input/size.vue
+
+:::
+
+### 标签
+
+在输入框内显示短小地行内文本
+
+:::playground
+
+input/inline-label.vue
+
+:::
+
+### 禁用交互
+
+禁用输入框地所有交互效果
+
+:::playground
+
+input/unwriteable.vue
+
+:::
+
+### 块级标签
+
+为标签自定义更多样式
+
+:::playground
+
+input/block-label.vue
+
+:::
+
+### 清除按钮
+
+在输入框内增加一个用于清除文本的按钮
+
+:::playground
+
+input/clearable.vue
+
+:::
+
+### 密码
+
+显示或隐藏密码文本
+
+:::playground
+
+input/password.vue
+
+:::
 
 ### Input Props
 

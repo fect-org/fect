@@ -2,9 +2,23 @@
 
 点可以表达语句的状态，或是仅用于分类装饰
 
-<playground title="默认的" name="ex-dot-default" />
+## 默认的
 
-<playground title="基础的" desc="dot支持插槽" name="ex-dot-base" />
+:::playground
+
+dot/default.vue
+
+:::
+
+## 基础的
+
+具有一个默认的插槽
+
+:::playground
+
+dot/base.vue
+
+:::
 
 ### Dot Props
 

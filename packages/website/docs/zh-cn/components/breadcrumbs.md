@@ -4,37 +4,31 @@
 
 ### 默认的
 
-```html
-<fe-breadcrumbs separator="/">
-  <fe-breadcrumbsItem>Home</fe-breadcrumbsItem>
-  <fe-breadcrumbsItem>Catalog</fe-breadcrumbsItem>
-  <fe-breadcrumbsItem>Page</fe-breadcrumbsItem>
-</fe-breadcrumbs>
-```
+:::playground
+
+breadcrumbs/default.vue
+
+:::
 
 ### 分隔符
 
 定制字符中的分隔符
 
-```html
-<fe-breadcrumbs separator=">">
-  <fe-breadcrumbsItem>Home</fe-breadcrumbsItem>
-  <fe-breadcrumbsItem>Catalog</fe-breadcrumbsItem>
-  <fe-breadcrumbsItem>Page</fe-breadcrumbsItem>
-</fe-breadcrumbs>
-```
+:::playground
+
+breadcrumbs/separator.vue
+
+:::
 
 ### 结合 VueRouter
 
 与 vueRouter 结合使用的示例
 
-```html
-<fe-breadcrumbs separator="/">
-  <fe-breadcrumbsItem>Home</fe-breadcrumbsItem>
-  <fe-breadcrumbsItem to="/">Catalog</fe-breadcrumbsItem>
-  <fe-breadcrumbsItem href="https://v3.cn.vuejs.org/" target="_blank">Page</fe-breadcrumbsItem>
-</fe-breadcrumbs>
-```
+:::playground
+
+breadcrumbs/router.vue
+
+:::
 
 ### Breadcrumbs Props
 

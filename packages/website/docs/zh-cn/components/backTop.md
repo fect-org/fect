@@ -4,14 +4,21 @@
 
 ### 默认的
 
-最简单的用法
+基础示例
 
-```html
-<div>
-  <fe-back-top visibilityHeight="30" />
-  Scroll down to see the bottom-right gray button.
-</div>
-```
+:::playground
+
+back-top/default.vue
+
+:::
+
+### 自定义
+
+:::playground
+
+back-top/custom.vue
+
+:::
 
 ### BackTop Props
 

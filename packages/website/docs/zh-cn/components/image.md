@@ -2,10 +2,41 @@
 
 用于展示图象数据
 
-<playground title="默认的" name="ex-image-default" />
-<playground title="骨架" name="ex-image-skeleton" />
-<playground title="浏览器风格" desc="为图片增加浏览器风格的外装饰" name="ex-image-browser" />
-<playground title="反转的浏览器风格" name="ex-image-invert" />
+### 默认的
+
+:::playground
+
+image/default.vue
+
+:::
+
+### 骨架屏
+
+:::playground
+
+image/skeleton.vue
+
+:::
+
+### 浏览器风格
+
+为图片增加浏览器风格的外装饰
+
+:::playground
+
+image/browser.vue
+
+:::
+
+### 反转的
+
+反转的浏览器风格
+
+:::playground
+
+image/invert.vue
+
+:::
 
 ### Image Props
 

@@ -6,23 +6,31 @@
 
 通过 v-model 设置属性的初始状态
 
-```html
-<fe-checkbox>复选框</fe-checkbox>
-```
+:::playground
+
+checkbox/default.vue
+
+:::
 
 ### 尺寸
 
 不同大小的复选框
 
-```html
-<fe-checkbox size="mini">mini</fe-checkbox>
-<fe-spacer inline />
-<fe-checkbox size="small">small</fe-checkbox>
-<fe-spacer inline />
-<fe-checkbox size="medium">medium</fe-checkbox>
-<fe-spacer inline />
-<fe-checkbox size="large">large</fe-checkbox>
-```
+:::playground
+
+checkbox/size.vue
+
+:::
+
+### 组
+
+管理一组 `Checkbox`
+
+:::playground
+
+checkbox/group.vue
+
+:::
 
 ### Checkbox Props
 

@@ -6,6 +6,8 @@
  */
 
 const MarkdownIt = require('markdown-it')
+const fs = require('fs')
+const path = require('path')
 
 class PluginParser {
   constructor(options) {
@@ -45,7 +47,10 @@ class PluginParser {
    * @param {MarkdownIt} createMarkdown
    */
   markdownParser(raw, createMarkdown) {
-    const exmapleReg = /```html((.|\r|\n)*?)```/g
+    const exampleReg = /:::playground((.|\r|\n)*?):::/g
+    const scriptReg = /<\s*script>([\s\S]*)<\/script>/g
+
+    const examplePath = path.join(process.cwd(), 'docs', 'example')
 
     const parseTable = (codeStr) => {
       const group = codeStr
@@ -67,14 +72,32 @@ class PluginParser {
      * @param {string} codeStr
      */
     const parserPlayground = (codeStr) => {
-      codeStr = codeStr.replace(exmapleReg, (_, k) => {
-        return `<playground code="${encodeURIComponent(k)}" >${k}</playground>`
+      codeStr = codeStr.replace(_exampleReg, (_, c) => {
+        const dirPath = c.replace(/\s/g, '')
+        const exPath = path.join(examplePath, dirPath)
+        const raw = fs.readFileSync(exPath, 'utf-8')
+        if (!raw) return ''
+        let meta = ''
+
+        raw.replace(scriptReg, (_, r) => {
+          meta = r
+          return ''
+        })
+        meta = meta
+          .match(/name:.+(|\r|\n)/g)[0]
+          .split(':')[1]
+          .replace(/"/g, '')
+          .replace(',', '')
+        return `<playground code="${encodeURIComponent(raw)}" component=${meta} />`
       })
       return codeStr
     }
+
     raw = parserPlayground(raw)
     let template = parseTable(createMarkdown.render(raw))
-    return template.replace(/<h3/g, '<attributes-title').replace(/<\/h3/g, '</attributes-title')
+    return {
+      templateStr: template.replace(/<h3/g, '<attributes-title').replace(/<\/h3/g, '</attributes-title'),
+    }
   }
 
   /**
@@ -83,14 +106,15 @@ class PluginParser {
    * @param {MarkdownIt} createMarkdown
    */
   parserToVue(raw, createMarkdown) {
-    const templateStr = this.markdownParser(raw, createMarkdown)
+    const { templateStr, dynamic } = this.markdownParser(raw, createMarkdown)
     const { markdownClasses: classes, markdownWrapper: wrapper } = this.options
 
     return `<template>
         <${wrapper} class="${classes}">
           ${templateStr}
         </${wrapper}>
-     </template>`
+     </template>
+     `
   }
   parser() {
     const md = new MarkdownIt({ html: true, linkify: true, typographer: true, ...this.options.markdownOptions })

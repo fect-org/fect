@@ -2,8 +2,25 @@
 
 以标准化的方式展示源代码。
 
-<playground title="默认的" desc="基础的行内代码" name="ex-code-default" />
-<playground title="代码块" desc="多行的代码块展示" name="ex-code-block" />
+### 默认的
+
+基础的行内代码
+
+:::playground
+
+code/default.vue
+
+:::
+
+### 代码块
+
+多行的代码块展示
+
+:::playground
+
+code/block.vue
+
+:::
 
 ### Code Props
 

@@ -2,35 +2,55 @@
 
 多个页面之间的导航与鉴别
 
-<playground
-  title="默认的"
-  name="ex-pagination-default"
-  desc="基础的分页"
-/>
+### 默认的
 
-<playground
-  title="朴素"
-  name="ex-pagination-simple"
-  desc="朴素的分页器"
-/>
+基础的分页
 
-<playground
-  title="限制"
-  name="ex-pagination-limit"
-  desc="调整最大可展示页面数"
-/>
+:::playground
 
-<playground
-  title="自定义的"
-  name="ex-pagination-custom"
-  desc="使用插槽定制按钮"
-/>
+pagination/default.vue
 
-<playground
-  title="尺寸"
-  name="ex-pagination-size"
-  desc="不同大小的分页器"
-/>
+:::
+
+### 朴素
+
+朴素的分页器
+
+:::playground
+
+pagination/simple.vue
+
+:::
+
+### 限制
+
+调整最大可展示页面数
+
+:::playground
+
+pagination/limit.vue
+
+:::
+
+### 自定义的
+
+使用插槽定制按钮
+
+:::playground
+
+pagination/custom.vue
+
+:::
+
+### 尺寸
+
+不同大小的分页器
+
+:::playground
+
+pagination/size.vue
+
+:::
 
 ### Pagination Props
 

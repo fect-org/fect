@@ -2,17 +2,25 @@
 
 显示一组需要展示的图象数据
 
-<playground
-  title="默认的"
-  name="ex-swipe-default"
-  desc="具备基础风格的轮播图"
-/>
+### 默认的
 
-<playground
-  title="自动的"
-  name="ex-swipe-loop"
-  desc="通过loop开启循环轮播"
-/>
+具备基础风格的轮播图
+
+:::playground
+
+swipe/default.vue
+
+:::
+
+### 自动的
+
+通过 loop 开启循环轮播
+
+:::playground
+
+swipe/loop.vue
+
+:::
 
 ### Swipe Props
 

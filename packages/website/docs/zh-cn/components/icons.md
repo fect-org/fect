@@ -12,13 +12,33 @@
   </fe-tab>
 </fe-tabs>
 
-<playground title="引入图标库" name="ex-icons-default" />
-<playground title="色彩" name="ex-icons-colors" />
-<playground title="大小" name="ex-icons-sizes" />
+### 引入图标库
+
+:::playground
+
+icons/default.vue
+
+:::
+
+### 色彩
+
+:::playground
+
+icons/color.vue
+
+:::
+
+### 大小
+
+:::playground
+
+icons/size.vue
+
+:::
 
 <playground
   title="图标画廊"
-  name="ex-icons-list"
-  hiddenCode
+  component="ex-icons-list"
+  :displayPreview="false"
   desc="精选高质量SVG"
 />

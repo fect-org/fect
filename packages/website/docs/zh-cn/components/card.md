@@ -6,21 +6,27 @@
 
 基础的组件容器
 
-```html
-<fe-card>Context</fe-card>
-```
+:::playground
+
+card/default.vue
+
+:::
 
 ### 可悬停的
 
-```html
-<fe-card hoverable>这是一个基础的卡片容器</fe-card>
-```
+:::playground
+
+card/hoverable.vue
+
+:::
 
 ### 阴影
 
-```html
-<fe-card shadow>shadow</fe-card>
-```
+:::playground
+
+card/shadow.vue
+
+:::
 
 ### Card Props
 

@@ -2,13 +2,39 @@
 
 表示动作正在后台运行
 
-<playground title="默认的" name="ex-loading-default" />
+### 默认的
 
-<playground title="类型" desc="可以指定指示器的类型" name="ex-loading-type" />
+:::playground
 
-<playground title="尺寸" desc="可以指定指示器的尺寸" name="ex-loading-size" />
+loading/default.vue
 
-<playground title="样式" desc="可以选择不同样式的指示器" name="ex-loading-load"/>
+:::
+
+### 类型
+
+:::playground
+
+loading/type.vue
+
+:::
+
+### 尺寸
+
+:::playground
+
+loading/size.vue
+
+:::
+
+### 样式
+
+可以选择不同样式的指示器
+
+:::playground
+
+loading/load.vue
+
+:::
 
 ### Loading Props
 

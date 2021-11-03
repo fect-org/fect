@@ -2,7 +2,8 @@
   <div class="fect-doc__playground"></div>
   <fe-card class="fect-doc__playground" shadow>
     <div class="fect-doc__playground-meta">
-      <slot />
+      <!-- <slot /> -->
+      <component :is="component" />
       <prview v-if="displayPreview" :code="code" />
     </div>
   </fe-card>
@@ -23,7 +24,7 @@ export default defineComponent({
       type: String,
       default: '',
     },
-    name: String,
+    component: String,
     desc: {
       type: String,
       default: '',

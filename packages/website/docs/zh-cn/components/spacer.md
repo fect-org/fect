@@ -2,9 +2,21 @@
 
 为排版提供标准化的间距
 
-<playground  title="默认的" name="ex-spacer-default"/>
+### 默认的
 
-<playground  title="水平的" name="ex-spacer-horizontal"/>
+:::playground
+
+spacer/default.vue
+
+:::
+
+### 水平的
+
+:::playground
+
+spacer/horizontal.vue
+
+:::
 
 ### Spacer Props
 

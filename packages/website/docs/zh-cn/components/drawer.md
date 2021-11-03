@@ -2,9 +2,21 @@
 
 固定在屏幕边缘的可交互元素组
 
-<playground title="默认的" name="ex-drawer-default" />
+### 默认的
 
-<playground title="定位" name="ex-drawer-placement" />
+:::playground
+
+drawer/default.vue
+
+:::
+
+### 定位
+
+:::playground
+
+drawer/placement.vue
+
+:::
 
 ### Loading Props
 

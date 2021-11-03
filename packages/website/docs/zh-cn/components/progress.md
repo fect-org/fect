@@ -2,22 +2,35 @@
 
 展示事件或与之相关的任务进展
 
-<playground
-  title="默认的"
-  name="ex-progress-default"
-/>
+### 默认的
 
-<playground
-  title="类型"
-  desc="我们预置了一些不同风格的进度条"
-  name="ex-progress-types"
-/>
+使用插槽定制按钮
 
-<playground
-  title="动态色彩"
-  desc="你可以指定进度条在任何范围内的颜色"
-  name="ex-progress-colors"
-/>
+:::playground
+
+progress/default.vue
+
+:::
+
+### 类型
+
+我们预置了一些不同风格的进度条
+
+:::playground
+
+progress/types.vue
+
+:::
+
+### 动态色彩
+
+你可以指定进度条在任何范围内的颜色
+
+:::playground
+
+progress/colors.vue
+
+:::
 
 ### Progress Props
 

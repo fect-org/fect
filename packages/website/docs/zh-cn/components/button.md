@@ -2,21 +2,85 @@
 
 用于触发一个操作
 
-<playground title="默认的" name="ex-button-default" desc="默认Button包含一个动画效果。" />
+### 默认的
 
-<playground title="加载中" name="ex-button-loading" desc="Button按钮支持加载状态。" />
+默认 Button 包含一个动画效果
 
-<playground title="禁用" name="ex-button-disabled"  desc="禁止Button的一切操作" />
+:::playground
 
-<playground title="阴影" name="ex-button-shadow" desc="使用阴影凸显层级" />
+button/default.vue
 
-<playground title="类型" name="ex-button-type" desc="不同状态下的按钮" />
+:::
 
-<playground title="幽灵" name="ex-button-ghost" desc="底色与主色相反的透明按钮" />
+### 加载中
 
-<playground title="尺寸" name="ex-button-size" desc="不同大小下的按钮" />
+表示正在运行或加载中的状态
 
-<playground title="图标" name="ex-button-icon" desc="按钮内的图标色彩和大小将会被自动设置" />
+:::playground
+
+button/loading.vue
+
+:::
+
+### 禁用
+
+禁止任何交互响应
+
+:::playground
+
+button/disabled.vue
+
+:::
+
+### 阴影
+
+使用阴影突出显示更高层级的按钮
+
+:::playground
+
+button/shadow.vue
+
+:::
+
+### 类型
+
+不同状态下的按钮
+
+:::playground
+
+button/type.vue
+
+:::
+
+### 尺寸
+
+不同大小的按钮组件
+
+:::playground
+
+button/size.vue
+
+:::
+
+### 反色
+
+底色与主色相反的透明按钮
+
+:::playground
+
+button/ghost.vue
+
+:::
+
+### 带图标的
+
+按钮内的图标色彩和大小将会被自动设置
+
+:::playground
+
+button/icon.vue
+
+:::
 
 ### Button Props
 

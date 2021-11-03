@@ -2,19 +2,33 @@
 
 评分组件
 
-<playground title="默认的" name="ex-rating-default"/>
+### 默认的
 
-<playground 
-title="自定义图标"
-name="ex-rating-custom"
-desc="通过icon属性传入DOM设置自定义图标"
-/>
+:::playground
 
-<playground 
-title="不同类型的"
-name="ex-rating-type"
-desc="通过type属性设置不同风格的组件"
-/>
+rating/default.vue
+
+:::
+
+### 自定义图标
+
+通过 icon 属性传入 DOM 设置自定义图标
+
+:::playground
+
+rating/custom.vue
+
+:::
+
+### 不同类型的
+
+通过 `type` 属性设置不同风格的组件
+
+:::playground
+
+rating/type.vue
+
+:::
 
 ### Rating Props
 

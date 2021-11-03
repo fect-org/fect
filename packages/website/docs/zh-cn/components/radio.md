@@ -2,11 +2,34 @@
 
 提供用户输入的选择项
 
-<playground title="默认的" name="ex-radio-default"/>
+### 默认的
 
-<playground title="组" desc="一组可控选择的数值" name="ex-radio-group"/>
+你可以指定进度条在任何范围内的颜色
 
-<playground title="更多风格的" name="ex-radio-more"/>
+:::playground
+
+radio/default.vue
+
+:::
+
+### 组
+
+一组可控选择的数值
+:::playground
+
+radio/group.vue
+
+:::
+
+### 动态色彩
+
+你可以指定进度条在任何范围内的颜色
+
+:::playground
+
+radio/more.vue
+
+:::
 
 ### Radio Props
 

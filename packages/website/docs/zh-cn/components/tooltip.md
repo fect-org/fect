@@ -1,12 +1,36 @@
 # Tooltip / 文字提示
 
-在悬停时显示额外的提示信息 。
+在悬停时显示额外的提示信息
 
-<playground title="默认的" desc="基础示例" name="ex-tooltip-default" />
+### 默认的
 
-<playground title="触发方式" desc="具有不同的触发方式" name="ex-tooltip-trigger" />
+基础示例
 
-<playground title="变体" desc="具有不同的状态" name="ex-tooltip-variable" />
+:::playground
+
+tooltip/default.vue
+
+:::
+
+### 触发方式
+
+具有不同的触发方式
+
+:::playground
+
+tooltip/trigger.vue
+
+:::
+
+### 变体
+
+具有不同的状态
+
+:::playground
+
+tooltip/variable.vue
+
+:::
 
 ### Tooltip Props
 
