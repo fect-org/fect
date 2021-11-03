@@ -72,7 +72,7 @@ class PluginParser {
      * @param {string} codeStr
      */
     const parserPlayground = (codeStr) => {
-      codeStr = codeStr.replace(_exampleReg, (_, c) => {
+      codeStr = codeStr.replace(exampleReg, (_, c) => {
         const dirPath = c.replace(/\s/g, '')
         const exPath = path.join(examplePath, dirPath)
         const raw = fs.readFileSync(exPath, 'utf-8')
