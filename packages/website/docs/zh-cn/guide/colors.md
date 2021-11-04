@@ -4,9 +4,9 @@
 
 <playground
   title="默认的"
-  name="ex-colors-default"
+  component="ex-colors-default"
   desc="你可以在任意处使用这些 CSS 变量。 (这些 CSS 变量的值会随着主题变化而改变)"
-  hiddenCode
+  :displayPreview="false"
 />
 
 ### 状态
@@ -15,24 +15,24 @@
 
 <playground
   title="成功"
-  name="ex-colors-success"
-  hiddenCode
+  component="ex-colors-success"
+  :displayPreview="false"
 />
 
 <playground
   title="警告"
-  name="ex-colors-warning"
-  hiddenCode
+  component="ex-colors-warning"
+  :displayPreview="false"
 />
 
 <playground
   title="错误的"
-  name="ex-colors-error"
-  hiddenCode
+  component="ex-colors-error"
+  :displayPreview="false"
 />
 
 <playground
   title="高亮"
-  name="ex-colors-light"
-  hiddenCode
+  component="ex-colors-light"
+  :displayPreview="false"
 />
