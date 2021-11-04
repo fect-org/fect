@@ -37,10 +37,8 @@ exports[`Modal should be support normal props 1`] = `
         </div>
         <footer class="fect-modal__action"><button class="fect-button fect-button--default fect-button--medium fect-modal__button" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);">
             <!---->
-            <!---->
             <!---->Cancel
           </button><button class="fect-button fect-button--default fect-button--medium fect-modal__button" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);">
-            <!---->
             <!---->
             <!---->Done
           </button></footer>

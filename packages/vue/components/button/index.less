@@ -163,6 +163,7 @@
   &.is-auto {
     width: auto;
     min-width: auto;
+    --buton-auto-gap: var(--fay-gap);
   }
 
   &.is-loading {
@@ -206,12 +207,10 @@
   &__icon {
     position: absolute;
     top: 50%;
-    left: 15%;
-    transform: translateY(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--button-load-color);
+    color: inherit;
     z-index: 1;
 
     svg {
@@ -219,5 +218,16 @@
       height: calc(var(--button-icon-height) / 2.35);
       width: calc(var(--button-icon-height) / 2.35);
     }
+  }
+  &__text {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: inherit;
+    top: -1px;
+    padding-left: var(--buton-auto-gap);
   }
 }
