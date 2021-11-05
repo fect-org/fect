@@ -106,7 +106,7 @@ class PluginParser {
    * @param {MarkdownIt} createMarkdown
    */
   parserToVue(raw, createMarkdown) {
-    const { templateStr, dynamic } = this.markdownParser(raw, createMarkdown)
+    const { templateStr } = this.markdownParser(raw, createMarkdown)
     const { markdownClasses: classes, markdownWrapper: wrapper } = this.options
 
     return `<template>
@@ -131,11 +131,13 @@ class PluginParser {
           this.error(e)
         }
       },
-      //   make it work in hmr
-      handleUpdate: async (ctx) => {
+      /**
+       * hmr will work when change markdwon file
+       */
+      handleHotUpdate: async (ctx) => {
         if (!hasMarkdown(ctx.file)) return
         const reader = ctx.read
-        ctx.read = async () => Parser.parserToVue(ctx.file, await reader())
+        ctx.read = async () => Parser.parserToVue(await reader(), md)
       },
     }
   }
