@@ -21,6 +21,7 @@ import { CollapseGroup } from './collapse-group'
 import { Dot } from './dot'
 import { Drawer } from './drawer'
 import { Grid } from './grid'
+import { GridGroup } from './grid-group'
 import { Image } from './image'
 import { ImageBrowser } from './image-browser'
 import { Input } from './input'
@@ -70,6 +71,7 @@ const components = [
   Dot,
   Drawer,
   Grid,
+  GridGroup,
   Image,
   ImageBrowser,
   Input,
@@ -129,6 +131,7 @@ export * from './collapse-group'
 export * from './dot'
 export * from './drawer'
 export * from './grid'
+export * from './grid-group'
 export * from './image'
 export * from './image-browser'
 export * from './input'
