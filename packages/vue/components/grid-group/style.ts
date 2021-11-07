@@ -1,5 +1,6 @@
 /**
- * see ; https://stackoverflow.com/questions/53213870/why-display-property-set-to-inherit-with-css-variable-doesnt-work
+ * css-variable can't work with display
+ * see: https://stackoverflow.com/questions/53213870/why-display-property-set-to-inherit-with-css-variable-doesnt-work
  */
 
 import type { JustifyTypes, AlignTypes, DirectionTypes, AlignContentTypes, GridTypes } from './type'
@@ -24,12 +25,12 @@ export type BasisStyle = {
 
 export const getLayoutVariable = (grid: GridBreakPoint): LayoutVariable => {
   if (typeof grid === 'number') {
+    grid = Math.abs(grid) > 24 ? 24 : grid
     const width = (100 / 24) * grid
-    const ratio = width > 100 ? 100 : width < 0 ? 0 : width
     return {
       grow: 0,
-      width: ratio,
-      basis: ratio,
+      width,
+      basis: width,
     }
   }
   return {
@@ -44,7 +45,8 @@ export const getDynamicStyle = (props: Record<GridTypes, GridBreakPoint>) => {
   const grids = Object.keys({ xs, sm, md, lg, xl }) as GridTypes[]
   const dynamicStyle = grids.reduce((acc, cur) => {
     // grid props may be zero  or false .
-    if (!props[cur]) return acc
+    const hasGrid = typeof props[cur] === 'boolean'
+    if (hasGrid) return acc
     const { grow, basis, width } = getLayoutVariable(props[cur])
     const layout = {
       [`--${cur}-grow`]: grow,
@@ -60,7 +62,10 @@ export const getDynamicLayoutClass = (props: Record<GridTypes, GridBreakPoint>, 
   const { xs, sm, md, lg, xl } = props
   return (Object.keys({ xs, sm, md, lg, xl }) as GridTypes[])
     .map((grid) => {
-      if (props[grid]) return `${basisClass}--${grid} `
+      //  grid be zero should set  display:none
+      const hasGrid = props[grid] === false
+      if (props[grid] === 0) return `${basisClass}--${grid}-0 `
+      if (!hasGrid) return `${basisClass}--${grid} `
       return
     })
     .join('')
