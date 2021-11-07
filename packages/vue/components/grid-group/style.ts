@@ -44,8 +44,7 @@ export const getDynamicStyle = (props: Record<GridTypes, GridBreakPoint>) => {
   const { xs, sm, md, lg, xl } = props
   const grids = Object.keys({ xs, sm, md, lg, xl }) as GridTypes[]
   const dynamicStyle = grids.reduce((acc, cur) => {
-    // grid props may be zero  or false .
-    const hasGrid = typeof props[cur] === 'boolean'
+    const hasGrid = props[cur] === false
     if (hasGrid) return acc
     const { grow, basis, width } = getLayoutVariable(props[cur])
     const layout = {
