@@ -1,21 +1,23 @@
 <template>
-  <fe-grid :gap="2" justify="center" container>
-    <fe-grid :xs="24" :md="12">
-      <fe-card class="card" shadow />
-    </fe-grid>
-    <fe-grid :xs="12" :md="12">
-      <fe-card class="card" shadow />
-    </fe-grid>
-    <fe-grid :xs="12" :md="6">
-      <fe-card class="card" shadow />
-    </fe-grid>
-    <fe-grid :xs="12" :md="6">
-      <fe-card class="card" shadow />
-    </fe-grid>
-    <fe-grid :xs="12" :md="6">
-      <fe-card class="card" shadow />
-    </fe-grid>
-  </fe-grid>
+  <div>
+    <fe-grid-group justify="center" :gap="2">
+      <fe-grid :xs="24" :md="12">
+        <fe-card class="card" shadow />
+      </fe-grid>
+      <fe-grid :xs="24" :md="12">
+        <fe-card class="card" shadow />
+      </fe-grid>
+      <fe-grid :xs="12" :md="6">
+        <fe-card class="card" shadow />
+      </fe-grid>
+      <fe-grid :xs="12" :md="6">
+        <fe-card class="card" shadow />
+      </fe-grid>
+      <fe-grid :xs="12" :md="6">
+        <fe-card class="card" shadow />
+      </fe-grid>
+    </fe-grid-group>
+  </div>
 </template>
 
 <script>

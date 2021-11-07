@@ -1,93 +1,36 @@
 import { computed, defineComponent } from 'vue'
+import { useProvider } from '@fect-ui/vue-hooks'
 import { createName } from '../utils'
-import { CustomCSSProperties } from '../utils/base'
-import { sizes } from './type'
 import { props } from './props'
+import { getBasisStyle, getDynamicStyle, getDynamicLayoutClass } from '../grid-group/style'
+import { GridGroupProvide, READONLY_GRID_GROUP_KEY } from '../grid-group/type'
 import './index.less'
 
 const name = createName('Grid')
-
-type Layout = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-
-const getItemLayout = (val: number | boolean, key: Layout): CustomCSSProperties => {
-  const display = val === 0 ? 'none' : 'inherit;'
-  if (typeof val === 'number') {
-    const width = (100 / 24) * val
-    const ratio = width > 100 ? '100%' : width < 0 ? '0' : `${width}%`
-    return {
-      [`--fect-${key}-grow`]: 0,
-      [`--fect-${key}-display`]: display,
-      [`--fect-${key}-width`]: ratio,
-      [`--fect-${key}-basis`]: ratio,
-    }
-  }
-  return {
-    [`--fect-${key}-grow`]: 1,
-    [`--fect-${key}-display`]: display,
-    [`--fect-${key}-width`]: '100%',
-    [`--fect-${key}-basis`]: '0',
-  }
-}
 
 export default defineComponent({
   name,
   props,
   setup(props, { slots }) {
-    const setClass = computed(() => {
-      const { container } = props
-      const classes = sizes.map((size) => {
-        const hasSize = props[size] || typeof props[size] === 'number'
-        if (hasSize) {
-          return `fect-grid--${size}`
-        }
-        return ''
-      })
-      if (container) return ['fect-grid__container', ...classes]
-      return ['fect-grid', ...classes]
-    })
-
-    const CssFlexProps = computed(() => {
-      const { alignItems, alignContent, direction, justify } = props
-      return {
-        'justify-content': justify,
-        'align-content': alignContent,
-        'flex-direction': direction,
-        'align-items': alignItems,
-      } as CustomCSSProperties
-    })
+    const { context } = useProvider<GridGroupProvide>(READONLY_GRID_GROUP_KEY)
 
     const setStyle = computed(() => {
-      const { xs, sm, md, lg, xl, gap, wrap, container } = props
+      const { alignContent, alignItems, direction, justify, xs, sm, md, lg, xl } = props
+      const basisStyle = getBasisStyle({ alignContent, alignItems, direction, justify })
+      if (context && context.useGrid.value) return basisStyle
+      const dynamicStyle = getDynamicStyle({ xs, sm, md, lg, xl })
+      return Object.assign(basisStyle, dynamicStyle)
+    })
 
-      const layout: { [key in Layout]: CustomCSSProperties } = {
-        xs: getItemLayout(xs, 'xs'),
-        sm: getItemLayout(sm, 'sm'),
-        md: getItemLayout(md, 'md'),
-        lg: getItemLayout(lg, 'lg'),
-        xl: getItemLayout(xl, 'xl'),
-      }
-      const styles = sizes.map((size) => {
-        const hasSize = props[size] || typeof props[size] === 'number'
-        if (hasSize) {
-          return layout[size]
-        }
-        return ''
-      })
-
-      const containerStyle: CustomCSSProperties = {
-        '--fect-gap-unit': `calc(${gap} * var(--fay-gap-quarter))`,
-        'flex-wrap': wrap,
-        margin: 'calc(-1 * var(--fect-gap-unit))',
-        width: 'calc(100% + var(--fect-gap-unit) * 2)',
-      }
-      if (container) {
-        return [...styles, CssFlexProps.value, containerStyle]
-      }
-      return [...styles, CssFlexProps.value]
+    const setClass = computed(() => {
+      const basisClass = 'fect-grid'
+      const { xs, sm, md, lg, xl } = props
+      if (context && context.useGrid.value) return `${basisClass}--live`
+      return getDynamicLayoutClass({ xs, sm, md, lg, xl }, basisClass)
     })
 
     return () => (
-      <div class={setClass.value} style={setStyle.value}>
+      <div class={`fect-grid ${setClass.value}`} style={setStyle.value}>
         {slots.default?.()}
       </div>
     )

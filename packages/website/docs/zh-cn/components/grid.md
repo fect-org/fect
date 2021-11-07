@@ -48,13 +48,20 @@ grid/auto.vue
 
 :::
 
+### 列
+
+根据`count`和`col`进行布局(会导致`grid`属性失效)
+
+:::playground
+
+grid/col.vue
+
+:::
+
 ### Grid Props
 
 | 属性             | 描述                                 | 类型           | 可选值                                  | 默认值       |
 | ---------------- | ------------------------------------ | -------------- | --------------------------------------- | ------------ |
-| **container**    | 设置 grid 组件为容器, 默认值:`false` | `boolean`      | `'true','false'`                        | `false`      |
-| **gap**          | 子组件的间距                         | `number`       | -                                       | `0`          |
-| **wrap**         | CSS 属性 "flex-wrap"，指定换行方式   | `Wrap`         | [WrapTypes](#wraptypes)                 | `wrap`       |
 | **justify**      | CSS 属性 "justify-content"           | `Justify`      | [JustifyTypes](#justifytypes)           | `flex-start` |
 | **alignItems**   | CSS 属性 "align-items"               | `AlignItems`   | [AlignItemsTypes](#alignitemstypes)     | `stretch`    |
 | **alignContent** | CSS 属性 "align-content"             | `AlignContent` | [AlignContentTypes](#aligncontenttypes) | `flex-start` |
@@ -64,6 +71,16 @@ grid/auto.vue
 | **md**           | 栅格宽度，影响 `md` 断点与更宽的屏幕 | `number`       | `0 - 24`, `boolean`                     | `false`      |
 | **lg**           | 栅格宽度，影响 `lg` 断点与更宽的屏幕 | `number`       | `0 - 24`, `boolean`                     | `false`      |
 | **xl**           | 栅格宽度，影响 `xl` 断点与更宽的屏幕 | `number`       | `0 - 24`, `boolean`                     | `false`      |
+
+### GridGroup Props
+
+| 属性      | 描述                               | 类型     | 可选值                  | 默认值 |
+| --------- | ---------------------------------- | -------- | ----------------------- | ------ |
+| **gap**   | 子组件的间距                       | `number` | -                       | `0`    |
+| **wrap**  | CSS 属性 "flex-wrap"，指定换行方式 | `Wrap`   | [WrapTypes](#wraptypes) | `wrap` |
+| **col**   | 等分的栅格数                       | `number` | `0 - 24`                | `0`    |
+| **count** | 栅格的元素个数                     | `number` | `-`                     | `0`    |
+| ...       | 继承 Grid 的所有属性               | `-`      | `-`                     | `-`    |
 
 ### WrapTypes
 

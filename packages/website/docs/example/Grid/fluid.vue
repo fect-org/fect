@@ -1,5 +1,5 @@
 <template>
-  <fe-grid :gap="2" justify="center" container>
+  <fe-grid-group :gap="2" justify="center">
     <fe-grid :xs="24">
       <fe-card class="card" shadow />
     </fe-grid>
@@ -30,7 +30,7 @@
     <fe-grid :xs="6">
       <fe-card class="card" shadow />
     </fe-grid>
-  </fe-grid>
+  </fe-grid-group>
 </template>
 
 <script>
