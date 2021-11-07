@@ -6,12 +6,12 @@ export const props = {
     type: Number,
     default: 0,
   },
-  row: {
+  col: {
     type: Number,
     default: 0,
   },
-  col: {
-    type: Number,
+  count: {
+    type: [Number, Array],
     default: 0,
   },
   wrap: {
