@@ -1,6 +1,6 @@
 <template>
-  <fe-grid-group jusitfy="content" :gap="2">
-    <fe-grid :xs="24">
+  <fe-grid-group justify="center" :gap="2">
+    <fe-grid :xs="6">
       <fe-card class="card" shadow />
     </fe-grid>
     <fe-grid :xs="6">

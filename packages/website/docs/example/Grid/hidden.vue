@@ -1,15 +1,20 @@
 <template>
-  <fe-grid container :gap="2" justify="center">
-    <fe-grid :xs="12" :sm="0">
-      <fe-card class="card" shadow />
-    </fe-grid>
-    <fe-grid :xs="24">
-      <fe-card class="card" shadow />
-    </fe-grid>
-    <fe-grid :xs="24">
-      <fe-card class="card" shadow />
-    </fe-grid>
-  </fe-grid>
+  <div>
+    <fe-grid-group justify="center" :gap="2">
+      <fe-grid :xs="12" :sm="0">
+        <fe-card class="card" shadow />
+      </fe-grid>
+      <fe-grid :xs="12" :sm="0">
+        <fe-card class="card" shadow />
+      </fe-grid>
+      <fe-grid :xs="24">
+        <fe-card class="card" shadow />
+      </fe-grid>
+      <fe-grid :xs="24">
+        <fe-card class="card" shadow />
+      </fe-grid>
+    </fe-grid-group>
+  </div>
 </template>
 
 <script>
