@@ -1,18 +1,20 @@
 .fect-select {
   display: inline-flex;
   align-items: center;
-  position: relative;
   user-select: none;
   white-space: nowrap;
-  max-width: 80vw;
+  position: relative;
   cursor: pointer;
-  width: initial;
+  max-width: 90vw;
   overflow: hidden;
+  transition: border 150ms ease-in 0s, color 200ms ease-out 0s, box-shadow 200ms ease 0s;
   border: 1px solid var(--fay-border);
   border-radius: var(--fay-radius);
   padding: 0 var(--fay-gap-quarter) 0 var(--fay-gap-half);
+  margin: 0;
   background-color: var(--primary-background);
   min-width: var(--select-minWidth);
+  width: initial;
   height: var(--select-height);
 
   &:hover {
@@ -68,12 +70,6 @@
       transform: translateY(-50%) rotate(180deg);
     }
   }
-  .fect-multiple__container {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    margin-right: var(--fay-gap-half);
-  }
   &__item {
     display: inline-flex;
     height: calc(var(--select-fontSize) * 2);
@@ -81,7 +77,6 @@
     align-items: center;
     line-height: 1;
     padding: 0 8px;
-    margin: calc(var(--fay-gap-quarter) / 2);
     font-size: calc(var(--select-fontSize) * 0.75);
     border-radius: var(--fay-radius);
     background-color: var(--accents-2);

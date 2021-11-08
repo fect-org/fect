@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fe-select placeholder="placeholder" v-model="val" multiple width="220px">
+    <fe-select placeholder="placeholder" v-model="val" multiple style="width: 220px">
       <fe-option label="Vue" value="0"></fe-option>
       <fe-option label="React" value="1"></fe-option>
       <fe-option label="Angular" value="2"></fe-option>

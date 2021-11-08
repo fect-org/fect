@@ -1,4 +1,5 @@
 import { defineComponent } from 'vue'
+import Grid from '../grid'
 import SelcetClearableIcon from './select-clear-icon'
 
 const SelectMultiple = defineComponent({
@@ -14,10 +15,12 @@ const SelectMultiple = defineComponent({
     }
 
     return () => (
-      <div class="fect-select__item">
-        {slots.default?.()}
-        {props.clearable && <SelcetClearableIcon onClick={clearHandler} />}
-      </div>
+      <Grid>
+        <div class="fect-select__item">
+          {slots.default?.()}
+          {props.clearable && <SelcetClearableIcon onClick={clearHandler} />}
+        </div>
+      </Grid>
     )
   },
 })

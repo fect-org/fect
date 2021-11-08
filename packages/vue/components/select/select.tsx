@@ -1,6 +1,7 @@
 import { computed, ref, watch, defineComponent } from 'vue'
 import { createProvider, useClickAway, useEventListener } from '@fect-ui/vue-hooks'
 import { createName, useState, useExpose, CustomCSSProperties, ComponentInstance, NormalSizes } from '../utils'
+import GridGroup from '../grid-group'
 import SelectIcon from './select-icon'
 import SelcetClearableIcon from './select-clear-icon'
 import SelectMultiple from './select-multiple'
@@ -136,13 +137,15 @@ export default defineComponent({
       if (!multiple) {
         return <span class="value">{list.map((_) => _.label)}</span>
       }
-      return list.map((_) => (
-        <span class="fect-multiple__container">
-          <SelectMultiple onClear={() => setParentValue(_.value)} clearable={clearable}>
-            {_.label}
-          </SelectMultiple>
-        </span>
-      ))
+      return (
+        <GridGroup gap={0.5}>
+          {list.map((_) => (
+            <SelectMultiple onClear={() => setParentValue(_.value)} clearable={clearable}>
+              {_.label}
+            </SelectMultiple>
+          ))}
+        </GridGroup>
+      )
     }
 
     /**
