@@ -4,3 +4,5 @@ import _RadioGroup from './radio-group'
 export const RadioGroup = withInstall(_RadioGroup)
 
 export default RadioGroup
+
+export type { RadioEvent } from './radio-group'
