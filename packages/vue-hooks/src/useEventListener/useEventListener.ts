@@ -4,7 +4,7 @@ import { useState } from '../useState'
 
 export type EventTypes = keyof WindowEventMap
 
-export type ElementRef = EventTarget | Window
+export type ElementRef = EventTarget | Window | Document
 
 export type Options = {
   target?: EventTarget | Ref<EventTarget | undefined>
@@ -16,22 +16,21 @@ export type Listener<E = Event> = {
 
 export const useEventListener = (event: string, listener: EventListener, options: Options = {}) => {
   const { target = window } = options
-  // , setElSnapshot
-  // const [elSnapshot, setElSnapshot] = useState<ElementRef>(unref(target))
-
+  const [elSnapshot, setElSnapshot] = useState<ElementRef>()
   let remove = () => {}
+  onMounted(() => {
+    const element = unref(target)
+    if (element) {
+      console.log(element)
+      setElSnapshot(element)
+    }
+  })
 
-  watch(
-    () => unref(target),
-    (el) => {
-      // setElSnapshot()
-      // console.log(el)
-      if (!el) return
-      el.addEventListener(event, listener, options)
-      remove = () => el.removeEventListener(event, listener, options)
-    },
-    { immediate: true, flush: 'post' }
-  )
+  watch(elSnapshot, (el) => {
+    if (!el) return
+    el.addEventListener(event, listener, options)
+    remove = () => el.removeEventListener(event, listener, options)
+  })
 
   onBeforeUnmount(remove)
   onDeactivated(remove)
