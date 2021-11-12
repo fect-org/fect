@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fe-back-top visibilityHeight="30" />
+    <fe-back-top visibilityHeight="100" />
     Scroll down to see the bottom-right gray button.
   </div>
 </template>
