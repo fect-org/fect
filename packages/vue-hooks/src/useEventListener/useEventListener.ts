@@ -21,7 +21,6 @@ export const useEventListener = (event: string, listener: EventListener, options
   onMounted(() => {
     const element = unref(target)
     if (element) {
-      console.log(element)
       setElSnapshot(element)
     }
   })
