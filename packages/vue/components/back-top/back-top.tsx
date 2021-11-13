@@ -1,6 +1,6 @@
 import { PropType, defineComponent, computed, ref, CSSProperties } from 'vue'
-import { createName, useState, useExpose, isBrowser } from '../utils'
-import { useEventListener } from '@fect-ui/vue-hooks'
+import { createName, useExpose, isBrowser } from '../utils'
+import { useEventListener, useState } from '@fect-ui/vue-hooks'
 
 import './index.less'
 
@@ -42,33 +42,29 @@ export default defineComponent({
 
     const isHTMLElement = (el: ScrollTarget) => el instanceof HTMLElement
 
-    const isDocument = (el: ScrollTarget) => el instanceof Document
+    /**
+     * if props.target are window or document
+     * we will set it as window
+     * reduce judgment of compatible logic
+     */
 
     // get target distance
     const getDistance = (target: ScrollTarget, position: Position = 'vertical') => {
       const browser = isBrowser()
       if (!browser) return 0
-      const elementOrDocument = isHTMLElement(target) || isDocument(target)
-      const getOffset = () => {
-        if (elementOrDocument) return position === 'vertical' ? 'scrollTop' : 'scrollLeft'
-        return position === 'vertical' ? 'scrollY' : 'scrollX'
+      const isElement = isHTMLElement(target)
+      if (!isElement) {
+        target = window
+        const offset = position === 'vertical' ? 'scrollY' : 'scrollX'
+        return target[offset]
       }
-      const offset = getOffset()
-      if (isHTMLElement(target)) {
-        target = target as HTMLElement
-        return target[offset as 'scrollTop' | 'scrollLeft']
-      }
-      if (isDocument(target)) {
-        target = target as Document
-        return target.documentElement[offset as 'scrollTop' | 'scrollLeft']
-      }
-      target = target as Window
-      return target[offset as 'scrollY' | 'scrollX']
+      target = target as HTMLElement
+      if (position == 'vertical') return target.scrollTop
+      return target.scrollLeft
     }
 
     const scrollHandler = () => {
       const target = props.target()
-      console.log(target)
       const distance = getDistance(target, 'vertical')
       setVisible(distance > props.visibilityHeight)
     }
@@ -78,15 +74,13 @@ export default defineComponent({
       const distance = getDistance(target, 'vertical')
       const slice = distance / props.duration
       const nextDistance = distance - slice
-      if (target instanceof Window) {
+      const isElement = isHTMLElement(target)
+      if (!isElement) {
         window.scrollTo({
           top: nextDistance,
         })
       }
-      if (isDocument(target)) {
-        ;(target as Document).documentElement.scrollTop = nextDistance
-      }
-      if (isHTMLElement(target)) {
+      if (isElement) {
         ;(target as HTMLElement).scrollTop = nextDistance
       }
       if (distance !== 0) {
