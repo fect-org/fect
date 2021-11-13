@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fe-back-top :bottom="100" :target="fn" visibilityHeight="10">
+    <fe-back-top :bottom="100" visibilityHeight="100">
       <div class="fect-back-top-custom">UP</div>
     </fe-back-top>
     Scroll down to see the bottom-right button.
@@ -10,10 +10,6 @@
 <script>
 export default {
   name: 'ex-back-top-custom',
-  setup() {
-    const fn = () => document.querySelector('.fect-doc__main')
-    return { fn }
-  },
 }
 </script>
 
