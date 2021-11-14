@@ -13,6 +13,7 @@
   "scripts": {
     "cli": "cd packages/cli && yarn tsc",
     "compile": "lerna exec --scope @fect-ui/vue -- yarn build",
+    "volar": "lerna exec --scope @fect-ui/vue -- yarn volar",
     "collect": "lerna exec --scope @fect-ui/vue -- yarn collect",
     "icon": "lerna exec --scope @fect-ui/vue-icons -- yarn build",
     "build": "lerna exec --scope @fect-ui/website -- yarn build",

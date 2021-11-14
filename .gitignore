@@ -6,6 +6,8 @@ es
 types
 source
 tmp
+
+components.d.ts
 # local env files
 .env.local
 .env.*.local

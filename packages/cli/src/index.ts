@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander'
-import { collect, compile, dev, jest, lint, build } from './commands'
+import { collect, compile, dev, jest, lint, build, volar } from './commands'
 
 const program = new Command()
 
@@ -19,5 +19,7 @@ program
 
 program.command('lint').description('Lint code style').action(lint)
 program.command('build').description('Build site ').action(build)
+
+program.command('volar').description('Gen Volar types').action(volar)
 
 program.parse()

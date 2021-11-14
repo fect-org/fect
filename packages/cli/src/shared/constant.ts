@@ -34,6 +34,8 @@ export const TSCONFIG_PATH = join(TMP_PATH, 'tsconfig.json')
 
 export const USER_PACKAGES_JSON_PATH = join(CWD, 'package.json')
 
+export const IGNORE_DIR = ['utils', 'index.ts']
+
 export const IMPORT_REG = /import\s+?(?:(?:(?:[\w*\s{},]*)\s+from(\s+)?)|)(?:(?:".*?")|(?:'.*?'))[\s]*?(?:;|$|)/g
 
 export const normalizePath = (path) => path.replace(/\\/g, '/')
