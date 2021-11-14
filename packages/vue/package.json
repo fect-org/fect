@@ -1,6 +1,6 @@
 {
   "name": "@fect-ui/vue",
-  "version": "1.0.5-rc.0",
+  "version": "1.0.5-rc.1",
   "description": "Minimalist UI components built on Vue",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -26,8 +26,8 @@
     "es/",
     "types/",
     "vetur/",
-    "../../LICENSE",
-    "../../README.md"
+    "README.md",
+    "components.d.ts"
   ],
   "author": "XeryYue",
   "license": "MIT",
