@@ -70,41 +70,54 @@ describe('Select', () => {
       selectRef: { setTeleport },
     } = wrapper.vm.$refs as any
     await setTeleport('.container')
-    await wrapper.setData({ val: '1' })
+    const optionEls = wrapper.findAll('.fect-option')
+    await optionEls[0].trigger('click')
+    const selectInputEl = wrapper.find('.value')
+    expect(selectInputEl.exists()).toBeTruthy()
+    expect(selectInputEl.text()).toBe('吃饭')
     const selectEl = wrapper.find('.fect-select')
+    await selectEl.trigger('mouseenter')
+    await selectEl.trigger('mouseleave')
     await selectEl.trigger('mouseenter')
     const el = wrapper.find('.fect-select__clearIcon')
     await el.trigger('click')
-    await wrapper.setData({ val: ['1', '2'], multiple: true })
+    await wrapper.setData({ multiple: true, val: [] })
+    await optionEls[0].trigger('click')
+    await optionEls[1].trigger('click')
     const multipleEls = wrapper.findAll('.fect-select__clearIcon')
     await multipleEls[1].trigger('click')
     expect(wrapper.vm.val).toEqual(['1'])
+    await wrapper.setData({ childrenDisabled: true })
+    await optionEls[1].trigger('click')
+    await wrapper.setData({ disabled: true })
+    await selectEl.trigger('click')
+    expect(wrapper.html()).toMatchSnapshot()
     wrapper.unmount()
   })
-  it('should change value when trigger a value', async () => {
+
+  it('useClickAway should be work', async () => {
     const wrapper = mount(Wrapper, { attachTo: document.body })
+    await wrapper.setData({ multiple: true, val: [] })
     const {
       selectRef: { setTeleport },
     } = wrapper.vm.$refs as any
     await setTeleport('.container')
-    await wrapper.setData({ val: '1' })
     const selectEl = wrapper.find('.fect-select')
-    await selectEl.trigger('mouseenter')
-    await selectEl.trigger('mouseleave')
-    expect(wrapper.find('.fect-select__clearIcon').exists()).toBeFalsy()
-    await wrapper.setData({ disabled: true })
+    const inputEl = wrapper.find('input')
     await selectEl.trigger('click')
-    expect(wrapper.vm.val).toEqual('1')
-    await wrapper.setData({ disabled: false })
-    const optionEls = wrapper.findAll('.fect-option')
-    await optionEls[1].trigger('click')
-    expect(wrapper.vm.val).toBe('2')
-    await wrapper.setData({ multiple: true, val: ['1'] })
-    await optionEls[1].trigger('click')
-    expect(wrapper.vm.val).toEqual(['1', '2'])
-    await wrapper.setData({ childrenDisabled: true, val: '1', multiple: false })
-    await optionEls[1].trigger('click')
-    expect(wrapper.vm.val).toEqual('1')
-    expect(wrapper.html()).toMatchSnapshot()
+    expect(inputEl.attributes('aria-expanded')).toBe('true')
+    const containerEl = wrapper.find('.container')
+    await containerEl.trigger('click')
+    expect(inputEl.attributes('aria-expanded')).toBe('false')
+    wrapper.unmount()
+  })
+  it('when in multiply , initial value as empty should render placeholder', () => {
+    const wrapper = mount(Select, {
+      props: {
+        multiple: true,
+        modelValue: [],
+      },
+    })
+    expect(wrapper.find('.fect-select__placeholder').exists()).toBeTruthy()
   })
 })

@@ -1,16 +1,23 @@
 import { computed, ref, watch, defineComponent } from 'vue'
-import { createProvider, useClickAway, useEventListener } from '@fect-ui/vue-hooks'
-import { createName, useState, useExpose, CustomCSSProperties, ComponentInstance, NormalSizes } from '../utils'
+import { createProvider, useClickAway, useEventListener, useState } from '@fect-ui/vue-hooks'
+import { createName, useExpose, CustomCSSProperties, ComponentInstance, NormalSizes, isArray } from '../utils'
 import GridGroup from '../grid-group'
 import SelectIcon from './select-icon'
 import SelcetClearableIcon from './select-clear-icon'
 import SelectMultiple from './select-multiple'
 import SelectDropDown from './select-dropdown'
+import SeelctInput from './select-input'
 import { props } from './props'
 import { READONLY_SELECT_KEY, SizeStyle } from './type'
 import './index.less'
 
 const name = createName('Select')
+
+export const hasEmpty = (val: any) => {
+  if (val === '') return true
+  if (isArray(val) && !val.length) return true
+  return false
+}
 
 const querySelectSize = (size: NormalSizes) => {
   const sizes: Record<NormalSizes, SizeStyle> = {
@@ -48,12 +55,12 @@ export default defineComponent({
     const parent = createProvider<ComponentInstance>(READONLY_SELECT_KEY)
     const { provider, children } = parent
 
-    const [value, setValue] = useState<string | string[]>(props.modelValue)
+    const [value, setValue] = useState<string | string[]>(props.modelValue || props.value)
     const [visible, setVisible] = useState<boolean>(false)
     const [clean, setClean] = useState<boolean>(false)
     const [teleport, setTeleport] = useState<string>('body')
 
-    const empty = computed(() => !props.modelValue)
+    const empty = computed(() => hasEmpty(value.value))
 
     const cleanHandler = (e: Event, status: boolean) => {
       e.stopPropagation()
@@ -98,14 +105,12 @@ export default defineComponent({
     }
 
     const setParentValue = (val: string) => {
-      const { modelValue, multiple } = props
+      const { multiple } = props
       if (!multiple) return setValue(val)
-      let prelist
-      prelist = modelValue.slice() as string[]
-      const exist = prelist.indexOf(val as string) !== -1
-      if (exist) prelist = prelist.filter((v) => v !== val)
-      if (!exist) prelist.push(val as string)
-      setValue(prelist)
+      const sourceList = value.value.slice() as string[]
+      const exist = sourceList.indexOf(val) !== -1
+      if (exist) return setValue(sourceList.filter((v) => v !== val))
+      return setValue([...value.value, val])
     }
 
     provider({ setVisible, setParentValue })
@@ -122,7 +127,8 @@ export default defineComponent({
     watch(value, (cur) => emit('change', cur))
 
     const queryChecked = computed(() => {
-      const list = [...props.modelValue]
+      // const value = props.modelValue || props.value
+      const list = isArray(value.value) ? value.value : [value.value]
       return children.filter((child) => list.includes(child.value))
     })
 
@@ -134,9 +140,7 @@ export default defineComponent({
     const renderNodes = () => {
       const { multiple, clearable } = props
       const list = queryChecked.value
-      if (!multiple) {
-        return <span class="value">{list.map((_) => _.label)}</span>
-      }
+      if (!multiple) return <span class="value">{list.map((_) => _.label)}</span>
       return (
         <GridGroup gap={0.5}>
           {list.map((_) => (
@@ -153,8 +157,8 @@ export default defineComponent({
      */
 
     const showClose = computed(() => {
-      const { clearable, disabled, modelValue, multiple } = props
-      return clearable && !disabled && modelValue && !multiple && clean.value
+      const { clearable, disabled, multiple } = props
+      return clearable && !disabled && !empty.value && !multiple && clean.value
     })
 
     const renderRightIcon = () => {
@@ -169,6 +173,7 @@ export default defineComponent({
 
     return () => (
       <div class={setClass.value} ref={selectRef} style={setStyle.value} onClick={clickHandler}>
+        <SeelctInput visible={visible.value} />
         {empty.value ? renderPlaceHolder() : renderNodes()}
         <SelectDropDown teleport={teleport.value} v-slots={slots} visible={visible.value} parentRef={selectRef.value} />
         {renderRightIcon()}

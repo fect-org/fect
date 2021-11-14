@@ -3,6 +3,10 @@ import { NormalSizes } from '../utils'
 
 export const props = {
   modelValue: {
+    type: [String, Number, Array] as PropType<string | string[]>,
+    default: '',
+  },
+  value: {
     type: [String, Array] as PropType<string | string[]>,
     default: '',
   },

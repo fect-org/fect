@@ -16,7 +16,11 @@
   min-width: var(--select-minWidth);
   width: initial;
   height: var(--select-height);
-
+  &:not(.disabled) {
+    .value {
+      color: var(--primary-foreground);
+    }
+  }
   &:hover {
     &:not(.disabled) {
       border-color: var(--primary-foreground);
@@ -40,10 +44,20 @@
     line-height: 1;
     padding: 0;
     margin-right: 18px;
-    color: var(--primary-foreground);
     width: calc(100% - 18px);
-
-    width: calc(100% - 18px);
+    color: var(--accents-5);
+  }
+  &__input {
+    position: fixed;
+    top: -10000px;
+    left: -10000px;
+    opacity: 0;
+    z-index: -1;
+    width: 0;
+    height: 0;
+    padding: 0;
+    font-size: 0;
+    border: none;
   }
   &__placeholder {
     color: var(--accents-3);

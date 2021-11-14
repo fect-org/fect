@@ -1,6 +1,7 @@
 import { defineComponent } from 'vue'
 import { useProvider } from '@fect-ui/vue-hooks'
 import { READONLY_SELECT_KEY, SelectProvide } from '../select/type'
+import { hasEmpty } from '../select/select'
 import { createName } from '../utils'
 import './index.less'
 
@@ -11,9 +12,11 @@ export default defineComponent({
   props: {
     value: {
       type: String,
+      default: '',
     },
     label: {
       type: String,
+      default: '',
     },
     disabled: Boolean,
   },
@@ -22,8 +25,10 @@ export default defineComponent({
     const { setVisible, setParentValue } = context!
 
     const handleClick = (e: Event) => {
+      e.stopPropagation()
+      e.preventDefault()
       if (props.disabled) return
-      if (props.value) {
+      if (!hasEmpty(props.value)) {
         setVisible(false)
         setParentValue(props.value)
       }
