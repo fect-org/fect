@@ -127,7 +127,6 @@ export default defineComponent({
     watch(value, (cur) => emit('change', cur))
 
     const queryChecked = computed(() => {
-      // const value = props.modelValue || props.value
       const list = isArray(value.value) ? value.value : [value.value]
       return children.filter((child) => list.includes(child.value))
     })

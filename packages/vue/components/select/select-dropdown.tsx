@@ -3,14 +3,22 @@ import { useRect, useResize } from '../utils'
 
 type ElementRef = Element | Ref<Element | undefined>
 
-const getRect = (ref: ElementRef) => {
-  const rect = useRect(ref)
+const getRect = (Parentref: ElementRef, ref: ElementRef) => {
+  const parentRect = useRect(Parentref)
+  const { height } = useRect(ref)
   const scrollElement = document.documentElement
+  const visibleHeight = scrollElement.clientHeight
+  const parentElHeight = parentRect.height
+  const offset = visibleHeight - parentRect.bottom
+  // when visibleHeight reduce parent rect bottom can get screen bottom value
+  const position = offset > height
+  const baseTop = parentRect.bottom + scrollElement.scrollTop
+  const top = position ? baseTop : baseTop - parentElHeight - height - 5
   return {
-    ...rect,
-    width: rect.width || rect.right - rect.left,
-    top: rect.bottom + scrollElement.scrollTop,
-    left: rect.left + scrollElement.scrollLeft,
+    ...parentRect,
+    width: parentRect.width || parentRect.right - parentRect.left,
+    top,
+    left: parentRect.left + scrollElement.scrollLeft,
   }
 }
 
@@ -26,7 +34,7 @@ const SelectDropDown = defineComponent({
 
     const setPosition = () => {
       if (props.parentRef && dropdownRef.value) {
-        const { width, top, left } = getRect(props.parentRef)
+        const { width, top, left } = getRect(props.parentRef, dropdownRef)
         const style = {
           width: `${width}px`,
           top: `${top + 2}px`,
@@ -43,7 +51,11 @@ const SelectDropDown = defineComponent({
 
     return () => (
       <Teleport to={props.teleport}>
-        <div class="fect-select__dropdown" ref={dropdownRef} v-show={props.visible}>
+        <div
+          class="fect-select__dropdown"
+          ref={dropdownRef}
+          style={{ visibility: props.visible ? 'visible' : 'hidden' }}
+        >
           {slots.default?.()}
         </div>
       </Teleport>

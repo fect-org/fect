@@ -18,7 +18,7 @@ exports[`Select clean icon should be work 1`] = `
         <path d="M6 9l6 6 6-6"></path>
       </svg></div>
   </div>
-  <div class="fect-select__dropdown" style="display: none;">
+  <div class="fect-select__dropdown" style="visibility: hidden;">
     <div class="fect-option ">吃饭</div>
     <div class="fect-option disabled">摸鱼</div>
   </div>
@@ -34,7 +34,7 @@ exports[`Select component props should be work correctly 1`] = `
         <path d="M6 9l6 6 6-6"></path>
       </svg></div>
   </div>
-  <div class="fect-select__dropdown" style="width: 0px; top: 2px; left: 0px;">
+  <div class="fect-select__dropdown" style="visibility: visible; width: 0px; top: -3px; left: 0px;">
     <div class="fect-option ">吃饭</div>
     <div class="fect-option ">摸鱼</div>
   </div>
@@ -50,7 +50,7 @@ exports[`Select should be render as a element 1`] = `
         <path d="M6 9l6 6 6-6"></path>
       </svg></div>
   </div>
-  <div class="fect-select__dropdown" style="display: none;">
+  <div class="fect-select__dropdown" style="visibility: hidden;">
     <div class="fect-option ">吃饭</div>
     <div class="fect-option ">摸鱼</div>
   </div>
