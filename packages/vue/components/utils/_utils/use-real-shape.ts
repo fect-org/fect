@@ -1,6 +1,7 @@
-import { Ref, unref } from 'vue'
+import { unref } from 'vue'
+import type { ElementRef } from './interface'
 
-const useRealShape = (el: Element | Ref<Element | undefined>) => {
+const useRealShape = (el: ElementRef) => {
   const element = unref(el) as Element
   if (!element) {
     return console.error('<Fect> Error! Please use it in mounted life cycle')

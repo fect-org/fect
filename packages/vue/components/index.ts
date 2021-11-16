@@ -1,4 +1,4 @@
-const version = '1.0.5-rc.1'
+const version = '1.0.5'
 import { App } from 'vue'
 import { Avatar } from './avatar'
 import { AvatarGroup } from './avatar-group'
@@ -37,6 +37,7 @@ import { Select } from './select'
 import { SelectOption } from './select-option'
 import { Skeleton } from './skeleton'
 import { SkeletonItem } from './skeleton-item'
+import { Slider } from './slider'
 import { Snippet } from './snippet'
 import { Spacer } from './spacer'
 import { Spinner } from './spinner'
@@ -87,6 +88,7 @@ const components = [
   SelectOption,
   Skeleton,
   SkeletonItem,
+  Slider,
   Snippet,
   Spacer,
   Spinner,
@@ -147,6 +149,7 @@ export * from './select'
 export * from './select-option'
 export * from './skeleton'
 export * from './skeleton-item'
+export * from './slider'
 export * from './snippet'
 export * from './spacer'
 export * from './spinner'

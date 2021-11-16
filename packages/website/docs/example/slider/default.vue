@@ -5,5 +5,7 @@
 </template>
 
 <script>
-export default { name: 'ex-slider-default' }
+export default {
+  name: 'ex-slider-default',
+}
 </script>
