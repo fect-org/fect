@@ -1,5 +1,6 @@
 import { PropType } from 'vue'
 import { LabelPosition } from './type'
+import { NormalSizes } from '../utils'
 export const props = {
   model: {
     type: Object,
@@ -18,6 +19,15 @@ export const props = {
     type: [String, Number],
     default: 'auto',
   },
-  showMessage: Boolean,
+  showMessage: {
+    type: Boolean,
+    default: true,
+  },
+  inlineMessage: Boolean,
   // required: {},
+  size: {
+    type: String as PropType<NormalSizes>,
+    default: 'medium',
+  },
+  disabledAll: Boolean,
 }
