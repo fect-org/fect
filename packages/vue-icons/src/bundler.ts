@@ -39,13 +39,6 @@ class GenSvg extends EventEmitter {
     })
   }
 
-  genSvgDir() {
-    super.on('genSvgDir', async (next) => {
-      Object.keys(this.svgMap).map((svg) => outputFileSync(join(SVG_PATH, `${svg}.svg`), this.svgMap[svg]))
-      await next()
-    })
-  }
-
   async getSource() {
     const source = await getSVGSource()
     const doc = new JSDOM(source).window.document
@@ -77,10 +70,8 @@ class GenSvg extends EventEmitter {
     let spinner: Ora
     spinner = ora('build icon ....').start()
     this.genPackages()
-    this.genSvgDir()
     this.compile()
     await this.getSource()
-    await this.asyncEmitter('genSvgDir')
     await this.asyncEmitter('genPackages')
     spinner.succeed('build successed~')
     await this.asyncEmitter('compile')

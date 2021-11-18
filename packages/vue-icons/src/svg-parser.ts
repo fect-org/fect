@@ -5,6 +5,13 @@ export const parserStyle = (val, ident) => {
 
 export const replaceAll = (target: string, find: string, replace: string) => target.split(find).join(replace)
 
+export const replaceStyle = (val = '') => {
+  return val.replace(
+    /<svg([^>]+)>/,
+    `<svg$1 height={setSize.value} width={setSize.value} style={{color:setColor.value}}>`
+  )
+}
+
 export const svgParser = (svg: string, style: string) => {
   const styles = style.split(';').reduce((acc, cur) => {
     const [prop, value] = cur
@@ -21,13 +28,6 @@ export const svgParser = (svg: string, style: string) => {
   svg = replaceAll(svg, '"var(--geist-fill)"', fillColor)
   svg = replaceAll(svg, '"var(--geist-stroke)"', strokeColor)
   return svg
-}
-
-export const replaceStyle = (val = '') => {
-  return val
-    .replace(/width="([0-9]+)"/g, 'width={ setSize.value }')
-    .replace(/height="([0-9]+)"/g, 'height={ setSize.value }')
-    .replace(/style=(.+)">/g, 'style={{color:setColor.value}}>')
 }
 
 export const camelize = (name: string) => {
