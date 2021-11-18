@@ -1,5 +1,5 @@
 import { unref } from 'vue'
-import { useRect, ElementRef } from '../useRect'
+import { useRect, ElementRef } from '../_utils/use-rect'
 
 export const getOffset = (el: ElementRef | null) => {
   if (!el) {

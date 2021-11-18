@@ -1,6 +1,6 @@
 // theme provide light and dark
 
-import { useState } from '../useState'
+import { useState } from '../_utils'
 import { watch } from 'vue'
 export type Theme = 'light-theme' | 'dark-theme'
 

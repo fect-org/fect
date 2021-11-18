@@ -1,1 +1,2 @@
-export * from './createName'
+export * from './create-name'
+export * from './with-install'

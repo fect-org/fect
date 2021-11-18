@@ -1,5 +1,5 @@
 import { createApp, Component, unref } from 'vue'
-import { ElementRef } from '../useRect'
+import { ElementRef } from './use-rect'
 
 const createNode = (name: string) => {
   const dom = document.querySelector(`.${name}`)
