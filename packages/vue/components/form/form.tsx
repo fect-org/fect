@@ -14,28 +14,10 @@ export default defineComponent({
   setup(props, { slots, emit }) {
     const { provider, children } = createProvider<ComponentInstance>(READONLY_FORM_KEY)
 
-    const pattern = computed(() => {
-      const { size, disabledAll } = props
-      const state = {
-        size,
-        disable: disabledAll,
-      }
-      return state
-    })
+    const formProps = reactive({ ...toRefs(props) })
 
-    const labelState = computed(() => {
-      const { inline, labelWidth, labelPosition, showMessage } = props
-      const state = {
-        inline,
-        showMessage,
-        labelPosition,
-        labelWidth,
-      }
-      return state
-    })
+    provider({ formProps })
 
-    provider({ labelState, pattern })
-
-    return () => <form class="fect-form"> {slots.default?.()}</form>
+    return () => <form class={`fect-form ${props.inline ? 'is-inline' : ''}`}> {slots.default?.()}</form>
   },
 })

@@ -1,5 +1,21 @@
-.fect-form {
-  &__item {
-    //
+.fect-form-item {
+  display: flex;
+  margin-bottom: calc(var(--fay-gap) * 1.5);
+
+  &--inline {
+    display: inline-flex;
+    margin-right: var(--fay-gap-half);
+  }
+  &--top {
+    display: block;
+    .fect-form-item__label {
+      padding: 0 0 var(--fay-gap-half) 0;
+    }
+  }
+
+  &__label {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0 var(--fay-gap-half) 0 0;
   }
 }

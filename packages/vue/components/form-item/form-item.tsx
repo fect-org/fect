@@ -3,6 +3,7 @@ import { useProvider } from '@fect-ui/vue-hooks'
 import { createName } from '../utils'
 import FormItemWrapper from './form-item-wrapper'
 import { props } from './props'
+import { getLabelPostion, getLabelWidth, getFormItemLayoutClass } from '../form/style'
 import { FormProvide, READONLY_FORM_KEY } from '../form/type'
 
 import './index.less'
@@ -23,24 +24,33 @@ export default defineComponent({
     const formItemRef = ref<HTMLDivElement>()
 
     const setLabelStyle = computed(() => {
-      const { pattern, labelState } = context!
-      console.log(labelState.value)
+      const { formProps } = context!
       const style: CSSProperties = {}
-      // const labelWidth =
-      // if(labelState.value.)
-      // const {} = context?.pattern
-
+      const labelPosition = getLabelPostion(props.labelPosition || formProps.labelPosition)
+      if (!labelPosition) return style
+      const labelWidth = getLabelWidth(props.labelWidth || formProps.labelWidth)
+      style.width = labelWidth
+      style.textAlign = labelPosition
       return style
     })
 
+    const setClass = computed(() => {
+      const { formProps } = context!
+      const labelPosition = props.labelPosition || formProps.labelPosition
+      const basisClass = 'fect-form-item'
+      return getFormItemLayoutClass(formProps.inline, labelPosition, basisClass)
+    })
+
+    const setLabelFor = computed(() => props.prop || props.for)
+
     return () => (
-      <div class="fect-form__item" ref={formItemRef}>
+      <div class={`fect-form-item ${setClass.value}`} ref={formItemRef}>
         <FormItemWrapper>
-          <label for={props.prop} style={setLabelStyle.value}>
+          <label class="fect-form-item__label" for={setLabelFor.value} style={setLabelStyle.value}>
             {props.label}
           </label>
         </FormItemWrapper>
-        {slots.default?.()}
+        <div class="fect-form-item__content">{slots.default?.()}</div>
       </div>
     )
   },

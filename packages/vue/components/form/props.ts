@@ -1,4 +1,4 @@
-import { PropType } from 'vue'
+import { PropType, ExtractDefaultPropTypes } from 'vue'
 import { LabelPosition } from './type'
 import { NormalSizes } from '../utils'
 export const props = {
@@ -31,3 +31,5 @@ export const props = {
   },
   disabledAll: Boolean,
 }
+
+export type FormProps = ExtractDefaultPropTypes<typeof props>
