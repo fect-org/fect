@@ -253,6 +253,7 @@ export class Bundler extends EventEmitter {
 
     const content = `
   ${entryMeta}
+  import '@fect-ui/themes';
   ${stylePaths}
   `
     outputFileSync(umdJs, content)

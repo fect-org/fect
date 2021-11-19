@@ -1,4 +1,4 @@
-import { defineComponent, ref, Teleport, watch, Ref } from 'vue'
+import { defineComponent, ref, Teleport, watch, Ref, PropType } from 'vue'
 import { useRect, useResize } from '../utils'
 
 type ElementRef = Element | Ref<Element | undefined>
@@ -25,7 +25,9 @@ const getRect = (Parentref: ElementRef, ref: ElementRef) => {
 const SelectDropDown = defineComponent({
   props: {
     visible: Boolean,
-    parentRef: HTMLDivElement,
+    parentRef: {
+      type: Object as PropType<HTMLDivElement>,
+    },
     teleport: String,
   },
   setup(props, { slots }) {

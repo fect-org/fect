@@ -29,8 +29,6 @@ export const genPackagesEntry = async () => {
   const content = `
    
      const version = '${version}' ;
-   
-      import '@fect-ui/themes';
       import {App} from 'vue';
       ${genImport(pascalNames, dirs)}
       const components = [${pascalNames.map((_) => _)}];
