@@ -58,6 +58,7 @@ export default defineComponent({
   &__article {
     box-sizing: border-box;
     max-width: 50rem;
+    width: 100%;
   }
 
   @media only screen and (max-width: 650px) {
