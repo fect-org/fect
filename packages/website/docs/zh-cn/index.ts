@@ -80,6 +80,7 @@ export const zhRoutes: Routes[] = [
         group: '数据展示',
         route: { name: 'Capacity' },
       },
+      { title: '气泡卡片 Popover', group: '数据展示', route: { name: 'Popover' } },
       {
         title: '文字提示 Tooltip',
         group: '数据展示',
