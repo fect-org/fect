@@ -1,6 +1,6 @@
 {
   "name": "@fect-ui/vue",
-  "version": "1.0.5-rc.2",
+  "version": "1.0.5",
   "description": "Minimalist UI components built on Vue",
   "main": "lib/index.js",
   "module": "es/index.js",
