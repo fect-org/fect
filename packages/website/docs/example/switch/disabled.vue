@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fe-switch v-model="checked" disabled in />
+    <fe-switch v-model="checked" disabled />
   </div>
 </template>
 

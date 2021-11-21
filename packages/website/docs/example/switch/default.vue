@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fe-switch v-model="checked" />
+    <fe-switch :value="checked" @change="changeHandler" />
   </div>
 </template>
 
@@ -10,8 +10,12 @@ export default {
   name: 'ex-switch-default',
   setup() {
     const checked = ref(true)
+    const changeHandler = (e) => {
+      checked.value = e.target.checked
+    }
     return {
       checked,
+      changeHandler,
     }
   },
 }
