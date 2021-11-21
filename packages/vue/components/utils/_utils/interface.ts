@@ -1,0 +1,22 @@
+import type { Ref } from 'vue'
+import { DomRect } from '../format'
+
+export type MaybeElement = Element | undefined
+
+export type ElementRef = MaybeElement | Ref<MaybeElement>
+
+export interface Position {
+  x: number
+  y: number
+}
+
+export interface DraggableOptions {
+  draggingElement?: ElementRef
+  onStart?: (e: Event, rect: DomRect) => void
+  onMove?: (e: Event, position: Ref<Position>) => void
+  onEnd?: (e: Event, position: Ref<Position>) => void
+}
+
+export interface DraggableOutput {
+  position: Ref<Position>
+}
