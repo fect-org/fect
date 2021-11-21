@@ -99,7 +99,6 @@ export default defineComponent({
 
     const clickHandler = (e: MouseEvent) => {
       if (props.disabled) return
-      if (!sliderRef.value) return
       setIsClick(true)
       const { x: sliderX, width } = getDomRect(sliderRef)
       setSliderWidth(width)

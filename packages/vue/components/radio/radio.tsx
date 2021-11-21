@@ -3,7 +3,7 @@ import { useProvider } from '@fect-ui/vue-hooks'
 import { createName, useState, NormalSizes } from '../utils'
 import { RadioGroupProvide, READNONLY_RADIO_KEY, RadioEvent } from '../radio-group/radio-group'
 import './index.less'
-import { CustomCSSProperties } from '../utils/base'
+import { CustomCSSProperties } from '../utils'
 
 const name = createName('Radio')
 
