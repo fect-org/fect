@@ -1,7 +1,7 @@
 // theme provide light and dark
 
-import { useState } from '../_utils'
 import { watch } from 'vue'
+import { useState } from '@fect-ui/vue-hooks'
 export type Theme = 'light-theme' | 'dark-theme'
 
 export const useTheme = () => {

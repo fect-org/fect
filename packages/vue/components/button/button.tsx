@@ -1,5 +1,6 @@
 import { computed, ref, defineComponent } from 'vue'
-import { useState, createName, CustomCSSProperties } from '../utils'
+import { useState } from '@fect-ui/vue-hooks'
+import { createName, CustomCSSProperties } from '../utils'
 import { props } from './props'
 import ButtonLoading from './button-loading'
 import ButtonDrip from './button-drip'

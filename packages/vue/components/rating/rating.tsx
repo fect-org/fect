@@ -1,5 +1,6 @@
 import { computed, PropType, watch, defineComponent } from 'vue'
-import { useState, createName, CustomCSSProperties, NormalTypes } from '../utils'
+import { useState } from '@fect-ui/vue-hooks'
+import { createName, CustomCSSProperties, NormalTypes } from '../utils'
 import RatingIcon from './rating-icon'
 
 import './index.less'

@@ -1,6 +1,6 @@
 import { computed, CSSProperties, ref, watch, onUnmounted, onMounted, nextTick, defineComponent } from 'vue'
-import { createProvider } from '@fect-ui/vue-hooks'
-import { useState, useRealShape, createName, ComponentInstance } from '../utils'
+import { createProvider, useState } from '@fect-ui/vue-hooks'
+import { useRealShape, createName, ComponentInstance } from '../utils'
 import { READONLY_SWIPE_KEY, Shape, Placement } from './type'
 import { props } from './props'
 import './index.less'

@@ -1,5 +1,6 @@
 import { computed, ref, watchEffect, PropType, defineComponent } from 'vue'
-import { useState, createName, CustomCSSProperties, NormalSizes } from '../utils'
+import { useState } from '@fect-ui/vue-hooks'
+import { createName, CustomCSSProperties, NormalSizes } from '../utils'
 import ClearableIcon from './clearable-icon'
 import PasswordIcon from './password-icon'
 import IconContent from './icon-content'

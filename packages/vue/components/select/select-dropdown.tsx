@@ -1,11 +1,11 @@
 import { defineComponent, ref, Teleport, watch, Ref, PropType } from 'vue'
-import { useRect, useResize } from '../utils'
+import { getDomRect, useResize } from '../utils'
 
 type ElementRef = Element | Ref<Element | undefined>
 
 const getRect = (Parentref: ElementRef, ref: ElementRef) => {
-  const parentRect = useRect(Parentref)
-  const { height } = useRect(ref)
+  const parentRect = getDomRect(Parentref)
+  const { height } = getDomRect(ref)
   const scrollElement = document.documentElement
   const visibleHeight = scrollElement.clientHeight
   const parentElHeight = parentRect.height

@@ -1,5 +1,6 @@
 import { PropType, computed, defineComponent } from 'vue'
-import { useState, createName, NormalSizes } from '../utils'
+import { useState } from '@fect-ui/vue-hooks'
+import { createName, NormalSizes } from '../utils'
 import './index.less'
 
 const name = createName('Avatar')

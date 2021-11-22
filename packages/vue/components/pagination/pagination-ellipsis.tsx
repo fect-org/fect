@@ -1,6 +1,6 @@
 import { computed, defineComponent } from 'vue'
+import { useState } from '@fect-ui/vue-hooks'
 import PaginationItem from './pagination-item'
-import { useState } from '../utils'
 
 const PaginationEllipsis = defineComponent({
   props: {

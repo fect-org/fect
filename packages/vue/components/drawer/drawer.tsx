@@ -1,5 +1,6 @@
 import { watch, computed, defineComponent, ref } from 'vue'
-import { useState, createName, CustomCSSProperties, ComponentInstance } from '../utils'
+import { useState } from '@fect-ui/vue-hooks'
+import { createName, CustomCSSProperties, ComponentInstance } from '../utils'
 import { props } from './props'
 import Teleport from '../teleport'
 import DrawerWrapper from './drawer-wrapper'

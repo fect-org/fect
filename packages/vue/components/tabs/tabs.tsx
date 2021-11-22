@@ -1,6 +1,6 @@
 import { watch, Ref, defineComponent } from 'vue'
-import { createProvider } from '@fect-ui/vue-hooks'
-import { createName, useState, ComponentInstance } from '../utils'
+import { createProvider, useState } from '@fect-ui/vue-hooks'
+import { createName, ComponentInstance } from '../utils'
 import TabsTitle, { TabTitleEmit } from './tabs-title'
 import './index.less'
 const name = createName('Tabs')

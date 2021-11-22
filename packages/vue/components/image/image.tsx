@@ -1,5 +1,6 @@
 import { computed, ref, watchEffect, CSSProperties, defineComponent } from 'vue'
-import { useState, createName } from '../utils'
+import { useState } from '@fect-ui/vue-hooks'
+import { createName } from '../utils'
 import ImgSkeleton from './image-skeleton'
 import './index.less'
 

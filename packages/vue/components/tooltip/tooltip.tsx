@@ -1,6 +1,6 @@
 import { defineComponent, computed, ref, watch } from 'vue'
-import { useState, createName, getPosition, useResize, useExpose, CustomCSSProperties } from '../utils'
-import { useClickAway } from '@fect-ui/vue-hooks'
+import { useClickAway, useState } from '@fect-ui/vue-hooks'
+import { createName, getPosition, useResize, useExpose, CustomCSSProperties } from '../utils'
 import { queryPlacement, queryArrowPlacement } from './style'
 import { Teleport } from '../teleport'
 import { props } from './props'

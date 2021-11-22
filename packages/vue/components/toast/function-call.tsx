@@ -1,6 +1,7 @@
-import FeToast from './toast'
 import { App, Component, watchEffect, computed, watch } from 'vue'
-import { createNode, withInstall, NormalTypes, createPortal, useState, omit } from '../utils'
+import { useState } from '@fect-ui/vue-hooks'
+import FeToast from './toast'
+import { createNode, withInstall, NormalTypes, createPortal, omit } from '../utils'
 
 export type ToastType = NormalTypes
 

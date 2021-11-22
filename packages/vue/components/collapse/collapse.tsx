@@ -1,6 +1,6 @@
 import { computed, ref, PropType, watch, defineComponent } from 'vue'
-import { useRealShape, useState, createName } from '../utils'
-import { useProvider } from '@fect-ui/vue-hooks'
+import { useRealShape, createName } from '../utils'
+import { useProvider, useState } from '@fect-ui/vue-hooks'
 import CollapseIcon from './collapse-icon'
 import { READONLY_COLLAPSE_KEY, CollapseProvide } from '../collapse-group/collapse-group'
 import './index.less'

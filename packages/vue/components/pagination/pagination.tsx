@@ -1,6 +1,6 @@
 import { computed, watch, PropType, defineComponent, Slot } from 'vue'
-import { createProvider } from '@fect-ui/vue-hooks'
-import { createName, NormalSizes, useState, CustomCSSProperties, ComponentInstance } from '../utils'
+import { createProvider, useState } from '@fect-ui/vue-hooks'
+import { createName, NormalSizes, CustomCSSProperties, ComponentInstance } from '../utils'
 import { READONLY_PAGINATION_KEY, PaginationSize, SideEvent } from './type'
 import PaginationPages from './pagination-pages'
 import PaginationNext from './pagination-next'

@@ -1,5 +1,6 @@
 import { unref } from 'vue'
-import { useRect, ElementRef } from '../_utils/use-rect'
+import { getDomRect } from '../format/dom'
+import { ElementRef } from '../_utils'
 
 export const getOffset = (el: ElementRef | null) => {
   if (!el) {
@@ -8,12 +9,12 @@ export const getOffset = (el: ElementRef | null) => {
       left: 0,
     }
   }
-  const { top, left } = useRect(el)
+  const { top, left } = getDomRect(el)
   return { top, left }
 }
 
 export const getPosition = (curRef: ElementRef, contRef?: ElementRef) => {
-  const rect = useRect(curRef)
+  const rect = getDomRect(curRef)
   const container = unref(contRef) || null
   const scrollElement = container || document.documentElement
   const { top: offsetTop, left: offsetLeft } = getOffset(container)

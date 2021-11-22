@@ -1,6 +1,6 @@
 import { PropType, Ref, defineComponent } from 'vue'
-import { createProvider } from '@fect-ui/vue-hooks'
-import { createName, useState, NormalSizes } from '../utils'
+import { createProvider, useState } from '@fect-ui/vue-hooks'
+import { createName, NormalSizes } from '../utils'
 import './index.less'
 
 const name = createName('RadioGroup')

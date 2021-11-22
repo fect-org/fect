@@ -1,6 +1,6 @@
 import { PropType, watch, defineComponent, ref } from 'vue'
-import { createProvider } from '@fect-ui/vue-hooks'
-import { useState, createName, ComponentInstance } from '../utils'
+import { createProvider, useState } from '@fect-ui/vue-hooks'
+import { createName, ComponentInstance } from '../utils'
 import { READONLY_MODAL_KEY } from './type'
 import ModalWrapper from './modal-wrapper'
 import Teleport from '../teleport'

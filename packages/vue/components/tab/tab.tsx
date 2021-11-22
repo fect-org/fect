@@ -1,6 +1,6 @@
 import { computed, watchEffect, defineComponent } from 'vue'
-import { useProvider } from '@fect-ui/vue-hooks'
-import { createName, useState } from '../utils'
+import { useProvider, useState } from '@fect-ui/vue-hooks'
+import { createName } from '../utils'
 import { TabsProvide, READONLY_TABS_KEY } from '../tabs/tabs'
 import './index.less'
 const name = createName('Tab')
