@@ -1,9 +1,10 @@
 import { getCurrentInstance } from 'vue'
+import { assign } from '../format'
 
 const useExpose = (fn: Record<string, any>) => {
   const instance = getCurrentInstance()
-  if (instance) {
-    Object.assign(instance.proxy, fn)
+  if (instance && instance.proxy) {
+    assign(instance.proxy, fn)
   }
 }
 

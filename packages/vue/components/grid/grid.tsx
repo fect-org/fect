@@ -1,6 +1,6 @@
 import { computed, defineComponent } from 'vue'
 import { useProvider } from '@fect-ui/vue-hooks'
-import { createName } from '../utils'
+import { createName, assign } from '../utils'
 import { props } from './props'
 import { getBasisStyle, getDynamicStyle, getDynamicLayoutClass } from '../grid-group/style'
 import { GridGroupProvide, READONLY_GRID_GROUP_KEY } from '../grid-group/type'
@@ -19,7 +19,7 @@ export default defineComponent({
       const basisStyle = getBasisStyle({ alignContent, alignItems, direction, justify })
       if (context && context.useGrid.value) return basisStyle
       const dynamicStyle = getDynamicStyle({ xs, sm, md, lg, xl })
-      return Object.assign(basisStyle, dynamicStyle)
+      return assign(basisStyle, dynamicStyle)
     })
 
     const setClass = computed(() => {

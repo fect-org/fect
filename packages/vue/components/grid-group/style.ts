@@ -3,6 +3,7 @@
  * see: https://stackoverflow.com/questions/53213870/why-display-property-set-to-inherit-with-css-variable-doesnt-work
  */
 
+import { assign } from '../utils'
 import type { JustifyTypes, AlignTypes, DirectionTypes, AlignContentTypes, GridTypes } from './type'
 import type { CustomCSSProperties } from '../utils'
 
@@ -52,7 +53,7 @@ export const getDynamicStyle = (props: Record<GridTypes, GridBreakPoint>) => {
       [`--${cur}-basis`]: `${basis}%`,
       [`--${cur}-width`]: `${width}%`,
     }
-    return Object.assign(acc, layout)
+    return assign(acc, layout)
   }, {} as CustomCSSProperties)
   return dynamicStyle
 }

@@ -1,6 +1,6 @@
 import { computed, ref, watchEffect, PropType, defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, CustomCSSProperties, NormalSizes } from '../utils'
+import { createName, CustomCSSProperties, NormalSizes, assign } from '../utils'
 import ClearableIcon from './clearable-icon'
 import PasswordIcon from './password-icon'
 import IconContent from './icon-content'
@@ -170,7 +170,7 @@ export default defineComponent({
       }
 
       if (hasPrefix.value && hasSuffix.value) {
-        return Object.assign({}, prefixStyle, suffixStyle)
+        return assign(prefixStyle, suffixStyle)
       }
       if (hasPrefix.value) {
         return prefixStyle
