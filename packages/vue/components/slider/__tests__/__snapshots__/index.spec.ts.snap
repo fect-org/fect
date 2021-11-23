@@ -21,10 +21,3 @@ exports[`Slider should trigger event when click 1`] = `
   <!---->
 </div>
 `;
-
-exports[`Slider should trigger events when drag 1`] = `
-<div class="fect-slider " role="slider" title="0%">
-  <div class="fect-slider__dot " style="left: 0%;">0</div>
-  <!---->
-</div>
-`;

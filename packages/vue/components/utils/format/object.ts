@@ -12,4 +12,4 @@ export const omit = <T extends Object, K extends (string | number | symbol)[]>(
 export const assign = <T extends Object, K extends Object>(
   source: T,
   ...rest: K[]
-): IntersectionToObj<Omit<T, keyof K> & K> => Object.assign({}, source, ...rest)
+): IntersectionToObj<Omit<T, keyof K> & K> => Object.assign(source, ...rest)
