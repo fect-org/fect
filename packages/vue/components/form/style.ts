@@ -21,3 +21,9 @@ export const getFormItemLayoutClass = (inline: boolean, labelPosition: LabelPosi
   classStr += ` ${basisClass}--${labelPosition}`
   return classStr.trim()
 }
+
+export const getUnVerfiedClass = (display: boolean, basisClass: string) => {
+  let classStr = ''
+  classStr += !display ? ` ${basisClass}--hidden` : ''
+  return classStr.trim()
+}

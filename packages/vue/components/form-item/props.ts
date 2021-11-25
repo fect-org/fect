@@ -1,4 +1,4 @@
-import { PropType } from 'vue'
+import { PropType, ExtractDefaultPropTypes } from 'vue'
 import type { LabelPosition } from '../form/type'
 
 export const props = {
@@ -14,9 +14,7 @@ export const props = {
     default: '',
   },
   required: Boolean,
-  showMessage: {
-    type: Boolean,
-    default: true,
-  },
-  inlineMessage: Boolean,
+  showMessage: Boolean,
 }
+
+export type FormItemProps = ExtractDefaultPropTypes<typeof props>

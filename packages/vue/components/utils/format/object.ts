@@ -13,3 +13,5 @@ export const assign = <T extends Object, K extends Object>(
   source: T,
   ...rest: K[]
 ): IntersectionToObj<Omit<T, keyof K> & K> => Object.assign(source, ...rest)
+
+export const hasOwn = <T extends Object>(source: T, key: string) => Object.hasOwnProperty.call(source, key)

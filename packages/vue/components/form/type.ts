@@ -1,5 +1,6 @@
-import { ComputedRef } from 'vue'
-import { tuple, NormalSizes } from '../utils'
+import { tuple } from '../utils'
+import type { ComputedRef, Ref } from 'vue'
+import type { RuleItem } from 'proy'
 import type { FormProps } from './props'
 
 export const labelPosition = tuple('left', 'right', 'top')
@@ -8,7 +9,15 @@ export type LabelPosition = typeof labelPosition[number]
 
 export const READONLY_FORM_KEY = Symbol('formKey')
 
-export type FormProvide = {
+export interface FormProvide {
   formProps: FormProps
-  getLabelPostion: (postion: LabelPosition | '') => Exclude<LabelPosition, 'top'> | null
 }
+
+export type Trigger = 'change' | 'blur'
+
+export interface FormRule extends RuleItem {
+  message?: string
+  trigger?: Trigger
+}
+
+export type FormRules = Record<string, FormRule | FormRule[]>

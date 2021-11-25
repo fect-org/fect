@@ -1,21 +1,49 @@
 .fect-form-item {
   display: flex;
-  margin-bottom: calc(var(--fay-gap) * 1.5);
+  align-items: center;
+  margin-bottom: calc(var(--fay-gap) * 1.25);
 
   &--inline {
     display: inline-flex;
+    align-items: center;
     margin-right: var(--fay-gap-half);
   }
   &--top {
     display: block;
-    .fect-form-item__label {
-      padding: 0 0 var(--fay-gap-half) 0;
+    // .fect-form-item__label {
+    //   padding: 0 0 var(--fay-gap-half) 0;
+    // }
+    .fect-form-item__content {
+      margin-top: var(--fay-gap-half);
     }
   }
 
   &__label {
-    display: inline-block;
     box-sizing: border-box;
     padding: 0 var(--fay-gap-half) 0 0;
+    &.is-required {
+      &::before {
+        content: '*';
+        color: var(--error-default);
+        margin-right: 5px;
+      }
+    }
+  }
+  &__content {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+  }
+  &__error {
+    color: var(--error-light);
+    font-size: 13px;
+    line-height: 1;
+    padding-top: var(--fay-gap-quarter);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    &--hidden {
+      display: none;
+    }
   }
 }

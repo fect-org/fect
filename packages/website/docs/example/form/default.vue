@@ -1,25 +1,30 @@
 <template>
   <div>
-    <!-- inline -->
-    <fe-form :model="formValue" label-width="120" label-position="left">
-      <fe-form-item label="Input" prop="input" for="username">
-        <fe-input v-model="formValue.input" name="input"></fe-input>
+    <fe-form :model="formValue" :rules="rules" ref="formRef" label-width="110" label-position="left">
+      <fe-form-item label="Input" prop="input">
+        <fe-input v-model="formValue.input" placeholder="input your nick name"></fe-input>
       </fe-form-item>
-      <fe-form-item label="CheckBox">
-        <fe-checkbox-group use-row v-model="formValue.checkGroup">
-          <fe-checkbox>
+      <fe-form-item label="CheckGroup" prop="checkGroup">
+        <fe-checkbox-group v-model="formValue.checkGroup">
+          <fe-checkbox label="FontEnd">
             <fe-code>FontEnd</fe-code>
           </fe-checkbox>
-          <fe-checkbox>
+          <fe-spacer />
+          <fe-checkbox label="BackEnd">
             <fe-code>BackEnd</fe-code>
           </fe-checkbox>
         </fe-checkbox-group>
       </fe-form-item>
-      <fe-form-item label="Select">
+      <fe-form-item label="FrameWork" prop="frameWork">
         <fe-select v-model="formValue.frameWork">
-          <fe-option label="Vue"></fe-option>
-          <fe-option label="React"></fe-option>
+          <fe-option label="Vue" value="vue"></fe-option>
+          <fe-option label="Koa" value="koa"></fe-option>
         </fe-select>
+      </fe-form-item>
+      <fe-form-item label-position="top">
+        <fe-button size="mini" auto @click="sumbitHandler">Sumbit</fe-button>
+        <fe-spacer :x="2" inline />
+        <fe-button size="mini" auto @click="resetHandler">Rest</fe-button>
       </fe-form-item>
     </fe-form>
   </div>
@@ -30,13 +35,48 @@ import { ref } from 'vue'
 export default {
   name: 'ex-default-form',
   setup() {
+    const formRef = ref(null)
+
     const formValue = ref({
       input: '',
       checkGroup: [],
       frameWork: '',
     })
 
-    return { formValue }
+    const rules = {
+      input: [
+        {
+          required: true,
+          message: 'Please input your nick name',
+          trigger: 'blur',
+        },
+      ],
+      checkGroup: {
+        required: true,
+        type: 'array',
+        message: 'Please choose the direction you are interested in',
+        trigger: 'change',
+      },
+      frameWork: {
+        type: 'string',
+        required: true,
+        validate: (val) => val === 'koa',
+        message: 'Please choose a class',
+        trigger: 'change',
+      },
+    }
+
+    const sumbitHandler = () => {}
+
+    const resetHandler = () => {}
+
+    return {
+      formValue,
+      rules,
+      sumbitHandler,
+      resetHandler,
+      formRef,
+    }
   },
 }
 </script>
