@@ -90,6 +90,7 @@ export default defineComponent({
         class={`fect-button fect-button--${props.type} fect-button--${props.size} ${setButtonStatus.value}`}
         ref={buttonRef}
         style={setStyle.value}
+        type={props.htmlType}
         onClick={clickHandler}
       >
         {props.loading && <ButtonLoading loadType={props.loadType} />}

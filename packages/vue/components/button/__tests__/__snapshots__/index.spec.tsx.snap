@@ -1,59 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button should be allow some status  1`] = `
-<div class="container"><button class="fect-button fect-button--default fect-button--medium is-disabled" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);">
+<div class="container"><button class="fect-button fect-button--default fect-button--medium is-disabled" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
     <!---->
     <!---->Button
-  </button><button class="fect-button fect-button--default fect-button--medium is-shadow" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);">
+  </button><button class="fect-button fect-button--default fect-button--medium is-shadow" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
     <!---->
     <!---->Button
   </button></div>
 `;
 
 exports[`Button should be render as a element 1`] = `
-<button class="fect-button fect-button--default fect-button--medium " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);">
+<button class="fect-button fect-button--default fect-button--medium " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
   <!---->
   <!---->Button
 </button>
 `;
 
 exports[`Button should be support diferent types 1`] = `
-<div class="container"><button class="fect-button fect-button--default fect-button--medium " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);">
+<div class="container"><button class="fect-button fect-button--default fect-button--medium " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
     <!---->
     <!---->Button
-  </button><button class="fect-button fect-button--success fect-button--medium " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--success-default); --button-hover-color: var(--success-default);">
+  </button><button class="fect-button fect-button--success fect-button--medium " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--success-default); --button-hover-color: var(--success-default);" type="button">
     <!---->
     <!---->Button
-  </button><button class="fect-button fect-button--warning fect-button--medium " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--warning-default); --button-hover-color: var(--warning-default);">
+  </button><button class="fect-button fect-button--warning fect-button--medium " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--warning-default); --button-hover-color: var(--warning-default);" type="button">
     <!---->
     <!---->Button
-  </button><button class="fect-button fect-button--error fect-button--medium " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--error-default); --button-hover-color: var(--error-default);">
+  </button><button class="fect-button fect-button--error fect-button--medium " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--error-default); --button-hover-color: var(--error-default);" type="button">
     <!---->
     <!---->Button
   </button></div>
 `;
 
 exports[`Button should be support different sizes 1`] = `
-<div class="container"><button class="fect-button fect-button--default fect-button--mini " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);">
+<div class="container"><button class="fect-button fect-button--default fect-button--mini " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
     <!---->
     <!---->Button
-  </button><button class="fect-button fect-button--default fect-button--small " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);">
+  </button><button class="fect-button fect-button--default fect-button--small " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
     <!---->
     <!---->Button
-  </button><button class="fect-button fect-button--default fect-button--medium " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);">
+  </button><button class="fect-button fect-button--default fect-button--medium " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
     <!---->
     <!---->Button
-  </button><button class="fect-button fect-button--default fect-button--large " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);">
+  </button><button class="fect-button fect-button--default fect-button--large " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
     <!---->
     <!---->Button
-  </button><button class="fect-button fect-button--default fect-button--medium is-auto" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);">
+  </button><button class="fect-button fect-button--default fect-button--medium is-auto" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
     <!---->
     <!---->Button
   </button></div>
 `;
 
 exports[`Button should be support icon 1`] = `
-<div class="container"><button class="fect-button fect-button--default fect-button--medium " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);">
+<div class="container"><button class="fect-button fect-button--default fect-button--medium " style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
     <!---->
     <!---->
     <div class="fect-button__icon" style="left: 15%; transform: translateY(-50%);"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" height="24" width="24" style="color: currentColor;">
@@ -64,17 +64,17 @@ exports[`Button should be support icon 1`] = `
 `;
 
 exports[`Button should be support loadType and loadColor follow button color 1`] = `
-<div class="container"><button class="fect-button fect-button--default fect-button--medium is-loading" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);">
+<div class="container"><button class="fect-button fect-button--default fect-button--medium is-loading" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
     <div class="fect-button__loading">
       <div class="fect-loading"><span class="loading"><i class="loading__default default medium"></i><i class="loading__default default medium"></i><i class="loading__default default medium"></i></span></div>
     </div>
     <!---->Button
-  </button><button class="fect-button fect-button--success fect-button--medium is-loading" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--success-default); --button-hover-color: var(--success-default);">
+  </button><button class="fect-button fect-button--success fect-button--medium is-loading" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--success-default); --button-hover-color: var(--success-default);" type="button">
     <div class="fect-button__loading">
       <div class="fect-loading"><span class="loading"><i class="loading__cube default medium"></i><i class="loading__cube default medium"></i><i class="loading__cube default medium"></i><i class="loading__cube default medium"></i></span></div>
     </div>
     <!---->Button
-  </button><button class="fect-button fect-button--warning fect-button--medium is-loading" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--warning-default); --button-hover-color: var(--warning-default);">
+  </button><button class="fect-button fect-button--warning fect-button--medium is-loading" style="--button-hover-bg: var(--primary-background); --button-hover-border: var(--warning-default); --button-hover-color: var(--warning-default);" type="button">
     <div class="fect-button__loading">
       <div class="fect-loading"><span class="loading"><i class="loading__wave default medium"></i><i class="loading__wave default medium"></i><i class="loading__wave default medium"></i><i class="loading__wave default medium"></i><i class="loading__wave default medium"></i></span></div>
     </div>
