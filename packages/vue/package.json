@@ -36,7 +36,8 @@
   },
   "dependencies": {
     "@fect-ui/themes": "^1.1.0",
-    "@fect-ui/vue-hooks": "^0.0.3-rc.0"
+    "@fect-ui/vue-hooks": "^0.0.3-rc.0",
+    "proy": "^0.0.3"
   },
   "peerDependencies": {
     "vue": "^3.0.11"

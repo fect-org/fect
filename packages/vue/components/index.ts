@@ -20,6 +20,8 @@ import { Collapse } from './collapse';
 import { CollapseGroup } from './collapse-group';
 import { Dot } from './dot';
 import { Drawer } from './drawer';
+import { Form } from './form';
+import { FormItem } from './form-item';
 import { Grid } from './grid';
 import { GridGroup } from './grid-group';
 import { Image } from './image';
@@ -52,7 +54,7 @@ import { Tag } from './tag';
 import { Teleport } from './teleport';
 import { Toast } from './toast';
 import { Tooltip } from './tooltip';
-      const components = [Avatar,AvatarGroup,BackTop,Badge,BadgeAnchor,Breadcrumbs,BreadcrumbsItem,Button,Capacity,Card,Checkbox,CheckboxGroup,Code,Col,Collapse,CollapseGroup,Dot,Drawer,Grid,GridGroup,Image,ImageBrowser,Input,Link,Loading,Modal,Pagination,Popover,Progress,Radio,RadioGroup,Rating,Row,Select,SelectOption,Skeleton,SkeletonItem,Slider,Snippet,Spacer,Spinner,Swipe,SwipeItem,Switch,Tab,Tabs,Tag,Teleport,Toast,Tooltip];
+      const components = [Avatar,AvatarGroup,BackTop,Badge,BadgeAnchor,Breadcrumbs,BreadcrumbsItem,Button,Capacity,Card,Checkbox,CheckboxGroup,Code,Col,Collapse,CollapseGroup,Dot,Drawer,Form,FormItem,Grid,GridGroup,Image,ImageBrowser,Input,Link,Loading,Modal,Pagination,Popover,Progress,Radio,RadioGroup,Rating,Row,Select,SelectOption,Skeleton,SkeletonItem,Slider,Snippet,Spacer,Spinner,Swipe,SwipeItem,Switch,Tab,Tabs,Tag,Teleport,Toast,Tooltip];
       const install = (app:App) => {
         components.map((component:any) => {
           if (component.install) {
@@ -81,6 +83,8 @@ import { Tooltip } from './tooltip';
  export * from './collapse-group';
  export * from './dot';
  export * from './drawer';
+ export * from './form';
+ export * from './form-item';
  export * from './grid';
  export * from './grid-group';
  export * from './image';

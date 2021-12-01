@@ -7555,6 +7555,11 @@ protocols@^1.1.0, protocols@^1.4.0:
   resolved "https://registry.yarnpkg.com/protocols/-/protocols-1.4.8.tgz#48eea2d8f58d9644a4a32caae5d5db290a075ce8"
   integrity sha512-IgjKyaUSjsROSO8/D49Ab7hP8mJgTYcqApOqdPhLoPxAplXmkp+zRvsrSQjFn5by0rhm4VH0GAUELIPpx7B1yg==
 
+proy@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/proy/-/proy-0.0.3.tgz#36193c7ce883bb2d8f295e190e575f5ee6794293"
+  integrity sha512-T1RE9NuaGXX54LGpt9PjxtXGio/N681v15ONwTfVkHlmt7TcNomJvV10UhNJ6PlniOygqH3cNmzVBpdvm+BZqg==
+
 prr@~1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/prr/-/prr-1.0.1.tgz#d3fc114ba06995a45ec6893f484ceb1d78f5f476"
