@@ -4,17 +4,17 @@ exports[`Form props should work correctly 1`] = `<form class="fect-form "> </for
 
 exports[`Form should wrok normal 1`] = `
 <form class="fect-form ">
-  <div class="fect-form-item fect-form-item--top"><label class="fect-form-item__label ">
+  <div class="fect-form-item fect-form-item--top"><label class="fect-form-item__label " for="">
       <!---->
     </label>
     <div class="fect-form-item__content">1</div>
   </div>
-  <div class="fect-form-item fect-form-item--left"><label class="fect-form-item__label " style="width: 10px; text-align: left;">
+  <div class="fect-form-item fect-form-item--left"><label class="fect-form-item__label " for="" style="width: 10px; text-align: left;">
       <!---->
     </label>
     <div class="fect-form-item__content">2</div>
   </div>
-  <div class="fect-form-item fect-form-item--right"><label class="fect-form-item__label " style="width: 120px; text-align: right;">
+  <div class="fect-form-item fect-form-item--right"><label class="fect-form-item__label " for="" style="width: 120px; text-align: right;">
       <!---->
     </label>
     <div class="fect-form-item__content">3</div>

@@ -1,7 +1,7 @@
 import { computed, watchEffect, PropType, watch, defineComponent } from 'vue'
 import { useProvider, useState } from '@fect-ui/vue-hooks'
 import { createName, CustomCSSProperties, NormalSizes } from '../utils'
-import { READONLY_CHECKBOX_KEY, CheckboxGroupProvide, CheckboxEvent } from '../checkbox-group/checkbox-group'
+import { READONLY_CHECKBOX_KEY, CheckboxGroupProvide, CheckboxEvent } from '../checkbox-group/type'
 import CheckIcon from './checkbox-icon'
 import './index.less'
 

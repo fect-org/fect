@@ -3,7 +3,10 @@ import type { LabelPosition } from '../form/type'
 
 export const props = {
   prop: String,
-  for: String,
+  for: {
+    type: String,
+    default: '',
+  },
   label: String,
   labelWidth: {
     type: [String, Number],

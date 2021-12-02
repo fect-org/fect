@@ -7,13 +7,14 @@ export const labelPosition = tuple('left', 'right', 'top')
 
 export type LabelPosition = typeof labelPosition[number]
 
+export type Trigger = 'change' | 'blur'
+
 export const READONLY_FORM_KEY = Symbol('formKey')
 
 export interface FormProvide {
   formProps: FormProps
+  validate: (trigger: Trigger) => void
 }
-
-export type Trigger = 'change' | 'blur'
 
 export interface FormRule extends RuleItem {
   message?: string

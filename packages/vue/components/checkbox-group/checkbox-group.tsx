@@ -1,35 +1,13 @@
-import { PropType, Ref, watch, defineComponent } from 'vue'
-import { createName, NormalSizes } from '../utils'
+import { PropType, watch, defineComponent } from 'vue'
 import { createProvider, useState } from '@fect-ui/vue-hooks'
+import { createName } from '../utils'
+import type { NormalSizes } from '../utils'
+import { READONLY_CHECKBOX_KEY } from './type'
+import type { CheckboxEvent } from './type'
+
 import './index.less'
 
 const name = createName('CheckboxGroup')
-
-export const READONLY_CHECKBOX_KEY = 'checkboxKey'
-
-interface CheckboxEeventTarget {
-  checked?: boolean
-  value?: string[]
-}
-
-export interface CheckboxEvent {
-  target: CheckboxEeventTarget
-  stopPropagation: () => void
-  preventDefault: () => void
-  nativeEvent: Event
-}
-
-export type CheckboxGroupProvide = {
-  props: {
-    disabled: boolean
-    modelValue: string[]
-    size: NormalSizes
-    useRow: boolean
-  }
-  parentValue: Ref<string[]>
-  updateParentValue: (val: string, checked: boolean) => void
-  parentChangeHandler: (e: CheckboxEvent) => void
-}
 
 export default defineComponent({
   name,

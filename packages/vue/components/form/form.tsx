@@ -7,8 +7,6 @@ import { createName, useExpose } from '../utils'
 import type { ComponentInstance } from '../utils'
 import type { ValidateCallBack, CallbackErrors } from 'proy'
 
-import './index.less'
-
 const name = createName('Form')
 
 export default defineComponent({

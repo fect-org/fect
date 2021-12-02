@@ -31,12 +31,11 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 export default {
   name: 'ex-default-form',
   setup() {
     const formRef = ref(null)
-
     const formValue = ref({
       input: '',
       checkGroup: [],
@@ -66,7 +65,9 @@ export default {
       },
     }
 
-    const sumbitHandler = () => {}
+    const sumbitHandler = () => {
+      // console.log(formValue.value)
+    }
 
     const resetHandler = () => {}
 

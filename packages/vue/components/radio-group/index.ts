@@ -5,4 +5,4 @@ export const RadioGroup = withInstall(_RadioGroup)
 
 export default RadioGroup
 
-export type { RadioEvent } from './radio-group'
+export type { RadioEvent, RadioEeventTarget } from './type'
