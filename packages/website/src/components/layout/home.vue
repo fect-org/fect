@@ -1,17 +1,17 @@
 <template>
   <div class="fect-doc__home-page">
     <div class="top">
-      <fe-imageBrowser url="https://vue.miaya.art">
+      <fe-image-browser url="https://vue.miaya.art">
         <p>
           Fect is a Vue UI Library with beautifully handcrafted Vercel Component.No design skills required — everything
-          you need to create amazing applications is at your fingertips
+          you need to create amazing applications is at your fingertips.
         </p>
-      </fe-imageBrowser>
+      </fe-image-browser>
     </div>
 
-    <fe-row align="middle" justify="space-around" class="fect-doc__description">
+    <fe-grid-group class="fect-doc__description" justify="space-around" align-items="center" :gap="2">
       <!--  -->
-      <fe-col :span="6">
+      <fe-grid :xs="24" :lg="6" :xl="6" :md="6" :sm="6">
         <fe-link :to="routeHandler('guide')">
           <fe-card shadow hoverable>
             <h4>
@@ -23,9 +23,9 @@
             <p>View the design guidelines.</p>
           </fe-card>
         </fe-link>
-      </fe-col>
+      </fe-grid>
       <!--  -->
-      <fe-col :span="6">
+      <fe-grid :xs="24" :lg="6" :xl="6" :md="6" :sm="6">
         <fe-link :to="routeHandler('components')">
           <fe-card shadow hoverable>
             <h4>
@@ -37,9 +37,9 @@
             <p>Ever-increasing list of concise and aesthetic components.</p>
           </fe-card>
         </fe-link>
-      </fe-col>
+      </fe-grid>
       <!--  -->
-      <fe-col :span="6">
+      <fe-grid :xs="24" :lg="6" :xl="6" :md="6" :sm="6">
         <fe-link :href="routeHandler()" target="_blank">
           <fe-card shadow hoverable>
             <h4>
@@ -51,8 +51,8 @@
             <p>Fect is open sourced and available free under MIT licence.</p>
           </fe-card>
         </fe-link>
-      </fe-col>
-    </fe-row>
+      </fe-grid>
+    </fe-grid-group>
   </div>
 </template>
 
@@ -65,6 +65,7 @@ export default defineComponent({
   name: 'Home',
   setup() {
     const { context } = useProvider<webSiteProvide>(WEB_SITE_KEY)
+
     return {
       routeHandler: context!.parentRouteHandler,
     }
@@ -93,28 +94,26 @@ export default defineComponent({
       }
     }
   }
+
   &__description {
     margin-top: calc(var(--fay-gap) * 5);
-    > .fect-col {
-      height: 150px;
-      .fect-link {
-        display: block;
-        height: inherit;
+    .fect-link {
+      display: block;
+      height: inherit;
+      width: 100%;
+      min-height: 180px;
+      color: initial;
+    }
+    .fect-card {
+      height: 100%;
+      h4 {
+        font-weight: 600;
+        margin: 0;
+        font-size: 1.25rem;
         width: 100%;
-        color: initial;
-      }
-      .fect-card {
-        height: inherit;
-        color: var(--primary-foreground);
-        h4 {
-          font-weight: 600;
-          margin: 0;
-          font-size: 1.25rem;
-          width: 100%;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-        }
+        display: flex;
+        flex-direction: row;
+        align-items: center;
       }
     }
 
@@ -135,6 +134,7 @@ export default defineComponent({
       }
     }
   }
+
   @media only screen and (max-width: 650px) {
     &__home-page {
       top: 30px;
@@ -146,15 +146,6 @@ export default defineComponent({
     }
     &__description {
       margin-top: var(--fay-gap);
-      flex-direction: column;
-      > .fect-col {
-        height: 180px;
-        width: 100% !important;
-        margin: var(--fay-gap-half);
-        &:last-child {
-          margin-bottom: var(--fay-gap);
-        }
-      }
     }
   }
 }
