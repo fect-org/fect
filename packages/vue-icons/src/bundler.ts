@@ -31,8 +31,9 @@ class GenSvg extends EventEmitter {
     super.on('genPackages', async (next) => {
       Object.keys(this.svgMap).map((svg) => {
         const path = join(PACKAGE_PATH, `${svg}.tsx`)
-        const compoent = singleDefine(svg, replaceStyle(this.svgMap[svg]))
-        return outputFileSync(path, compoent)
+        const name = svg.charAt(0).toUpperCase() + svg.slice(1)
+        const component = singleDefine(name, replaceStyle(this.svgMap[svg]))
+        return outputFileSync(path, component)
       })
       await collect()
       await next()
