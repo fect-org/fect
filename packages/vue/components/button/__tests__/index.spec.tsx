@@ -1,6 +1,6 @@
 import Button from '..'
 import { mount } from '@vue/test-utils'
-import { github } from '@fect-ui/vue-icons'
+import { Github } from '@fect-ui/vue-icons'
 
 describe('Button', () => {
   it('should be render as a element', () => {
@@ -83,12 +83,12 @@ describe('Button', () => {
     const wrapper = mount({
       components: {
         [Button.name]: Button,
-        github,
+        Github,
       },
       template: `
       <div class="container">
         <fe-button>
-          <template #icon><github /></template>
+          <template #icon><Github /></template>
             Button
         </fe-button>
       </div>`,

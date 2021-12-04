@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import Rating from '../index'
-import { github } from '@fect-ui/vue-icons'
+import { Github } from '@fect-ui/vue-icons'
 
 describe('Rating', () => {
   it('should be render as a element', () => {
@@ -12,10 +12,10 @@ describe('Rating', () => {
     const wrapper = mount({
       components: {
         [Rating.name]: Rating,
-        github,
+        Github,
       },
       template: `<fe-rating>
-        <template #icon><github /></template>
+        <template #icon><Github /></template>
       </fe-rating>`,
     })
     expect(wrapper.html()).toMatchSnapshot()
