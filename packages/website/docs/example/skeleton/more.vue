@@ -12,7 +12,7 @@
         </div>
       </template>
       <div v-for="(_, i) in 3" :key="i" style="margin-top: 10px">
-        <User />
+        <test-user />
       </div>
     </fe-skeleton>
   </div>
@@ -24,7 +24,7 @@ import User from './user.vue'
 export default {
   name: 'ex-skeleton-more',
   components: {
-    User,
+    [User.name]: User,
   },
   setup() {
     const load = ref(false)

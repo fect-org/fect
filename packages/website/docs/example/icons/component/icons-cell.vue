@@ -1,6 +1,5 @@
 <template>
   <div class="icons-item" @click="onClick(icon)">
-    <!-- <fect-icon :icon="icon" /> -->
     <component :is="icon" />
     <p>{{ icon }}</p>
   </div>

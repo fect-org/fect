@@ -5,14 +5,14 @@
     />
     <div class="names">
       <span class="name">XeryYue</span>
-      <span class="social">音频菜鸡。</span>
+      <span class="social">non</span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'User',
+  name: 'test-user',
 }
 </script>
 

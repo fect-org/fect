@@ -1,18 +1,18 @@
 <template>
   <div>
-    <github color="blue" />
+    <Github color="blue" />
     <fe-spacer inline />
-    <gitlab color="blue" />
+    <Gitlab color="blue" />
   </div>
 </template>
 
 <script>
-import { github, gitlab } from '@fect-ui/vue-icons'
+import { Github, Gitlab } from '@fect-ui/vue-icons'
 export default {
   name: 'ex-icons-color',
   components: {
-    github,
-    gitlab,
+    Github,
+    Gitlab,
   },
 }
 </script>

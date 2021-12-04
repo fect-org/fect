@@ -1101,11 +1101,6 @@
   resolved "https://registry.yarnpkg.com/@fect-ui/themes/-/themes-1.1.0.tgz#68f5dfbdf28a75476e5f0e4abcab3f0e955ba55b"
   integrity sha512-Iyah1UxZijEpdsv3Ce67MNVTqz+6yRCZa2L0xbslskJUvlXFLy70BtNM/pV3rojKb7Wu9YS+sk6CGjB5TmJvRQ==
 
-"@fect-ui/vue-icons@^0.1.7":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@fect-ui/vue-icons/-/vue-icons-0.1.7.tgz#cadac39dd0687d16eb9ed166edfa9335eec0df8c"
-  integrity sha512-mK7yuEEpez+sWOhrrEUB8hV50nWebv5oIZb6gRpm9JbWwrWLZ9VnCNo7qddxeyNOS+1l985pC6jwuDYGrYCGcA==
-
 "@gar/promisify@^1.0.1":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.2.tgz#30aa825f11d438671d585bd44e7fd564535fc210"

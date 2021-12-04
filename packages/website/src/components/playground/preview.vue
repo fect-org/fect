@@ -2,7 +2,7 @@
   <div class="fect-doc__playground-preview" ref="contextRef">
     <div class="fect-doc__playground-operations">
       <copy size="20" @click="copyClickHandler" />
-      <icon-code size="20" @click="previewClickHandler" />
+      <Code size="20" @click="previewClickHandler" />
     </div>
     <div class="raw-content">
       <pre v-show="visible" :style="{ width: previewWidth }"><code ref="previewRef"></code></pre>
@@ -14,12 +14,12 @@
 import { defineComponent, getCurrentInstance, ComponentPublicInstance, ref, watch, onMounted } from 'vue'
 import { useClipboard, useState } from '@fect-ui/vue-hooks'
 import { useResize } from '@fect-ui/vue/components/utils'
-import { code as Code } from '@fect-ui/vue-icons'
+import { Code } from '@fect-ui/vue-icons'
 import Prism from 'prismjs'
 export default defineComponent({
   name: 'Preview',
   components: {
-    iconCode: Code,
+    Code,
   },
   props: {
     code: {
