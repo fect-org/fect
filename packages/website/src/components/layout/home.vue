@@ -96,7 +96,7 @@ export default defineComponent({
   }
 
   &__description {
-    margin-top: calc(var(--fay-gap) * 5);
+    margin-top: calc(var(--fay-gap) * 2.5);
     .fect-link {
       display: block;
       height: inherit;
