@@ -1,3 +1,3 @@
 export * from './color'
-export * from './propTypes'
-export * from './use-theme'
+export * from './prop-types'
+export * from '../composables/use-theme'

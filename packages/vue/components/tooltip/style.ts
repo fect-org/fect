@@ -1,4 +1,8 @@
-import { PlacementTypes, TooltipPosition, ParentDomRect, TolltipIconPosition } from './type'
+import { getDomRect } from '../utils'
+
+import type { ElementRef } from '../utils'
+
+import type { PlacementTypes, TooltipPosition, ParentDomRect, TolltipIconPosition } from './type'
 
 export const queryPlacement = (place: PlacementTypes, rect: ParentDomRect, offset: number) => {
   const positions: Record<PlacementTypes, TooltipPosition> = {
@@ -159,4 +163,19 @@ export const queryArrowPlacement = (
     },
   }
   return positions[place] || positions.top
+}
+
+export const getPosition = (curRef: ElementRef) => {
+  const rect = getDomRect(curRef)
+  const scrollElement = document.documentElement
+
+  return {
+    ...rect,
+    width: rect.width || rect.right - rect.left,
+    height: rect.height || rect.bottom - rect.top,
+    top: rect.top + scrollElement.scrollTop,
+    left: rect.left + scrollElement.scrollLeft,
+    right: rect.right + scrollElement.scrollLeft,
+    bottom: rect.bottom + scrollElement.scrollTop,
+  }
 }

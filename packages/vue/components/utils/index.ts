@@ -1,6 +1,5 @@
 export * from './create'
 export * from './format'
-export * from './_utils'
+export * from './composables'
 export * from './theme'
-export * from './getposition'
 export * from './interface'

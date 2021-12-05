@@ -1,6 +1,10 @@
-// theme provide light and dark
+/**
+ * provide fect-ui default theme system .
+ * Author: kanno
+ */
 
 import { watch } from 'vue'
+import { isBrowser } from '../format'
 import { useState } from '@fect-ui/vue-hooks'
 export type Theme = 'light-theme' | 'dark-theme'
 
@@ -13,9 +17,9 @@ export const useTheme = () => {
     theme,
     (pre) => {
       localStorage.setItem('theme', pre)
-      if (typeof document === 'undefined') return
-      const root = document.querySelector('html')
-      root?.setAttribute('class', theme.value)
+      if (!isBrowser()) return
+      const root = document.querySelector('html') as HTMLElement
+      root.setAttribute('class', theme.value)
     },
     { immediate: true }
   )

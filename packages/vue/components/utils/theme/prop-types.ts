@@ -1,10 +1,4 @@
-const tuple = <T extends string[]>(...args: T): T => {
-  const noStr = [...args].map((_) => typeof _ !== 'string').includes(true)
-  if (noStr) {
-    throw new Error('[Fect] type Error. type is not string!')
-  }
-  return args
-}
+import { tuple } from '../format'
 
 const normalSizes = tuple('mini', 'small', 'medium', 'large')
 
@@ -25,7 +19,6 @@ const placeTypes = tuple('topLeft', 'topRight', 'bottomLeft', 'bottomRight')
 const loadingTypes = tuple('default', 'cube', 'wave')
 
 export {
-  tuple,
   normalSizes,
   normalTypes,
   themeTypes,

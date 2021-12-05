@@ -1,6 +1,7 @@
 import Toast from '../toast'
-import { NormalTypes } from '../../utils/theme/propTypes'
 import { mount } from '@vue/test-utils'
+import type { NormalTypes } from '../../utils'
+
 describe('Toast', () => {
   it('should render as element', () => {
     const wrapper = mount(Toast, {
