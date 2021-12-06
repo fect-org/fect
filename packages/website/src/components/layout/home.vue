@@ -106,6 +106,7 @@ export default defineComponent({
     }
     .fect-card {
       height: 100%;
+      color: var(--primary-foreground);
       h4 {
         font-weight: 600;
         margin: 0;

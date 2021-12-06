@@ -33,6 +33,8 @@ export default defineComponent({
 
     const getLang = () => route.path.split('/')[1]
 
+    const getNav = () => route.path.split('/')[2]
+
     const routeList = computed(() => {
       if (context!.deploy.value === 'guide') {
         if (getLang() === 'zh-cn') return zhGuideRoutes
@@ -44,7 +46,7 @@ export default defineComponent({
 
     const to = (route: string) => {
       const lang = getLang()
-      return `/${lang}/components/${route.toLowerCase()}`
+      return `/${lang}/${getNav()}/${route.toLowerCase()}`
     }
 
     return {

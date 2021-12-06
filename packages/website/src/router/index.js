@@ -4,8 +4,6 @@ import { enRoutes } from './en-us'
 
 const routes = [{ path: '/', redirect: { path: '/zh-cn' } }, ...zhRoutes, ...enRoutes]
 
-console.log(routes)
-
 const router = createRouter({
   history: createWebHistory(),
   routes,
