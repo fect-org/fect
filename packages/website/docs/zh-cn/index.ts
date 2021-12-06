@@ -3,9 +3,8 @@ export const zhGuideRoutes: Routes = [
   {
     name: '快速上手',
     children: [
-      { title: '安装', route: 'Install' },
-      { title: '按需导入', route: 'Into' },
-      { title: '什么是 Fect UI', route: 'Introduce' },
+      { title: '什么是 Fect UI', route: 'Introduction' },
+      { title: '快速上手', route: 'QuickStart' },
     ],
   },
   { name: '主题', children: [{ title: '色彩', route: 'Colors' }] },

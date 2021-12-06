@@ -1,24 +1,24 @@
 # 导入
 
-### 配置
+## 配置
 
 <fe-dot type="success" />方式一:手动按需引入组件
 
 可能在项目中您并不需要把组件全部加载进入到您的项目,`FectUI`提供了按需导入的功能。您可以选择手动按需引入组件
 
-```javascript
+```js
 import { createApp } from 'vue'
 import App from './App.vue'
 import Button from '@fect-ui/vue/lib/button'
 import '@fect-ui/themes'
-import '@fect-ui/vue/lib/Button/index.css'
+import '@fect-ui/vue/lib/Button/style'
 
 createApp(App).use(Button).mount('#app')
 ```
 
 <fe-dot type="warning" />方式二:通过 babel 插件按需引入组件
 
-babel-plugin-import 是一款 babel 插件，它会在编译过程中将 import 语句自动转换为按需引入的方式。
+`babel-plugin-import` 是一款 babel 插件，它会在编译过程中将 import 语句自动转换为按需引入的方式。
 
 ```shell
 npm i babel-plugin-import -D
@@ -32,9 +32,9 @@ npm i babel-plugin-import -D
     [
       'import',
      {
-        libraryName: '@fect-ui/vue',
-        libraryDirectory: 'es',
-        style: (name) => `${name}/index.css`,
+       libraryName: '@fect-ui/vue',
+        libraryDirectory: 'lib',
+        style: (name) => `${name}/style/index`,
       },
     ],
   ],
@@ -43,12 +43,12 @@ npm i babel-plugin-import -D
 
 <fe-dot type="warning" /> 在 Vite 项目中按需引入组件
 
-vite-plugin-style-import 是一款类似于 babel-plugin-import 的 vite 插件
+`vite-plugin-style-import` 是一款类似于 `babel-plugin-import` 的 vite 插件
 由于需要`babel`的支持所以需要在 vite 项目里面安装
 
-<fe-snippet text="yarn add @babel/runtime -D"  width="300px" />
-<fe-spacer/>
-<fe-snippet text="yarn add vite-plugin-style-import -D"  width="300px" />
+```shell
+$ yarn add vite-plugin-style-import -D
+```
 
 ```js
 import { defineConfig } from 'vite'
@@ -77,4 +77,15 @@ export default defineConfig({
 ```javascript
 import '@fect-ui/themes'
 import { Tab, Tabs } from '@fect-ui/vue'
+```
+
+<fe-dot type="success" /> 引入全部
+
+```js
+import { createApp } from 'vue'
+import App from './App.vue'
+import Fect from '@fect-ui/vue'
+import '@fect-ui/vue/lib/main.css'
+
+createApp(App).use(Fect).mount('#app')
 ```

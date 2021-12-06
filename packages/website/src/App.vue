@@ -31,7 +31,7 @@ export default {
 
       if (type === 'guide') {
         return {
-          path: `/${lang}/guide/introduce`,
+          path: `/${lang}/guide/introduction`,
         }
       }
       if (type === 'components') {

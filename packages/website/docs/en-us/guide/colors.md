@@ -1,38 +1,36 @@
-# 色彩
+# Colors
 
-默认色彩展示
+Default colors for themes.
 
 <playground
-  title="默认的"
   component="ex-colors-default"
-  desc="你可以在任意处使用这些 CSS 变量。 (这些 CSS 变量的值会随着主题变化而改变)"
   :displayPreview="false"
 />
 
-### 状态
+## State
 
-使用精心设计的色彩体现组件的状态变化(这些 CSS 变量的值不会变化)
+Use different colors to express more emotional changes.
 
 <playground
-  title="成功"
+  title="Success"
   component="ex-colors-success"
   :displayPreview="false"
 />
 
 <playground
-  title="警告"
+  title="Warning"
   component="ex-colors-warning"
   :displayPreview="false"
 />
 
 <playground
-  title="错误的"
+  title="Error"
   component="ex-colors-error"
   :displayPreview="false"
 />
 
 <playground
-  title="高亮"
+  title="HeighLight"
   component="ex-colors-light"
   :displayPreview="false"
 />

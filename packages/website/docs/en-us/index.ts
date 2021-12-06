@@ -4,9 +4,8 @@ export const enGuideRoutes: Routes = [
   {
     name: '快速上手',
     children: [
-      { title: 'Installation', route: 'Install' },
-      { title: 'Quick Start', route: 'Into' },
-      { title: 'About', route: 'Introduce' },
+      { title: 'Introduction', route: 'Introduction' },
+      { title: 'Quick Start', route: 'QuickStart' },
     ],
   },
   { name: 'Theme', children: [{ title: 'Color', route: 'Colors' }] },
