@@ -24,14 +24,20 @@ export default {
 
     const { provider } = createProvider(WEB_SITE_KEY)
 
+    const getLang = () => route.path.split('/')[1]
+
     const parentRouteHandler = (type) => {
+      const lang = getLang()
+
       if (type === 'guide') {
         return {
-          name: 'Introduce',
+          path: `/${lang}/guide/introduce`,
         }
       }
       if (type === 'components') {
-        return { name: 'Button' }
+        return {
+          path: `/${lang}/components/button`,
+        }
       }
       if (type === 'home') return { path: '/' }
 
@@ -44,7 +50,7 @@ export default {
       () => route.path,
       (pre) => {
         if (pre === '/') return
-        const deploy = pre.split('/')[2]
+        const deploy = pre.split('/')[2] || 'home'
         setDeploy(deploy)
       },
       { immediate: true }

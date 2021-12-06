@@ -8,9 +8,9 @@
     </fe-col>
     <fe-col class="fect-doc__article" :span="20">
       <nav>
-        <fe-link :class="setActive('guide')" :to="routeHandler('guide')">指南</fe-link>
-        <fe-link :class="setActive('components')" :to="routeHandler('components')">组件</fe-link>
-        <fe-link>Engilsh</fe-link>
+        <fe-link :class="setActive('guide')" :to="routeHandler('guide')">{{ guide }}</fe-link>
+        <fe-link :class="setActive('components')" :to="routeHandler('components')">{{ components }}</fe-link>
+        <span style="cursor: pointer" @click="setLangTo">{{ lang }}</span>
         <div class="fect-doc__svg-card" @click="changeHandler">
           <sun v-show="theme === 'light-theme'" size="20" />
           <moon v-show="theme === 'dark-theme'" size="20" />
@@ -26,7 +26,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useTheme } from '@fect-ui/vue/components/utils'
 import { webSiteProvide, WEB_SITE_KEY } from '../utils/website-context'
 import { useProvider } from '@fect-ui/vue-hooks'
@@ -34,7 +35,8 @@ import { useProvider } from '@fect-ui/vue-hooks'
 export default defineComponent({
   setup(props) {
     const { theme, themeChange } = useTheme()
-
+    const route = useRoute()
+    const router = useRouter()
     const { context } = useProvider<webSiteProvide>(WEB_SITE_KEY)
     const changeHandler = () => themeChange()
 
@@ -43,11 +45,47 @@ export default defineComponent({
       return ''
     }
 
+    const getLang = () => route.path.split('/')[1]
+
+    const setLangTo = () => {
+      const lang = getLang()
+      const previousPath = route.path.split('/')
+      if (lang === 'zh-cn') {
+        previousPath[1] = 'en-us'
+      } else {
+        previousPath[1] = 'zh-cn'
+      }
+      const nextPath = previousPath.join('/')
+      return router.replace(nextPath)
+    }
+
+    const guide = computed(() => {
+      const lang = getLang()
+      if (lang === 'zh-cn') return '指南'
+      return 'Guide'
+    })
+
+    const components = computed(() => {
+      const lang = getLang()
+      if (lang === 'zh-cn') return '组件'
+      return 'Components'
+    })
+
+    const lang = computed(() => {
+      const lang = getLang()
+      if (lang === 'zh-cn') return 'English'
+      return '中文文档'
+    })
+
     return {
       theme,
+      guide,
+      components,
+      lang,
       changeHandler,
       setActive,
       routeHandler: context!.parentRouteHandler,
+      setLangTo,
     }
   },
 })

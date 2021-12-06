@@ -3,16 +3,17 @@
     <div v-for="(route, idx) in routeList" :key="idx + route.name" class="fect-doc__route-content">
       <span class="title">{{ route.name }}</span>
       <div class="fect-doc__route-children" v-for="_ in route.children" :key="_.title">
-        <active-cate :to="_.route.name" :routeName="_.title" :color="setActive(_.route.name)" />
+        <active-cate :to="to(_.route)" :routeName="_.title" :color="setActive(_.route)" />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { defineComponent, computed } from 'vue'
 import { zhRoutes, zhGuideRoutes } from '../../../docs/zh-cn'
+import { enGuideRoutes, enRoutes } from '../../../docs/en-us'
 import ActiveCate from './active-cate.vue'
 import { useProvider } from '@fect-ui/vue-hooks'
 import { webSiteProvide, WEB_SITE_KEY } from '../utils/website-context'
@@ -22,20 +23,34 @@ export default defineComponent({
   name: 'SideBar',
   setup() {
     const { context } = useProvider<webSiteProvide>(WEB_SITE_KEY)
+    const route = useRoute()
     const router = useRouter()
+
     const setActive = (route: string) => {
       const active = router.currentRoute.value.name === route
       return active
     }
 
+    const getLang = () => route.path.split('/')[1]
+
     const routeList = computed(() => {
-      if (context!.deploy.value === 'guide') return zhGuideRoutes
-      return zhRoutes
+      if (context!.deploy.value === 'guide') {
+        if (getLang() === 'zh-cn') return zhGuideRoutes
+        return enGuideRoutes
+      }
+      if (getLang() === 'zh-cn') return zhRoutes
+      return enRoutes
     })
+
+    const to = (route: string) => {
+      const lang = getLang()
+      return `/${lang}/components/${route.toLowerCase()}`
+    }
 
     return {
       routeList,
       setActive,
+      to,
     }
   },
 })
