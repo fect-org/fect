@@ -26,8 +26,9 @@ export default defineComponent({
     const route = useRoute()
     const router = useRouter()
 
-    const setActive = (route: string) => {
-      const active = router.currentRoute.value.name === route
+    const setActive = (rt: string) => {
+      const pathArr = route.path.split('/')
+      const active = pathArr[pathArr.length - 1] === rt.toLocaleLowerCase()
       return active
     }
 

@@ -1,6 +1,16 @@
 import type { Routes } from '../interface'
 
-export const enGuideRoutes: Routes = []
+export const enGuideRoutes: Routes = [
+  {
+    name: '快速上手',
+    children: [
+      { title: 'Installation', route: 'Install' },
+      { title: 'Quick Start', route: 'Into' },
+      { title: 'About', route: 'Introduce' },
+    ],
+  },
+  { name: 'Theme', children: [{ title: 'Color', route: 'Colors' }] },
+]
 
 export const enRoutes: Routes = [
   {
@@ -8,7 +18,8 @@ export const enRoutes: Routes = [
     children: [
       { title: 'Button', route: 'Button' },
       { title: 'Code', route: 'Code' },
-      { title: 'Icon', route: 'Icons' },
+      { title: 'Icons', route: 'Icons' },
+      { title: 'Snippet', route: 'Snippet' },
     ],
   },
   {
@@ -16,7 +27,14 @@ export const enRoutes: Routes = [
     children: [
       { title: 'Grid', route: 'Grid' },
       { title: 'Layout', route: 'Layout' },
-      // { title: 'Spacer', route: 'Spacer' },
+      { title: 'Spacer', route: 'Spacer' },
+    ],
+  },
+  {
+    name: 'SURFACES',
+    children: [
+      { title: 'Card', route: 'Card' },
+      { title: 'Collapse', route: 'Collapse' },
     ],
   },
   {
@@ -25,6 +43,10 @@ export const enRoutes: Routes = [
       { title: 'Checkbox', route: 'Checkbox' },
       { title: 'Form', route: 'Form' },
       { title: 'Input', route: 'Input' },
+      { title: 'Radio', route: 'Radio' },
+      { title: 'Rating', route: 'Rating' },
+      { title: 'Select', route: 'Select' },
+      { title: 'Switch', route: 'Switch' },
     ],
   },
   {
@@ -33,7 +55,14 @@ export const enRoutes: Routes = [
       { title: 'Avatar', route: 'Avatar' },
       { title: 'Badge', route: 'Badge' },
       { title: 'Capacity', route: 'Capacity' },
+      { title: 'Popover', route: 'Popover' },
+      { title: 'Slider', route: 'Slider' },
+      { title: 'Tooltip', route: 'Tooltip' },
       { title: 'Dot', route: 'Dot' },
+      { title: 'Image', route: 'Image' },
+      { title: 'Skeleton', route: 'Skeleton' },
+      { title: 'Tag', route: 'Tag' },
+      { title: 'Swipe', route: 'Swipe' },
     ],
   },
   {
@@ -42,6 +71,9 @@ export const enRoutes: Routes = [
       { title: 'Drawer', route: 'Drawer' },
       { title: 'Loading', route: 'Loading' },
       { title: 'Modal', route: 'Modal' },
+      { title: 'Spinner', route: 'Spinner' },
+      { title: 'Progress', route: 'Progress' },
+      { title: 'Toast', route: 'Toast' },
     ],
   },
   {
@@ -49,6 +81,8 @@ export const enRoutes: Routes = [
     children: [
       { title: 'Breadcrumbs', route: 'Breadcrumbs' },
       { title: 'Link', route: 'Link' },
+      { title: 'Pagination', route: 'Pagination' },
+      { title: 'Tabs', route: 'Tabs' },
       { title: 'BackTop', route: 'BackTop' },
     ],
   },
