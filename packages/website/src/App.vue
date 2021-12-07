@@ -20,6 +20,7 @@ export default {
   },
   setup() {
     const [currentNav, setCurrentNav] = useState<Nav>('home')
+    const [navTag, setNavTag] = useState<Nav>('home')
     const [navLink, setNavLink] = useState<NavLink | string>('')
     const [currentLang, setCurrentLang] = useState<'zh-cn' | 'en-us'>('zh-cn')
     const [mobile, setMobile] = useState(false)
@@ -38,7 +39,6 @@ export default {
       const lang = previous[1]
       if (pre === 'components') return setNavLink({ path: `/${lang}/components/button` })
       if (pre === 'guide') return setNavLink({ path: `/${lang}/guide/introduction` })
-      if (pre === 'home') return setNavLink({ path: `/${currentLang.value}` })
     })
 
     watch(navLink, (pre) => {
@@ -51,7 +51,17 @@ export default {
       router.replace(previous.join('/'))
     })
 
+    watch(
+      () => route.path,
+      (pre) => {
+        const previous = pre.split('/')
+        const tag = previous[2] as Nav
+        setNavTag(tag)
+      }
+    )
+
     provider({
+      navTag,
       mobile,
       navLink,
       currentLang,

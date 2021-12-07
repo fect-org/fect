@@ -1,6 +1,6 @@
 <template>
   <fe-grid-group class="fect-doc__navbar" align-items="center">
-    <fe-grid class="fect-doc__aside" :xs="6" :lg="6" :xl="6" :md="6" :sm="6">
+    <fe-grid class="fect-doc__aside" :xs="6" :lg="6" :xl="6" :md="6" :sm="6" justify="center">
       <div class="link" @click="logoHandler">
         <div class="logo"><Triangle /></div>
         <h1>Fect</h1>
@@ -27,6 +27,7 @@
 
 <script lang="ts">
 import { defineComponent, watch } from 'vue'
+import { useRouter } from 'vue-router'
 import { useState } from '@fect-ui/vue-hooks'
 import { useTheme } from '@fect-ui/vue/components/utils'
 import { useWebsiteContext } from '../../website-context'
@@ -35,10 +36,13 @@ export default defineComponent({
   setup(props) {
     const enNavs = ['Guide', 'Components', '中文文档']
     const zhNavs = ['指南', '组件', 'English']
+    const navAttrs = ['guide', 'components']
     const { theme, themeChange } = useTheme()
     const [currentIdx, setCurrentIdx] = useState<number | null>()
     const [navs, setNavs] = useState<string[]>(zhNavs)
     const { context } = useWebsiteContext()
+
+    const router = useRouter()
 
     const changeHandler = () => themeChange()
 
@@ -49,7 +53,7 @@ export default defineComponent({
 
     const setActive = (val: number) => {
       if (val === 2) return ''
-      if (val === currentIdx.value) return 'active'
+      if (navAttrs[val] === context!.navTag.value) return 'active'
       return ''
     }
 
@@ -60,8 +64,9 @@ export default defineComponent({
     })
 
     const logoHandler = () => {
-      context!.updateCurrentNav('home')
+      router.push(`/${context!.currentLang.value}`)
       setCurrentIdx(null)
+      context!.updateCurrentNav('')
     }
 
     watch(
@@ -75,6 +80,7 @@ export default defineComponent({
     return {
       theme,
       navs,
+      navAttrs,
       navLink: context!.navLink,
       changeHandler,
       navClickHandler,
@@ -106,6 +112,7 @@ export default defineComponent({
       display: flex;
       color: initial;
       align-items: center;
+      cursor: pointer;
     }
     .logo {
       height: 32px;
@@ -142,6 +149,7 @@ export default defineComponent({
         display: inline-block;
         padding: 0 var(--fay-gap-half);
         height: 100%;
+        cursor: pointer;
         &:active {
           color: inherit;
         }

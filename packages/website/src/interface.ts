@@ -1,9 +1,10 @@
 import { Ref } from 'vue'
 
-export type NavBar = 'home' | 'components' | 'guide'
+export type NavBar = 'components' | 'guide' | ''
 
 export interface WebsiteContext {
   mobile: Ref<boolean>
+  navTag: Ref<NavBar>
   currentLang: Ref<'zh-cn' | 'en-us'>
   currentNav: Ref<NavBar>
   navLink: Ref<NavLink | string>

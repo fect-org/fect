@@ -2,7 +2,7 @@ import type { Routes } from '../interface'
 
 export const enGuideRoutes: Routes = [
   {
-    name: '快速上手',
+    name: 'GETTING STARTED',
     children: [
       { title: 'Introduction', route: 'Introduction' },
       { title: 'Quick Start', route: 'QuickStart' },
