@@ -5,56 +5,60 @@
   </div>
 </template>
 
-<script>
-import NavBar from './components/nav-bar/index.vue'
-import { useState, createProvider } from '@fect-ui/vue-hooks'
-import { useRoute } from 'vue-router'
+<script lang="ts">
 import { watch } from 'vue'
-import { WEB_SITE_KEY } from './components/utils/website-context'
+import { useState } from '@fect-ui/vue-hooks'
+import { useRoute, useRouter } from 'vue-router'
 import { useResize } from '@fect-ui/vue/components/utils'
+import { createWebsiteContext } from './website-context'
+import NavBar from './components/nav-bar/index.vue'
+import { NavBar as Nav, NavLink } from './interface'
+
 export default {
   components: {
     NavBar,
   },
   setup() {
-    const route = useRoute()
-    const [deploy, setDeploy] = useState('home')
+    const [currentNav, setCurrentNav] = useState<Nav>('home')
+    const [navLink, setNavLink] = useState<NavLink | string>('')
+    const [currentLang, setCurrentLang] = useState<'zh-cn' | 'en-us'>('zh-cn')
     const [mobile, setMobile] = useState(false)
     const { width } = useResize()
 
-    const { provider } = createProvider(WEB_SITE_KEY)
+    const { provider } = createWebsiteContext()
+    const route = useRoute()
+    const router = useRouter()
 
-    const getLang = () => route.path.split('/')[1]
+    const updateCurrentNav = (nav: Nav) => setCurrentNav(nav)
 
-    const parentRouteHandler = (type) => {
-      const lang = getLang()
+    const updateCurrentLang = () => setCurrentLang(currentLang.value === 'en-us' ? 'zh-cn' : 'en-us')
 
-      if (type === 'guide') {
-        return {
-          path: `/${lang}/guide/introduction`,
-        }
-      }
-      if (type === 'components') {
-        return {
-          path: `/${lang}/components/button`,
-        }
-      }
-      if (type === 'home') return { path: '/' }
+    watch(currentNav, (pre) => {
+      const previous = route.path.split('/')
+      const lang = previous[1]
+      if (pre === 'components') return setNavLink({ path: `/${lang}/components/button` })
+      if (pre === 'guide') return setNavLink({ path: `/${lang}/guide/introduction` })
+      if (pre === 'home') return setNavLink({ path: `/${currentLang.value}` })
+    })
 
-      return 'https://github.com/fay-org/fect'
-    }
+    watch(navLink, (pre) => {
+      return router.push(pre)
+    })
 
-    provider({ deploy, parentRouteHandler, mobile })
+    watch(currentLang, (pre) => {
+      const previous = route.path.split('/')
+      previous[1] = pre
+      router.replace(previous.join('/'))
+    })
 
-    watch(
-      () => route.path,
-      (pre) => {
-        if (pre === '/') return
-        const deploy = pre.split('/')[2] || 'home'
-        setDeploy(deploy)
-      },
-      { immediate: true }
-    )
+    provider({
+      mobile,
+      navLink,
+      currentLang,
+      currentNav,
+      updateCurrentNav,
+      updateCurrentLang,
+    })
 
     watch(
       width,

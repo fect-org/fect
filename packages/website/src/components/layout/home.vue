@@ -12,7 +12,7 @@
     <fe-grid-group class="fect-doc__description" justify="space-around" align-items="center" :gap="2">
       <!--  -->
       <fe-grid :xs="24" :lg="6" :xl="6" :md="6" :sm="6">
-        <fe-link :to="routeHandler('guide')">
+        <fe-link :to="navLink" @click="updateCurrentNav('guide')">
           <fe-card shadow hoverable>
             <h4>
               <div class="feature_icon">
@@ -26,7 +26,7 @@
       </fe-grid>
       <!--  -->
       <fe-grid :xs="24" :lg="6" :xl="6" :md="6" :sm="6">
-        <fe-link :to="routeHandler('components')">
+        <fe-link :to="navLink" @click="updateCurrentNav('components')">
           <fe-card shadow hoverable>
             <h4>
               <div class="feature_icon">
@@ -40,7 +40,7 @@
       </fe-grid>
       <!--  -->
       <fe-grid :xs="24" :lg="6" :xl="6" :md="6" :sm="6">
-        <fe-link :href="routeHandler()" target="_blank">
+        <fe-link href="https://github.com/fay-org/fect" target="_blank">
           <fe-card shadow hoverable>
             <h4>
               <div class="feature_icon">
@@ -58,16 +58,16 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { webSiteProvide, WEB_SITE_KEY } from '../utils/website-context'
-import { useProvider } from '@fect-ui/vue-hooks'
+import { useWebsiteContext } from '../../website-context'
 
 export default defineComponent({
   name: 'Home',
   setup() {
-    const { context } = useProvider<webSiteProvide>(WEB_SITE_KEY)
+    const { context } = useWebsiteContext()
 
     return {
-      routeHandler: context!.parentRouteHandler,
+      navLink: context!.navLink,
+      updateCurrentNav: context!.updateCurrentNav,
     }
   },
 })
