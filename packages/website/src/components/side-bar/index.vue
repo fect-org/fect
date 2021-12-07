@@ -3,39 +3,57 @@
     <div v-for="(route, idx) in routeList" :key="idx + route.name" class="fect-doc__route-content">
       <span class="title">{{ route.name }}</span>
       <div class="fect-doc__route-children" v-for="_ in route.children" :key="_.title">
-        <active-cate :to="_.route.name" :routeName="_.title" :color="setActive(_.route.name)" />
+        <active-cate
+          @click="sideBarClickHandler(_.route)"
+          :to="to(_.route)"
+          :routeName="_.title"
+          :color="setActive(_.route)"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { useRouter } from 'vue-router'
 import { defineComponent, computed } from 'vue'
+import { useState } from '@fect-ui/vue-hooks'
 import { zhRoutes, zhGuideRoutes } from '../../../docs/zh-cn'
+import { enGuideRoutes, enRoutes } from '../../../docs/en-us'
 import ActiveCate from './active-cate.vue'
-import { useProvider } from '@fect-ui/vue-hooks'
-import { webSiteProvide, WEB_SITE_KEY } from '../utils/website-context'
+import { useWebsiteContext } from '../../website-context'
 
 export default defineComponent({
   components: { ActiveCate },
   name: 'SideBar',
   setup() {
-    const { context } = useProvider<webSiteProvide>(WEB_SITE_KEY)
-    const router = useRouter()
-    const setActive = (route: string) => {
-      const active = router.currentRoute.value.name === route
-      return active
-    }
+    const { context } = useWebsiteContext()
+
+    const [currentName, setCurrentName] = useState<string>('')
+
+    const sideBarClickHandler = (rt: string) => setCurrentName(rt)
+
+    const setActive = (rt: string) => rt === currentName.value
 
     const routeList = computed(() => {
-      if (context!.deploy.value === 'guide') return zhGuideRoutes
-      return zhRoutes
+      const { currentNav, currentLang } = context!
+      if (currentNav.value === 'components') {
+        if (currentLang.value === 'en-us') return enRoutes
+        return zhRoutes
+      }
+      if (currentLang.value === 'en-us') return enGuideRoutes
+      return zhGuideRoutes
     })
+
+    const to = (route: string) => {
+      const { currentLang, currentNav } = context!
+      return `/${currentLang.value}/${currentNav.value}/${route.toLowerCase()}`
+    }
 
     return {
       routeList,
       setActive,
+      sideBarClickHandler,
+      to,
     }
   },
 })

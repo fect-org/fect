@@ -4,8 +4,6 @@
 
 ### 默认的
 
-你可以指定进度条在任何范围内的颜色
-
 :::playground
 
 radio/default.vue
@@ -15,15 +13,14 @@ radio/default.vue
 ### 组
 
 一组可控选择的数值
+
 :::playground
 
 radio/group.vue
 
 :::
 
-### 动态色彩
-
-你可以指定进度条在任何范围内的颜色
+### 更多的
 
 :::playground
 

@@ -1,53 +1,91 @@
 <template>
-  <fe-row class="fect-doc__navbar" align="middle">
-    <fe-col :span="4" class="fect-doc__aside">
-      <fe-link :to="routeHandler('home')">
-        <div class="logo"><triangle /></div>
+  <fe-grid-group class="fect-doc__navbar" align-items="center">
+    <fe-grid class="fect-doc__aside" :xs="6" :lg="6" :xl="6" :md="6" :sm="6" justify="center">
+      <div class="link" @click="logoHandler">
+        <div class="logo"><Triangle /></div>
         <h1>Fect</h1>
-      </fe-link>
-    </fe-col>
-    <fe-col class="fect-doc__article" :span="20">
+      </div>
+    </fe-grid>
+    <fe-grid class="fect-doc__article" :xs="17" :lg="17" :xl="17" :md="17" :sm="17">
       <nav>
-        <fe-link :class="setActive('guide')" :to="routeHandler('guide')">指南</fe-link>
-        <fe-link :class="setActive('components')" :to="routeHandler('components')">组件</fe-link>
-        <fe-link>Engilsh</fe-link>
+        <div class="link" v-for="(nav, idx) in navs" :key="nav" @click="navClickHandler(idx)" :class="setActive(idx)">
+          {{ nav }}
+        </div>
         <div class="fect-doc__svg-card" @click="changeHandler">
-          <sun v-show="theme === 'light-theme'" size="20" />
-          <moon v-show="theme === 'dark-theme'" size="20" />
+          <Sun v-show="theme === 'light-theme'" size="20" />
+          <Moon v-show="theme === 'dark-theme'" size="20" />
         </div>
         <div class="fect-doc__svg-card">
-          <fe-link :href="routeHandler()" target="_blank">
-            <github size="20" />
+          <fe-link href="https://github.com/fay-org/fect">
+            <Github size="20" />
           </fe-link>
         </div>
       </nav>
-    </fe-col>
-  </fe-row>
+    </fe-grid>
+  </fe-grid-group>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, watch } from 'vue'
+import { useRouter } from 'vue-router'
+import { useState } from '@fect-ui/vue-hooks'
 import { useTheme } from '@fect-ui/vue/components/utils'
-import { webSiteProvide, WEB_SITE_KEY } from '../utils/website-context'
-import { useProvider } from '@fect-ui/vue-hooks'
+import { useWebsiteContext } from '../../website-context'
 
 export default defineComponent({
   setup(props) {
+    const enNavs = ['Guide', 'Components', '中文文档']
+    const zhNavs = ['指南', '组件', 'English']
+    const navAttrs = ['guide', 'components']
     const { theme, themeChange } = useTheme()
+    const [currentIdx, setCurrentIdx] = useState<number | null>()
+    const [navs, setNavs] = useState<string[]>(zhNavs)
+    const { context } = useWebsiteContext()
 
-    const { context } = useProvider<webSiteProvide>(WEB_SITE_KEY)
+    const router = useRouter()
+
     const changeHandler = () => themeChange()
 
-    const setActive = (val: string) => {
-      if (val === context!.deploy.value) return 'active'
+    const navClickHandler = (idx: number) => {
+      setCurrentIdx(idx)
+      if (idx === 2) context!.updateCurrentLang()
+    }
+
+    const setActive = (val: number) => {
+      if (val === 2) return ''
+      if (navAttrs[val] === context!.navTag.value) return 'active'
       return ''
     }
 
+    watch(currentIdx, (pre) => {
+      const { updateCurrentNav } = context!
+      if (pre === 0) updateCurrentNav('guide')
+      if (pre === 1) updateCurrentNav('components')
+    })
+
+    const logoHandler = () => {
+      router.push(`/${context!.currentLang.value}`)
+      setCurrentIdx(null)
+      context!.updateCurrentNav('')
+    }
+
+    watch(
+      () => context!.currentLang.value,
+      (pre) => {
+        if (pre === 'en-us') return setNavs(enNavs)
+        return setNavs(zhNavs)
+      }
+    )
+
     return {
       theme,
+      navs,
+      navAttrs,
+      navLink: context!.navLink,
       changeHandler,
+      navClickHandler,
       setActive,
-      routeHandler: context!.parentRouteHandler,
+      logoHandler,
     }
   },
 })
@@ -70,9 +108,11 @@ export default defineComponent({
   }
   &__aside {
     height: inherit;
-    > .fect-link {
+    > .link {
+      display: flex;
       color: initial;
       align-items: center;
+      cursor: pointer;
     }
     .logo {
       height: 32px;
@@ -80,7 +120,7 @@ export default defineComponent({
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-right: var(--fay-gap);
+      margin-right: var(--fay-gap-half);
       box-shadow: var(--fay-shadowSmall);
       border-radius: 50%;
       svg {
@@ -100,17 +140,16 @@ export default defineComponent({
   }
   &__article {
     height: 100%;
-    align-items: center;
-    display: flex;
     > nav {
       font-size: 14px;
-      text-align: center;
       height: inherit;
       margin-left: auto;
       line-height: 64px;
-      > .fect-link {
-        padding: 0 var(--fay-gap);
+      > .link {
+        display: inline-block;
+        padding: 0 var(--fay-gap-half);
         height: 100%;
+        cursor: pointer;
         &:active {
           color: inherit;
         }
@@ -144,38 +183,15 @@ export default defineComponent({
       transform: translate(0, 25%);
     }
   }
+}
 
-  @media only screen and (max-width: 650px) {
+@media only screen and (max-width: 650px) {
+  .fect-doc {
     &__navbar {
       position: relative;
     }
-    &__article {
-      > nav {
-        > .fect-link {
-          padding: 0 var(--fay-gap-half);
-          height: 100%;
-        }
-      }
-    }
     &__svg-card {
-      padding: 0 var(--fay-gap-half);
-    }
-  }
-
-  @media only screen and (min-width: 1440px) {
-    &__navbar {
-      padding: 0;
-      margin: 0 auto;
-      padding: 0 calc(var(--fay-gap) * 2);
-    }
-    &__aside {
-      margin-left: 5% !important;
-    }
-    &__article {
-      > nav {
-        box-sizing: border-box;
-        padding-right: 5%;
-      }
+      display: none;
     }
   }
 }

@@ -23,7 +23,7 @@ export default defineComponent({
   setup(props) {
     const pushTo = computed(() => {
       return {
-        name: props.to,
+        path: props.to,
       }
     })
     return { pushTo }
