@@ -27,7 +27,6 @@
 
 <script lang="ts">
 import { defineComponent, watch } from 'vue'
-import { useRouter } from 'vue-router'
 import { useState } from '@fect-ui/vue-hooks'
 import { useTheme } from '@fect-ui/vue/components/utils'
 import { useWebsiteContext } from '../../website-context'
@@ -41,8 +40,6 @@ export default defineComponent({
     const [currentIdx, setCurrentIdx] = useState<number | null>()
     const [navs, setNavs] = useState<string[]>(zhNavs)
     const { context } = useWebsiteContext()
-
-    const router = useRouter()
 
     const changeHandler = () => themeChange()
 
@@ -64,7 +61,6 @@ export default defineComponent({
     })
 
     const logoHandler = () => {
-      router.push(`/${context!.currentLang.value}`)
       setCurrentIdx(null)
       context!.updateCurrentNav('')
     }
