@@ -39,6 +39,7 @@ export default {
       const lang = previous[1]
       if (pre === 'components') return setNavLink({ path: `/${lang}/components/button` })
       if (pre === 'guide') return setNavLink({ path: `/${lang}/guide/introduction` })
+      if (pre === '') return setNavLink({ path: `/${lang}` })
     })
 
     watch(navLink, (pre) => {

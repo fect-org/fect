@@ -3,7 +3,7 @@
 ### Ready to start
 
 We welcome everyone to join the construction of the project.
-As a pre requirement,you need to konw what is Vue-next and have a preliminary understanding of Vue-next,if you don't konw Vue-next
+As a pre requirement,you need to know what is Vue-next and have a preliminary understanding of Vue-next,if you don't know Vue-next
 this is a good [learn document for Vue-next](https://v3.vuejs.org/).
 If you don't know Git,basic operation of Git,you can refer to [GitHub's help documentation](https://help.github.com/en/github/using-git).
 
@@ -11,7 +11,14 @@ If you don't know Git,basic operation of Git,you can refer to [GitHub's help doc
 2. Create a new branch for your changes: `git checkout -b {BRANCH_NAME}`.
 3. Install a package management tools [Yarn](https://classic.yarnpkg.com/en/docs/install#mac-stable)
    and then update project dependenices `Yarn`
-4. Run `yarn serve` and view your changes on your local document site.
+4. Run these commands in order:
+    - `yarn cli`
+    - `yarn clean`
+    - `yarn`
+    - `yarn hooks`
+    - `yarn icon`
+    - `yarn dev`
+5. View your changes on your local document site.
 
 At any time, you think it's ok, you can start the following steps to submit your amazing works:
 
@@ -27,7 +34,7 @@ At any time, you think it's ok, you can start the following steps to submit your
 1. Create a component folder in `packages`.
 2. Run `Yarn collect` and it will automatic add `import` to `packages/index.ts`
 3. Create a document file in `docs/zh-cn` and `docs/example`,it will automatic logon.
-4. Restart local server view changes: `yarn serve`.
+4. Restart local server view changes: `yarn dev`.
 
 #### **Create testcase**
 
