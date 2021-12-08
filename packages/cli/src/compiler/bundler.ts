@@ -139,8 +139,8 @@ export class Bundler extends EventEmitter {
 
           if (compoents.includes(depsComponent)) {
             styleDeps[component] = {
-              ...styleDeps[component],
               [depsComponent]: `../../${depsComponent}/index.css`,
+              ...styleDeps[component],
             }
           }
         }

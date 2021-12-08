@@ -2,6 +2,7 @@ import { join } from 'path'
 import { readJsonSync, readdirSync, outputFile } from 'fs-extra'
 import { getNonConf } from '../shared/get-config'
 import { CWD, IGNORE_DIR, USER_PACKAGES_JSON_PATH } from '../shared/constant'
+import { formatCode } from '../format/prettier'
 
 const PACKAGE_PATH = getNonConf('entry')
 
@@ -27,5 +28,5 @@ export const genVolar = async () => {
     };\n
     export {};\n
     `
-  await outputFile(OUTPUT, volarTmp)
+  await outputFile(OUTPUT, formatCode(volarTmp))
 }

@@ -104,7 +104,7 @@ const components = [
   Tag,
   Teleport,
   Toast,
-  Tooltip,
+  Tooltip
 ]
 const install = (app: App) => {
   components.map((component: any) => {
@@ -173,5 +173,5 @@ export { install, version }
 
 export default {
   install,
-  version,
+  version
 }
