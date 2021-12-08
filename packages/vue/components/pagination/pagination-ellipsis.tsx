@@ -4,7 +4,7 @@ import PaginationItem from './pagination-item'
 
 const PaginationEllipsis = defineComponent({
   props: {
-    isBefore: Boolean,
+    isBefore: Boolean
   },
   emits: ['click'],
   setup(props, { emit }) {
@@ -57,7 +57,7 @@ const PaginationEllipsis = defineComponent({
         )}
       </PaginationItem>
     )
-  },
+  }
 })
 
 export default PaginationEllipsis

@@ -18,7 +18,7 @@ export default {
     const colors = reactive([
       { name: 'Light', value: 'var(--warning-light)' },
       { name: 'Default', value: 'var(--warning-default)' },
-      { name: 'Dark', value: 'var(--warning-dark)' },
+      { name: 'Dark', value: 'var(--warning-dark)' }
     ])
     const { copyText } = useClipboard()
 
@@ -28,7 +28,7 @@ export default {
     const style = (color, idx) => {
       const Style = {
         backgroundColor: color.value,
-        color: ' var(--primary-background)',
+        color: ' var(--primary-background)'
       }
       return Style
     }
@@ -41,9 +41,9 @@ export default {
       colors,
       colorValue,
       style,
-      handleCopy,
+      handleCopy
     }
-  },
+  }
 }
 </script>
 

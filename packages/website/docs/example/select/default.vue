@@ -16,6 +16,6 @@ export default {
     const val = ref(0)
     const changeHandler = (e) => (val.value = e)
     return { val, changeHandler }
-  },
+  }
 }
 </script>

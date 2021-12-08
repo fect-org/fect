@@ -12,8 +12,8 @@ export default {
     const value = ref('示例文字')
 
     return {
-      value,
+      value
     }
-  },
+  }
 }
 </script>

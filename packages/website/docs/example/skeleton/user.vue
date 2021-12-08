@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'test-user',
+  name: 'test-user'
 }
 </script>
 

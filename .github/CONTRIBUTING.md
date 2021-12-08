@@ -12,12 +12,12 @@ If you don't know Git,basic operation of Git,you can refer to [GitHub's help doc
 3. Install a package management tools [Yarn](https://classic.yarnpkg.com/en/docs/install#mac-stable)
    and then update project dependenices `Yarn`
 4. Run these commands in order:
-    - `yarn cli`
-    - `yarn clean`
-    - `yarn`
-    - `yarn hooks`
-    - `yarn icon`
-    - `yarn dev`
+   - `yarn cli`
+   - `yarn clean`
+   - `yarn`
+   - `yarn hooks`
+   - `yarn icon`
+   - `yarn dev`
 5. View your changes on your local document site.
 
 At any time, you think it's ok, you can start the following steps to submit your amazing works:

@@ -31,7 +31,7 @@ const config: NonConfig = {
   entry: join(CWD, 'src', 'main.js'),
   port: 8080,
   library: true,
-  formats: 'default',
+  formats: 'default'
 }
 
 export default config

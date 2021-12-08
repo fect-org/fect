@@ -15,6 +15,6 @@ export default {
   setup() {
     const val = ref([])
     return { val }
-  },
+  }
 }
 </script>

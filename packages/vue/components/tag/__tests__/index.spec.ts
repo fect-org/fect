@@ -3,20 +3,20 @@ import Tag from '..'
 
 const Wrapper = {
   components: {
-    [Tag.name]: Tag,
+    [Tag.name]: Tag
   },
   data() {
     return {
       invert: false,
       type: 'default',
-      text: 'hello world',
+      text: 'hello world'
     }
   },
   template: `
    <div class="container">
     <fe-tag :useInvert="invert" :type="type" :text="text" :type-data="type" />
    </div>
-  `,
+  `
 }
 
 describe('Tag', () => {

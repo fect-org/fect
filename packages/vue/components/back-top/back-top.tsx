@@ -15,24 +15,24 @@ export default defineComponent({
   props: {
     duration: {
       type: Number,
-      default: 4,
+      default: 4
     },
     target: {
       type: Function as PropType<() => ScrollTarget>,
-      default: () => window,
+      default: () => window
     },
     visibilityHeight: {
       type: Number,
-      default: 200,
+      default: 200
     },
     right: {
       type: Number,
-      default: 40,
+      default: 40
     },
     bottom: {
       type: Number,
-      default: 40,
-    },
+      default: 40
+    }
   },
   emits: ['click'],
   setup(props, { slots, emit }) {
@@ -77,7 +77,7 @@ export default defineComponent({
       const isElement = isHTMLElement(target)
       if (!isElement) {
         window.scrollTo({
-          top: nextDistance,
+          top: nextDistance
         })
       }
       if (isElement) {
@@ -112,7 +112,7 @@ export default defineComponent({
       const { right, bottom } = props
       const style: CSSProperties = {
         right: `${right}px`,
-        bottom: `${bottom}px`,
+        bottom: `${bottom}px`
       }
       return style
     })
@@ -142,5 +142,5 @@ export default defineComponent({
         {visible.value && renderNode()}
       </div>
     )
-  },
+  }
 })

@@ -8,7 +8,7 @@ const name = createName('Code')
 export default defineComponent({
   name,
   props: {
-    block: Boolean,
+    block: Boolean
   },
   setup(props, { slots }) {
     const isBlock = () => {
@@ -29,5 +29,5 @@ export default defineComponent({
       }
       return isBlock()
     }
-  },
+  }
 })

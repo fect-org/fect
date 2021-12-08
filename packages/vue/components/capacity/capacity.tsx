@@ -9,13 +9,13 @@ export default defineComponent({
   props: {
     value: {
       type: [Number, String],
-      default: 0,
+      default: 0
     },
     limit: {
       type: [Number, String],
-      default: 0,
+      default: 0
     },
-    color: String,
+    color: String
   },
   setup(props) {
     const setColor = computed(() => {
@@ -32,5 +32,5 @@ export default defineComponent({
         <span style={{ backgroundColor: setColor.value, width: `${props.value}%` }}></span>
       </div>
     )
-  },
+  }
 })

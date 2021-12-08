@@ -39,7 +39,7 @@ export default {
     const formValue = ref({
       input: '',
       checkGroup: [],
-      frameWork: '',
+      frameWork: ''
     })
 
     const rules = {
@@ -47,22 +47,22 @@ export default {
         {
           required: true,
           message: 'Please input your nick name',
-          trigger: 'blur',
-        },
+          trigger: 'blur'
+        }
       ],
       checkGroup: {
         required: true,
         type: 'array',
         message: 'Please choose the direction you are interested in',
-        trigger: 'change',
+        trigger: 'change'
       },
       frameWork: {
         type: 'string',
         required: true,
         validate: (val) => val === 'koa',
         message: 'Please choose a class',
-        trigger: 'change',
-      },
+        trigger: 'change'
+      }
     }
 
     const sumbitHandler = () => {
@@ -76,8 +76,8 @@ export default {
       rules,
       sumbitHandler,
       resetHandler,
-      formRef,
+      formRef
     }
-  },
+  }
 }
 </script>

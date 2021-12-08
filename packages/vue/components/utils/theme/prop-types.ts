@@ -27,7 +27,7 @@ export {
   snippetCopyTypes,
   snippetStyleTypes,
   placeTypes,
-  loadingTypes,
+  loadingTypes
 }
 
 export type NormalSizes = typeof normalSizes[number]

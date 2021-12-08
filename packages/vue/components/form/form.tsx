@@ -22,5 +22,5 @@ export default defineComponent({
     provider({ formProps })
 
     return () => <form class={`fect-form ${props.inline ? 'is-inline' : ''}`}> {slots.default?.()}</form>
-  },
+  }
 })

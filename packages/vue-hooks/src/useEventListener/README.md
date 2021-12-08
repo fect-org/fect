@@ -20,7 +20,7 @@ defineComponent({
     )
 
     return () => <div ref={divRef}></div>
-  },
+  }
 })
 ```
 

@@ -36,9 +36,9 @@ export default defineComponent({
     return {
       anchorRef,
       anchor,
-      visible,
+      visible
     }
-  },
+  }
 })
 </script>
 

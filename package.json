@@ -11,6 +11,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "prepare": "husky install",
     "cli": "cd packages/cli && yarn tsc",
     "compile": "lerna exec --scope @fect-ui/vue -- yarn build",
     "volar": "lerna exec --scope @fect-ui/vue -- yarn volar",
@@ -39,10 +40,5 @@
     "lint-staged": "^11.2.3",
     "vue": "^3.2.20",
     "typescript": "^4.4.4"
-  },
-  "eslintConfig": {
-    "extends": [
-      "kagura"
-    ]
   }
 }

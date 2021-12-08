@@ -13,12 +13,12 @@ export default defineComponent({
   props: {
     to: {
       type: [String, Object],
-      default: '',
+      default: ''
     },
     href: {
       type: String,
-      default: '',
-    },
+      default: ''
+    }
   },
   setup(props, { slots, attrs }) {
     const [hasLink, setHasLink] = useState<boolean>(false)
@@ -58,5 +58,5 @@ export default defineComponent({
     }
 
     return () => <>{hasLink.value ? <>{linkRender()}</> : <>{withoutLinkRender()}</>}</>
-  },
+  }
 })

@@ -3,7 +3,7 @@ import { defineComponent } from 'vue'
 const InputLabel = defineComponent({
   props: {
     fontSize: String,
-    isRight: Boolean,
+    isRight: Boolean
   },
   setup(props, { slots }) {
     return () => (
@@ -11,7 +11,7 @@ const InputLabel = defineComponent({
         {slots.default?.()}
       </div>
     )
-  },
+  }
 })
 
 export default InputLabel

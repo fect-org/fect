@@ -12,7 +12,7 @@ const queryRadioSize = (radioSize: NormalSizes) => {
     mini: '12px',
     small: '14px',
     medium: '16px',
-    large: '18px',
+    large: '18px'
   }
   return size[radioSize]
 }
@@ -25,8 +25,8 @@ export default defineComponent({
     value: { type: [String, Number], required: true },
     size: {
       type: String as PropType<NormalSizes>,
-      default: 'medium',
-    },
+      default: 'medium'
+    }
   },
   emits: ['change', 'update:checked'],
   setup(props, { emit, slots }) {
@@ -65,12 +65,12 @@ export default defineComponent({
         target: {},
         stopPropagation: e.stopPropagation,
         preventDefault: e.preventDefault,
-        nativeEvent: e,
+        nativeEvent: e
       }
       if (context) {
         context.updateState({
           ...radioEvent,
-          target: { checkedVal: props.value, checked: !selfChecked.value },
+          target: { checkedVal: props.value, checked: !selfChecked.value }
         })
         context.setCurrentValue(props.value)
         return
@@ -78,7 +78,7 @@ export default defineComponent({
       setSelfChecked(!selfChecked.value)
       emit('change', {
         ...radioEvent,
-        target: { checked: selfChecked.value },
+        target: { checked: selfChecked.value }
       })
     }
 
@@ -110,5 +110,5 @@ export default defineComponent({
         </label>
       </div>
     )
-  },
+  }
 })

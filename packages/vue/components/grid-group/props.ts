@@ -4,54 +4,54 @@ import type { AlignContentTypes, JustifyTypes, WrapTypes, AlignTypes, DirectionT
 export const props = {
   gap: {
     type: Number,
-    default: 0,
+    default: 0
   },
   col: {
     type: Number,
-    default: 0,
+    default: 0
   },
   count: {
     type: [Number, Array],
-    default: 0,
+    default: 0
   },
   wrap: {
     type: String as PropType<WrapTypes>,
-    default: 'wrap',
+    default: 'wrap'
   },
   justify: {
     type: String as PropType<JustifyTypes>,
-    default: 'flex-start',
+    default: 'flex-start'
   },
   alignItems: {
     type: String as PropType<AlignTypes>,
-    default: 'stretch',
+    default: 'stretch'
   },
   alignContent: {
     type: String as PropType<AlignContentTypes>,
-    default: 'flex-start',
+    default: 'flex-start'
   },
   direction: {
     type: String as PropType<DirectionTypes>,
-    default: 'row',
+    default: 'row'
   },
   xs: {
     type: [Number, Boolean],
-    default: false,
+    default: false
   },
   sm: {
     type: [Number, Boolean],
-    default: false,
+    default: false
   },
   md: {
     type: [Number, Boolean],
-    default: false,
+    default: false
   },
   lg: {
     type: [Number, Boolean],
-    default: false,
+    default: false
   },
   xl: {
     type: [Number, Boolean],
-    default: false,
-  },
+    default: false
+  }
 }

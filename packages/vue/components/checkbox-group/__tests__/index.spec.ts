@@ -10,15 +10,15 @@ describe('Checkbox', () => {
   it('should be support modelVaue to control initial checked', () => {
     const wrapper = mount(Checkbox, {
       props: {
-        modelValue: true,
-      },
+        modelValue: true
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
   it('should be disabled all event when set props disabled', async () => {
     const wrapper = mount({
       components: {
-        [Checkbox.name]: Checkbox,
+        [Checkbox.name]: Checkbox
       },
       data() {
         return { disabled: true }
@@ -27,7 +27,7 @@ describe('Checkbox', () => {
       <div class="container">
         <fe-checkbox :disabled="disabled"></fe-checkbox>
       </div>
-      `,
+      `
     })
 
     const el = wrapper.find('input')

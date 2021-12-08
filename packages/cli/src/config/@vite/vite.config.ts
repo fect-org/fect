@@ -10,18 +10,18 @@ export const useDevConfig = (): InlineConfig => {
     root: CWD,
     resolve: {
       extensions: VITE_RESOLVE_EXTENSIONS,
-      alias: {},
+      alias: {}
     },
     server: {
-      port: getNonConf('port'),
+      port: getNonConf('port')
     },
     plugins: [
       Vue({
-        include: [/\.vue$/, /\.md$/],
+        include: [/\.vue$/, /\.md$/]
       }),
       Jsx(),
-      ...getNonConf('plugins'),
-    ],
+      ...getNonConf('plugins')
+    ]
   }
 }
 
@@ -35,9 +35,9 @@ export const useBuildConfig = (): InlineConfig => {
       sourcemap: false,
       brotliSize: false,
       rollupOptions: {
-        input: { main: getNonConf('entry') },
-      },
-    },
+        input: { main: getNonConf('entry') }
+      }
+    }
   }
 }
 
@@ -54,7 +54,7 @@ export const useUMDconfig = (mini = false): InlineConfig => {
         name,
         formats: ['umd'],
         fileName: mini ? `${name}.min` : `${name}`,
-        entry: join(ESM_PATH, 'umd.js'),
+        entry: join(ESM_PATH, 'umd.js')
       },
       minify: mini ? 'terser' : false,
       rollupOptions: {
@@ -66,10 +66,10 @@ export const useUMDconfig = (mini = false): InlineConfig => {
           dir: UMD_PATH,
           exports: 'named',
           globals: {
-            vue: 'Vue',
-          },
-        },
-      },
-    },
+            vue: 'Vue'
+          }
+        }
+      }
+    }
   }
 }

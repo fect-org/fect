@@ -10,8 +10,8 @@ export default {
   name: 'ex-snippet-filled',
   setup() {
     return {
-      types: ['default', 'success', 'warning', 'error'],
+      types: ['default', 'success', 'warning', 'error']
     }
-  },
+  }
 }
 </script>

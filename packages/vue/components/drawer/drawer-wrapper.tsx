@@ -5,10 +5,10 @@ const DrawerWrapper = defineComponent({
   props: {
     placement: {
       type: String as PropType<Placement>,
-      default: 'right',
+      default: 'right'
     },
     closeable: Boolean,
-    round: Boolean,
+    round: Boolean
   },
   setup(props, { slots, emit }) {
     const setRounder = computed(() => {
@@ -21,7 +21,7 @@ const DrawerWrapper = defineComponent({
         {slots.default?.()}
       </div>
     )
-  },
+  }
 })
 
 export default DrawerWrapper

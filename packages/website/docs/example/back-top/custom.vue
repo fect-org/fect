@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'ex-back-top-custom',
+  name: 'ex-back-top-custom'
 }
 </script>
 

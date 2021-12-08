@@ -13,8 +13,8 @@ export default {
   name: 'ex-breadcrumbs-size',
   setup() {
     return {
-      sizes: ['mini', 'small', 'medium', 'large'],
+      sizes: ['mini', 'small', 'medium', 'large']
     }
-  },
+  }
 }
 </script>

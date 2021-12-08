@@ -16,7 +16,7 @@ defineComponent({
     }, divRef)
 
     return () => <div ref={divRef}></div>
-  },
+  }
 })
 ```
 
@@ -35,12 +35,12 @@ defineComponent({
       },
       divRef,
       {
-        event: 'touch',
+        event: 'touch'
       }
     )
 
     return () => <div ref={divRef}></div>
-  },
+  }
 })
 ```
 
@@ -52,7 +52,7 @@ export interface useClickAwayOptions {
 }
 
 const defaultOptions: useClickAwayOptions = {
-  event: 'click',
+  event: 'click'
 }
 
 const useClickAway = (

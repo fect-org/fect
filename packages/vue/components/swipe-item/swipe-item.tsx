@@ -25,7 +25,7 @@ export default defineComponent({
       const { size } = context!
       const style: CSSProperties = {
         width: `${size.value}px`,
-        transform: `translateX(${translate.value}px)`,
+        transform: `translateX(${translate.value}px)`
       }
       return style
     })
@@ -43,5 +43,5 @@ export default defineComponent({
         {slots.default?.()}
       </div>
     )
-  },
+  }
 })

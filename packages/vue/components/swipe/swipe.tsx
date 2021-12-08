@@ -140,7 +140,7 @@ export default defineComponent({
             backgroundColor: indicatorColor ? indicatorColor : 'var(--success-default)',
             width: indicatorSize,
             height: indicatorSize,
-            opacity: active ? 1 : 0.3,
+            opacity: active ? 1 : 0.3
           } as CSSProperties
         }
 
@@ -199,7 +199,7 @@ export default defineComponent({
       const style: CSSProperties = {
         width: `${trackSize.value}px`,
         transform: `translateX(${translate.value}px)`,
-        transitionDuration: locked.value ? '0ms' : `${props.duration}ms`,
+        transitionDuration: locked.value ? '0ms' : `${props.duration}ms`
       }
       return style
     })
@@ -212,5 +212,5 @@ export default defineComponent({
         {renderIndicator()}
       </div>
     )
-  },
+  }
 })

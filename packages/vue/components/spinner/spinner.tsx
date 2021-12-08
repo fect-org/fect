@@ -16,5 +16,5 @@ export default defineComponent({
         <div class="fect-spinner__container">{renderDot()}</div>
       </div>
     )
-  },
+  }
 })

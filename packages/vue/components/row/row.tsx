@@ -16,20 +16,20 @@ export default defineComponent({
   props: {
     tag: {
       type: String as PropType<keyof HTMLElementTagNameMap>,
-      default: 'div',
+      default: 'div'
     },
     gutter: {
       type: [String, Number],
-      default: 0,
+      default: 0
     },
     justify: {
       type: String as PropType<JustifyTypes>,
-      default: 'start',
+      default: 'start'
     },
     align: {
       type: String as PropType<AlignTypes>,
-      default: 'top',
-    },
+      default: 'top'
+    }
   },
   setup(props, { slots }) {
     const { provider } = createProvider(READONLY_LAYOUT_KEY)
@@ -63,5 +63,5 @@ export default defineComponent({
         </tag>
       )
     }
-  },
+  }
 })

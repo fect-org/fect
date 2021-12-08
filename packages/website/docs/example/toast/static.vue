@@ -21,13 +21,13 @@ export default {
     const handlerClick = (type) => {
       proxy.$toast[type]({
         text: 'It support static methods call',
-        duration: '4000',
+        duration: '4000'
       })
     }
     return {
-      handlerClick,
+      handlerClick
     }
-  },
+  }
 }
 </script>
 

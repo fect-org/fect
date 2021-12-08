@@ -10,8 +10,8 @@ export default {
   name: 'ex-snippet-copy',
   setup() {
     return {
-      types: ['default', 'silent', 'prevent'],
+      types: ['default', 'silent', 'prevent']
     }
-  },
+  }
 }
 </script>

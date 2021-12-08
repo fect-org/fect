@@ -11,6 +11,6 @@
 
 <script>
 export default {
-  name: 'ex-tag-type',
+  name: 'ex-tag-type'
 }
 </script>

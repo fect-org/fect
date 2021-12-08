@@ -2,7 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
-    node: true,
+    node: true
   },
   root: true,
   extends: [
@@ -10,21 +10,21 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     'prettier',
     'prettier/vue',
-    'kagura',
+    'kagura'
   ],
   parserOptions: {
     parser: '@typescript-eslint/parser',
     ecmaVersion: 2019,
     sourceType: 'module',
-    extraFileExtensions: ['.vue'],
+    extraFileExtensions: ['.vue']
   },
   overrides: [
     {
       files: ['**/__tests__/*.{j,t}s?(x)', '**/tests/unit/**/*.spec.{j,t}s?(x)'],
       env: {
-        jest: true,
-      },
-    },
+        jest: true
+      }
+    }
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
@@ -38,6 +38,6 @@ module.exports = {
     '@typescript-eslint/no-extra-semi': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     // 'no-non-null-assertion': true,
-    'no-mixed-operators': 0,
-  },
+    'no-mixed-operators': 0
+  }
 }

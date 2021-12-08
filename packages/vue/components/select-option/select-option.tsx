@@ -12,13 +12,13 @@ export default defineComponent({
   props: {
     value: {
       type: String,
-      default: '',
+      default: ''
     },
     label: {
       type: String,
-      default: '',
+      default: ''
     },
-    disabled: Boolean,
+    disabled: Boolean
   },
   setup(props, { slots }) {
     const { context } = useProvider<SelectProvide>(READONLY_SELECT_KEY)
@@ -38,5 +38,5 @@ export default defineComponent({
         {props.label}
       </div>
     )
-  },
+  }
 })

@@ -10,7 +10,7 @@ const ModalTitle = defineComponent({
         <h2 class="title">{context?.props.title}</h2>
       </div>
     )
-  },
+  }
 })
 
 export default ModalTitle

@@ -12,6 +12,6 @@
 
 <script>
 export default {
-  name: 'ex-input-block-label',
+  name: 'ex-input-block-label'
 }
 </script>

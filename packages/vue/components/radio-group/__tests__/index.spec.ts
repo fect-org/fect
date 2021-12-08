@@ -11,7 +11,7 @@ describe('Radio', () => {
     const wrapper = mount({
       components: {
         [Radio.name]: Radio,
-        [RadioGroup.name]: RadioGroup,
+        [RadioGroup.name]: RadioGroup
       },
       data() {
         return { val: '1' }
@@ -23,7 +23,7 @@ describe('Radio', () => {
           <fe-radio value="2">Test1</fe-radio>
         </fe-radioGroup> 
       </div>
-      `,
+      `
     })
     const els = wrapper.findAll('.fect-radio__point')
     expect(els[0].classes('active')).toBe(true)
@@ -33,7 +33,7 @@ describe('Radio', () => {
     const wrapper = mount({
       components: {
         [Radio.name]: Radio,
-        [RadioGroup.name]: RadioGroup,
+        [RadioGroup.name]: RadioGroup
       },
       data() {
         return { size: 'mini', useRow: true, disabled: true }
@@ -45,7 +45,7 @@ describe('Radio', () => {
           <fe-radio value="2">Test1</fe-radio>
         </fe-radioGroup> 
       </div>
-      `,
+      `
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -55,8 +55,8 @@ describe('Radio', () => {
       props: {
         value: '1',
         checked: false,
-        disabled: false,
-      },
+        disabled: false
+      }
     })
     const el = wrapper.find('input')
     await el.trigger('change')
@@ -67,7 +67,7 @@ describe('Radio', () => {
     const wrapper = mount({
       components: {
         [Radio.name]: Radio,
-        [RadioGroup.name]: RadioGroup,
+        [RadioGroup.name]: RadioGroup
       },
       data() {
         return { val: '1' }
@@ -79,7 +79,7 @@ describe('Radio', () => {
           <fe-radio value="2">Test1</fe-radio>
         </fe-radioGroup> 
       </div>
-      `,
+      `
     })
     const el = wrapper.findAll('input')
     const els = wrapper.findAll('.fect-radio__point')
@@ -91,8 +91,8 @@ describe('Radio', () => {
     const wrapper = mount(Radio, {
       props: {
         value: 1,
-        disabled: true,
-      },
+        disabled: true
+      }
     })
     const el = wrapper.find('input')
     await el.trigger('change')

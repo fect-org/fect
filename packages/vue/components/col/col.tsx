@@ -18,16 +18,16 @@ export default defineComponent({
   props: {
     tag: {
       type: String as PropType<keyof HTMLElementTagNameMap>,
-      default: 'div',
+      default: 'div'
     },
     span: {
       type: [String, Number],
-      default: 24,
+      default: 24
     },
     offset: {
       type: [String, Number],
-      default: 0,
-    },
+      default: 0
+    }
   },
   setup(props, { slots }) {
     const gutter = ref<string | number>(0)
@@ -44,7 +44,7 @@ export default defineComponent({
         width: useDistance(Number(span)),
         marginLeft: useDistance(Number(offset)),
         paddingLeft: `${Number(gutter.value) / 2}px`,
-        paddingRight: `${Number(gutter.value) / 2}px`,
+        paddingRight: `${Number(gutter.value) / 2}px`
       }
       return style
     })
@@ -57,5 +57,5 @@ export default defineComponent({
         </tag>
       )
     }
-  },
+  }
 })

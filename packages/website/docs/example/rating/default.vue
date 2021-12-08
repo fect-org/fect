@@ -12,6 +12,6 @@ export default {
     const val = ref(0)
 
     return { val }
-  },
+  }
 }
 </script>

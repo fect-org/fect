@@ -5,7 +5,7 @@ import SwipeItem from '../../swipe-item'
 describe('Swipe', () => {
   it('should be support custom render indicator', async () => {
     const slots = {
-      indicator: () => <div>custom</div>,
+      indicator: () => <div>custom</div>
     }
 
     const wrapper = mount({
@@ -16,7 +16,7 @@ describe('Swipe', () => {
             <SwipeItem>2</SwipeItem>
           </Swipe>
         )
-      },
+      }
     })
     await flushPromises()
     expect(wrapper.html()).toMatchSnapshot()

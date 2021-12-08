@@ -5,8 +5,8 @@ describe('Input', () => {
   it('should be render as a element', () => {
     const wrapper = mount(Input, {
       props: {
-        modelValue: '',
-      },
+        modelValue: ''
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -24,8 +24,8 @@ describe('Input', () => {
       </div>
       `,
       components: {
-        [Input.name]: Input,
-      },
+        [Input.name]: Input
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -39,8 +39,8 @@ describe('Input', () => {
       </div>
       `,
       components: {
-        [Input.name]: Input,
-      },
+        [Input.name]: Input
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
     expect(wrapper.find('label').html()).toContain('<label><span>Test</span></label>')
@@ -53,8 +53,8 @@ describe('Input', () => {
       </div>
       `,
       components: {
-        [Input.name]: Input,
-      },
+        [Input.name]: Input
+      }
     })
     expect(wrapper.findAll('.fect-input__label')[1].classes('suffix')).toBe(true)
   })
@@ -62,8 +62,8 @@ describe('Input', () => {
     const wrapper = mount(Input, {
       props: {
         type: 'text',
-        modelValue: '',
-      },
+        modelValue: ''
+      }
     })
     const input = wrapper.find('input')
     input.element.value = '1'
@@ -75,8 +75,8 @@ describe('Input', () => {
     const wrapper = mount(Input, {
       props: {
         clearable: true,
-        type: 'password',
-      },
+        type: 'password'
+      }
     })
     expect(wrapper.find('.fect-input__clear-icon')).toBeTruthy()
     expect(wrapper.html()).toMatchSnapshot()
@@ -85,8 +85,8 @@ describe('Input', () => {
     const wrapper = mount(Input, {
       props: {
         modelValue: 0,
-        type: 'number',
-      },
+        type: 'number'
+      }
     })
     const input = wrapper.find('input')
     input.element.value = 2 as any
@@ -97,8 +97,8 @@ describe('Input', () => {
     const wrapper = mount(Input, {
       props: {
         modelValue: '123456',
-        type: 'password',
-      },
+        type: 'password'
+      }
     })
 
     const el = wrapper.find('.fect-input__icon')
@@ -114,8 +114,8 @@ describe('Input', () => {
       </div>
       `,
       components: {
-        [Input.name]: Input,
-      },
+        [Input.name]: Input
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -131,8 +131,8 @@ describe('Input', () => {
     const wrapper = mount(Input, {
       props: {
         modelValue: 333,
-        clearable: true,
-      },
+        clearable: true
+      }
     })
     const el = wrapper.find('.fect-input__clear-icon')
     expect(wrapper.find('.visible').exists()).toBe(true)

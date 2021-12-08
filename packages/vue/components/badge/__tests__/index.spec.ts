@@ -3,18 +3,18 @@ import Badge from '..'
 
 const Wrapper = {
   components: {
-    [Badge.name]: Badge,
+    [Badge.name]: Badge
   },
   data() {
     return {
       type: 'default',
       dot: false,
-      size: 'medium',
+      size: 'medium'
     }
   },
   template: `<div class="container">
    <fe-badge :type="type" :dot="dot" :size="size" :type-data="type">Badge</fe-badge>
- </div>`,
+ </div>`
 }
 
 describe('Badge', () => {

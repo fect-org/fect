@@ -11,6 +11,6 @@
 
 <script>
 export default {
-  name: 'ex-tag-invert',
+  name: 'ex-tag-invert'
 }
 </script>

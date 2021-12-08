@@ -2,7 +2,7 @@ import { defineComponent } from 'vue'
 
 const CollapseIcon = defineComponent({
   props: {
-    active: Boolean,
+    active: Boolean
   },
   setup(props) {
     return () => (
@@ -22,7 +22,7 @@ const CollapseIcon = defineComponent({
         <path d="M6 9l6 6 6-6" />
       </svg>
     )
-  },
+  }
 })
 
 export default CollapseIcon

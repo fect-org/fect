@@ -21,7 +21,7 @@ export default defineComponent({
     const setDrawerStyle = computed(() => {
       const { placement } = props
       const styles: CustomCSSProperties = {
-        '--drawer-transfrom': getDrawerTransfrom(placement),
+        '--drawer-transfrom': getDrawerTransfrom(placement)
       }
       return styles
     })
@@ -54,5 +54,5 @@ export default defineComponent({
         <DrawerWrapper placement={props.placement} round={props.round} v-slots={slots} ref={drawerRef} {...attrs} />
       </Teleport>
     )
-  },
+  }
 })

@@ -5,7 +5,7 @@ import Option from '../../select-option'
 const Wrapper = {
   components: {
     [Select.name]: Select,
-    [Option.name]: Option,
+    [Option.name]: Option
   },
   data() {
     return {
@@ -15,7 +15,7 @@ const Wrapper = {
       clearable: true,
       disabled: false,
       size: 'medium',
-      childrenDisabled: false,
+      childrenDisabled: false
     }
   },
   template: `
@@ -34,14 +34,14 @@ const Wrapper = {
        <fe-option label="摸鱼" value="2" :disabled="childrenDisabled"></fe-option>
      </fe-select>
     </div>
-    `,
+    `
 }
 
 describe('Select', () => {
   it('should be render as a element', async () => {
     const wrapper = mount(Wrapper, { attachTo: document.body })
     const {
-      selectRef: { setTeleport },
+      selectRef: { setTeleport }
     } = wrapper.vm.$refs as any
     await setTeleport('.container')
     expect(wrapper.html()).toMatchSnapshot()
@@ -50,7 +50,7 @@ describe('Select', () => {
   it('component props should be work correctly', async () => {
     const wrapper = mount(Wrapper, { attachTo: document.body })
     const {
-      selectRef: { setTeleport },
+      selectRef: { setTeleport }
     } = wrapper.vm.$refs as any
     await setTeleport('.container')
     const selectEl = wrapper.find('.fect-select')
@@ -67,7 +67,7 @@ describe('Select', () => {
   it('clean icon should be work', async () => {
     const wrapper = mount(Wrapper, { attachTo: document.body })
     const {
-      selectRef: { setTeleport },
+      selectRef: { setTeleport }
     } = wrapper.vm.$refs as any
     await setTeleport('.container')
     const optionEls = wrapper.findAll('.fect-option')
@@ -99,7 +99,7 @@ describe('Select', () => {
     const wrapper = mount(Wrapper, { attachTo: document.body })
     await wrapper.setData({ multiple: true, val: [] })
     const {
-      selectRef: { setTeleport },
+      selectRef: { setTeleport }
     } = wrapper.vm.$refs as any
     await setTeleport('.container')
     const selectEl = wrapper.find('.fect-select')
@@ -115,8 +115,8 @@ describe('Select', () => {
     const wrapper = mount(Select, {
       props: {
         multiple: true,
-        modelValue: [],
-      },
+        modelValue: []
+      }
     })
     expect(wrapper.find('.fect-select__placeholder').exists()).toBeTruthy()
   })

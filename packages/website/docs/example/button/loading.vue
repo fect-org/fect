@@ -10,6 +10,6 @@
 
 <script>
 export default {
-  name: 'ex-button-loading',
+  name: 'ex-button-loading'
 }
 </script>

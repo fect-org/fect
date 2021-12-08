@@ -20,9 +20,9 @@ export default defineComponent({
   props: {
     active: {
       type: [String, Number],
-      default: 0,
+      default: 0
     },
-    hideDivider: Boolean,
+    hideDivider: Boolean
   },
   emits: ['change', 'update:active', 'click'],
   setup(props, { slots, emit }) {
@@ -36,11 +36,11 @@ export default defineComponent({
       setChecked(value)
       const selfEvent = {
         target: {
-          checkValue: value,
+          checkValue: value
         },
         stopPropagation: e.stopPropagation,
         preventDefault: e.preventDefault,
-        nativeEvent: e,
+        nativeEvent: e
       }
       emit('update:active', value)
       emit('click', selfEvent)
@@ -69,5 +69,5 @@ export default defineComponent({
         {slots.default?.()}
       </div>
     )
-  },
+  }
 })

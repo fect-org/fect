@@ -11,13 +11,13 @@ describe('Capacity', () => {
     const wrapper = mount({
       render() {
         return <Capacity value="40" />
-      },
+      }
     })
     const el = wrapper.find('.fect-capacity')
     expect(el.attributes('title')).toBe('40%')
     expect(wrapper.html()).toMatchSnapshot()
     await wrapper.setProps({
-      value: 80,
+      value: 80
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -26,7 +26,7 @@ describe('Capacity', () => {
     const wrapper = mount({
       render() {
         return <Capacity value={'30'} color="pink" />
-      },
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })

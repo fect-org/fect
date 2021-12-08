@@ -5,12 +5,12 @@ import Badge from '../../badge/index'
 const Wrapper = {
   components: {
     [BadgeAnchor.name]: BadgeAnchor,
-    [Badge.name]: Badge,
+    [Badge.name]: Badge
   },
   data() {
     return {
       place: 'topRight',
-      dot: false,
+      dot: false
     }
   },
   template: `<div class="container">
@@ -18,7 +18,7 @@ const Wrapper = {
     <p>Test Message</p>
     <fe-badge :dot="dot"/>
    </fe-badgeAnchor>
-  </div>`,
+  </div>`
 }
 
 describe('BadgeAnchor', () => {

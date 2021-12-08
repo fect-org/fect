@@ -10,6 +10,6 @@
 
 <script>
 export default {
-  name: 'ex-button-ghost',
+  name: 'ex-button-ghost'
 }
 </script>

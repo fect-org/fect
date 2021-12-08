@@ -15,8 +15,8 @@ export default {
     const active = ref('HTML')
 
     return {
-      active,
+      active
     }
-  },
+  }
 }
 </script>

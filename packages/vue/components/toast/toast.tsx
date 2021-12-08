@@ -10,7 +10,7 @@ const renderBgColor = (type: NormalTypes) => {
     default: 'var(--primary-background)',
     success: 'var(--success-default)',
     warning: 'var(--warning-default)',
-    error: 'var(--error-default)',
+    error: 'var(--error-default)'
   }
   const isDefault = type === 'default'
   /**
@@ -22,12 +22,12 @@ const renderBgColor = (type: NormalTypes) => {
     return {
       backgroundColor: bgColorsPool[type],
       color: 'var(--primary-foreground)',
-      border: '1px solid var(--accents-2)',
+      border: '1px solid var(--accents-2)'
     } as CSSProperties
   }
   return {
     backgroundColor: bgColorsPool[type],
-    color: 'white',
+    color: 'white'
   } as CSSProperties
 }
 
@@ -36,12 +36,12 @@ export default defineComponent({
   props: {
     text: {
       type: [String, Number],
-      default: '',
+      default: ''
     },
     type: {
       type: String as PropType<NormalTypes>,
-      default: 'default',
-    },
+      default: 'default'
+    }
   },
   setup(props) {
     const setBgColor = computed(() => renderBgColor(props.type))
@@ -51,5 +51,5 @@ export default defineComponent({
         <div class="fect-toast__message">{props.text}</div>
       </div>
     )
-  },
+  }
 })

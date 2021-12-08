@@ -20,7 +20,7 @@ export default {
     const count = ref(0)
     const addCount = (count.value += 1)
     provider({ count, addCount })
-  },
+  }
 }
 ```
 

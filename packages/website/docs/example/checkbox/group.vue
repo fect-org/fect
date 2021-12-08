@@ -14,8 +14,8 @@ export default {
     const group = ref(['xiamen'])
     return {
       city,
-      group,
+      group
     }
-  },
+  }
 }
 </script>

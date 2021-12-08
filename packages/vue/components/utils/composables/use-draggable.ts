@@ -40,6 +40,6 @@ export const useDraggable = (el: ElementRef, options: DraggableOptions = {}): Dr
     useEventListener('touchend', end, { target: dragElSnapshot })
   }
   return {
-    position,
+    position
   }
 }

@@ -12,7 +12,7 @@ export default {
   name: 'ex-icons-color',
   components: {
     Github,
-    Gitlab,
-  },
+    Gitlab
+  }
 }
 </script>

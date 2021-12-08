@@ -13,6 +13,6 @@
 
 <script>
 export default {
-  name: 'ex-popover-default',
+  name: 'ex-popover-default'
 }
 </script>

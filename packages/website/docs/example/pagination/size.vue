@@ -12,6 +12,6 @@ export default {
     const initialPage = ref(1)
     const sizes = ref(['mini', 'small', 'medium', 'large'])
     return { initialPage, sizes }
-  },
+  }
 }
 </script>

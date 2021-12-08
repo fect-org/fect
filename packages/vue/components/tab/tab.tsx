@@ -10,13 +10,13 @@ export default defineComponent({
   props: {
     title: {
       type: String,
-      default: '',
+      default: ''
     },
     value: {
       type: [String, Number],
-      default: '',
+      default: ''
     },
-    disabled: Boolean,
+    disabled: Boolean
   },
   setup(props, { slots }) {
     const { context, idx } = useProvider<TabsProvide>(READONLY_TABS_KEY)
@@ -37,5 +37,5 @@ export default defineComponent({
     })
 
     return () => <div class={`fect-tab ${setHidden.value}`}>{slots.default?.()}</div>
-  },
+  }
 })

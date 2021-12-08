@@ -13,8 +13,8 @@ describe('Row', () => {
       props: {
         tag: 'span',
         justify: 'end',
-        align: 'middle',
-      },
+        align: 'middle'
+      }
     })
     expect(wrapper.find('span')).toBeTruthy()
   })

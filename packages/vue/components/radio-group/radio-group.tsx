@@ -15,8 +15,8 @@ export default defineComponent({
     disabled: Boolean,
     size: {
       type: String as PropType<NormalSizes>,
-      default: 'medium',
-    },
+      default: 'medium'
+    }
   },
   emits: ['change', 'update:modelValue'],
   setup(props, { slots, emit }) {
@@ -32,5 +32,5 @@ export default defineComponent({
     provider({ props, updateState, setCurrentValue, parentValue })
 
     return () => <div class={`fect-radio__group ${props.useRow ? 'useRow' : ''}`}>{slots.default?.()}</div>
-  },
+  }
 })

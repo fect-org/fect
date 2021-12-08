@@ -19,7 +19,7 @@ const queryPaginationSize = (size: NormalSizes) => {
     mini: { font: '12px', width: '20px' },
     small: { font: '12px', width: '26.5px' },
     medium: { font: '14px', width: '32px' },
-    large: { font: '16px', width: '38.5px' },
+    large: { font: '16px', width: '38.5px' }
   }
   return sizes[size]
 }
@@ -37,21 +37,21 @@ export default defineComponent({
     modelValue: {
       // use modelValue as currentPage
       type: Number,
-      default: 1,
+      default: 1
     },
     count: {
       // page num
       type: Number,
-      default: 1,
+      default: 1
     },
     size: {
       type: String as PropType<NormalSizes>,
-      default: 'medium',
+      default: 'medium'
     },
     prevText: { type: String, default: 'Prev' },
     nextText: { type: String, default: 'Next' },
     simple: Boolean,
-    limit: { type: Number, default: 7 },
+    limit: { type: Number, default: 7 }
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { slots, emit }) {
@@ -92,7 +92,7 @@ export default defineComponent({
       updateSidePage,
       head,
       end,
-      props,
+      props
     })
 
     watch(currentPage, (page) => {
@@ -104,7 +104,7 @@ export default defineComponent({
       const { font: fontSize, width } = queryPaginationSize(props.size)
       const style: CustomCSSProperties = {
         fontSize,
-        '--pagination-size': width,
+        '--pagination-size': width
       }
       return style
     })
@@ -149,5 +149,5 @@ export default defineComponent({
         </ul>
       </nav>
     )
-  },
+  }
 })

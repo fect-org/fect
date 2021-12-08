@@ -6,8 +6,8 @@ describe('Toast', () => {
   it('should render as element', () => {
     const wrapper = mount(Toast, {
       props: {
-        text: 'Test Message',
-      },
+        text: 'Test Message'
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
     expect(wrapper.find('.fect-toast__message').text()).toBe('Test Message')
@@ -17,7 +17,7 @@ describe('Toast', () => {
     const wrapper = mount({
       setup() {
         return {
-          types: ['default', 'success', 'warning', 'error'] as NormalTypes[],
+          types: ['default', 'success', 'warning', 'error'] as NormalTypes[]
         }
       },
       render() {
@@ -28,7 +28,7 @@ describe('Toast', () => {
             ))}
           </>
         )
-      },
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })

@@ -17,12 +17,12 @@ export default defineComponent({
   props: {
     accordion: {
       type: Boolean,
-      default: true,
+      default: true
     },
     modelValue: {
       type: [Array] as PropType<number[]>,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
   emits: ['update:modelValue'],
   setup(props, { slots, emit }) {
@@ -50,5 +50,5 @@ export default defineComponent({
     watch(checked, (cur) => emit('update:modelValue', cur))
 
     return () => <div class="fect-collapse__group"> {slots.default?.()}</div>
-  },
+  }
 })

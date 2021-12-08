@@ -3,7 +3,7 @@ import { Tooltip } from '..'
 
 const Wrapper = {
   components: {
-    [Tooltip.name]: Tooltip,
+    [Tooltip.name]: Tooltip
   },
   data() {
     return {
@@ -13,7 +13,7 @@ const Wrapper = {
       trigger: 'hover',
       showAfter: 0,
       hideAfter: 0,
-      visible: false,
+      visible: false
     }
   },
   template: `<div class="container">
@@ -29,15 +29,15 @@ const Wrapper = {
   >
     Test dom
   </fe-tooltip>
-  </div>`,
+  </div>`
 }
 
 describe('Tooltip', () => {
   it('should be render as a element', () => {
     const wrapper = mount(Tooltip, {
       props: {
-        content: 'Test',
-      },
+        content: 'Test'
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
     expect(() => wrapper.unmount).not.toThrow()
@@ -45,7 +45,7 @@ describe('Tooltip', () => {
   it('component props should work correctly', async () => {
     const wrapper = mount(Wrapper, { attachTo: document.body })
     const {
-      tooltipRef: { clickHandler, mouseEventHandler, setTeleport, updateRect },
+      tooltipRef: { clickHandler, mouseEventHandler, setTeleport, updateRect }
     } = wrapper.vm.$refs as any
     await setTeleport('.container')
     expect(wrapper.html()).toMatchSnapshot()
@@ -57,7 +57,7 @@ describe('Tooltip', () => {
     await wrapper.setData({
       trigger: 'click',
       visibleArrow: false,
-      showAfter: 500,
+      showAfter: 500
     })
     clickHandler(true)
     const el = wrapper.find('.fect-tooltip__content')
@@ -66,7 +66,7 @@ describe('Tooltip', () => {
     await clickHandler(false)
     await wrapper.setData({
       trigger: 'hover',
-      visible: true,
+      visible: true
     })
     await wrapper.find('.fect-tooltip').trigger('mouseleave')
     await wrapper.find('.fect-tooltip').trigger('mouseenter')
@@ -78,7 +78,7 @@ describe('Tooltip', () => {
   it('should be support click or mouse event', async () => {
     const wrapper = mount(Wrapper, { attachTo: document.body })
     const {
-      tooltipRef: { setTeleport },
+      tooltipRef: { setTeleport }
     } = wrapper.vm.$refs as any
     await setTeleport('.container')
     const el = wrapper.find('.fect-tooltip')

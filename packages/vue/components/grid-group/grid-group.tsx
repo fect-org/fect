@@ -14,7 +14,7 @@ const getGridStyle = (col: number): CustomCSSProperties => {
   col = Math.abs(col) > 24 ? 24 : col
   const width = 100 / col
   return {
-    '--grid-width': `${width}%`,
+    '--grid-width': `${width}%`
   }
 }
 
@@ -73,5 +73,5 @@ export default defineComponent({
         </div>
       )
     }
-  },
+  }
 })

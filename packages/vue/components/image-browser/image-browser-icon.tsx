@@ -12,7 +12,7 @@ const HttpIcons = defineComponent({
         />
       </svg>
     )
-  },
+  }
 })
 
 export default HttpIcons

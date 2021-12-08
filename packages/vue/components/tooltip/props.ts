@@ -5,38 +5,38 @@ export const props = {
   visible: Boolean,
   content: {
     type: String,
-    default: '',
+    default: ''
   },
   type: {
     type: String as PropType<TooltipTypes>,
-    default: 'default',
+    default: 'default'
   },
   placement: {
     type: String as PropType<PlacementTypes>,
-    default: 'top',
+    default: 'top'
   },
   visibleArrow: {
     type: Boolean,
-    default: true,
+    default: true
   },
   trigger: {
     type: String as PropType<TriggerTypes>,
-    default: 'hover',
+    default: 'hover'
   },
   showAfter: {
     type: Number,
-    default: 0,
+    default: 0
   },
   hideAfter: {
     type: Number,
-    default: 0,
+    default: 0
   },
   offset: {
     type: Number,
-    default: 12,
+    default: 12
   },
   portalClass: {
     type: String,
-    default: '',
-  },
+    default: ''
+  }
 }

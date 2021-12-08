@@ -19,20 +19,20 @@ const queryInputSize = (size: NormalSizes) => {
   const sizesPool: Record<NormalSizes, InputSize> = {
     mini: {
       heightRatio: '1.313',
-      fontSize: '12px',
+      fontSize: '12px'
     },
     small: {
       heightRatio: '1.5',
-      fontSize: '12px',
+      fontSize: '12px'
     },
     medium: {
       heightRatio: '1.687',
-      fontSize: '14px',
+      fontSize: '14px'
     },
     large: {
       heightRatio: '1.875',
-      fontSize: '16px',
-    },
+      fontSize: '16px'
+    }
   }
 
   return sizesPool[size]
@@ -43,20 +43,20 @@ export default defineComponent({
   props: {
     modelValue: {
       type: [String, Number],
-      default: '',
+      default: ''
     },
     type: { type: String, default: 'text' },
     placeholder: String,
     size: {
       type: String as PropType<NormalSizes>,
-      default: 'medium',
+      default: 'medium'
     },
     autocomplete: String,
     readonly: Boolean,
     disabled: Boolean,
     clearable: Boolean,
     prefix: [String, Number],
-    suffix: [String, Number],
+    suffix: [String, Number]
   },
   emits: ['change', 'blur', 'focus', 'clearClick', 'update:modelValue'],
   setup(props, { slots, emit, attrs }) {
@@ -126,7 +126,7 @@ export default defineComponent({
         onFocus: focusHandler,
         onBlur: blurHandler,
         onChange: changeHandler,
-        ...attrs,
+        ...attrs
       }
 
       const passwordVisibleChanger = () => {
@@ -162,11 +162,11 @@ export default defineComponent({
     const haslabel = computed(() => {
       const prefixStyle = {
         borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0,
+        borderBottomLeftRadius: 0
       }
       const suffixStyle = {
         borderTopRightRadius: 0,
-        borderBottomRightRadius: 0,
+        borderBottomRightRadius: 0
       }
 
       if (hasPrefix.value && hasSuffix.value) {
@@ -200,5 +200,5 @@ export default defineComponent({
         </div>
       </div>
     )
-  },
+  }
 })

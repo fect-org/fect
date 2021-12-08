@@ -24,17 +24,17 @@ export default defineComponent({
     value: UnknowProp,
     checkedValue: {
       type: UnknowProp,
-      default: true,
+      default: true
     },
     inactiveValue: {
       type: UnknowProp,
-      default: false,
+      default: false
     },
     size: {
       type: String as PropType<NormalSizes>,
-      default: 'medium',
+      default: 'medium'
     },
-    disabled: Boolean,
+    disabled: Boolean
   },
   emits: ['change', 'update:modelValue'],
   setup(props, { emit }) {
@@ -49,11 +49,11 @@ export default defineComponent({
       emit('update:modelValue', reverse)
       const selfEvent: SwitchEvent = {
         target: {
-          checked: reverse,
+          checked: reverse
         },
         stopPropagation: e.stopPropagation,
         preventDefault: e.preventDefault,
-        nativeEvent: e,
+        nativeEvent: e
       }
       emit('change', selfEvent)
       if (hasEmptry(props.value)) setValue(reverse)
@@ -87,5 +87,5 @@ export default defineComponent({
         <div class={`fect-switch__slider ${setClass.value}`}></div>
       </label>
     )
-  },
+  }
 })

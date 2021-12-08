@@ -10,11 +10,11 @@ import { later } from '../../../tests'
 
 const Wrapper = {
   components: {
-    [Tooltip.name]: Tooltip,
+    [Tooltip.name]: Tooltip
   },
   data() {
     return {
-      visible: false,
+      visible: false
     }
   },
   template: `
@@ -25,22 +25,22 @@ const Wrapper = {
     Test Data
    </fe-tooltip>
   </div>
-  `,
+  `
 }
 
 describe('Tooltip', () => {
   it('should be support slots content', () => {
     const wrapper = mount(Tooltip, {
       slots: {
-        content: <div>test message</div>,
-      },
+        content: <div>test message</div>
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
   it('bidirectional binding should be supported', async () => {
     const wrapper = mount(Wrapper, { attachTo: document.body })
     const {
-      tooltipRef: { setTeleport },
+      tooltipRef: { setTeleport }
     } = wrapper.vm.$refs as any
     await setTeleport('.container')
 

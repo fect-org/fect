@@ -4,7 +4,7 @@ import {
   onUnmounted,
   computed,
   ComponentPublicInstance,
-  ComponentInternalInstance,
+  ComponentInternalInstance
 } from 'vue'
 
 type Provider<T> = T & {
@@ -24,12 +24,12 @@ const useProvider = <T>(key: string | symbol) => {
     const idx = computed(() => internalChildren.indexOf(instance))
     return {
       context: rest,
-      idx: idx.value,
+      idx: idx.value
     }
   }
   return {
     context: null,
-    idx: -1,
+    idx: -1
   }
 }
 

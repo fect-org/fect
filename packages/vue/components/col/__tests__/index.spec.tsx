@@ -12,8 +12,8 @@ describe('Col', () => {
   it('should be support tag', () => {
     const wrapper = mount(Col, {
       props: {
-        tag: 'span',
-      },
+        tag: 'span'
+      }
     })
     expect(wrapper.find('span')).toBeTruthy()
   })
@@ -25,7 +25,7 @@ describe('Col', () => {
             <Col />
           </Row>
         )
-      },
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })

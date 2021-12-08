@@ -31,7 +31,7 @@ export default defineComponent({
       setRect(position)
       const iconOffset = {
         x: `${rect.width / 2}px`,
-        y: `${rect.height / 2}px`,
+        y: `${rect.height / 2}px`
       }
       setIconOffset(iconOffset)
     }
@@ -41,7 +41,7 @@ export default defineComponent({
         ['--tooltip-icon-offset-y']: iconOffset.value.y,
         top: rect.value.top,
         left: rect.value.left,
-        transform: rect.value.transform,
+        transform: rect.value.transform
       }
       return style
     })
@@ -57,7 +57,7 @@ export default defineComponent({
         left: rect.left,
         right: rect.right,
         bottom: rect.bottom,
-        transform: rect.transform,
+        transform: rect.transform
       }
       return style
     })
@@ -135,7 +135,7 @@ export default defineComponent({
       clickHandler,
       mouseEventHandler,
       setTeleport,
-      updateRect,
+      updateRect
     })
 
     return () => (
@@ -150,5 +150,5 @@ export default defineComponent({
         {renderContent()}
       </div>
     )
-  },
+  }
 })

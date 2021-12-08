@@ -15,8 +15,8 @@ export default {
     }
     return {
       checked,
-      changeHandler,
+      changeHandler
     }
-  },
+  }
 }
 </script>

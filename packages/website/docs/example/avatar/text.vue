@@ -10,6 +10,6 @@
 <script>
 export default {
   name: 'ex-avatar-text',
-  setup() {},
+  setup() {}
 }
 </script>

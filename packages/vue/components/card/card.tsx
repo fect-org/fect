@@ -8,7 +8,7 @@ export default defineComponent({
   name,
   props: {
     hoverable: Boolean,
-    shadow: Boolean,
+    shadow: Boolean
   },
   setup(props, { slots }) {
     const setClass = computed(() => {
@@ -23,5 +23,5 @@ export default defineComponent({
         <div class="fect-card__content">{slots.default?.()}</div>
       </div>
     )
-  },
+  }
 })

@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ex-slider-step',
+  name: 'ex-slider-step'
 }
 </script>

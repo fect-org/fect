@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ex-skeleton-animate',
+  name: 'ex-skeleton-animate'
 }
 </script>

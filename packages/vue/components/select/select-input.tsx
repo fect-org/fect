@@ -2,7 +2,7 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   props: {
-    visible: Boolean,
+    visible: Boolean
   },
   setup(props) {
     return () => (
@@ -18,5 +18,5 @@ export default defineComponent({
         />
       </>
     )
-  },
+  }
 })

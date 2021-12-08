@@ -3,12 +3,12 @@ import Card from '..'
 
 const Wrapper = {
   component: {
-    [Card.name]: Card,
+    [Card.name]: Card
   },
   data() {
     return {
       hoverable: false,
-      shadow: false,
+      shadow: false
     }
   },
   template: `
@@ -18,7 +18,7 @@ const Wrapper = {
     <fe-card :shadow="shadow">Shadow Card</fe-card>
     <fe-card :hoverable="hoverable" :shadow="shadow">Hoverable and Shadow Card</fe-card>
    </div>
-  `,
+  `
 }
 
 describe('Card', () => {

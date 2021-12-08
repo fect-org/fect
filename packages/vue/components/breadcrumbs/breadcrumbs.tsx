@@ -16,7 +16,7 @@ const queryFontSize = (size: NormalSizes) => {
     mini: '12px',
     small: '14px',
     medium: '16px',
-    large: '18px',
+    large: '18px'
   }
   return sizesPool[size]
 }
@@ -26,12 +26,12 @@ export default defineComponent({
   props: {
     separator: {
       type: String,
-      default: '/',
+      default: '/'
     },
     size: {
       type: String as PropType<NormalSizes>,
-      default: 'medium',
-    },
+      default: 'medium'
+    }
   },
   setup(props, { slots }) {
     const { provider } = createProvider(READONLY_BREADCRUMBS_KEY)
@@ -47,5 +47,5 @@ export default defineComponent({
         {slots.default?.()}
       </nav>
     )
-  },
+  }
 })

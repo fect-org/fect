@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: 'ex-swipe-loop',
+  name: 'ex-swipe-loop'
 }
 </script>
 

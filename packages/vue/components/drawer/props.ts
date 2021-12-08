@@ -8,15 +8,15 @@ export const props = {
   modelValue: Boolean,
   overlay: {
     type: Boolean,
-    default: true,
+    default: true
   },
   placement: {
     type: String as PropType<Placement>,
-    default: 'right',
+    default: 'right'
   },
   round: {
     type: Boolean,
-    default: true,
+    default: true
   },
-  disableOverlayClick: Boolean,
+  disableOverlayClick: Boolean
 }

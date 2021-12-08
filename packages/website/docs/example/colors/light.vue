@@ -20,7 +20,7 @@ export default {
       { name: 'Magenta', value: 'var(--highlight-magenta)' },
       { name: 'Pink', value: 'var(--highlight-pink)' },
       { name: 'Yellow', value: 'var(--hightlight-yellow)' },
-      { name: 'Cyan', value: 'var(--hightlight-cyan)' },
+      { name: 'Cyan', value: 'var(--hightlight-cyan)' }
     ])
 
     const { copyText } = useClipboard()
@@ -31,7 +31,7 @@ export default {
     const style = (color, idx) => {
       const Style = {
         backgroundColor: color.value,
-        color: idx > 2 ? 'var(--primary-foreground)' : ' var(--primary-background)',
+        color: idx > 2 ? 'var(--primary-foreground)' : ' var(--primary-background)'
       }
       return Style
     }
@@ -45,9 +45,9 @@ export default {
       colors,
       colorValue,
       style,
-      handleCopy,
+      handleCopy
     }
-  },
+  }
 }
 </script>
 

@@ -16,7 +16,7 @@ import { NavBar as Nav, NavLink } from './interface'
 
 export default {
   components: {
-    NavBar,
+    NavBar
   },
   setup() {
     const [currentNav, setCurrentNav] = useState<Nav>('home')
@@ -68,7 +68,7 @@ export default {
       currentLang,
       currentNav,
       updateCurrentNav,
-      updateCurrentLang,
+      updateCurrentLang
     })
 
     watch(
@@ -79,7 +79,7 @@ export default {
       },
       { immediate: true }
     )
-  },
+  }
 }
 </script>
 

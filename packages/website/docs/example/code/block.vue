@@ -10,6 +10,6 @@
 
 <script>
 export default {
-  name: 'ex-code-block',
+  name: 'ex-code-block'
 }
 </script>

@@ -9,8 +9,8 @@ export const collectRoute = (context) => {
       // name: routeName,
       component: context[p].default,
       meta: {
-        title: `${routeName} | ${FECT_TITLE}`,
-      },
+        title: `${routeName} | ${FECT_TITLE}`
+      }
     }
   })
 }
@@ -20,17 +20,17 @@ export const RouteTempalte = (components, guide, lang = 'zh-cn') => [
     path: `/${lang}`,
     component: () => import('../components/layout/home.vue'),
     meta: {
-      title: FECT_TITLE,
-    },
+      title: FECT_TITLE
+    }
   },
   {
     path: `/${lang}/components`,
     component: () => import('../components/layout/layout.vue'),
-    children: components,
+    children: components
   },
   {
     path: `/${lang}/guide`,
     component: () => import('../components/layout/layout.vue'),
-    children: guide,
-  },
+    children: guide
+  }
 ]

@@ -13,10 +13,10 @@ export default {
   setup() {
     const fakeData = ref([
       { name: 'XeryYue', age: 18 },
-      { name: 'Kanno', age: 19 },
+      { name: 'Kanno', age: 19 }
     ])
     return { fakeData }
-  },
+  }
 }
 </script>
 

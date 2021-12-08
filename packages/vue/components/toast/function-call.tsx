@@ -67,7 +67,7 @@ const Toast = (options: ToastOptions) => {
           ))}
         </div>
       )
-    },
+    }
   }
   createPortal(content, container)
 }

@@ -7,6 +7,6 @@
 
 <script>
 export default {
-  name: 'ex-back-top-default',
+  name: 'ex-back-top-default'
 }
 </script>

@@ -6,8 +6,8 @@ describe('Button', () => {
   it('should be render as a element', () => {
     const wrapper = mount(Button, {
       slots: {
-        default: 'Button',
-      },
+        default: 'Button'
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
     expect(() => wrapper.unmount()).not.toThrow()
@@ -25,8 +25,8 @@ describe('Button', () => {
         <fe-button type="error" :ghost="ghost">Button</fe-button>
       </div>`,
       components: {
-        [Button.name]: Button,
-      },
+        [Button.name]: Button
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
     await wrapper.setData({ ghost: true })
@@ -43,8 +43,8 @@ describe('Button', () => {
         <fe-button auto>Button</fe-button>
       </div>`,
       components: {
-        [Button.name]: Button,
-      },
+        [Button.name]: Button
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -58,8 +58,8 @@ describe('Button', () => {
         <fe-button loading type="warning" load-type="wave">Button</fe-button>
       </div>`,
       components: {
-        [Button.name]: Button,
-      },
+        [Button.name]: Button
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
     expect(wrapper.findAll('.loading__cube')).toBeTruthy()
@@ -73,8 +73,8 @@ describe('Button', () => {
         <fe-button shadow>Button</fe-button>
       </div>`,
       components: {
-        [Button.name]: Button,
-      },
+        [Button.name]: Button
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -83,7 +83,7 @@ describe('Button', () => {
     const wrapper = mount({
       components: {
         [Button.name]: Button,
-        Github,
+        Github
       },
       template: `
       <div class="container">
@@ -91,7 +91,7 @@ describe('Button', () => {
           <template #icon><Github /></template>
             Button
         </fe-button>
-      </div>`,
+      </div>`
     })
     expect(wrapper.html()).toMatchSnapshot()
   })

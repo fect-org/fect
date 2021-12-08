@@ -12,7 +12,7 @@ describe('AvatarGroup', () => {
             <Avatar text="b" stacked />
           </AvatarGroup>
         )
-      },
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()

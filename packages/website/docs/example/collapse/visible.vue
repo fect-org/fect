@@ -14,8 +14,8 @@ export default {
   setup() {
     const show = ref(true)
     return {
-      show,
+      show
     }
-  },
+  }
 }
 </script>

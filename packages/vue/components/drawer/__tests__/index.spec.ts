@@ -15,11 +15,11 @@ describe('Drawer', () => {
             visible: false,
             disableOverlayClick: false,
             overlay: true,
-            placement: 'right',
+            placement: 'right'
           }
         },
         components: {
-          [Drawer.name]: Drawer,
+          [Drawer.name]: Drawer
         },
         template: `
       <div class="container">
@@ -36,7 +36,7 @@ describe('Drawer', () => {
         </span>
        </fe-drawer>
       </div>
-      `,
+      `
       },
       { attachTo: document.body }
     )

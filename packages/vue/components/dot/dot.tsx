@@ -9,8 +9,8 @@ export default defineComponent({
   props: {
     type: {
       type: String as PropType<NormalTypes>,
-      default: 'default',
-    },
+      default: 'default'
+    }
   },
   setup(props, { slots }) {
     return () => (
@@ -19,5 +19,5 @@ export default defineComponent({
         <span class="fect-dot__ctx">{slots.default?.()}</span>
       </div>
     )
-  },
+  }
 })

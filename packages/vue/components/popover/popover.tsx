@@ -35,7 +35,7 @@ export default defineComponent({
       showAfter: props.showAfter,
       trigger: props.trigger,
       offset: props.offset,
-      portalClass: `popover ${props.portalClass}`,
+      portalClass: `popover ${props.portalClass}`
     }
 
     return () => (
@@ -43,5 +43,5 @@ export default defineComponent({
         {slots.widget?.()}
       </Tooltip>
     )
-  },
+  }
 })

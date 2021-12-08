@@ -29,7 +29,7 @@ export default {
       show.value = true
     }
     return { show, clickHandler, placement }
-  },
+  }
 }
 </script>
 

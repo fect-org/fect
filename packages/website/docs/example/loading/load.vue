@@ -8,6 +8,6 @@
 
 <script>
 export default {
-  name: 'ex-loading-load',
+  name: 'ex-loading-load'
 }
 </script>

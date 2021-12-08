@@ -53,7 +53,7 @@ export default defineComponent({
       const style: CustomCSSProperties = {
         '--button-hover-bg': bg,
         '--button-hover-border': border,
-        '--button-hover-color': color,
+        '--button-hover-color': color
       }
       return style
     })
@@ -98,5 +98,5 @@ export default defineComponent({
         {renderContext()}
       </button>
     )
-  },
+  }
 })

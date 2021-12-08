@@ -14,8 +14,8 @@ describe('Image', () => {
         skeleton: true,
         height: '240px',
         width: '540px',
-        src: '1',
-      },
+        src: '1'
+      }
     })
     expect(wrapper.find('.skeleton')).toBeTruthy()
   })

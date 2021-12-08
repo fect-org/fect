@@ -12,7 +12,7 @@ export default {
     const { copyText } = useClipboard()
 
     const copy = () => copyText('copy test!')
-  },
+  }
 }
 ```
 

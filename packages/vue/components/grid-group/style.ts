@@ -31,13 +31,13 @@ export const getLayoutVariable = (grid: GridBreakPoint): LayoutVariable => {
     return {
       grow: 0,
       width,
-      basis: width,
+      basis: width
     }
   }
   return {
     grow: 1,
     width: 100,
-    basis: 0,
+    basis: 0
   }
 }
 
@@ -51,7 +51,7 @@ export const getDynamicStyle = (props: Record<GridTypes, GridBreakPoint>) => {
     const layout = {
       [`--${cur}-grow`]: grow,
       [`--${cur}-basis`]: `${basis}%`,
-      [`--${cur}-width`]: `${width}%`,
+      [`--${cur}-width`]: `${width}%`
     }
     return assign(acc, layout)
   }, {} as CustomCSSProperties)
@@ -77,12 +77,12 @@ export const getBasisStyle = (flexable: BasisStyle): CustomCSSProperties => {
     alignContent,
     alignItems,
     flexDirection: direction,
-    justifyContent: justify,
+    justifyContent: justify
   }
 }
 
 export const getUnitGapStyle = (gap: number): CustomCSSProperties => {
   return {
-    '--fect-grid-gap': `calc(${gap} * 16px * 1/3)`,
+    '--fect-grid-gap': `calc(${gap} * 16px * 1/3)`
   }
 }

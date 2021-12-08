@@ -8,6 +8,6 @@
 
 <script>
 export default {
-  name: 'ex-tag-default',
+  name: 'ex-tag-default'
 }
 </script>

@@ -9,6 +9,6 @@
 
 <script>
 export default {
-  name: 'ex-radio-group',
+  name: 'ex-radio-group'
 }
 </script>

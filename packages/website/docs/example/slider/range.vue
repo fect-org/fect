@@ -12,8 +12,8 @@ export default {
   name: 'ex-slider-range',
   setup() {
     return {
-      val: 20,
+      val: 20
     }
-  },
+  }
 }
 </script>

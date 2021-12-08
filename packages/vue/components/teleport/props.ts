@@ -7,10 +7,10 @@ export const props = {
   overlay: Boolean,
   scroll: {
     type: Boolean,
-    default: true,
+    default: true
   },
   popupClass: {
     type: String,
-    default: '',
-  },
+    default: ''
+  }
 }

@@ -53,9 +53,9 @@ export default defineComponent({
       routeList,
       setActive,
       sideBarClickHandler,
-      to,
+      to
     }
-  },
+  }
 })
 </script>
 

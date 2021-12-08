@@ -1,110 +1,110 @@
 export default {
   plugins: [
     {
-      cleanupAttrs: true,
+      cleanupAttrs: true
     },
     {
-      removeDoctype: true,
+      removeDoctype: true
     },
     {
-      removeXMLProcInst: true,
+      removeXMLProcInst: true
     },
     {
-      removeComments: true,
+      removeComments: true
     },
     {
-      removeMetadata: true,
+      removeMetadata: true
     },
     {
-      removeTitle: true,
+      removeTitle: true
     },
     {
-      removeDesc: true,
+      removeDesc: true
     },
     {
-      removeUselessDefs: true,
+      removeUselessDefs: true
     },
     {
-      removeEditorsNSData: true,
+      removeEditorsNSData: true
     },
     {
-      removeEmptyAttrs: true,
+      removeEmptyAttrs: true
     },
     {
-      removeHiddenElems: true,
+      removeHiddenElems: true
     },
     {
-      removeEmptyText: true,
+      removeEmptyText: true
     },
     {
-      removeEmptyContainers: true,
+      removeEmptyContainers: true
     },
     {
-      removeViewBox: false,
+      removeViewBox: false
     },
     {
-      cleanupEnableBackground: true,
+      cleanupEnableBackground: true
     },
     {
-      convertStyleToAttrs: true,
+      convertStyleToAttrs: true
     },
     {
-      convertColors: true,
+      convertColors: true
     },
     {
-      convertPathData: true,
+      convertPathData: true
     },
     {
-      convertTransform: true,
+      convertTransform: true
     },
     {
-      removeUnknownsAndDefaults: true,
+      removeUnknownsAndDefaults: true
     },
     {
-      removeNonInheritableGroupAttrs: true,
+      removeNonInheritableGroupAttrs: true
     },
     {
-      removeUselessStrokeAndFill: true,
+      removeUselessStrokeAndFill: true
     },
     {
-      removeUnusedNS: true,
+      removeUnusedNS: true
     },
     {
-      cleanupIDs: true,
+      cleanupIDs: true
     },
     {
       cleanupNumericValues: {
-        floatPrecision: 1,
-      },
+        floatPrecision: 1
+      }
     },
     {
-      moveElemsAttrsToGroup: true,
+      moveElemsAttrsToGroup: true
     },
     {
-      moveGroupAttrsToElems: true,
+      moveGroupAttrsToElems: true
     },
     {
-      collapseGroups: true,
+      collapseGroups: true
     },
     {
-      removeRasterImages: false,
+      removeRasterImages: false
     },
     {
-      mergePaths: true,
+      mergePaths: true
     },
     {
-      convertShapeToPath: true,
+      convertShapeToPath: true
     },
     {
-      sortAttrs: true,
+      sortAttrs: true
     },
     {
-      removeDimensions: true,
+      removeDimensions: true
     },
     {
       removeAttrs: {
-        attrs: ['svg:width', 'svg:height', 'svg:style', 'svg:color'],
-      },
-    },
-  ],
+        attrs: ['svg:width', 'svg:height', 'svg:style', 'svg:color']
+      }
+    }
+  ]
 }

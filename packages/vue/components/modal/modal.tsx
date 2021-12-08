@@ -14,28 +14,28 @@ export default defineComponent({
     visible: Boolean,
     title: {
       tupe: String,
-      default: '',
+      default: ''
     },
     width: {
       type: String,
-      default: '400px',
+      default: '400px'
     },
     cancel: {
       type: String,
-      default: 'cancel',
+      default: 'cancel'
     },
     done: {
       type: String,
-      default: 'done',
+      default: 'done'
     },
     teleport: {
       type: String as PropType<keyof HTMLElementTagNameMap>,
-      default: 'body',
+      default: 'body'
     },
     overlay: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
   emits: ['update:visible'],
   setup(props, { attrs, slots, emit }) {
@@ -71,5 +71,5 @@ export default defineComponent({
         <ModalWrapper {...attrs} v-slots={slots} ref={modalRef} />
       </Teleport>
     )
-  },
+  }
 })

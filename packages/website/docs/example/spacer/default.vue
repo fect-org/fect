@@ -10,6 +10,6 @@
 
 <script>
 export default {
-  name: 'ex-spacer-default',
+  name: 'ex-spacer-default'
 }
 </script>

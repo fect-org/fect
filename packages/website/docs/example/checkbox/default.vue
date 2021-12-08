@@ -11,6 +11,6 @@ export default {
   setup() {
     const checked = ref(true)
     return { checked }
-  },
+  }
 }
 </script>

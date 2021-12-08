@@ -25,8 +25,8 @@ export default {
     return {
       img,
       load,
-      handleChange,
+      handleChange
     }
-  },
+  }
 }
 </script>

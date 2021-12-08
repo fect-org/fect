@@ -15,13 +15,13 @@ export default defineComponent({
     disabled: Boolean,
     modelValue: {
       type: Array as PropType<string[]>,
-      default: () => [],
+      default: () => []
     },
     size: {
       type: String as PropType<NormalSizes>,
-      default: 'medium',
+      default: 'medium'
     },
-    useRow: Boolean,
+    useRow: Boolean
   },
   emits: ['change', 'update:modelValue'],
   setup(props, { slots, emit }) {
@@ -44,7 +44,7 @@ export default defineComponent({
     const parentChangeHandler = (e: CheckboxEvent) => {
       const event = {
         ...e,
-        target: { value: parentValue },
+        target: { value: parentValue }
       }
       emit('change', event)
     }
@@ -54,5 +54,5 @@ export default defineComponent({
     watch(parentValue, (cur) => emit('update:modelValue', cur))
 
     return () => <div class={`fect-checkbox__group ${props.useRow ? 'useRow' : ''}`}>{slots.default?.()}</div>
-  },
+  }
 })

@@ -4,7 +4,7 @@ import { later } from '../../../tests'
 
 const Wrapper = {
   components: {
-    [Snippet.name]: Snippet,
+    [Snippet.name]: Snippet
   },
   data: () => ({
     text: 'Test',
@@ -14,7 +14,7 @@ const Wrapper = {
     copy: 'default',
     symbol: '$',
     toastText: 'Copied to clipboard!',
-    toastType: 'success',
+    toastType: 'success'
   }),
   template: `
   <div class="container">
@@ -27,7 +27,7 @@ const Wrapper = {
     :toastType="toastType"
     />
   </div>
-  `,
+  `
 }
 
 describe('Snippet', () => {
@@ -40,21 +40,21 @@ describe('Snippet', () => {
     const wrapper = mount(Wrapper)
     await wrapper.setData({
       fill: true,
-      type: 'success',
+      type: 'success'
     })
     expect(wrapper.html()).toMatchSnapshot()
     await wrapper.setData({
-      copy: 'prevent',
+      copy: 'prevent'
     })
     expect(wrapper.find('.fect-snippet_copy').exists()).toBe(false)
 
     await wrapper.setData({
-      copy: 'silent',
+      copy: 'silent'
     })
     const el = wrapper.find('.fect-snippet__copy')
     await el.trigger('click')
     await wrapper.setData({
-      copy: 'default',
+      copy: 'default'
     })
     await el.trigger('click')
     expect(document.querySelector('.fect-toast__area')).toBeTruthy()

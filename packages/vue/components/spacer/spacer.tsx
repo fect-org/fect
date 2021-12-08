@@ -22,13 +22,13 @@ export default defineComponent({
   props: {
     x: {
       type: [Number],
-      default: 1,
+      default: 1
     },
     y: {
       type: [Number],
-      default: 1,
+      default: 1
     },
-    inline: Boolean,
+    inline: Boolean
   },
   setup(props) {
     const setStyle = computed(() => {
@@ -38,11 +38,11 @@ export default defineComponent({
       const style: CSSProperties = {
         marginTop,
         marginLeft,
-        display: inline ? 'inline-block' : 'block',
+        display: inline ? 'inline-block' : 'block'
       }
       return style
     })
 
     return () => <span class="fect-spacer" style={setStyle.value}></span>
-  },
+  }
 })

@@ -6,7 +6,7 @@ export interface useClickAwayOptions {
 }
 
 const defaultOptions: useClickAwayOptions = {
-  event: 'click',
+  event: 'click'
 }
 
 const useClickAway = (

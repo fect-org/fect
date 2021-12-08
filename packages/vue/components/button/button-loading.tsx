@@ -5,8 +5,8 @@ import Loading from '../loading'
 const ButtonLoading = defineComponent({
   props: {
     loadType: {
-      type: String as PropType<LoadingTypes>,
-    },
+      type: String as PropType<LoadingTypes>
+    }
   },
   setup(props) {
     return () => (
@@ -14,7 +14,7 @@ const ButtonLoading = defineComponent({
         <Loading loadType={props.loadType} color="var(--button-load-color)" />
       </div>
     )
-  },
+  }
 })
 
 export default ButtonLoading

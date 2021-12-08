@@ -25,7 +25,7 @@ import IconCell from './icons-cell'
 export default {
   name: 'Icons',
   components: {
-    IconCell,
+    IconCell
   },
   setup() {
     const show = ref(false)
@@ -49,9 +49,9 @@ export default {
       setVisible,
       icons,
       handleClick,
-      val,
+      val
     }
-  },
+  }
 }
 </script>
 

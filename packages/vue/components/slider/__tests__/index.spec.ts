@@ -6,8 +6,8 @@ describe('Slider', () => {
   it('should render as normal', () => {
     const wrapper = mount(Slider, {
       props: {
-        modelValue: 0,
-      },
+        modelValue: 0
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
     expect(() => wrapper.unmount()).not.toThrow()
@@ -19,15 +19,15 @@ describe('Slider', () => {
         hideValue: true,
         showMarkers: true,
         step: 5,
-        disabled: true,
-      },
+        disabled: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
   })
   it('should trigger event when click', async () => {
     const wrapper = mount(Slider, {
-      props: { modelValue: 0 },
+      props: { modelValue: 0 }
     })
     const el = wrapper.find('.fect-slider')
 

@@ -2,7 +2,7 @@ import { defineComponent } from 'vue'
 
 const PasswordIcon = defineComponent({
   props: {
-    visible: Boolean,
+    visible: Boolean
   },
   setup(props) {
     return () => (
@@ -31,7 +31,7 @@ const PasswordIcon = defineComponent({
         )}
       </svg>
     )
-  },
+  }
 })
 
 export default PasswordIcon

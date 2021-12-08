@@ -10,27 +10,27 @@ export default defineComponent({
   props: {
     size: {
       type: String as PropType<NormalSizes>,
-      default: 'medium',
+      default: 'medium'
     },
     type: {
       type: String as PropType<NormalTypes>,
-      default: 'default',
+      default: 'default'
     },
     loadType: {
       type: String as PropType<LoadingTypes>,
-      default: 'default',
+      default: 'default'
     },
     color: {
       type: String,
-      default: '',
-    },
+      default: ''
+    }
   },
   setup(props) {
     const setColor = computed(() => {
       const { color } = props
       if (color) {
         return {
-          background: color,
+          background: color
         } as CSSProperties
       }
       return ''
@@ -86,5 +86,5 @@ export default defineComponent({
         <span class="loading">{renderLoad.value}</span>
       </div>
     )
-  },
+  }
 })

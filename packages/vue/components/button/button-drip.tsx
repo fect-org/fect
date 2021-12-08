@@ -9,8 +9,8 @@ const ButtonDrip = defineComponent({
     y: Number,
     onCompleted: {
       type: Function as PropType<Completed>,
-      required: true,
-    },
+      required: true
+    }
   },
   setup(props) {
     const dripRef = ref<HTMLDivElement>()
@@ -34,7 +34,7 @@ const ButtonDrip = defineComponent({
         </svg>
       </div>
     )
-  },
+  }
 })
 
 export default ButtonDrip

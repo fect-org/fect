@@ -20,7 +20,7 @@ const SelectIcon = defineComponent({
         </svg>
       </div>
     )
-  },
+  }
 })
 
 export default SelectIcon

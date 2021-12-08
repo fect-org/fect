@@ -13,8 +13,8 @@ export default defineComponent({
   props: {
     variable: {
       type: String as PropType<Variable>,
-      default: 'text',
-    },
+      default: 'text'
+    }
   },
   setup(props) {
     const { context } = useProvider<SkeletonProvide>(READONLY_SKELETON_KEY)
@@ -38,5 +38,5 @@ export default defineComponent({
     return () => (
       <div class={`fect-skeleton__item ${setStyle.value}`}>{props.variable === 'image' && <ImageSkeleton />}</div>
     )
-  },
+  }
 })

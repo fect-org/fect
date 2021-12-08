@@ -8,11 +8,11 @@ describe('Form', () => {
       props: {
         labelPosition: 'left',
         labelWidth: '110',
-        inline: true,
+        inline: true
       },
       slots: {
-        default: () => FormItem,
-      },
+        default: () => FormItem
+      }
     })
 
     await wrapper.setProps({ inline: false })
@@ -24,13 +24,13 @@ describe('Form', () => {
     const wrapper = mount({
       components: {
         [FormItem.name]: FormItem,
-        [Form.name]: Form,
+        [Form.name]: Form
       },
       template: `<fe-form label-width="120px">
          <fe-form-item label-width="100" label-position="top">1</fe-form-item>
          <fe-form-item label-width="10" label-position="left">2</fe-form-item>
          <fe-form-item >3</fe-form-item>
-      </fe-form>`,
+      </fe-form>`
     })
 
     expect(wrapper.html()).toMatchSnapshot()

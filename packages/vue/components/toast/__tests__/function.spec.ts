@@ -6,7 +6,7 @@ import ToastComponent from '../toast'
 describe('Toast', () => {
   it('should be use work correctly', async () => {
     Toast({
-      text: 'test',
+      text: 'test'
     })
     await later()
     expect(document.querySelector('.fect-toast__area')).toBeTruthy()
@@ -19,7 +19,7 @@ describe('Toast', () => {
 
   it('should destroy all toast queue after hidden', async () => {
     Toast({
-      text: 'test',
+      text: 'test'
     })
     await later(5000)
     expect(document.querySelector('.fect-toast__container')).toBeFalsy()

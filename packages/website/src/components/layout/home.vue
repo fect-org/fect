@@ -67,9 +67,9 @@ export default defineComponent({
 
     return {
       navLink: context!.navLink,
-      updateCurrentNav: context!.updateCurrentNav,
+      updateCurrentNav: context!.updateCurrentNav
     }
-  },
+  }
 })
 </script>
 

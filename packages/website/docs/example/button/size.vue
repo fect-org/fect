@@ -14,6 +14,6 @@
 
 <script>
 export default {
-  name: 'ex-button-size',
+  name: 'ex-button-size'
 }
 </script>

@@ -3,11 +3,11 @@ import Dot from '..'
 
 const Wrapper = {
   components: {
-    [Dot.name]: Dot,
+    [Dot.name]: Dot
   },
   data() {
     return {
-      type: 'default',
+      type: 'default'
     }
   },
   template: `
@@ -16,7 +16,7 @@ const Wrapper = {
         <span>success</span>
        </fe-dot>
      </div>
-    `,
+    `
 }
 
 describe('Dot', () => {

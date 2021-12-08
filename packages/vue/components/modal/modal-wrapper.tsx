@@ -31,7 +31,7 @@ const ModalWrapper = defineComponent({
     }
 
     return () => renderWrapper()
-  },
+  }
 })
 
 export default ModalWrapper

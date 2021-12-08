@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ex-card-shadow',
+  name: 'ex-card-shadow'
 }
 </script>

@@ -5,19 +5,19 @@ export const props = {
   prop: String,
   for: {
     type: String,
-    default: '',
+    default: ''
   },
   label: String,
   labelWidth: {
     type: [String, Number],
-    default: '',
+    default: ''
   },
   labelPosition: {
     type: String as PropType<LabelPosition>,
-    default: '',
+    default: ''
   },
   required: Boolean,
-  showMessage: Boolean,
+  showMessage: Boolean
 }
 
 export type FormItemProps = ExtractDefaultPropTypes<typeof props>

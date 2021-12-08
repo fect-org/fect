@@ -3,7 +3,7 @@ import Switch from '..'
 
 const Wrapper = {
   components: {
-    [Switch.name]: Switch,
+    [Switch.name]: Switch
   },
   data() {
     return {
@@ -11,7 +11,7 @@ const Wrapper = {
       checked: 2,
       size: 'medium',
       disabled: false,
-      inactive: 3,
+      inactive: 3
     }
   },
   template: `<div class="container">
@@ -20,7 +20,7 @@ const Wrapper = {
    :size="size" 
    :disabled="disabled" 
    :inactive-value="inactive" />
-  </div>`,
+  </div>`
 }
 
 describe('Switch', () => {

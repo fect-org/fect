@@ -14,6 +14,6 @@ export default {
   setup() {
     const val = ref(null)
     return { val }
-  },
+  }
 }
 </script>

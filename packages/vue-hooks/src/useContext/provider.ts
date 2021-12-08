@@ -6,7 +6,7 @@ import {
   getCurrentInstance,
   VNodeNormalizedChildren,
   ComponentPublicInstance,
-  ComponentInternalInstance,
+  ComponentInternalInstance
 } from 'vue'
 
 export const flattenVNodes = (children: VNodeNormalizedChildren) => {
@@ -71,11 +71,11 @@ export const createProvider = <T extends ComponentPublicInstance = ComponentPubl
       unlink,
       children: publicChildren,
       internalChildren,
-      ...value,
+      ...value
     })
   }
   return {
     children: publicChildren,
-    provider,
+    provider
   }
 }

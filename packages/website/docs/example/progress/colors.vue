@@ -18,7 +18,7 @@ export default {
       40: 'blue',
       60: 'green',
       80: '#000',
-      100: 'pink',
+      100: 'pink'
     }
     const val = ref(10)
 
@@ -26,8 +26,8 @@ export default {
     return {
       colors,
       val,
-      handleClick,
+      handleClick
     }
-  },
+  }
 }
 </script>

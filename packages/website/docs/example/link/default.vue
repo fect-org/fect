@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ex-link-default',
+  name: 'ex-link-default'
 }
 </script>

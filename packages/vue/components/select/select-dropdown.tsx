@@ -18,7 +18,7 @@ const getRect = (Parentref: ElementRef, ref: ElementRef) => {
     ...parentRect,
     width: parentRect.width || parentRect.right - parentRect.left,
     top,
-    left: parentRect.left + scrollElement.scrollLeft,
+    left: parentRect.left + scrollElement.scrollLeft
   }
 }
 
@@ -26,9 +26,9 @@ const SelectDropDown = defineComponent({
   props: {
     visible: Boolean,
     parentRef: {
-      type: Object as PropType<HTMLDivElement>,
+      type: Object as PropType<HTMLDivElement>
     },
-    teleport: String,
+    teleport: String
   },
   setup(props, { slots }) {
     const dropdownRef = ref<HTMLDivElement>()
@@ -40,7 +40,7 @@ const SelectDropDown = defineComponent({
         const style = {
           width: `${width}px`,
           top: `${top + 2}px`,
-          left: `${left}px`,
+          left: `${left}px`
         }
         dropdownRef.value.style.width = style.width
         dropdownRef.value.style.top = style.top
@@ -62,7 +62,7 @@ const SelectDropDown = defineComponent({
         </div>
       </Teleport>
     )
-  },
+  }
 })
 
 export default SelectDropDown

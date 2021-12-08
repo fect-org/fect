@@ -19,13 +19,13 @@ import Prism from 'prismjs'
 export default defineComponent({
   name: 'Preview',
   components: {
-    Code,
+    Code
   },
   props: {
     code: {
       type: String,
-      default: '',
-    },
+      default: ''
+    }
   },
   setup(props) {
     const previewRef = ref<HTMLDivElement>()
@@ -74,9 +74,9 @@ export default defineComponent({
       copyClickHandler,
       previewClickHandler,
       previewWidth,
-      contextRef,
+      contextRef
     }
-  },
+  }
 })
 </script>
 

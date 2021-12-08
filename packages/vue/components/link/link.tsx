@@ -9,15 +9,15 @@ export default defineComponent({
   props: {
     href: {
       type: String,
-      default: '',
+      default: ''
     },
     to: {
       type: [String, Object],
-      default: '',
+      default: ''
     },
     color: Boolean,
     underline: Boolean,
-    block: Boolean,
+    block: Boolean
   },
   setup(props, { slots }) {
     const route = useRoute()
@@ -42,5 +42,5 @@ export default defineComponent({
         {slots.default?.()}
       </a>
     )
-  },
+  }
 })

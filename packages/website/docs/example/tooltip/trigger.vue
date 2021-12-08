@@ -12,6 +12,6 @@
 
 <script>
 export default {
-  name: 'ex-tooltip-trigger',
+  name: 'ex-tooltip-trigger'
 }
 </script>

@@ -10,8 +10,8 @@ describe('Code', () => {
   it('should support props block', () => {
     const wrapper = mount(Code, {
       props: {
-        block: true,
-      },
+        block: true
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
     expect(wrapper.find('pre')).toBeTruthy()

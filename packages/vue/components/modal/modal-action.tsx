@@ -25,7 +25,7 @@ const ModalAction = defineComponent({
         </Button>
       </footer>
     )
-  },
+  }
 })
 
 export default ModalAction

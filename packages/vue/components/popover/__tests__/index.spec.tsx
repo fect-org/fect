@@ -4,7 +4,7 @@ import { later } from '../../../tests'
 
 const Wrapper = {
   components: {
-    [Popover.name]: Popover,
+    [Popover.name]: Popover
   },
   data() {
     return { visible: false }
@@ -18,7 +18,7 @@ const Wrapper = {
       123
       </template>
     </fe-popover>
-  </div>`,
+  </div>`
 }
 
 describe('Popover', () => {
@@ -26,8 +26,8 @@ describe('Popover', () => {
     const wrapper = mount(Popover, {
       slots: {
         default: () => 123,
-        widget: () => 456,
-      },
+        widget: () => 456
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -35,7 +35,7 @@ describe('Popover', () => {
   it('should be work correctly', async () => {
     const wrapper = mount(Wrapper, { attachTo: document.body })
     const {
-      popoverRef: { changeHandler },
+      popoverRef: { changeHandler }
     } = wrapper.vm.$refs as any
     await changeHandler(true)
     await flushPromises()

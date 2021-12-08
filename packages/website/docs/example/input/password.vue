@@ -12,8 +12,8 @@ export default {
     const value = ref(123456789)
 
     return {
-      value,
+      value
     }
-  },
+  }
 }
 </script>

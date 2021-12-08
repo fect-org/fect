@@ -7,7 +7,7 @@ const routes = [{ path: '/', redirect: { path: '/zh-cn' } }, ...zhRoutes, ...enR
 const router = createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior,
+  scrollBehavior
 })
 
 router.beforeEach((to, from, next) => {

@@ -3,34 +3,34 @@ import Breadcrumbs from '../index'
 import BreadcrumbsItem from '../../breadcrumbs-item'
 
 const BreadcrumbsTest = {
-  template: '<Breadcrumbs />',
+  template: '<Breadcrumbs />'
 }
 
 const DiffWrapper = {
   components: {
     [Breadcrumbs.name]: Breadcrumbs,
-    [BreadcrumbsItem.name]: BreadcrumbsItem,
+    [BreadcrumbsItem.name]: BreadcrumbsItem
   },
   data() {
     return {
-      sizes: ['mini', 'small', 'medium', 'large'],
+      sizes: ['mini', 'small', 'medium', 'large']
     }
   },
   template: `
     <fe-breadcrumbs v-for="(size, idx) in sizes" :size="size" :key="idx">
       {{idx}}
-    </fe-breadcrumbs>`,
+    </fe-breadcrumbs>`
 }
 
 const Wrapper = {
   components: {
     [Breadcrumbs.name]: Breadcrumbs,
-    [BreadcrumbsItem.name]: BreadcrumbsItem,
+    [BreadcrumbsItem.name]: BreadcrumbsItem
   },
   template: `<fe-breadcrumbs separator=">">
     <fe-breadcrumbsItem />
     <fe-breadcrumbsItem href="#" />
-  </fe-breadcrumbs>`,
+  </fe-breadcrumbs>`
 }
 
 describe('Breadcrumbs', () => {
@@ -57,7 +57,7 @@ describe('Breadcrumbs', () => {
   it('should be render error when breadcrumbsItem without breadcrumbs', () => {
     const wrapper = mount({
       components: { [BreadcrumbsItem.name]: BreadcrumbsItem },
-      template: '<fe-breadcrumbsItem />',
+      template: '<fe-breadcrumbsItem />'
     })
     expect(() => wrapper.get('.fect-breadcrumbs__item')).toThrowError()
   })

@@ -12,11 +12,11 @@ describe('Rating', () => {
     const wrapper = mount({
       components: {
         [Rating.name]: Rating,
-        Github,
+        Github
       },
       template: `<fe-rating>
         <template #icon><Github /></template>
-      </fe-rating>`,
+      </fe-rating>`
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -24,26 +24,26 @@ describe('Rating', () => {
   it('should be support different types', () => {
     const _success = mount(Rating, {
       props: {
-        type: 'success',
-      },
+        type: 'success'
+      }
     })
 
     const _warn = mount(Rating, {
       props: {
-        type: 'warning',
-      },
+        type: 'warning'
+      }
     })
 
     const _error = mount(Rating, {
       props: {
-        type: 'error',
-      },
+        type: 'error'
+      }
     })
 
     const _other = mount(Rating, {
       props: {
-        type: undefined,
-      },
+        type: undefined
+      }
     })
 
     expect(_success.html()).toMatchSnapshot()
@@ -56,8 +56,8 @@ describe('Rating', () => {
     const wrapper = mount(Rating, {
       props: {
         count: 3,
-        locked: true,
-      },
+        locked: true
+      }
     })
     expect(wrapper.findAll('.fect-rating__box').length).toBe(3)
     expect(wrapper.findAll('.is-locked')).toBeTruthy()
@@ -66,8 +66,8 @@ describe('Rating', () => {
   it('should be acitved', async () => {
     const wrapper = mount(Rating, {
       props: {
-        modelValue: 3,
-      },
+        modelValue: 3
+      }
     })
     expect(wrapper.findAll('.hoverd').length).toEqual(3)
   })
@@ -75,8 +75,8 @@ describe('Rating', () => {
   it('should be support change Event', async () => {
     const wrapper = mount(Rating, {
       props: {
-        modelValue: 0,
-      },
+        modelValue: 0
+      }
     })
 
     const els = wrapper.findAll('.fect-rating__box')
@@ -89,8 +89,8 @@ describe('Rating', () => {
   it('when trigger mouseenvt , should be actived', async () => {
     const wrapper = mount(Rating, {
       props: {
-        modelValue: 0,
-      },
+        modelValue: 0
+      }
     })
 
     const els = wrapper.findAll('.fect-rating__box')
@@ -104,8 +104,8 @@ describe('Rating', () => {
     const wrapper = mount(Rating, {
       props: {
         modelValue: 0,
-        locked: true,
-      },
+        locked: true
+      }
     })
     const els = wrapper.findAll('.fect-rating__box')
     await els[1].trigger('click')

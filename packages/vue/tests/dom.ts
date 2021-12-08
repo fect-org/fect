@@ -18,7 +18,7 @@ export const trigger = (evt: keyof WindowEventMap, wrapper: Wrapper, x = 0, y = 
     clientX: x,
     clientY: y,
     offsetX,
-    offsetY,
+    offsetY
   })
   el.dispatchEvent(eventObserver)
   return nextTick()

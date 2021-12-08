@@ -8,7 +8,7 @@ const name = createName('AvatarGroup')
 export default defineComponent({
   name,
   props: {
-    count: [String, Number],
+    count: [String, Number]
   },
   setup(props, { slots }) {
     const showCount = computed(() => !!props.count)
@@ -19,5 +19,5 @@ export default defineComponent({
         {showCount.value && <span class={'fect-avatar__counter'}>+{props.count}</span>}
       </div>
     )
-  },
+  }
 })

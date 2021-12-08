@@ -9,6 +9,6 @@ export default {
   name: 'ex-checkbox-size',
   setup() {
     return { sizes: ['mini', 'small', 'medium', 'large'] }
-  },
+  }
 }
 </script>

@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'ex-layout-spacer',
+  name: 'ex-layout-spacer'
 }
 </script>
 

@@ -55,5 +55,5 @@ export default defineComponent({
         {renderTransition()}
       </Teleport>
     )
-  },
+  }
 })

@@ -12,8 +12,8 @@ export default {
     const { proxy } = getCurrentInstance()
     const handlerClick = () => proxy.$toast({ text: 'I am test Message' })
     return {
-      handlerClick,
+      handlerClick
     }
-  },
+  }
 }
 </script>

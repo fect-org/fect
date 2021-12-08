@@ -4,10 +4,10 @@ export const zhGuideRoutes: Routes = [
     name: '快速上手',
     children: [
       { title: '什么是 Fect UI', route: 'Introduction' },
-      { title: '快速上手', route: 'QuickStart' },
-    ],
+      { title: '快速上手', route: 'QuickStart' }
+    ]
   },
-  { name: '主题', children: [{ title: '色彩', route: 'Colors' }] },
+  { name: '主题', children: [{ title: '色彩', route: 'Colors' }] }
 ]
 
 export const zhRoutes: Routes = [
@@ -17,23 +17,23 @@ export const zhRoutes: Routes = [
       { title: '按钮 Button', route: 'Button' },
       { title: '代码 Code', route: 'Code' },
       { title: '图标', route: 'Icons' },
-      { title: '片段 Snippet', route: 'Snippet' },
-    ],
+      { title: '片段 Snippet', route: 'Snippet' }
+    ]
   },
   {
     name: '布局',
     children: [
       { title: '栅格 Grid', route: 'Grid' },
       { title: '布局 Layout', route: 'Layout' },
-      { title: '间距 Spacer', route: 'Spacer' },
-    ],
+      { title: '间距 Spacer', route: 'Spacer' }
+    ]
   },
   {
     name: '表面',
     children: [
       { title: '卡片 Card', route: 'Card' },
-      { title: '折叠框 Collapse', route: 'Collapse' },
-    ],
+      { title: '折叠框 Collapse', route: 'Collapse' }
+    ]
   },
   {
     name: '表单',
@@ -44,8 +44,8 @@ export const zhRoutes: Routes = [
       { title: '单选框 Radio', route: 'Radio' },
       { title: '评分 Rating', route: 'Rating' },
       { title: '选择器 Select', route: 'Select' },
-      { title: '开关 Switch', route: 'Switch' },
-    ],
+      { title: '开关 Switch', route: 'Switch' }
+    ]
   },
   {
     name: '数据展示',
@@ -60,8 +60,8 @@ export const zhRoutes: Routes = [
       { title: '图片 Image', route: 'Image' },
       { title: '骨架屏 Skeleton', route: 'Skeleton' },
       { title: '标签 Tag', route: 'Tag' },
-      { title: '轮播 Swipe', route: 'Swipe' },
-    ],
+      { title: '轮播 Swipe', route: 'Swipe' }
+    ]
   },
   {
     name: '布告',
@@ -71,8 +71,8 @@ export const zhRoutes: Routes = [
       { title: '对话框 Modal', route: 'Modal' },
       { title: '指示器 Spinner', route: 'Spinner' },
       { title: '进度条 Progress', route: 'Progress' },
-      { title: '通知 Toast', route: 'Toast' },
-    ],
+      { title: '通知 Toast', route: 'Toast' }
+    ]
   },
   {
     name: '导航',
@@ -81,7 +81,7 @@ export const zhRoutes: Routes = [
       { title: '链接 Link', route: 'Link' },
       { title: '分页 Pagination', route: 'Pagination' },
       { title: '选项卡 Tabs', route: 'Tabs' },
-      { title: '回到顶部 BackTop', route: 'BackTop' },
-    ],
-  },
+      { title: '回到顶部 BackTop', route: 'BackTop' }
+    ]
+  }
 ]

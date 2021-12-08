@@ -15,7 +15,7 @@ const useRealShape = (el: ElementRef) => {
 
   return {
     width: getStyleVal(width),
-    height: getStyleVal(height),
+    height: getStyleVal(height)
   }
 }
 

@@ -10,6 +10,6 @@
 
 <script>
 export default {
-  name: 'ex-capacity-default',
+  name: 'ex-capacity-default'
 }
 </script>

@@ -11,7 +11,7 @@ export const queryBgColor = (type: NormalTypes) => {
     default: 'var(--primary-foreground)',
     success: 'var(--success-default)',
     warning: 'var(--warning-default)',
-    error: 'var(--error-default)',
+    error: 'var(--error-default)'
   }
   return bgsPool[type]
 }
@@ -21,7 +21,7 @@ export const queryFontSize = (size: NormalSizes) => {
     mini: '11px',
     small: '12px',
     medium: '14px',
-    large: '16px',
+    large: '16px'
   }
   return sizesPool[size]
 }
@@ -31,13 +31,13 @@ export default defineComponent({
   props: {
     type: {
       type: String as PropType<NormalTypes>,
-      default: 'default',
+      default: 'default'
     },
     size: {
       type: String as PropType<NormalSizes>,
-      default: 'medium',
+      default: 'medium'
     },
-    dot: Boolean,
+    dot: Boolean
   },
   setup(props, { slots, attrs }) {
     const parent = useProvider<BadgeAnchorProvide>(READONLY_BADGE_ANCHOR_KEY)
@@ -50,7 +50,7 @@ export default defineComponent({
     const setStyle = computed(() => {
       const styles: CSSProperties = {
         backgroundColor: queryBgColor(props.type),
-        fontSize: queryFontSize(props.size),
+        fontSize: queryFontSize(props.size)
       }
       return styles
     })
@@ -65,7 +65,7 @@ export default defineComponent({
         bottom: `${bottom || 'auto'}`,
         transform: `${value}`,
         transformOrigin: `${origin}`,
-        zIndex: 1,
+        zIndex: 1
       }
       return style
     })
@@ -80,5 +80,5 @@ export default defineComponent({
     return () => (
       <>{hasParent.value ? <sup style={placementStyle.value}>{renderElement()}</sup> : <>{renderElement()}</>}</>
     )
-  },
+  }
 })

@@ -17,27 +17,27 @@ export default defineComponent({
   name: 'Playground',
   components: {
     HrefAnchor,
-    Prview,
+    Prview
   },
   props: {
     title: {
       type: String,
-      default: '',
+      default: ''
     },
     component: String,
     desc: {
       type: String,
-      default: '',
+      default: ''
     },
     displayPreview: {
       type: Boolean,
-      default: true,
+      default: true
     },
     code: {
       type: String,
-      default: '',
-    },
-  },
+      default: ''
+    }
+  }
 })
 </script>
 

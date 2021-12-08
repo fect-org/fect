@@ -6,7 +6,7 @@ import { later } from '../../../tests'
 const Wrapper = {
   components: {
     [Swipe.name]: Swipe,
-    [SwipeItem.name]: SwipeItem,
+    [SwipeItem.name]: SwipeItem
   },
   data() {
     return {
@@ -14,7 +14,7 @@ const Wrapper = {
       autoplay: 0,
       indicatorDisplay: true,
       indicatorColor: '',
-      initialValue: 0,
+      initialValue: 0
     }
   },
   template: `
@@ -38,7 +38,7 @@ const Wrapper = {
       </fe-swipeItem>
     </fe-swipe>
    </div>
-  `,
+  `
 }
 
 describe('Swipe', () => {
@@ -62,7 +62,7 @@ describe('Swipe', () => {
     await wrapper.setData({
       loop: true,
       indicatorDisplay: false,
-      autoplay: 2000,
+      autoplay: 2000
     })
     await flushPromises()
     expect(wrapper.html()).toMatchSnapshot()
@@ -73,7 +73,7 @@ describe('Swipe', () => {
     await wrapper.setData({
       loop: true,
       autoPlay: 2000,
-      initialValue: -1,
+      initialValue: -1
     })
     await flushPromises()
     const indicators = wrapper.findAll('.fect-swipe__indicator')
@@ -95,7 +95,7 @@ describe('Swipe', () => {
     const wrapper = mount(Wrapper)
     await wrapper.setData({
       loop: true,
-      autoplay: 2000,
+      autoplay: 2000
     })
     // await flushPromises()
     // await later()

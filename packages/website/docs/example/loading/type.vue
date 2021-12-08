@@ -9,6 +9,6 @@
 
 <script>
 export default {
-  name: 'ex-loading-type',
+  name: 'ex-loading-type'
 }
 </script>

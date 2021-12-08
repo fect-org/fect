@@ -19,16 +19,16 @@ export default defineComponent({
     loading: Boolean,
     rows: {
       type: Number,
-      default: 0,
+      default: 0
     },
     animated: {
       type: Boolean,
-      default: true,
+      default: true
     },
     rowsWidth: {
       type: [Number, String, Array] as PropType<number | string | (number | string)[]>,
-      default: DEFAULT_ROW_WIDTH,
-    },
+      default: DEFAULT_ROW_WIDTH
+    }
   },
   setup(props, { slots }) {
     const { provider } = createProvider(READONLY_SKELETON_KEY)
@@ -74,5 +74,5 @@ export default defineComponent({
         </div>
       )
     }
-  },
+  }
 })

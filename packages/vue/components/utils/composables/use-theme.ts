@@ -26,6 +26,6 @@ export const useTheme = () => {
 
   return {
     themeChange,
-    theme,
+    theme
   }
 }

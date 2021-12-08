@@ -21,9 +21,9 @@ export default {
       return { backgroundColor: idx ? '#666' : 'var(--accents-2)' }
     }
     return {
-      rightColor,
+      rightColor
     }
-  },
+  }
 }
 </script>
 

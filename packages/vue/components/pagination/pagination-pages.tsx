@@ -8,16 +8,16 @@ const PaginationPages = defineComponent({
   props: {
     current: {
       type: Number,
-      required: true,
+      required: true
     },
     count: {
       type: [Number],
-      required: true,
+      required: true
     },
     limit: {
       type: Number,
-      required: true,
-    },
+      required: true
+    }
   },
   setup(props, { slots, emit }) {
     const [beforeEllipsis, setBeforeEllipsis] = useState<boolean>(false)
@@ -129,7 +129,7 @@ const PaginationPages = defineComponent({
     }
 
     return () => <>{overlaod.value ? renderlessLimit() : renderNormal()}</>
-  },
+  }
 })
 
 export default PaginationPages

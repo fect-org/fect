@@ -20,8 +20,8 @@ export default {
       console.log(show.value)
     })
     return {
-      handlerClick,
+      handlerClick
     }
-  },
+  }
 }
 </script>

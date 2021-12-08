@@ -14,14 +14,14 @@ const queryBrowserColors = (invert: boolean): BrowserColors => {
     barBgColor: 'var(--primary-foreground)',
     inputBgColor: 'var(--accents-8)',
     borderColor: 'var(--accents-7)',
-    titleColor: 'var(--accents-2)',
+    titleColor: 'var(--accents-2)'
   }
   const normalStyle = {
     color: 'var(--primary-foreground)',
     barBgColor: 'var(--primary-background)',
     inputBgColor: 'var(--accents-1)',
     borderColor: 'var(--accents-2)',
-    titleColor: 'var(--accents-5)',
+    titleColor: 'var(--accents-5)'
   }
   return invert ? invertStyle : normalStyle
 }
@@ -40,13 +40,13 @@ export default defineComponent({
     invert: Boolean,
     url: {
       type: String,
-      default: '',
+      default: ''
     },
     showFullLink: Boolean,
     title: {
       type: String,
-      default: '',
-    },
+      default: ''
+    }
   },
   setup(props, { attrs, slots }) {
     const setColors = computed(() => {
@@ -98,7 +98,7 @@ export default defineComponent({
           style={{
             color,
             backgroundColor: barBgColor,
-            borderBottomColor: borderColor,
+            borderBottomColor: borderColor
           }}
         >
           <div class="traffic__content">
@@ -111,5 +111,5 @@ export default defineComponent({
         {slots.default?.()}
       </div>
     )
-  },
+  }
 })

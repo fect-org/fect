@@ -3,7 +3,7 @@ import { defineComponent, computed } from 'vue'
 const ClearableIcon = defineComponent({
   props: {
     visible: Boolean,
-    disabled: Boolean,
+    disabled: Boolean
   },
   emits: ['click'],
   setup(props, { emit }) {
@@ -37,7 +37,7 @@ const ClearableIcon = defineComponent({
         </svg>
       </div>
     )
-  },
+  }
 })
 
 export default ClearableIcon

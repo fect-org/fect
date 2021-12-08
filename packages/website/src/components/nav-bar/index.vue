@@ -81,9 +81,9 @@ export default defineComponent({
       changeHandler,
       navClickHandler,
       setActive,
-      logoHandler,
+      logoHandler
     }
-  },
+  }
 })
 </script>
 

@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'ex-grid-default',
+  name: 'ex-grid-default'
 }
 </script>
 

@@ -64,11 +64,11 @@ export default defineConfig({
         {
           libraryName: '@fect-ui/vue',
           esModule: true,
-          resolveStyle: (name) => `@fect-ui/vue/es/${name}/index.css`,
-        },
-      ],
-    }),
-  ],
+          resolveStyle: (name) => `@fect-ui/vue/es/${name}/index.css`
+        }
+      ]
+    })
+  ]
 })
 ```
 

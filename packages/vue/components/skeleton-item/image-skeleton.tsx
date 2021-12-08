@@ -18,7 +18,7 @@ const ImageSkeleton = defineComponent({
         <path d="M21 15l-5-5L5 21"></path>
       </svg>
     )
-  },
+  }
 })
 
 export default ImageSkeleton

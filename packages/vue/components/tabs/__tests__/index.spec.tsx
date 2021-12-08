@@ -20,9 +20,9 @@ describe('Tabs', () => {
       },
       data() {
         return {
-          active: 0,
+          active: 0
         }
-      },
+      }
     })
     const els = wrapper.findAll('.fect-tabs__title') // filter all tabs title
     await els[1].trigger('click')
@@ -44,14 +44,14 @@ describe('Tabs', () => {
       data() {
         return {
           active: 0,
-          disabled: true,
+          disabled: true
         }
-      },
+      }
     })
     const els = wrapper.findAll('.fect-tabs__title') // filter all tabs title
     await els[0].trigger('click')
     await wrapper.setProps({
-      hideDivider: true,
+      hideDivider: true
     })
     expect(wrapper.html()).toMatchSnapshot()
   })

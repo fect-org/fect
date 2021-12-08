@@ -5,31 +5,31 @@ export const props = {
   text: {
     type: String,
     default: '',
-    required: true,
+    required: true
   },
   width: {
     type: [String, Number],
-    default: 'initial',
+    default: 'initial'
   },
   fill: Boolean,
   type: {
     type: String as PropType<NormalTypes>,
-    default: 'default',
+    default: 'default'
   },
   copy: {
     type: String as PropType<SnippetCopyTypes>,
-    default: 'default',
+    default: 'default'
   },
   symbol: {
     type: String,
-    default: '$',
+    default: '$'
   },
   toastText: {
     type: String,
-    default: 'Copied to clipboard!',
+    default: 'Copied to clipboard!'
   },
   toastType: {
     type: String as PropType<NormalTypes>,
-    default: 'success',
-  },
+    default: 'success'
+  }
 }

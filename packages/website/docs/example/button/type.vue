@@ -12,6 +12,6 @@
 
 <script>
 export default {
-  name: 'ex-button-type',
+  name: 'ex-button-type'
 }
 </script>

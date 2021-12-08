@@ -5,14 +5,14 @@ import Image from '../../image'
 const Wrapper = {
   components: {
     [ImageBrowser.name]: ImageBrowser,
-    [Image.name]: Image,
+    [Image.name]: Image
   },
   data() {
     return {
       invert: false,
       url: 'https://www.miaya.art',
       showFullLink: false,
-      title: 'Fect',
+      title: 'Fect'
     }
   },
   template: `
@@ -25,7 +25,7 @@ const Wrapper = {
         <fe-image width="540px" height="246px" />
       </fe-imageBrowser>
     </div>
-  `,
+  `
 }
 
 describe('ImageBrowser', () => {

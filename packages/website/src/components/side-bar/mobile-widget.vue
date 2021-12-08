@@ -13,7 +13,7 @@ export default defineComponent({
   setup(props, { emit }) {
     const clickHandler = () => emit('click')
     return { clickHandler }
-  },
+  }
 })
 </script>
 

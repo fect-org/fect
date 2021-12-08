@@ -10,6 +10,6 @@
 
 <script>
 export default {
-  name: 'ex-spacer-horizontal',
+  name: 'ex-spacer-horizontal'
 }
 </script>

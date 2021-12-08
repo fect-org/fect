@@ -57,9 +57,9 @@ export default {
       return { padding: `${val}pt` }
     }
     return {
-      rightGap,
+      rightGap
     }
-  },
+  }
 }
 </script>
 

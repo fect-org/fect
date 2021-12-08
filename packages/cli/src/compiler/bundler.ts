@@ -9,7 +9,7 @@ import {
   outputJSONSync,
   readdirSync,
   readFileSync,
-  pathExistsSync,
+  pathExistsSync
 } from 'fs-extra'
 import { join, dirname, extname, basename } from 'path'
 import { getNonConf, USER_NON_PATH } from '../shared/get-config'
@@ -31,7 +31,7 @@ import {
   isScript,
   isStyle,
   DECLARATION_PATH,
-  TSCONFIG_PATH,
+  TSCONFIG_PATH
 } from '../shared/constant'
 
 import { compilerStyle } from './compiler-style'
@@ -124,7 +124,7 @@ export class Bundler extends EventEmitter {
       const defaultStyle = hasStyle ? '../index.css' : ''
       styleDeps[component] = {
         ...styleDeps[component],
-        [component]: defaultStyle,
+        [component]: defaultStyle
       }
       imports.map((_) => {
         // eslint-disable-next-line prefer-destructuring
@@ -140,7 +140,7 @@ export class Bundler extends EventEmitter {
           if (compoents.includes(depsComponent)) {
             styleDeps[component] = {
               [depsComponent]: `../../${depsComponent}/index.css`,
-              ...styleDeps[component],
+              ...styleDeps[component]
             }
           }
         }
@@ -183,22 +183,22 @@ export class Bundler extends EventEmitter {
       {
         text: 'Build ESModule Outputs',
         task: () => this.genESM(),
-        name: 'es',
+        name: 'es'
       },
       {
         text: 'Build Commonjs Outputs',
         task: () => this.genCJS(),
-        name: 'cjs',
+        name: 'cjs'
       },
       {
         text: 'Build Declaration Outputs',
-        task: () => this.genDTS(),
+        task: () => this.genDTS()
       },
       {
         text: 'Build UMD Outputs',
         task: () => this.genUMD(),
-        name: 'umd',
-      },
+        name: 'umd'
+      }
     ]
     if (this.formats === 'default') return tasks
     if (this.formats === 'noumd') return tasks.splice(0, 3)
@@ -234,7 +234,7 @@ export class Bundler extends EventEmitter {
 
     return new Promise((resolve) =>
       spawn('tsc', ['-p', TSCONFIG_PATH], {
-        shell: true,
+        shell: true
       }).on('close', () => resolve(true))
     )
   }

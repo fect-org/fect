@@ -12,22 +12,22 @@ export default defineComponent({
   props: {
     to: {
       type: String,
-      default: '',
+      default: ''
     },
     routeName: {
       type: String,
-      default: '',
+      default: ''
     },
-    color: Boolean,
+    color: Boolean
   },
   setup(props) {
     const pushTo = computed(() => {
       return {
-        path: props.to,
+        path: props.to
       }
     })
     return { pushTo }
-  },
+  }
 })
 </script>
 

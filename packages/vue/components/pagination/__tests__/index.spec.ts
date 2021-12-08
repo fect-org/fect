@@ -11,8 +11,8 @@ describe('Pagination', () => {
     const wrapper = mount(Pagination, {
       props: {
         limit: 2,
-        count: 10,
-      },
+        count: 10
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
     await wrapper.setProps({ count: 0 })
@@ -21,8 +21,8 @@ describe('Pagination', () => {
   it('should be support simple mode render', () => {
     const wrapper = mount(Pagination, {
       props: {
-        simple: true,
-      },
+        simple: true
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -30,8 +30,8 @@ describe('Pagination', () => {
     const wrapper = mount(Pagination, {
       props: {
         limit: 11,
-        count: 10,
-      },
+        count: 10
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
     expect(wrapper.findAll('button').length).toBeGreaterThanOrEqual(12)
@@ -40,8 +40,8 @@ describe('Pagination', () => {
     const wrapper = mount(Pagination, {
       props: {
         modelValue: 1,
-        count: 10,
-      },
+        count: 10
+      }
     })
     const els = wrapper.findAll('.pagination-item__button ')
     expect(wrapper.vm.modelValue).toEqual(1)
@@ -55,7 +55,7 @@ describe('Pagination', () => {
   it('should render as custom prev or next', async () => {
     const wrapper = mount({
       components: {
-        [Pagination.name]: Pagination,
+        [Pagination.name]: Pagination
       },
       data: () => ({ value: 1, count: 10, limit: 11, size: 'medium' }),
       template: `<fe-pagination v-model="value" :count="count" 
@@ -66,7 +66,7 @@ describe('Pagination', () => {
        <template #next>
         下一页
        </template>
-      </fe-pagination>`,
+      </fe-pagination>`
     })
 
     expect(wrapper.html()).toMatchSnapshot()

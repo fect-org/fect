@@ -2,7 +2,7 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   props: {
-    checked: Boolean,
+    checked: Boolean
   },
   setup(props, { attrs }) {
     return () => (
@@ -25,5 +25,5 @@ export default defineComponent({
         )}
       </>
     )
-  },
+  }
 })

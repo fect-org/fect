@@ -39,23 +39,23 @@ export default defineComponent({
   props: {
     modelValue: {
       type: Number,
-      default: 0,
+      default: 0
     },
     step: {
       type: Number,
-      default: 1,
+      default: 1
     },
     max: {
       type: Number,
-      default: 100,
+      default: 100
     },
     min: {
       type: Number,
-      default: 0,
+      default: 0
     },
     disabled: Boolean,
     showMarkers: Boolean,
-    hideValue: Boolean,
+    hideValue: Boolean
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { emit }) {
@@ -130,7 +130,7 @@ export default defineComponent({
     useDraggable(dotRef, {
       onStart: dragStartHandler,
       onMove: dragMoveHandler,
-      onEnd: dragEndHandler,
+      onEnd: dragEndHandler
     })
 
     watch(value, (pre) => {
@@ -150,5 +150,5 @@ export default defineComponent({
         {props.showMarkers && renderMarkers()}
       </div>
     )
-  },
+  }
 })

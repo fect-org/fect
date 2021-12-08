@@ -14,7 +14,7 @@ defineComponent({
   setup() {
     const { provider, children } = createProvider('parentKey')
     children[0].handleClick()
-  },
+  }
 })
 ```
 
@@ -30,7 +30,7 @@ defineComponent({
     useProvider('parentKey')
     const handleClick = () => console.log('hello world')
     useExpose({ handleClick })
-  },
+  }
 })
 ```
 

@@ -36,7 +36,7 @@ class PluginParser {
       {
         markdownClasses: 'fect-md__wrapper',
         markdownWrapper: 'section',
-        markdownOptions: {},
+        markdownOptions: {}
       },
       options
     )
@@ -96,7 +96,7 @@ class PluginParser {
     raw = parserPlayground(raw)
     let template = parseTable(createMarkdown.render(raw))
     return {
-      templateStr: template.replace(/<h3/g, '<attributes-title').replace(/<\/h3/g, '</attributes-title'),
+      templateStr: template.replace(/<h3/g, '<attributes-title').replace(/<\/h3/g, '</attributes-title')
     }
   }
 
@@ -138,7 +138,7 @@ class PluginParser {
         if (!hasMarkdown(ctx.file)) return
         const reader = ctx.read
         ctx.read = async () => Parser.parserToVue(await reader(), md)
-      },
+      }
     }
   }
 }

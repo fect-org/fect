@@ -15,6 +15,6 @@
 
 <script>
 export default {
-  name: 'ex-radio-more',
+  name: 'ex-radio-more'
 }
 </script>

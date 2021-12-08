@@ -13,7 +13,7 @@ const genDomRect = (width: number, height: number) =>
     width,
     height,
     x: 0,
-    y: 0,
+    y: 0
   } as DomRect)
 
 export const getDomRect = (el: ElementRef): DomRect => {

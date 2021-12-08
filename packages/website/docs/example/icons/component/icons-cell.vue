@@ -9,13 +9,13 @@
 export default {
   name: 'IconCell',
   props: {
-    icon: String,
+    icon: String
   },
   emits: ['click'],
   setup(props, { emit }) {
     const onClick = (name) => emit('click', name)
     return { onClick }
-  },
+  }
 }
 </script>
 

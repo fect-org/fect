@@ -5,6 +5,6 @@
 </template>
 <script>
 export default {
-  name: 'ex-card-default',
+  name: 'ex-card-default'
 }
 </script>

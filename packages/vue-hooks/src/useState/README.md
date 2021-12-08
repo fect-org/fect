@@ -13,7 +13,7 @@ defineComponent({
     const [visible, setVisible] = useState(false)
 
     const clickHandler = () => setVisible(true)
-  },
+  }
 })
 ```
 

@@ -28,7 +28,7 @@ describe('Link', () => {
             </Link>
           </>
         )
-      },
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -37,8 +37,8 @@ describe('Link', () => {
   it('props to should higher than props href', async () => {
     const wrapper = mount(Link, {
       props: {
-        to: '#',
-      },
+        to: '#'
+      }
     })
     const el = wrapper.find('.fect-link')
     await el.trigger('click')

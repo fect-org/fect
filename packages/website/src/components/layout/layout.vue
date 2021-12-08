@@ -33,9 +33,9 @@ export default defineComponent({
 
     return {
       visible,
-      mobile: context!.mobile,
+      mobile: context!.mobile
     }
-  },
+  }
 })
 </script>
 

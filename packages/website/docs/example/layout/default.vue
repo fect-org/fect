@@ -8,6 +8,6 @@
 
 <script>
 export default {
-  name: 'ex-layout-default',
+  name: 'ex-layout-default'
 }
 </script>

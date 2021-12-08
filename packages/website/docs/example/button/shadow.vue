@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ExButtonShadow',
+  name: 'ExButtonShadow'
 }
 </script>

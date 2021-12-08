@@ -36,7 +36,7 @@
 
 <script>
 export default {
-  name: 'ex-layout-compose',
+  name: 'ex-layout-compose'
 }
 </script>
 

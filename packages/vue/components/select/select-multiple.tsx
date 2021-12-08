@@ -4,7 +4,7 @@ import SelcetClearableIcon from './select-clear-icon'
 
 const SelectMultiple = defineComponent({
   props: {
-    clearable: Boolean,
+    clearable: Boolean
   },
   emits: ['clear'],
   setup(props, { slots, emit }) {
@@ -22,7 +22,7 @@ const SelectMultiple = defineComponent({
         </div>
       </Grid>
     )
-  },
+  }
 })
 
 export default SelectMultiple

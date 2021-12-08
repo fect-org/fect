@@ -6,9 +6,9 @@ module.exports = {
     '!components/index.ts',
     '!components/**/type.ts',
     '!components/**/style.ts',
-    '!components/back-top/**',
+    '!components/back-top/**'
   ],
   collectCoverage: true,
   preset: '@fect-ui/cli/lib/config/@jest',
-  testTimeout: 20000,
+  testTimeout: 20000
 }

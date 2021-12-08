@@ -12,6 +12,6 @@
 
 <script>
 export default {
-  name: 'ex-tooltip-variable',
+  name: 'ex-tooltip-variable'
 }
 </script>

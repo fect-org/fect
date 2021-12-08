@@ -12,7 +12,7 @@ const queryCheckboxSize = (size: NormalSizes) => {
     mini: '12px',
     small: '14px',
     medium: '16px',
-    large: '18px',
+    large: '18px'
   }
   return sizes[size]
 }
@@ -24,12 +24,12 @@ export default defineComponent({
     modelValue: Boolean,
     size: {
       type: String as PropType<NormalSizes>,
-      default: 'medium',
+      default: 'medium'
     },
     label: {
       type: String,
-      default: '',
-    },
+      default: ''
+    }
   },
   emits: ['change', 'update:modelValue'],
   setup(props, { slots, emit }) {
@@ -63,7 +63,7 @@ export default defineComponent({
         target: {},
         stopPropagation: e.stopPropagation,
         preventDefault: e.preventDefault,
-        nativeEvent: e,
+        nativeEvent: e
       }
 
       if (context) {
@@ -74,7 +74,7 @@ export default defineComponent({
 
       emit('change', {
         ...checkboxEvent,
-        target: { checked: selfChecked.value },
+        target: { checked: selfChecked.value }
       })
     }
 
@@ -99,5 +99,5 @@ export default defineComponent({
         <span class="fect-checkbox__inner">{slots.default?.()}</span>
       </label>
     )
-  },
+  }
 })

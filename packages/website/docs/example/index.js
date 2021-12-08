@@ -8,5 +8,5 @@ export default {
     Object.keys(context).map((meta) => {
       const data = context[meta].default
       vue.component(data.name, data)
-    }),
+    })
 }

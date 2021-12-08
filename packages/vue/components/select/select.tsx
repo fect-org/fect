@@ -24,23 +24,23 @@ const querySelectSize = (size: NormalSizes) => {
     mini: {
       height: 'calc(1 * var(--fay-gap))',
       fontSize: '12px',
-      minWidth: '100px',
+      minWidth: '100px'
     },
     small: {
       height: 'calc(1.35 * var(--fay-gap))',
       fontSize: '12px',
-      minWidth: '128px',
+      minWidth: '128px'
     },
     medium: {
       height: 'calc(1.688 * var(--fay-gap))',
       fontSize: '14px',
-      minWidth: '160px',
+      minWidth: '160px'
     },
     large: {
       height: 'calc(1.688 * var(--fay-gap))',
       fontSize: '16px',
-      minWidth: '200px',
-    },
+      minWidth: '200px'
+    }
   }
   return sizes[size] || sizes['medium']
 }
@@ -69,14 +69,14 @@ export default defineComponent({
     }
 
     useEventListener('mouseenter', (e) => cleanHandler(e, true), {
-      target: selectRef,
+      target: selectRef
     })
     useEventListener('mouseleave', (e) => cleanHandler(e, false), {
-      target: selectRef,
+      target: selectRef
     })
 
     useClickAway(() => setVisible(false), selectRef, {
-      event: 'click',
+      event: 'click'
     })
 
     const setStyle = computed(() => {
@@ -84,7 +84,7 @@ export default defineComponent({
       return {
         ['--select-minWidth']: minWidth,
         ['--select-height']: height,
-        ['--select-fontSize']: fontSize,
+        ['--select-fontSize']: fontSize
       } as CustomCSSProperties
     })
 
@@ -178,5 +178,5 @@ export default defineComponent({
         {renderRightIcon()}
       </div>
     )
-  },
+  }
 })

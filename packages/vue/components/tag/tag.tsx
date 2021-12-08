@@ -11,24 +11,24 @@ const name = createName('Tag')
 const queryColors = (type: NormalTypes, invert: boolean) => {
   const colors: Record<NormalTypes, Color> = {
     default: {
-      color: 'var(--primary-foreground)',
+      color: 'var(--primary-foreground)'
     },
     success: {
-      color: 'var(--success-default)',
+      color: 'var(--success-default)'
     },
     warning: {
-      color: 'var(--warning-default)',
+      color: 'var(--warning-default)'
     },
     error: {
-      color: 'var(--error-default)',
-    },
+      color: 'var(--error-default)'
+    }
   }
   const hideBorder = invert
 
   const invertColor = (hideBorder: boolean) => {
     if (hideBorder) {
       const style: CSSProperties = {
-        color: 'var(--primary-background)',
+        color: 'var(--primary-background)'
       }
       return style
     }
@@ -44,7 +44,7 @@ const queryColors = (type: NormalTypes, invert: boolean) => {
   const tagStyle = {
     ...invertColor(hideBorder),
     bgColor: hideBorder ? colors[type].color : 'var(--primary-background)',
-    borderColor: hideBorder ? 'transparent' : colors[type].color,
+    borderColor: hideBorder ? 'transparent' : colors[type].color
   }
 
   return tagStyle
@@ -55,13 +55,13 @@ export default defineComponent({
   props: {
     text: {
       type: [String, Number],
-      default: '',
+      default: ''
     },
     type: {
       type: String as PropType<NormalTypes>,
-      default: 'default',
+      default: 'default'
     },
-    useInvert: Boolean,
+    useInvert: Boolean
   },
   setup(props) {
     const setTagStyle = computed(() => {
@@ -70,7 +70,7 @@ export default defineComponent({
       const style: CSSProperties = {
         borderColor,
         color: color,
-        backgroundColor: bgColor,
+        backgroundColor: bgColor
       }
       return style
     })
@@ -80,5 +80,5 @@ export default defineComponent({
         {props.text}
       </div>
     )
-  },
+  }
 })

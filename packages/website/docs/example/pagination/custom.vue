@@ -18,6 +18,6 @@ export default {
   setup() {
     const initialPage = ref(1)
     return { initialPage }
-  },
+  }
 }
 </script>

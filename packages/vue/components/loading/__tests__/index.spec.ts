@@ -3,14 +3,14 @@ import Loading from '..'
 
 const Wrapper = {
   components: {
-    [Loading.name]: Loading,
+    [Loading.name]: Loading
   },
   data() {
     return {
       type: 'default',
       size: 'medium',
       color: '',
-      loadType: 'default',
+      loadType: 'default'
     }
   },
   template: `
@@ -19,7 +19,7 @@ const Wrapper = {
      :size="size" :color="color" 
      :load-type="loadType" :type-data="type" :type-size="size"/>
    </div>
-  `,
+  `
 }
 
 describe('Loading', () => {

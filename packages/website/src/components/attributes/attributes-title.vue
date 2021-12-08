@@ -10,7 +10,7 @@ import Anchor from '../href-anchor/index.vue'
 
 export default defineComponent({
   name: 'AttributesTitle',
-  components: { Anchor },
+  components: { Anchor }
 })
 </script>
 

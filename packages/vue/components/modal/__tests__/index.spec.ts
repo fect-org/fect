@@ -7,7 +7,7 @@ import Modal from '../index'
 
 const Wrapper = {
   components: {
-    [Modal.name]: Modal,
+    [Modal.name]: Modal
   },
   data() {
     return { show: false, mounted: false, overlay: true }
@@ -23,7 +23,7 @@ const Wrapper = {
       width="500px"
       v-if="mounted" />
   </div>
-  `,
+  `
 }
 
 describe('Modal', () => {
@@ -44,7 +44,7 @@ describe('Modal', () => {
     const wrapper = mount(
       {
         components: {
-          [Modal.name]: Modal,
+          [Modal.name]: Modal
         },
         data() {
           return { show: false, mounted: false }
@@ -58,7 +58,7 @@ describe('Modal', () => {
             </template>
           </fe-modal>
         </div>
-      `,
+      `
       },
       { attachTo: document.body }
     )

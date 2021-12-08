@@ -11,6 +11,6 @@
 
 <script>
 export default {
-  name: 'ex-badge-default',
+  name: 'ex-badge-default'
 }
 </script>

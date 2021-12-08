@@ -24,7 +24,7 @@ import User from './user.vue'
 export default {
   name: 'ex-skeleton-more',
   components: {
-    [User.name]: User,
+    [User.name]: User
   },
   setup() {
     const load = ref(false)
@@ -34,8 +34,8 @@ export default {
     }
     return {
       load,
-      handleChange,
+      handleChange
     }
-  },
+  }
 }
 </script>

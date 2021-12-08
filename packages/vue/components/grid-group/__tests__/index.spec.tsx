@@ -11,7 +11,7 @@ describe('Grid', () => {
             <Grid>T</Grid>
           </GridGroup>
         )
-      },
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
     expect(() => wrapper.unmount()).not.toThrow()
@@ -27,7 +27,7 @@ describe('Grid', () => {
             </Grid>
           </GridGroup>
         )
-      },
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -41,29 +41,29 @@ describe('Grid', () => {
             </Grid>
           </GridGroup>
         )
-      },
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
   it('should be supprot use col and count', () => {
     const slots = {
-      grid: () => <div>123</div>,
+      grid: () => <div>123</div>
     }
     const wrapper = mount({
       render() {
         return <GridGroup col={4} count={11} v-slots={slots}></GridGroup>
-      },
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
   it('props count may be as array', () => {
     const slots = {
-      grid: () => <div>123</div>,
+      grid: () => <div>123</div>
     }
     const wrapper = mount({
       render() {
         return <GridGroup col={25} count={[1, 2, 3, 4]} v-slots={slots}></GridGroup>
-      },
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })

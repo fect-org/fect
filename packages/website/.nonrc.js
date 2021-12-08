@@ -7,8 +7,8 @@ module.exports = {
   plugins: [
     markdownPlugin({
       markdownOptions: {
-        highlight: (str) => Prism.highlight(str, Prism.languages.javascript, 'javascript'),
-      },
-    }),
-  ],
+        highlight: (str) => Prism.highlight(str, Prism.languages.javascript, 'javascript')
+      }
+    })
+  ]
 }

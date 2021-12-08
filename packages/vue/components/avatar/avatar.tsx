@@ -12,14 +12,14 @@ export default defineComponent({
     isSquare: Boolean,
     size: {
       type: String as PropType<NormalSizes>,
-      default: 'medium',
+      default: 'medium'
     },
     text: {
       type: String,
-      default: '',
+      default: ''
     },
     src: String,
-    className: String,
+    className: String
   },
   setup(props, { attrs }) {
     const [showText] = useState<boolean>(!props.src)
@@ -43,5 +43,5 @@ export default defineComponent({
         )}
       </div>
     )
-  },
+  }
 })

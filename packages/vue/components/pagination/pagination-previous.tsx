@@ -12,7 +12,7 @@ const PaginationPrev = defineComponent({
         {slots.default?.()}
       </PaginationItem>
     )
-  },
+  }
 })
 
 export default PaginationPrev

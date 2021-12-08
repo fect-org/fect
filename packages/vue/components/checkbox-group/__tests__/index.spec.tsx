@@ -11,8 +11,8 @@ describe('CheckboxGroup', () => {
   it('should be support useRow', () => {
     const el = mount(CheckboxGroup, {
       props: {
-        useRow: true,
-      },
+        useRow: true
+      }
     })
     expect(el.find('.useRow').exists()).toBe(true)
     expect(el.html()).toMatchSnapshot()
@@ -27,7 +27,7 @@ describe('CheckboxGroup', () => {
             </CheckboxGroup>
           </>
         )
-      },
+      }
     })
     const el = wrapper.find('.fect-checkbox')
     expect(el.attributes('style')).toBe('--checkboxSize: 12px;')
@@ -47,7 +47,7 @@ describe('CheckboxGroup', () => {
             ))}
           </CheckboxGroup>
         )
-      },
+      }
     })
     const els = wrapper.findAll('[type="checkbox"]')
     expect(wrapper.vm.parent).toEqual(['xiamen', 'shanghai'])

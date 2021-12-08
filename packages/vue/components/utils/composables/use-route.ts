@@ -7,7 +7,7 @@ import { PropType, getCurrentInstance, ComponentPublicInstance, ExtractPropTypes
 import type { RouteLocationRaw } from 'vue-router'
 
 export const routeProps = {
-  to: [String, Object] as PropType<RouteLocationRaw>,
+  to: [String, Object] as PropType<RouteLocationRaw>
 }
 
 export type RouteProps = ExtractPropTypes<typeof routeProps>

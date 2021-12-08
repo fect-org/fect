@@ -18,8 +18,8 @@ export default {
     const handlerClick = () => (show.value = true)
     return {
       show,
-      handlerClick,
+      handlerClick
     }
-  },
+  }
 }
 </script>

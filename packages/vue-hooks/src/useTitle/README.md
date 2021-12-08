@@ -11,7 +11,7 @@ export default {
   setup() {
     const title = 'useTitle'
     useTitle(title)
-  },
+  }
 }
 ```
 

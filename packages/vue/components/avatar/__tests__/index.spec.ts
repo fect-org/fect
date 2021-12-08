@@ -9,8 +9,8 @@ describe('Avatar', () => {
     expect(() => circle.unmount()).not.toThrow()
     const square = mount(Avatar, {
       props: {
-        isSquare: true,
-      },
+        isSquare: true
+      }
     })
     expect(() => square.unmount()).not.toThrow()
   })
@@ -18,8 +18,8 @@ describe('Avatar', () => {
   it('should be limited 4 characters', () => {
     const ava = mount(Avatar, {
       props: {
-        text: 'XeryYue',
-      },
+        text: 'XeryYue'
+      }
     })
     const text = ava.find('.fect-avatar-text').text()
     expect(text.length).toBeLessThanOrEqual(3)
@@ -28,14 +28,14 @@ describe('Avatar', () => {
     const normalAva = mount(Avatar, {
       props: {
         src: BASE_IMG_URL,
-        size: 'mini',
-      },
+        size: 'mini'
+      }
     })
     expect(normalAva.html()).toMatchSnapshot()
     const textAva = mount(Avatar, {
       props: {
-        text: 'test',
-      },
+        text: 'test'
+      }
     })
     expect(textAva.html()).toMatchSnapshot()
   })
@@ -43,8 +43,8 @@ describe('Avatar', () => {
   it('stacked should be work', () => {
     const ava = mount(Avatar, {
       props: {
-        stacked: true,
-      },
+        stacked: true
+      }
     })
     expect(() => ava.unmount()).not.toThrow()
   })

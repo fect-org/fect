@@ -5,10 +5,10 @@ export const enGuideRoutes: Routes = [
     name: 'GETTING STARTED',
     children: [
       { title: 'Introduction', route: 'Introduction' },
-      { title: 'Quick Start', route: 'QuickStart' },
-    ],
+      { title: 'Quick Start', route: 'QuickStart' }
+    ]
   },
-  { name: 'Theme', children: [{ title: 'Color', route: 'Colors' }] },
+  { name: 'Theme', children: [{ title: 'Color', route: 'Colors' }] }
 ]
 
 export const enRoutes: Routes = [
@@ -18,23 +18,23 @@ export const enRoutes: Routes = [
       { title: 'Button', route: 'Button' },
       { title: 'Code', route: 'Code' },
       { title: 'Icons', route: 'Icons' },
-      { title: 'Snippet', route: 'Snippet' },
-    ],
+      { title: 'Snippet', route: 'Snippet' }
+    ]
   },
   {
     name: 'Layout',
     children: [
       { title: 'Grid', route: 'Grid' },
       { title: 'Layout', route: 'Layout' },
-      { title: 'Spacer', route: 'Spacer' },
-    ],
+      { title: 'Spacer', route: 'Spacer' }
+    ]
   },
   {
     name: 'SURFACES',
     children: [
       { title: 'Card', route: 'Card' },
-      { title: 'Collapse', route: 'Collapse' },
-    ],
+      { title: 'Collapse', route: 'Collapse' }
+    ]
   },
   {
     name: 'Form',
@@ -45,8 +45,8 @@ export const enRoutes: Routes = [
       { title: 'Radio', route: 'Radio' },
       { title: 'Rating', route: 'Rating' },
       { title: 'Select', route: 'Select' },
-      { title: 'Switch', route: 'Switch' },
-    ],
+      { title: 'Switch', route: 'Switch' }
+    ]
   },
   {
     name: 'Data Display',
@@ -61,8 +61,8 @@ export const enRoutes: Routes = [
       { title: 'Image', route: 'Image' },
       { title: 'Skeleton', route: 'Skeleton' },
       { title: 'Tag', route: 'Tag' },
-      { title: 'Swipe', route: 'Swipe' },
-    ],
+      { title: 'Swipe', route: 'Swipe' }
+    ]
   },
   {
     name: 'FEEDBACK',
@@ -72,8 +72,8 @@ export const enRoutes: Routes = [
       { title: 'Modal', route: 'Modal' },
       { title: 'Spinner', route: 'Spinner' },
       { title: 'Progress', route: 'Progress' },
-      { title: 'Toast', route: 'Toast' },
-    ],
+      { title: 'Toast', route: 'Toast' }
+    ]
   },
   {
     name: 'NAVIGATION',
@@ -82,7 +82,7 @@ export const enRoutes: Routes = [
       { title: 'Link', route: 'Link' },
       { title: 'Pagination', route: 'Pagination' },
       { title: 'Tabs', route: 'Tabs' },
-      { title: 'BackTop', route: 'BackTop' },
-    ],
-  },
+      { title: 'BackTop', route: 'BackTop' }
+    ]
+  }
 ]

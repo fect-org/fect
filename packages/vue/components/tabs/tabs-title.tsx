@@ -10,10 +10,10 @@ const TabsTitle = defineComponent({
   props: {
     title: String,
     value: {
-      type: [String, Number],
+      type: [String, Number]
     },
     active: [String, Number],
-    disabled: Boolean,
+    disabled: Boolean
   },
   emits: ['click'],
   setup(props, { emit }) {
@@ -37,7 +37,7 @@ const TabsTitle = defineComponent({
         {props.title}
       </div>
     )
-  },
+  }
 })
 
 export default TabsTitle

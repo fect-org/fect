@@ -13,7 +13,7 @@ const queryColors = (ratio: number, type: NormalTypes, colors: ProgressColros) =
     default: 'var(--primary-foreground)',
     success: 'var(--success-default)',
     warning: 'var(--warning-default)',
-    error: 'var(--error-default)',
+    error: 'var(--error-default)'
   }
   const colorkeys = Object.keys(colors)
   if (colorkeys.length === 0) return defaultColors[type]
@@ -38,20 +38,20 @@ export default defineComponent({
   props: {
     value: {
       type: Number,
-      default: 0,
+      default: 0
     },
     max: {
       type: Number,
-      default: 100,
+      default: 100
     },
     colors: {
       type: Object,
-      default: () => {},
+      default: () => {}
     },
     type: {
       type: String as PropType<NormalTypes>,
-      default: 'default',
-    },
+      default: 'default'
+    }
   },
 
   setup(props, { attrs }) {
@@ -62,7 +62,7 @@ export default defineComponent({
       const color = queryColors(queryProportions(props.value, props.max) as number, type, colors || {})
       return {
         backgroundColor: color,
-        width: setPercentValue.value,
+        width: setPercentValue.value
       } as CSSProperties
     })
 
@@ -72,5 +72,5 @@ export default defineComponent({
         <progress value={props.value} max={props.max}></progress>
       </div>
     )
-  },
+  }
 })

@@ -24,13 +24,13 @@ export default {
       proxy.$toast({
         type,
         text: 'It support different status',
-        duration: '4000',
+        duration: '4000'
       })
     }
     return {
-      handlerClick,
+      handlerClick
     }
-  },
+  }
 }
 </script>
 

@@ -12,7 +12,7 @@ const hoverable = (): string[] => {
 const PaginationItem = defineComponent({
   props: {
     disabled: Boolean,
-    active: Boolean,
+    active: Boolean
   },
   emits: ['click', 'mouseenter', 'mouseleave'],
   setup(props, { emit, slots }) {
@@ -22,7 +22,7 @@ const PaginationItem = defineComponent({
       const [hover, activeHover] = hoverable()
       return {
         '--pagination-hover': hover,
-        '--pagination-activeHover': activeHover,
+        '--pagination-activeHover': activeHover
       } as CustomCSSProperties
     })
 
@@ -48,7 +48,7 @@ const PaginationItem = defineComponent({
         </button>
       </li>
     )
-  },
+  }
 })
 
 export default PaginationItem

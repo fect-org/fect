@@ -25,7 +25,7 @@ export default {
       { name: 'Accent 6', value: 'var(--accents-6)' },
       { name: 'Accent 7', value: 'var(--accents-7)' },
       { name: 'Accent 8', value: 'var(--accents-8)' },
-      { name: 'Foreground', value: 'var(--primary-foreground)' },
+      { name: 'Foreground', value: 'var(--primary-foreground)' }
     ])
 
     const { copyText } = useClipboard()
@@ -36,7 +36,7 @@ export default {
     const style = (color, idx) => {
       const Style = {
         backgroundColor: color.value,
-        color: idx > 5 ? ' var(--primary-background)' : 'var(--primary-foreground)',
+        color: idx > 5 ? ' var(--primary-background)' : 'var(--primary-foreground)'
       }
       return Style
     }
@@ -50,9 +50,9 @@ export default {
       colors,
       colorValue,
       style,
-      handleCopy,
+      handleCopy
     }
-  },
+  }
 }
 </script>
 

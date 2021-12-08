@@ -7,8 +7,8 @@ describe('Collapse', () => {
   it('should be render as a element', () => {
     const wrapper = mount(Collapse, {
       props: {
-        title: 'test',
-      },
+        title: 'test'
+      }
     })
     expect(() => wrapper.unmount()).not.toThrow()
   })
@@ -17,8 +17,8 @@ describe('Collapse', () => {
     const wrapper = mount(Collapse, {
       props: {
         title: 'HTML',
-        subtitle: 'HyperText Markup Language',
-      },
+        subtitle: 'HyperText Markup Language'
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
     expect(wrapper.find('h3').text()).toBe('HTML')
@@ -30,8 +30,8 @@ describe('Collapse', () => {
         title: 'HTML',
         subtitle: 'HyperText Markup Language',
         subTag: 'code',
-        shadow: true,
-      },
+        shadow: true
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
     expect(wrapper.find('code')).toBeTruthy()
@@ -42,8 +42,8 @@ describe('Collapse', () => {
     const wrapper = mount(Collapse, {
       props: {
         title: 'HTML',
-        visible: false,
-      },
+        visible: false
+      }
     })
 
     await wrapper.find('.fect-collapse__view').trigger('click')
@@ -53,7 +53,7 @@ describe('Collapse', () => {
     const wrapper = mount({
       components: {
         [Collapse.name]: Collapse,
-        [CollapseGroup.name]: CollapseGroup,
+        [CollapseGroup.name]: CollapseGroup
       },
       data() {
         return { show: [0], accordion: true }
@@ -69,7 +69,7 @@ describe('Collapse', () => {
           </fe-collapse>
         </fe-collapseGroup>
       </div>
-      `,
+      `
     })
     expect(wrapper.html()).toMatchSnapshot()
     const els = wrapper.findAll('.fect-collapse__view')

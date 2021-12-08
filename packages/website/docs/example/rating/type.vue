@@ -12,6 +12,6 @@
 
 <script>
 export default {
-  name: 'ExRatingType',
+  name: 'ExRatingType'
 }
 </script>

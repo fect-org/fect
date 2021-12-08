@@ -26,7 +26,7 @@ const SelcetClearableIcon = defineComponent({
         </svg>
       </div>
     )
-  },
+  }
 })
 
 export default SelcetClearableIcon

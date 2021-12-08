@@ -15,11 +15,11 @@ module.exports = (api: any, options: PresetOptions) => {
         '@babel/preset-env',
         {
           modules: isEsModule ? false : 'commonjs',
-          loose: options.loose,
-        },
+          loose: options.loose
+        }
       ],
-      require.resolve('@babel/preset-typescript'),
+      require.resolve('@babel/preset-typescript')
     ],
-    plugins: [['@vue/babel-plugin-jsx', { enableObjectSlots: options.enableObjectSlots }]],
+    plugins: [['@vue/babel-plugin-jsx', { enableObjectSlots: options.enableObjectSlots }]]
   }
 }

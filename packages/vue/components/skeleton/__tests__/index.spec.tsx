@@ -7,8 +7,8 @@ describe('Skeleton', () => {
   it('should be render as a element', () => {
     const wrapper = mount(Skeleton, {
       props: {
-        rows: 3,
-      },
+        rows: 3
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
     expect(() => wrapper.unmount()).not.toThrow()
@@ -18,8 +18,8 @@ describe('Skeleton', () => {
     const wrapper = mount(Skeleton, {
       props: {
         rows: 3,
-        rowsWidth: [10, '80px', '70%'],
-      },
+        rowsWidth: [10, '80px', '70%']
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
     await wrapper.setProps({ rowsWidth: '50%' })
@@ -29,15 +29,15 @@ describe('Skeleton', () => {
   it('should support custom skeleton render', async () => {
     const slots = {
       skeleton: () => <SkeletonItem />,
-      default: () => <p>already render</p>,
+      default: () => <p>already render</p>
     }
 
     const wrapper = mount(Skeleton, {
-      slots,
+      slots
     })
     expect(wrapper.html()).toMatchSnapshot()
     await wrapper.setProps({
-      loading: true,
+      loading: true
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -46,10 +46,10 @@ describe('Skeleton', () => {
     const types: Variable[] = ['p', 'text', 'h1', 'h3', 'rect', 'circle', 'image', 'button', 'caption']
 
     const slots = {
-      skeleton: () => types.map((type, idx) => <SkeletonItem key={idx} variable={type} />),
+      skeleton: () => types.map((type, idx) => <SkeletonItem key={idx} variable={type} />)
     }
     const wrapper = mount(Skeleton, {
-      slots,
+      slots
     })
     expect(wrapper.html()).toMatchSnapshot()
   })

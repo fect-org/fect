@@ -3,20 +3,20 @@ import Progress from '../index'
 
 const Wrapper = {
   components: {
-    [Progress.name]: Progress,
+    [Progress.name]: Progress
   },
   data() {
     return {
       type: 'default',
       value: 10,
-      colors: {},
+      colors: {}
     }
   },
   template: `
    <div class="container">
      <fe-progress :type="type" :value="value" :colors="colors" :type-data="type" />
    </div>
-  `,
+  `
 }
 
 describe('Progress', () => {
@@ -46,9 +46,9 @@ describe('Progress', () => {
     await wrapper.setData({
       colors: {
         20: 'red',
-        40: 'blue',
+        40: 'blue'
       },
-      value: 20,
+      value: 20
     })
     await wrapper.setData({ value: 60 })
     expect(wrapper.html()).toMatchSnapshot()
