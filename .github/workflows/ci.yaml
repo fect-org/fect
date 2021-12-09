@@ -1,0 +1,35 @@
+name: Deploy website-rc to Ali
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Build cli
+        run: yarn cli
+      - name: Clean Dependencies
+        run: yarn clean
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Build Hooks
+        run: yarn hooks
+
+      - name: Build icon
+        run: yarn icon
+
+      - name: Run unit test case
+        run: yarn test
+
+      - name: Report coverage
+        uses: codecov/codecov-action@v2
