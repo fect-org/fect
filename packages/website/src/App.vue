@@ -34,6 +34,12 @@ export default {
 
     const updateCurrentLang = () => setCurrentLang(currentLang.value === 'en-us' ? 'zh-cn' : 'en-us')
 
+    const getRouteLang = () => {
+      const previous = route.path.split('/')
+      const lang = previous[1] as 'zh-cn' | 'en-us'
+      setCurrentLang(lang)
+    }
+
     watch(currentNav, (pre) => {
       const previous = route.path.split('/')
       const lang = previous[1]
@@ -57,6 +63,7 @@ export default {
       (pre) => {
         const previous = pre.split('/')
         const tag = previous[2] as Nav
+        getRouteLang()
         setNavTag(tag)
       }
     )
