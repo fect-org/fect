@@ -54,12 +54,6 @@ createApp(App).use(FectUI).mount('#app')
 
 <br />
 
-### Development
-
-- [Contributing Guide](https://github.com/fay-org/fect/blob/61bae26488b61cdf2b65fde92a184f7d7baa048c/.github/CONTRIBUTING.md)
-
-<br/>
-
 ### LICENSE
 
 [MIT](./LICENSE)
