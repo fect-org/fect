@@ -1,12 +1,18 @@
 <template>
   <div class="fect-doc__playground-preview" ref="contextRef">
     <div class="fect-doc__playground-operations">
-      <fe-tooltip :content="tooltipText.copy">
-        <copy size="20" @click="copyClickHandler" />
-      </fe-tooltip>
-      <fe-tooltip :content="tooltipText.code">
+      <template v-if="!isMobile">
+        <fe-tooltip :content="tooltipText.copy">
+          <Copy size="20" @click="copyClickHandler" />
+        </fe-tooltip>
+        <fe-tooltip :content="tooltipText.code">
+          <Code size="20" @click="previewClickHandler" />
+        </fe-tooltip>
+      </template>
+      <template v-else>
+        <Copy size="20" @click="copyClickHandler" />
         <Code size="20" @click="previewClickHandler" />
-      </fe-tooltip>
+      </template>
     </div>
     <div class="raw-content">
       <pre v-show="visible" :style="{ width: previewWidth }"><code ref="previewRef"></code></pre>
@@ -17,7 +23,6 @@
 <script lang="ts">
 import { defineComponent, getCurrentInstance, ComponentPublicInstance, ref, watch, onMounted, computed } from 'vue'
 import { useClipboard, useState } from '@fect-ui/vue-hooks'
-import { useResize } from '@fect-ui/vue/components/utils'
 import { useWebsiteContext } from '../../website-context'
 import { Code } from '@fect-ui/vue-icons'
 import Prism from 'prismjs'
@@ -36,7 +41,6 @@ export default defineComponent({
   setup(props) {
     const previewRef = ref<HTMLDivElement>()
     const contextRef = ref<HTMLDivElement>()
-    const { width } = useResize()
     const [visible, setVisible] = useState<boolean>(false)
     const [previewWidth, setpreviewWidth] = useState<string>('auto')
     const { proxy } = getCurrentInstance()!
@@ -78,7 +82,7 @@ export default defineComponent({
     }
 
     onMounted(updatePreviewWidth)
-    watch(width, (pre) => updatePreviewWidth())
+    watch(context!.width, (pre) => updatePreviewWidth())
 
     watch(visible, (pre) => {
       if (pre) {
@@ -97,7 +101,8 @@ export default defineComponent({
       copyClickHandler,
       previewClickHandler,
       previewWidth,
-      contextRef
+      contextRef,
+      isMobile: context!.mobile
     }
   }
 })

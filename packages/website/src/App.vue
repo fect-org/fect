@@ -62,6 +62,7 @@ export default {
     )
 
     provider({
+      width,
       navTag,
       mobile,
       navLink,
@@ -74,7 +75,7 @@ export default {
     watch(
       width,
       (pre) => {
-        const lay = pre <= 650 ? false : true
+        const lay = pre >= 650 ? false : true
         setMobile(lay)
       },
       { immediate: true }

@@ -3,6 +3,7 @@ import { Ref } from 'vue'
 export type NavBar = 'components' | 'guide' | ''
 
 export interface WebsiteContext {
+  width: Ref<number>
   mobile: Ref<boolean>
   navTag: Ref<NavBar>
   currentLang: Ref<'zh-cn' | 'en-us'>

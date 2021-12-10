@@ -1,8 +1,8 @@
 <template>
-  <side-bar v-if="mobile" />
+  <side-bar v-if="!mobile" />
   <div class="fect-doc__side-bar--shadow" />
   <fe-drawer class="drawer" placement="left" v-model="visible" :round="false">
-    <side-bar v-if="!mobile" @click="visible = false" />
+    <side-bar v-if="mobile" @click="visible = false" />
   </fe-drawer>
   <sub-bar @click="visible = true" />
   <main class="fect-doc__main">

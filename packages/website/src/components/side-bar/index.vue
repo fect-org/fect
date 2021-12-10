@@ -35,8 +35,8 @@ export default defineComponent({
     const setActive = (rt: string) => rt === currentName.value
 
     const routeList = computed(() => {
-      const { currentNav, currentLang } = context!
-      if (currentNav.value === 'components') {
+      const { currentLang, navTag } = context!
+      if (navTag.value === 'components') {
         if (currentLang.value === 'en-us') return enRoutes
         return zhRoutes
       }
@@ -45,8 +45,8 @@ export default defineComponent({
     })
 
     const to = (route: string) => {
-      const { currentLang, currentNav } = context!
-      return `/${currentLang.value}/${currentNav.value}/${route.toLowerCase()}`
+      const { currentLang, navTag } = context!
+      return `/${currentLang.value}/${navTag.value}/${route.toLowerCase()}`
     }
 
     return {
