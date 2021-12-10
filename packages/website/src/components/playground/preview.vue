@@ -1,8 +1,12 @@
 <template>
   <div class="fect-doc__playground-preview" ref="contextRef">
     <div class="fect-doc__playground-operations">
-      <copy size="20" @click="copyClickHandler" />
-      <Code size="20" @click="previewClickHandler" />
+      <fe-tooltip :content="tooltipText.copy">
+        <copy size="20" @click="copyClickHandler" />
+      </fe-tooltip>
+      <fe-tooltip :content="tooltipText.code">
+        <Code size="20" @click="previewClickHandler" />
+      </fe-tooltip>
     </div>
     <div class="raw-content">
       <pre v-show="visible" :style="{ width: previewWidth }"><code ref="previewRef"></code></pre>
@@ -11,11 +15,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, getCurrentInstance, ComponentPublicInstance, ref, watch, onMounted } from 'vue'
+import { defineComponent, getCurrentInstance, ComponentPublicInstance, ref, watch, onMounted, computed } from 'vue'
 import { useClipboard, useState } from '@fect-ui/vue-hooks'
 import { useResize } from '@fect-ui/vue/components/utils'
+import { useWebsiteContext } from '../../website-context'
 import { Code } from '@fect-ui/vue-icons'
 import Prism from 'prismjs'
+
 export default defineComponent({
   name: 'Preview',
   components: {
@@ -35,9 +41,25 @@ export default defineComponent({
     const [previewWidth, setpreviewWidth] = useState<string>('auto')
     const { proxy } = getCurrentInstance()!
     const { copyText } = useClipboard()
+    const { context } = useWebsiteContext()
+
     const previewClickHandler = () => {
       setVisible(!visible.value)
     }
+
+    const tooltipText = computed(() => {
+      const { currentLang } = context!
+      const zhTooltips = {
+        copy: '复制代码',
+        code: '代码'
+      }
+      const enTooltips = {
+        copy: 'Copy code',
+        code: 'Code'
+      }
+      return currentLang.value === 'en-us' ? enTooltips : zhTooltips
+    })
+
     const copyClickHandler = () => {
       copyText(decodeURIComponent(props.code))
       if (proxy) {
@@ -71,6 +93,7 @@ export default defineComponent({
     return {
       visible,
       previewRef,
+      tooltipText,
       copyClickHandler,
       previewClickHandler,
       previewWidth,
@@ -112,6 +135,10 @@ export default defineComponent({
     padding-top: var(--fay-gap-half);
     svg {
       margin-right: 10px;
+      &:hover {
+        cursor: pointer;
+        opacity: 0.65;
+      }
     }
   }
 }
