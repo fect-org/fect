@@ -1,0 +1,49 @@
+name: Deploy website-rc to Ali
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  deploy-website-rc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Build cli
+        run: yarn cli
+
+      - name: Clean Dependencies
+        run: yarn clean
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Build Hooks
+        run: yarn hooks
+
+      - name: Build icon
+        run: yarn icon
+
+      - name: Build site
+        run: yarn build
+
+      - name: Deploy to Ali
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.ALIYUN_SSH_TOKEN }}
+          ARGS: '-avz --delete'
+          SOURCE: './packages/website/dist'
+          REMOTE_HOST: ${{ secrets.ALI_HOST }}
+          REMOTE_USER: 'root'
+          TARGET: '/opt/fect-rc'
