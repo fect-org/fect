@@ -16,7 +16,7 @@ export class Lint extends EventEmitter {
   }
   prettier() {
     super.on('prettier', (cb?: (...args: any[]) => void) => {
-      this.spinner = ora('star prettier code style').start()
+      this.spinner = ora('start prettier code style').start()
       const prettier = execa('prettier', ['--write', '.'])
       prettier.on('exit', () => cb && cb())
     })
