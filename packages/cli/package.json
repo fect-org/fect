@@ -3,16 +3,19 @@
   "version": "1.0.0",
   "description": "> TODO: description",
   "author": "XeryYue <812137533@qq.com>",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/XeryYue/fect.git"
   },
   "bin": {
-    "non": "./lib/index.js"
+    "non": "bin/non.js"
   },
   "files": [
     "lib",
+    "bind",
     "preset.js",
     "ReADME.md"
   ],
