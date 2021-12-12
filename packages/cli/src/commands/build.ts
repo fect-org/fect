@@ -4,5 +4,6 @@ import { setNodeENV } from '../shared/constant'
 
 export const build = async () => {
   setNodeENV('production')
-  await viteBuild(useBuildConfig())
+  const config = await useBuildConfig()
+  await viteBuild(config)
 }

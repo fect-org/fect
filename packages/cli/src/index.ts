@@ -1,1 +1,1 @@
-export { resolveConfig, defineNonConfig } from './node/config'
+export { defineNonConfig } from './node/config'

@@ -6,7 +6,8 @@ import { createServer } from 'vite'
 import { useDevConfig } from '../config/@vite/vite.config'
 
 export const dev = async () => {
-  const serve = await createServer(useDevConfig())
+  const conf = await useDevConfig()
+  const serve = await createServer(conf)
   await serve.listen()
   serve.printUrls()
 }

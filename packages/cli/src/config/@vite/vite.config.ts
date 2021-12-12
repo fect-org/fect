@@ -3,9 +3,11 @@ import { InlineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Jsx from '@vitejs/plugin-vue-jsx'
 import { CWD, VITE_RESOLVE_EXTENSIONS, UMD_PATH, ESM_PATH } from '../../shared/constant'
-import { getNonConf } from '../../shared/get-config'
+import { resolveConfig } from '../../node/config'
 
-export const useDevConfig = (): InlineConfig => {
+export const useDevConfig = async (): Promise<InlineConfig> => {
+  const { userConfig } = await resolveConfig()
+  const { port, plugins } = userConfig
   return {
     root: CWD,
     resolve: {
@@ -13,20 +15,22 @@ export const useDevConfig = (): InlineConfig => {
       alias: {}
     },
     server: {
-      port: getNonConf('port')
+      port
     },
     plugins: [
       Vue({
         include: [/\.vue$/, /\.md$/]
       }),
       Jsx(),
-      ...getNonConf('plugins')
+      ...plugins
     ]
   }
 }
 
-export const useBuildConfig = (): InlineConfig => {
-  const devConf = useDevConfig()
+export const useBuildConfig = async (): Promise<InlineConfig> => {
+  const devConf = await useDevConfig()
+  const { userConfig } = await resolveConfig()
+  const { entry } = userConfig
   return {
     ...devConf,
     base: '/',
@@ -35,7 +39,7 @@ export const useBuildConfig = (): InlineConfig => {
       sourcemap: false,
       brotliSize: false,
       rollupOptions: {
-        input: { main: getNonConf('entry') }
+        input: { main: entry }
       }
     }
   }
@@ -45,8 +49,7 @@ export const useBuildConfig = (): InlineConfig => {
  * compile umd
  */
 
-export const useUMDconfig = (mini = false): InlineConfig => {
-  const name = getNonConf('name')
+export const useUMDconfig = (name, mini = false): InlineConfig => {
   return {
     logLevel: 'silent',
     build: {

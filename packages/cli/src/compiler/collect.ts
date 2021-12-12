@@ -1,16 +1,12 @@
 import { readJsonSync, readdirSync, writeFile } from 'fs-extra'
 import { join } from 'path'
 import { USER_PACKAGES_JSON_PATH } from '../shared/constant'
-import { getNonConf } from '../shared/get-config'
+import { resolveConfig } from '../node/config'
 import { formatCode } from '../format/prettier'
 
 const PASCAL_REG = /(\w)(.+)/g
 
 const IGNORE_DIR = ['utils', 'index.ts']
-
-const PACKAGE_PATH = getNonConf('entry')
-
-const OUTPUT = join(PACKAGE_PATH, 'index.ts')
 
 const genImport = (components, names) => {
   return components.map((name, idx) => `import { ${name} } from './${names[idx]}';`).join('\n')
@@ -19,8 +15,12 @@ const genImport = (components, names) => {
 const genExport = (dirs) => dirs.map((dir) => `export * from './${dir}';`).join('\n ')
 
 export const genPackagesEntry = async () => {
+  const { userConfig } = await resolveConfig()
+  const pakagePath = userConfig.entry
+  const outPut = join(pakagePath, 'index.ts')
+
   const { version } = readJsonSync(USER_PACKAGES_JSON_PATH)
-  const dirs = readdirSync(PACKAGE_PATH).filter((_) => !IGNORE_DIR.includes(_))
+  const dirs = readdirSync(pakagePath).filter((_) => !IGNORE_DIR.includes(_))
 
   // eg : avatar-group =>AvatarGroup
   const pascalNames = dirs.map((dir) => {
@@ -57,5 +57,5 @@ export const genPackagesEntry = async () => {
    
       `
 
-  await writeFile(OUTPUT, formatCode(content))
+  await writeFile(outPut, formatCode(content))
 }

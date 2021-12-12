@@ -12,7 +12,7 @@ import {
   pathExistsSync
 } from 'fs-extra'
 import { join, dirname, extname, basename } from 'path'
-import { getNonConf, USER_NON_PATH } from '../shared/get-config'
+import { resolveConfig } from '../node/config'
 import { Formats } from '../config/non.config'
 import { logErr } from '../shared/logger'
 import { EventEmitter } from './bus'
@@ -45,13 +45,12 @@ export class Bundler extends EventEmitter {
   entry: string
   output: string
   library: boolean
+  nonPath: string
   formats: Formats
+  undName: string
 
   constructor() {
     super()
-    this.entry = getNonConf('entry')
-    this.library = getNonConf('library')
-    this.formats = getNonConf('formats')
   }
 
   async changeCode(filePath) {
@@ -160,14 +159,12 @@ export class Bundler extends EventEmitter {
     super.on('beforeRun', async (next) => {
       if (!this.library) {
         return logErr(
-          `[Non Error!] you can not use it when your set library as false in your config at ${USER_NON_PATH}`
+          `[Non Error!] you can not use it when your set library as false in your config at ${this.nonPath}`
         )
       }
       const formats: Formats[] = ['cjs', 'default', 'es', 'umd', 'noumd']
       if (!formats.includes(this.formats)) {
-        return logErr(
-          `[Non Error!] can't read right format in ${USER_NON_PATH}. Props formats: ${getNonConf('formats')}`
-        )
+        return logErr(`[Non Error!] can't read right format in ${this.nonPath}. Props formats: ${this.formats}`)
       }
       const paths = [TMP_PATH, CJS_PATH, ESM_PATH, DTS_PATH]
       await Promise.all(paths.map((path) => remove(path)))
@@ -257,8 +254,8 @@ export class Bundler extends EventEmitter {
   ${stylePaths}
   `
     outputFileSync(umdJs, content)
-    await build(useUMDconfig(true))
-    await build(useUMDconfig())
+    await build(useUMDconfig(this.undName, true))
+    await build(useUMDconfig(this.undName))
     remove(umdJs)
   }
 
@@ -297,11 +294,22 @@ export class Bundler extends EventEmitter {
     })
   }
 
+  async resolveConfig() {
+    const { path, userConfig } = await resolveConfig()
+    const { entry, library, formats, name } = userConfig
+    this.entry = entry
+    this.library = library
+    this.formats = formats
+    this.undName = name
+    this.nonPath = path
+  }
+
   /**
    * make func run as a promise function.
    */
   async run() {
     setNodeENV('production')
+    await this.resolveConfig()
     this.beforeRun()
     this.initlize()
     this.copyTMP()

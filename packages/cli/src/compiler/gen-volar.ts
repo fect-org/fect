@@ -1,10 +1,8 @@
 import { join } from 'path'
 import { readJsonSync, readdirSync, outputFile } from 'fs-extra'
-import { getNonConf } from '../shared/get-config'
 import { CWD, IGNORE_DIR, USER_PACKAGES_JSON_PATH } from '../shared/constant'
 import { formatCode } from '../format/prettier'
-
-const PACKAGE_PATH = getNonConf('entry')
+import { resolveConfig } from '../node/config'
 
 const PASCAL_REG = /(\w)(.+)/g
 
@@ -13,7 +11,9 @@ const OUTPUT = join(CWD, 'components.d.ts')
 const PKG_NAME = readJsonSync(USER_PACKAGES_JSON_PATH).name
 
 export const genVolar = async () => {
-  const components = readdirSync(PACKAGE_PATH)
+  const { userConfig } = await resolveConfig()
+  const pakagePath = userConfig.entry
+  const components = readdirSync(pakagePath)
     .filter((_) => !IGNORE_DIR.includes(_))
     .map((cop) =>
       cop.replace(PASCAL_REG, (_, k, k1) => k.toUpperCase() + k1).replace(/-(\w)/g, (_, k) => k.toUpperCase())
