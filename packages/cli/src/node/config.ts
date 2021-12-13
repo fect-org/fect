@@ -41,8 +41,12 @@ export const loadConfigFromFile = async (configfile: string) => {
 
 export const resolveConfig = async () => {
   const resolveRoot: string = normalizePath(CWD)
-  const Nonrc = getUserNonrc(resolveRoot)
-  const loadResult = await loadConfigFromFile(Nonrc)
+  /**
+   * getUserNonrc may return null . Mean user don't set config file
+   * so we should use default config file path.
+   */
+  const nonrc = getUserNonrc(resolveRoot) || NON_DEFAULT_PATH
+  const loadResult = await loadConfigFromFile(nonrc)
   return loadResult && loadResult
 }
 
