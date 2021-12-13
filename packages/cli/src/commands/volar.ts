@@ -1,3 +1,3 @@
-import { genVolar } from '../compiler/gen-volar'
+import { genVolar } from '../node/gen-volar'
 
 export const volar = async () => await genVolar()

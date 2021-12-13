@@ -1,5 +1,5 @@
-import { EventEmitter } from '@fect-ui/cli/lib/compiler/bus'
-import { compile } from '@fect-ui/cli/lib/commands/compile'
+import { compile } from '@fect-ui/cli'
+import { EventEmitter } from 'events'
 import { CWD } from '@fect-ui/cli/lib/shared/constant'
 import { join } from 'path'
 import { remove, outputFileSync } from 'fs-extra'
@@ -23,12 +23,12 @@ class GenSvg extends EventEmitter {
     this.svgMap = {}
   }
 
-  private asyncEmitter(evt: string) {
-    return new Promise((resolve) => super.emit(evt, () => resolve(true)))
+  private emitter(evt: string) {
+    return new Promise((resolve) => this.emit(evt, () => resolve(true)))
   }
 
   genPackages() {
-    super.on('genPackages', async (next) => {
+    this.on('genPackages', async (next) => {
       Object.keys(this.svgMap).map((svg) => {
         const path = join(PACKAGE_PATH, `${svg}.tsx`)
         const name = svg.charAt(0).toUpperCase() + svg.slice(1)
@@ -61,7 +61,7 @@ class GenSvg extends EventEmitter {
   }
 
   compile() {
-    super.on('compile', async (next) => {
+    this.on('compile', async (next) => {
       await compile()
       await next()
     })
@@ -73,9 +73,9 @@ class GenSvg extends EventEmitter {
     this.genPackages()
     this.compile()
     await this.getSource()
-    await this.asyncEmitter('genPackages')
+    await this.emitter('genPackages')
     spinner.succeed('build successed~')
-    await this.asyncEmitter('compile')
+    await this.emitter('compile')
   }
 }
 
