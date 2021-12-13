@@ -1,25 +1,37 @@
-import fs, { removeSync } from 'fs-extra'
+import fs from 'fs-extra'
 import path from 'path'
 import ora from 'ora'
+import { build } from 'vite'
 import { resolveConfig } from './config'
-import { logErr } from '../shared/logger'
 import {
   NON_DEFAULT_PATH,
   ESM_PATH,
   TMP_PATH,
-  isDir,
-  isTestDir,
   isScript,
   isStyle,
   CJS_PATH,
   setBabelEnv,
   DECLARATION_PATH,
-  setNodeENV
+  setNodeENV,
+  replaceStyleInJs
 } from '../shared/constant'
+import { logErr } from '../shared/logger'
 import { execa } from '../shared/execa'
 import type { Lib } from '../config/non.config'
 import { resolveScriptFile } from './compiler/compile-script'
 import { resolveStyleFile } from './compiler/compile-style'
+import { compileDir } from './compiler/compiler-dir'
+import { resolveExteranlStyle } from './compiler/externalize-style'
+import { compileStyleDeps } from './compiler/compile-style-deps'
+import { useUMDconfig } from '../config/vite.config'
+
+export const removeCodeStyle = async (filePath: string) => {
+  let code
+  code = await fs.readFile(filePath, 'utf8')
+  code = replaceStyleInJs(code, '')
+  fs.outputFileSync(filePath, code)
+  return
+}
 
 export const resolveCompileConf = async () => {
   const { userConfig, path } = await resolveConfig()
@@ -30,33 +42,17 @@ export const resolveCompileConf = async () => {
 }
 
 export const compileFile = async (filePath: string) => {
+  if (/\.(json)/g.test(filePath)) return compileStyleDeps(filePath)
   if (isScript(filePath)) await resolveScriptFile(filePath)
   if (isStyle(filePath)) await resolveStyleFile(filePath)
 }
 
-export const compileDir = async (dir: string) => {
-  const dirs = await fs.readdir(dir)
-  await Promise.all(
-    dirs.map((filename) => {
-      const file = path.resolve(dir, filename)
-      if (isTestDir(file)) return fs.removeSync(file)
-      return compileFile(file)
-    })
-  )
-}
-
 const transform = async (entry) => {
-  const moduleDir = await fs.readdir(entry)
-  await Promise.all(
-    moduleDir.map((fileName: string) => {
-      const file = path.resolve(entry, fileName)
-      try {
-        return isDir(file) ? compileDir(file) : null
-      } catch (error) {
-        logErr(error)
-      }
-    })
-  )
+  try {
+    await compileDir(entry, compileFile)
+  } catch (error) {
+    logErr(error)
+  }
 }
 
 const cjsTask = async (input) => {
@@ -70,6 +66,29 @@ const esmTask = async (input) => {
   setBabelEnv('esmodule')
   await fs.copy(input, ESM_PATH)
   await transform(ESM_PATH)
+}
+
+const umdTask = async (input, name: string) => {
+  setBabelEnv('esmodule')
+  const entry = path.join(input, 'index.js')
+  const entryRaw = fs.readFileSync(entry, 'utf-8')
+  const umdJs = path.join(input, 'umd.js')
+  const ignored = ['utils', 'index.js']
+  const styleRaw = fs
+    .readdirSync(input)
+    .filter((v) => !ignored.includes(v))
+    .map((file) => `import './${file}/style/index.js';\n`)
+    .join()
+    .replace(/,/g, '')
+  const raw = `
+   import '@fect-ui/themes'
+   ${entryRaw}
+   ${styleRaw}
+  `
+  fs.outputFileSync(umdJs, raw)
+  await build(useUMDconfig(name, true))
+  await build(useUMDconfig(name))
+  fs.removeSync(umdJs)
 }
 
 const declarationTask = async (input) => {
@@ -104,9 +123,13 @@ export const compile = async () => {
     return logErr(`[Non Error!] "lib.name" is required when format include "umd" or "default"`)
   setNodeENV('production')
   await fs.copy(input, TMP_PATH)
+  await compileDir(TMP_PATH, removeCodeStyle)
+  await resolveExteranlStyle(TMP_PATH)
+
   if (format === 'default') {
     await runTask('EsModule', () => esmTask(TMP_PATH))
     await runTask('CommonJs', () => cjsTask(TMP_PATH))
+    await runTask('UMD', () => umdTask(ESM_PATH, name))
   }
 
   if (format === 'es') {
@@ -117,7 +140,12 @@ export const compile = async () => {
     await runTask('CommonJs', () => cjsTask(TMP_PATH))
   }
 
+  if (format === 'noumd') {
+    await runTask('EsModule', () => esmTask(TMP_PATH))
+    await runTask('CommonJs', () => cjsTask(TMP_PATH))
+  }
+
   await runTask('Declaration', () => declarationTask(TMP_PATH))
 
-  removeSync(TMP_PATH)
+  fs.removeSync(TMP_PATH)
 }

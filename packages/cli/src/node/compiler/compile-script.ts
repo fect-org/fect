@@ -1,13 +1,11 @@
 import fs from 'fs'
-import { replaceExt, replaceStyleInJs } from '../../shared/constant'
+import { replaceExt } from '../../shared/constant'
 import { transformAsync } from '@babel/core'
 import { logErr } from '../../shared/logger'
 
 export const resolveScriptFile = async (filePath: string) => {
   try {
-    let code: string
-    code = await fs.promises.readFile(filePath, 'utf-8')
-    code = replaceStyleInJs(code)
+    const code = await fs.promises.readFile(filePath, 'utf-8')
     const raw = await transform(code, filePath)
     const resolvedPath = replaceExt(filePath, '.js')
     fs.unlinkSync(filePath)
