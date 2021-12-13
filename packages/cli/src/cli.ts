@@ -1,5 +1,6 @@
 import { Command } from 'commander'
-import { collect, compile, dev, jest, lint, build, volar } from './commands'
+import { collect, compile, dev, jest, build, volar } from './commands'
+import { format } from './node/lint'
 
 const program = new Command()
 
@@ -15,7 +16,7 @@ program
   .description('run unit tests with jest')
   .action(jest)
 
-program.command('lint').description('Lint code style').action(lint)
+program.command('lint').description('Lint code style').action(format)
 program.command('build').description('Build site ').action(build)
 
 program.command('volar').description('Gen Volar types').action(volar)

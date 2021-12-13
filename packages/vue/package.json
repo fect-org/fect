@@ -9,7 +9,8 @@
     "collect": "non collect",
     "build": "npm run collect && non compile",
     "test": "non test",
-    "volar": "non volar"
+    "volar": "non volar",
+    "zz": "non zz"
   },
   "keywords": [
     "vue component",
