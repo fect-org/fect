@@ -9,6 +9,6 @@ module.exports = {
     '!components/back-top/**'
   ],
   collectCoverage: true,
-  preset: '@fect-ui/cli/lib/config/@jest',
+  preset: '@fect-ui/cli/lib/config',
   testTimeout: 20000
 }

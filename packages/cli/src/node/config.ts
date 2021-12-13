@@ -73,7 +73,7 @@ interface NodeModuleWithCompile extends NodeModule {
   _compile(code: string, filename: string): any
 }
 
-async function loadConfigFromBundledFile(fileName: string, bundledCode: string): Promise<NonConfig> {
+const loadConfigFromBundledFile = async (fileName: string, bundledCode: string): Promise<NonConfig> => {
   const extension = path.extname(fileName)
   const defaultLoader = require.extensions[extension]
   require.extensions[extension] = (module: NodeModule, filename: string) => {

@@ -3,7 +3,7 @@
  */
 
 import { createServer } from 'vite'
-import { useDevConfig } from '../config/@vite/vite.config'
+import { useDevConfig } from '../config/vite.config'
 
 export const dev = async () => {
   const conf = await useDevConfig()

@@ -37,7 +37,7 @@ import {
 import { compilerStyle } from './compiler-style'
 import { compilerJs } from './compiler-js'
 import { compilerStyleDeps } from './gen-style-deps'
-import { useUMDconfig } from '../config/@vite/vite.config'
+import { useUMDconfig } from '../config/vite.config'
 import ora from 'ora'
 import { build } from 'vite'
 
