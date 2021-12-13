@@ -7,7 +7,13 @@ import { Plugin } from 'vite'
 
 export type Formats = 'es' | 'cjs' | 'umd' | 'default' | 'noumd'
 
-export type NonConfig = {
+export interface Lib {
+  input: string
+  name?: string
+  format?: Formats
+}
+
+export interface NonConfig {
   /**
    * 提供UMD的包名
    */
@@ -24,6 +30,10 @@ export type NonConfig = {
   library?: boolean
   formats?: Formats
   plugins?: Plugin[]
+  /**
+   * library mode . we only do transform . not do build .
+   */
+  lib?: Lib
 }
 
 const config: NonConfig = {

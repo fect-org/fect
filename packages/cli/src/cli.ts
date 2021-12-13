@@ -1,10 +1,14 @@
 import { Command } from 'commander'
-import { collect, compile, dev, jest, build, volar } from './commands'
+import { collect, jest, volar, compile as _compile } from './commands'
 import { format } from './node/lint'
+import { build } from './node/build'
+import { dev } from './node/dev'
+import { compile } from './node/compile'
 
 const program = new Command()
 
-program.command('compile').description('Compile Component code').action(compile)
+program.command('compile').description('Compile Component code').action(_compile)
+program.command('zz').description('Compile Component code').action(compile)
 
 program.command('collect').description('Collect Component package entry').action(collect)
 

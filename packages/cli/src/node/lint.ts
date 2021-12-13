@@ -1,13 +1,10 @@
 import ora, { Ora } from 'ora'
-import { spawn } from 'child_process'
 import { SCRIPTS_EXTENSIONS } from '../shared/constant'
 import { logErr } from '../shared/logger'
-
+import { execa } from '../shared/execa'
 import { EventEmitter } from 'events'
 
 const SCRIPT_LANG = [...SCRIPTS_EXTENSIONS, '.vue', '.md']
-
-const execa = (cmd, options) => spawn(cmd, options, { shell: true })
 
 class Format extends EventEmitter {
   spinner: Ora
