@@ -1,8 +1,8 @@
 import { readJsonSync, readdirSync, writeFile } from 'fs-extra'
 import { join } from 'path'
 import { USER_PACKAGES_JSON_PATH } from '../shared/constant'
-import { resolveConfig } from '../node/config'
-import { formatCode } from '../format/prettier'
+import { resolveConfig } from './config'
+import { formatCode } from '../shared/format'
 
 const PASCAL_REG = /(\w)(.+)/g
 

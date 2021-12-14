@@ -1,7 +1,10 @@
 import { defineNonConfig } from '@fect-ui/cli'
-import { join } from 'path'
+import path from 'path'
 
 export default defineNonConfig({
-  entry: join(__dirname, 'src'),
-  formats: 'noumd'
+  entry: path.join(__dirname, 'src'),
+  lib: {
+    input: path.join(__dirname, 'src'),
+    format: 'noumd'
+  }
 })

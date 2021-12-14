@@ -42,7 +42,7 @@ export const normalizePath = (path) => path.replace(/\\/g, '/')
 
 export const isDir = (path) => lstatSync(path).isDirectory()
 
-export const isTestDir = (path) => path.endsWith('tests__')
+export const isTestDir = (path) => path.endsWith('__tests__')
 
 export const replaceStyleInJs = (code, ext = '') => code.replace(/import.+\.(css|less)'/g, ext)
 
