@@ -19,7 +19,8 @@ export default defineComponent({
       default: ''
     },
     src: String,
-    className: String
+    className: String,
+    alt: String
   },
   setup(props, { attrs }) {
     const [showText] = useState<boolean>(!props.src)
@@ -35,7 +36,7 @@ export default defineComponent({
 
     return () => (
       <div class={`fect-avatar ${setClass.value} ${props.className || ''}`}>
-        {!showText.value && <img src={props.src} draggable="false" {...attrs} />}
+        {!showText.value && <img src={props.src} draggable="false" alt={props.alt} {...attrs} />}
         {showText.value && (
           <span class={'fect-avatar-text '} {...attrs}>
             {safeText(props.text)}

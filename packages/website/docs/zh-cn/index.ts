@@ -60,6 +60,7 @@ export const zhRoutes: Routes = [
       { title: '图片 Image', route: 'Image' },
       { title: '骨架屏 Skeleton', route: 'Skeleton' },
       { title: '标签 Tag', route: 'Tag' },
+      { title: '用户 User', route: 'User' },
       { title: '轮播 Swipe', route: 'Swipe' }
     ]
   },
