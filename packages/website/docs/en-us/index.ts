@@ -61,6 +61,7 @@ export const enRoutes: Routes = [
       { title: 'Image', route: 'Image' },
       { title: 'Skeleton', route: 'Skeleton' },
       { title: 'Tag', route: 'Tag' },
+      { title: 'User', route: 'User' },
       { title: 'Swipe', route: 'Swipe' }
     ]
   },

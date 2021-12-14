@@ -52,6 +52,7 @@ import { Tag } from './tag'
 import { Teleport } from './teleport'
 import { Toast } from './toast'
 import { Tooltip } from './tooltip'
+import { User } from './user'
 const components = [
   Avatar,
   AvatarGroup,
@@ -104,7 +105,8 @@ const components = [
   Tag,
   Teleport,
   Toast,
-  Tooltip
+  Tooltip,
+  User
 ]
 const install = (app: App) => {
   components.map((component: any) => {
@@ -168,6 +170,7 @@ export * from './tag'
 export * from './teleport'
 export * from './toast'
 export * from './tooltip'
+export * from './user'
 
 export { install, version }
 
