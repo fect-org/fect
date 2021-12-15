@@ -51,7 +51,7 @@ Modal.defaultOptions = {
   width: '400px',
   cancel: 'cancel',
   done: 'done'
-}
+} as StaticModalOptions
 
 Modal.Component = withInstall(FeModal)
 

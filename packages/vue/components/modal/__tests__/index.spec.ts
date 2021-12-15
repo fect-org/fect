@@ -1,9 +1,9 @@
 import { mount } from '@vue/test-utils'
-import Modal from '../index'
+import Modal from '../modal'
 
 // see : https://github.com/vuejs/vue-test-utils-next/issues/183(test for teleport)
 
-// normal test . in feature will support instrcution
+// normal test . in future will support instrcution
 
 const Wrapper = {
   components: {
@@ -14,6 +14,7 @@ const Wrapper = {
   },
   template: `
   <div class="container">
+   <button id="btn" @click="show=true">Button</button>
     <fe-modal v-model:visible="show"
       :overlay="overlay"
       title="Test Modal"
@@ -73,8 +74,9 @@ describe('Modal', () => {
 
   it('should be close modal through props visible value is false', async () => {
     const wrapper = mount(Wrapper, { attachTo: document.body })
-    await wrapper.setData({ show: true })
+    const btn = wrapper.find('#btn')
     await wrapper.setData({ mounted: true })
+    await btn.trigger('click')
     expect(wrapper.find('.fect-modal__root').isVisible()).toBe(true)
     const el = wrapper.findAll('.fect-modal__button')
     await el[0].trigger('click')

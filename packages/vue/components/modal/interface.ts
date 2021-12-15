@@ -9,7 +9,7 @@ export type ModalContext = ExtractPropTypes<typeof props> & {
   setAction: (val: Action) => void
 }
 
-export type StaticModalOptions = ExtractPropTypes<typeof staticModalProps> & {
+export type StaticModalOptions = Partial<ExtractPropTypes<typeof staticModalProps>> & {
   content?: string
   confirm?: () => void
   close?: () => void
