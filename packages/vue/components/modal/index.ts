@@ -1,6 +1,5 @@
-import { withInstall } from '../utils'
-import _Modal from './modal'
+import { Modal } from './function-call'
 
-export const Modal = withInstall(_Modal)
+export { Modal }
 
 export default Modal

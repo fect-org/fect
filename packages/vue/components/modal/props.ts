@@ -29,4 +29,4 @@ export const props = {
   }
 }
 
-export const staticModalProps = omit(props, 'teleport', 'overlay')
+export const staticModalProps = omit(props, 'teleport', 'overlay', 'visible')

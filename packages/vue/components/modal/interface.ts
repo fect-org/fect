@@ -1,7 +1,7 @@
 import { Ref, ExtractPropTypes } from 'vue'
 import { props, staticModalProps } from './props'
 
-export type Action = 'confirm' | 'cancel'
+export type Action = 'confirm' | 'cancel' | ''
 
 export type ModalContext = ExtractPropTypes<typeof props> & {
   selfVisible: Ref<boolean>
@@ -10,6 +10,7 @@ export type ModalContext = ExtractPropTypes<typeof props> & {
 }
 
 export type StaticModalOptions = ExtractPropTypes<typeof staticModalProps> & {
-  confirm: () => void
-  close: () => void
+  content?: string
+  confirm?: () => void
+  close?: () => void
 }

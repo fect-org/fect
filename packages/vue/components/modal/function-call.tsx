@@ -1,9 +1,49 @@
 import { App } from 'vue'
+import { useState } from '@fect-ui/vue-hooks'
 import FeModal from './modal'
-import { withInstall, isBrowser } from '../utils'
+import { withInstall, isBrowser, omit, assign, createPortal, useExpose } from '../utils'
+import type { ComponentInstance } from '../utils'
+import type { StaticModalOptions } from './interface'
 
-const Modal = (otpions: any) => {
+const isFunc = (val: any) => typeof val === 'function'
+
+let instance: ComponentInstance
+
+const Modal = (otpions: StaticModalOptions) => {
   if (!isBrowser()) return
+  const staticOptions = omit(assign({}, Modal.defaultOptions, otpions), 'close', 'confirm', 'content')
+
+  if (!instance) {
+    ;({ instance } = createPortal({
+      setup() {
+        const [visible, setVisible] = useState<boolean>(false)
+
+        useExpose({ setVisible })
+
+        const confirmHandler = () => {
+          setVisible(false)
+          if (otpions.confirm) {
+            isFunc(otpions.confirm) && otpions.confirm()
+          }
+        }
+
+        const cancelHandler = () => {
+          setVisible(false)
+          if (otpions.close) {
+            isFunc(otpions.close) && otpions.close()
+          }
+        }
+
+        return () => (
+          <FeModal {...staticOptions} visible={visible.value} onCancel={cancelHandler} onConfirm={confirmHandler}>
+            {otpions?.content}
+          </FeModal>
+        )
+      }
+    }))
+  }
+
+  return instance.setVisible(true)
 }
 
 Modal.defaultOptions = {
@@ -13,10 +53,6 @@ Modal.defaultOptions = {
   done: 'done'
 }
 
-Modal.confirm = () => {}
-
-Modal.cancel = () => {}
-
 Modal.Component = withInstall(FeModal)
 
 Modal.install = (app: App) => {
@@ -25,5 +61,3 @@ Modal.install = (app: App) => {
 }
 
 export { Modal }
-
-Modal.confirm().cancel()

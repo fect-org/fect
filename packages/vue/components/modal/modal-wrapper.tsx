@@ -18,7 +18,7 @@ const ModalWrapper = defineComponent({
     }
 
     const renderWrapper = () => {
-      const { width } = context!
+      const { width, selfVisible } = context!
       return (
         <div role="dialog" tabindex={-1} class="fect-modal__wrapper" style={{ width }}>
           {renderTitle()}

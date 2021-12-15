@@ -18,9 +18,9 @@ export default defineComponent({
   setup(props, { attrs, slots, emit }) {
     const modalRef = ref<ComponentInstance>()
 
-    const [selfVisible, setSelfVisible] = useState<boolean>(props.visible)
+    const [selfVisible, setSelfVisible] = useState<boolean>(false)
 
-    const [action, setAction] = useState<Action>('cancel')
+    const [action, setAction] = useState<Action>('')
 
     const { provider } = createModalContext()
 
@@ -28,7 +28,10 @@ export default defineComponent({
 
     watch(
       () => props.visible,
-      (cur) => setSelfVisible(cur)
+      (cur) => {
+        setSelfVisible(cur)
+        setAction('')
+      }
     )
     watch(selfVisible, (cur) => emit('update:visible', cur))
 
@@ -41,6 +44,7 @@ export default defineComponent({
       const element = modalRef.value!.$el
       if (element && element.contains(e.target as Node)) return
       setSelfVisible(!selfVisible.value)
+      setAction('cancel')
     }
 
     return () => (
@@ -50,7 +54,7 @@ export default defineComponent({
         scroll={selfVisible.value}
         popupClass="fect-modal__root"
         transition="modal-fade"
-        v-model={[selfVisible.value, 'show']}
+        show={selfVisible.value}
         onPopupClick={popupClickHandler}
       >
         <ModalWrapper {...attrs} v-slots={slots} ref={modalRef} />
