@@ -1,13 +1,13 @@
 import { Ref, ExtractPropTypes } from 'vue'
 import { props, staticModalProps } from './props'
 
-export type ModalProvide = {
-  props: ExtractPropTypes<typeof props>
+export type Action = 'confirm' | 'cancel'
+
+export type ModalContext = ExtractPropTypes<typeof props> & {
   selfVisible: Ref<boolean>
   setSelfVisible: (val: boolean) => void
+  setAction: (val: Action) => void
 }
-
-export const READONLY_MODAL_KEY = 'modalKey'
 
 export type StaticModalOptions = ExtractPropTypes<typeof staticModalProps> & {
   confirm: () => void

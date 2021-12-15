@@ -1,13 +1,11 @@
 import { defineComponent } from 'vue'
-import { useProvider } from '@fect-ui/vue-hooks'
 import ModalAction from './modal-action'
 import ModalTitle from './modal-title'
-
-import { READONLY_MODAL_KEY, ModalProvide } from './type'
+import { useModalContext } from './modal-context'
 
 const ModalWrapper = defineComponent({
   setup(props, { slots }) {
-    const { context } = useProvider<ModalProvide>(READONLY_MODAL_KEY)
+    const { context } = useModalContext()
 
     const renderTitle = () => {
       const titleSlot = slots['title']
@@ -20,7 +18,7 @@ const ModalWrapper = defineComponent({
     }
 
     const renderWrapper = () => {
-      const { width } = context?.props!
+      const { width } = context!
       return (
         <div role="dialog" tabindex={-1} class="fect-modal__wrapper" style={{ width }}>
           {renderTitle()}
