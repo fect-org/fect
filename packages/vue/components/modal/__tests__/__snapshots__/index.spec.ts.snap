@@ -5,10 +5,10 @@ exports[`Modal should be support custom slots 1`] = `
   <!--teleport start-->
   <!--teleport end-->
   <transition-stub>
-    <div class="fect-teleport__overlay"></div>
+    <div class="fect-teleport__overlay" style="display: none;"></div>
   </transition-stub>
   <transition-stub>
-    <div class="fect-modal__root" role="popup">
+    <div class="fect-modal__root" role="popup" style="display: none;">
       <div role="dialog" tabindex="-1" class="fect-modal__wrapper" style="width: 400px;">
         <div class="fect-modal__title">Custom Title</div>
         <div class="fect-modal__content">
@@ -22,12 +22,12 @@ exports[`Modal should be support custom slots 1`] = `
 `;
 
 exports[`Modal should be support normal props 1`] = `
-<div class="container">
+<div class="container"><button id="btn">Button</button>
   <!--teleport start-->
   <!--teleport end-->
   <!---->
   <transition-stub>
-    <div class="fect-modal__root" role="popup">
+    <div class="fect-modal__root" role="popup" style="display: none;">
       <div role="dialog" tabindex="-1" class="fect-modal__wrapper" style="width: 500px;">
         <div class="fect-modal__title">
           <h2 class="title">Test Modal</h2>

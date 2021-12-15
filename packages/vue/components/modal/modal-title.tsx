@@ -1,13 +1,12 @@
 import { defineComponent } from 'vue'
-import { useProvider } from '@fect-ui/vue-hooks'
-import { READONLY_MODAL_KEY, ModalProvide } from './type'
+import { useModalContext } from './modal-context'
 
 const ModalTitle = defineComponent({
   setup() {
-    const { context } = useProvider<ModalProvide>(READONLY_MODAL_KEY)
+    const { context } = useModalContext()
     return () => (
       <div class="fect-modal__title">
-        <h2 class="title">{context?.props.title}</h2>
+        <h2 class="title">{context?.title}</h2>
       </div>
     )
   }

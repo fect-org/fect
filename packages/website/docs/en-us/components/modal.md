@@ -22,16 +22,47 @@ modal/custom.vue
 
 :::
 
+### Functional
+
+`Modal` is a function，the corresponding modal box will pop up directly on the page after calling.
+
+:::playground
+
+modal/function.vue
+
+:::
+
 ### Modal Props
 
 | Attribue            | Description         | Type          | Accepted values  | Default  |
 | ------------------- | ------------------- | ------------- | ---------------- | -------- |
 | **v-model:visible** | visible or hidden   | `boolean`     | `'true','false'` | `false`  |
 | **title**           | modal title         | `string`      | `-`              | `-`      |
-| **width**           | modal width         | `string`      | `-`              | `420px`  |
+| **width**           | modal width         | `string`      | `-`              | `400px`  |
 | **cancel**          | cancel button text  | `string`      | `-`              | `cancel` |
 | **done**            | confrim button text | `string`      | `-`              | `done`   |
 | **teleport**        | modal mounted node  | `HTMLElement` | `-`              | `body`   |
+
+### Modal Options
+
+Only work with function call.
+
+| Attribue    | Description         | Type       | Accepted values | Default  |
+| ----------- | ------------------- | ---------- | --------------- | -------- |
+| **title**   | modal title         | `string`   | `-`             | `-`      |
+| **width**   | modal width         | `string`   | `-`             | `400px`  |
+| **cancel**  | cancel button text  | `string`   | `-`             | `cancel` |
+| **done**    | confrim button text | `string`   | `-`             | `done`   |
+| **content** | modal text content  | `string`   | `-`             | `-`      |
+| **close**   | modal cancel event  | `()=>void` | `-`             | `-`      |
+| **confirm** | modal confirm event | `()=>void` | `-`             | `-`      |
+
+### Modal Events
+
+| Event       | Description         | Type       |
+| ----------- | ------------------- | ---------- |
+| **cancel**  | modal cancel event  | `()=>void` |
+| **confirm** | modal confirm event | `()=>void` |
 
 ### Modal Slots
 

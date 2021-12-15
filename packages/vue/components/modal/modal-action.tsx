@@ -1,27 +1,27 @@
 import { defineComponent } from 'vue'
-import { useProvider } from '@fect-ui/vue-hooks'
 import Button from '../button/index'
-import { READONLY_MODAL_KEY, ModalProvide } from './type'
+import { useModalContext } from './modal-context'
+import type { Action } from './interface'
 
 const ModalAction = defineComponent({
   setup() {
-    const { context } = useProvider<ModalProvide>(READONLY_MODAL_KEY)
+    const { context } = useModalContext()
 
-    const closeClickHandler = (e: Event) => {
+    const closeClickHandler = (e: Event, action: Action) => {
       e.stopPropagation()
       e.preventDefault()
-      const { setSelfVisible } = context!
-      const { visible } = context?.props!
-      setSelfVisible(!visible)
+      const { selfVisible, setSelfVisible, setAction } = context!
+      setSelfVisible(!selfVisible)
+      setAction(action)
     }
 
     return () => (
       <footer class="fect-modal__action">
-        <Button class="fect-modal__button" onClick={closeClickHandler}>
-          {context?.props.cancel}
+        <Button class="fect-modal__button" onClick={(e) => closeClickHandler(e, 'cancel')}>
+          {context!.cancel}
         </Button>
-        <Button class="fect-modal__button" onClick={closeClickHandler}>
-          {context?.props.done}
+        <Button class="fect-modal__button" onClick={(e) => closeClickHandler(e, 'confirm')}>
+          {context!.done}
         </Button>
       </footer>
     )

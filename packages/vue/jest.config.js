@@ -6,6 +6,7 @@ module.exports = {
     '!components/index.ts',
     '!components/**/type.ts',
     '!components/**/style.ts',
+    '!components/**/interface.ts',
     '!components/back-top/**'
   ],
   collectCoverage: true,

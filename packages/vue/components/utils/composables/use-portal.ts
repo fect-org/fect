@@ -14,7 +14,10 @@ const createPortal = (children: Component, container?: ElementRef) => {
   const elSnapshot = unref(container) || document.createElement('div')
   const app = createApp(children)
   document.body.appendChild(elSnapshot)
-  app.mount(elSnapshot)
+  const instance = app.mount(elSnapshot)
+  return {
+    instance
+  }
 }
 
 export { createNode, createPortal }
