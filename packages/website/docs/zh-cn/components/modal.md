@@ -22,7 +22,15 @@ modal/custom.vue
 
 :::
 
-<!-- <playground title="指令" name="ex-modal-direct" desc="使用指令唤醒modal" /> -->
+### 函数调用
+
+`Modal`是一个函数，调用后会直接在页面中弹出相应的模态框
+
+:::playground
+
+modal/function.vue
+
+:::
 
 ### Modal Props
 
@@ -30,12 +38,31 @@ modal/custom.vue
 | ------------------- | -------------------- | ------------- | ---------------- | -------- |
 | **v-model:visible** | 显示与隐藏           | `boolean`     | `'true','false'` | `false`  |
 | **title**           | 标题                 | `string`      | `-`              | `-`      |
-| **width**           | 对话框宽度           | `string`      | `-`              | `420px`  |
+| **width**           | 对话框宽度           | `string`      | `-`              | `400px`  |
 | **cancel**          | 取消按钮的文字       | `string`      | `-`              | `cancel` |
 | **done**            | 确定按钮的文字       | `string`      | `-`              | `done`   |
 | **teleport**        | 指定对话框挂载的节点 | `HTMLElement` | `-`              | `body`   |
 
-### Modal customSlots
+### Modal Options
+
+| 属性        | 描述             | 类型       | 可选值 | 默认     |
+| ----------- | ---------------- | ---------- | ------ | -------- |
+| **title**   | 标题             | `string`   | `-`    | `-`      |
+| **width**   | 对话框宽度       | `string`   | `-`    | `400px`  |
+| **cancel**  | 取消按钮的文字   | `string`   | `-`    | `cancel` |
+| **done**    | 确定按钮的文字   | `string`   | `-`    | `done`   |
+| **content** | 模态框文本内容   | `string`   | `-`    | `-`      |
+| **close**   | 模态框的取消事件 | `()=>void` | `-`    | `-`      |
+| **confirm** | 模态框的确认事件 | `()=>void` | `-`    | `-`      |
+
+### Modal Events
+
+| 事件        | 描述             | 类型       |
+| ----------- | ---------------- | ---------- |
+| **cancel**  | 模态框的取消事件 | `()=>void` |
+| **confirm** | 模态框的确认事件 | `()=>void` |
+
+### Modal Slots
 
 <fe-card>
   Modal组件默认提供了<fe-code>title,action</fe-code>插槽。启用时<fe-code>title,cancel,done</fe-code>
