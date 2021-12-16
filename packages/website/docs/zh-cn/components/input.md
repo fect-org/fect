@@ -72,6 +72,16 @@ input/password.vue
 
 :::
 
+### 图标
+
+通过 slot 添加自定义图标
+
+:::playground
+
+input/icon.vue
+
+:::
+
 ### Input Props
 
 | 属性           | 描述                                                                            | 类型                | 可选值             | 默认      |

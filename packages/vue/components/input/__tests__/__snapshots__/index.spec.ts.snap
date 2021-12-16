@@ -6,7 +6,8 @@ exports[`Input input can not work on type as disabled or readonly 1`] = `
     <!---->
     <div class="fect-input__container">
       <!---->
-      <div class="fect-input__wrapper  disabled"><input type="text" class="disabled" style="font-size: 12px;" disabled="" placeholder="最小的">
+      <div class="fect-input__wrapper  disabled">
+        <!----><input type="text" class="disabled" style="font-size: 12px;" disabled="" placeholder="最小的">
         <!---->
         <!---->
       </div>
@@ -17,7 +18,8 @@ exports[`Input input can not work on type as disabled or readonly 1`] = `
     <!---->
     <div class="fect-input__container">
       <!---->
-      <div class="fect-input__wrapper  "><input type="text" class="" style="font-size: 12px;" readonly="" placeholder="最小的">
+      <div class="fect-input__wrapper  ">
+        <!----><input type="text" class="" style="font-size: 12px;" readonly="" placeholder="最小的">
         <!---->
         <!---->
       </div>
@@ -32,7 +34,8 @@ exports[`Input should be render as a element 1`] = `
   <!---->
   <div class="fect-input__container">
     <!---->
-    <div class="fect-input__wrapper  "><input type="text" class="" style="font-size: 14px;">
+    <div class="fect-input__wrapper  ">
+      <!----><input type="text" class="" style="font-size: 14px;">
       <!---->
       <!---->
     </div>
@@ -47,7 +50,8 @@ exports[`Input should be support different sizes 1`] = `
     <!---->
     <div class="fect-input__container">
       <!---->
-      <div class="fect-input__wrapper  "><input type="text" class="" style="font-size: 12px;" placeholder="最小的">
+      <div class="fect-input__wrapper  ">
+        <!----><input type="text" class="" style="font-size: 12px;" placeholder="最小的">
         <!---->
         <!---->
       </div>
@@ -58,7 +62,8 @@ exports[`Input should be support different sizes 1`] = `
     <!---->
     <div class="fect-input__container">
       <!---->
-      <div class="fect-input__wrapper  "><input type="text" class="" style="font-size: 12px;" placeholder="较小的">
+      <div class="fect-input__wrapper  ">
+        <!----><input type="text" class="" style="font-size: 12px;" placeholder="较小的">
         <!---->
         <!---->
       </div>
@@ -69,7 +74,8 @@ exports[`Input should be support different sizes 1`] = `
     <!---->
     <div class="fect-input__container">
       <!---->
-      <div class="fect-input__wrapper  "><input type="text" class="" style="font-size: 14px;" placeholder="中等的">
+      <div class="fect-input__wrapper  ">
+        <!----><input type="text" class="" style="font-size: 14px;" placeholder="中等的">
         <!---->
         <!---->
       </div>
@@ -80,7 +86,8 @@ exports[`Input should be support different sizes 1`] = `
     <!---->
     <div class="fect-input__container">
       <!---->
-      <div class="fect-input__wrapper  "><input type="text" class="" style="font-size: 16px;" placeholder="较大的">
+      <div class="fect-input__wrapper  ">
+        <!----><input type="text" class="" style="font-size: 16px;" placeholder="较大的">
         <!---->
         <!---->
       </div>
@@ -95,7 +102,8 @@ exports[`Input should be work with label 1`] = `
   <div class="fect-input" style="--heightRatio: 1.313;"><label><span>Test</span></label>
     <div class="fect-input__container">
       <!---->
-      <div class="fect-input__wrapper  "><input type="text" class="" style="font-size: 12px;" placeholder="最小的">
+      <div class="fect-input__wrapper  ">
+        <!----><input type="text" class="" style="font-size: 12px;" placeholder="最小的">
         <!---->
         <!---->
       </div>
@@ -110,7 +118,8 @@ exports[`Input should support clearable and password icon 1`] = `
   <!---->
   <div class="fect-input__container">
     <!---->
-    <div class="fect-input__wrapper  "><input type="password" class="" style="font-size: 14px;">
+    <div class="fect-input__wrapper  ">
+      <!----><input type="password" class="" style="font-size: 14px;">
       <div class="fect-input__clear-icon "><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
           <path d="M18 6L6 18"></path>
           <path d="M6 6l12 12"></path>

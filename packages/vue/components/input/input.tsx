@@ -181,6 +181,10 @@ export default defineComponent({
       return ''
     })
 
+    const renderIcon = () => {
+      return <div style="padding-left:6px;display:flex;align-items:center;justify-content:center">{slots.icon?.()}</div>
+    }
+
     return () => (
       <div class="fect-input" style={{ '--heightRatio': ratio.value } as CustomCSSProperties}>
         {slots.default && <InputBlockLabel v-slots={slots} />}
@@ -190,6 +194,7 @@ export default defineComponent({
             class={`fect-input__wrapper ${hover.value ? 'hover' : ''} ${props.disabled ? 'disabled' : ''}`}
             style={haslabel.value}
           >
+            {slots.icon && renderIcon()}
             {renderInput()}
           </div>
           {hasSuffix.value && (
