@@ -182,7 +182,7 @@ export default defineComponent({
     })
 
     const renderIcon = () => {
-      return <div style="padding-left:6px;display:flex;align-items:center;justify-content:center">{slots.icon?.()}</div>
+      return <div class="fect-input__icon">{slots.icon?.()}</div>
     }
 
     return () => (
