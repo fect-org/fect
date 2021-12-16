@@ -6,10 +6,10 @@
 import { watch } from 'vue'
 import { isBrowser } from '../format'
 import { useState } from '@fect-ui/vue-hooks'
-export type Theme = 'light-theme' | 'dark-theme'
+import type { Theme } from './interface'
 
 export const useTheme = () => {
-  const [theme, setTheme] = useState<Theme>(localStorage.getItem('theme') || 'light-theme')
+  const [theme, setTheme] = useState<Theme>((localStorage.getItem('theme') as Theme) || 'light-theme')
 
   const themeChange = () => setTheme(theme.value === 'light-theme' ? 'dark-theme' : 'light-theme')
 

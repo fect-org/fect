@@ -57,7 +57,7 @@ export default defineComponent({
         show={selfVisible.value}
         onPopupClick={popupClickHandler}
       >
-        <ModalWrapper {...attrs} v-slots={slots} ref={modalRef} />
+        <ModalWrapper v-slots={slots} ref={modalRef} {...attrs} />
       </Teleport>
     )
   }

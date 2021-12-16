@@ -20,3 +20,5 @@ export interface DraggableOptions {
 export interface DraggableOutput {
   position: Ref<Position>
 }
+
+export type Theme = 'light-theme' | 'dark-theme'

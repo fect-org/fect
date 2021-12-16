@@ -1,4 +1,4 @@
-import { computed, defineComponent, PropType } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import { Placement } from './props'
 
 const DrawerWrapper = defineComponent({
@@ -10,14 +10,12 @@ const DrawerWrapper = defineComponent({
     closeable: Boolean,
     round: Boolean
   },
-  setup(props, { slots, emit }) {
-    const setRounder = computed(() => {
-      const { round } = props
-      return round && 'round'
-    })
-
+  setup(props, { slots }) {
     return () => (
-      <div class={`fect-drawer__wrapper fect-drawer__wrapper--${props.placement} ${setRounder.value}`} role="dialog">
+      <div
+        class={`fect-drawer__wrapper fect-drawer__wrapper--${props.placement} ${props.round ? 'round' : ''}`}
+        role="dialog"
+      >
         {slots.default?.()}
       </div>
     )

@@ -20,8 +20,8 @@ export default defineComponent({
     const contentRef = ref<HTMLDivElement>()
     const { width, height } = useResize()
     const [show, setShow] = useState<boolean>(props.visible)
-    const [rect, setRect] = useState<TooltipPosition>({})
-    const [iconOffset, setIconOffset] = useState<Record<IconOffset, string>>({})
+    const [rect, setRect] = useState<TooltipPosition>()
+    const [iconOffset, setIconOffset] = useState<Record<IconOffset, string>>()
     const [teleport, setTeleport] = useState<string>('body')
 
     const updateRect = () => {
@@ -36,6 +36,7 @@ export default defineComponent({
       setIconOffset(iconOffset)
     }
     const setContentStyle = computed(() => {
+      if (!rect.value && !iconOffset.value) return
       const style: CustomCSSProperties = {
         ['--tooltip-icon-offset-x']: iconOffset.value.x,
         ['--tooltip-icon-offset-y']: iconOffset.value.y,
