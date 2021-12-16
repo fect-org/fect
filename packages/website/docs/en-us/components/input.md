@@ -70,6 +70,16 @@ input/password.vue
 
 :::
 
+### Icon
+
+Add a custom icon before the input area
+
+:::playground
+
+input/icon.vue
+
+:::
+
 ### Input Props
 
 | Attribue      | Description                                                                                   | Type                | Accepted values    | Default   |

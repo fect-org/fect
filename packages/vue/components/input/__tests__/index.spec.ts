@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils'
 import Input from '..'
+import { Github } from '@fect-ui/vue-icons'
 
 describe('Input', () => {
   it('should be render as a element', () => {
@@ -144,5 +145,21 @@ describe('Input', () => {
     await el.trigger('click')
     const emited = wrapper.emitted('update:modelValue')![0] as any
     expect(emited[0]).toBe('')
+  })
+  it('should be support icon', () => {
+    const wrapper = mount({
+      components: {
+        [Input.name]: Input,
+        Github
+      },
+      template: `
+      <div class="container">
+        <fe-input>
+          <template #icon><Github /></template>
+            gayhub
+        </fe-input>
+      </div>`
+    })
+    expect(wrapper.html()).toMatchSnapshot()
   })
 })

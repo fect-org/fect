@@ -3,7 +3,7 @@ name: Deploy website-rc to Ali
 on:
   push:
     branches: [master]
-     
+
 jobs:
   deploy-website-rc:
     runs-on: ubuntu-latest
