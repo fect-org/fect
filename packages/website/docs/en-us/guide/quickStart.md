@@ -18,7 +18,7 @@ import '@fect-ui/vue/lib/Button/style'
 createApp(App).use(Button).mount('#app')
 ```
 
-<fe-dot type="success" /> Import on demand
+<fe-dot type="success" />Import on demand
 
 `babel-plugin-import` will automatically convert the import statement into an on-demand import method during the compilation process.
 
@@ -83,7 +83,7 @@ import '@fect-ui/themes'
 import { Tab, Tabs } from '@fect-ui/vue'
 ```
 
-<fe-dot type="success" /> Import all components
+<fe-dot type="success" />Import all components
 
 ```js
 import { createApp } from 'vue'

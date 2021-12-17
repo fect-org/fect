@@ -2,9 +2,9 @@
 
 ## 配置
 
-<fe-dot type="success" />方式一:手动按需引入组件
+<fe-dot type="success" />方式一：手动按需引入组件
 
-可能在项目中您并不需要把组件全部加载进入到您的项目,`FectUI`提供了按需导入的功能。您可以选择手动按需引入组件
+可能在项目中您并不需要把组件全部加载进入到您的项目，`FectUI`提供了按需导入的功能。您可以选择手动按需引入组件
 
 ```js
 import { createApp } from 'vue'
@@ -16,7 +16,7 @@ import '@fect-ui/vue/lib/Button/style'
 createApp(App).use(Button).mount('#app')
 ```
 
-<fe-dot type="warning" />方式二:通过 babel 插件按需引入组件
+<fe-dot type="warning" />方式二：通过 babel 插件按需引入组件
 
 `babel-plugin-import` 是一款 babel 插件，它会在编译过程中将 import 语句自动转换为按需引入的方式。
 
@@ -41,9 +41,10 @@ npm i babel-plugin-import -D
 }
 ```
 
-<fe-dot type="warning" /> 在 Vite 项目中按需引入组件
+<fe-dot type="warning" />在 Vite 项目中按需引入组件
 
 `vite-plugin-style-import` 是一款类似于 `babel-plugin-import` 的 vite 插件
+
 由于需要`babel`的支持所以需要在 vite 项目里面安装
 
 ```shell
@@ -79,7 +80,7 @@ import '@fect-ui/themes'
 import { Tab, Tabs } from '@fect-ui/vue'
 ```
 
-<fe-dot type="success" /> 引入全部
+<fe-dot type="success" />引入全部
 
 ```js
 import { createApp } from 'vue'
