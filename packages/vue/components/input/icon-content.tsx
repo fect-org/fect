@@ -15,7 +15,7 @@ const IconContent = defineComponent({
     })
 
     return () => (
-      <div class="fect-input__icon" style={baseStyle.value} onClick={(e) => emit('click', e)}>
+      <div class="fect-input__icon fect-input__icon-suffix" style={baseStyle.value} onClick={(e) => emit('click', e)}>
         {slots.default?.()}
       </div>
     )

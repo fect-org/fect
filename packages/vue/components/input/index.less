@@ -98,10 +98,17 @@
     padding: calc(var(--heightRatio) * var(--fay-gap) * 0.3);
     line-height: 1;
     position: relative;
+    &-prefix {
+      padding-right: 0;
+    }
+    &-suffix {
+      padding-left: 0;
+    }
   }
 
   &__clear-icon {
     padding: 0 var(--fay-gap-half);
+    padding-left: 0;
     margin: 0;
     display: inline-flex;
     align-items: center;
