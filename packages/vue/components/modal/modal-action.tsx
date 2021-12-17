@@ -18,10 +18,10 @@ const ModalAction = defineComponent({
     return () => (
       <footer class="fect-modal__action">
         <Button class="fect-modal__button" onClick={(e) => closeClickHandler(e, 'cancel')}>
-          {context!.cancel}
+          {context!.props.cancel}
         </Button>
         <Button class="fect-modal__button" onClick={(e) => closeClickHandler(e, 'confirm')}>
-          {context!.done}
+          {context!.props.done}
         </Button>
       </footer>
     )

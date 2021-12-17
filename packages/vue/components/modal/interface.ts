@@ -3,7 +3,8 @@ import { props, staticModalProps } from './props'
 
 export type Action = 'confirm' | 'cancel' | ''
 
-export type ModalContext = ExtractPropTypes<typeof props> & {
+export interface ModalContext {
+  props: ExtractPropTypes<typeof props>
   selfVisible: Ref<boolean>
   setSelfVisible: (val: boolean) => void
   setAction: (val: Action) => void

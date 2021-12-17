@@ -1,4 +1,4 @@
-import { watch, defineComponent, ref, reactive, toRefs } from 'vue'
+import { watch, defineComponent, ref } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import { createName, ComponentInstance } from '../utils'
 import ModalWrapper from './modal-wrapper'
@@ -24,7 +24,7 @@ export default defineComponent({
 
     const { provider } = createModalContext()
 
-    provider({ ...reactive(toRefs(props)), setSelfVisible, selfVisible, setAction })
+    provider({ props, setSelfVisible, selfVisible, setAction })
 
     watch(
       () => props.visible,

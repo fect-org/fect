@@ -6,7 +6,7 @@ const ModalTitle = defineComponent({
     const { context } = useModalContext()
     return () => (
       <div class="fect-modal__title">
-        <h2 class="title">{context?.title}</h2>
+        <h2 class="title">{context?.props.title}</h2>
       </div>
     )
   }

@@ -17,8 +17,10 @@ const Modal = (otpions: StaticModalOptions) => {
     ;({ instance } = createPortal({
       setup() {
         const [visible, setVisible] = useState<boolean>(false)
+        const [content, setContent] = useState<string>('')
+        const [modalProps, setModalProps] = useState<typeof staticOptions>({})
 
-        useExpose({ setVisible })
+        useExpose({ setVisible, setContent, setModalProps })
 
         const confirmHandler = () => {
           setVisible(false)
@@ -35,15 +37,16 @@ const Modal = (otpions: StaticModalOptions) => {
         }
 
         return () => (
-          <FeModal {...staticOptions} visible={visible.value} onCancel={cancelHandler} onConfirm={confirmHandler}>
-            {otpions?.content}
+          <FeModal {...modalProps.value} visible={visible.value} onCancel={cancelHandler} onConfirm={confirmHandler}>
+            {content.value}
           </FeModal>
         )
       }
     }))
   }
-
-  return instance.setVisible(true)
+  instance.setModalProps(staticOptions)
+  instance.setContent(otpions.content)
+  instance.setVisible(true)
 }
 
 Modal.defaultOptions = {
