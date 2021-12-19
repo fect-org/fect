@@ -1,54 +1,48 @@
-import { PropType, defineComponent, CSSProperties, computed } from 'vue'
-import { createName, NormalTypes } from '../utils'
-
-import './index.less'
+import { defineComponent } from 'vue'
+import { useState } from '@fect-ui/vue-hooks'
+import { createName } from '../utils'
+import { useToastContext } from './toast-contenxt'
+import ToastItem from './toast-item'
 
 const name = createName('Toast')
 
-const renderBgColor = (type: NormalTypes) => {
-  const bgColorsPool: Record<NormalTypes, string> = {
-    default: 'var(--primary-background)',
-    success: 'var(--success-default)',
-    warning: 'var(--warning-default)',
-    error: 'var(--error-default)'
-  }
-  const isDefault = type === 'default'
-  /**
-   * Prevent main color change in special types
-   * Toast backgroundcolor only follow the theme type change
-   * others can't change the style ,unless you modify the style
-   */
-  if (isDefault) {
-    return {
-      backgroundColor: bgColorsPool[type],
-      color: 'var(--primary-foreground)',
-      border: '1px solid var(--accents-2)'
-    } as CSSProperties
-  }
-  return {
-    backgroundColor: bgColorsPool[type],
-    color: 'white'
-  } as CSSProperties
-}
+import './index.less'
 
 export default defineComponent({
   name,
-  props: {
-    text: {
-      type: [String, Number],
-      default: ''
-    },
-    type: {
-      type: String as PropType<NormalTypes>,
-      default: 'default'
-    }
-  },
   setup(props) {
-    const setBgColor = computed(() => renderBgColor(props.type))
+    const [hover, setHover] = useState<boolean>(false)
+    const { context } = useToastContext()
+
+    let timer: any
+
+    const hoverHandler = (state: boolean) => {
+      if (state) {
+        timer && clearTimeout(timer)
+        context!.updateHovering(state)
+        return setHover(state)
+      }
+      timer = setTimeout(() => {
+        setHover(state)
+        context!.updateHovering(state)
+        timer && clearTimeout(timer)
+      }, 200)
+    }
+
+    const renderToasts = () => {
+      const { toasts } = context!
+      return toasts.value.map((toast, idx) => (
+        <ToastItem {...toast} index={idx} hover={hover.value} total={toasts.value.length} key={`toast-${idx}`} />
+      ))
+    }
 
     return () => (
-      <div class="fect-toast" style={setBgColor.value}>
-        <div class="fect-toast__message">{props.text}</div>
+      <div
+        class={`fect-toast__container ${hover.value ? 'hover' : ''}`}
+        onMouseenter={() => hoverHandler(true)}
+        onMouseleave={() => hoverHandler(false)}
+      >
+        {renderToasts()}
       </div>
     )
   }

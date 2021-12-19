@@ -1,78 +1,110 @@
-import { App, Component, watchEffect, computed, watch } from 'vue'
+import { App } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import FeToast from './toast'
-import { createNode, withInstall, NormalTypes, createPortal, omit, assign } from '../utils'
+import { createNode, withInstall, NormalTypes, createPortal, omit, assign, useExpose, isNumber, getId } from '../utils'
 
-export type ToastType = NormalTypes
+import type { ComponentInstance } from '../utils'
+import type { ToastOptions, StaticToastOptions, Toasts } from './interface'
+import { createToastContext } from './toast-contenxt'
 
-export type ToastOptions = {
-  text?: string | number
-  type?: NormalTypes
-  duration?: string | number
-}
+/**
+ * Toast will has `once` Api in future.
+ */
 
-export type StaticToastOptions = Omit<ToastOptions, 'type'>
+let instance: ComponentInstance
 
-export type ToastProps = Omit<ToastOptions, 'duration'>
-
-const queue: ToastProps[] = []
+const destroyStack: string[] = []
 
 const Toast = (options: ToastOptions) => {
-  // set max queue
-  if (queue.length > 10) queue.splice(10, 1)
-  const container = createNode('fect-toast__area')
-  queue.push(omit(options, 'duration'))
-  const content: Component = {
-    setup() {
-      const [visible, setVisible] = useState<boolean>(false)
+  const id = `toast-${getId()}`
 
-      const [hide, setHide] = useState<boolean>(false)
+  if (!instance) {
+    //  context
+    const container = createNode('fect-ui--toast')
 
-      watchEffect((onInvalidate) => {
-        const timer = setTimeout(() => {
-          setVisible(true)
-          clearTimeout(timer)
-        }, 0)
-        onInvalidate(() => {
-          clearTimeout(timer)
-        })
-      })
+    ;({ instance } = createPortal(
+      {
+        setup() {
+          const [toasts, setToasts] = useState<Toasts>([])
+          const [isHovering, setIsHovering] = useState<boolean>(false)
 
-      watchEffect((onInvalidate) => {
-        const timer = setTimeout(() => {
-          setHide(true)
-          clearTimeout(timer)
-        }, Number(options.duration) || 4500)
-        onInvalidate(() => {
-          clearTimeout(timer)
-        })
-      })
+          const updateToasts = (toastOption: Toasts[number]) => {
+            const prevToasts = toasts.value.slice()
+            prevToasts.push(omit(toastOption, 'duration'))
+            setToasts(prevToasts)
+          }
 
-      watch(hide, (pre) => {
-        if (pre) queue.length = 0
-      })
+          let maxDestroyTime: number = 0
+          let destroyTimer: number | undefined
 
-      const setOpacity = computed(() => (hide.value ? 0 : 1))
+          const cancel = (id: string, delay: number) => {
+            const prevToasts = toasts.value.slice()
+            const nextToasts = prevToasts.map((item) => {
+              if (item.id !== id) return item
+              return { ...item, willBeDestroy: true }
+            })
+            destroyStack.push(id)
+            setToasts(nextToasts)
+            destroyAllToast(delay, performance.now())
+          }
 
-      return () => (
-        <div>
-          {queue.map((item, idx) => (
-            <div
-              class={`fect-toast__container ${visible.value ? 'visible' : ''}`}
-              style={{ opacity: setOpacity.value }}
-              data-index={idx}
-            >
-              <FeToast {...item} />
-            </div>
-          ))}
-        </div>
-      )
-    }
+          const destroyAllToast = (delay: number, time: number) => {
+            if (time <= maxDestroyTime) return
+            clearTimeout(destroyTimer)
+            maxDestroyTime = time
+            destroyTimer = window.setTimeout(() => {
+              if (destroyStack.length < toasts.value.length) {
+                setToasts(toasts.value)
+              } else {
+                destroyStack.length = 0
+                setToasts([])
+              }
+              clearTimeout(destroyTimer)
+            }, delay + 350)
+          }
+
+          const hideToast = (id: string, delay: number) => {
+            const hideTimer = window.setTimeout(() => {
+              if (isHovering.value) {
+                hideToast(id, delay)
+                return clearTimeout(hideTimer)
+              }
+              cancel(id, delay)
+              clearTimeout(hideTimer)
+            }, delay)
+          }
+
+          const { provider } = createToastContext()
+
+          provider({ toasts, updateHovering: setIsHovering })
+
+          useExpose({ updateToasts, hideToast })
+
+          return () => <FeToast />
+        }
+      },
+      container
+    ))
   }
-  createPortal(content, container)
+
+  /**
+   * user may pass a string type numebr. so we should translate it. Or user pass a string , we will use preset
+   * duration value.
+   */
+  const duration = isNumber(options.duration) ? Number(options.duration) : Toast.defaultOptions.duration
+  instance.hideToast(id, duration)
+  instance.updateToasts(assign(options, { id }))
 }
 
-const createMethods = (type: NormalTypes) => (options: StaticToastOptions) => Toast(assign(options, { type }))
+Toast.defaultOptions = {
+  duration: 2000,
+  text: '',
+  type: 'default',
+  once: false
+} as ToastOptions
+
+const createMethods = (type: NormalTypes) => (options: StaticToastOptions) =>
+  Toast(assign(Toast.defaultOptions, options, { type } as ToastOptions))
 
 /**
  * static methods
