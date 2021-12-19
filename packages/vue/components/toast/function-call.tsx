@@ -92,7 +92,6 @@ const Toast = (options: ToastOptions) => {
    * duration value.
    */
   const duration = isNumber(options.duration) ? Number(options.duration) : Toast.defaultOptions.duration
-  // instance.setId(id)
   instance.hideToast(id, duration)
   instance.updateToasts(assign(options, { id }))
 }
