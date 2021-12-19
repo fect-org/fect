@@ -1,4 +1,4 @@
-import Toast from '../toast'
+import Toast from '../toast-item'
 import { mount } from '@vue/test-utils'
 import type { NormalTypes } from '../../utils'
 

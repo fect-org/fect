@@ -57,7 +57,7 @@ describe('Snippet', () => {
       copy: 'default'
     })
     await el.trigger('click')
-    expect(document.querySelector('.fect-toast__area')).toBeTruthy()
+    expect(document.querySelector('.fect-ui--toast')).toBeTruthy()
     expect(wrapper.html()).toMatchSnapshot()
     wrapper.unmount()
   })
