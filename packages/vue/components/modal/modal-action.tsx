@@ -11,7 +11,7 @@ const ModalAction = defineComponent({
       e.stopPropagation()
       e.preventDefault()
       const { selfVisible, setSelfVisible, setAction } = context!
-      setSelfVisible(!selfVisible)
+      setSelfVisible(!selfVisible.value)
       setAction(action)
     }
 

@@ -9,9 +9,9 @@ const isFunc = (val: any) => typeof val === 'function'
 
 let instance: ComponentInstance
 
-const Modal = (otpions: StaticModalOptions) => {
+const Modal = (options: StaticModalOptions) => {
   if (!isBrowser()) return
-  const staticOptions = omit(assign({}, Modal.defaultOptions, otpions), 'close', 'confirm', 'content')
+  const staticOptions = omit(assign({}, Modal.defaultOptions, options), 'close', 'confirm', 'content')
 
   if (!instance) {
     ;({ instance } = createPortal({
@@ -24,15 +24,15 @@ const Modal = (otpions: StaticModalOptions) => {
 
         const confirmHandler = () => {
           setVisible(false)
-          if (otpions.confirm) {
-            isFunc(otpions.confirm) && otpions.confirm()
+          if (options.confirm) {
+            isFunc(options.confirm) && options.confirm()
           }
         }
 
         const cancelHandler = () => {
           setVisible(false)
-          if (otpions.close) {
-            isFunc(otpions.close) && otpions.close()
+          if (options.close) {
+            isFunc(options.close) && options.close()
           }
         }
 
@@ -45,7 +45,7 @@ const Modal = (otpions: StaticModalOptions) => {
     }))
   }
   instance.setModalProps(staticOptions)
-  instance.setContent(otpions.content)
+  instance.setContent(options.content)
   instance.setVisible(true)
 }
 
