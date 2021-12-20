@@ -23,7 +23,7 @@ If you don't know Git,basic operation of Git,you can refer to [GitHub's help doc
 At any time, you think it's ok, you can start the following steps to submit your amazing works:
 
 1. Run `yarn lint` check the code style.
-2. Run `yarn test:unit` to update & run your testcase.
+2. Run `yarn test` to update & run your testcase.
 3. Run `git commit -m '{YOUR_MESSAGE}'` to commit changes. Commit info should be formatted by the [rules](https://github.com/conventional-changelog/commitlint/blob/master/%40commitlint/config-conventional/README.md).
 4. Push code to your own repo and [create PullRequest](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) at GitHub.
 
@@ -40,7 +40,7 @@ At any time, you think it's ok, you can start the following steps to submit your
 
 1. This repository is using jest as unit test, So you don't need to introduce extra unit test lib.
 2. If you are creating a new component,and complete it,the testcase is required.
-3. If you only modify components,please note update **test snapshot**: `yarn test:unit -u`.
+3. If you only modify components,please note update **test snapshot**: `yarn test -u`.
 4. Please check coverage locally before submit.
 
 ### Q & A

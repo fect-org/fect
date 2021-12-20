@@ -52,6 +52,8 @@ createApp(App).use(FectUI).mount('#app')
 
 - [中文文档](https://vue.miaya.art/)
 
+- [canary document](https://vue-rc.miaya.art/en-us)
+
 <br />
 
 ### Development
@@ -61,6 +63,14 @@ createApp(App).use(FectUI).mount('#app')
 - [Contributing-ZH Guide](https://github.com/fect-org/fect/blob/master/.github/CONTRIBUTING.zh-CN.md)
 
 <br/>
+
+### Acknowledgements
+
+Thanks to [JetBrains](https://www.jetbrains.com/) for allocating free open-source licences for IDEs such as WebStorm.
+
+<p align="right">
+<img width="250px" height="250px" src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_square.png" alt="JetBrains Black Box Logo logo.">
+</p>
 
 ### LICENSE
 

@@ -24,7 +24,7 @@
 在任何您认为合适的时间，您都可以按照以下步骤提交您优秀的作品:
 
 1. 运行 `yarn lint` 检查代码风格。
-2. 运行 `yarn test:unit` 更新并运行您的测试用例。
+2. 运行 `yarn test` 更新并运行您的测试用例。
 3. 运行 `git commit -m '{YOUR_MESSAGE}'` 提交您的更改。 提交信息的格式应该符合[规范](https://github.com/conventional-changelog/commitlint/blob/master/%40commitlint/config-conventional/README.md).
 4. Push 代码到您的仓库并且 在 GitHub 上[创建一个 PullRequest](https://help.github.com/zh/github/collaborating-with-issues-and-pull-requests/about-pull-requests) 。
 
@@ -41,7 +41,7 @@
 
 1. 本仓库使用 jest 进行单元测试，所以您不需要额外引入其他的单元测试库。
 2. 如果您创建并完成了一个组件，那么测试用例是必不可少的。
-3. 如果您只是修改了组件，请注意更新 **测试快照**: `yarn test:unit -u`.
+3. 如果您只是修改了组件，请注意更新 **测试快照**: `yarn test -u`.
 4. 提交前请在本地检查测试的覆盖率。
 
 ### Q & A
