@@ -5,13 +5,7 @@ module.exports = {
     node: true
   },
   root: true,
-  extends: [
-    'plugin:@typescript-eslint/recommended',
-    'plugin:vue/vue3-recommended',
-    'prettier',
-    'prettier/vue',
-    'kagura'
-  ],
+  extends: ['plugin:@typescript-eslint/recommended', 'plugin:vue/vue3-recommended', 'prettier', 'kagura'],
   parserOptions: {
     parser: '@typescript-eslint/parser',
     ecmaVersion: 2019,
@@ -37,7 +31,8 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-extra-semi': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-    // 'no-non-null-assertion': true,
-    'no-mixed-operators': 0
+    'no-non-null-assertion': true,
+    'no-mixed-operators': 0,
+    'comma-dangle': ['error', 'never']
   }
 }
