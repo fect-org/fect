@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'ex-breadcrumbs-size',
+  name: 'ExBreadcrumbsSize',
   setup() {
     return {
       sizes: ['mini', 'small', 'medium', 'large']

@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ex-code-default'
+  name: 'ExCodeDefault'
 }
 </script>

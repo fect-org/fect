@@ -14,7 +14,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-drawer-default',
+  name: 'ExDrawerDefault',
   setup() {
     const show = ref(false)
     return { show }

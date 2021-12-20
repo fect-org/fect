@@ -12,7 +12,7 @@
 import { ref, getCurrentInstance } from 'vue'
 
 export default {
-  name: 'ex-modal-default',
+  name: 'ExModalDefault',
 
   setup() {
     const show = ref(false)

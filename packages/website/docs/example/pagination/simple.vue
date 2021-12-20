@@ -7,7 +7,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-pagination-simple',
+  name: 'ExPaginationSimple',
   setup() {
     const initialPage = ref(1)
     return { initialPage }

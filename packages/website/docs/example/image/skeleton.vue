@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'ex-image-skeleton',
+  name: 'ExImageSkeleton',
   setup() {
     const img = 'https://avatars.githubusercontent.com/u/52351095?v=4'
     return { img }

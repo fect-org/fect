@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'ex-snippet-type',
+  name: 'ExSnippetType',
   setup() {
     return {
       types: ['default', 'success', 'warning', 'error']

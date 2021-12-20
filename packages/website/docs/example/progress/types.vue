@@ -13,7 +13,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-progress-types',
+  name: 'ExProgressTypes',
   setup() {
     const val = ref(10)
 

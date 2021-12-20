@@ -61,7 +61,7 @@ export default defineComponent({
     // ${setRequired.value ? 'is-required' : ''}
     return () => (
       <div class={`fect-form-item ${setClass.value}`} ref={formItemRef}>
-        <label class={`fect-form-item__label `} for={setLabelFor.value} style={setLabelStyle.value}>
+        <label class={'fect-form-item__label '} for={setLabelFor.value} style={setLabelStyle.value}>
           {props.label}
         </label>
         <div class="fect-form-item__content">

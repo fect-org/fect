@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ex-capacity-color'
+  name: 'ExCapacityColor'
 }
 </script>

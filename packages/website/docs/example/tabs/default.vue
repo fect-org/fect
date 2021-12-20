@@ -10,7 +10,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-tabs-default',
+  name: 'ExTabsDefault',
   setup() {
     const active = ref(0)
     return {

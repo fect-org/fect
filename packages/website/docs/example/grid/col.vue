@@ -9,7 +9,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-grid-col',
+  name: 'ExGridCol',
   setup() {
     const fakeData = ref([
       { name: 'XeryYue', age: 18 },

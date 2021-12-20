@@ -6,7 +6,7 @@
     </fe-badgeAnchor>
     <fe-spacer inline x="1.1" />
     <fe-badgeAnchor>
-      <fe-avatar :src="img" size="medium" isSquare />
+      <fe-avatar :src="img" size="medium" is-square />
       <fe-badge type="success" dot></fe-badge>
     </fe-badgeAnchor>
     <fe-spacer inline x="1.1" />
@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: 'ex-badge-anchor',
+  name: 'ExBadgeAnchor',
   setup() {
     const img = 'https://avatars.githubusercontent.com/u/52351095?v=4'
     return {

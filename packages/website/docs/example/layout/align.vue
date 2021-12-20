@@ -51,7 +51,7 @@
 
 <script>
 export default {
-  name: 'ex-layout-align',
+  name: 'ExLayoutAlign',
   setup() {
     const rightGap = (val) => {
       return { padding: `${val}pt` }

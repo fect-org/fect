@@ -7,7 +7,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-pagination-size',
+  name: 'ExPaginationSize',
   setup() {
     const initialPage = ref(1)
     const sizes = ref(['mini', 'small', 'medium', 'large'])

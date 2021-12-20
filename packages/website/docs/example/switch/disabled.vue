@@ -7,7 +7,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-switch-disabled',
+  name: 'ExSwitchDisabled',
   setup() {
     const checked = ref(true)
     return {

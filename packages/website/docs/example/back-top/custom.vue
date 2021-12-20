@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fe-back-top :bottom="100" visibilityHeight="100">
+    <fe-back-top :bottom="100" visibility-height="100">
       <div class="fect-back-top-custom">UP</div>
     </fe-back-top>
     Scroll down to see the bottom-right button.
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'ex-back-top-custom'
+  name: 'ExBackTopCustom'
 }
 </script>
 

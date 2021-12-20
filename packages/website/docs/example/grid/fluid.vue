@@ -35,7 +35,7 @@
 
 <script>
 export default {
-  name: 'ex-grid-fluid'
+  name: 'ExGridFluid'
 }
 </script>
 

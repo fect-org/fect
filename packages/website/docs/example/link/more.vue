@@ -16,6 +16,6 @@
 
 <script>
 export default {
-  name: 'ex-link-more'
+  name: 'ExLinkMore'
 }
 </script>

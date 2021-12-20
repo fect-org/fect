@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: 'ex-grid-responsive'
+  name: 'ExGridResponsive'
 }
 </script>
 

@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ex-radio-default'
+  name: 'ExRadioDefault'
 }
 </script>

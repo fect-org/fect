@@ -116,11 +116,13 @@ export const compile = async () => {
   const { lib: libOption, path: confPath } = await resolveCompileConf()
 
   if (confPath === NON_DEFAULT_PATH) return
-  if (!libOption)
+  if (!libOption) {
     return logErr(`[Non Error!] you can not use it when your set library as false in your config at ${confPath}`)
+  }
   const { format, name, input } = libOption as Lib
-  if (['default', 'umd'].includes(format) && !name)
-    return logErr(`[Non Error!] "lib.name" is required when format include "umd" or "default"`)
+  if (['default', 'umd'].includes(format) && !name) {
+    return logErr('[Non Error!] "lib.name" is required when format include "umd" or "default"')
+  }
   setNodeENV('production')
   await fs.copy(input, TMP_PATH)
   await compileDir(TMP_PATH, removeCodeStyle)

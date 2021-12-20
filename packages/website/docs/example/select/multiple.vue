@@ -11,7 +11,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-select-multiple',
+  name: 'ExSelectMultiple',
   setup() {
     const val = ref([])
     return { val }

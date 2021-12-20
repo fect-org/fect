@@ -8,6 +8,6 @@
 
 <script>
 export default {
-  name: 'ex-link-color'
+  name: 'ExLinkColor'
 }
 </script>

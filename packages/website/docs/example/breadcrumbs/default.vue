@@ -10,6 +10,6 @@
 
 <script>
 export default {
-  name: 'ex-breadcrumbs-default'
+  name: 'ExBreadcrumbsDefault'
 }
 </script>

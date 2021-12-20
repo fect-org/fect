@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'ex-avatar-text',
+  name: 'ExAvatarText',
   setup() {}
 }
 </script>

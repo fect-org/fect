@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'ex-checkbox-size',
+  name: 'ExCheckboxSize',
   setup() {
     return { sizes: ['mini', 'small', 'medium', 'large'] }
   }

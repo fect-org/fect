@@ -33,7 +33,7 @@
 <script>
 import { ref, watch } from 'vue'
 export default {
-  name: 'ex-default-form',
+  name: 'ExDefaultForm',
   setup() {
     const formRef = ref(null)
     const formValue = ref({

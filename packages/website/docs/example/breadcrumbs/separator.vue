@@ -10,6 +10,6 @@
 
 <script>
 export default {
-  name: 'ex-breadcrumbs-separator'
+  name: 'ExBreadcrumbsSeparator'
 }
 </script>

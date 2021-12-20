@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  name: 'ex-grid-auto'
+  name: 'ExGridAuto'
 }
 </script>
 

@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'ex-image-invert',
+  name: 'ExImageInvert',
   setup() {
     const img = 'https://user-images.githubusercontent.com/52351095/118687359-7e809480-b837-11eb-8083-b0504ec79652.png'
     return { img }

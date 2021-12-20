@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ex-skeleton-default'
+  name: 'ExSkeletonDefault'
 }
 </script>

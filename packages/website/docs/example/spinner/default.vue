@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ex-spinner-default'
+  name: 'ExSpinnerDefault'
 }
 </script>

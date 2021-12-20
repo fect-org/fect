@@ -5,6 +5,6 @@
 </template>
 <script>
 export default {
-  name: 'ex-snippet-default'
+  name: 'ExSnippetDefault'
 }
 </script>

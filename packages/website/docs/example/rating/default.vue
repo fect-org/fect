@@ -7,7 +7,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-rating-default',
+  name: 'ExRatingDefault',
   setup() {
     const val = ref(0)
 

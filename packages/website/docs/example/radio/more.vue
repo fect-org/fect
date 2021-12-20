@@ -2,11 +2,11 @@
   <div>
     <fe-radio value="1" disabled size="mini">Radio</fe-radio>
     <fe-radio value="2">Radio2</fe-radio>
-    <fe-radioGroup useRow size="small">
+    <fe-radioGroup use-row size="small">
       <fe-radio value="1">Radio</fe-radio>
       <fe-radio value="2">Radio2</fe-radio>
     </fe-radioGroup>
-    <fe-radioGroup useRow disabled>
+    <fe-radioGroup use-row disabled>
       <fe-radio value="1">Radio</fe-radio>
       <fe-radio value="2" checked>Radio2</fe-radio>
     </fe-radioGroup>
@@ -15,6 +15,6 @@
 
 <script>
 export default {
-  name: 'ex-radio-more'
+  name: 'ExRadioMore'
 }
 </script>

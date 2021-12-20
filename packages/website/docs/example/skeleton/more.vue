@@ -22,7 +22,7 @@
 import { ref } from 'vue'
 import User from './user.vue'
 export default {
-  name: 'ex-skeleton-more',
+  name: 'ExSkeletonMore',
   components: {
     [User.name]: User
   },

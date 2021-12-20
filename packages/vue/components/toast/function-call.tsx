@@ -34,7 +34,7 @@ const Toast = (options: ToastOptions) => {
             setToasts(prevToasts)
           }
 
-          let maxDestroyTime: number = 0
+          let maxDestroyTime = 0
           let destroyTimer: number | undefined
 
           const destroyAllToast = (delay: number, time: number) => {

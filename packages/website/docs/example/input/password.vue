@@ -7,7 +7,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-input-password',
+  name: 'ExInputPassword',
   setup() {
     const value = ref(123456789)
 

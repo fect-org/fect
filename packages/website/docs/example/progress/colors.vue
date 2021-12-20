@@ -11,7 +11,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-progress-colors',
+  name: 'ExProgressColors',
   setup() {
     const colors = {
       20: 'red',

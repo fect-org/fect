@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'ex-snippet-copy',
+  name: 'ExSnippetCopy',
   setup() {
     return {
       types: ['default', 'silent', 'prevent']

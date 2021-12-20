@@ -13,7 +13,7 @@ import { reactive, getCurrentInstance } from 'vue'
 import { getCssValue } from './colors'
 import { useClipboard } from '@fect-ui/vue-hooks'
 export default {
-  name: 'ex-colors-default',
+  name: 'ExColorsDefault',
   setup() {
     const colors = reactive([
       { name: 'Background', value: 'var(--primary-background)' },

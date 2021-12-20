@@ -17,7 +17,7 @@
 <script>
 import { getCurrentInstance } from 'vue'
 export default {
-  name: 'ex-toast-status',
+  name: 'ExToastStatus',
   setup() {
     const { proxy } = getCurrentInstance()
     const handlerClick = (type) => {

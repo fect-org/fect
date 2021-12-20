@@ -5,6 +5,6 @@
 </template>
 <script>
 export default {
-  name: 'ex-button-disabled'
+  name: 'ExButtonDisabled'
 }
 </script>

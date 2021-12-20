@@ -9,6 +9,6 @@
 
 <script>
 export default {
-  name: 'ex-loading-size'
+  name: 'ExLoadingSize'
 }
 </script>

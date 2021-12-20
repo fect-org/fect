@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: 'ex-swipe-default'
+  name: 'ExSwipeDefault'
 }
 </script>
 

@@ -7,7 +7,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-input-clearable',
+  name: 'ExInputClearable',
   setup() {
     const value = ref('示例文字')
 

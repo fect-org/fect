@@ -11,7 +11,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-select-default',
+  name: 'ExSelectDefault',
   setup() {
     const val = ref(0)
     const changeHandler = (e) => (val.value = e)

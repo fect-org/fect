@@ -7,7 +7,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-checkbox-default',
+  name: 'ExCheckboxDefault',
   setup() {
     const checked = ref(true)
     return { checked }

@@ -1,5 +1,5 @@
 <template>
-  <fe-checkboxGroup v-model="group" useRow>
+  <fe-checkboxGroup v-model="group" use-row>
     <fe-checkbox :label="city">{{ city }}</fe-checkbox>
     <fe-checkbox label="beijing">beijing</fe-checkbox>
   </fe-checkboxGroup>
@@ -8,7 +8,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-checkbox-group',
+  name: 'ExCheckboxGroup',
   setup() {
     const city = ref('xiamen')
     const group = ref(['xiamen'])

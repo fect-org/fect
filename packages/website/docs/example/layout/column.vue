@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'ex-layout-column',
+  name: 'ExLayoutColumn',
   setup() {
     const rightColor = (idx) => {
       return { backgroundColor: idx ? '#666' : 'var(--accents-2)' }

@@ -8,7 +8,7 @@
 import { getCurrentInstance } from 'vue'
 
 export default {
-  name: 'ex-modal-function',
+  name: 'ExModalFunction',
 
   setup() {
     const { proxy } = getCurrentInstance()

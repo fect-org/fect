@@ -9,6 +9,6 @@
 
 <script>
 export default {
-  name: 'ex-dot-base'
+  name: 'ExDotBase'
 }
 </script>

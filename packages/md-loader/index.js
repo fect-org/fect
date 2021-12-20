@@ -94,7 +94,7 @@ class PluginParser {
     }
 
     raw = parserPlayground(raw)
-    let template = parseTable(createMarkdown.render(raw))
+    const template = parseTable(createMarkdown.render(raw))
     return {
       templateStr: template.replace(/<h3/g, '<attributes-title').replace(/<\/h3/g, '</attributes-title')
     }

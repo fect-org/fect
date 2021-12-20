@@ -6,7 +6,7 @@
         <active-cate
           @click="sideBarClickHandler(_.route)"
           :to="to(_.route)"
-          :routeName="_.title"
+          :route-name="_.title"
           :color="setActive(_.route)"
         />
       </div>
@@ -23,8 +23,8 @@ import ActiveCate from './active-cate.vue'
 import { useWebsiteContext } from '../../website-context'
 
 export default defineComponent({
-  components: { ActiveCate },
   name: 'SideBar',
+  components: { ActiveCate },
   setup() {
     const { context } = useWebsiteContext()
 

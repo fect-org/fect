@@ -9,7 +9,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-pagination-limit',
+  name: 'ExPaginationLimit',
   setup() {
     const initialPage = ref(1)
     return { initialPage }

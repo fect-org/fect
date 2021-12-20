@@ -7,7 +7,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-switch-default',
+  name: 'ExSwitchDefault',
   setup() {
     const checked = ref(true)
     const changeHandler = (e) => {

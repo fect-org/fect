@@ -8,6 +8,6 @@
 
 <script>
 export default {
-  name: 'ex-input-unwriteable'
+  name: 'ExInputUnwriteable'
 }
 </script>

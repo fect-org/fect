@@ -12,6 +12,6 @@
 
 <script>
 export default {
-  name: 'ex-input-size'
+  name: 'ExInputSize'
 }
 </script>

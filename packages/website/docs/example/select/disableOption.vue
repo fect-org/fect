@@ -10,7 +10,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-select-disableOption',
+  name: 'ExSelectDisableOption',
   setup() {
     const val = ref(null)
     return { val }

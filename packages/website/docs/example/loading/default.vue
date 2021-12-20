@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ex-loading-default'
+  name: 'ExLoadingDefault'
 }
 </script>

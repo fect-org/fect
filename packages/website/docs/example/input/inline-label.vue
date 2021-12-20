@@ -10,6 +10,6 @@
 
 <script>
 export default {
-  name: 'ex-input-inline-label'
+  name: 'ExInputInlineLabel'
 }
 </script>

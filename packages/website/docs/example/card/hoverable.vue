@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ex-card-hoverable'
+  name: 'ExCardHoverable'
 }
 </script>

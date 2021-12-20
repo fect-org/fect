@@ -7,7 +7,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-input-default',
+  name: 'ExInputDefault',
   setup() {
     const value = ref('')
 

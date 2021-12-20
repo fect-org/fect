@@ -6,13 +6,13 @@ import './index.less'
 const name = createName('Teleport')
 
 export default defineComponent({
+  name,
   /**
    * docs see : https://v3.vuejs.org/api/options-misc.html#inheritattrs
    * We should set inheritAttrs be fasle , Because Teleport is a basic Component .
    *
    */
   inheritAttrs: false,
-  name,
   props,
   emits: ['popupClick'],
   setup(props, { emit, slots, attrs }) {

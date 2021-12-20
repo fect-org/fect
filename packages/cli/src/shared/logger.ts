@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-const log = console.log
+const { log } = console
 
 export const logErr = (str: string) => log(chalk.hex('#ff1a1a')(str))
 

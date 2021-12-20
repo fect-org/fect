@@ -13,7 +13,7 @@
 <script>
 import { Search, Github } from '@fect-ui/vue-icons'
 export default {
-  name: 'ex-input-icon',
+  name: 'ExInputIcon',
   components: { Search, Github }
 }
 </script>

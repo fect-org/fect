@@ -13,7 +13,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-switch-size',
+  name: 'ExSwitchSize',
   setup() {
     const value1 = ref(1)
     const value2 = ref(1)

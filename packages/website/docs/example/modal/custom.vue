@@ -14,7 +14,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-modal-custom',
+  name: 'ExModalCustom',
   setup() {
     const show = ref(false)
     const handlerClick = () => (show.value = true)

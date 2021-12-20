@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ex-slider-default'
+  name: 'ExSliderDefault'
 }
 </script>

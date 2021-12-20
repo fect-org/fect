@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: 'ex-grid-hidden'
+  name: 'ExGridHidden'
 }
 </script>
 

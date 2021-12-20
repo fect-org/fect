@@ -13,7 +13,7 @@ import { reactive, getCurrentInstance } from 'vue'
 import { getCssValue } from './colors'
 import { useClipboard } from '@fect-ui/vue-hooks'
 export default {
-  name: 'ex-colors-warning',
+  name: 'ExColorsWarning',
   setup() {
     const colors = reactive([
       { name: 'Light', value: 'var(--warning-light)' },

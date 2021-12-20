@@ -12,6 +12,6 @@
 
 <script>
 export default {
-  name: 'ex-badge-size'
+  name: 'ExBadgeSize'
 }
 </script>

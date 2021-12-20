@@ -8,7 +8,7 @@ export const replaceAll = (target: string, find: string, replace: string) => tar
 export const replaceStyle = (val = '') => {
   return val.replace(
     /<svg([^>]+)>/,
-    `<svg$1 height={setSize.value} width={setSize.value} style={{color:setColor.value}}>`
+    '<svg$1 height={setSize.value} width={setSize.value} style={{color:setColor.value}}>'
   )
 }
 

@@ -10,7 +10,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-tabs-disabled',
+  name: 'ExTabsDisabled',
   setup() {
     const active = ref(0)
 

@@ -2,7 +2,7 @@
   <div>
     <fe-button type="success" ghost>Button</fe-button>
     <fe-spacer :y="0.5" />
-    <fe-button type="warning" loading loadType="wave" ghost>Button</fe-button>
+    <fe-button type="warning" loading load-type="wave" ghost>Button</fe-button>
     <fe-spacer :y="0.5" />
     <fe-button type="error" ghost>Button</fe-button>
   </div>
@@ -10,6 +10,6 @@
 
 <script>
 export default {
-  name: 'ex-button-ghost'
+  name: 'ExButtonGhost'
 }
 </script>

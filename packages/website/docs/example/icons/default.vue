@@ -9,7 +9,7 @@
 <script>
 import { Github, Gitlab } from '@fect-ui/vue-icons'
 export default {
-  name: 'ex-icons-default',
+  name: 'ExIconsDefault',
   components: {
     Github,
     Gitlab

@@ -20,7 +20,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-drawer-placement',
+  name: 'ExDrawerPlacement',
   setup() {
     const show = ref(false)
     const placement = ref('')

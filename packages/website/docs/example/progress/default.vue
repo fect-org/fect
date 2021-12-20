@@ -7,7 +7,7 @@
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ex-progress-default',
+  name: 'ExProgressDefault',
   setup() {
     const val = ref(10)
 

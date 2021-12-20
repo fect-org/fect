@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ex-tooltip-default'
+  name: 'ExTooltipDefault'
 }
 </script>
