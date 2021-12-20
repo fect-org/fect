@@ -21,7 +21,7 @@ describe('Toast', () => {
     Toast({
       text: 'test'
     })
-    await later(5000)
+    await later(10000)
     expect(document.querySelector('.fect-toast')).toBeFalsy()
   })
 

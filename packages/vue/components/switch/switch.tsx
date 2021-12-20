@@ -1,5 +1,5 @@
 import { computed, PropType, defineComponent, watchEffect } from 'vue'
-import { createName, UnknowProp, hasEmptry } from '../utils'
+import { createName, UnknowProp, hasEmpty } from '../utils'
 import { useState } from '@fect-ui/vue-hooks'
 import type { NormalSizes } from '../utils'
 import './index.less'
@@ -56,7 +56,7 @@ export default defineComponent({
         nativeEvent: e
       }
       emit('change', selfEvent)
-      if (hasEmptry(props.value)) setValue(reverse)
+      if (hasEmpty(props.value)) setValue(reverse)
     }
 
     const switchHandler = (e: Event) => {

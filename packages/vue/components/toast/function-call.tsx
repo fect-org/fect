@@ -37,17 +37,6 @@ const Toast = (options: ToastOptions) => {
           let maxDestroyTime: number = 0
           let destroyTimer: number | undefined
 
-          const cancel = (id: string, delay: number) => {
-            const prevToasts = toasts.value.slice()
-            const nextToasts = prevToasts.map((item) => {
-              if (item.id !== id) return item
-              return { ...item, willBeDestroy: true }
-            })
-            destroyStack.push(id)
-            setToasts(nextToasts)
-            destroyAllToast(delay, performance.now())
-          }
-
           const destroyAllToast = (delay: number, time: number) => {
             if (time <= maxDestroyTime) return
             clearTimeout(destroyTimer)
@@ -61,6 +50,17 @@ const Toast = (options: ToastOptions) => {
               }
               clearTimeout(destroyTimer)
             }, delay + 350)
+          }
+
+          const cancel = (id: string, delay: number) => {
+            const prevToasts = toasts.value.slice()
+            const nextToasts = prevToasts.map((item) => {
+              if (item.id !== id) return item
+              return { ...item, willBeDestroy: true }
+            })
+            destroyStack.push(id)
+            setToasts(nextToasts)
+            destroyAllToast(delay, performance.now())
           }
 
           const hideToast = (id: string, delay: number) => {
@@ -97,7 +97,7 @@ const Toast = (options: ToastOptions) => {
 }
 
 Toast.defaultOptions = {
-  duration: 2000,
+  duration: 4500,
   text: '',
   type: 'default',
   once: false
