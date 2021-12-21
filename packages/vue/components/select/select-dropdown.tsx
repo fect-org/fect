@@ -1,5 +1,5 @@
 import { defineComponent, ref, Teleport, watch, Ref, PropType } from 'vue'
-import { getDomRect, useResize } from '../utils'
+import { getDomRect, useResize, assign } from '../utils'
 
 type ElementRef = Element | Ref<Element | undefined>
 
@@ -42,9 +42,7 @@ const SelectDropDown = defineComponent({
           top: `${top + 2}px`,
           left: `${left}px`
         }
-        dropdownRef.value.style.width = style.width
-        dropdownRef.value.style.top = style.top
-        dropdownRef.value.style.left = style.left
+        assign(dropdownRef.value.style, style)
       }
     }
 
