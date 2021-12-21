@@ -59,7 +59,7 @@ export default defineComponent({
         return target[offset]
       }
       target = target as HTMLElement
-      if (position == 'vertical') return target.scrollTop
+      if (position === 'vertical') return target.scrollTop
       return target.scrollLeft
     }
 
