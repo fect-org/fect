@@ -1,8 +1,11 @@
-import { computed, watchEffect, PropType, watch, defineComponent } from 'vue'
-import { useProvider, useState } from '@fect-ui/vue-hooks'
-import { createName, CustomCSSProperties, NormalSizes } from '../utils'
-import { READONLY_CHECKBOX_KEY, CheckboxGroupProvide, CheckboxEvent } from '../checkbox-group/type'
+import { computed, watch, defineComponent, watchEffect } from 'vue'
+import { useState } from '@fect-ui/vue-hooks'
 import CheckIcon from './checkbox-icon'
+import { createName, CustomCSSProperties, NormalSizes } from '../utils'
+import { useCheckboxContext } from '../checkbox-group/checkbox-context'
+import { checkboxProps } from '../checkbox-group/props'
+import type { CheckboxEvent } from '../checkbox-group/interface'
+
 import './index.less'
 
 const name = createName('Checkbox')
@@ -19,22 +22,11 @@ const queryCheckboxSize = (size: NormalSizes) => {
 
 export default defineComponent({
   name,
-  props: {
-    disabled: Boolean,
-    modelValue: Boolean,
-    size: {
-      type: String as PropType<NormalSizes>,
-      default: 'medium'
-    },
-    label: {
-      type: String,
-      default: ''
-    }
-  },
+  props: checkboxProps,
   emits: ['change', 'update:modelValue'],
   setup(props, { slots, emit }) {
     const [selfChecked, setSelfChecked] = useState<boolean>(props.modelValue)
-    const { context } = useProvider<CheckboxGroupProvide>(READONLY_CHECKBOX_KEY)
+    const { context } = useCheckboxContext()
 
     const selfSize = computed(() => {
       if (context) return context.props.size
@@ -47,14 +39,13 @@ export default defineComponent({
     })
 
     const setCurrentState = () => {
-      const parent = context!.parentValue.value
+      if (!context) return
+      const parent = context.parentValue.value
       const checked = parent.some((v) => v === props.label)
       setSelfChecked(checked)
     }
 
-    if (context) {
-      watchEffect(setCurrentState)
-    }
+    watchEffect(setCurrentState)
 
     const handleChange = (e: Event) => {
       if (selfDisabled.value) return
@@ -67,8 +58,8 @@ export default defineComponent({
       }
 
       if (context) {
-        context.updateParentValue(props.label, selfChecked.value)
-        context.parentChangeHandler(checkboxEvent)
+        context.updateCheckboxGroupValue(props.label, selfChecked.value)
+        context.updateCheckboxGroupEvent(checkboxEvent)
         return
       }
 
@@ -82,8 +73,9 @@ export default defineComponent({
 
     const setCheckBoxBaseSize = computed(() => {
       const size = queryCheckboxSize(selfSize.value)
-      const style: CustomCSSProperties = {}
-      style['--checkboxSize'] = size
+      const style: CustomCSSProperties = {
+        '--checkboxSize': size
+      }
       return style
     })
 

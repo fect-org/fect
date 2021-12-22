@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName } from '../utils'
+import { createName, assign } from '../utils'
 import { radioGroupProps } from './props'
 import { createRadioContext } from './radio-context'
 import type { RadioEvent, Parent } from './interface'
@@ -22,7 +22,14 @@ export default defineComponent({
       emit('update:modelValue', parentValue)
     }
 
-    const updateRadioGroupChangeEvent = (nextEvt: RadioEvent) => emit('change', nextEvt)
+    const updateRadioGroupChangeEvent = (nextEvt: RadioEvent) => {
+      nextEvt = assign(nextEvt, {
+        target: {
+          checkedVal: parentValue.value
+        }
+      })
+      emit('change', nextEvt)
+    }
 
     provider({ props, parentValue, updateRadioGroupValue, updateRadioGroupChangeEvent })
 

@@ -1,4 +1,4 @@
-import { defineComponent, computed, watch } from 'vue'
+import { defineComponent, computed, watch, watchEffect } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import { createName, NormalSizes, hasEmpty } from '../utils'
 import { radioProps } from '../radio-group/props'
@@ -48,11 +48,7 @@ export default defineComponent({
       return props.disabled
     })
 
-    watch(
-      () => context?.parentValue.value,
-      () => context && setSelfChecked(context.parentValue.value === props.value),
-      { immediate: true }
-    )
+    watchEffect(() => context && setSelfChecked(context.parentValue.value === props.value))
 
     /**
      * Extract logic and put it into the group for processing
@@ -67,10 +63,7 @@ export default defineComponent({
         nativeEvent: e
       }
       if (context) {
-        context.updateRadioGroupChangeEvent({
-          ...radioEvent,
-          target: { checkedVal: props.value, checked: !selfChecked.value }
-        })
+        context.updateRadioGroupChangeEvent(radioEvent)
         context.updateRadioGroupValue(props.value!)
         return
       }

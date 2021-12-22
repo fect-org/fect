@@ -1,9 +1,9 @@
-import { PropType, watch, defineComponent } from 'vue'
-import { createProvider, useState } from '@fect-ui/vue-hooks'
+import { watch, defineComponent } from 'vue'
+import { useState } from '@fect-ui/vue-hooks'
 import { createName } from '../utils'
-import type { NormalSizes } from '../utils'
-import { READONLY_CHECKBOX_KEY } from './type'
-import type { CheckboxEvent } from './type'
+import { createCheckboxContext } from './checkbox-context'
+import { checkboxGroupProps } from './props'
+import type { CheckboxEvent } from './interface'
 
 import './index.less'
 
@@ -11,25 +11,14 @@ const name = createName('CheckboxGroup')
 
 export default defineComponent({
   name,
-  props: {
-    disabled: Boolean,
-    modelValue: {
-      type: Array as PropType<string[]>,
-      default: () => []
-    },
-    size: {
-      type: String as PropType<NormalSizes>,
-      default: 'medium'
-    },
-    useRow: Boolean
-  },
+  props: checkboxGroupProps,
   emits: ['change', 'update:modelValue'],
   setup(props, { slots, emit }) {
     const [parentValue, setParentValue] = useState<string[]>(props.modelValue)
 
-    const { provider } = createProvider(READONLY_CHECKBOX_KEY)
+    const { provider } = createCheckboxContext()
 
-    const updateParentValue = (val: string, checked: boolean) => {
+    const updateCheckboxGroupValue = (val: string, checked: boolean) => {
       const value = parentValue.value.slice()
       const index = value.indexOf(val)
       const exist = index !== -1
@@ -41,7 +30,7 @@ export default defineComponent({
       }
       setParentValue(value)
     }
-    const parentChangeHandler = (e: CheckboxEvent) => {
+    const updateCheckboxGroupEvent = (e: CheckboxEvent) => {
       const event = {
         ...e,
         target: { value: parentValue }
@@ -49,7 +38,7 @@ export default defineComponent({
       emit('change', event)
     }
 
-    provider({ props, updateParentValue, parentValue, parentChangeHandler })
+    provider({ props, updateCheckboxGroupValue, parentValue, updateCheckboxGroupEvent })
 
     watch(parentValue, (cur) => emit('update:modelValue', cur))
 

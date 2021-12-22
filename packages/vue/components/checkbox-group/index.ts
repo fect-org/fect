@@ -5,4 +5,4 @@ export const CheckboxGroup = withInstall(_CheckboxGroup)
 
 export default CheckboxGroup
 
-export type { CheckboxEvent } from './type'
+export type { CheckboxEvent } from './interface'
