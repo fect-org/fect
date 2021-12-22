@@ -1,35 +1,30 @@
-import { PropType, defineComponent } from 'vue'
-import { createProvider, useState } from '@fect-ui/vue-hooks'
-import { createName, NormalSizes } from '../utils'
-import { READNONLY_RADIO_KEY } from './type'
-import type { RadioEvent, Parent } from './type'
+import { defineComponent } from 'vue'
+import { useState } from '@fect-ui/vue-hooks'
+import { createName } from '../utils'
+import { radioGroupProps } from './props'
+import { createRadioContext } from './radio-context'
+import type { RadioEvent, Parent } from './interface'
+
 import './index.less'
 
 const name = createName('RadioGroup')
 
 export default defineComponent({
   name,
-  props: {
-    modelValue: [String, Number],
-    useRow: Boolean,
-    disabled: Boolean,
-    size: {
-      type: String as PropType<NormalSizes>,
-      default: 'medium'
-    }
-  },
+  props: radioGroupProps,
   emits: ['change', 'update:modelValue'],
   setup(props, { slots, emit }) {
     const [parentValue, setParentValue] = useState<Parent>(props.modelValue)
-    const { provider } = createProvider(READNONLY_RADIO_KEY)
-    const updateState = (nextVal: RadioEvent) => emit('change', nextVal)
+    const { provider } = createRadioContext()
 
-    const setCurrentValue = (val: string | number) => {
+    const updateRadioGroupValue = (val: Parent) => {
       setParentValue(val)
       emit('update:modelValue', parentValue)
     }
 
-    provider({ props, updateState, setCurrentValue, parentValue })
+    const updateRadioGroupChangeEvent = (nextEvt: RadioEvent) => emit('change', nextEvt)
+
+    provider({ props, parentValue, updateRadioGroupValue, updateRadioGroupChangeEvent })
 
     return () => <div class={`fect-radio__group ${props.useRow ? 'useRow' : ''}`}>{slots.default?.()}</div>
   }

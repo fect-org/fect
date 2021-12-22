@@ -1,7 +1,9 @@
-import { computed, watchEffect, PropType, watch, defineComponent } from 'vue'
-import { useProvider, useState } from '@fect-ui/vue-hooks'
-import { createName, NormalSizes } from '../utils'
-import { RadioGroupProvide, READNONLY_RADIO_KEY, RadioEvent } from '../radio-group/type'
+import { defineComponent, computed, watch } from 'vue'
+import { useState } from '@fect-ui/vue-hooks'
+import { createName, NormalSizes, hasEmpty } from '../utils'
+import { radioProps } from '../radio-group/props'
+import { useRadioContext } from '../radio-group/radio-context'
+import type { RadioEvent } from '../radio-group/interface'
 import './index.less'
 import { CustomCSSProperties } from '../utils'
 
@@ -19,20 +21,17 @@ const queryRadioSize = (radioSize: NormalSizes) => {
 
 export default defineComponent({
   name,
-  props: {
-    checked: Boolean,
-    disabled: Boolean,
-    value: { type: [String, Number], required: true },
-    size: {
-      type: String as PropType<NormalSizes>,
-      default: 'medium'
-    }
-  },
+  props: radioProps,
   emits: ['change', 'update:checked'],
   setup(props, { emit, slots }) {
+    if (process.env.NODE_ENV !== 'production' && hasEmpty(props.value)) {
+      console.error('[Fect] value must be set in <Radio>.')
+      return
+    }
+
     const [selfChecked, setSelfChecked] = useState<boolean>(props.checked)
 
-    const { context } = useProvider<RadioGroupProvide>(READNONLY_RADIO_KEY)
+    const { context } = useRadioContext()
 
     const selfSize = computed(() => {
       if (context) return context.props.size
@@ -49,11 +48,11 @@ export default defineComponent({
       return props.disabled
     })
 
-    if (context) {
-      watchEffect(() => {
-        setSelfChecked(context.parentValue.value === props.value)
-      })
-    }
+    watch(
+      () => context?.parentValue.value,
+      () => context && setSelfChecked(context.parentValue.value === props.value),
+      { immediate: true }
+    )
 
     /**
      * Extract logic and put it into the group for processing
@@ -68,11 +67,11 @@ export default defineComponent({
         nativeEvent: e
       }
       if (context) {
-        context.updateState({
+        context.updateRadioGroupChangeEvent({
           ...radioEvent,
           target: { checkedVal: props.value, checked: !selfChecked.value }
         })
-        context.setCurrentValue(props.value)
+        context.updateRadioGroupValue(props.value!)
         return
       }
       setSelfChecked(!selfChecked.value)
@@ -84,8 +83,9 @@ export default defineComponent({
 
     const setRadioSize = computed(() => {
       const size = queryRadioSize(selfSize.value)
-      const style: CustomCSSProperties = {}
-      style['--radioSize'] = size
+      const style: CustomCSSProperties = {
+        '--radioSize': size
+      }
       return style
     })
 
