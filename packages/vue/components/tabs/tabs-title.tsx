@@ -1,27 +1,14 @@
 import { defineComponent, computed } from 'vue'
-
-export type TabTitleEmit = {
-  title: string
-  value: string | number
-  e: MouseEvent
-}
+import { tabsTitleProps } from './props'
 
 const TabsTitle = defineComponent({
-  props: {
-    title: String,
-    value: {
-      type: [String, Number]
-    },
-    active: [String, Number],
-    disabled: Boolean
-  },
+  props: tabsTitleProps,
   emits: ['click'],
   setup(props, { emit }) {
-    const handleClick = (e: MouseEvent) => {
+    const handleClick = (e: Event) => {
       const { title, value } = props
-      // when tab has disabled attrs,event is not allowed
       if (props.disabled) return
-      emit('click', { title, value, e } as TabTitleEmit)
+      emit('click', { title, value, e })
     }
 
     const setTitleStatus = computed(() => {
@@ -33,7 +20,7 @@ const TabsTitle = defineComponent({
     })
 
     return () => (
-      <div role="tab" class={`fect-tabs__title ${setTitleStatus.value}`} onClick={(e) => handleClick(e)}>
+      <div role="button" class={`fect-tabs__title ${setTitleStatus.value}`} onClick={(e) => handleClick(e)}>
         {props.title}
       </div>
     )

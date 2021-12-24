@@ -1,37 +1,25 @@
-import { watch, Ref, defineComponent } from 'vue'
-import { createProvider, useState } from '@fect-ui/vue-hooks'
-import { createName, ComponentInstance } from '../utils'
-import TabsTitle, { TabTitleEmit } from './tabs-title'
+import { watch, defineComponent } from 'vue'
+import { useState } from '@fect-ui/vue-hooks'
+import { createName } from '../utils'
+import { tabsProps } from './props'
+import TabsTitle from './tabs-title'
+import { createTabsContext } from './tabs-context'
+import type { TabTitleEvent } from './interface'
 import './index.less'
+
 const name = createName('Tabs')
-
-export const READONLY_TABS_KEY = 'tabsKey'
-
-export type TabsProvide = {
-  props: {
-    active: string | number
-    hideDivider: boolean
-  }
-  checked: Ref<string | number>
-}
 
 export default defineComponent({
   name,
-  props: {
-    active: {
-      type: [String, Number],
-      default: 0
-    },
-    hideDivider: Boolean
-  },
+  props: tabsProps,
   emits: ['change', 'update:active', 'click'],
   setup(props, { slots, emit }) {
     const [checked, setChecked] = useState<string | number>(props.active)
 
-    const { provider, children } = createProvider<ComponentInstance>(READONLY_TABS_KEY)
+    const { provider, children } = createTabsContext()
     provider({ props, checked })
 
-    const setCurrent = (data: TabTitleEmit) => {
+    const navClickHandler = (data: TabTitleEvent) => {
       const { value, e } = data
       setChecked(value)
       const selfEvent = {
@@ -56,14 +44,14 @@ export default defineComponent({
           key={idx}
           active={checked.value}
           disabled={el.disabled}
-          onClick={setCurrent}
+          onClick={navClickHandler}
         />
       ))
     }
 
     return () => (
       <div class="fect-tabs">
-        <header class={`fect-tabs__header  fect-tabs__header--${props.hideDivider ? 'hide-divider' : ''}`}>
+        <header class={`fect-tabs__header ${props.hideDivider ? 'fect-tabs__header--hide-divider' : ''}`}>
           {renderNav()}
         </header>
         {slots.default?.()}

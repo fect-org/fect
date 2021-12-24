@@ -1,6 +1,6 @@
 import { ComponentPublicInstance, CSSProperties, PropType } from 'vue'
 
-export type ComponentInstance = ComponentPublicInstance<{}, any>
+export type ComponentInstance<T = Record<string, any>> = ComponentPublicInstance<T, any>
 
 interface Customprop {
   [propname: string]: any

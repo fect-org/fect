@@ -1,25 +1,16 @@
 import { computed, watchEffect, defineComponent } from 'vue'
-import { useProvider, useState } from '@fect-ui/vue-hooks'
+import { useState } from '@fect-ui/vue-hooks'
 import { createName } from '../utils'
-import { TabsProvide, READONLY_TABS_KEY } from '../tabs/tabs'
+import { useTabsContext } from '../tabs/tabs-context'
+import { tabProps } from '../tabs/props'
 import './index.less'
 const name = createName('Tab')
 
 export default defineComponent({
   name,
-  props: {
-    title: {
-      type: String,
-      default: ''
-    },
-    value: {
-      type: [String, Number],
-      default: ''
-    },
-    disabled: Boolean
-  },
+  props: tabProps,
   setup(props, { slots }) {
-    const { context, idx } = useProvider<TabsProvide>(READONLY_TABS_KEY)
+    const { context, idx } = useTabsContext()
     const [selfValue, setSelfValue] = useState<string | number>(props.value)
     if (!context) {
       if (process.env.NODE_ENV !== 'production') {
