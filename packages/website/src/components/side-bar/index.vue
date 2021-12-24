@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, watch } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import { zhRoutes, zhGuideRoutes } from '../../../docs/zh-cn'
 import { enGuideRoutes, enRoutes } from '../../../docs/en-us'
@@ -43,6 +43,12 @@ export default defineComponent({
       if (currentLang.value === 'en-us') return enGuideRoutes
       return zhGuideRoutes
     })
+
+    watch(
+      () => context?.component.value,
+      (pre) => setCurrentName(pre!),
+      { immediate: true }
+    )
 
     const to = (route: string) => {
       const { currentLang, navTag } = context!

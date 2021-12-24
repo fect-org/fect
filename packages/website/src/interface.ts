@@ -8,6 +8,7 @@ export interface WebsiteContext {
   navTag: Ref<NavBar>
   currentLang: Ref<'zh-cn' | 'en-us'>
   currentNav: Ref<NavBar>
+  component: Ref<string>
   navLink: Ref<NavLink | string>
   updateCurrentNav: (nav: NavBar) => void
   updateCurrentLang: () => void

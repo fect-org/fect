@@ -12,16 +12,21 @@ import { useRoute, useRouter } from 'vue-router'
 import { useResize } from '@fect-ui/vue/components/utils'
 import { createWebsiteContext } from './website-context'
 import NavBar from './components/nav-bar/index.vue'
-import { NavBar as Nav, NavLink } from './interface'
+import type { NavBar as Nav, NavLink } from './interface'
 
 export default {
   components: {
     NavBar
   },
   setup() {
-    const [currentNav, setCurrentNav] = useState<Nav>('home')
-    const [navTag, setNavTag] = useState<Nav>('home')
+    /**
+     * currentNav variable control navBar route .
+     * navTag variable control Guide and Component sidebar route list
+     */
+    const [currentNav, setCurrentNav] = useState<Nav>('')
+    const [navTag, setNavTag] = useState<Nav>('')
     const [navLink, setNavLink] = useState<NavLink | string>('')
+    const [component, setComponent] = useState<string>('')
     const [currentLang, setCurrentLang] = useState<'zh-cn' | 'en-us'>('zh-cn')
     const [mobile, setMobile] = useState(false)
     const { width } = useResize()
@@ -34,14 +39,9 @@ export default {
 
     const updateCurrentLang = () => setCurrentLang(currentLang.value === 'en-us' ? 'zh-cn' : 'en-us')
 
-    const getRouteLang = () => {
-      const previous = route.path.split('/')
-      const lang = previous[1] as 'zh-cn' | 'en-us'
-      setCurrentLang(lang)
-    }
-
     watch(currentNav, (pre) => {
       const previous = route.path.split('/')
+      // eslint-disable-next-line prefer-destructuring
       const lang = previous[1]
       if (pre === 'components') return setNavLink({ path: `/${lang}/components/button` })
       if (pre === 'guide') return setNavLink({ path: `/${lang}/guide/introduction` })
@@ -63,8 +63,15 @@ export default {
       (pre) => {
         const previous = pre.split('/')
         const tag = previous[2] as Nav
-        getRouteLang()
+        const lang = previous[1] as 'zh-cn' | 'en-us'
+        // eslint-disable-next-line prefer-destructuring
+        const component = previous[3]
+        setCurrentLang(lang)
         setNavTag(tag)
+        if (component) {
+          const componentName = component.charAt(0).toUpperCase() + component.slice(1)
+          setComponent(componentName)
+        }
       }
     )
 
@@ -75,6 +82,7 @@ export default {
       navLink,
       currentLang,
       currentNav,
+      component,
       updateCurrentNav,
       updateCurrentLang
     })
