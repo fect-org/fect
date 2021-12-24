@@ -37,7 +37,7 @@ const Modal = (options: StaticModalOptions) => {
 
         return () => (
           <FeModal
-            {...omit(modalProps.value, 'close', 'confirm', 'content', 'content')}
+            {...omit(modalProps.value, 'close', 'confirm', 'content')}
             visible={visible.value}
             onCancel={cancelHandler}
             onConfirm={confirmHandler}
