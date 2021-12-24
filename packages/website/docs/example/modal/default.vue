@@ -9,31 +9,18 @@
 </template>
 
 <script>
-import { ref, getCurrentInstance } from 'vue'
+import { ref } from 'vue'
 
 export default {
   name: 'ExModalDefault',
 
   setup() {
     const show = ref(false)
-    const { proxy } = getCurrentInstance()
     const handlerClick = () => (show.value = true)
-
-    const click = () => {
-      proxy.$modal({
-        title: 'Arrow Function',
-        content:
-          'As we all know, the arrow function does not have its own this. Therefore, it depends on the external direction.',
-        cancel: 'Cancel',
-        done: 'Confirm',
-        confirm: () => console.log('')
-      })
-    }
 
     return {
       show,
-      handlerClick,
-      click
+      handlerClick
     }
   }
 }

@@ -1,6 +1,8 @@
 <template>
   <div>
     <fe-button @click="clickHandler" size="mini" auto>Button</fe-button>
+    <fe-spacer />
+    <fe-button @click="clickHandler1" size="mini" auto>With Event</fe-button>
   </div>
 </template>
 
@@ -23,8 +25,20 @@ export default {
       })
     }
 
+    const clickHandler1 = () => {
+      proxy.$modal({
+        title: 'With Event',
+        content: 'Fect is my best like desgin system',
+        cancel: 'Cancel',
+        done: 'Confirm',
+        close: () => proxy.$toast({ text: 'has close modal' }),
+        confirm: () => console.log('modal function call provide event callback')
+      })
+    }
+
     return {
-      clickHandler
+      clickHandler,
+      clickHandler1
     }
   }
 }

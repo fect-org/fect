@@ -11,41 +11,44 @@ let instance: ComponentInstance
 
 const Modal = (options: StaticModalOptions) => {
   if (!isBrowser()) return
-  const staticOptions = omit(assign({}, Modal.defaultOptions, options), 'close', 'confirm', 'content')
+  const staticOptions = assign({}, Modal.defaultOptions, options)
 
   if (!instance) {
     ;({ instance } = createPortal({
       setup() {
         const [visible, setVisible] = useState<boolean>(false)
-        const [content, setContent] = useState<string>('')
         const [modalProps, setModalProps] = useState<typeof staticOptions>({})
 
-        useExpose({ setVisible, setContent, setModalProps })
+        useExpose({ setVisible, setModalProps })
 
         const confirmHandler = () => {
-          setVisible(false)
-          if (options.confirm) {
-            isFunc(options.confirm) && options.confirm()
+          setVisible((pre) => !pre)
+          if (modalProps.value.confirm) {
+            isFunc(modalProps.value.confirm) && modalProps.value.confirm()
           }
         }
 
         const cancelHandler = () => {
-          setVisible(false)
-          if (options.close) {
-            isFunc(options.close) && options.close()
+          setVisible((pre) => !pre)
+          if (modalProps.value.close) {
+            isFunc(modalProps.value.close) && modalProps.value.close()
           }
         }
 
         return () => (
-          <FeModal {...modalProps.value} visible={visible.value} onCancel={cancelHandler} onConfirm={confirmHandler}>
-            {content.value}
+          <FeModal
+            {...omit(modalProps.value, 'close', 'confirm', 'content', 'content')}
+            visible={visible.value}
+            onCancel={cancelHandler}
+            onConfirm={confirmHandler}
+          >
+            {modalProps.value.content}
           </FeModal>
         )
       }
     }))
   }
   instance.setModalProps(staticOptions)
-  instance.setContent(options.content)
   instance.setVisible(true)
 }
 
