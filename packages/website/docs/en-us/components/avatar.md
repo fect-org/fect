@@ -58,3 +58,6 @@ avatar/stacked.vue
 | Attribue  | Description        | Type              | Accepted values | Default |
 | --------- | ------------------ | ----------------- | --------------- | ------- |
 | **count** | showttotal numbers | `string`,`number` | `-`             | `-`     |
+| **stacked**    | stacked display group              | `boolean`         | `-`                               | `false`  |
+| **is-square**  | the shape of all avatars              | `boolean`         | `-`                               | `false`  |
+| **size**       | the size of all avatars            | `string`          | `'mini','small','medium','large'` | `medium` |

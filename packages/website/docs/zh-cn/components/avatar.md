@@ -58,3 +58,6 @@ avatar/stacked.vue
 | 属性      | 描述 | 类型              | 可选值 | 默认 |
 | --------- | ---- | ----------------- | ------ | ---- |
 | **count** | 数量 | `string`,`number` | --     | --   |
+| **stacked**    | 是否堆叠显示              | `boolean`         | `-`                               | `false`  |
+| **is-square**  | 所有头像是否为方形头像       | `boolean`         | `-`                               | `false`  |
+| **size**       | 所有头像的大小             | `string`          | `'mini','small','medium','large'` | `medium` |
