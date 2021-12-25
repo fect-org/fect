@@ -1,14 +1,8 @@
-import { PropType, Ref, watch, defineComponent } from 'vue'
-import { createProvider, useState } from '@fect-ui/vue-hooks'
+import { PropType, watch, defineComponent } from 'vue'
+import { useState } from '@fect-ui/vue-hooks'
 import { createName } from '../utils'
+import { createCollapseContext } from './collapse-context'
 import './index.less'
-
-export const READONLY_COLLAPSE_KEY = 'collapseKey'
-
-export type CollapseProvide = {
-  checked: Ref<number[]>
-  setCurrentChecked: (index: number) => void
-}
 
 const name = createName('CollapseGroup')
 
@@ -26,26 +20,21 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, { slots, emit }) {
-    const { provider } = createProvider(READONLY_COLLAPSE_KEY)
+    const { provider } = createCollapseContext()
 
     const [checked, setChecked] = useState<number[]>(props.modelValue)
 
-    const setCurrentChecked = (idx: number) => {
-      const children = checked.value.slice()
-      const index = children.indexOf(idx)
-      const exist = index !== -1
-      if (exist) {
-        children.splice(index, 1)
-      }
-      if (!exist) {
-        if (props.accordion) children.length = 0
-        children.push(idx)
-      }
-
-      setChecked(children)
+    const updateCollapseGroupChecked = (idx: number) => {
+      setChecked((pre) => {
+        const cursor = pre.indexOf(idx)
+        const exist = cursor !== -1
+        if (exist) return pre.filter((item) => item !== idx)
+        if (props.accordion) pre.length = 0
+        return [...pre, idx]
+      })
     }
 
-    provider({ checked, setCurrentChecked })
+    provider({ checked, updateCollapseGroupChecked })
 
     watch(checked, (cur) => emit('update:modelValue', cur))
 

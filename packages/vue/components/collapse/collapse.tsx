@@ -1,8 +1,8 @@
 import { computed, ref, PropType, watch, defineComponent } from 'vue'
+import { useState } from '@fect-ui/vue-hooks'
 import { useRealShape, createName } from '../utils'
-import { useProvider, useState } from '@fect-ui/vue-hooks'
+import { useCollapseContext } from '../collapse-group/collapse-context'
 import CollapseIcon from './collapse-icon'
-import { READONLY_COLLAPSE_KEY, CollapseProvide } from '../collapse-group/collapse-group'
 import './index.less'
 
 const name = createName('Collapse')
@@ -32,7 +32,7 @@ export default defineComponent({
     //   console.error('[Fect] title must be in <Collapse>.')
     // }
 
-    const { context, idx } = useProvider<CollapseProvide>(READONLY_COLLAPSE_KEY)
+    const { context, idx } = useCollapseContext()
 
     const expandRef = ref<HTMLDivElement>()
 
@@ -44,7 +44,7 @@ export default defineComponent({
     })
 
     const clickHandler = () => {
-      if (context) return context.setCurrentChecked(idx)
+      if (context) return context.updateCollapseGroupChecked(idx)
       emit('update:visible', !props.visible)
     }
 
