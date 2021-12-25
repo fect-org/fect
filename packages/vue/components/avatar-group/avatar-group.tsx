@@ -16,7 +16,7 @@ export default defineComponent({
 
     const { provider } = createProvider(READONLY_AVATAR_KEY)
 
-    provider({props})
+    provider({ props })
 
     return () => (
       <div class="fect-avatar__group">

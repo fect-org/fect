@@ -1,1 +1,1 @@
-export const isBoolean = (val: any) => typeof val === "boolean"
+export const isBoolean = (val: any) => typeof val === 'boolean'
