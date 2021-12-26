@@ -15,7 +15,7 @@
     "vue-router": "^4.0.8",
     "@fect-ui/cli": "1.0.0",
     "@fect-ui/vue-icons": "2.0.0",
-    "@fect-ui/vue-hooks": "^0.0.4",
+    "@fect-ui/vue-hooks": "^1.0.0",
     "@types/prismjs": "^1.16.6"
   }
 }
