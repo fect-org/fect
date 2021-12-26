@@ -25,9 +25,11 @@ defineComponent({
 
 import { Ref } from 'vue'
 
-export type Dispatch<T> = (val: T) => void
+export type SetStateAction<S> = S | ((prevState: S) => S)
 
-export function useState(initial?:any)=> [Ref<T>, Dispatch<T>]
+export type Dispatch<T> = (val: SetStateAction<T>) => void
+
+export function useState(initial?:T)=> [Ref<T>, Dispatch<T>]
 
 ```
 
