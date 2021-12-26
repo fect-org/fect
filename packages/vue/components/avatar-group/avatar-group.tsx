@@ -1,8 +1,7 @@
 import { defineComponent, computed } from 'vue'
-import { createProvider } from '@fect-ui/vue-hooks'
+import { createAvatarContext } from './avatar-context'
 import { createName } from '../utils'
 import { AvatarGroupProps } from './props'
-import { READONLY_AVATAR_KEY } from './type'
 
 import './index.less'
 
@@ -14,7 +13,7 @@ export default defineComponent({
   setup(props, { slots }) {
     const showCount = computed(() => !!props.count)
 
-    const { provider } = createProvider(READONLY_AVATAR_KEY)
+    const { provider } = createAvatarContext()
 
     provider({ props })
 

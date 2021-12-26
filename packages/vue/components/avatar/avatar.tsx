@@ -1,7 +1,7 @@
 import { computed, defineComponent } from 'vue'
-import { useState, useProvider } from '@fect-ui/vue-hooks'
+import { useState } from '@fect-ui/vue-hooks'
 import { createName } from '../utils'
-import { READONLY_AVATAR_KEY, AvatarGroupProvide } from '../avatar-group/type'
+import { useAvatarContext } from '../avatar-group/avatar-context'
 import { AvatarProps } from '../avatar-group/props'
 import { isBoolean } from '../utils'
 import './index.less'
@@ -14,7 +14,7 @@ export default defineComponent({
   setup(props, { attrs }) {
     const [showText] = useState<boolean>(!props.src)
 
-    const { context } = useProvider<AvatarGroupProvide>(READONLY_AVATAR_KEY)
+    const { context } = useAvatarContext()
 
     const safeText = (text: string) => (text.length <= 4 ? text : text.slice(0, 3))
 

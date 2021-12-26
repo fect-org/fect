@@ -51,7 +51,7 @@ export default defineComponent({
     const visible = computed(() => {
       if (context) {
         const valueArr = context!.checked.value
-        const visible = valueArr.indexOf(idx) !== -1
+        const visible = (valueArr as number[]).indexOf(idx) !== -1
         setHeight(visible ? 'auto' : 0)
         return visible
       }

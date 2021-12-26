@@ -1,8 +1,6 @@
 import type { NormalSizes } from '../utils'
 
-export const READONLY_AVATAR_KEY = Symbol('avatarKey')
-
-export interface AvatarGroupProvide {
+export interface AvatarContext {
   props: {
     stacked: boolean
     isSquare: boolean
