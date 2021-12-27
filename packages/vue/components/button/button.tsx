@@ -26,7 +26,7 @@ export default defineComponent({
       const showDrip = !shadow && !ghost && effect
       if (showDrip) {
         setDrapShow(true)
-        const rect = buttonRef.value?.getBoundingClientRect()!
+        const rect = buttonRef.value!.getBoundingClientRect()!
         setDrapX(e.clientX - rect.left)
         setDrapY(e.clientY - rect.top)
       }
@@ -68,7 +68,7 @@ export default defineComponent({
     }
 
     const renderContext = () => {
-      const icon = slots['icon']
+      const { icon } = slots
       const context = slots['default']
       if (icon) {
         const offsetStyle = context ? '15%' : '50%'

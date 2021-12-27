@@ -1,6 +1,7 @@
 import Button from '..'
 import { mount } from '@vue/test-utils'
 import { Github } from '@fect-ui/vue-icons'
+import { later } from '../../../tests'
 
 describe('Button', () => {
   it('should be render as a element', () => {
@@ -107,5 +108,36 @@ describe('Button', () => {
     await wrapper.setProps({ loading: true })
     await el.trigger('click')
     expect(wrapper.emitted('click'))
+  })
+  it('button have icon only', () => {
+    const wrapper = mount({
+      components: {
+        [Button.name]: Button,
+        Github
+      },
+      template: `
+      <div class="container">
+        <fe-button>
+          <template #icon><Github /></template>
+        </fe-button>
+      </div>`
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('should trigger a effect', async () => {
+    const wrapper = mount(Button, {
+      slots: {
+        default: 'Button'
+      }
+    })
+    const btn = wrapper.find('.fect-button')
+    await btn.trigger('click')
+    const el = wrapper.find('.fect-button__drip')
+    await el.trigger('animationend')
+    expect(el.exists()).toBeTruthy()
+    expect(wrapper.html()).toMatchSnapshot()
+    await later(1000)
+    expect(wrapper.find('.fect-button__drip').exists()).toBeFalsy()
   })
 })
