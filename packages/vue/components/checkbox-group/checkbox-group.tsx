@@ -18,17 +18,12 @@ export default defineComponent({
 
     const { provider } = createCheckboxContext()
 
-    const updateCheckboxGroupValue = (val: string, checked: boolean) => {
-      const value = parentValue.value.slice()
-      const index = value.indexOf(val)
-      const exist = index !== -1
-      if (checked) {
-        !exist && value.push(val)
-      }
-      if (!checked) {
-        exist && value.splice(index, 1)
-      }
-      setParentValue(value)
+    const updateCheckboxGroupValue = (val: string) => {
+      setParentValue((pre) => {
+        const exist = pre.indexOf(val) !== -1
+        if (exist) return pre.filter((item) => item !== val)
+        return [...pre, val]
+      })
     }
     const updateCheckboxGroupEvent = (e: CheckboxEvent) => {
       const event = {

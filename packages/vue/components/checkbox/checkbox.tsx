@@ -38,6 +38,11 @@ export default defineComponent({
       return props.disabled
     })
 
+    /**
+     * when checkbox use in checkbox-group, we set
+     * parent label val will trigger this evt.
+     * so we don't need setSelfChecked at once.
+     */
     const setCurrentState = () => {
       if (!context) return
       const parent = context.parentValue.value
@@ -49,7 +54,6 @@ export default defineComponent({
 
     const handleChange = (e: Event) => {
       if (selfDisabled.value) return
-      setSelfChecked(!selfChecked.value)
       const checkboxEvent: CheckboxEvent = {
         target: {},
         stopPropagation: e.stopPropagation,
@@ -58,11 +62,11 @@ export default defineComponent({
       }
 
       if (context) {
-        context.updateCheckboxGroupValue(props.label, selfChecked.value)
+        context.updateCheckboxGroupValue(props.label)
         context.updateCheckboxGroupEvent(checkboxEvent)
         return
       }
-
+      setSelfChecked((pre) => !pre)
       emit('change', {
         ...checkboxEvent,
         target: { checked: selfChecked.value }

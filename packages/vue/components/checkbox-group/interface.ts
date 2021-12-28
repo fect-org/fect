@@ -16,6 +16,6 @@ export interface CheckboxEvent {
 export interface CheckboxContext {
   props: ExtractPropTypes<typeof checkboxGroupProps>
   parentValue: Ref<string[]>
-  updateCheckboxGroupValue: (val: string, checked: boolean) => void
+  updateCheckboxGroupValue: (val: string) => void
   updateCheckboxGroupEvent: (e: CheckboxEvent) => void
 }
