@@ -1,10 +1,13 @@
-import { computed, watch, PropType, defineComponent, Slot } from 'vue'
-import { createProvider, useState } from '@fect-ui/vue-hooks'
-import { createName, NormalSizes, CustomCSSProperties, ComponentInstance } from '../utils'
-import { READONLY_PAGINATION_KEY, PaginationSize, SideEvent } from './type'
+import { computed, watch, defineComponent, Slot } from 'vue'
+import { useState } from '@fect-ui/vue-hooks'
+import { createName, NormalSizes, CustomCSSProperties } from '../utils'
+
+import { props } from './props'
+import { createPaginationContext } from './pagination-context'
 import PaginationPages from './pagination-pages'
 import PaginationNext from './pagination-next'
 import PaginationPrev from './pagination-previous'
+import type { PaginationSize, SideEvent } from './interface'
 
 import './index.less'
 
@@ -33,31 +36,10 @@ const getEdgeCase = (rule: any, log: string) => {
 
 export default defineComponent({
   name,
-  props: {
-    modelValue: {
-      // use modelValue as currentPage
-      type: Number,
-      default: 1
-    },
-    count: {
-      // page num
-      type: Number,
-      default: 1
-    },
-    size: {
-      type: String as PropType<NormalSizes>,
-      default: 'medium'
-    },
-    prevText: { type: String, default: 'Prev' },
-    nextText: { type: String, default: 'Next' },
-    simple: Boolean,
-    limit: { type: Number, default: 7 }
-  },
+  props,
   emits: ['update:modelValue', 'change'],
   setup(props, { slots, emit }) {
-    const parent = createProvider<ComponentInstance>(READONLY_PAGINATION_KEY)
-
-    const { provider } = parent
+    const { provider } = createPaginationContext()
 
     /**
      * control prev and next button disabled style
@@ -78,12 +60,11 @@ export default defineComponent({
 
     // func use in prev and next
     const updateSidePage = (type: SideEvent) => {
-      const cur = currentPage.value
       if (type === 'prev' && currentPage.value > 1) {
-        setCurrentPage(cur - 1)
+        setCurrentPage((pre) => (pre -= 1))
       }
       if (type === 'next' && currentPage.value < props.count) {
-        setCurrentPage(cur + 1)
+        setCurrentPage((pre) => (pre += 1))
       }
     }
 

@@ -1,11 +1,10 @@
 import { defineComponent } from 'vue'
-import { useProvider } from '@fect-ui/vue-hooks'
-import { READONLY_PAGINATION_KEY, PaginationProvide } from './type'
 import PaginationItem from './pagination-item'
+import { usePaginationContext } from './pagination-context'
 
 const PaginationNext = defineComponent({
   setup(props, { slots }) {
-    const { context } = useProvider<PaginationProvide>(READONLY_PAGINATION_KEY)
+    const { context } = usePaginationContext()
 
     return () => (
       <PaginationItem disabled={context!.end.value} onClick={() => context!.updateSidePage('next')}>

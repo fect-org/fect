@@ -1,8 +1,8 @@
 import { defineComponent, computed, watchEffect } from 'vue'
-import { useProvider, useState } from '@fect-ui/vue-hooks'
+import { useState } from '@fect-ui/vue-hooks'
 import PaginationItem from './pagination-item'
 import PaginationEllipsis from './pagination-ellipsis'
-import { READONLY_PAGINATION_KEY, PaginationProvide } from './type'
+import { usePaginationContext } from './pagination-context'
 
 const PaginationPages = defineComponent({
   props: {
@@ -19,12 +19,12 @@ const PaginationPages = defineComponent({
       required: true
     }
   },
-  setup(props, { slots, emit }) {
+  setup(props) {
     const [beforeEllipsis, setBeforeEllipsis] = useState<boolean>(false)
 
     const [afterEllipsis, setAfterEllipsis] = useState<boolean>(false)
 
-    const { context } = useProvider<PaginationProvide>(READONLY_PAGINATION_KEY)
+    const { context } = usePaginationContext()
     const setParentPage = (page: number) => context?.setCurrentPage(page)
 
     /**

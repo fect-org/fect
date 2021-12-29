@@ -1,7 +1,6 @@
 import { defineComponent, computed } from 'vue'
-import { useProvider } from '@fect-ui/vue-hooks'
 import { addColorAlpha, CustomCSSProperties } from '../utils'
-import { READONLY_PAGINATION_KEY, PaginationProvide } from './type'
+import { usePaginationContext } from './pagination-context'
 
 const hoverable = (): string[] => {
   const hover = addColorAlpha('#0070f3', 0.1)
@@ -16,7 +15,7 @@ const PaginationItem = defineComponent({
   },
   emits: ['click', 'mouseenter', 'mouseleave'],
   setup(props, { emit, slots }) {
-    const { context } = useProvider<PaginationProvide>(READONLY_PAGINATION_KEY)
+    const { context } = usePaginationContext()
 
     const gethoverable = computed(() => {
       const [hover, activeHover] = hoverable()
