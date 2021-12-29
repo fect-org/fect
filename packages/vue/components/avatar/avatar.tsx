@@ -3,6 +3,7 @@ import { useState } from '@fect-ui/vue-hooks'
 import { createName } from '../utils'
 import { useAvatarContext } from '../avatar-group/avatar-context'
 import { avatarProps } from '../avatar-group/props'
+import { PropFn } from '../avatar-group/interface'
 import { isBoolean } from '../utils'
 import './index.less'
 
@@ -25,29 +26,22 @@ export default defineComponent({
       return props.size || 'medium'
     })
 
-    const selfStacked = computed(() => {
-      if (isBoolean(props.stacked)) {
-        return props.stacked
+    const setSelfProp: PropFn = (prop) => {
+      if (isBoolean(props[prop])) {
+        return props[prop]
       }
-      return (context && context.props.stacked) || false
-    })
-
-    const selfIsSquare = computed(() => {
-      if (isBoolean(props.isSquare)) {
-        return props.isSquare
-      }
-      return (context && context.props.isSquare) || false
-    })
+      return (context && context.props[prop]) || false
+    }
 
     const setClass = computed(() => {
-      const names: string[] = [selfSize.value as string]
-      selfIsSquare.value && names.push('isSquare')
-      selfStacked.value && names.push('stacked')
+      const names: string[] = [selfSize.value]
+      setSelfProp('isSquare') && names.push('isSquare')
+      setSelfProp('stacked') && names.push('stacked')
       return names.join(' ')
     })
 
     return () => (
-      <div class={`fect-avatar ${setClass.value} ${props.className || ''}`.trim()}>
+      <div class={`fect-avatar ${setClass.value} ${props.className || ''}`}>
         {!showText.value && <img src={props.src} draggable="false" alt={props.alt} {...attrs} />}
         {showText.value && (
           <span class={'fect-avatar-text '} {...attrs}>

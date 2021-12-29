@@ -7,3 +7,8 @@ export interface AvatarContext {
     size: NormalSizes
   }
 }
+
+export type PropFnArg = 'stacked' | 'isSquare'
+export interface PropFn {
+  (args: PropFnArg): boolean
+}
