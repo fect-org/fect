@@ -1,5 +1,7 @@
 import { defineComponent, computed } from 'vue'
+import { createAvatarContext } from './avatar-context'
 import { createName } from '../utils'
+import { avatarGroupProps } from './props'
 
 import './index.less'
 
@@ -7,11 +9,13 @@ const name = createName('AvatarGroup')
 
 export default defineComponent({
   name,
-  props: {
-    count: [String, Number]
-  },
+  props: avatarGroupProps,
   setup(props, { slots }) {
     const showCount = computed(() => !!props.count)
+
+    const { provider } = createAvatarContext()
+
+    provider({ props })
 
     return () => (
       <div class="fect-avatar__group">

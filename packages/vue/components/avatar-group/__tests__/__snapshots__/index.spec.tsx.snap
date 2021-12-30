@@ -1,11 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AvatarGroup should be work as avatar container 1`] = `
+exports[`AvatarGroup avatar context props should be work 1`] = `
 <div class="fect-avatar__group">
-  <div class="fect-avatar medium stacked ">
+  <div class="fect-avatar mini isSquare stacked ">
     <!----><span class="fect-avatar-text">a</span>
   </div>
-  <div class="fect-avatar medium stacked ">
+  <div class="fect-avatar mini isSquare stacked ">
+    <!----><span class="fect-avatar-text">b</span>
+  </div><span class="fect-avatar__counter">+10</span>
+</div>
+`;
+
+exports[`AvatarGroup should be work as avatar container 1`] = `
+<div class="fect-avatar__group">
+  <div class="fect-avatar medium ">
+    <!----><span class="fect-avatar-text">a</span>
+  </div>
+  <div class="fect-avatar medium ">
     <!----><span class="fect-avatar-text">b</span>
   </div><span class="fect-avatar__counter">+10</span>
 </div>

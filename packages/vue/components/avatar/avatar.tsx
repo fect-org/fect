@@ -1,36 +1,37 @@
-import { PropType, computed, defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, NormalSizes } from '../utils'
+import { createName } from '../utils'
+import { useAvatarContext } from '../avatar-group/avatar-context'
+import { avatarProps } from '../avatar-group/props'
+import type { AvatarContext, BehavoirState } from '../avatar-group/interface'
 import './index.less'
 
 const name = createName('Avatar')
 
+const getBehaviorState = (behavior: any, extra: AvatarContext | null, prop: BehavoirState) => {
+  if (extra && extra.props) return extra.props[prop]
+  return behavior
+}
+
 export default defineComponent({
   name,
-  props: {
-    stacked: Boolean,
-    isSquare: Boolean,
-    size: {
-      type: String as PropType<NormalSizes>,
-      default: 'medium'
-    },
-    text: {
-      type: String,
-      default: ''
-    },
-    src: String,
-    className: String,
-    alt: String
-  },
+  props: avatarProps,
   setup(props, { attrs }) {
     const [showText] = useState<boolean>(!props.src)
+
+    const { context } = useAvatarContext()
 
     const safeText = (text: string) => (text.length <= 4 ? text : text.slice(0, 3))
 
     const setClass = computed(() => {
-      const names: string[] = [props.size]
-      props.isSquare && names.push('isSquare')
-      props.stacked && names.push('stacked')
+      const { isSquare, stacked, size } = props
+      const names: string[] = []
+      const selfSize = getBehaviorState(size, context, 'size')
+      const selfStacked = getBehaviorState(stacked, context, 'stacked')
+      const selfSquare = getBehaviorState(isSquare, context, 'isSquare')
+      names.push(selfSize || 'medium')
+      selfSquare && names.push('isSquare')
+      selfStacked && names.push('stacked')
       return names.join(' ')
     })
 
