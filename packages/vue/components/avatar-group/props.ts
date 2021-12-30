@@ -1,18 +1,10 @@
 import { PropType } from 'vue'
 import { NormalSizes } from '../utils'
 
-export const sizeType = String as PropType<NormalSizes>
-
 export const avatarProps = {
-  stacked: {
-    type: Boolean,
-    default: null
-  },
-  isSquare: {
-    type: Boolean,
-    default: null
-  },
-  size: sizeType,
+  stacked: Boolean,
+  isSquare: Boolean,
+  size: String as PropType<NormalSizes>,
   text: {
     type: String,
     default: ''
@@ -27,7 +19,7 @@ export const avatarGroupProps = {
   stacked: Boolean,
   isSquare: Boolean,
   size: {
-    type: sizeType,
+    type: String as PropType<NormalSizes>,
     default: 'medium'
   }
 }

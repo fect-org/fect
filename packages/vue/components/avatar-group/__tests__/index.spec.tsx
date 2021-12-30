@@ -21,4 +21,19 @@ describe('AvatarGroup', () => {
 
     expect(() => wrapper.unmount()).not.toThrow()
   })
+
+  it('avatar context props should be work', () => {
+    const wrapper = mount({
+      render() {
+        return (
+          <AvatarGroup count="10" stacked size="mini" isSquare>
+            <Avatar text="a" />
+            <Avatar text="b" isSquare={false} />
+          </AvatarGroup>
+        )
+      }
+    })
+
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 })

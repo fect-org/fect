@@ -1,14 +1,8 @@
-import type { NormalSizes } from '../utils'
+import type { ExtractPropTypes } from 'vue'
+import { avatarGroupProps } from './props'
 
 export interface AvatarContext {
-  props: {
-    stacked: boolean
-    isSquare: boolean
-    size: NormalSizes
-  }
+  props: ExtractPropTypes<typeof avatarGroupProps>
 }
 
-export type PropFnArg = 'stacked' | 'isSquare'
-export interface PropFn {
-  (args: PropFnArg): boolean
-}
+export type BehavoirState = 'stacked' | 'isSquare' | 'size'

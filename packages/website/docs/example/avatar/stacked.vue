@@ -1,9 +1,9 @@
 <template>
   <div>
-    <fe-avatarGroup>
-      <fe-avatar :src="img" stacked />
-      <fe-avatar :src="img" stacked />
-      <fe-avatar :src="img" stacked />
+    <fe-avatarGroup stacked size="medium" is-square>
+      <fe-avatar :src="img" />
+      <fe-avatar :src="img" />
+      <fe-avatar :src="img" />
     </fe-avatarGroup>
   </div>
 </template>
