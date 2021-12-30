@@ -171,6 +171,7 @@ export * from './teleport'
 export * from './toast'
 export * from './tooltip'
 export * from './user'
+export * from './utils/composables'
 
 export { install, version }
 

@@ -44,6 +44,7 @@ export const genPackagesEntry = async () => {
       };
    
       ${genExport(dirs)}
+      export * from './utils/composables';
    
       export {
         install,
