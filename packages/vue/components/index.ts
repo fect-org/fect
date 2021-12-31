@@ -1,4 +1,4 @@
-const version = '1.1.0-rc.2'
+const version = '1.1.0'
 import { App } from 'vue'
 import { Avatar } from './avatar'
 import { AvatarGroup } from './avatar-group'
