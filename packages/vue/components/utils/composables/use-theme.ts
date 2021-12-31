@@ -18,7 +18,11 @@ export const useTheme = () => {
 
   onMounted(() => {
     if (typeof window === 'undefined' || !window.localStorage) return
-    const theme = (localStorage.getItem('theme') as Theme) || 'light-theme'
+
+    const isDarkMode =
+      matchMedia('(prefers-color-scheme)').media !== 'not all' && matchMedia('(prefers-color-scheme: dark)').matches
+
+    const theme = (localStorage.getItem('theme') as Theme) || (isDarkMode ? 'dark-theme' : 'light-theme')
     setTheme(theme)
   })
 
