@@ -1,21 +1,23 @@
 import { computed, ref, watch, defineComponent } from 'vue'
-import { createProvider, useClickAway, useEventListener, useState } from '@fect-ui/vue-hooks'
-import { createName, useExpose, CustomCSSProperties, ComponentInstance, NormalSizes, isArray } from '../utils'
+import { useClickAway, useState } from '@fect-ui/vue-hooks'
+import { createName, useExpose, CustomCSSProperties, NormalSizes } from '../utils'
 import GridGroup from '../grid-group'
+import { createSelectContext } from './select-context'
 import SelectIcon from './select-icon'
 import SelcetClearableIcon from './select-clear-icon'
 import SelectMultiple from './select-multiple'
 import SelectDropDown from './select-dropdown'
 import SeelctInput from './select-input'
 import { props } from './props'
-import { READONLY_SELECT_KEY, SizeStyle } from './type'
+import type { SizeStyle } from './interface'
+
 import './index.less'
 
 const name = createName('Select')
 
 export const hasEmpty = (val: any) => {
   if (val === '') return true
-  if (isArray(val) && !val.length) return true
+  if (Array.isArray(val) && !val.length) return true
   return false
 }
 
@@ -52,8 +54,7 @@ export default defineComponent({
   setup(props, { slots, emit }) {
     const selectRef = ref<HTMLDivElement>()
 
-    const parent = createProvider<ComponentInstance>(READONLY_SELECT_KEY)
-    const { provider, children } = parent
+    const { provider, children } = createSelectContext()
 
     const [value, setValue] = useState<string | string[]>(props.modelValue || props.value)
     const [visible, setVisible] = useState<boolean>(false)
@@ -67,13 +68,6 @@ export default defineComponent({
       e.preventDefault()
       setClean(status)
     }
-
-    useEventListener('mouseenter', (e) => cleanHandler(e, true), {
-      target: selectRef
-    })
-    useEventListener('mouseleave', (e) => cleanHandler(e, false), {
-      target: selectRef
-    })
 
     useClickAway(() => setVisible(false), selectRef, {
       event: 'click'
@@ -104,16 +98,15 @@ export default defineComponent({
       setValue('')
     }
 
-    const setParentValue = (val: string) => {
-      const { multiple } = props
-      if (!multiple) return setValue(val)
-      const sourceList = value.value.slice() as string[]
-      const exist = sourceList.indexOf(val) !== -1
-      if (exist) return setValue(sourceList.filter((v) => v !== val))
-      return setValue([...value.value, val])
+    const updateSelectValue = (val: string) => {
+      setValue((pre) => {
+        if (!Array.isArray(pre)) return val
+        if (!pre.includes(val)) return [...pre, val]
+        return pre.filter((item) => item !== val)
+      })
     }
 
-    provider({ setVisible, setParentValue })
+    provider({ setVisible, updateSelectValue })
 
     const clickHandler = (e: Event) => {
       if (props.disabled) return
@@ -122,12 +115,13 @@ export default defineComponent({
       setVisible(!visible.value)
     }
 
-    watch(value, (cur) => emit('update:modelValue', cur))
-
-    watch(value, (cur) => emit('change', cur))
+    watch(value, (cur) => {
+      emit('change', cur)
+      emit('update:modelValue', cur)
+    })
 
     const queryChecked = computed(() => {
-      const list = isArray(value.value) ? value.value : [value.value]
+      const list = Array.isArray(value.value) ? value.value : [value.value]
       return children.filter((child) => list.includes(child.value))
     })
 
@@ -143,7 +137,7 @@ export default defineComponent({
       return (
         <GridGroup gap={0.5}>
           {list.map((_) => (
-            <SelectMultiple onClear={() => setParentValue(_.value)} clearable={clearable}>
+            <SelectMultiple onClear={() => updateSelectValue(_.value)} clearable={clearable}>
               {_.label}
             </SelectMultiple>
           ))}
@@ -171,7 +165,14 @@ export default defineComponent({
     useExpose({ setTeleport })
 
     return () => (
-      <div class={setClass.value} ref={selectRef} style={setStyle.value} onClick={clickHandler}>
+      <div
+        class={setClass.value}
+        ref={selectRef}
+        style={setStyle.value}
+        onMouseenter={(e) => cleanHandler(e, true)}
+        onMouseleave={(e) => cleanHandler(e, false)}
+        onClick={clickHandler}
+      >
         <SeelctInput visible={visible.value} />
         {empty.value ? renderPlaceHolder() : renderNodes()}
         <SelectDropDown teleport={teleport.value} v-slots={slots} visible={visible.value} parentRef={selectRef.value} />

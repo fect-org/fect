@@ -25,3 +25,15 @@ export const props = {
   },
   disabled: Boolean
 }
+
+export const selectOptionProps = {
+  value: {
+    type: String,
+    default: ''
+  },
+  label: {
+    type: String,
+    default: ''
+  },
+  disabled: Boolean
+}

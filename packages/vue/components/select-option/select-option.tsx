@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
-import { useProvider } from '@fect-ui/vue-hooks'
-import { READONLY_SELECT_KEY, SelectProvide } from '../select/type'
+import { useSelectContext } from '../select/select-context'
+import { selectOptionProps } from '../select/props'
 import { hasEmpty } from '../select/select'
 import { createName } from '../utils'
 import './index.less'
@@ -9,20 +9,10 @@ const name = createName('Option')
 
 export default defineComponent({
   name,
-  props: {
-    value: {
-      type: String,
-      default: ''
-    },
-    label: {
-      type: String,
-      default: ''
-    },
-    disabled: Boolean
-  },
-  setup(props, { slots }) {
-    const { context } = useProvider<SelectProvide>(READONLY_SELECT_KEY)
-    const { setVisible, setParentValue } = context!
+  props: selectOptionProps,
+  setup(props) {
+    const { context } = useSelectContext()
+    const { setVisible, updateSelectValue } = context!
 
     const handleClick = (e: Event) => {
       e.stopPropagation()
@@ -30,7 +20,7 @@ export default defineComponent({
       if (props.disabled) return
       if (!hasEmpty(props.value)) {
         setVisible(false)
-        setParentValue(props.value)
+        updateSelectValue(props.value)
       }
     }
     return () => (

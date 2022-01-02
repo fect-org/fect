@@ -6,17 +6,15 @@ export default defineComponent({
   },
   setup(props) {
     return () => (
-      <>
-        <input
-          class="fect-select__input"
-          type="search"
-          role="combobox"
-          aria-haspopup="listbox"
-          readonly
-          unselectable="on"
-          aria-expanded={props.visible}
-        />
-      </>
+      <input
+        class="fect-select__input"
+        type="search"
+        role="combobox"
+        aria-haspopup="listbox"
+        readonly
+        unselectable="on"
+        aria-expanded={props.visible}
+      />
     )
   }
 })
