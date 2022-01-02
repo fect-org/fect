@@ -55,4 +55,4 @@ At any time, you think it's ok, you can start the following steps to submit your
 
 ### Get stuck
 
-- Create new issue to tell us: [create issue](https://github.com/fay-org/fect/issues).
+- Create new issue to tell us: [create issue](https://github.com/fect-org/fect/issues).

@@ -16,7 +16,7 @@
           <Moon v-show="theme === 'dark-theme'" size="20" />
         </div>
         <div class="fect-doc__svg-card">
-          <fe-link href="https://github.com/fay-org/fect">
+          <fe-link href="https://github.com/fect-org/fect">
             <Github size="20" />
           </fe-link>
         </div>

@@ -56,4 +56,4 @@
 
 ### 遇到困难了
 
-- 创建新的 issue 告诉我们: [创建 issue](https://github.com/fay-org/fect/issues)。
+- 创建新的 issue 告诉我们: [创建 issue](https://github.com/fect-org/fect/issues)。

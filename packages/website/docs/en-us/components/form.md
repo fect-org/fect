@@ -10,14 +10,14 @@ form/default.vue
 
 ### Form Props
 
-| Attribue           | Description                                                                                  | Type              | Accepted values      | Default |
-| ------------------ | -------------------------------------------------------------------------------------------- | ----------------- | -------------------- | ------- |
-| **model**          | data of form component                                                                       | `object`          | `-`                  | `{}`    |
-| **rules**          | validation rules of form see more advanced usage [proy](https://github.com/fay-org/validate) | `object`          | `-`                  | `{}`    |
-| **inline**         | display inline mode                                                                          | `boolean`         | `true`,`false`       | `false` |
-| **label-position** | position of label.(Css properties: flex-direction)                                           | `string`          | `left`,`right`,`top` | `right` |
-| **label-width**    | width of label                                                                               | `number`,`string` | `-`                  | `auto`  |
-| **show-message**   | show the error message                                                                       | `boolean`         | `true`,`false`       | `true`  |
+| Attribue           | Description                                                                                   | Type              | Accepted values      | Default |
+| ------------------ | --------------------------------------------------------------------------------------------- | ----------------- | -------------------- | ------- |
+| **model**          | data of form component                                                                        | `object`          | `-`                  | `{}`    |
+| **rules**          | validation rules of form see more advanced usage [proy](https://github.com/fect-org/validate) | `object`          | `-`                  | `{}`    |
+| **inline**         | display inline mode                                                                           | `boolean`         | `true`,`false`       | `false` |
+| **label-position** | position of label.(Css properties: flex-direction)                                            | `string`          | `left`,`right`,`top` | `right` |
+| **label-width**    | width of label                                                                                | `number`,`string` | `-`                  | `auto`  |
+| **show-message**   | show the error message                                                                        | `boolean`         | `true`,`false`       | `true`  |
 
 ### FormItem Props
 

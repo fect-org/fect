@@ -16,10 +16,10 @@
     "fect",
     "vue ui"
   ],
-  "homepage": "https://github.com/fay-org/fect",
+  "homepage": "https://github.com/fect-org/fect",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fay-org/fect"
+    "url": "https://github.com/fect-org/fect"
   },
   "files": [
     "lib/",

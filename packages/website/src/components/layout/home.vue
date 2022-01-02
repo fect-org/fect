@@ -40,7 +40,7 @@
       </fe-grid>
       <!--  -->
       <fe-grid :xs="24" :lg="6" :xl="6" :md="6" :sm="6">
-        <fe-link href="https://github.com/fay-org/fect" target="_blank">
+        <fe-link href="https://github.com/fect-org/fect" target="_blank">
           <fe-card shadow hoverable>
             <h4>
               <div class="feature_icon">
