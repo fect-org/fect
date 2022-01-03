@@ -15,6 +15,7 @@ export const enRoutes: Routes = [
   {
     name: 'Common',
     children: [
+      { title: 'Theme', route: 'ThemeProvide' },
       { title: 'Button', route: 'Button' },
       { title: 'Code', route: 'Code' },
       { title: 'Icons', route: 'Icons' },
