@@ -14,6 +14,7 @@ export const zhRoutes: Routes = [
   {
     name: '通用',
     children: [
+      { title: '主题配置 Theme', route: 'ThemeProvide' },
       { title: '按钮 Button', route: 'Button' },
       { title: '代码 Code', route: 'Code' },
       { title: '图标', route: 'Icons' },
