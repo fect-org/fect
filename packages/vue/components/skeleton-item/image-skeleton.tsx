@@ -11,7 +11,6 @@ const ImageSkeleton = defineComponent({
         stroke-width="1.5"
         shape-rendering="geometricPrecision"
         viewBox="0 0 24 24"
-        style="color: currentColor"
       >
         <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
         <circle cx="8.5" cy="8.5" r="1.5"></circle>

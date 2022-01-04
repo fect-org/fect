@@ -1,60 +1,93 @@
+// skeleton shape variable
+@skeleton-text-height: 13px;
+@skeleton-rect-height: 16px;
+@skeleton-h1-height: 20px;
+@skeleton-h3-height: 18px;
+@skeleton-circle-size: 40px;
+@skeleton-button-height: 40px;
+@skeleton-button-width: 64px;
+@skeleton-caption-height: 12px;
+// skeleton color vairable
+@skeleton-bg-color: var(--accents-2);
+@skeleton-image-color: var(--accents-3);
+@skeleton-border-radius: calc(var(--fay-radius) / 2);
+@skeleton-image-border-radius: var(--fay-radius);
+@skeleton-animation-linear: 270deg, var(--accents-1), var(--accents-2), var(--accents-2), var(--accents-1);
+
+:root {
+  --skeleton-text-height: @skeleton-text-height;
+  --skeleton-rect-height: @skeleton-rect-height;
+  --skeleton-h1-height: @skeleton-h1-height;
+  --skeleton-h3-height: @skeleton-h3-height;
+  --skeleton-circle-size: @skeleton-circle-size;
+  --skeleton-button-height: @skeleton-button-height;
+  --skeleton-button-width: @skeleton-button-width;
+  --skeleton-caption-height: @skeleton-caption-height;
+  // skeleton color vairable
+  --skeleton-bg-color: @skeleton-bg-color;
+  --skeleton-image-color: @skeleton-image-color;
+  --skeleton-border-radius: @skeleton-border-radius;
+  --skeleton-image-border-radius: @skeleton-image-border-radius;
+  --skeleton-animation-linear: @skeleton-animation-linear;
+}
+
+@keyframes skeleton-load {
+  0% {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
 .skeleton__content {
   .fect-skeleton__item {
     width: 100%;
-    border-radius: calc(var(--fay-radius) / 2);
-    border-radius: calc(var(--fay-radius) / 2);
+    border-radius: var(--skeleton-border-radius);
     margin-top: 10px;
-    background-color: var(--accents-2);
+    background-color: var(--skeleton-bg-color);
     &.animated {
-      background-image: linear-gradient(270deg, var(--accents-1), var(--accents-2), var(--accents-2), var(--accents-1));
+      background-image: linear-gradient(var(--skeleton-animation-linear));
       background-size: 400% 100%;
-      animation: load 5s ease-in-out infinite;
+      animation: skeleton-load 5s ease-in-out infinite;
       transition: opacity 300ms ease-out;
-      @keyframes load {
-        0% {
-          background-position: 200% 0;
-        }
-        to {
-          background-position: -200% 0;
-        }
-      }
     }
     &.p,
     .rect {
-      height: 16px;
+      height: var(--skeleton-rect-height);
     }
     &.text {
-      height: 13px;
+      height: var(--skeleton-text-height);
     }
     &.h1 {
-      height: 20px;
+      height: var(--skeleton-h1-height);
     }
     &.h3 {
-      height: 18px;
+      height: car(--skeleton-h3-height);
     }
     &.circle {
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      line-height: 40px;
+      width: var(--skeleton-circle-size);
+      height: var(--skeleton-circle-size);
+      line-height: var(--skeleton-circle-size);
     }
     &.image {
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: var(--fay-radius);
+      border-radius: var(--skeleton-image-border-radius);
       svg {
         width: 22%;
         height: 22%;
-        color: var(--accents-3) !important;
+        color: var(--skeleton-image-color);
       }
     }
     &.button {
-      height: 40px;
-      width: 64px;
+      height: var(--skeleton-button-height);
+      width: var(--skeleton-button-width);
     }
     &.caption {
-      height: 12px;
+      height: var(--skeleton-caption-height);
     }
   }
 }
