@@ -23,9 +23,9 @@ export default defineComponent({
         return props.color
       }
       const val = props.value
-      if (val < 33) return 'var(--hightlight-cyan)'
-      if (val < 66) return 'var(--warning-light)'
-      return 'var(--error-dark)'
+      if (val < 33) return 'var(--capacity-one-thirds-color)'
+      if (val < 66) return 'var(--capacity-two-thirds-color)'
+      return 'var(--capacity-done-color)'
     })
     return () => (
       <div title={`${props.value}%`} class="fect-capacity">
