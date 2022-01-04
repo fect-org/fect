@@ -1,24 +1,46 @@
+@avatar-border-color: var(--accents-2);
+@avatar-bg-color: var(--accents-2);
+@avatar-text-color: var(--primary-foreground);
+// size
+@avatar-mini-size: 20px;
+@avatar-small-size: 30px;
+@avatar-medium-size: 40px;
+@avatar-large-size: 60px;
+@avatar-stack-offset: -10px;
+
+:root {
+  --avatar-border-color: @avatar-border-color;
+  --avatar-bg-color: @avatar-bg-color;
+  --avatar-text-color: @avatar-text-color;
+  // size
+  --avatar-mini-size: @avatar-mini-size;
+  --avatar-small-size: @avatar-small-size;
+  --avatar-medium-size: @avatar-medium-size;
+  --avatar-large-size: @avatar-large-size;
+  --avatar-stack-offset: @avatar-stack-offset;
+}
+
 .fect-avatar {
   display: inline-block;
   position: relative;
-  height: 40px;
-  width: 40px;
+  height: var(--avatar-medium-size);
+  width: var(--avatar-medium-size);
   border-radius: 50%;
   overflow: hidden;
-  border: 1px solid var(--accents-2);
-  background-color: var(--accents-2);
+  border: 1px solid var(--avatar-border-color);
+  background-color: var(--avatar-bg-color);
   vertical-align: top;
   &.mini {
-    width: 20px;
-    height: 20px;
+    width: var(--avatar-mini-size);
+    height: var(--avatar-mini-size);
   }
   &.small {
-    width: 30px;
-    height: 30px;
+    width: var(--avatar-small-size);
+    height: var(--avatar-small-size);
   }
   &.large {
-    width: 60px;
-    height: 60px;
+    width: var(--avatar-large-size);
+    height: var(--avatar-large-size);
   }
   &.isSquare {
     border-radius: 5px;
@@ -40,7 +62,7 @@
     left: 50%;
     top: 50%;
     font-size: 1em;
-    color: var(--primary-foreground);
+    color: var(--avatar-text-color);
     text-align: center;
     transform: translate(-50%, -50%) scale(0.65);
     white-space: nowrap;
