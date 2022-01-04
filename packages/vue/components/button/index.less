@@ -1,3 +1,61 @@
+// button color variable
+@button-default-color: var(--primary-background);
+@button-success-color: var(--success-default);
+@button-warning-color: var(--warning-default);
+@button-error-color: var(--error-default);
+@button-secondary-color: var(--dark-default);
+// button width  variable
+@button-mini-width: 85px;
+@button-small-width: 150px;
+@button-medium-width: 200px;
+@button-large-width: 250px;
+// button height variable
+@button-mini-height: 30px;
+@button-small-height: 35px;
+@button-medium-height: 40px;
+@button-large-height: 45px;
+// button padding variable
+@button-mini-padding:0 15px;
+@button-small-padding:0 20px;
+@button-medium-padding:0 25px;
+@button-large-padding:0 30px;
+// button state variable
+@button-disabled-text-color: #ccc;
+@button-disabled-bg-color: var(--accents-1);
+@button-disabled-border-color: var(--accents-2);
+// button gap varibale
+@button-gap-auto: var(--fay-gap);
+
+:root {
+  // color variable
+  --button-default-color: @button-default-color;
+  --button-success-color: @button-success-color;
+  --button-warning-color: @button-warning-color;
+  --button-error-color: @button-error-color;
+  --button-secondary-color: @button-secondary-color;
+  // width variable
+  --button-mini-width: @button-mini-width;
+  --button-small-width: @button-small-width;
+  --button-medium-width: @button-medium-width;
+  --button-large-width: @button-large-width;
+  // height variable
+  --button-mini-height: @button-mini-height;
+  --button-small-height: @button-small-height;
+  --button-medium-height: @button-medium-height;
+  --button-large-height: @button-large-height;
+  // padding variable
+  --button-mini-padding: @button-mini-padding;
+  --button-small-padding: @button-small-padding;
+  --button-medium-padding: @button-medium-padding;
+  --button-large-padding: @button-large-padding;
+  //  state variable
+  --button-disabled-text-color: @button-disabled-text-color;
+  --button-disabled-bg-color: @button-disabled-bg-color;
+  --button-disabled-border-color: @button-disabled-border-color;
+  // gap variable
+  --buton-auto-gap: @button-gap-auto;
+}
+
 @keyframes button-expand {
   0% {
     opacity: 0;
@@ -38,17 +96,17 @@
 
   &--default {
     border-color: var(--accents-2);
-    background-color: var(--primary-background);
+    background-color: var(--button-default-color);
     color: var(--accents-5);
     --button-load-bg: var(--accents-1);
     --button-load-color: var(--accents-5);
   }
 
   &--success {
-    border-color: var(--success-default);
-    background-color: var(--success-default);
+    background-color: var(--button-success-color);
+    border-color: var(--button-success-color);
     color: #fff;
-    --button-load-bg: var(--success-default);
+    --button-load-bg: var(--button-success-color);
     --button-load-color: #fff;
 
     &.is-ghost {
@@ -61,10 +119,10 @@
   }
 
   &--warning {
-    border-color: var(--warning-default);
-    background-color: var(--warning-default);
+    background-color: var(--button-warning-color);
+    border-color: var(--button-warning-color);
     color: #fff;
-    --button-load-bg: var(--warning-default);
+    --button-load-bg: var(--button-warning-color);
     --button-load-color: #fff;
 
     &.is-ghost {
@@ -77,10 +135,10 @@
   }
 
   &--error {
-    background-color: var(--error-default);
-    border-color: var(--error-default);
+    background-color: var(--button-error-color);
+    border-color: var(--button-error-color);
     color: #fff;
-    --button-load-bg: var(--error-default);
+    --button-load-bg: var(--button-error-color);
     --button-load-color: #fff;
 
     &.is-ghost {
@@ -93,10 +151,10 @@
   }
 
   &--secondary {
-    border-color: var(--dark-default);
-    background-color: var(--dark-default);
+    border-color: var(--button-secondary-color);
+    background-color: var(--button-secondary-color);
     color: var(--primary-background);
-    --button-load-bg: var(--dark-default);
+    --button-load-bg: var(--button-secondary-color);
     --button-load-color: var(--primary-background);
 
     &.is-ghost {
@@ -110,45 +168,45 @@
 
   &--mini {
     width: initial;
-    min-width: 85px;
+    min-width: var(--button-mini-width);
     font-size: 12px;
-    padding: 0 15px;
-    height: 30px;
-    --button-icon-height: 30px;
+    padding: var(--button-mini-padding);
+    height: var(--button-mini-height);
+    --button-icon-height: var(--button-mini-height);
   }
 
   &--small {
     width: initial;
-    min-width: 150px;
+    min-width: var(--button-small-width);
     font-size: 13px;
-    padding: 0 20px;
-    height: 35px;
-    --button-icon-height: 35px;
+    padding: var(--button-small-padding);
+    height: var(--button-small-height);
+    --button-icon-height: var(--button-mini-height);
   }
 
   &--medium {
     width: initial;
-    min-width: 200px;
+    min-width: var(--button-medium-width);
     font-size: 15px;
-    padding: 0 25px;
-    height: 40px;
-    --button-icon-height: 40px;
+    padding: var(--button-medium-padding);
+    height: var(--button-medium-height);
+    --button-icon-height: var(--button-medium-height);
   }
 
   &--large {
     width: initial;
-    min-width: 250px;
+    min-width: var(--button-large-width);
     font-size: 18px;
-    padding: 0 30px;
-    height: 45px;
-    --button-icon-height: 45px;
+    padding: var(--button-large-padding);
+    height: var(--button-large-height);
+    --button-icon-height: var(--button-large-height);
   }
 
   &.is-disabled {
     cursor: not-allowed;
-    color: #ccc;
-    background-color: var(--accents-1);
-    border-color: var(--accents-2);
+    color: var(--button-disabled-text-color);
+    background-color: var(--button-disabled-bg-color);
+    border-color: var(--button-disabled-border-color);
   }
 
   &.is-shadow {
@@ -163,7 +221,6 @@
   &.is-auto {
     width: auto;
     min-width: auto;
-    --buton-auto-gap: var(--fay-gap);
   }
 
   &.is-loading {

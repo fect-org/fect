@@ -3,3 +3,7 @@ export type IntersectionToObj<T> = {
 }
 
 export type Tuple = <T extends string[]>(...rest: T) => T
+
+export type RecordPartial<T extends keyof any, K> = {
+  [P in T]?: K
+}

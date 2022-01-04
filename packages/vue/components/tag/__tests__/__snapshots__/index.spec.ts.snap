@@ -2,6 +2,6 @@
 
 exports[`Tag component props should be work correctly 1`] = `
 <div class="container">
-  <div class="fect-tag" type-data="success" style="border-color: transparent;">hello world</div>
+  <div class="fect-tag fect-tag--success fect-tag--invert" type-data="success">hello world</div>
 </div>
 `;

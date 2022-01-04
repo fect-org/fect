@@ -1,6 +1,7 @@
 import { computed, PropType, watch, defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, CustomCSSProperties, NormalTypes } from '../utils'
+import { createName } from '../utils'
+import type { CustomCSSProperties, NormalTypes, RecordPartial } from '../utils'
 import RatingIcon from './rating-icon'
 
 import './index.less'
@@ -8,11 +9,11 @@ import './index.less'
 const name = createName('Rating')
 
 const getColor = (type: NormalTypes): string => {
-  const colors: { [key in NormalTypes]?: string } = {
-    default: 'var(--primary-foreground)',
-    success: 'var(--success-default)',
-    warning: 'var(--warning-default)',
-    error: 'var(--error-default)'
+  const colors: RecordPartial<NormalTypes, string> = {
+    default: 'var(--rating-default-color)',
+    success: 'var(--rating-success-color)',
+    warning: 'var(--rating-warning-color)',
+    error: 'var(--rating-error-color)'
   }
   //  user may be entry types without NormalTypes
   return colors[type] || (colors.default as string)
@@ -76,7 +77,7 @@ export default defineComponent({
     const renderIcon = (key: number) => {
       const { locked } = props
 
-      const icon = slots['icon']
+      const { icon } = slots
 
       return (
         <div
