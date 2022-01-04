@@ -3,7 +3,11 @@ codecov:
   status:
     patch: false
   project:
-    threshold: 1%
+    default:
+      target: 95%
+      threshold: 2%
+      branches:
+        - "master"
   comment:
     layout: "reach, diff, flags, files"
     behavior: default
