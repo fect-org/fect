@@ -2,9 +2,11 @@ codecov:
   require_ci_to_pass: true
   status:
     patch: false
+  project:
+    threshold: 1%
   comment:
-    layout: 'reach, diff, flags, files'
+    layout: "reach, diff, flags, files"
     behavior: default
     require_changes: false
     branches:
-      - 'master'
+      - "master"

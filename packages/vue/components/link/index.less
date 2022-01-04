@@ -1,3 +1,13 @@
+@link-color: var(--success-default);
+@link-hover-color: var(--success-light);
+@link-block-hover-color: #0076ff1a;
+
+:root {
+  --link-color: @link-color;
+  --link-hover-color: @link-hover-color;
+  --link-block-hover-color: @link-block-hover-color;
+}
+
 .fect-link {
   display: inline-flex;
   line-height: inherit;
@@ -13,20 +23,19 @@
     }
   }
   &.color {
-    color: var(--success-default);
+    color: var(--link-color);
   }
 
   &:active,
   &:focus,
   &:hover {
-    color: var(--success-light);
+    color: var(--link-hover-color);
   }
   &.block {
     padding: 8px;
     border-radius: 5px;
-    // padding: calc(20 * 0.8) calc(20 * 1.7);
     &:hover {
-      background-color: #0076ff1a;
+      background-color: var(--link-block-hover-color);
     }
   }
 }
