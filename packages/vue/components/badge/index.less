@@ -1,3 +1,31 @@
+// badge bg variable
+@badge-default-bg-color: var(--primary-foreground);
+@badge-success-bg-color: var(--success-default);
+@badge-warning-bg-color: var(--warning-default);
+@badge-error-bg-color: var(--error-default);
+// badge size variable
+@badge-mini-font-size: 11px;
+@badge-small-font-size: 12px;
+@badge-medium-font-size: 14px;
+@badge-large-font-size: 16px;
+//
+@badge-text-color: var(--primary-background);
+
+:root {
+  // badge bg variable
+  --badge-default-bg-color: @badge-default-bg-color;
+  --badge-success-bg-color: @badge-success-bg-color;
+  --badge-warning-bg-color: @badge-warning-bg-color;
+  --badge-error-bg-color: @badge-error-bg-color;
+  // badge size variable
+  --badge-mini-font-size: @badge-mini-font-size;
+  --badge-small-font-size: @badge-small-font-size;
+  --badge-medium-font-size: @badge-medium-font-size;
+  --badge-large-font-size: @badge-large-font-size;
+  //
+  --badge-text-color: @badge-text-color;
+}
+
 .fect-badge {
   display: inline-block;
   padding: 4px 7px;
@@ -6,10 +34,40 @@
   line-height: 1;
   vertical-align: middle;
   border: 0;
-  color: var(--primary-background);
-}
-
-.fect-dot {
-  padding: 4px;
-  border-radius: 50%;
+  color: var(--badge-text-color);
+  &--default {
+    background-color: var(--badge-default-bg-color);
+  }
+  &--success {
+    background-color: var(--badge-success-bg-color);
+  }
+  &--warning {
+    background-color: var(--badge-warning-bg-color);
+  }
+  &--error {
+    background-color: var(--badge-error-bg-color);
+  }
+  &--mini {
+    font-size: var(--badge-mini-font-size);
+  }
+  &--small {
+    font-size: var(--badge-small-font-size);
+  }
+  &--medium {
+    font-size: var(--badge-medium-font-size);
+  }
+  &--large {
+    font-size: var(--badge-large-font-size);
+  }
+  &__dot {
+    > .fect-dot {
+      &__ctx {
+        margin-left: 0;
+      }
+      &__circle {
+        width: 8px;
+        height: 8px;
+      }
+    }
+  }
 }

@@ -1,33 +1,14 @@
 import { computed, defineComponent, CSSProperties, PropType } from 'vue'
+import Dot from '../dot'
 import { createName, NormalSizes, NormalTypes } from '../utils'
-import { useProvider } from '@fect-ui/vue-hooks'
-import { BadgeAnchorProvide, READONLY_BADGE_ANCHOR_KEY } from '../badge-anchor/badge-anchor'
+import { useBadgeContext } from '../badge-anchor/badge-context'
 import './index.less'
 
 const name = createName('Badge')
 
-export const queryBgColor = (type: NormalTypes) => {
-  const bgsPool: { [key in NormalTypes]: string } = {
-    default: 'var(--primary-foreground)',
-    success: 'var(--success-default)',
-    warning: 'var(--warning-default)',
-    error: 'var(--error-default)'
-  }
-  return bgsPool[type]
-}
-
-export const queryFontSize = (size: NormalSizes) => {
-  const sizesPool: { [key in NormalSizes]: string } = {
-    mini: '11px',
-    small: '12px',
-    medium: '14px',
-    large: '16px'
-  }
-  return sizesPool[size]
-}
-
 export default defineComponent({
   name,
+  inheritAttrs: false,
   props: {
     type: {
       type: String as PropType<NormalTypes>,
@@ -40,20 +21,7 @@ export default defineComponent({
     dot: Boolean
   },
   setup(props, { slots, attrs }) {
-    const parent = useProvider<BadgeAnchorProvide>(READONLY_BADGE_ANCHOR_KEY)
-    const { context } = parent
-    const hasParent = computed(() => {
-      if (context) return true
-      return false
-    })
-
-    const setStyle = computed(() => {
-      const styles: CSSProperties = {
-        backgroundColor: queryBgColor(props.type),
-        fontSize: queryFontSize(props.size)
-      }
-      return styles
-    })
+    const { context } = useBadgeContext()
 
     const placementStyle = computed(() => {
       const { top, left, right, value, origin, bottom } = context!
@@ -71,14 +39,19 @@ export default defineComponent({
     })
 
     const renderElement = () => {
+      if (props.dot) return <Dot class="fect-badge__dot" type={props.type} {...attrs} />
       return (
-        <span {...attrs} class={`${props.dot ? 'fect-dot' : ''} fect-badge`} style={setStyle.value}>
-          {!props.dot && slots.default?.()}
+        <span class={`fect-badge fect-badge--${props.type} fect-badge--${props.size}`} {...attrs}>
+          {slots.default?.()}
         </span>
       )
     }
-    return () => (
-      <>{hasParent.value ? <sup style={placementStyle.value}>{renderElement()}</sup> : <>{renderElement()}</>}</>
-    )
+
+    return () => {
+      if (context) {
+        return <sup style={placementStyle.value}>{renderElement()}</sup>
+      }
+      return renderElement()
+    }
   }
 })

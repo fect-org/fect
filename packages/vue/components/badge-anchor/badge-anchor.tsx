@@ -1,21 +1,11 @@
 import { PropType, defineComponent } from 'vue'
 import { createName, PlaceTypes } from '../utils'
-import { createProvider } from '@fect-ui/vue-hooks'
+import { createBadgeContext } from './badge-context'
+import type { TransformStyles } from './interface'
 
 import './index.less'
 
 const name = createName('BadgeAnchor')
-
-export const READONLY_BADGE_ANCHOR_KEY = 'badgeAnchorKey'
-
-export type TransformStyles = {
-  top?: string
-  bottom?: string
-  left?: string
-  right?: string
-  value: string
-  origin: string
-}
 
 export const getTransform = (placement: PlaceTypes): TransformStyles => {
   const styles: { [key in PlaceTypes]: TransformStyles } = {
@@ -58,7 +48,7 @@ export default defineComponent({
     }
   },
   setup(props, { slots }) {
-    const { provider } = createProvider(READONLY_BADGE_ANCHOR_KEY)
+    const { provider } = createBadgeContext()
     provider(getTransform(props.placement))
     return () => <div class="fect-badge__anchor">{slots.default?.()}</div>
   }
