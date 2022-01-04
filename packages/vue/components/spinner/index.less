@@ -1,3 +1,9 @@
+@spinner-color: var(--primary-foreground);
+
+:root {
+  --spinner-color: @spinner-color;
+}
+
 @keyframes spinner-opacity {
   0% {
     opacity: 1;
@@ -21,7 +27,7 @@
     left: 50%;
     top: 50%;
     span {
-      background-color: var(--primary-foreground);
+      background-color: var(--spinner-color);
       position: absolute;
       top: -3.9%;
       width: 24%;

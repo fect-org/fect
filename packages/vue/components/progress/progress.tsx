@@ -46,7 +46,7 @@ export default defineComponent({
     },
     colors: {
       type: Object,
-      default: () => {}
+      default: () => ({})
     },
     type: {
       type: String as PropType<NormalTypes>,

@@ -1,3 +1,11 @@
+@tabs-title-text-color: var(--accents-6);
+@tabs-title-acitve-color: var(--primary-foreground);
+
+:root {
+  --tabs-title-text-color: @tabs-title-text-color;
+  --tabs-title-acitve-color: @tabs-title-acitve-color;
+}
+
 .fect-tabs {
   width: inherit;
   &__header {
@@ -24,7 +32,7 @@
     font-size: 16px;
     white-space: nowrap;
     margin: 0 calc(0.8 * var(--fay-gap-half));
-    color: var(--accents-6);
+    color: var(--tabs-title-text-color);
     user-select: none;
     display: flex;
     align-items: center;
@@ -35,7 +43,7 @@
     }
     &.active {
       &::after {
-        background-color: var(--primary-foreground);
+        background-color: var(--tabs-title-acitve-color);
         transform: scaleX(1);
       }
     }
