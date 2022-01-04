@@ -1,10 +1,45 @@
+@tag-radius: var(--fay-radius);
+@tag-default-color: var(--primary-foreground);
+@tag-success-color: var(--success-default);
+@tag-warning-color: var(--warning-default);
+@tag-error-color: var(--error-default);
+@tag-bg-color: var(--primary-background);
+@tag-invert-text-color: var(--primary-background);
+
+:root {
+  --tag-radius: @tag-radius;
+  --tag-default-color: @tag-default-color;
+  --tag-success-color: @tag-success-color;
+  --tag-warning-color: @tag-warning-color;
+  --tag-error-color: @tag-error-color;
+  --tag-bg-color: @tag-bg-color;
+  --tag-invert-text-color: @tag-invert-text-color;
+}
+
 .fect-tag {
   display: inline-block;
   line-height: 14px;
   font-size: 14px;
   height: 28px;
-  border-radius: var(--fay-radius);
+  border-radius: var(--tag-radius);
   padding: 6px;
   box-sizing: border-box;
-  border: 1px solid var(--primary-foreground);
+  border: 1px solid currentColor;
+  background-color: var(--tag-bg-color);
+  &--default {
+    color: var(--tag-default-color);
+  }
+  &--success {
+    color: var(--tag-success-color);
+  }
+  &--warning {
+    color: var(--tag-warning-color);
+  }
+  &--error {
+    color: var(--tag-error-color);
+  }
+  &--invert {
+    color: var(--tag-invert-text-color);
+    border-color: transparent;
+  }
 }
