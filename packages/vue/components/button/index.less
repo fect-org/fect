@@ -23,6 +23,8 @@
 @button-disabled-text-color: #ccc;
 @button-disabled-bg-color: var(--accents-1);
 @button-disabled-border-color: var(--accents-2);
+// button gap varibale
+@button-gap-auto: var(--fay-gap);
 
 :root {
   // color variable
@@ -50,6 +52,8 @@
   --button-disabled-text-color: @button-disabled-text-color;
   --button-disabled-bg-color: @button-disabled-bg-color;
   --button-disabled-border-color: @button-disabled-border-color;
+  // gap variable
+  --buton-auto-gap: @button-gap-auto;
 }
 
 @keyframes button-expand {
@@ -102,7 +106,7 @@
     background-color: var(--button-success-color);
     border-color: var(--button-success-color);
     color: #fff;
-    --button-load-bg: var(--success-default);
+    --button-load-bg: var(--button-success-color);
     --button-load-color: #fff;
 
     &.is-ghost {
@@ -118,7 +122,7 @@
     background-color: var(--button-warning-color);
     border-color: var(--button-warning-color);
     color: #fff;
-    --button-load-bg: var(--warning-default);
+    --button-load-bg: var(--button-warning-color);
     --button-load-color: #fff;
 
     &.is-ghost {
@@ -134,7 +138,7 @@
     background-color: var(--button-error-color);
     border-color: var(--button-error-color);
     color: #fff;
-    --button-load-bg: var(--error-default);
+    --button-load-bg: var(--button-error-color);
     --button-load-color: #fff;
 
     &.is-ghost {
@@ -150,7 +154,7 @@
     border-color: var(--button-secondary-color);
     background-color: var(--button-secondary-color);
     color: var(--primary-background);
-    --button-load-bg: var(--dark-default);
+    --button-load-bg: var(--button-secondary-color);
     --button-load-color: var(--primary-background);
 
     &.is-ghost {
@@ -217,7 +221,6 @@
   &.is-auto {
     width: auto;
     min-width: auto;
-    --buton-auto-gap: var(--fay-gap);
   }
 
   &.is-loading {

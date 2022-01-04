@@ -1,26 +1,26 @@
-import { ButtonTypes } from '../utils'
+import type { ButtonTypes, RecordPartial } from '../utils'
 
-type ButtonColorGroup = {
+interface ButtonColorGroup {
   bg: string
   border: string
   color: string
 }
 
 export const queryGhostColor = (type: ButtonTypes) => {
-  const colors: { [key in ButtonTypes]?: ButtonColorGroup } = {
+  const colors: RecordPartial<ButtonTypes, ButtonColorGroup> = {
     success: {
-      bg: 'var(--success-default)',
-      border: 'var(--primary-background)',
+      bg: 'var(--button-success-color)',
+      border: 'var(--button-default-color)',
       color: '#fff'
     },
     warning: {
-      bg: 'var(--warning-default)',
-      border: 'var(--primary-background)',
+      bg: 'var(--button-warning-color)',
+      border: 'var(--button-default-color)',
       color: '#fff'
     },
     error: {
-      bg: 'var(--error-default)',
-      border: 'var(--primary-background)',
+      bg: 'var(--button-error-color)',
+      border: 'var(--button-default-color)',
       color: '#fff'
     },
     secondary: {
@@ -33,26 +33,26 @@ export const queryGhostColor = (type: ButtonTypes) => {
 }
 
 export const queryHoverColor = (type: ButtonTypes, ghost: boolean) => {
-  const colors: { [key in ButtonTypes]: ButtonColorGroup } = {
+  const colors: Record<ButtonTypes, ButtonColorGroup> = {
     default: {
-      bg: 'var(--primary-background)',
+      bg: 'var(--button-default-color)',
       border: 'var(--primary-foreground)',
       color: 'var(--primary-foreground)'
     },
     success: {
-      bg: 'var(--primary-background)',
-      border: 'var(--success-default)',
-      color: 'var(--success-default)'
+      bg: 'var(--button-default-color)',
+      border: 'var(--button-success-color)',
+      color: 'var(--button-success-color)'
     },
     warning: {
-      bg: 'var(--primary-background)',
-      border: 'var(--warning-default)',
-      color: 'var(--warning-default)'
+      bg: 'var(--button-default-color)',
+      border: 'var(--button-warning-color)',
+      color: 'var(--button-warning-color)'
     },
     error: {
-      bg: 'var(--primary-background)',
-      border: 'var(--error-default)',
-      color: 'var(--error-default)'
+      bg: 'var(--button-default-color)',
+      border: 'var(--button-error-color)',
+      color: 'var(--button-error-color)'
     },
     secondary: {
       bg: 'var(--lite-default)',
