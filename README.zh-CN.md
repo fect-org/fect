@@ -30,7 +30,8 @@ Fect 支持现代浏览器以及 Chrome >= 51、iOS >= 10.0（与 Vue 3 一致�
 
 ## 文档
 
-- [中文文档](https://vue.miaya.art/)
+- [中文文档](https://vue.miaya.art/zh-cn)
+- [rc 版本文档](https://vue-rc.miaya.art/zh-cn)
 
 ## 贡献者们
 

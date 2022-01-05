@@ -32,6 +32,7 @@ Fect supports modern browsers and Chrome >= 51、iOS >= 10.0 (same as Vue 3).
 
 ## Documentation
 
+- [Document](https://vue.miaya.art/en-us)
 - [Canary Document](https://vue-rc.miaya.art/en-us)
 
 ## All Contributors
