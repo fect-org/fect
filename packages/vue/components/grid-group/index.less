@@ -31,13 +31,15 @@
 
 @media only screen and(min-width:650px) {
   .fect-grid {
-    &--sm {
-      flex-grow: var(--sm-grow);
-      max-width: var(--sm-width);
-      flex-basis: var(--sm-basis);
-      display: inherit;
-      &-0 {
-        display: none;
+    &__group {
+      &--sm {
+        flex-grow: var(--sm-grow);
+        max-width: var(--sm-width);
+        flex-basis: var(--sm-basis);
+        display: inherit;
+        &-0 {
+          display: none;
+        }
       }
     }
   }
