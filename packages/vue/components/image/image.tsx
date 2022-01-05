@@ -1,13 +1,15 @@
-import { computed, ref, watchEffect, CSSProperties, defineComponent } from 'vue'
+import { computed, watchEffect, CSSProperties, defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName } from '../utils'
-import ImgSkeleton from './image-skeleton'
+import { createName, isNumber } from '../utils'
+import Skeleton from '../skeleton'
+import SkeletonItem from '../skeleton-item'
 import './index.less'
 
 const name = createName('Image')
 
 export default defineComponent({
   name,
+  inheritAttrs: false,
   props: {
     src: {
       type: String,
@@ -28,21 +30,23 @@ export default defineComponent({
     }
   },
   setup(props, { attrs }) {
-    const imgRef = ref<HTMLImageElement>()
-
     const [loading, setLoading] = useState<boolean>(true)
     const [showSkeleton, setShowSkeleton] = useState<boolean>(props.skeleton)
 
     watchEffect((onInvalidate) => {
-      const timer = setTimeout(() => {
-        if (!imgRef.value) return
-        if (imgRef.value.complete) {
-          setLoading(false)
+      // user may pass  a non-number. In order to avoid program errors, we need to give a default value.
+      const delay = isNumber(props.maxDelay) ? Number(props.maxDelay) : 3000
+
+      let timer: number | undefined
+      if (showSkeleton.value) {
+        setLoading(false)
+        timer = window.setTimeout(() => {
           setShowSkeleton(false)
-        }
-      }, Number(props.maxDelay))
+          setLoading(true)
+        }, delay)
+      }
       onInvalidate(() => {
-        clearTimeout(timer)
+        timer && window.clearTimeout(timer)
       })
     })
 
@@ -55,20 +59,16 @@ export default defineComponent({
       return style
     })
 
-    const renderNormal = () => (
-      <div class="fect-image" style={setStyle.value}>
-        {showSkeleton.value && <ImgSkeleton opacity={loading.value ? 0.5 : 0} />}
-        <img
-          ref={imgRef}
-          src={props.src}
-          width={props.width}
-          height={props.height}
-          style={{ display: showSkeleton.value ? 'none' : 'block' }}
-          {...attrs}
-        />
+    const slots = {
+      // ...setStyle.value ,
+      default: () => <img src={props.src} width={props.width} height={props.height} {...attrs} />,
+      skeleton: () => <SkeletonItem variable="image" style={{ marginTop: 0, ...setStyle.value }} />
+    }
+
+    return () => (
+      <div class="fect-image" style={{ ...setStyle.value, overflow: showSkeleton.value ? 'visible' : 'hidden' }}>
+        <Skeleton loading={loading.value} v-slots={slots}></Skeleton>
       </div>
     )
-
-    return () => renderNormal()
   }
 })
