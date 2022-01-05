@@ -37,8 +37,12 @@ export const resolveExteranlStyle = async (path) => {
           .substr(1)
 
         if (compoents.includes(depsComponent)) {
+          const depsStylePath = pathExistsSync(join(dirname(dirPath), depsComponent, 'index.less'))
+            ? `../../${depsComponent}/index.css`
+            : ''
+
           styleDeps[component] = {
-            [depsComponent]: `../../${depsComponent}/index.css`,
+            [depsComponent]: depsStylePath,
             ...styleDeps[component]
           }
         }
