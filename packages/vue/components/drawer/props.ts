@@ -18,5 +18,9 @@ export const props = {
     type: Boolean,
     default: true
   },
+  teleport: {
+    type: String as PropType<keyof HTMLElementTagNameMap>,
+    default: 'body'
+  },
   disableOverlayClick: Boolean
 }

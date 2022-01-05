@@ -11,6 +11,7 @@ const name = createName('Drawer')
 
 export default defineComponent({
   name,
+  inheritAttrs: false,
   props,
   emits: ['update:modelValue'],
   setup(props, { slots, emit, attrs }) {
@@ -42,7 +43,7 @@ export default defineComponent({
 
     return () => (
       <Teleport
-        teleport="body"
+        teleport={props.teleport}
         overlay={props.overlay}
         scroll={visible.value}
         show={visible.value}
