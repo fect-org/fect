@@ -20,10 +20,10 @@ export default {
   },
   setup() {
     /**
-     * currentNav variable control navBar route .
+     * currentNav variable control navBar route.
      * navTag variable control Guide and Component sidebar route list
      */
-    const [currentNav, setCurrentNav] = useState<Nav>('')
+    const [currentNav, setCurrentNav] = useState<Nav>()
     const [navTag, setNavTag] = useState<Nav>('')
     const [navLink, setNavLink] = useState<NavLink | string>('')
     const [component, setComponent] = useState<string>('')

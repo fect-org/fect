@@ -32,7 +32,7 @@ import { useTheme } from '@fect-ui/vue/components/utils'
 import { useWebsiteContext } from '../../website-context'
 
 export default defineComponent({
-  setup(props) {
+  setup() {
     const enNavs = ['Guide', 'Components', '中文文档']
     const zhNavs = ['指南', '组件', 'English']
     const navAttrs = ['guide', 'components']
