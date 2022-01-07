@@ -16,7 +16,7 @@ const snippetStyleTypes = tuple('default', 'secondary', 'success', 'warning', 'e
 
 const placeTypes = tuple('topLeft', 'topRight', 'bottomLeft', 'bottomRight')
 
-const loadingTypes = tuple('default', 'cube', 'wave')
+const loadingTypes = tuple('default', 'cube', 'wave', 'circle')
 
 export {
   normalSizes,

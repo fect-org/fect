@@ -20,6 +20,13 @@
 @loading-wave-medium-size: 10px;
 @loading-wave-large-size: 12px;
 
+// circle
+
+@loading-circle-mini-size: 20px;
+@loading-circle-small-size: 25px;
+@loading-circle-medium-size: 30px;
+@loading-circle-large-size: 35px;
+
 :root {
   --loading-default-color: @loading-default-color;
   --loading-success-color: @loading-success-color;
@@ -42,6 +49,13 @@
   --loading-wave-small-size: @loading-wave-small-size;
   --loading-wave-medium-size: @loading-wave-medium-size;
   --loading-wave-large-size: @loading-wave-large-size;
+
+  // circle
+
+  --loading-circle-mini-size: @loading-circle-mini-size;
+  --loading-circle-small-size: @loading-circle-small-size;
+  --loading-circle-medium-size: @loading-circle-medium-size;
+  --loading-circle-large-size: @loading-circle-large-size;
 }
 
 @keyframes loading-blink {
@@ -79,6 +93,23 @@
   20% {
     opacity: 1;
     transform: scaleY(1.1);
+  }
+}
+
+@keyframes loading-circle {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -40;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -120;
   }
 }
 
@@ -218,6 +249,40 @@
 
       &:nth-child(5) {
         animation-delay: -0.8s;
+      }
+    }
+    &__circle {
+      display: block;
+      height: var(--loading-circle-medium-size);
+      width: var(--loading-circle-medium-size);
+      &.default {
+        color: var(--loading-default-color);
+      }
+      &.success {
+        color: var(--loading-success-color);
+      }
+      &.warning {
+        color: var(--loading-warning-color);
+      }
+      &.error {
+        color: var(--loading-error-color);
+      }
+      &.mini {
+        height: var(--loading-circle-mini-size);
+        width: var(--loading-circle-mini-size);
+      }
+      &.small {
+        height: var(--loading-circle-small-size);
+        width: var(--loading-circle-small-size);
+      }
+      &.large {
+        height: var(--loading-circle-large-size);
+        width: var(--loading-circle-large-size);
+      }
+      circle {
+        animation: loading-circle 1.5s ease-in-out infinite;
+        stroke-width: 3;
+        stroke-linecap: round;
       }
     }
   }

@@ -1,6 +1,7 @@
 import { computed, PropType, defineComponent } from 'vue'
 import { createName } from '../utils'
 import { NormalSizes, NormalTypes, LoadingTypes } from '../utils'
+import LoadingCircle from './loading-circle'
 import './index.less'
 
 const name = createName('Loading')
@@ -27,11 +28,21 @@ export default defineComponent({
   },
   setup(props) {
     const setColor = computed(() => {
-      const { color } = props
+      const { color, loadType } = props
       if (!color) return
-      const safeColor = Array.isArray(color) ? `linear-gradient(${color.join()})` : color
+
+      const getCurrentColor = () => {
+        const isArr = Array.isArray(color)
+        if (loadType === 'circle' && isArr) return 'initial'
+        return isArr ? `linear-gradient(${color.join()})` : color
+      }
+      const safeColor = getCurrentColor()
+      if (loadType !== 'circle')
+        return {
+          background: safeColor
+        }
       return {
-        background: safeColor
+        color: safeColor
       }
     })
 
@@ -52,16 +63,21 @@ export default defineComponent({
 
     const getLoadNum = computed(() => {
       const { loadType } = props
+      if (loadType === 'circle') return null
       const loader = { wave, default: normal, cube }
       return loader[loadType] || loader.default
     })
-
+    // LoadingCircle
     return () => (
       <div class="fect-loading">
         <span class="loading">
-          {[...Array(getLoadNum.value)].map((_, i) => (
-            <i class={`loading__${props.loadType} ${setClass.value}`} style={setColor.value} key={i} />
-          ))}
+          {getLoadNum.value ? (
+            [...Array(getLoadNum.value)].map((_, i) => (
+              <i class={`loading__${props.loadType} ${setClass.value}`} style={setColor.value} key={i} />
+            ))
+          ) : (
+            <LoadingCircle class={setClass.value} style={setColor.value} />
+          )}
         </span>
       </div>
     )

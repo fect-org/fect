@@ -41,6 +41,8 @@ describe('Loading', () => {
     expect(el.attributes('style')).toBe('background: pink;')
     await wrapper.setData({ loadType: 'cube' })
     expect(wrapper.findAll('.loading__cube')).toBeTruthy()
+    await wrapper.setData({ loadType: 'circle', color: ['red', 'blue'] })
+    expect(wrapper.findAll('.loading__circle')).toBeTruthy()
     await wrapper.setData({ loadType: 'wave' })
     expect(wrapper.findAll('.loading__wave')).toBeTruthy()
     expect(wrapper.html()).toMatchSnapshot()
