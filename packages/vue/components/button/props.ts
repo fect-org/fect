@@ -22,7 +22,7 @@ export const props = {
   disabled: Boolean,
   loadType: {
     type: String as PropType<LoadingTypes>,
-    default: 'deafult'
+    default: 'default'
   },
   effect: {
     type: Boolean,

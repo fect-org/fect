@@ -1,4 +1,4 @@
-import { computed, PropType, defineComponent, CSSProperties } from 'vue'
+import { computed, PropType, defineComponent } from 'vue'
 import { createName } from '../utils'
 import { NormalSizes, NormalTypes, LoadingTypes } from '../utils'
 import './index.less'
@@ -21,20 +21,26 @@ export default defineComponent({
       default: 'default'
     },
     color: {
-      type: String,
+      type: [String, Array],
       default: ''
     }
   },
   setup(props) {
     const setColor = computed(() => {
       const { color } = props
-      if (color) {
-        return {
-          background: color
-        } as CSSProperties
+      if (!color) return
+      const safeColor = Array.isArray(color) ? `linear-gradient(${color.join()})` : color
+      return {
+        background: safeColor
       }
-      return ''
     })
+
+    /**
+     * follow variable is loading type should fill element count.
+     */
+    const wave = 5
+    const cube = 4
+    const normal = 3
 
     const setClass = computed(() => {
       const { size, type } = props
@@ -44,46 +50,19 @@ export default defineComponent({
       return names.join(' ')
     })
 
-    const defaultLoad = () => {
-      return (
-        <>
-          {new Array(3).fill(0).map((item, i) => (
-            <i class={`loading__default ${setClass.value}`} style={setColor.value} key={item + i}></i>
-          ))}
-        </>
-      )
-    }
-
-    const cubeLoad = () => {
-      return (
-        <>
-          {new Array(4).fill(0).map((item, i) => (
-            <i class={`loading__cube ${setClass.value}`} style={setColor.value} key={item + i}></i>
-          ))}
-        </>
-      )
-    }
-
-    const waveLoad = () => {
-      return (
-        <>
-          {new Array(5).fill(0).map((item, i) => (
-            <i class={`loading__wave ${setClass.value}`} style={setColor.value} key={item + i}></i>
-          ))}
-        </>
-      )
-    }
-
-    const renderLoad = computed(() => {
+    const getLoadNum = computed(() => {
       const { loadType } = props
-      if (loadType === 'cube') return cubeLoad()
-      if (loadType === 'wave') return waveLoad()
-      return defaultLoad()
+      const loader = { wave, default: normal, cube }
+      return loader[loadType] || loader.default
     })
 
     return () => (
       <div class="fect-loading">
-        <span class="loading">{renderLoad.value}</span>
+        <span class="loading">
+          {[...Array(getLoadNum.value)].map((_, i) => (
+            <i class={`loading__${props.loadType} ${setClass.value}`} style={setColor.value} key={i} />
+          ))}
+        </span>
       </div>
     )
   }
