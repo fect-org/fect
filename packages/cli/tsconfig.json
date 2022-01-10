@@ -2,8 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "./lib",
-    "target": "ES2018",
-    "module": "CommonJS",
+    "target": "ESNext",
+    "module":"CommonJS",
+    "moduleResolution": "Node",
     "sourceMap": false,
     "declaration": true,
     "skipLibCheck": true,

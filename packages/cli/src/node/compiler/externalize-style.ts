@@ -1,23 +1,32 @@
 import { readdirSync, pathExistsSync, outputJSONSync, readFileSync } from 'fs-extra'
 import { extname, dirname, basename, join } from 'path'
-import { isDir, IMPORT_REG } from '../../shared/constant'
+import { isDir } from '../../shared/constant'
 import { compileDir } from './compiler-dir'
+import parser from 'parse-imports'
 
 export const resolveExteranlStyle = async (path) => {
+  const REG = /import .+ from .+()/g
   const IGNORE_DIR = ['utils', 'index.ts']
-  const REG = /import (\w+) from/g
+
   const compoents = readdirSync(path).filter((_) => !IGNORE_DIR.includes(_))
+
+  const componentNames = compoents.map((_) => {
+    _ = _.replace(/\-(\w)/g, (_, k: string) => k.toUpperCase())
+    _ = _.charAt(0).toUpperCase() + _.slice(1)
+    return _
+  })
+
   const styleDeps = {}
 
-  const setDeps = (filePath: string) => {
-    // only work on .tsx file as component
+  const setDeps = async (filePath: string) => {
     if (!['.tsx'].includes(extname(filePath))) return
+    if (IGNORE_DIR.includes(dirname(filePath))) return
     const dirPath = dirname(filePath)
-
-    const dirPathJson = join(dirPath, 'style.json')
     const component = basename(dirPath)
-    const code = readFileSync(filePath, 'utf8')
-    const imports = (filePath.endsWith('.tsx') && code.match(IMPORT_REG)) || []
+    const dirPathJson = join(dirPath, 'style.json')
+    let code = readFileSync(filePath, 'utf-8')
+    code = (code.match(REG) || []).join('\n')
+
     const stylePath = join(dirPath, 'index.less')
     const hasStyle = pathExistsSync(stylePath)
     const defaultStyle = hasStyle ? '../index.css' : ''
@@ -25,30 +34,26 @@ export const resolveExteranlStyle = async (path) => {
       ...styleDeps[component],
       [component]: defaultStyle
     }
-    imports.map((_) => {
-      // eslint-disable-next-line prefer-destructuring
-      const deps = _.match(REG)
-      if (deps) {
-        const depsComponent = deps[0]
-          .match(/\s\w+\s/g)[0]
-          .replace(/\s/g, '')
-          .replace(/[A-Z]/g, (_) => '-' + _)
-          .toLowerCase()
-          .substr(1)
 
-        if (compoents.includes(depsComponent)) {
-          const depsStylePath = pathExistsSync(join(dirname(dirPath), depsComponent, 'index.less'))
-            ? `../../${depsComponent}/index.css`
+    const imports = [...(await parser(code))]
+    imports.forEach((item) => {
+      if (item.importClause.default) {
+        const depend = item.importClause.default
+        if (componentNames.includes(depend)) {
+          const depsPath = item.moduleSpecifier.value.slice(3)
+          const depsStylePath = pathExistsSync(join(dirname(dirPath), depsPath, 'index.less'))
+            ? `../../${depsPath}/index.css`
             : ''
-
-          styleDeps[component] = {
-            [depsComponent]: depsStylePath,
-            ...styleDeps[component]
+          if (depsStylePath) {
+            styleDeps[component] = {
+              [depend]: depsStylePath,
+              ...styleDeps[component]
+            }
           }
         }
       }
+      outputJSONSync(dirPathJson, styleDeps[component])
     })
-    outputJSONSync(dirPathJson, styleDeps[component])
   }
 
   const analyzeDeps = (component) => {

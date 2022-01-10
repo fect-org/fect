@@ -13,12 +13,6 @@
   "bin": {
     "non": "bin/non.js"
   },
-  "files": [
-    "lib",
-    "bind",
-    "preset.js",
-    "ReADME.md"
-  ],
   "scripts": {
     "watch": "tsc --watch",
     "build": "tsc"
@@ -53,7 +47,8 @@
     "jest-transform-stub": "^2.0.0",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^16.10.5",
-    "esbuild": "^0.14.2"
+    "esbuild": "^0.14.2",
+    "parse-imports": "0.0.5"
   },
   "devDependencies": {
     "@types/babel__core": "^7.1.16",

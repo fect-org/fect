@@ -3740,6 +3740,11 @@ es-abstract@^1.17.2, es-abstract@^1.19.1:
     string.prototype.trimstart "^1.0.4"
     unbox-primitive "^1.0.1"
 
+es-module-lexer@0.3.26:
+  version "0.3.26"
+  resolved "https://registry.npmmirror.com/es-module-lexer/download/es-module-lexer-0.3.26.tgz#7b507044e97d5b03b01d4392c74ffeb9c177a83b"
+  integrity sha1-e1BwROl9WwOwHUOSx0/+ucF3qDs=
+
 es-to-primitive@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/es-to-primitive/-/es-to-primitive-1.2.1.tgz#e55cd4c9cdc188bcefb03b366c736323fc5c898a"
@@ -6737,6 +6742,14 @@ parent-module@^1.0.0:
   dependencies:
     callsites "^3.0.0"
 
+parse-imports@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.npmmirror.com/parse-imports/download/parse-imports-0.0.5.tgz#80e505b9558d6fa8d760b9f0be64f42f65bf4d17"
+  integrity sha1-gOUFuVWNb6jXYLnwvmT0L2W/TRc=
+  dependencies:
+    es-module-lexer "0.3.26"
+    slashes "2.0.2"
+
 parse-json@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/parse-json/-/parse-json-4.0.0.tgz#be35f5425be1f7f6c747184f98a788cb99477ee0"
@@ -7442,6 +7455,11 @@ slash@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
   integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
+
+slashes@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.npmmirror.com/slashes/download/slashes-2.0.2.tgz#c149dd3555bd236fdc3b43ec56e748e924425613"
+  integrity sha1-wUndNVW9I2/cO0PsVudI6SRCVhM=
 
 slide@^1.1.6:
   version "1.1.6"
