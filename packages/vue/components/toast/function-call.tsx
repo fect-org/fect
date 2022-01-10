@@ -28,9 +28,10 @@ const Toast = (options: ToastOptions) => {
           const [toasts, setToasts] = useState<Toasts>([])
           const [isHovering, setIsHovering] = useState<boolean>(false)
 
-          const updateToasts = (toastOption: Toasts[number]) => {
+          const updateToasts = (toastOption: Toasts[number], duration: number) => {
             const prevToasts = toasts.value.slice()
-            prevToasts.push(omit(toastOption, 'duration'))
+            // toastOption.
+            prevToasts.push(assign(omit(toastOption, 'duration'), { cancel: () => cancel(toastOption.id, duration) }))
             setToasts(prevToasts)
           }
 
@@ -93,14 +94,15 @@ const Toast = (options: ToastOptions) => {
    */
   const duration = isNumber(options.duration) ? Number(options.duration) : Toast.defaultOptions.duration
   instance.hideToast(id, duration)
-  instance.updateToasts(assign(options, { id }))
+  instance.updateToasts(assign(options, { id }), duration)
 }
 
 Toast.defaultOptions = {
   duration: 4500,
   text: '',
   type: 'default',
-  once: false
+  once: false,
+  closeAble: false
 } as ToastOptions
 
 const createMethods = (type: NormalTypes) => (options: StaticToastOptions) =>

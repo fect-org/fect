@@ -19,5 +19,6 @@ export const props = {
     default: 0
   },
   hover: Boolean,
-  willBeDestroy: Boolean
+  willBeDestroy: Boolean,
+  closeAble: Boolean
 }

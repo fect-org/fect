@@ -30,8 +30,9 @@ toast/static.vue
 
 ### Toast Props
 
-| Attribue     | Description     | Type                | Accepted values                            | Default   |
-| ------------ | --------------- | ------------------- | ------------------------------------------ | --------- |
-| **text**     | toast message   | `'string','number'` | `-`                                        | `-`       |
-| **type**     | toast theme     | `string`            | `'default', 'success', 'warning', 'error'` | `default` |
-| **duration** | toast show time | `'string','number'` | `-`                                        | `4500`    |
+| Attribue      | Description           | Type                | Accepted values                            | Default   |
+| ------------- | --------------------- | ------------------- | ------------------------------------------ | --------- |
+| **text**      | toast message         | `'string','number'` | `-`                                        | `-`       |
+| **type**      | toast theme           | `string`            | `'default', 'success', 'warning', 'error'` | `default` |
+| **duration**  | toast show time       | `'string','number'` | `-`                                        | `4500`    |
+| **closeAble** | show toast close icon | `boolean`           | `'true','false'`                           | `false`   |

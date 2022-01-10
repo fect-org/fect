@@ -10,7 +10,7 @@ export default {
   name: 'ExToastDefault',
   setup() {
     const { proxy } = getCurrentInstance()
-    const handlerClick = () => proxy.$toast({ text: 'I am test Message' })
+    const handlerClick = () => proxy.$toast({ text: 'I am test Message', closeAble: true })
     return {
       handlerClick
     }

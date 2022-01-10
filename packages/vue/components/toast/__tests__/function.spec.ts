@@ -43,6 +43,14 @@ describe('Toast', () => {
     await trigger('mouseleave', el)
   })
 
+  it('props closeAble should be work', async () => {
+    Toast({ text: 'test hovering', closeAble: true })
+    await later()
+    const el = document.querySelector('.fect-toast__closeable')!
+    await trigger('click', el)
+    expect(el.querySelector('.fect-toast')).toBeFalsy()
+  })
+
   it('should register component in to app', async () => {
     const app = createApp(document.body)
     app.use(Toast)

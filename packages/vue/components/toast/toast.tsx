@@ -32,7 +32,17 @@ export default defineComponent({
     const renderToasts = () => {
       const { toasts } = context!
       return toasts.value.map((toast, idx) => (
-        <ToastItem {...toast} index={idx} hover={hover.value} total={toasts.value.length} key={`toast-${idx}`} />
+        <ToastItem
+          text={toast.text}
+          type={toast.type}
+          closeAble={toast.closeAble}
+          willBeDestroy={toast.willBeDestroy}
+          index={idx}
+          hover={hover.value}
+          total={toasts.value.length}
+          key={`toast-${idx}`}
+          onCancel={toast.cancel}
+        />
       ))
     }
 
