@@ -1,7 +1,7 @@
 <template>
   <div class="fect-doc__home-page">
     <div class="top">
-      <fe-image-browser url="https://vue.miaya.art">
+      <fe-image-browser :url="host">
         <p>
           Fect is a Vue UI Library with beautifully handcrafted Vercel Component.No design skills required — everything
           you need to create amazing applications is at your fingertips.
@@ -57,16 +57,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import { useWebsiteContext } from '../../website-context'
 
 export default defineComponent({
   name: 'Home',
   setup() {
+    const host = ref('')
     const { context } = useWebsiteContext()
 
+    onMounted(() => {
+      host.value = window.location.href
+    })
     return {
       navLink: context!.navLink,
+      host,
       updateCurrentNav: context!.updateCurrentNav
     }
   }
