@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "types/index.d.ts",
+  "jsdelivr": "lib/fect.min.umd.js",
   "scripts": {
     "collect": "non collect",
     "build": "npm run collect && non compile",
@@ -34,6 +35,11 @@
   "devDependencies": {
     "@fect-ui/cli": "^1.0.0"
   },
+  "sideEffects": [
+    "es/**/style/*",
+    "lib/**/style/*",
+    "*.css"
+  ],
   "dependencies": {
     "@fect-ui/themes": "^1.1.0",
     "@fect-ui/vue-hooks": "^1.0.0",
