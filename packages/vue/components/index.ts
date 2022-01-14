@@ -1,5 +1,7 @@
 const version = '1.2.0-rc.0'
+
 import { App } from 'vue'
+
 import { Avatar } from './avatar'
 import { AvatarGroup } from './avatar-group'
 import { BackTop } from './back-top'
@@ -110,6 +112,7 @@ const components = [
   Tooltip,
   User
 ]
+
 const install = (app: App) => {
   components.map((component: any) => {
     if (component.install) {

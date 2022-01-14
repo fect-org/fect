@@ -48,7 +48,8 @@
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^16.10.5",
     "esbuild": "^0.14.2",
-    "parse-imports": "0.0.5"
+    "parse-imports": "0.0.5",
+    "es-module-lexer":"^0.9.3"
   },
   "devDependencies": {
     "@types/babel__core": "^7.1.16",
