@@ -74,7 +74,7 @@ export default defineComponent({
     overflow: auto;
     box-sizing: border-box;
     top: 120px;
-    bottom: var(--fay-gap-half);
+    bottom: var(--fect-gap-half);
     &::-webkit-scrollbar {
       width: 0;
     }
@@ -90,13 +90,13 @@ export default defineComponent({
     }
   }
   &__route-content {
-    margin-bottom: var(--fay-gap);
+    margin-bottom: var(--fect-gap);
     .title {
       text-transform: uppercase;
       letter-spacing: 1.3px;
       font-size: 0.82rem;
       color: var(--accents-4);
-      margin-bottom: var(--fay-half-gap);
+      margin-bottom: var(--fect-half-gap);
     }
   }
   &__route-children {

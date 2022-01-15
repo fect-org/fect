@@ -35,7 +35,7 @@ export default defineComponent({
       background: var(--primary-background);
       padding-left: 5vw;
       box-sizing: border-box;
-      border-bottom: 1px solid var(--fay-border);
+      border-bottom: 1px solid var(--fect-border);
     }
   }
 }

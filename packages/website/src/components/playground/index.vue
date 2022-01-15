@@ -44,7 +44,7 @@ export default defineComponent({
 <style lang="less" scoped>
 .fect-doc {
   &__playground {
-    margin: var(--fay-gap) 0;
+    margin: var(--fect-gap) 0;
   }
   &__playground-title {
     h3 {
@@ -59,10 +59,10 @@ export default defineComponent({
     }
   }
   &__playground-meta {
-    margin: var(--fay-gap-half) 0;
+    margin: var(--fect-gap-half) 0;
     box-sizing: border-box;
     > div {
-      padding: var(--fay-gap-half);
+      padding: var(--fect-gap-half);
     }
   }
   @media only screen and (max-width: 650px) {

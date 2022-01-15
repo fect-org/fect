@@ -1,26 +1,26 @@
 .fect-form-item {
   display: flex;
   align-items: center;
-  margin-bottom: calc(var(--fay-gap) * 1.25);
+  margin-bottom: calc(var(--fect-gap) * 1.25);
 
   &--inline {
     display: inline-flex;
     align-items: center;
-    margin-right: var(--fay-gap-half);
+    margin-right: var(--fect-gap-half);
   }
   &--top {
     display: block;
     // .fect-form-item__label {
-    //   padding: 0 0 var(--fay-gap-half) 0;
+    //   padding: 0 0 var(--fect-gap-half) 0;
     // }
     .fect-form-item__content {
-      margin-top: var(--fay-gap-half);
+      margin-top: var(--fect-gap-half);
     }
   }
 
   &__label {
     box-sizing: border-box;
-    padding: 0 var(--fay-gap-half) 0 0;
+    padding: 0 var(--fect-gap-half) 0 0;
     &.is-required {
       &::before {
         content: '*';
@@ -38,7 +38,7 @@
     color: var(--error-light);
     font-size: 13px;
     line-height: 1;
-    padding-top: var(--fay-gap-quarter);
+    padding-top: var(--fect-gap-quarter);
     position: absolute;
     top: 100%;
     left: 0;

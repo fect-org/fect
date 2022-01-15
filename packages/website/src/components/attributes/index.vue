@@ -20,7 +20,7 @@ export default defineComponent({
 .fect-doc__api-attrs {
   width: 100%;
   table {
-    margin-right: var(--fay-gap);
+    margin-right: var(--fect-gap);
     border-collapse: separate;
     border-spacing: 0;
     width: 100%;

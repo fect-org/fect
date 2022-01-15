@@ -115,10 +115,10 @@ export default defineComponent({
 
 .fect-doc {
   &__playground-preview {
-    margin-top: var(--fay-gap);
+    margin-top: var(--fect-gap);
     border-top: 1px solid var(--accents-2);
-    border-bottom-left-radius: var(--fay-radius);
-    border-bottom-right-radius: var(--fay-radius);
+    border-bottom-left-radius: var(--fect-radius);
+    border-bottom-right-radius: var(--fect-radius);
     p {
       text-align: center;
       user-select: none;
@@ -137,7 +137,7 @@ export default defineComponent({
   }
   &__playground-operations {
     text-align: right;
-    padding-top: var(--fay-gap-half);
+    padding-top: var(--fect-gap-half);
     svg {
       margin-right: 10px;
       &:hover {

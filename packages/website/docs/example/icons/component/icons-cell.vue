@@ -30,13 +30,13 @@ export default {
   min-width: 0px;
   height: 95px;
   margin: 12px 5px;
-  border-radius: var(--fay-radius);
+  border-radius: var(--fect-radius);
   box-sizing: border-box;
   cursor: pointer;
   user-select: none;
   transition: all 150ms ease-in-out;
   &:hover {
-    box-shadow: var(--fay-shadowMedium);
+    box-shadow: var(--fect-shadowMedium);
   }
 }
 p {

@@ -63,7 +63,7 @@ export default defineComponent({
       return {
         '--toast-translate': translate,
         '--toast-opacity': reverseIndex.value > 4 ? 0 : 1,
-        '--toast-shadow': reverseIndex.value > 4 ? 'none' : 'var(--fay-shadowSmall)',
+        '--toast-shadow': reverseIndex.value > 4 ? 'none' : 'var(--fect-shadowSmall)',
         ...getToastColor(props.type)
       } as CustomCSSProperties
     })

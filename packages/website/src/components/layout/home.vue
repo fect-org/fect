@@ -94,14 +94,14 @@ export default defineComponent({
         color: var(--accents-6);
         font-size: 0.875rem;
         line-height: 2.5rem;
-        padding: var(--fay-gap);
+        padding: var(--fect-gap);
         height: 250px;
       }
     }
   }
 
   &__description {
-    margin-top: calc(var(--fay-gap) * 2.5);
+    margin-top: calc(var(--fect-gap) * 2.5);
     .fect-link {
       display: block;
       height: inherit;
@@ -127,7 +127,7 @@ export default defineComponent({
       height: 2.5rem;
       width: 2.5rem;
       padding: 0.625rem;
-      margin-right: var(--fay-gap-half);
+      margin-right: var(--fect-gap-half);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -151,7 +151,7 @@ export default defineComponent({
       }
     }
     &__description {
-      margin-top: var(--fay-gap);
+      margin-top: var(--fect-gap);
     }
   }
 }

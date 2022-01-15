@@ -19,6 +19,6 @@ h4 {
   font-weight: 400;
   font-size: 1.125rem;
   margin: 0;
-  margin-top: var(--fay-gap);
+  margin-top: var(--fect-gap);
 }
 </style>

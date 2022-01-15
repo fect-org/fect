@@ -946,10 +946,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fect-ui/themes@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@fect-ui/themes/-/themes-1.1.0.tgz#68f5dfbdf28a75476e5f0e4abcab3f0e955ba55b"
-  integrity sha512-Iyah1UxZijEpdsv3Ce67MNVTqz+6yRCZa2L0xbslskJUvlXFLy70BtNM/pV3rojKb7Wu9YS+sk6CGjB5TmJvRQ==
+"@fect-ui/themes@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@fect-ui/themes/-/themes-2.0.0.tgz#21c0899094c052a78d4cdcbcfb6ce4e15155a357"
+  integrity sha512-xXysjVDxmClN0AAZWO6ejE7bKfPBDjuw+Ze4V0e1HKGJztuYrxhvnS0SQPcB2rLrJiH9iKFhWAjqOjr//RtMBg==
 
 "@gar/promisify@^1.0.1":
   version "1.1.2"

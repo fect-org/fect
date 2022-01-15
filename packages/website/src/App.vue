@@ -110,7 +110,7 @@ body::-webkit-scrollbar {
     width: 100%;
     box-sizing: border-box;
     margin: 0 auto;
-    padding: 0 calc(var(--fay-gap) * 2);
+    padding: 0 calc(var(--fect-gap) * 2);
     position: relative;
     top: 0;
     left: 0;

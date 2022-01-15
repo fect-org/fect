@@ -62,7 +62,7 @@ export default {
 .icons-grid {
   display: flex;
   flex-wrap: wrap;
-  margin-top: var(--fay-gap-half);
+  margin-top: var(--fect-gap-half);
   justify-content: space-around;
 }
 .search-content {

@@ -48,7 +48,7 @@ export default defineComponent({
         padding: 5px;
         box-sizing: border-box;
         background: var(--success-light);
-        border-radius: var(--fay-radius);
+        border-radius: var(--fect-radius);
         > .fect-link {
           color: inherit;
         }

@@ -24,22 +24,22 @@ export const hasEmpty = (val: any) => {
 const querySelectSize = (size: NormalSizes) => {
   const sizes: Record<NormalSizes, SizeStyle> = {
     mini: {
-      height: 'calc(1 * var(--fay-gap))',
+      height: 'calc(1 * var(--fect-gap))',
       fontSize: '12px',
       minWidth: '100px'
     },
     small: {
-      height: 'calc(1.35 * var(--fay-gap))',
+      height: 'calc(1.35 * var(--fect-gap))',
       fontSize: '12px',
       minWidth: '128px'
     },
     medium: {
-      height: 'calc(1.688 * var(--fay-gap))',
+      height: 'calc(1.688 * var(--fect-gap))',
       fontSize: '14px',
       minWidth: '160px'
     },
     large: {
-      height: 'calc(1.688 * var(--fay-gap))',
+      height: 'calc(1.688 * var(--fect-gap))',
       fontSize: '16px',
       minWidth: '200px'
     }
