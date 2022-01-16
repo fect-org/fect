@@ -43,7 +43,7 @@ export default defineComponent({
     const popupClickHandler = (e: MouseEvent) => {
       const element = modalRef.value!.$el
       if (element && element.contains(e.target as Node)) return
-      setSelfVisible(!selfVisible.value)
+      setSelfVisible(false)
       setAction('cancel')
     }
 
