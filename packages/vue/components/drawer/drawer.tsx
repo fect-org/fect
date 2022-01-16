@@ -38,7 +38,7 @@ export default defineComponent({
       if (props.disableOverlayClick) return
       const element = drawerRef.value!.$el
       if (element && element.contains(e.target as Node)) return
-      setVisible(!visible.value)
+      setVisible(false)
     }
 
     return () => (
