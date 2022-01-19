@@ -1,5 +1,5 @@
 import { Ref, unref } from 'vue'
-import { useEventListener } from '../useEventListener'
+import { useEventListener } from '../use-event-listener'
 
 export interface useClickAwayOptions {
   event?: string

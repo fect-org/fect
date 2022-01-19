@@ -1,6 +1,6 @@
 import { onMounted, unref, onDeactivated, onBeforeUnmount, Ref, watch } from 'vue'
 
-import { useState } from '../useState'
+import { useState } from '../use-state'
 
 export type EventTypes = keyof WindowEventMap
 
@@ -17,6 +17,7 @@ export type Listener<E = Event> = {
 export const useEventListener = (event: string, listener: EventListener, options: Options = {}) => {
   const { target = window } = options
   const [elSnapshot, setElSnapshot] = useState<ElementRef>()
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   let remove = () => {}
   onMounted(() => {
     const element = unref(target)
