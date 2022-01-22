@@ -59,6 +59,23 @@ describe('Input', () => {
     })
     expect(wrapper.findAll('.fect-input__label')[1].classes('suffix')).toBe(true)
   })
+  it('should render suffix label', () => {
+    const wrapper = mount(Input, {
+      props: {
+        suffix: 'Suffix',
+        prefix: ''
+      }
+    })
+    expect(wrapper.find('.suffix').exists()).toBe(true)
+  })
+  it('should render prefix label', () => {
+    const wrapper = mount(Input, {
+      props: {
+        prefix: 'Prefix'
+      }
+    })
+    expect(wrapper.find('.fect-input__label').exists()).toBe(true)
+  })
   it('should set input from value', () => {
     const wrapper = mount(Input, {
       props: {
@@ -105,6 +122,8 @@ describe('Input', () => {
     const el = wrapper.find('.fect-input__icon')
     await el.trigger('click')
     expect(wrapper.find('input').attributes('type')).toBe('text')
+    await el.trigger('click')
+    expect(wrapper.find('input').attributes('type')).toBe('password')
   })
   it('input can not work on type as disabled or readonly', () => {
     const wrapper = mount({
