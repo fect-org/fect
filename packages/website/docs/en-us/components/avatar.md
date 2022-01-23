@@ -55,7 +55,7 @@ avatar/stacked.vue
 
 ### AvatarGroup Props
 
-| Attribue  | Description                            | Type              | Accepted values | Default |
-| --------- | -------------------------------------- | ----------------- | --------------- | ------- |
-| **count** | showttotal numbers                     | `string`,`number` | `-`             | `-`     |
+| Attribue  | Description                              | Type              | Accepted values | Default |
+| --------- | ---------------------------------------- | ----------------- | --------------- | ------- |
+| **count** | showttotal numbers                       | `string`,`number` | `-`             | `-`     |
 | ...       | stacked, is-square, size of Avatar props | `-`               | `-`             | `-`     |

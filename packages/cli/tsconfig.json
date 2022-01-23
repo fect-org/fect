@@ -3,7 +3,7 @@
     "baseUrl": ".",
     "outDir": "./lib",
     "target": "ESNext",
-    "module":"CommonJS",
+    "module": "CommonJS",
     "moduleResolution": "Node",
     "sourceMap": false,
     "declaration": true,

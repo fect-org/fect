@@ -95,10 +95,7 @@ const declarationTask = async (input) => {
   const declaration = await fs.readFile(DECLARATION_PATH)
   const resolvePath = path.join(input, 'tsconfig.json')
   fs.outputFileSync(resolvePath, declaration)
-  return new Promise((resolve) => {
-    const stdout = execa('tsc', ['-p', resolvePath])
-    stdout.on('exit', () => resolve(true))
-  })
+  await execa('tsc', ['-p', resolvePath])
 }
 
 export const runTask = async (taskName, task) => {
