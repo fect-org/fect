@@ -1,4 +1,4 @@
-import { computed, watchEffect, CSSProperties, defineComponent } from 'vue'
+import { computed, CSSProperties, defineComponent, onMounted } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import { createName, isNumber } from '../utils'
 import Skeleton from '../skeleton'
@@ -33,11 +33,11 @@ export default defineComponent({
     const [loading, setLoading] = useState<boolean>(true)
     const [showSkeleton, setShowSkeleton] = useState<boolean>(props.skeleton)
 
-    watchEffect((onInvalidate) => {
+    onMounted(() => {
       // user may pass  a non-number. In order to avoid program errors, we need to give a default value.
       const delay = isNumber(props.maxDelay) ? Number(props.maxDelay) : 3000
-
       let timer: number | undefined
+      timer && window.clearTimeout(timer)
       if (showSkeleton.value) {
         setLoading(false)
         timer = window.setTimeout(() => {
@@ -45,9 +45,6 @@ export default defineComponent({
           setLoading(true)
         }, delay)
       }
-      onInvalidate(() => {
-        timer && window.clearTimeout(timer)
-      })
     })
 
     const setStyle = computed(() => {
@@ -60,7 +57,6 @@ export default defineComponent({
     })
 
     const slots = {
-      // ...setStyle.value ,
       default: () => <img src={props.src} width={props.width} height={props.height} {...attrs} />,
       skeleton: () => <SkeletonItem variable="image" style={{ marginTop: 0, ...setStyle.value }} />
     }
