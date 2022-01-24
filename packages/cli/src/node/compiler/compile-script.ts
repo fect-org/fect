@@ -1,6 +1,7 @@
 import fs from 'fs'
-import { replaceExt } from '../../shared/constant'
+import { isJsx, replaceExt } from '../../shared/constant'
 import { transformAsync } from '@babel/core'
+import { transform as esbuildTransform } from 'esbuild'
 import { logErr } from '../../shared/logger'
 
 export const resolveScriptFile = async (filePath: string) => {
@@ -16,11 +17,20 @@ export const resolveScriptFile = async (filePath: string) => {
   }
 }
 
-export const transform = async (code: string, fileName) => {
+export const transform = async (source: string, fileName) => {
   try {
-    const res = await transformAsync(code, { filename: fileName })
+    let code = source
+    if (isJsx(fileName)) {
+      const res = await transformAsync(code, { filename: fileName })
+      ;({ code } = res)
+    }
+    const esbuildResult = await esbuildTransform(code, {
+      loader: 'ts',
+      target: 'es2016',
+      format: process.env.BABEL_ENV === 'esmodule' ? 'esm' : 'cjs'
+    })
     return {
-      code: res.code
+      code: esbuildResult.code
     }
   } catch (error) {
     logErr(error)

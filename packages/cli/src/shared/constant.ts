@@ -50,4 +50,6 @@ export const isScript = (suffix) => /\.(js|jsx|ts|tsx)/g.test(suffix)
 
 export const isStyle = (file) => /\.(css|less)$/.test(file)
 
+export const isJsx = (fileName: string) => /\.(jsx|tsx)/g.test(fileName)
+
 export const replaceExt = (path, ext) => path.replace(/\.\w+$/, ext)
