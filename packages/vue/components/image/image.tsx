@@ -43,6 +43,7 @@ export default defineComponent({
         timer = window.setTimeout(() => {
           setShowSkeleton(false)
           setLoading(true)
+          window.clearTimeout(timer)
         }, delay)
       }
     })
@@ -62,7 +63,7 @@ export default defineComponent({
     }
 
     return () => (
-      <div class="fect-image" style={{ ...setStyle.value, overflow: showSkeleton.value ? 'visible' : 'hidden' }}>
+      <div class="fect-image" style={{ ...setStyle.value }}>
         <Skeleton loading={loading.value} v-slots={slots}></Skeleton>
       </div>
     )
