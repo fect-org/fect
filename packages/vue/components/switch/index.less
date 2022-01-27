@@ -1,92 +1,122 @@
+@switch-mini-width: 28px;
+@switch-mini-height: 14px;
+@switch-small-width: 37px;
+@switch-small-height: 14px;
+@switch-medium-width: 40px;
+@switch-medium-height: 16px;
+@switch-large-width: 47px;
+@switch-large-height: 17.5px;
+//
+@switch-bg-color: var(--accents-2);
+@switch-checked-bg-color: #067df7;
+@swtich-checked-disabled-bg-color: var(--accents-4);
+@switch-inner-bg-color: var(--primary-background);
+@switch-inner-disabled-bg-color: var(--accents-1);
+@switch-inner-checked-bg-color: var(--primary-background);
+@switch-inner-checked-disabled-bg-color: var(--accents-2);
+
+:root {
+  --switch-mini-width: @switch-mini-width;
+  --switch-mini-height: @switch-mini-height;
+  //
+  --switch-small-width: @switch-small-width;
+  --switch-small-height: @switch-small-height;
+  //
+  --switch-medium-width: @switch-medium-width;
+  --switch-medium-height: @switch-medium-height;
+  //
+  --switch-large-width: @switch-large-width;
+  --switch-large-height: @switch-large-height;
+
+  --switch-bg-color: @switch-bg-color;
+  --switch-checked-bg-color: @switch-checked-bg-color;
+  --swtich-checked-disabled-bg-color: @swtich-checked-disabled-bg-color;
+  --switch-inner-bg-color: @switch-inner-bg-color;
+  --switch-inner-disabled-bg-color: @switch-inner-disabled-bg-color;
+  --switch-inner-checked-bg-color: @switch-inner-checked-bg-color;
+  --switch-inner-checked-disabled-bg-color: @switch-inner-checked-disabled-bg-color;
+}
+
 .fect-switch {
   display: inline-block;
   position: relative;
   white-space: nowrap;
   user-select: none;
-  width: 40px;
-  height: 16px;
   border-radius: 15px;
   vertical-align: middle;
-  background-color: var(--accents-2);
+  background-color: var(--switch-bg-color);
   cursor: pointer;
-  transition-delay: 0.12s;
-  transition-duration: 0.2s;
-  transition-property: background, border;
-  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  &--mini {
+    width: var(--switch-mini-width);
+    height: var(--switch-mini-height);
+    --switch-inner-size: var(--switch-mini-height);
+    --switch-offset: var(--switch-mini-width);
+  }
+  &--small {
+    width: var(--switch-small-width);
+    height: var(--switch-small-height);
+    --switch-inner-size: var(--switch-small-height);
+    --switch-offset: var(--switch-small-width);
+  }
+  &--medium {
+    width: var(--switch-medium-width);
+    height: var(--switch-medium-height);
+    --switch-inner-size: var(--switch-medium-height);
+    --switch-offset: var(--switch-medium-width);
+  }
+  &--large {
+    width: var(--switch-large-width);
+    height: var(--switch-large-height);
+    --switch-inner-size: var(--switch-large-height);
+    --switch-offset: var(--switch-large-width);
+  }
   &.checked {
-    background-color: var(--accents-4);
+    background-color: var(--swtich-checked-disabled-bg-color);
     box-shadow: none;
     &:not(.disabled) {
-      background-color: #067df7;
+      background-color: var(--switch-checked-bg-color);
     }
   }
   &.disabled {
     cursor: not-allowed;
   }
-  &.mini {
-    width: 25px;
-    height: 14px;
-  }
 
-  &.small {
-    width: 37px;
-    height: 14px;
-  }
-
-  &.large {
-    width: 47px;
-    height: 17.5px;
-  }
   &__checkbox {
     width: 0;
     height: 0;
-    opacity: 0;
-    overflow: hidden;
-    &:checked + .fect-switch__slider {
-      top: 50%;
-      left: 26px;
-      &.mini {
-        left: 11px;
-      }
-      &.small {
-        left: 23px;
-      }
-      &.large {
-        left: 32.5px;
-      }
-    }
+    display: none;
   }
+
   &__slider {
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    height: 100%;
+    width: 100%;
+    transition-delay: 0.12s;
+    transition-duration: 0.2s;
+    transition-property: background, border;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    position: relative;
+    border: 1px solid transparent;
+  }
+
+  &__inner {
+    width: calc(var(--switch-inner-size) - 3px);
+    height: calc(var(--switch-inner-size) - 3px);
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    left: 1px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0, rgba(0, 0, 0, 0.1) 0 1px 3px 0;
+    transition: margin-left 280ms cubic-bezier(0, 0, 0.2, 1);
+    background-color: var(--switch-inner-bg-color);
     border-radius: 50%;
-    height: 13px;
-    width: 13px;
-    background-color: var(--primary-background);
-    transition: left 280ms cubic-bezier(0, 0, 0.2, 1);
     &.disabled {
-      background-color: var(--accents-1);
+      background-color: var(--switch-inner-disabled-bg-color);
     }
     &.checked {
-      background-color: var(--accents-2);
+      margin-left: calc(var(--switch-offset) - var(--switch-inner-size));
+      background-color: var(--switch-inner-checked-disabled-bg-color);
       &:not(.disabled) {
-        background-color: var(--primary-background);
+        background-color: var(--switch-inner-checked-bg-color);
       }
-    }
-    & .mini {
-      height: 10px;
-      width: 10px;
-    }
-    & .small {
-      height: 10px;
-      width: 10px;
-    }
-    & .large {
-      height: 14.5px;
-      width: 14.5px;
     }
   }
 }
