@@ -29,8 +29,7 @@ describe('CheckboxGroup', () => {
         )
       }
     })
-    const el = wrapper.find('.fect-checkbox')
-    expect(el.attributes('style')).toBe('--checkboxSize: 12px;')
+    expect(wrapper.find('.fect-checkbox--mini').exists()).toBeTruthy()
   })
 
   it('should use v-model to control all checkbox', async () => {
