@@ -1,23 +1,12 @@
 import { defineComponent, computed, watch, watchEffect } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, NormalSizes, hasEmpty } from '../utils'
+import { createName, hasEmpty, createBem } from '../utils'
 import { radioProps } from '../radio-group/props'
 import { useRadioContext } from '../radio-group/radio-context'
 import type { RadioEvent } from '../radio-group/interface'
 import './index.less'
-import { CustomCSSProperties } from '../utils'
 
 const name = createName('Radio')
-
-const queryRadioSize = (radioSize: NormalSizes) => {
-  const size: Record<NormalSizes, string> = {
-    mini: '12px',
-    small: '14px',
-    medium: '16px',
-    large: '18px'
-  }
-  return size[radioSize]
-}
 
 export default defineComponent({
   name,
@@ -74,18 +63,10 @@ export default defineComponent({
       })
     }
 
-    const setRadioSize = computed(() => {
-      const size = queryRadioSize(selfSize.value)
-      const style: CustomCSSProperties = {
-        '--radioSize': size
-      }
-      return style
-    })
-
     watch(selfChecked, (cur) => emit('update:checked', cur))
 
     return () => (
-      <div class="fect-radio" style={setRadioSize.value}>
+      <div class={`fect-radio ${createBem('fect-radio', selfSize.value)}`}>
         <label class={`${selfDisabled.value ? 'disabled' : ''}`}>
           <input
             type="radio"

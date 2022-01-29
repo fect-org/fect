@@ -1,5 +1,5 @@
 import { computed, PropType, defineComponent, watchEffect } from 'vue'
-import { createName, UnknowProp, hasEmpty } from '../utils'
+import { createName, UnknowProp, hasEmpty, createBem } from '../utils'
 import { useState } from '@fect-ui/vue-hooks'
 import type { NormalSizes } from '../utils'
 import './index.less'
@@ -40,9 +40,11 @@ export default defineComponent({
   setup(props, { emit }) {
     const [value, setValue] = useState<any>(null)
 
-    watchEffect(() => setValue(props.modelValue || props.value))
-
     const isChecked = () => value.value === props.checkedValue
+
+    watchEffect(() => {
+      setValue(props.modelValue || props.value)
+    })
 
     const changeHandler = (e: Event) => {
       const reverse = isChecked() ? props.inactiveValue : props.checkedValue
@@ -69,22 +71,23 @@ export default defineComponent({
 
     const setClass = computed(() => {
       const names: string[] = []
-      props.size && names.push(props.size)
       props.disabled && names.push('disabled')
       isChecked() && names.push('checked')
       return names.join(' ')
     })
 
     return () => (
-      <label class={`fect-switch ${setClass.value}`} onClick={switchHandler}>
+      <label class={`fect-switch ${setClass.value} ${createBem('fect-switch', props.size)}`} onClick={switchHandler}>
         <input
-          class={`fect-switch__checkbox ${props.size}`}
+          class="fect-switch__checkbox"
           type="checkBox"
           checked={isChecked()}
           disabled={props.disabled}
           onChange={changeHandler}
         />
-        <div class={`fect-switch__slider ${setClass.value}`}></div>
+        <div class={`fect-switch__slider `}>
+          <span class={`fect-switch__inner ${setClass.value}`}></span>
+        </div>
       </label>
     )
   }

@@ -1,3 +1,15 @@
+@radio-mini-size: 12px;
+@radio-small-size: 14px;
+@radio-medium-size: 16px;
+@radio-large-size: 18px;
+
+:root {
+  --radio-mini-size: @radio-mini-size;
+  --raido-small-size: @radio-small-size;
+  --radio-medium-size: @radio-medium-size;
+  --radio-large-size: @radio-large-size;
+}
+
 .fect-radio {
   display: flex;
   align-items: flex-start;
@@ -19,6 +31,18 @@
       color: var(--accents-5);
       cursor: not-allowed;
     }
+  }
+  &--mini {
+    --radioSize: var(--radio-mini-size);
+  }
+  &--small {
+    --radioSize: var(--radio-small-size);
+  }
+  &--medium {
+    --radioSize: var(--radio-medium-size);
+  }
+  &--large {
+    --radioSize: var(--radio-large-size);
   }
   &__name {
     font-size: var(--radioSize);
