@@ -1,5 +1,6 @@
-import { computed, CSSProperties, defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { createName } from '../utils'
+import type { CustomCSSProperties } from '../utils'
 import './index.less'
 
 const name = createName('Spacer')
@@ -14,7 +15,7 @@ const getMargin = (num: any) => {
     console.error(`[Fect] Spacer Error ${num} should be number`)
     num = 1
   }
-  return `calc(${num * 15.25}pt + 1px * ${num - 1})`
+  return num
 }
 
 export default defineComponent({
@@ -32,17 +33,13 @@ export default defineComponent({
   },
   setup(props) {
     const setStyle = computed(() => {
-      const marginTop = getMargin(props.y)
-      const marginLeft = getMargin(props.x)
-      const { inline } = props
-      const style: CSSProperties = {
-        marginTop,
-        marginLeft,
-        display: inline ? 'inline-block' : 'block'
+      const style: CustomCSSProperties = {
+        '--horizontal-num': getMargin(props.x),
+        '--vertical-num': getMargin(props.y)
       }
       return style
     })
 
-    return () => <span class="fect-spacer" style={setStyle.value}></span>
+    return () => <span class={`fect-spacer ${props.inline ? 'fect-spacer--inline' : ''}`} style={setStyle.value}></span>
   }
 })

@@ -14,7 +14,7 @@ describe('Spacer', () => {
         inline: true
       }
     })
-    expect(wrapper.find('.fect-spacer').attributes('style')).toEqual('display: inline-block;')
+    expect(wrapper.find('.fect-spacer--inline').exists()).toBe(true)
   })
 
   it('should be support x and y', () => {

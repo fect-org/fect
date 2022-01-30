@@ -6,7 +6,7 @@
 
 <fe-spacer />
 <fe-dot type="success" />1. 运行命令下载包:
-<fe-spacer y={0.5} />
+<fe-spacer :y="0.5" />
 
 <fe-tabs hideDivider>
 
@@ -32,7 +32,7 @@ import '@fect-ui/vue/lib/main.css'
 createApp(App).use(FectUI).mount('#app')
 ```
 
-<fe-spacer y=".6" />
+<fe-spacer :y="0.6" />
 <fe-dot type="success" />3. 在任意处使用组件：
 
 ```html
@@ -41,4 +41,4 @@ createApp(App).use(FectUI).mount('#app')
 </template>
 ```
 
-<fe-spacer y=".6" />
+<fe-spacer :y="0.6" />

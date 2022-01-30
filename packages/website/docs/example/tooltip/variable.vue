@@ -3,7 +3,7 @@
     <fe-tooltip content="上">
       <fe-button auto size="mini">top</fe-button>
     </fe-tooltip>
-    <fe-spacer x="1" inline />
+    <fe-spacer :x="1" inline />
     <fe-tooltip content="右" type="success" placement="right" :visible-arrow="false">
       <fe-button auto size="mini">right</fe-button>
     </fe-tooltip>

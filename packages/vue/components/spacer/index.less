@@ -1,7 +1,16 @@
+@spacer-horizontal: 15.25pt;
+@spacer-vertical: 15.25pt;
+
+:root {
+  --spacer-horizontal: @spacer-horizontal;
+  --spacer-vertical: @spacer-vertical;
+}
+
 .fect-spacer {
   display: block;
-  height: 1px;
-  width: 1px;
-  margin-left: 15.25pt;
-  margin-top: 15.25pt;
+  height: calc(var(--spacer-vertical) * var(--vertical-num));
+  width: calc(var(--spacer-horizontal) * var(--horizontal-num));
+  &--inline {
+    display: inline-block;
+  }
 }

@@ -4,12 +4,12 @@
       <fe-avatar :src="img" size="medium" />
       <fe-badge type="success" dot></fe-badge>
     </fe-badgeAnchor>
-    <fe-spacer inline x="1.1" />
+    <fe-spacer inline :x="1.1" />
     <fe-badgeAnchor>
       <fe-avatar :src="img" size="medium" is-square />
       <fe-badge type="success" dot></fe-badge>
     </fe-badgeAnchor>
-    <fe-spacer inline x="1.1" />
+    <fe-spacer inline :x="1.1" />
     <fe-badgeAnchor>
       <fe-button auto>Button</fe-button>
       <fe-badge type="error">999</fe-badge>
