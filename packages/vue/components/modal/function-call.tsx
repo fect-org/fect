@@ -22,14 +22,14 @@ const Modal = (options: StaticModalOptions) => {
         useExpose({ setVisible, setModalProps })
 
         const confirmHandler = () => {
-          setVisible((pre) => !pre)
+          setVisible(false)
           if (modalProps.value.confirm) {
             isFunc(modalProps.value.confirm) && modalProps.value.confirm()
           }
         }
 
         const cancelHandler = () => {
-          setVisible((pre) => !pre)
+          setVisible(false)
           if (modalProps.value.close) {
             isFunc(modalProps.value.close) && modalProps.value.close()
           }
