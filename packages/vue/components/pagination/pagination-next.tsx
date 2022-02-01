@@ -7,7 +7,7 @@ const PaginationNext = defineComponent({
     const { context } = usePaginationContext()
 
     return () => (
-      <PaginationItem disabled={context!.end.value} onClick={() => context!.updateSidePage('next')}>
+      <PaginationItem disabled={context!.shouldDisabledNext.value} onClick={() => context!.updateSidePage('next')}>
         {slots.default?.()}
       </PaginationItem>
     )

@@ -26,7 +26,7 @@ describe('Pagination', () => {
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
-  it('should be render all pages wehen limit value is older than the count value', () => {
+  it('should be render all pages when limit value is more than the count value', () => {
     const wrapper = mount(Pagination, {
       props: {
         limit: 11,

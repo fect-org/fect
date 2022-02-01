@@ -1,20 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Pagination should be render all pages wehen limit value is older than the count value 1`] = `
+exports[`Pagination should be render all pages when limit value is more than the count value 1`] = `
 <nav class="fect-pagination" style="font-size: 14px; --pagination-size: 32px;">
   <ul>
-    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">Prev</button></li>
-    <li><button class="pagination-item__button active " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">1</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">2</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">3</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">4</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">5</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">6</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">7</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">8</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">9</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">10</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">Next</button></li>
+    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Prev</button></li>
+    <li><button class="pagination-item__button active " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">1</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">2</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">3</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">4</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">5</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">6</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">7</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">8</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">9</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">10</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Next</button></li>
   </ul>
 </nav>
 `;
@@ -22,9 +22,9 @@ exports[`Pagination should be render all pages wehen limit value is older than t
 exports[`Pagination should be render as a element 1`] = `
 <nav class="fect-pagination" style="font-size: 14px; --pagination-size: 32px;">
   <ul>
-    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">Prev</button></li>
-    <li><button class="pagination-item__button active " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">1</button></li>
-    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">Next</button></li>
+    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Prev</button></li>
+    <li><button class="pagination-item__button active " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">1</button></li>
+    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Next</button></li>
   </ul>
 </nav>
 `;
@@ -32,9 +32,9 @@ exports[`Pagination should be render as a element 1`] = `
 exports[`Pagination should be support simple mode render 1`] = `
 <nav class="fect-pagination" style="font-size: 14px; --pagination-size: 32px;">
   <ul>
-    <li><button class="pagination-simple__side disabled " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">Prev</button></li>
+    <li><button class="pagination-simple__side disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Prev</button></li>
     <li class="pagination-simple__desc">1 / 1</li>
-    <li><button class="pagination-simple__side disabled " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">Next</button></li>
+    <li><button class="pagination-simple__side disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Next</button></li>
   </ul>
 </nav>
 `;
@@ -42,17 +42,17 @@ exports[`Pagination should be support simple mode render 1`] = `
 exports[`Pagination should be work error when in edge case 1`] = `
 <nav class="fect-pagination" style="font-size: 14px; --pagination-size: 32px;">
   <ul>
-    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">Prev</button></li>
-    <li><button class="pagination-item__button active " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">1</button></li>
+    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Prev</button></li>
+    <li><button class="pagination-item__button active " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">1</button></li>
     <!---->
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">2</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);"><svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">2</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);"><svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
           <circle cx="12" cy="12" r="1" fill="currentColor"></circle>
           <circle cx="19" cy="12" r="1" fill="currentColor"></circle>
           <circle cx="5" cy="12" r="1" fill="currentColor"></circle>
         </svg></button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">10</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">Next</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">10</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Next</button></li>
   </ul>
 </nav>
 `;
@@ -60,8 +60,8 @@ exports[`Pagination should be work error when in edge case 1`] = `
 exports[`Pagination should be work error when in edge case 2`] = `
 <nav class="fect-pagination" style="font-size: 14px; --pagination-size: 32px;">
   <ul>
-    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">Prev</button></li>
-    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">Next</button></li>
+    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Prev</button></li>
+    <li><button class="pagination-item__button disabled " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">Next</button></li>
   </ul>
 </nav>
 `;
@@ -70,16 +70,16 @@ exports[`Pagination should render as custom prev or next 1`] = `
 <nav class="fect-pagination" style="font-size: 14px; --pagination-size: 32px;">
   <ul>
     <li class="paginatuon-slots__custom"> 上一页 </li>
-    <li><button class="pagination-item__button active " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">1</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">2</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">3</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">4</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">5</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">6</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">7</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">8</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">9</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">10</button></li>
+    <li><button class="pagination-item__button active " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">1</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">2</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">3</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">4</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">5</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">6</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">7</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">8</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">9</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">10</button></li>
     <li class="paginatuon-slots__custom"> 下一页 </li>
   </ul>
 </nav>
@@ -89,20 +89,20 @@ exports[`Pagination should render as custom prev or next 2`] = `
 <nav class="fect-pagination" style="font-size: 14px; --pagination-size: 32px;">
   <ul>
     <li class="paginatuon-slots__custom"> 上一页 </li>
-    <li><button class="pagination-item__button active " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">1</button></li>
+    <li><button class="pagination-item__button active " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">1</button></li>
     <!---->
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">2</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">3</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">4</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">5</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">6</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">7</button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);"><svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">2</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">3</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">4</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">5</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">6</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">7</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);"><svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
           <circle cx="12" cy="12" r="1" fill="currentColor"></circle>
           <circle cx="19" cy="12" r="1" fill="currentColor"></circle>
           <circle cx="5" cy="12" r="1" fill="currentColor"></circle>
         </svg></button></li>
-    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 0, 0, 0.1); --pagination-activeHover: rgba(0, 0, 0, 0.8);">10</button></li>
+    <li><button class="pagination-item__button  " style="--pagination-hover: rgba(0, 112, 243, 0.1); --pagination-activeHover: rgba(0, 112, 243, 0.8);">10</button></li>
     <li class="paginatuon-slots__custom"> 下一页 </li>
   </ul>
 </nav>

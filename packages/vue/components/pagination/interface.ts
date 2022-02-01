@@ -1,12 +1,12 @@
-import type { Ref, ExtractPropTypes } from 'vue'
+import type { ExtractPropTypes, ComputedRef } from 'vue'
 import { props } from './props'
 
 export interface PaginationContext {
   props: ExtractPropTypes<typeof props>
   setCurrentPage: (val: number) => number
   updateSidePage: (type: string) => void
-  head: Ref<boolean>
-  end: Ref<boolean>
+  shouldDisabledPrevious: ComputedRef<boolean>
+  shouldDisabledNext: ComputedRef<boolean>
 }
 
 export type SideEvent = 'prev' | 'next'

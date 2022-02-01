@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fe-pagination v-model="initialPage" count="10"></fe-pagination>
+    <fe-pagination v-model="initialPage" :count="10"></fe-pagination>
   </div>
 </template>
 

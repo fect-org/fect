@@ -25,12 +25,11 @@ const PaginationPages = defineComponent({
     const [afterEllipsis, setAfterEllipsis] = useState<boolean>(false)
 
     const { context } = usePaginationContext()
-    const setParentPage = (page: number) => context?.setCurrentPage(page)
+    const setParentPage = (page: number) => {
+      if (props.current === page) return
+      context?.setCurrentPage(page)
+    }
 
-    /**
-     * limit as default is 7 , so it will show visiblePage
-     * 5
-     */
     const visbilePage = computed(() => {
       const { limit } = props
       return (limit % 2 === 0 ? limit - 1 : limit) - 2
@@ -65,22 +64,19 @@ const PaginationPages = defineComponent({
       const onlyShowAfter = showAfter && !showBefore
 
       const pageNum = showBeforeAndAfter ? current + offset : onlyShowBefore ? count - 1 : onlyShowAfter ? limit : count
-
       const control = showBeforeAndAfter || onlyShowBefore
-      return [...Array(pageNum)].reduce((acc: number[], cur: number, idx: number) => {
+      return [...Array(pageNum)].reduce((acc: number[], _, idx: number) => {
         idx += 1
-
         if (control && idx >= current) acc.push(idx)
+        /**
+         * It means if we don't show ellipsis and the currentPage is less then 2.
+         * so we should render more values.
+         */
         if (!control && idx >= 2) acc.push(idx)
         return acc
       }, []) as number[]
     })
 
-    /**
-     * A common base render element
-     * value as page num , active as index
-     * while page num equal active num it will set active attribute
-     */
     const renderItem = (value: number, active: number) => {
       return (
         <PaginationItem active={value === active} key={`pagination-item-${value}`} onClick={() => setParentPage(value)}>
@@ -104,13 +100,10 @@ const PaginationPages = defineComponent({
      */
     const renderlessLimit = () => {
       const { current } = props
-
-      return Array(props.count)
-        .fill(0)
-        .map((_, index) => {
-          const value = index + 1
-          return renderItem(value, current)
-        })
+      return [...Array(props.count)].map((_, index) => {
+        const value = index + 1
+        return renderItem(value, current)
+      })
     }
 
     const renderNormal = () => {

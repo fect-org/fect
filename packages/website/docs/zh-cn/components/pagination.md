@@ -57,10 +57,10 @@ pagination/size.vue
 | 属性         | 描述                     | 类型                  | 可选值                               | 默认     |
 | ------------ | ------------------------ | --------------------- | ------------------------------------ | -------- |
 | **v-model**  | 当前页码                 | `number`              | `-`                                  | `1`      |
-| **count**    | 页码数量                 | `'Number','String'`   | `-`                                  | `1`      |
+| **count**    | 页码数量                 | `number`              | `-`                                  | `1`      |
 | **size**     | 分页器的大小             | `string`              | `'mini', 'small', 'medium', 'large'` | `medium` |
-| **limit**    | 一次可展示分页器的最大值 | `‘Number’,'String'`   | `-`                                  | `7`      |
-| **simple**   | 朴素模式                 | `Boolean`             | `'true','false'`                     | `false`  |
+| **limit**    | 一次可展示分页器的最大值 | `number`              | `-`                                  | `7`      |
+| **simple**   | 朴素模式                 | `boolean`             | `'true','false'`                     | `false`  |
 | **prevText** | 分页器上一页的文字       | `string`              | `-`                                  | `Prev`   |
 | **nextText** | 分页器下一页的文字       | `string`              | `-`                                  | `Next`   |
 | **change**   | 分页器的事件             | `(page:number)=>void` | `-`                                  | `-`      |

@@ -47,8 +47,8 @@ export default defineComponent({
 
     const [currentPage, setCurrentPage] = useState<number>(props.modelValue)
 
-    const head = computed(() => currentPage.value <= 1)
-    const end = computed(() => currentPage.value >= props.count)
+    const shouldDisabledPrevious = computed(() => currentPage.value <= 1)
+    const shouldDisabledNext = computed(() => currentPage.value >= props.count)
 
     /**
      * check safe limit value
@@ -69,10 +69,11 @@ export default defineComponent({
     }
 
     provider({
+      currentPage,
       setCurrentPage,
       updateSidePage,
-      head,
-      end,
+      shouldDisabledPrevious,
+      shouldDisabledNext,
       props
     })
 
@@ -108,17 +109,14 @@ export default defineComponent({
 
     const renderPage = () => {
       const { simple, count, limit } = props
-      return (
-        <>
-          {simple ? (
-            <li class="pagination-simple__desc">
-              {currentPage.value} / {count}
-            </li>
-          ) : (
-            <PaginationPages current={currentPage.value} count={count} limit={limit} />
-          )}
-        </>
-      )
+      if (simple) {
+        return (
+          <li class="pagination-simple__desc">
+            {currentPage.value} / {count}
+          </li>
+        )
+      }
+      return <PaginationPages current={currentPage.value} count={count} limit={limit} />
     }
 
     return () => (
