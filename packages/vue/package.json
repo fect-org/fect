@@ -1,6 +1,6 @@
 {
   "name": "@fect-ui/vue",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Minimalist UI components built on Vue",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -42,7 +42,7 @@
   ],
   "dependencies": {
     "@fect-ui/themes": "^2.0.0",
-    "@fect-ui/vue-hooks": "^1.0.0",
+    "@fect-ui/vue-hooks": "^1.1.0",
     "proy": "^0.0.3"
   },
   "peerDependencies": {
