@@ -42,11 +42,10 @@ describe('Breadcrumbs', () => {
   it('should be support different sizes', () => {
     const wrapper = mount(DiffWrapper)
 
-    const els = wrapper.findAll('.fect-breadcrumbs')
-    expect(els[0].attributes('style')).toBe('font-size: 12px;')
-    expect(els[1].attributes('style')).toBe('font-size: 14px;')
-    expect(els[2].attributes('style')).toBe('font-size: 16px;')
-    expect(els[3].attributes('style')).toBe('font-size: 18px;')
+    expect(wrapper.find('.fect-breadcrumbs--mini').exists()).toBe(true)
+    expect(wrapper.find('.fect-breadcrumbs--small').exists()).toBe(true)
+    expect(wrapper.find('.fect-breadcrumbs--medium').exists()).toBe(true)
+    expect(wrapper.find('.fect-breadcrumbs--large').exists()).toBe(true)
     expect(wrapper.html()).toMatchSnapshot()
   })
 

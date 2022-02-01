@@ -1,25 +1,10 @@
-import { computed, PropType, CSSProperties, defineComponent } from 'vue'
-import { createName, NormalSizes } from '../utils'
-import { createProvider } from '@fect-ui/vue-hooks'
+import { PropType, defineComponent } from 'vue'
+import { createName, createBem } from '../utils'
+import type { NormalSizes } from '../utils'
 import './index.less'
+import { createBreadcrumbsContext } from './breadcrumbs-context'
 
 const name = createName('Breadcrumbs')
-
-export const READONLY_BREADCRUMBS_KEY = 'breadcrumbsKey'
-
-export type BreadcrumbsProvide = {
-  separator: string
-}
-
-const queryFontSize = (size: NormalSizes) => {
-  const sizesPool: { [key in NormalSizes]: string } = {
-    mini: '12px',
-    small: '14px',
-    medium: '16px',
-    large: '18px'
-  }
-  return sizesPool[size]
-}
 
 export default defineComponent({
   name,
@@ -34,18 +19,9 @@ export default defineComponent({
     }
   },
   setup(props, { slots }) {
-    const { provider } = createProvider(READONLY_BREADCRUMBS_KEY)
+    const { provider } = createBreadcrumbsContext()
     provider({ separator: props.separator })
 
-    const safeSize = computed(() => {
-      const styles: CSSProperties = { fontSize: queryFontSize(props.size) }
-      return styles
-    })
-
-    return () => (
-      <nav class="fect-breadcrumbs" style={safeSize.value}>
-        {slots.default?.()}
-      </nav>
-    )
+    return () => <nav class={`fect-breadcrumbs ${createBem('fect-breadcrumbs', props.size)}`}>{slots.default?.()}</nav>
   }
 })

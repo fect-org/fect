@@ -1,7 +1,7 @@
 import { watchEffect, defineComponent } from 'vue'
 import { createName } from '../utils'
-import { useProvider, useState } from '@fect-ui/vue-hooks'
-import { BreadcrumbsProvide, READONLY_BREADCRUMBS_KEY } from '../breadcrumbs/breadcrumbs'
+import { useState } from '@fect-ui/vue-hooks'
+import { useBreadcrumbsContext } from '../breadcrumbs/breadcrumbs-context'
 import Link from '../link'
 import Separator from './breadcrumbs-spearator'
 import './index.less'
@@ -23,7 +23,7 @@ export default defineComponent({
   setup(props, { slots, attrs }) {
     const [hasLink, setHasLink] = useState<boolean>(false)
 
-    const { context } = useProvider<BreadcrumbsProvide>(READONLY_BREADCRUMBS_KEY)
+    const { context } = useBreadcrumbsContext()
 
     watchEffect(() => {
       const isNull = Boolean(props?.to) || props.href !== ''
@@ -49,7 +49,7 @@ export default defineComponent({
     const linkRender = () => {
       return (
         <div class="fect-breadcrumbs__item">
-          <Link to={props.to} href={props.href} class="withLink" {...attrs}>
+          <Link to={props.to} href={props.href} class="fect-breadcrumbs__link" {...attrs}>
             {slots.default?.()}
           </Link>
           <Separator>{context.separator}</Separator>

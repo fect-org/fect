@@ -1,9 +1,9 @@
 <template>
   <div>
     <fe-breadcrumbs separator=">">
-      <fe-breadcrumbsItem>Home</fe-breadcrumbsItem>
-      <fe-breadcrumbsItem>Catalog</fe-breadcrumbsItem>
-      <fe-breadcrumbsItem>Page</fe-breadcrumbsItem>
+      <fe-breadcrumbs-item>Home</fe-breadcrumbs-item>
+      <fe-breadcrumbs-item>Catalog</fe-breadcrumbs-item>
+      <fe-breadcrumbs-item>Page</fe-breadcrumbs-item>
     </fe-breadcrumbs>
   </div>
 </template>

@@ -1,12 +1,25 @@
-.fect-breadcrumbs__item {
-  display: inline-flex;
-  align-items: center;
-  user-select: none;
-  cursor: pointer;
-  &:last-child {
-    color: var(--accents-6);
+@breadcrumbs-last-color: var(--accents-6);
+@breadcrumbs-link-size: 550;
+
+:root {
+  --breadcrumbs-last-color: @breadcrumbs-last-color;
+  --breadcrumbs-link-size: @breadcrumbs-link-size;
+}
+
+.fect-breadcrumbs {
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+    &:last-child {
+      color: var(--breadcrumbs-last-color);
+      .fect-breadcrumbs__separator {
+        display: none;
+      }
+    }
   }
-  .withLink {
-    font-weight: 550;
+  &__link {
+    font-weight: var(--breadcrumbs-link-size);
   }
 }
