@@ -61,6 +61,7 @@ export const bundleConfigFile = async (filePath: string, esm = false) => {
     metafile: true,
     plugins: [externalizeDeps]
   })
+  // eslint-disable-next-line prefer-destructuring
   const { text } = bundle.outputFiles[0]
   return {
     code: text,

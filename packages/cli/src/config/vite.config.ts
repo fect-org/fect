@@ -1,4 +1,5 @@
 import { join } from 'path'
+import { merge } from 'lodash'
 import { InlineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Jsx from '@vitejs/plugin-vue-jsx'
@@ -7,8 +8,9 @@ import { resolveConfig } from '../node/config'
 
 export const useDevConfig = async (): Promise<InlineConfig> => {
   const { userConfig } = await resolveConfig()
-  const { port, plugins } = userConfig
-  return {
+  const { port, plugins, viteConfigure } = userConfig
+
+  const presetConfig = {
     root: CWD,
     resolve: {
       extensions: VITE_RESOLVE_EXTENSIONS,
@@ -17,37 +19,20 @@ export const useDevConfig = async (): Promise<InlineConfig> => {
     server: {
       port
     },
-    plugins: [
-      Vue({
-        include: [/\.vue$/, /\.md$/]
-      }),
-      Jsx(),
-      ...plugins
-    ]
+    plugins: [Vue({ include: [/\.vue$/, /\.md$/] }), Jsx(), ...plugins]
   }
+
+  return merge(presetConfig, viteConfigure)
 }
 
 export const useBuildConfig = async (): Promise<InlineConfig> => {
   const devConf = await useDevConfig()
-  const { userConfig } = await resolveConfig()
-  const { entry } = userConfig
   return {
-    ...devConf,
     base: '/',
     mode: 'production',
-    build: {
-      sourcemap: false,
-      brotliSize: false,
-      rollupOptions: {
-        input: { main: entry }
-      }
-    }
+    ...devConf
   }
 }
-
-/**
- * compile umd
- */
 
 export const useUMDconfig = (name, mini = false): InlineConfig => {
   return {

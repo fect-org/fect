@@ -10,7 +10,7 @@ const OUTPUT = path.join(CWD, 'components.d.ts')
 
 export const genVolar = async () => {
   const { userConfig } = await resolveConfig()
-  const pkgPath = userConfig.entry
+  const pkgPath = userConfig.lib.input
 
   const dirs = fs.readdirSync(pkgPath).filter((_) => !IGNORE_DIR.includes(_))
   let content = ``

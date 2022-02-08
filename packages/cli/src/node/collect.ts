@@ -9,7 +9,7 @@ const IGNORE_DIR = ['utils', 'index.ts']
 
 export const genPackagesEntry = async () => {
   const { userConfig } = await resolveConfig()
-  const pkgPath = userConfig.entry
+  const pkgPath = userConfig.lib.input
   const outPut = path.join(pkgPath, 'index.ts')
 
   const { version } = fs.readJsonSync(USER_PACKAGES_JSON_PATH)
