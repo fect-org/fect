@@ -15,7 +15,7 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
-function scrollBehavior(to, from, savedPosition) {
+function scrollBehavior() {
   window.scrollTo(0, 0)
 }
 

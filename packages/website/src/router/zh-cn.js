@@ -1,5 +1,5 @@
-const path = import.meta.globEager('../../docs/zh-cn/components/*.md')
-const guide = import.meta.globEager('../../docs/zh-cn/guide/*.md')
+const path = import.meta.glob('../../docs/zh-cn/components/*.md')
+const guide = import.meta.glob('../../docs/zh-cn/guide/*.md')
 import { collectRoute, RouteTempalte } from './basic-route'
 
 const guideRoutes = collectRoute(guide)

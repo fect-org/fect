@@ -6,7 +6,7 @@ export const collectRoute = (context) => {
     const routeName = sourceName.charAt(0).toUpperCase() + sourceName.slice(1)
     return {
       path: routeName.toLowerCase(),
-      component: context[p].default,
+      component: context[p],
       meta: {
         title: `${routeName} | ${FECT_TITLE}`
       }
