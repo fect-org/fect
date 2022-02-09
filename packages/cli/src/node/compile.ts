@@ -13,7 +13,8 @@ import {
   setBabelEnv,
   DECLARATION_PATH,
   setNodeENV,
-  replaceStyleInJs
+  replaceStyleInJs,
+  normalizePath
 } from '../shared/constant'
 import { logErr } from '../shared/logger'
 import { execa } from '../shared/execa'
@@ -71,24 +72,34 @@ const esmTask = async (input) => {
 const umdTask = async (input, name: string) => {
   setBabelEnv('esmodule')
   const entry = path.join(input, 'index.js')
-  const entryRaw = fs.readFileSync(entry, 'utf-8')
+  const entryRaw = await fs.readFile(entry, 'utf-8')
   const umdJs = path.join(input, 'umd.js')
   const ignored = ['utils', 'index.js']
-  const styleRaw = fs
-    .readdirSync(input)
-    .filter((v) => !ignored.includes(v))
-    .map((file) => `import './${file}/style/index.js';\n`)
-    .join()
-    .replace(/,/g, '')
+  const styles = await Promise.all(
+    fs
+      .readdirSync(input)
+      .filter((v) => !ignored.includes(v))
+      .map(async (item) => {
+        const stylePath = path.join(input, item, 'style', 'index.js')
+        const styleExist = await fs.pathExists(stylePath)
+        if (styleExist) {
+          const relative = normalizePath(path.relative(input, stylePath))
+          return `import './${relative}';\n`
+        }
+        return ''
+      })
+  )
+  const styleRaw = styles.join().replace(/,/g, '')
+
   const raw = `
-   import '@fect-ui/themes'
-   ${entryRaw}
-   ${styleRaw}
-  `
+  import '@fect-ui/themes'
+  ${entryRaw}
+  ${styleRaw}
+ `
   fs.outputFileSync(umdJs, raw)
-  await build(useUMDconfig(name, true))
-  await build(useUMDconfig(name))
-  fs.removeSync(umdJs)
+  await Promise.all([build(useUMDconfig(name, true)), build(useUMDconfig(name))]).finally(() => {
+    fs.removeSync(umdJs)
+  })
 }
 
 const declarationTask = async (input) => {
