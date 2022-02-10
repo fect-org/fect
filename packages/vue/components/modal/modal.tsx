@@ -13,6 +13,7 @@ const name = createName('Modal')
 
 export default defineComponent({
   name,
+  inheritAttrs: false,
   props,
   emits: ['update:visible', 'cancel', 'confirm'],
   setup(props, { attrs, slots, emit }) {
@@ -41,6 +42,7 @@ export default defineComponent({
     })
 
     const popupClickHandler = (e: MouseEvent) => {
+      if (props.disableOverlayClick) return
       const element = modalRef.value!.$el
       if (element && element.contains(e.target as Node)) return
       setSelfVisible(false)
