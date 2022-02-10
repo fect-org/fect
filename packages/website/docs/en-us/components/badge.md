@@ -1,4 +1,4 @@
-# Badge
+## Badge
 
 Display an indicator that requires attention.
 

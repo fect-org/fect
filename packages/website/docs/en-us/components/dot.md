@@ -1,4 +1,4 @@
-# Dot
+## Dot
 
 Display an indicator of standardization status.
 

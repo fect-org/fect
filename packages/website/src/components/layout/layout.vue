@@ -53,6 +53,8 @@ export default defineComponent({
     display: flex;
     width: 100%;
     padding-bottom: 150px;
+    padding-left: 20px;
+    padding-top: 20px;
   }
   &__article {
     box-sizing: border-box;

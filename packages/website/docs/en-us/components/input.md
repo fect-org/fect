@@ -1,4 +1,4 @@
-# Input
+## Input
 
 Retrieve text input from a user.
 

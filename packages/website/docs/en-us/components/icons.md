@@ -1,4 +1,4 @@
-# Icons
+## Icons
 
 Display semantic vector graphics in SVG format.
 

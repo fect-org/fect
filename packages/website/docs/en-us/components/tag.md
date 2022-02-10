@@ -1,4 +1,4 @@
-# Tag
+## Tag
 
 Display a unique keyword, optionally as a part of a set.
 

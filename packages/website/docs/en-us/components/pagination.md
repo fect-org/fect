@@ -1,4 +1,4 @@
-# Pagination
+## Pagination
 
 Navigation and identification between multiple pages.
 
