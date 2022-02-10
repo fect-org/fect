@@ -10,9 +10,8 @@ const ModalAction = defineComponent({
     const closeClickHandler = (e: Event, action: Action) => {
       e.stopPropagation()
       e.preventDefault()
-      const { setSelfVisible, setAction } = context!
-      setSelfVisible(false)
-      setAction(action)
+      const { closeModal } = context!
+      closeModal(action)
     }
 
     return () => (

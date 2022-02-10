@@ -21,32 +21,27 @@ export default defineComponent({
 
     const [selfVisible, setSelfVisible] = useState<boolean>(false)
 
-    const [action, setAction] = useState<Action>('')
-
     const { provider } = createModalContext()
 
-    provider({ props, setSelfVisible, selfVisible, setAction })
+    // modal close event collection
+    const closeModal = (action: Action) => {
+      setSelfVisible(false)
+      emit(action as keyof typeof emit)
+    }
+
+    provider({ props, closeModal })
 
     watch(
       () => props.visible,
-      (cur) => {
-        setSelfVisible(cur)
-        setAction('')
-      }
+      (cur) => setSelfVisible(cur)
     )
     watch(selfVisible, (cur) => emit('update:visible', cur))
-
-    watch(action, (cur) => {
-      if (cur === 'cancel') emit('cancel')
-      if (cur === 'confirm') emit('confirm')
-    })
 
     const popupClickHandler = (e: MouseEvent) => {
       if (props.disableOverlayClick) return
       const element = modalRef.value!.$el
       if (element && element.contains(e.target as Node)) return
-      setSelfVisible(false)
-      setAction('cancel')
+      closeModal('cancel')
     }
 
     return () => (
