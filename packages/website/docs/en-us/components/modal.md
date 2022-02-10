@@ -34,14 +34,15 @@ modal/function.vue
 
 ### Modal Props
 
-| Attribue            | Description         | Type          | Accepted values  | Default  |
-| ------------------- | ------------------- | ------------- | ---------------- | -------- |
-| **v-model:visible** | visible or hidden   | `boolean`     | `'true','false'` | `false`  |
-| **title**           | modal title         | `string`      | `-`              | `-`      |
-| **width**           | modal width         | `string`      | `-`              | `400px`  |
-| **cancel**          | cancel button text  | `string`      | `-`              | `cancel` |
-| **done**            | confrim button text | `string`      | `-`              | `done`   |
-| **teleport**        | modal mounted node  | `HTMLElement` | `-`              | `body`   |
+| Attribue                  | Description                      | Type          | Accepted values  | Default  |
+| ------------------------- | -------------------------------- | ------------- | ---------------- | -------- |
+| **v-model:visible**       | visible or hidden                | `boolean`     | `'true','false'` | `false`  |
+| **title**                 | modal title                      | `string`      | `-`              | `-`      |
+| **width**                 | modal width                      | `string`      | `-`              | `400px`  |
+| **cancel**                | cancel button text               | `string`      | `-`              | `cancel` |
+| **done**                  | confrim button text              | `string`      | `-`              | `done`   |
+| **teleport**              | modal mounted node               | `HTMLElement` | `-`              | `body`   |
+| **disable-overlay-click** | click background and don't close | `boolean`     | `'true','false'` | `false`  |
 
 ### Modal Options
 

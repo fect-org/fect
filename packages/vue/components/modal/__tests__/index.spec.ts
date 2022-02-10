@@ -10,7 +10,7 @@ const Wrapper = {
     [Modal.name]: Modal
   },
   data() {
-    return { show: false, mounted: false, overlay: true }
+    return { show: false, mounted: false, overlay: true, disableOverlayClick: false }
   },
   template: `
   <div class="container">
@@ -19,6 +19,7 @@ const Wrapper = {
       :overlay="overlay"
       title="Test Modal"
       teleport=".container"
+      :disable-overlay-click="disableOverlayClick"
       cancel="Cancel"
       done="Done"
       width="500px"
@@ -28,17 +29,33 @@ const Wrapper = {
 }
 
 describe('Modal', () => {
-  it('should be support normal props', async () => {
+  it('should be render as a element', async () => {
     const wrapper = mount(Wrapper, { attachTo: document.body })
-    await wrapper.setData({ show: true })
-    await wrapper.setData({ mounted: true })
-    await wrapper.setData({ overlay: false })
+    await wrapper.setData({ show: true, mounted: true })
     expect(wrapper.html()).toMatchSnapshot()
-    expect(wrapper.find('.title').text()).toBe('Test Modal')
-    expect(wrapper.find('.fect-teleport__overlay').exists()).toBe(false)
-    expect(wrapper.findAll('.fect-modal__button')[0].text()).toBe('Cancel')
-    expect(wrapper.findAll('.fect-modal__button')[1].text()).toBe('Done')
     expect(() => wrapper.unmount).not.toThrow()
+    wrapper.unmount()
+  })
+  it('modal props should be work correctly', async () => {
+    const wrapper = mount(Wrapper, { attachTo: document.body })
+    const rootEl = () => wrapper.find('.fect-modal__root')
+    await wrapper.setData({ mounted: true, overlay: false, disableOverlayClick: true })
+    const btn = wrapper.find('#btn')
+    await btn.trigger('click')
+    expect(wrapper.find('.fect-teleport__overlay').exists()).toBe(false)
+    expect(wrapper.find('.fect-modal__root').isVisible()).toBe(true)
+    await rootEl().trigger('click')
+    expect(wrapper.find('.fect-modal__root').isVisible()).toBe(true)
+    await wrapper.setData({ disableOverlayClick: false })
+    const actionBtns = wrapper.findAll('.fect-modal__button')
+    await actionBtns[0].trigger('click')
+    expect(wrapper.vm.show).toBe(false)
+    await btn.trigger('click')
+    await rootEl().trigger('click')
+    expect(wrapper.vm.show).toBe(false)
+    await btn.trigger('click')
+    await wrapper.find('.fect-modal__title').trigger('click')
+    expect(wrapper.vm.show).toBe(true)
     wrapper.unmount()
   })
   it('should be support custom slots', async () => {
@@ -64,33 +81,10 @@ describe('Modal', () => {
       { attachTo: document.body }
     )
 
-    await wrapper.setData({ show: true })
-    await wrapper.setData({ mounted: true })
-    expect(wrapper.html()).toMatchSnapshot()
+    await wrapper.setData({ show: true, mounted: true })
     expect(wrapper.find('.fect-modal__title').text()).toBe('Custom Title')
     expect(wrapper.find('h3').text()).toBe('Custom Action')
-    wrapper.unmount()
-  })
-
-  it('should be close modal through props visible value is false', async () => {
-    const wrapper = mount(Wrapper, { attachTo: document.body })
-    const btn = wrapper.find('#btn')
-    await wrapper.setData({ mounted: true })
-    await btn.trigger('click')
-    expect(wrapper.find('.fect-modal__root').isVisible()).toBe(true)
-    const el = wrapper.findAll('.fect-modal__button')
-    await el[0].trigger('click')
-    expect(wrapper.vm.show).toBe(false)
-    expect(wrapper.find('.fect-modal__root').isVisible()).toBe(false)
-    await wrapper.setData({ show: true })
-    await wrapper.setData({ mounted: true })
-    expect(wrapper.vm.show).toBe(true)
-    await wrapper.find('.fect-modal__root').trigger('click')
-    expect(wrapper.vm.show).toBe(false)
-    await wrapper.setData({ show: true })
-    await wrapper.setData({ mounted: true })
-    await wrapper.find('.fect-modal__wrapper').trigger('click')
-    expect(wrapper.vm.show).toBe(true)
+    expect(wrapper.html()).toMatchSnapshot()
     wrapper.unmount()
   })
 })
