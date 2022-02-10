@@ -11,12 +11,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import HrefAnchor from '../href-anchor/index.vue'
 import Prview from './preview.vue'
 export default defineComponent({
   name: 'Playground',
   components: {
-    HrefAnchor,
     Prview
   },
   props: {
