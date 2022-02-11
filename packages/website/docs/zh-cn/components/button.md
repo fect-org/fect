@@ -82,6 +82,14 @@ button/icon.vue
 
 :::
 
+### 按钮组
+
+:::playground
+
+button/group.vue
+
+:::
+
 ### Button Props
 
 | 属性          | 描述             | 类型                | 可选值                                     | 默认      |
@@ -97,3 +105,11 @@ button/icon.vue
 | **loading**   | 是否启用加载中   | `boolean`           | `'true','false'`                           | `false`   |
 | **load-type** | 设置加载中的风格 | `string`            | `'default','cube','wave'`                  | `default` |
 | **click**     | 点击事件         | `MouseEventHandler` | `-`                                        | `-`       |
+
+### ButtonGroup Props
+
+| 属性         | 描述                   | 类型      | 可选值                            | 默认    |
+| ------------ | ---------------------- | --------- | --------------------------------- | ------- |
+| **size**     | 一组按钮大小           | `string`  | `'mini','small','medium','large'` | `small` |
+| **auto**     | 一组按钮的自动缩放宽度 | `boolean` | `'true','false'`                  | `true`  |
+| **vertical** | 以垂直方式显示所有按钮 | `boolean` | `'true','false'`                  | `false` |
