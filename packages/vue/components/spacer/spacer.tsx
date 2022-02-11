@@ -15,7 +15,8 @@ const getMargin = (num: any) => {
     console.error(`[Fect] Spacer Error ${num} should be number`)
     num = 1
   }
-  return num
+  // use for ssr.
+  return `calc(${num} - 0)`
 }
 
 export default defineComponent({

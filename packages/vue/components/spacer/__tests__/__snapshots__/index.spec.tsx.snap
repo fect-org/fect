@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Spacer shoul be render as element 1`] = `<span class="fect-spacer " style="--horizontal-num: 1; --vertical-num: 1;"></span>`;
+exports[`Spacer shoul be render as element 1`] = `<span class="fect-spacer " style="--horizontal-num: calc(1 - 0); --vertical-num: calc(1 - 0);"></span>`;
 
-exports[`Spacer should be display right spacing when x or y are minus 1`] = `<span class="fect-spacer " style="--horizontal-num: 1; --vertical-num: 1;"></span>`;
+exports[`Spacer should be display right spacing when x or y are minus 1`] = `<span class="fect-spacer " style="--horizontal-num: calc(1 - 0); --vertical-num: calc(1 - 0);"></span>`;
 
-exports[`Spacer should be display right spacing when x or y are string 1`] = `<span class="fect-spacer " style="--horizontal-num: 1; --vertical-num: 1;"></span>`;
+exports[`Spacer should be display right spacing when x or y are string 1`] = `<span class="fect-spacer " style="--horizontal-num: calc(1 - 0); --vertical-num: calc(1 - 0);"></span>`;
 
-exports[`Spacer should be support x and y 1`] = `<span class="fect-spacer " style="--horizontal-num: 1; --vertical-num: 1;"></span><span class="fect-spacer " style="--horizontal-num: 1; --vertical-num: 2;"></span>`;
+exports[`Spacer should be support x and y 1`] = `<span class="fect-spacer " style="--horizontal-num: calc(1 - 0); --vertical-num: calc(1 - 0);"></span><span class="fect-spacer " style="--horizontal-num: calc(1 - 0); --vertical-num: calc(2 - 0);"></span>`;
