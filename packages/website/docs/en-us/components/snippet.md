@@ -1,4 +1,4 @@
-# Snippet
+## Snippet
 
 Display a snippet of copyable code for the command line.
 

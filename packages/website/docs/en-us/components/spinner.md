@@ -1,4 +1,4 @@
-# Spinner
+## Spinner
 
 Indicate an action running in the background.
 

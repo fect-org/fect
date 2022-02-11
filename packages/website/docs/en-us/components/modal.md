@@ -1,4 +1,4 @@
-# Modal
+## Modal
 
 Display popup content that requires attention or provides additional information.
 

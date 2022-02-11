@@ -1,4 +1,4 @@
-# Capacity
+## Capacity
 
 Display an capacity indicator.
 

@@ -1,4 +1,4 @@
-# Slider
+## Slider
 
 Display the current value and an inputable range.
 

@@ -1,4 +1,4 @@
-# Capacity / 容量
+## Capacity / 容量
 
 显示一个容量指示器
 

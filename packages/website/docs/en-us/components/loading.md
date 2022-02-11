@@ -1,4 +1,4 @@
-# Loading
+## Loading
 
 Indicate an action running in the background.
 

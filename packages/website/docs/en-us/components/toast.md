@@ -1,4 +1,4 @@
-# Toast
+## Toast
 
 Display an important message globally.
 

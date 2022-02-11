@@ -1,4 +1,4 @@
-# ThemeProvide / 主题配置
+## ThemeProvide / 主题配置
 
 更改组件库默认提供的`css variable`.
 

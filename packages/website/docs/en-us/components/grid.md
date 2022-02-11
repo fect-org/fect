@@ -1,4 +1,4 @@
-# Grid
+## Grid
 
 Powerful fluid style layout container.
 

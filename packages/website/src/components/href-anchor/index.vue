@@ -1,22 +1,21 @@
 <template>
   <div ref="anchorRef" class="fect-doc__anchor">
-    <fe-link :href="`#${anchor}`" :id="anchor">
-      <paperclip :size="20" color="var(--success-default)" v-show="visible" />
-      <fe-spacer inline :x="0.2" />
-      <slot />
-    </fe-link>
+    <h3>
+      <fe-link :href="`#${anchor}`" :id="anchor">
+        <slot />
+      </fe-link>
+    </h3>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'
-import { useState, useEventListener } from '@fect-ui/vue-hooks'
+import { useState } from '@fect-ui/vue-hooks'
 export default defineComponent({
   name: 'Anchor',
-  setup(props, { slots }) {
+  setup() {
     const [anchor, setAnchor] = useState<string>('')
     const anchorRef = ref<HTMLDivElement>()
-    const [visible, setVisible] = useState<boolean>(false)
 
     const anchorEncode = (text: string) => {
       if (!text) return ''
@@ -29,14 +28,9 @@ export default defineComponent({
       }
     })
 
-    useEventListener('mouseenter', () => setVisible(true), { target: anchorRef })
-
-    useEventListener('mouseleave', () => setVisible(false), { target: anchorRef })
-
     return {
       anchorRef,
-      anchor,
-      visible
+      anchor
     }
   }
 })
@@ -47,9 +41,10 @@ export default defineComponent({
   &__anchor {
     color: inherit;
     vertical-align: middle;
-    font-size: inherit;
-    font-size: 1rem;
-    > .fect-link {
+    h3 {
+      font-size: 1.3rem;
+    }
+    .fect-link {
       color: inherit;
       position: relative;
       svg {
@@ -59,7 +54,7 @@ export default defineComponent({
     }
 
     @media only screen and (max-width: 650px) {
-      > .fect-link {
+      .fect-link {
         svg {
           display: none;
         }

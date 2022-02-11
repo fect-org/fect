@@ -1,4 +1,4 @@
-# Swipe
+## Swipe
 
 Display a set of image data to be displayed
 

@@ -1,4 +1,4 @@
-# Tooltip
+## Tooltip
 
 Displays additional information on hover.
 

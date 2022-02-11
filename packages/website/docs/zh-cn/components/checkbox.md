@@ -1,4 +1,4 @@
-# Checkbox / 复选框
+## Checkbox / 复选框
 
 用于表示多个可选项
 
