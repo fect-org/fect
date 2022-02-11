@@ -100,6 +100,7 @@
     color: var(--accents-5);
     --button-load-bg: var(--accents-1);
     --button-load-color: var(--accents-5);
+    --button-border-color: var(--accents-2);
   }
 
   &--success {
@@ -108,13 +109,12 @@
     color: #fff;
     --button-load-bg: var(--button-success-color);
     --button-load-color: #fff;
-
+    --button-border-color: var(--button-success-color);
     &.is-ghost {
       background-color: var(--primary-background);
-      border-color: var(--success-default);
-      color: var(--success-default);
+      color: var(--button-success-color);
       --button-load-bg: var(--primary-background);
-      --button-load-color: var(--success-default);
+      --button-load-color: var(--button-success-color);
     }
   }
 
@@ -124,13 +124,12 @@
     color: #fff;
     --button-load-bg: var(--button-warning-color);
     --button-load-color: #fff;
-
+    --button-border-color: var(--button-warning-color);
     &.is-ghost {
       background-color: var(--primary-background);
-      border-color: var(--warning-default);
-      color: var(--warning-default);
+      color: var(--button-warning-color);
       --button-load-bg: var(--primary-background);
-      --button-load-color: var(--warning-default);
+      --button-load-color: var(--button-warning-color);
     }
   }
 
@@ -140,13 +139,12 @@
     color: #fff;
     --button-load-bg: var(--button-error-color);
     --button-load-color: #fff;
-
+    --button-border-color: var(--button-error-color);
     &.is-ghost {
       background-color: var(--primary-background);
-      border-color: var(--error-default);
-      color: var(--error-default);
+      color: var(--button-error-color);
       --button-load-bg: var(--primary-background);
-      --button-load-color: var(--error-default);
+      --button-load-color: var(--button-error-color);
     }
   }
 
@@ -156,13 +154,12 @@
     color: var(--primary-background);
     --button-load-bg: var(--button-secondary-color);
     --button-load-color: var(--primary-background);
-
+    --button-border-color: var(--button-secondary-color);
     &.is-ghost {
       background-color: var(--primary-background);
-      border-color: var(--dark-default);
-      color: var(--dark-default);
+      color: var(--button-secondary-color);
       --button-load-bg: var(--primary-background);
-      --button-load-color: var(--dark-default);
+      --button-load-color: var(--button-secondary-color);
     }
   }
 

@@ -82,6 +82,14 @@ button/icon.vue
 
 :::
 
+### Group
+
+:::playground
+
+button/group.vue
+
+:::
+
 ### Button Props
 
 | Attribue      | Description               | Type      | Accepted values                            | Default   |
@@ -96,6 +104,14 @@ button/icon.vue
 | **loading**   | display loading indicator | `boolean` | `'true','false'`                           | `false`   |
 | **load-type** | loading type              | `string`  | `'default','cube','wave'`                  | `default` |
 | **html-type** | native button type        | `string`  | `submit`, `reset`,`button`                 | `button`  |
+
+### ButtonGroup Props
+
+| Attribue     | Description                 | Type      | Accepted values                   | Default |
+| ------------ | --------------------------- | --------- | --------------------------------- | ------- |
+| **size**     | control all button size     | `string`  | `'mini','small','medium','large'` | `small` |
+| **auto**     | control all autoscale width | `boolean` | `'true','false'`                  | `true`  |
+| **vertical** | show all buttons vertically | `boolean` | `'true','false'`                  | `false` |
 
 ### Button Events
 
