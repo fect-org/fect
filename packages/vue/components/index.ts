@@ -10,6 +10,7 @@ import { BadgeAnchor } from './badge-anchor'
 import { Breadcrumbs } from './breadcrumbs'
 import { BreadcrumbsItem } from './breadcrumbs-item'
 import { Button } from './button'
+import { ButtonGroup } from './button-group'
 import { Capacity } from './capacity'
 import { Card } from './card'
 import { Checkbox } from './checkbox'
@@ -65,6 +66,7 @@ const components = [
   Breadcrumbs,
   BreadcrumbsItem,
   Button,
+  ButtonGroup,
   Capacity,
   Card,
   Checkbox,
@@ -131,6 +133,7 @@ export * from './badge-anchor'
 export * from './breadcrumbs'
 export * from './breadcrumbs-item'
 export * from './button'
+export * from './button-group'
 export * from './capacity'
 export * from './card'
 export * from './checkbox'
