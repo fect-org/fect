@@ -68,12 +68,9 @@ export default defineComponent({
     })
 
     const dripCompleteHandler = () => {
-      const timer = setTimeout(() => {
-        setDrapShow(false)
-        setDrapX(0)
-        setDrapY(0)
-        clearTimeout(timer)
-      }, 500)
+      setDrapShow(false)
+      setDrapX(0)
+      setDrapY(0)
     }
 
     const renderContext = () => {
