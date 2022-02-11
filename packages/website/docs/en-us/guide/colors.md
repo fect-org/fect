@@ -1,4 +1,4 @@
-# Colors
+## Colors
 
 Default colors for themes.
 

@@ -1,4 +1,4 @@
-# Image
+## Image
 
 Display image data.
 

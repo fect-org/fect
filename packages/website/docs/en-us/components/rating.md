@@ -1,4 +1,4 @@
-# Rating
+## Rating
 
 Display an indicator of rankings with stars.
 

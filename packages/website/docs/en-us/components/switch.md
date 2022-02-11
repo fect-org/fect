@@ -1,4 +1,4 @@
-# switch
+## switch
 
 Displays a boolean value.
 

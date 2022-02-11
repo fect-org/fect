@@ -1,4 +1,4 @@
-# Progress
+## Progress
 
 Display progress relative to a limit or related to a task.
 

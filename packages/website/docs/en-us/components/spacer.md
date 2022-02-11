@@ -1,4 +1,4 @@
-# spacer
+## spacer
 
 Standardized spacing for typesetting.
 

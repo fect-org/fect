@@ -1,4 +1,4 @@
-# Checkbox
+## Checkbox
 
 Displays a boolean value.
 

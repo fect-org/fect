@@ -1,4 +1,4 @@
-# Popover
+## Popover
 
 The floating box popped by clicking or hovering.
 

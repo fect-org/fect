@@ -1,4 +1,4 @@
-# Skeleton
+## Skeleton
 
 Set up a skeleton screen where you need to wait for the content to load.
 

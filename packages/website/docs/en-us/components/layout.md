@@ -1,4 +1,4 @@
-# layout
+## Layout
 
 Build page layouts in an easy way
 

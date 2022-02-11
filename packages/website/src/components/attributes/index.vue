@@ -1,5 +1,4 @@
 <template>
-  <fe-spacer :y="0.5" />
   <div class="fect-doc__api-attrs">
     <slot />
   </div>
@@ -9,16 +8,15 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'Attributes',
-  setup() {}
+  name: 'Attributes'
 })
 </script>
 
 <style lang="less">
 @breakpoint: 650px;
-// scoped
 .fect-doc__api-attrs {
   width: 100%;
+  margin: var(--fect-gap) 0;
   table {
     margin-right: var(--fect-gap);
     border-collapse: separate;

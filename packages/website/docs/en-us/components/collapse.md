@@ -1,4 +1,4 @@
-# Collapse
+## Collapse
 
 Display large amounts of text in collapsible sections. Commonly referred to as an accordion.
 
