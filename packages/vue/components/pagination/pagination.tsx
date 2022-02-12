@@ -91,20 +91,16 @@ export default defineComponent({
       return style
     })
 
-    const renderSide = (eventType: SideEvent, slot: Slot) => (
-      <li class="paginatuon-slots__custom" onClick={() => updateSidePage(eventType)}>
-        {slot()}
-      </li>
-    )
-
     const renderPrev = () => {
       const prevSlot = slots['prev']
-      return <>{prevSlot ? <>{renderSide('prev', prevSlot)}</> : <PaginationPrev>{props.prevText}</PaginationPrev>}</>
+      const content = prevSlot ? prevSlot : () => props.prevText
+      return <PaginationPrev>{content()}</PaginationPrev>
     }
 
     const renderNext = () => {
       const nextSlot = slots['next']
-      return <>{nextSlot ? <>{renderSide('next', nextSlot)}</> : <PaginationNext>{props.nextText}</PaginationNext>}</>
+      const content = nextSlot ? nextSlot : () => props.nextText
+      return <PaginationNext>{content()}</PaginationNext>
     }
 
     const renderPage = () => {
@@ -121,11 +117,9 @@ export default defineComponent({
 
     return () => (
       <nav class="fect-pagination" style={baseStyle.value}>
-        <ul>
-          {renderPrev()}
-          {renderPage()}
-          {renderNext()}
-        </ul>
+        {renderPrev()}
+        {renderPage()}
+        {renderNext()}
       </nav>
     )
   }

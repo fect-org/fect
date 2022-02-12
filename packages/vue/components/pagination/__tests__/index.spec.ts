@@ -71,7 +71,7 @@ describe('Pagination', () => {
 
     expect(wrapper.html()).toMatchSnapshot()
     await wrapper.setData({ limit: 7 })
-    const els = wrapper.findAll('.paginatuon-slots__custom')
+    const els = wrapper.findAll('.pagination-item__button')
     expect(wrapper.html()).toMatchSnapshot()
     await els[els.length - 1].trigger('click')
     expect(wrapper.vm.value).toEqual(2)
