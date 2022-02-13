@@ -5,23 +5,25 @@
  * modifier
  */
 
-export type Mod = string | Record<string, boolean>
+export type Mod = string | Record<string, string | boolean>
 export type Mods = Mod | Mod[]
 
 const parserBem = (el: string, mods?: Mods): string => {
-  if (!mods) return el
-  if (typeof mods === 'string') return `${el}--${mods}`
+  if (!mods) return ''
+  if (typeof mods === 'string') return ' ' + `${el}--${mods}`
   if (Array.isArray(mods)) {
     return mods.reduce<string>((acc, cur) => acc + parserBem(el, cur), '')
   }
   return Object.keys(mods).reduce((acc, cur) => {
-    return acc + Boolean(mods[cur]) ? parserBem(el, cur) : ''
+    const bool = typeof mods[cur] === 'boolean'
+    const modifier = bool && mods[cur] ? cur : (mods[cur] as string)
+    return acc + parserBem(el, modifier)
   }, '')
 }
 
 export const createBem = (base: string) => {
   return (el?: string | null, mods?: Mods) => {
     el = el ? `${base}__${el}` : base
-    return parserBem(el, mods)
+    return el + parserBem(el, mods)
   }
 }
