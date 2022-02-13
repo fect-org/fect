@@ -1,5 +1,5 @@
 import { computed, defineComponent } from 'vue'
-import { createName } from '../utils'
+import { createName, createBem } from '../utils'
 import Link from '../link'
 import HttpIcons from './image-browser-icon'
 import { BrowserColors } from './type'
@@ -7,6 +7,7 @@ import { BrowserColors } from './type'
 import './index.less'
 
 const name = createName('ImageBrowser')
+const bem = createBem('fect-image')
 
 const queryBrowserColors = (invert: boolean): BrowserColors => {
   const invertStyle = {
@@ -65,7 +66,7 @@ export default defineComponent({
     const renderTitle = () => {
       const { title } = props
       return (
-        <div class="fect-image__title" style={{ color: titleColor }}>
+        <div class={bem('title')} style={{ color: titleColor }}>
           <span>{title}</span>
         </div>
       )
@@ -73,7 +74,7 @@ export default defineComponent({
 
     const renderAddress = () => {
       return (
-        <div class="fect-image__input" style={{ backgroundColor: inputBgColor }}>
+        <div class={bem('input')} style={{ backgroundColor: inputBgColor }}>
           <span class="https">
             <HttpIcons />
           </span>
@@ -92,9 +93,9 @@ export default defineComponent({
     })
 
     return () => (
-      <div class="fect-image__browser">
+      <div class={bem('browser')}>
         <header
-          class="fect-image__traffic"
+          class={bem('traffic')}
           style={{
             color,
             backgroundColor: barBgColor,

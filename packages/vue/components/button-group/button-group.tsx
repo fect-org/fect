@@ -6,6 +6,7 @@ import { buttonGroupProps } from './props'
 import './index.less'
 
 const name = createName('ButtonGroup')
+const bem = createBem('fect-button')
 
 export default defineComponent({
   name,
@@ -15,10 +16,6 @@ export default defineComponent({
 
     provider({ props })
 
-    return () => (
-      <div class={`fect-button__group ${createBem('fect-button__group', props.vertical ? 'vertical' : 'horizontal')}`}>
-        {slots.default?.()}
-      </div>
-    )
+    return () => <div class={bem('group', props.vertical ? 'vertical' : 'horizontal')}>{slots.default?.()}</div>
   }
 })

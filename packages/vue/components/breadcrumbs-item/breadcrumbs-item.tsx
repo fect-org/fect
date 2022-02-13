@@ -1,5 +1,5 @@
 import { watchEffect, defineComponent } from 'vue'
-import { createName } from '../utils'
+import { createName, createBem } from '../utils'
 import { useState } from '@fect-ui/vue-hooks'
 import { useBreadcrumbsContext } from '../breadcrumbs/breadcrumbs-context'
 import Link from '../link'
@@ -7,6 +7,7 @@ import Separator from './breadcrumbs-spearator'
 import './index.less'
 
 const name = createName('BreadcrumbsItem')
+const bem = createBem('fect-breadcrumbs')
 
 export default defineComponent({
   name,
@@ -39,7 +40,7 @@ export default defineComponent({
 
     const withoutLinkRender = () => {
       return (
-        <span class="fect-breadcrumbs__item">
+        <span class={bem('item')}>
           {slots.default?.()}
           <Separator>{context.separator}</Separator>
         </span>
@@ -48,8 +49,8 @@ export default defineComponent({
 
     const linkRender = () => {
       return (
-        <div class="fect-breadcrumbs__item">
-          <Link to={props.to} href={props.href} class="fect-breadcrumbs__link" {...attrs}>
+        <div class={bem('item')}>
+          <Link to={props.to} href={props.href} class={bem('link')} {...attrs}>
             {slots.default?.()}
           </Link>
           <Separator>{context.separator}</Separator>

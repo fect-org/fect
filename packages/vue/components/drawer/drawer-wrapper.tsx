@@ -1,5 +1,8 @@
 import { defineComponent, PropType } from 'vue'
+import { createBem } from '../utils'
 import { Placement } from './props'
+
+const bem = createBem('fect-drawer')
 
 const DrawerWrapper = defineComponent({
   props: {
@@ -12,10 +15,7 @@ const DrawerWrapper = defineComponent({
   },
   setup(props, { slots }) {
     return () => (
-      <div
-        class={`fect-drawer__wrapper fect-drawer__wrapper--${props.placement} ${props.round ? 'round' : ''}`}
-        role="dialog"
-      >
+      <div class={bem('wrapper', [props.placement, { round: props.round }])} role="dialog">
         {slots.default?.()}
       </div>
     )

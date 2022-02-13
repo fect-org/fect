@@ -1,11 +1,12 @@
 import { computed, ref, PropType, watch, defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { useRealShape, createName } from '../utils'
+import { useRealShape, createName, createBem } from '../utils'
 import { useCollapseContext } from '../collapse-group/collapse-context'
 import CollapseIcon from './collapse-icon'
 import './index.less'
 
 const name = createName('Collapse')
+const bem = createBem('fect-collapse')
 
 type Shape = {
   width: number
@@ -28,20 +29,11 @@ export default defineComponent({
   },
   emits: ['update:visible'],
   setup(props, { slots, emit }) {
-    // if (process.env.NODE_ENV !== 'production' && !props.title) {
-    //   console.error('[Fect] title must be in <Collapse>.')
-    // }
-
     const { context, idx } = useCollapseContext()
 
     const expandRef = ref<HTMLDivElement>()
 
     const [height, setHeight] = useState<Height>(props.visible ? 'auto' : 0)
-
-    const setCollapseClass = computed(() => {
-      if (props.shadow) return 'fect-collapse--shadow'
-      return 'fect-collapse'
-    })
 
     const clickHandler = () => {
       if (context) return context.updateCollapseGroupChecked(idx)
@@ -84,8 +76,8 @@ export default defineComponent({
     })
 
     return () => (
-      <div class={setCollapseClass.value}>
-        <div class="fect-collapse__view" role="collapseButton" onClick={clickHandler}>
+      <div class={bem(null, { shadow: props.shadow })}>
+        <div class={bem('view')} role="collapseButton" onClick={clickHandler}>
           <div class="title">
             <h3>{props.title}</h3>
             <CollapseIcon active={visible.value} />
@@ -96,13 +88,13 @@ export default defineComponent({
         </div>
 
         <div
-          class="fect-collapse__expand"
+          class={bem('expand')}
           style={{
             visibility: visible.value ? 'visible' : 'hidden',
             height: height.value
           }}
         >
-          <div class="fect-collapse__content" ref={expandRef}>
+          <div class={bem('content')} ref={expandRef}>
             {slots.default?.()}
           </div>
         </div>

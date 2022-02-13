@@ -1,7 +1,7 @@
 import { computed, watch, defineComponent, watchEffect } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import CheckIcon from './checkbox-icon'
-import { createName, createBem } from '../utils'
+import { createName, createBem, pickContextProps } from '../utils'
 import { useCheckboxContext } from '../checkbox-group/checkbox-context'
 import { checkboxProps } from '../checkbox-group/props'
 import type { CheckboxEvent } from '../checkbox-group/interface'
@@ -9,6 +9,7 @@ import type { CheckboxEvent } from '../checkbox-group/interface'
 import './index.less'
 
 const name = createName('Checkbox')
+const bem = createBem('fect-checkbox')
 
 export default defineComponent({
   name,
@@ -18,14 +19,15 @@ export default defineComponent({
     const [selfChecked, setSelfChecked] = useState<boolean>(props.modelValue)
     const { context } = useCheckboxContext()
 
-    const selfSize = computed(() => {
-      if (context) return context.props.size
-      return props.size
-    })
-
     const selfDisabled = computed(() => {
       if (context) return context.props.disabled
       return props.disabled
+    })
+
+    const setChekcboxClass = computed(() => {
+      const { size, disabled } = props
+      const behavior = pickContextProps({ size, disabled }, context)
+      return bem(null, behavior)
     })
 
     /**
@@ -66,9 +68,7 @@ export default defineComponent({
     watch(selfChecked, (cur) => emit('update:modelValue', cur))
 
     return () => (
-      <label
-        class={`fect-checkbox ${selfDisabled.value ? 'disabled' : ''} ${createBem('fect-checkbox', selfSize.value)}`}
-      >
+      <label class={setChekcboxClass.value}>
         <CheckIcon class={`${selfDisabled.value ? 'disabled' : ''}`} checked={selfChecked.value} />
         <input
           type="checkbox"
@@ -76,7 +76,7 @@ export default defineComponent({
           checked={selfChecked.value}
           onChange={handleChange}
         ></input>
-        <span class="fect-checkbox__inner">{slots.default?.()}</span>
+        <span class={bem('inner')}>{slots.default?.()}</span>
       </label>
     )
   }

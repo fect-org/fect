@@ -1,11 +1,12 @@
 import { defineComponent, watch, computed, ref, Ref } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, getDomRect, useDraggable } from '../utils'
+import { createName, getDomRect, useDraggable, createBem } from '../utils'
 import type { Position } from '../utils'
 
 import './index.less'
 
 const name = createName('Slider')
+const bem = createBem('fect-slider')
 
 type Marks = number[]
 
@@ -74,18 +75,12 @@ export default defineComponent({
 
     //   slider-markers
     const renderMarkers = () =>
-      marks.value.map((val, idx) => (
-        <span class="fect-slider__mark" key={`${val}-${idx}`} style={{ left: `${val}%` }} />
-      ))
+      marks.value.map((val, idx) => <span class={bem('mark')} key={`${val}-${idx}`} style={{ left: `${val}%` }} />)
 
     // slider-dot
     const renderDot = () => {
       return (
-        <div
-          class={`fect-slider__dot ${isClick.value ? 'click' : ''}`}
-          ref={dotRef}
-          style={{ left: `${setDotPosition.value}%` }}
-        >
+        <div class={bem('dot', { click: isClick.value })} ref={dotRef} style={{ left: `${setDotPosition.value}%` }}>
           {props.hideValue || value.value}
         </div>
       )
@@ -140,7 +135,7 @@ export default defineComponent({
 
     return () => (
       <div
-        class={`fect-slider ${props.disabled ? 'disabled' : ''}`}
+        class={bem(null, { disabled: props.disabled })}
         ref={sliderRef}
         role="slider"
         title={value.value + '%'}

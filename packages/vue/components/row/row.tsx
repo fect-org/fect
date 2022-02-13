@@ -1,9 +1,10 @@
 import { computed, PropType, CSSProperties, defineComponent } from 'vue'
 import { createProvider } from '@fect-ui/vue-hooks'
-import { createName, JustifyTypes, AlignTypes } from '../utils'
+import { createName, JustifyTypes, AlignTypes, createBem } from '../utils'
 import './index.less'
 
 const name = createName('Row')
+const bem = createBem('fect-row')
 
 export const READONLY_LAYOUT_KEY = 'layoutKey'
 
@@ -35,15 +36,9 @@ export default defineComponent({
     const { provider } = createProvider(READONLY_LAYOUT_KEY)
     provider({ gutter: props.gutter })
 
-    const setClass = computed(() => {
-      let _class = ''
-      if (props.justify !== 'start') {
-        _class += ` fect-justify--${props.justify}`
-      }
-      if (props.align !== 'top') {
-        _class += ` fect-align--${props.align}`
-      }
-      return _class.trim()
+    const setRowClass = computed(() => {
+      const { justify, align } = props
+      return bem(null, [justify, align])
     })
 
     const setStyle = computed(() => {
@@ -58,7 +53,7 @@ export default defineComponent({
     return () => {
       const { tag } = props
       return (
-        <tag class={`fect-row ${setClass.value}`} style={setStyle.value}>
+        <tag class={setRowClass.value} style={setStyle.value}>
           {slots.default?.()}
         </tag>
       )

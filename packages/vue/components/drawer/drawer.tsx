@@ -1,6 +1,6 @@
 import { watch, computed, defineComponent, ref } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, CustomCSSProperties, ComponentInstance } from '../utils'
+import { createName, CustomCSSProperties, ComponentInstance, createBem } from '../utils'
 import { props } from './props'
 import Teleport from '../teleport'
 import DrawerWrapper from './drawer-wrapper'
@@ -8,6 +8,7 @@ import { getDrawerTransfrom } from './style'
 import './index.less'
 
 const name = createName('Drawer')
+const bem = createBem('fect-drawer')
 
 export default defineComponent({
   name,
@@ -47,7 +48,7 @@ export default defineComponent({
         overlay={props.overlay}
         scroll={visible.value}
         show={visible.value}
-        popupClass="fect-drawer__root"
+        popupClass={bem('root')}
         transition="drawer-fade"
         onPopupClick={poupClickHandler}
         style={setDrawerStyle.value}

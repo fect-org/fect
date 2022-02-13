@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, assign } from '../utils'
+import { createName, assign, createBem } from '../utils'
 import { radioGroupProps } from './props'
 import { createRadioContext } from './radio-context'
 import type { RadioEvent, Parent } from './interface'
@@ -8,6 +8,7 @@ import type { RadioEvent, Parent } from './interface'
 import './index.less'
 
 const name = createName('RadioGroup')
+const bem = createBem('fect-radio')
 
 export default defineComponent({
   name,
@@ -32,7 +33,6 @@ export default defineComponent({
     }
 
     provider({ props, parentValue, updateRadioGroupValue, updateRadioGroupChangeEvent })
-
-    return () => <div class={`fect-radio__group ${props.useRow ? 'useRow' : ''}`}>{slots.default?.()}</div>
+    return () => <div class={bem('group', { useRow: props.useRow })}>{slots.default?.()}</div>
   }
 })

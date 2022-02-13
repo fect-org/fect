@@ -25,8 +25,7 @@ describe('Radio', () => {
       </div>
       `
     })
-    const els = wrapper.findAll('.fect-radio__point')
-    expect(els[0].classes('active')).toBe(true)
+    expect(wrapper.find('.fect-radio__point--active').exists()).toBe(true)
   })
 
   it('should be support noraml props like size , disabled , useRow', () => {
@@ -84,7 +83,7 @@ describe('Radio', () => {
     const el = wrapper.findAll('input')
     const els = wrapper.findAll('.fect-radio__point')
     await el[1].trigger('change')
-    expect(els[1].classes('active')).toBe(true)
+    expect(els[1].attributes('class')).toContain('fect-radio__point--active')
   })
 
   it('should be disabled all event when set props disabled', async () => {

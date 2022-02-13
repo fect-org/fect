@@ -21,7 +21,7 @@ describe('Avatar', () => {
         text: 'XeryYue'
       }
     })
-    const text = ava.find('.fect-avatar-text').text()
+    const text = ava.find('.fect-avatar__text').text()
     expect(text.length).toBeLessThanOrEqual(3)
   })
   it('should be render as Element', () => {

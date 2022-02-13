@@ -4,39 +4,37 @@
   width: initial;
   padding: var(--fect-gap-half);
   border-radius: var(--fect-radius);
-  background-color: var(--primary-background);
   border: 1px solid var(--accents-2);
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
   user-select: none;
-
-  &.success {
+  &--default {
+    background-color: var(--primary-background);
+  }
+  &--success {
     border-color: var(--success-default);
     color: var(--success-default);
-    &.fill {
-      background-color: var(--success-default);
-      color: var(--primary-background);
-    }
+    --snippet-fill-color: var(--success-default);
   }
-  &.warning {
+  &--warning {
     border-color: var(--warning-default);
     color: var(--warning-default);
-    &.fill {
-      background-color: var(--warning-default);
-      color: var(--primary-background);
-    }
+    --snippet-fill-color: var(--warning-default);
   }
-  &.error {
+  &--error {
     border-color: var(--error-default);
     color: var(--error-default);
-    &.fill {
-      background-color: var(--error-default);
+    --snippet-fill-color: var(--error-default);
+  }
+  &--fill {
+    &:not(.fect-snippet--default) {
+      background-color: var(--snippet-fill-color);
       color: var(--primary-background);
     }
   }
-  &.disabled {
+  &--disabled {
     cursor: not-allowed;
   }
   > span {

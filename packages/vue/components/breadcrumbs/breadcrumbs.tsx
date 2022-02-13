@@ -5,6 +5,7 @@ import './index.less'
 import { createBreadcrumbsContext } from './breadcrumbs-context'
 
 const name = createName('Breadcrumbs')
+const bem = createBem('fect-breadcrumbs')
 
 export default defineComponent({
   name,
@@ -22,6 +23,6 @@ export default defineComponent({
     const { provider } = createBreadcrumbsContext()
     provider({ separator: props.separator })
 
-    return () => <nav class={`fect-breadcrumbs ${createBem('fect-breadcrumbs', props.size)}`}>{slots.default?.()}</nav>
+    return () => <nav class={bem(null, props.size)}>{slots.default?.()}</nav>
   }
 })

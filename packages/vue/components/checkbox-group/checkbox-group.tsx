@@ -1,6 +1,6 @@
 import { watch, defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName } from '../utils'
+import { createName, createBem } from '../utils'
 import { createCheckboxContext } from './checkbox-context'
 import { checkboxGroupProps } from './props'
 import type { CheckboxEvent } from './interface'
@@ -8,6 +8,7 @@ import type { CheckboxEvent } from './interface'
 import './index.less'
 
 const name = createName('CheckboxGroup')
+const bem = createBem('fect-checkbox')
 
 export default defineComponent({
   name,
@@ -36,7 +37,6 @@ export default defineComponent({
     provider({ props, updateCheckboxGroupValue, parentValue, updateCheckboxGroupEvent })
 
     watch(parentValue, (cur) => emit('update:modelValue', cur))
-
-    return () => <div class={`fect-checkbox__group ${props.useRow ? 'useRow' : ''}`}>{slots.default?.()}</div>
+    return () => <div class={bem('group', { useRow: props.useRow })}>{slots.default?.()}</div>
   }
 })

@@ -199,14 +199,14 @@
     --button-icon-height: var(--button-large-height);
   }
 
-  &.is-disabled {
+  &--disabled {
     cursor: not-allowed;
     color: var(--button-disabled-text-color);
     background-color: var(--button-disabled-bg-color);
     border-color: var(--button-disabled-border-color);
   }
 
-  &.is-shadow {
+  &--shadow {
     box-shadow: var(--fect-shadowSmall);
 
     &:hover {
@@ -215,13 +215,16 @@
     }
   }
 
-  &.is-auto {
+  &--auto {
     width: auto;
     min-width: auto;
   }
 
   &.is-loading {
     pointer-events: none;
+  }
+  &--is-ghost {
+  
   }
 
   &:not(.is-shadow, .is-disabled, .is-loading):hover,

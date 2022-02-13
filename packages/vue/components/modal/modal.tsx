@@ -1,6 +1,6 @@
 import { watch, defineComponent, ref } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, ComponentInstance } from '../utils'
+import { createName, ComponentInstance, createBem } from '../utils'
 import ModalWrapper from './modal-wrapper'
 import { createModalContext } from './modal-context'
 import Teleport from '../teleport'
@@ -10,6 +10,7 @@ import type { Action } from './interface'
 import './index.less'
 
 const name = createName('Modal')
+const bem = createBem('fect-modal')
 
 export default defineComponent({
   name,
@@ -49,7 +50,7 @@ export default defineComponent({
         teleport={props.teleport}
         overlay={props.overlay}
         scroll={selfVisible.value}
-        popupClass="fect-modal__root"
+        popupClass={bem('root')}
         transition="modal-fade"
         show={selfVisible.value}
         onPopupClick={popupClickHandler}
