@@ -1,10 +1,11 @@
 import { defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName } from '../utils'
+import { createName, createBem } from '../utils'
 import { useToastContext } from './toast-contenxt'
 import ToastItem from './toast-item'
 
 const name = createName('Toast')
+const bem = createBem('fect-toast')
 
 import './index.less'
 
@@ -48,7 +49,7 @@ export default defineComponent({
 
     return () => (
       <div
-        class={`fect-toast__container ${hover.value ? 'hover' : ''}`}
+        class={bem('container', { hover: hover.value })}
         onMouseenter={() => hoverHandler(true)}
         onMouseleave={() => hoverHandler(false)}
       >

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Switch component props should be work correctly 1`] = `
-<div class="container"><label class="fect-switch disabled fect-switch--mini"><input class="fect-switch__checkbox" type="checkBox" disabled="">
-    <div class="fect-switch__slider "><span class="fect-switch__inner disabled"></span></div>
+<div class="container"><label class="fect-switch fect-switch--mini fect-switch--disabled"><input class="fect-switch__checkbox" type="checkBox" disabled="">
+    <div class="fect-switch__slider"><span class="fect-switch__inner fect-switch__inner--disabled"></span></div>
   </label></div>
 `;

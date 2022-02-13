@@ -5,7 +5,7 @@
 
 :root {
   --radio-mini-size: @radio-mini-size;
-  --raido-small-size: @radio-small-size;
+  --radio-small-size: @radio-small-size;
   --radio-medium-size: @radio-medium-size;
   --radio-large-size: @radio-large-size;
 }
@@ -73,10 +73,10 @@
       height: var(--radioSize);
       width: var(--radioSize);
     }
-    &.disabled::before {
+    &--disabled::before {
       background-color: var(--accents-5);
     }
-    &.active::before {
+    &--active::before {
       transform: scale(0.875);
       transition: all 0.2s ease 0s;
     }

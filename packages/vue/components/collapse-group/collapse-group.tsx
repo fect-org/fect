@@ -1,10 +1,11 @@
 import { PropType, watch, defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName } from '../utils'
+import { createName, createBem } from '../utils'
 import { createCollapseContext } from './collapse-context'
 import './index.less'
 
 const name = createName('CollapseGroup')
+const bem = createBem('fect-collapse')
 
 export default defineComponent({
   name,
@@ -38,6 +39,6 @@ export default defineComponent({
 
     watch(checked, (cur) => emit('update:modelValue', cur))
 
-    return () => <div class="fect-collapse__group"> {slots.default?.()}</div>
+    return () => <div class={bem('group')}> {slots.default?.()}</div>
   }
 })

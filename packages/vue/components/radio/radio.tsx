@@ -7,6 +7,7 @@ import type { RadioEvent } from '../radio-group/interface'
 import './index.less'
 
 const name = createName('Radio')
+const bem = createBem('fect-radio')
 
 export default defineComponent({
   name,
@@ -66,7 +67,7 @@ export default defineComponent({
     watch(selfChecked, (cur) => emit('update:checked', cur))
 
     return () => (
-      <div class={`fect-radio ${createBem('fect-radio', selfSize.value)}`}>
+      <div class={`fect-radio ${bem(null, selfSize.value)}`}>
         <label class={`${selfDisabled.value ? 'disabled' : ''}`}>
           <input
             type="radio"
@@ -75,10 +76,8 @@ export default defineComponent({
             onChange={changeHandler}
             disabled={selfDisabled.value}
           ></input>
-          <span class={'fect-radio__name'}>
-            <span
-              class={`fect-radio__point ${selfDisabled.value ? 'disabled' : ''} ${selfChecked.value ? 'active' : ''}`}
-            />
+          <span class={bem('name')}>
+            <span class={bem('point', { disabled: selfDisabled.value, active: selfChecked.value })} />
             {slots.default?.()}
           </span>
         </label>

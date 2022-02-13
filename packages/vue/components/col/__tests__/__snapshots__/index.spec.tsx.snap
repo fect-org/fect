@@ -7,7 +7,7 @@ exports[`Col should be render as Element 1`] = `
 `;
 
 exports[`Col should be use row gutter 1`] = `
-<div class="fect-row " style="margin-left: -0.5px; margin-right: -0.5px;">
+<div class="fect-row fect-row--start fect-row--top" style="margin-left: -0.5px; margin-right: -0.5px;">
   <div style="width: 100%; margin-left: 0%; padding-left: 0.5px; padding-right: 0.5px;" class="fect-col">
     <!---->
   </div>

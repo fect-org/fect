@@ -1,15 +1,18 @@
 import { computed, ref, defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, CustomCSSProperties, createBem } from '../utils'
+import { createName, createBem, pickContextProps } from '../utils'
 import { props } from './props'
 import ButtonLoading from './button-loading'
 import { useButtonGroupContext } from '../button-group/button-group-context'
 import ButtonDrip from './button-drip'
 import { queryHoverColor } from './style'
 
+import type { CustomCSSProperties } from '../utils'
+
 import './index.less'
 
 const name = createName('Button')
+const bem = createBem('fect-button')
 
 export default defineComponent({
   name,
@@ -36,24 +39,17 @@ export default defineComponent({
       emit('click', e)
     }
 
-    /**
-     * set ghost disabled shadow className
-     */
-    const setButtonStatus = computed(() => {
-      const { ghost, disabled, shadow, auto, loading } = props
-      const names = []
-      disabled && names.push('is-disabled')
-      ghost && names.push('is-ghost')
-      shadow && names.push('is-shadow')
-      loading && names.push('is-loading')
+    const setButtonClasses = computed(() => {
+      const { ghost, disabled, shadow, loading, type } = props
+      const behavior = pickContextProps(
+        {
+          auto: props.auto,
+          size: props.size
+        },
+        context
+      )
 
-      if (context && context.props.auto) {
-        names.push('is-auto')
-      } else {
-        auto && names.push('is-auto')
-      }
-
-      return names.join(' ')
+      return bem(null, [type, { ghost, disabled, shadow, loading, ...behavior }])
     })
 
     const setStyle = computed(() => {
@@ -81,29 +77,19 @@ export default defineComponent({
         const translateStyle = context ? 'translateY(-50%)' : 'translate(-50%, -50%)'
         return (
           <>
-            <div class="fect-button__icon" style={{ left: offsetStyle, transform: translateStyle }}>
+            <div class={bem('icon')} style={{ left: offsetStyle, transform: translateStyle }}>
               {icon()}
             </div>
-            {context && <div class="fect-button__text">{context()}</div>}
+            {context && <div class={bem('text')}>{context()}</div>}
           </>
         )
       }
       return slots.default?.()
     }
 
-    const setButtonState = () => {
-      let size = ''
-      if (context && context.props.size) {
-        ;({ size } = context.props)
-      } else {
-        ;({ size } = props)
-      }
-      return createBem('fect-button', size)
-    }
-
     return () => (
       <button
-        class={`fect-button ${createBem('fect-button', props.type)} ${setButtonState()} ${setButtonStatus.value}`}
+        class={setButtonClasses.value}
         ref={buttonRef}
         style={setStyle.value}
         type={props.htmlType}

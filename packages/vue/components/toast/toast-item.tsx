@@ -1,7 +1,10 @@
 import { defineComponent, CSSProperties, computed, watchEffect } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import { props } from './props'
+import { createBem } from '../utils'
 import type { CustomCSSProperties, NormalTypes } from '../utils'
+
+const bem = createBem('fect-toast')
 
 const getToastColor = (type: NormalTypes): CSSProperties => {
   const bgColorsPool: Record<NormalTypes, string> = {
@@ -71,13 +74,10 @@ export default defineComponent({
     return () => {
       if (reverseIndex.value > 10) return null
       return (
-        <div
-          class={`fect-toast ${visible.value ? 'visible' : ''} ${hidden.value ? 'hidden' : ''}`}
-          style={setStyle.value}
-        >
-          <div class="fect-toast__message">{props.text}</div>
+        <div class={bem(null, { visible: visible.value, hidden: hidden.value })} style={setStyle.value}>
+          <div class={bem('message')}>{props.text}</div>
           {props.closeAble && (
-            <span class="fect-toast__closeable" onClick={() => emit('cancel')}>
+            <span class={bem('closeable')} onClick={() => emit('cancel')}>
               <svg
                 fill="none"
                 stroke="currentColor"

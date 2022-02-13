@@ -1,10 +1,12 @@
 import { computed, defineComponent, CSSProperties, PropType } from 'vue'
 import Dot from '../dot'
-import { createName, NormalSizes, NormalTypes } from '../utils'
+import { createName, NormalSizes, NormalTypes, createBem } from '../utils'
 import { useBadgeContext } from '../badge-anchor/badge-context'
 import './index.less'
 
 const name = createName('Badge')
+
+const bem = createBem('fect-badge')
 
 export default defineComponent({
   name,
@@ -39,9 +41,9 @@ export default defineComponent({
     })
 
     const renderElement = () => {
-      if (props.dot) return <Dot class="fect-badge__dot" type={props.type} {...attrs} />
+      if (props.dot) return <Dot class={bem('dot')} type={props.type} {...attrs} />
       return (
-        <span class={`fect-badge fect-badge--${props.type} fect-badge--${props.size}`} {...attrs}>
+        <span class={bem(null, [props.type, props.size])} {...attrs}>
           {slots.default?.()}
         </span>
       )

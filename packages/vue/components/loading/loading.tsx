@@ -1,6 +1,6 @@
 import { computed, PropType, defineComponent } from 'vue'
 import { createName } from '../utils'
-import { NormalSizes, NormalTypes, LoadingTypes } from '../utils'
+import type { NormalSizes, NormalTypes, LoadingTypes } from '../utils'
 import LoadingCircle from './loading-circle'
 import './index.less'
 

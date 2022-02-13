@@ -1,11 +1,12 @@
 import { defineComponent, computed } from 'vue'
 import { createAvatarContext } from './avatar-context'
-import { createName } from '../utils'
+import { createName, createBem } from '../utils'
 import { avatarGroupProps } from './props'
 
 import './index.less'
 
 const name = createName('AvatarGroup')
+const bem = createBem('fect-avatar')
 
 export default defineComponent({
   name,
@@ -18,9 +19,9 @@ export default defineComponent({
     provider({ props })
 
     return () => (
-      <div class="fect-avatar__group">
+      <div class={bem('group')}>
         {slots.default?.()}
-        {showCount.value && <span class={'fect-avatar__counter'}>+{props.count}</span>}
+        {showCount.value && <span class={bem('counter')}>+{props.count}</span>}
       </div>
     )
   }

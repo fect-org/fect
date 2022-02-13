@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fe-avatarGroup stacked size="medium" is-square>
+    <fe-avatarGroup stacked size="medium" is-square :count="3">
       <fe-avatar :src="img" />
       <fe-avatar :src="img" />
       <fe-avatar :src="img" />

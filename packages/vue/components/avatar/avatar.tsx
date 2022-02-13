@@ -1,17 +1,13 @@
 import { computed, defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName } from '../utils'
+import { createName, createBem, pickContextProps } from '../utils'
 import { useAvatarContext } from '../avatar-group/avatar-context'
 import { avatarProps } from '../avatar-group/props'
-import type { AvatarContext, BehavoirState } from '../avatar-group/interface'
+
 import './index.less'
 
 const name = createName('Avatar')
-
-const getBehaviorState = (behavior: any, extra: AvatarContext | null, prop: BehavoirState) => {
-  if (extra && extra.props) return extra.props[prop]
-  return behavior
-}
+const bem = createBem('fect-avatar')
 
 export default defineComponent({
   name,
@@ -24,22 +20,16 @@ export default defineComponent({
     const safeText = (text: string) => (text.length <= 4 ? text : text.slice(0, 3))
 
     const setClass = computed(() => {
-      const { isSquare, stacked, size } = props
-      const names: string[] = []
-      const selfSize = getBehaviorState(size, context, 'size')
-      const selfStacked = getBehaviorState(stacked, context, 'stacked')
-      const selfSquare = getBehaviorState(isSquare, context, 'isSquare')
-      names.push(selfSize || 'medium')
-      selfSquare && names.push('isSquare')
-      selfStacked && names.push('stacked')
-      return names.join(' ')
+      const { stacked, size, isSquare } = props
+      const behavior = pickContextProps({ stacked, size, isSquare }, context)
+      return bem(null, behavior)
     })
 
     return () => (
-      <div class={`fect-avatar ${setClass.value} ${props.className || ''}`}>
+      <div class={`${setClass.value} ${props.className || ''}`}>
         {!showText.value && <img src={props.src} draggable="false" alt={props.alt} {...attrs} />}
         {showText.value && (
-          <span class={'fect-avatar-text '} {...attrs}>
+          <span class={bem('text')} {...attrs}>
             {safeText(props.text)}
           </span>
         )}

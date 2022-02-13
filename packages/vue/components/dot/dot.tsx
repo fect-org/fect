@@ -1,8 +1,9 @@
 import { PropType, defineComponent } from 'vue'
-import { createName, NormalTypes } from '../utils'
+import { createName, NormalTypes, createBem } from '../utils'
 import './index.less'
 
 const name = createName('Dot')
+const bem = createBem('fect-dot')
 
 export default defineComponent({
   name,
@@ -14,9 +15,9 @@ export default defineComponent({
   },
   setup(props, { slots }) {
     return () => (
-      <div class="fect-dot">
-        <span class={`fect-dot__circle fect-dot__circle--${props.type}`}></span>
-        <span class="fect-dot__ctx">{slots.default?.()}</span>
+      <div class={bem(null)}>
+        <span class={bem('circle', props.type)}></span>
+        <span class={bem('ctx')}>{slots.default?.()}</span>
       </div>
     )
   }

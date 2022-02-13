@@ -1,8 +1,9 @@
 import { computed, defineComponent } from 'vue'
-import { useRoute, createName } from '../utils'
+import { useRoute, createName, createBem } from '../utils'
 import './index.less'
 
 const name = createName('Link')
+const bem = createBem('fect-link')
 
 export default defineComponent({
   name,
@@ -22,12 +23,9 @@ export default defineComponent({
   setup(props, { slots }) {
     const route = useRoute()
 
-    const setClass = computed(() => {
-      const names: string[] = []
-      props.color && names.push('color')
-      props.underline && names.push('underline')
-      props.block && names.push('block')
-      return names.join(' ')
+    const setLinkClass = computed(() => {
+      const { color, underline, block } = props
+      return bem(null, { color, underline, block })
     })
 
     const safeHref = computed(() => {
@@ -38,7 +36,7 @@ export default defineComponent({
     const goToHandler = () => props.to && route()
 
     return () => (
-      <a class={`fect-link ${setClass.value}`} href={safeHref.value} onClick={goToHandler}>
+      <a class={setLinkClass.value} href={safeHref.value} onClick={goToHandler}>
         {slots.default?.()}
       </a>
     )

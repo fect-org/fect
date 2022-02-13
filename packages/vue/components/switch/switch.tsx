@@ -5,6 +5,7 @@ import type { NormalSizes } from '../utils'
 import './index.less'
 
 const name = createName('Switch')
+const bem = createBem('fect-switch')
 
 interface SwitchEventTarget {
   checked: unknown // may be any value
@@ -69,24 +70,23 @@ export default defineComponent({
       changeHandler(e)
     }
 
-    const setClass = computed(() => {
-      const names: string[] = []
-      props.disabled && names.push('disabled')
-      isChecked() && names.push('checked')
-      return names.join(' ')
+    const setSwitchClass = computed(() => {
+      const { size, disabled } = props
+      const checked = isChecked()
+      return bem(null, { size, disabled, checked })
     })
 
     return () => (
-      <label class={`fect-switch ${setClass.value} ${createBem('fect-switch', props.size)}`} onClick={switchHandler}>
+      <label class={setSwitchClass.value} onClick={switchHandler}>
         <input
-          class="fect-switch__checkbox"
+          class={bem('checkbox')}
           type="checkBox"
           checked={isChecked()}
           disabled={props.disabled}
           onChange={changeHandler}
         />
-        <div class={`fect-switch__slider `}>
-          <span class={`fect-switch__inner ${setClass.value}`}></span>
+        <div class={bem('slider')}>
+          <span class={bem('inner', { checked: isChecked(), disabled: props.disabled })}></span>
         </div>
       </label>
     )

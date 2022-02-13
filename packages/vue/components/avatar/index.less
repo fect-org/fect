@@ -30,22 +30,22 @@
   border: 1px solid var(--avatar-border-color);
   background-color: var(--avatar-bg-color);
   vertical-align: top;
-  &.mini {
+  &--mini {
     width: var(--avatar-mini-size);
     height: var(--avatar-mini-size);
   }
-  &.small {
+  &--small {
     width: var(--avatar-small-size);
     height: var(--avatar-small-size);
   }
-  &.large {
+  &--large {
     width: var(--avatar-large-size);
     height: var(--avatar-large-size);
   }
-  &.isSquare {
+  &--isSquare {
     border-radius: 5px;
   }
-  &.stacked {
+  &--stacked {
     & + & {
       margin-left: -10px;
     }
@@ -57,7 +57,7 @@
     object-fit: cover;
     object-position: center;
   }
-  span {
+  &__text {
     position: absolute;
     left: 50%;
     top: 50%;

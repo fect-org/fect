@@ -14,7 +14,7 @@ describe('CheckboxGroup', () => {
         useRow: true
       }
     })
-    expect(el.find('.useRow').exists()).toBe(true)
+    expect(el.find('.fect-checkbox__group--useRow').exists()).toBe(true)
     expect(el.html()).toMatchSnapshot()
   })
   it('should support global size control', () => {

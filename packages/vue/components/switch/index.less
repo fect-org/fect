@@ -70,14 +70,14 @@
     --switch-inner-size: var(--switch-large-height);
     --switch-offset: var(--switch-large-width);
   }
-  &.checked {
+  &--checked {
     background-color: var(--swtich-checked-disabled-bg-color);
     box-shadow: none;
-    &:not(.disabled) {
+    &:not(.fect-switch--disabled) {
       background-color: var(--switch-checked-bg-color);
     }
   }
-  &.disabled {
+  &--disabled {
     cursor: not-allowed;
   }
 
@@ -108,13 +108,13 @@
     transition: margin-left 280ms cubic-bezier(0, 0, 0.2, 1);
     background-color: var(--switch-inner-bg-color);
     border-radius: 50%;
-    &.disabled {
+    &--disabled {
       background-color: var(--switch-inner-disabled-bg-color);
     }
-    &.checked {
+    &--checked {
       margin-left: calc(var(--switch-offset) - var(--switch-inner-size));
       background-color: var(--switch-inner-checked-disabled-bg-color);
-      &:not(.disabled) {
+      &:not(.fect-switch__inner--disabled) {
         background-color: var(--switch-inner-checked-bg-color);
       }
     }

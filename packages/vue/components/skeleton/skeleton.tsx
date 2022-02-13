@@ -1,9 +1,11 @@
 import { PropType, defineComponent } from 'vue'
 import { createProvider } from '@fect-ui/vue-hooks'
-import { createName } from '../utils'
+import { createName, createBem } from '../utils'
 import SkeletonItem from '../skeleton-item'
 
 const name = createName('Skeleton')
+
+const bem = createBem('fect-skeleton')
 
 const DEFAULT_ROW_WIDTH = '100%'
 
@@ -69,7 +71,7 @@ export default defineComponent({
         return slots.default?.()
       }
       return (
-        <div class="fect-skeleton">
+        <div class={bem(null)}>
           <div class="skeleton__content">{hasSkeleton ? hasSkeleton() : renderRows()}</div>
         </div>
       )

@@ -1,9 +1,10 @@
 import { computed, defineComponent } from 'vue'
-import { createName } from '../utils'
+import { createName, createBem } from '../utils'
 import type { CustomCSSProperties } from '../utils'
 import './index.less'
 
 const name = createName('Spacer')
+const bem = createBem('fect-spacer')
 
 const getMargin = (num: any) => {
   const env = process.env.NODE_ENV !== 'production'
@@ -41,6 +42,6 @@ export default defineComponent({
       return style
     })
 
-    return () => <span class={`fect-spacer ${props.inline ? 'fect-spacer--inline' : ''}`} style={setStyle.value}></span>
+    return () => <span class={bem(null, { inline: props.inline })} style={setStyle.value}></span>
   }
 })
