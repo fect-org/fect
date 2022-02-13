@@ -77,10 +77,10 @@ export default defineComponent({
         const translateStyle = context ? 'translateY(-50%)' : 'translate(-50%, -50%)'
         return (
           <>
-            <div class="fect-button__icon" style={{ left: offsetStyle, transform: translateStyle }}>
+            <div class={bem('icon')} style={{ left: offsetStyle, transform: translateStyle }}>
               {icon()}
             </div>
-            {context && <div class="fect-button__text">{context()}</div>}
+            {context && <div class={bem('text')}>{context()}</div>}
           </>
         )
       }

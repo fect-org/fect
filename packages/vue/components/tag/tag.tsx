@@ -1,5 +1,5 @@
 import { computed, PropType, defineComponent } from 'vue'
-import { createName, NormalTypes } from '../utils'
+import { createName, NormalTypes, createBem } from '../utils'
 import './index.less'
 
 interface Color {
@@ -7,6 +7,7 @@ interface Color {
 }
 
 const name = createName('Tag')
+const bem = createBem('fect-tag')
 
 const getBgColor = (type: NormalTypes) => {
   const colors: Record<NormalTypes, Color> = {
@@ -52,10 +53,7 @@ export default defineComponent({
     })
 
     return () => (
-      <div
-        class={`fect-tag fect-tag--${props.type} ${props.useInvert ? 'fect-tag--invert' : ''}`}
-        style={setTagStyle.value}
-      >
+      <div class={bem(null, [props.type, { invert: props.useInvert }])} style={setTagStyle.value}>
         {props.text}
       </div>
     )

@@ -15,11 +15,11 @@
   opacity: var(--toast-opacity);
   transform: translate3d(0, 100%, 0px) scale(1);
   transition: transform 400ms ease 0ms, visibility 200ms ease 0ms, opacity 200ms ease 0ms;
-  &.visible {
+  &--visible {
     opacity: 1;
     transform: var(--toast-translate);
   }
-  &.hidden {
+  &--hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -53,7 +53,7 @@
     z-index: 1001;
     transition: all 400ms ease;
     box-sizing: border-box;
-    &.hover {
+    &--hover {
       transform: translate3d(0, -10px, 0);
     }
   }

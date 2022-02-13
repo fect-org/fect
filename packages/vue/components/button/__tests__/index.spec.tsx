@@ -31,7 +31,7 @@ describe('Button', () => {
     })
     expect(wrapper.html()).toMatchSnapshot()
     await wrapper.setData({ ghost: true })
-    expect(wrapper.findAll('.is-ghost').length).toEqual(4)
+    expect(wrapper.findAll('.fect-button--ghost').length).toEqual(4)
   })
   it('should be support different sizes', () => {
     const wrapper = mount({

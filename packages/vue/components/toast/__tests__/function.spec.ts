@@ -39,7 +39,7 @@ describe('Toast', () => {
     await later()
     const el = document.querySelector('.fect-toast__container')!
     await trigger('mouseenter', el)
-    expect(document.querySelector('.fect-toast__container.hover')).toBeTruthy()
+    expect(document.querySelector('.fect-toast__container--hover')).toBeTruthy()
     await trigger('mouseleave', el)
   })
 

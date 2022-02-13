@@ -110,12 +110,7 @@
     --button-load-bg: var(--button-success-color);
     --button-load-color: #fff;
     --button-border-color: var(--button-success-color);
-    &.is-ghost {
-      background-color: var(--primary-background);
-      color: var(--button-success-color);
-      --button-load-bg: var(--primary-background);
-      --button-load-color: var(--button-success-color);
-    }
+    --button-ghost-color: var(--button-success-color);
   }
 
   &--warning {
@@ -125,12 +120,7 @@
     --button-load-bg: var(--button-warning-color);
     --button-load-color: #fff;
     --button-border-color: var(--button-warning-color);
-    &.is-ghost {
-      background-color: var(--primary-background);
-      color: var(--button-warning-color);
-      --button-load-bg: var(--primary-background);
-      --button-load-color: var(--button-warning-color);
-    }
+    --button-ghost-color: var(--button-warning-color);
   }
 
   &--error {
@@ -140,12 +130,7 @@
     --button-load-bg: var(--button-error-color);
     --button-load-color: #fff;
     --button-border-color: var(--button-error-color);
-    &.is-ghost {
-      background-color: var(--primary-background);
-      color: var(--button-error-color);
-      --button-load-bg: var(--primary-background);
-      --button-load-color: var(--button-error-color);
-    }
+    --button-ghost-color: var(--button-error-color);
   }
 
   &--secondary {
@@ -155,12 +140,7 @@
     --button-load-bg: var(--button-secondary-color);
     --button-load-color: var(--primary-background);
     --button-border-color: var(--button-secondary-color);
-    &.is-ghost {
-      background-color: var(--primary-background);
-      color: var(--button-secondary-color);
-      --button-load-bg: var(--primary-background);
-      --button-load-color: var(--button-secondary-color);
-    }
+    --button-ghost-color: var(--button-secondary-color);
   }
 
   &--mini {
@@ -220,15 +200,18 @@
     min-width: auto;
   }
 
-  &.is-loading {
+  &--loading {
     pointer-events: none;
   }
-  &--is-ghost {
-  
+  &--ghost {
+    background-color: var(--primary-background);
+    color: var(--button-ghost-color);
+    --button-load-bg: var(--primary-background);
+    --button-load-color: var(--button-ghost-color);
   }
 
-  &:not(.is-shadow, .is-disabled, .is-loading):hover,
-  &:not(.is-shadow, .is-disabled, .is-loading):focus {
+  &:not(.fect-button--shadow, .fect-button--disabled, .fect-button--loading):hover,
+  &:not(.fect-button--shadow, .fect-button--disabled, .fect-button--loading):focus {
     color: var(--button-hover-color);
     background-color: var(--button-hover-bg);
     border-color: var(--button-hover-border);
