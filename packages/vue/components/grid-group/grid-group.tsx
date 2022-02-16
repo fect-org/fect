@@ -1,14 +1,15 @@
 import { defineComponent, computed, Slot } from 'vue'
 import { createProvider } from '@fect-ui/vue-hooks'
-import { createName, CustomCSSProperties, assign } from '../utils'
+import { createName, CustomCSSProperties, assign, createBem } from '../utils'
 import { props } from './props'
 import { READONLY_GRID_GROUP_KEY } from './type'
 import { Grid } from '../grid'
-import { getDynamicStyle, getBasisStyle, getUnitGapStyle, getDynamicLayoutClass } from './style'
+import { getDynamicStyle, getBasisStyle, getUnitGapStyle, getDynamicLayoutClasses } from './style'
 
 import './index.less'
 
 const name = createName('GridGroup')
+const bem = createBem('fect-grid')
 
 const getGridStyle = (col: number): CustomCSSProperties => {
   col = Math.abs(col) > 24 ? 24 : col
@@ -40,17 +41,17 @@ export default defineComponent({
       return { ...style, ...gridStyle }
     })
 
-    const setGroupClass = computed(() => {
-      const basisClass = 'fect-grid__group'
-      const { xs, sm, md, lg, xl } = props
-      if (useGrid.value) return ''
-      return getDynamicLayoutClass({ xs, sm, md, lg, xl }, basisClass)
-    })
+    const getWrapperClass = () => {
+      const { wrap: propWrap } = props
+      const wrap = useGrid.value ? 'wrap' : propWrap
+      return { wrap }
+    }
 
-    const setWrapperClass = computed(() => {
-      const { wrap } = props
-      if (!useGrid.value) return `fect-grid__group--${wrap}`
-      return 'fect-grid__group--wrap'
+    const setGroupClass = computed(() => {
+      const { xs, sm, md, lg, xl } = props
+      const wrap = getWrapperClass()
+      if (useGrid.value) return bem('group', wrap)
+      return getDynamicLayoutClasses({ wrap, xs, sm, md, lg, xl }, 'group', bem)
     })
 
     provider({ useGrid })
@@ -68,7 +69,7 @@ export default defineComponent({
     return () => {
       const hasGrid = slots['grid']
       return (
-        <div class={`fect-grid__group ${setWrapperClass.value} ${setGroupClass.value}`} style={setGroupStyle.value}>
+        <div class={setGroupClass.value} style={setGroupStyle.value}>
           {hasGrid ? renderGrids(hasGrid) : slots.default?.()}
         </div>
       )

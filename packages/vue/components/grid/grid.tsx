@@ -1,12 +1,13 @@
 import { computed, defineComponent } from 'vue'
 import { useProvider } from '@fect-ui/vue-hooks'
-import { createName, assign } from '../utils'
+import { createName, assign, createBem } from '../utils'
 import { props } from './props'
-import { getBasisStyle, getDynamicStyle, getDynamicLayoutClass } from '../grid-group/style'
+import { getBasisStyle, getDynamicStyle, getDynamicLayoutClasses } from '../grid-group/style'
 import { GridGroupProvide, READONLY_GRID_GROUP_KEY } from '../grid-group/type'
 import './index.less'
 
 const name = createName('Grid')
+const bem = createBem('fect-grid')
 
 export default defineComponent({
   name,
@@ -22,15 +23,14 @@ export default defineComponent({
       return assign(basisStyle, dynamicStyle)
     })
 
-    const setClass = computed(() => {
-      const basisClass = 'fect-grid'
+    const setGridClass = computed(() => {
       const { xs, sm, md, lg, xl } = props
-      if (context && context.useGrid.value) return `${basisClass}--live`
-      return getDynamicLayoutClass({ xs, sm, md, lg, xl }, basisClass)
+      if (context && context.useGrid.value) return bem(null, 'live')
+      return getDynamicLayoutClasses({ xs, sm, md, lg, xl }, '', bem)
     })
 
     return () => (
-      <div class={`fect-grid ${setClass.value}`} style={setStyle.value}>
+      <div class={setGridClass.value} style={setStyle.value}>
         {slots.default?.()}
       </div>
     )

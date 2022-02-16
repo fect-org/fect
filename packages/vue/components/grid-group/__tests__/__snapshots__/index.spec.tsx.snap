@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Grid props count may be as array 1`] = `
-<div class="fect-grid__group fect-grid__group--wrap " style="align-content: flex-start; align-items: stretch; flex-direction: row; justify-content: flex-start; --fect-grid-gap: calc(0 * 16px * 1/3); --grid-width: 4.166666666666667%;">
+<div class="fect-grid__group fect-grid__group--wrap" style="align-content: flex-start; align-items: stretch; flex-direction: row; justify-content: flex-start; --fect-grid-gap: calc(0 * 16px * 1/3); --grid-width: 4.166666666666667%;">
   <div class="fect-grid fect-grid--live" style="align-content: flex-start; align-items: stretch; flex-direction: row; justify-content: flex-start;">
     <div>123</div>
   </div>
@@ -18,25 +18,25 @@ exports[`Grid props count may be as array 1`] = `
 `;
 
 exports[`Grid shoud be render as element 1`] = `
-<div class="fect-grid__group fect-grid__group--wrap " style="align-content: flex-start; align-items: stretch; flex-direction: row; justify-content: flex-start; --fect-grid-gap: calc(0 * 16px * 1/3);">
-  <div class="fect-grid " style="align-content: flex-start; align-items: stretch; flex-direction: row; justify-content: flex-start;">T</div>
+<div class="fect-grid__group fect-grid__group--wrap" style="align-content: flex-start; align-items: stretch; flex-direction: row; justify-content: flex-start; --fect-grid-gap: calc(0 * 16px * 1/3);">
+  <div class="fect-grid" style="align-content: flex-start; align-items: stretch; flex-direction: row; justify-content: flex-start;">T</div>
 </div>
 `;
 
 exports[`Grid should be support align 1`] = `
-<div class="fect-grid__group fect-grid__group--wrap " style="align-content: flex-start; align-items: stretch; flex-direction: row; justify-content: flex-start; --fect-grid-gap: calc(0 * 16px * 1/3);">
-  <div class="fect-grid fect-grid--xl " style="align-content: flex-start; align-items: stretch; flex-direction: row; justify-content: flex-end; --xl-grow: 0; --xl-basis: 12.5%; --xl-width: 12.5%;">T</div>
+<div class="fect-grid__group fect-grid__group--wrap" style="align-content: flex-start; align-items: stretch; flex-direction: row; justify-content: flex-start; --fect-grid-gap: calc(0 * 16px * 1/3);">
+  <div class="fect-grid fect-grid--xl" style="align-content: flex-start; align-items: stretch; flex-direction: row; justify-content: flex-end; --xl-grow: 0; --xl-basis: 12.5%; --xl-width: 12.5%;">T</div>
 </div>
 `;
 
 exports[`Grid should be support breakPoints 1`] = `
-<div class="fect-grid__group fect-grid__group--wrap " style="align-content: flex-start; align-items: stretch; flex-direction: row; justify-content: flex-start; --fect-grid-gap: calc(0 * 16px * 1/3);">
-  <div class="fect-grid fect-grid--xs fect-grid--sm fect-grid--md fect-grid--lg fect-grid--xl " style="align-content: flex-start; align-items: stretch; flex-direction: row; justify-content: flex-start; --xs-grow: 0; --xs-basis: 4.166666666666667%; --xs-width: 4.166666666666667%; --sm-grow: 0; --sm-basis: 8.333333333333334%; --sm-width: 8.333333333333334%; --md-grow: 0; --md-basis: 12.5%; --md-width: 12.5%; --lg-grow: 0; --lg-basis: 16.666666666666668%; --lg-width: 16.666666666666668%; --xl-grow: 0; --xl-basis: 20.833333333333336%; --xl-width: 20.833333333333336%;">T</div>
+<div class="fect-grid__group fect-grid__group--wrap" style="align-content: flex-start; align-items: stretch; flex-direction: row; justify-content: flex-start; --fect-grid-gap: calc(0 * 16px * 1/3);">
+  <div class="fect-grid fect-grid--xs fect-grid--sm fect-grid--md fect-grid--lg fect-grid--xl" style="align-content: flex-start; align-items: stretch; flex-direction: row; justify-content: flex-start; --xs-grow: 0; --xs-basis: 4.166666666666667%; --xs-width: 4.166666666666667%; --sm-grow: 0; --sm-basis: 8.333333333333334%; --sm-width: 8.333333333333334%; --md-grow: 0; --md-basis: 12.5%; --md-width: 12.5%; --lg-grow: 0; --lg-basis: 16.666666666666668%; --lg-width: 16.666666666666668%; --xl-grow: 0; --xl-basis: 20.833333333333336%; --xl-width: 20.833333333333336%;">T</div>
 </div>
 `;
 
 exports[`Grid should be supprot use col and count 1`] = `
-<div class="fect-grid__group fect-grid__group--wrap " style="align-content: flex-start; align-items: stretch; flex-direction: row; justify-content: flex-start; --fect-grid-gap: calc(0 * 16px * 1/3); --grid-width: 25%;">
+<div class="fect-grid__group fect-grid__group--wrap" style="align-content: flex-start; align-items: stretch; flex-direction: row; justify-content: flex-start; --fect-grid-gap: calc(0 * 16px * 1/3); --grid-width: 25%;">
   <div class="fect-grid fect-grid--live" style="align-content: flex-start; align-items: stretch; flex-direction: row; justify-content: flex-start;">
     <div>123</div>
   </div>

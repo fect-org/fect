@@ -3,7 +3,7 @@
  * see: https://stackoverflow.com/questions/53213870/why-display-property-set-to-inherit-with-css-variable-doesnt-work
  */
 
-import { assign } from '../utils'
+import { assign, createBem } from '../utils'
 import type { JustifyTypes, AlignTypes, DirectionTypes, AlignContentTypes, GridTypes } from './type'
 import type { CustomCSSProperties } from '../utils'
 
@@ -58,17 +58,14 @@ export const getDynamicStyle = (props: Record<GridTypes, GridBreakPoint>) => {
   return dynamicStyle
 }
 
-export const getDynamicLayoutClass = (props: Record<GridTypes, GridBreakPoint>, basisClass: string) => {
-  const { xs, sm, md, lg, xl } = props
-  return (Object.keys({ xs, sm, md, lg, xl }) as GridTypes[])
-    .map((grid) => {
-      //  grid be zero should set  display:none
-      const hasGrid = props[grid] === false
-      if (props[grid] === 0) return `${basisClass}--${grid}-0 `
-      if (!hasGrid) return `${basisClass}--${grid} `
-      return
-    })
-    .join('')
+export const getDynamicLayoutClasses = (props: Record<string, any>, el: string, bem: ReturnType<typeof createBem>) => {
+  const state = (Object.keys(props) as string[]).reduce((acc, cur) => {
+    const zero = props[cur] === 0 ? true : false
+    if (zero) return assign(acc, { [`${cur}-0`]: true })
+    if (props[cur]) return assign(acc, { [cur]: cur })
+    return acc
+  }, {})
+  return bem(el, state)
 }
 
 export const getBasisStyle = (flexable: BasisStyle): CustomCSSProperties => {
