@@ -30,12 +30,11 @@ tabs/divider.vue
 
 ### Tabs Props
 
-| Attribue           | Description                  | Type                | Accepted values | Default |
-| ------------------ | ---------------------------- | ------------------- | --------------- | ------- |
-| **v-model:active** | current acitve binding value | `'number','string'` | `-`             | `0`     |
-| **hide-divider**   | hide default divider         | `boolean`           | `-`             | `false` |
-| **change**         | 选项卡切换事件               | `(val)=>void`       | `-`             | `-`     |
-| **click**          | 选项卡点击事件               | `TabsEvent`         | `-`             | `-`     |
+| Attribue           | Description                  | Type                    | Accepted values       | Default          |
+| ------------------ | ---------------------------- | ----------------------- | --------------------- | ---------------- |
+| **v-model:active** | current acitve binding value | `'number','string'`     | `-`                   | `0`              |
+| **hide-divider**   | hide default divider         | `boolean`               | `-`                   | `false`          |
+| **hoverRatio**     | hover block ratio            | `Record<string,number>` | `{w:number,h:number}` | `{w:1.15,h:0.7}` |
 
 ### Tab Props
 
@@ -45,7 +44,7 @@ tabs/divider.vue
 | **value**    | unique ident value  | `'string','number'` | `-`              | `-`     |
 | **disabled** | disable current tab | `'boolean'`         | `'true','false'` | `false` |
 
-### Swipe Event
+### Tabs Event
 
 | Event      | Description  | Type          |
 | ---------- | ------------ | ------------- |
