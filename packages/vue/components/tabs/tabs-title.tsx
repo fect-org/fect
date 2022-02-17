@@ -6,7 +6,7 @@ const bem = createBem('fect-tabs')
 
 const TabsTitle = defineComponent({
   props: tabsTitleProps,
-  emits: ['click'],
+  emits: ['click', 'mouseenter'],
   setup(props, { emit, slots }) {
     const setTabTitleClass = computed(() => {
       const { disabled, active } = props
@@ -14,7 +14,12 @@ const TabsTitle = defineComponent({
     })
 
     return () => (
-      <div role="tab" class={setTabTitleClass.value} onClick={(e: Event) => emit('click', e)}>
+      <div
+        role="tab"
+        class={setTabTitleClass.value}
+        onMouseenter={(e: MouseEvent) => emit('mouseenter', e)}
+        onClick={(e: Event) => emit('click', e)}
+      >
         {slots.label ? slots.label() : props.title}
       </div>
     )

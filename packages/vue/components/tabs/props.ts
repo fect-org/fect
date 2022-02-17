@@ -1,3 +1,6 @@
+import type { PropType } from 'vue'
+import type { TabsHighlightRect, TabsHoverRatio } from './interface'
+
 export const basicProps = {
   title: {
     type: String,
@@ -22,5 +25,19 @@ export const tabsProps = {
     type: [String, Number],
     default: 0
   },
-  hideDivider: Boolean
+  hideDivider: Boolean,
+  hoverRatio: {
+    type: Object as PropType<TabsHoverRatio>,
+    default: {
+      w: 1.15,
+      h: 0.7
+    }
+  }
+}
+
+export const tabsHighlightProps = {
+  active: Boolean,
+  rect: {
+    type: Object as PropType<TabsHighlightRect>
+  }
 }

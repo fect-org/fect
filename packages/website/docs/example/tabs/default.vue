@@ -1,7 +1,7 @@
 <template>
   <div>
     <fe-tabs v-model:active="active">
-      <fe-tab title="标签一">标签一</fe-tab>
+      <fe-tab title="标签一"> 标签一 </fe-tab>
       <fe-tab title="标签二">标签二</fe-tab>
     </fe-tabs>
   </div>
