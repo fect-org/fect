@@ -1,5 +1,5 @@
 import type { ExtractPropTypes, Ref } from 'vue'
-import type { ComponentInstance } from '../utils'
+import type { ComponentInstance, DomRect } from '../utils'
 import { tabProps, tabsProps } from './props'
 
 export type TabPropInstance = ComponentInstance<ExtractPropTypes<typeof tabProps>>
@@ -9,8 +9,11 @@ export interface TabsContext {
   checked: Ref<string | number>
 }
 
-export interface TabTitleEvent {
-  title: string
-  value: string | number
-  e: Event
+export type TabsHighlightRect = DomRect & {
+  elementTop: number
+}
+
+export interface TabsHoverRatio {
+  w: number
+  h: number
 }

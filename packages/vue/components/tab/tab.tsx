@@ -1,32 +1,36 @@
-import { computed, watchEffect, defineComponent } from 'vue'
-import { useState } from '@fect-ui/vue-hooks'
-import { createName } from '../utils'
+import { computed, defineComponent } from 'vue'
+import { createName, createBem } from '../utils'
 import { useTabsContext } from '../tabs/tabs-context'
 import { tabProps } from '../tabs/props'
 import './index.less'
+
 const name = createName('Tab')
+const bem = createBem('fect-tab')
 
 export default defineComponent({
   name,
   props: tabProps,
   setup(props, { slots }) {
     const { context, idx } = useTabsContext()
-    const [selfValue, setSelfValue] = useState<string | number>(props.value)
+
     if (!context) {
       if (process.env.NODE_ENV !== 'production') {
         console.error('[Fect] <Tab> must be a child component of <Tabs>.')
       }
       return
     }
-    /**
-     * it will  use index of components while value is empty
-     */
-    watchEffect(() => !selfValue.value && setSelfValue(idx))
-    const setHidden = computed(() => {
-      const checked = context.checked.value === selfValue.value
-      return checked ? '' : 'none'
+
+    const shouldRender = computed(() => {
+      // it will use index of components while value is empty
+      const selfValue = props.value || idx
+      if (context.checked.value === selfValue) return true
+      return false
     })
 
-    return () => <div class={`fect-tab ${setHidden.value}`}>{slots.default?.()}</div>
+    return () => (
+      <div class={bem(null)} v-show={shouldRender.value} role="tabpanel" tabindex={shouldRender.value ? 0 : -1}>
+        {slots.default?.()}
+      </div>
+    )
   }
 })

@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-
+import { later } from '../../../tests'
 import Tabs from '../index'
 import Tab from '../../tab'
 
@@ -9,7 +9,7 @@ describe('Tabs', () => {
     expect(() => wrapper.unmount()).not.toThrow()
   })
   it('should be change acitve value when tab trigger', async () => {
-    const wrapper = await mount({
+    const wrapper = mount({
       render() {
         return (
           <Tabs v-model={[this.active, ['active']]}>
@@ -24,13 +24,18 @@ describe('Tabs', () => {
         }
       }
     })
+    await later()
     const els = wrapper.findAll('.fect-tabs__title') // filter all tabs title
+    await els[1].trigger('mouseenter')
+    expect(wrapper.find('.fect-tabs__highlight--active')).toBeTruthy()
+    const headerEl = wrapper.find('header')
+    await headerEl.trigger('mouseleave')
     await els[1].trigger('click')
     expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('should be disabled all events', async () => {
-    const wrapper = await mount({
+    const wrapper = mount({
       render() {
         return (
           <Tabs v-model={[this.active, ['active']]} hideDivider={false}>
@@ -48,6 +53,7 @@ describe('Tabs', () => {
         }
       }
     })
+    await later()
     const els = wrapper.findAll('.fect-tabs__title') // filter all tabs title
     await els[0].trigger('click')
     await wrapper.setProps({
@@ -59,5 +65,20 @@ describe('Tabs', () => {
   it('Tab can not render without Tabs', () => {
     const wrapper = mount(Tab)
     expect(() => wrapper.get('div')).toThrowError()
+  })
+  it('Tabs can use slots label custom tab title', () => {
+    const wrapper = mount(Tabs, {
+      slots: {
+        default: () => {
+          return (
+            <>
+              <Tab v-slots={{ label: () => <div>Custom</div> }}>HTML</Tab>
+              <Tab>JS</Tab>
+            </>
+          )
+        }
+      }
+    })
+    expect(wrapper.html()).toMatchSnapshot()
   })
 })
