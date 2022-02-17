@@ -9,8 +9,8 @@ const TabsTitle = defineComponent({
   emits: ['click', 'mouseenter'],
   setup(props, { emit, slots }) {
     const setTabTitleClass = computed(() => {
-      const { disabled, active } = props
-      return bem('title', { disabled, active })
+      const { disabled, active, hideBorder } = props
+      return bem('title', { disabled, active, 'hide-border': hideBorder })
     })
 
     return () => (

@@ -15,6 +15,7 @@ export const basicProps = {
 
 export const tabsTitleProps = {
   ...basicProps,
+  hideBorder: Boolean,
   active: Boolean
 }
 
@@ -26,6 +27,7 @@ export const tabsProps = {
     default: 0
   },
   hideDivider: Boolean,
+  hideBorder: Boolean,
   hoverRatio: {
     type: Object as PropType<TabsHoverRatio>,
     default: {

@@ -34,7 +34,8 @@ tabs/divider.vue
 | ------------------ | ---------------------------- | ----------------------- | --------------------- | ---------------- |
 | **v-model:active** | current acitve binding value | `'number','string'`     | `-`                   | `0`              |
 | **hide-divider**   | hide default divider         | `boolean`               | `-`                   | `false`          |
-| **hoverRatio**     | hover block ratio            | `Record<string,number>` | `{w:number,h:number}` | `{w:1.15,h:0.7}` |
+| **hide-border**    | hide tab border              | `boolean`               | `-`                   | `false`          |
+| **hover-ratio**    | hover block ratio            | `Record<string,number>` | `{w:number,h:number}` | `{w:1.15,h:0.7}` |
 
 ### Tab Props
 

@@ -62,6 +62,7 @@ export default defineComponent({
             v-slots={{ label: el.$slots.label }}
             title={el.title}
             key={idx}
+            hideBorder={props.hideBorder}
             active={active}
             disabled={el.disabled}
             onClick={(e: Event) => tabClickHandler(e, value, el.disabled)}
@@ -70,7 +71,6 @@ export default defineComponent({
         )
       })
     }
-
     return () => (
       <div class={bem(null)}>
         <header

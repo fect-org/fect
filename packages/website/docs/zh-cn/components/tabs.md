@@ -35,10 +35,11 @@ tabs/divider.vue
 | 属性               | 描述                     | 类型                    | 可选值                | 默认             |
 | ------------------ | ------------------------ | ----------------------- | --------------------- | ---------------- |
 | **v-model:active** | 绑定当前选中标签的标识符 | `'number','string'`     | `-`                   | `0`              |
-| **hideDivider**    | 隐藏默认分割线           | `boolean`               | `-`                   | `false`          |
+| **hide-divider**   | 隐藏默认分割线           | `boolean`               | `-`                   | `false`          |
+| **hide-divider**   | 隐藏默认下划线           | `boolean`               | `-`                   | `false`          |
 | **change**         | 选项卡切换事件           | `(val)=>void`           | `-`                   | `-`              |
 | **click**          | 选项卡点击事件           | `TabsEvent`             | `-`                   | `-`              |
-| **hoverRatio**     | hover 块高宽比           | `Record<string,number>` | `{w:number,h:number}` | `{w:1.15,h:0.7}` |
+| **hover-ratio**    | hover 块高宽比           | `Record<string,number>` | `{w:number,h:number}` | `{w:1.15,h:0.7}` |
 
 ### Tab Props
 

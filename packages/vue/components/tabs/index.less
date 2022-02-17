@@ -15,11 +15,11 @@
     flex-wrap: nowrap;
     align-items: center;
     user-select: none;
-    border-bottom: 1px solid var(--fect-border);
     overflow-y: hidden;
     overflow-x: scroll;
     position: relative;
     scrollbar-width: none;
+    border-bottom: 1px solid var(--fect-border);
     &--hide-divider {
       border-bottom: none;
     }
@@ -61,6 +61,11 @@
     }
     &--disabled {
       cursor: not-allowed;
+    }
+    &--hide-border {
+      &::after {
+        display: none;
+      }
     }
     &--active {
       color: var(--tabs-title-acitve-color);
