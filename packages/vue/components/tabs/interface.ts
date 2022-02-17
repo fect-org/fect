@@ -8,9 +8,3 @@ export interface TabsContext {
   props: ExtractPropTypes<typeof tabsProps>
   checked: Ref<string | number>
 }
-
-export interface TabTitleEvent {
-  title: string
-  value: string | number
-  e: Event
-}

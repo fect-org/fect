@@ -1,13 +1,14 @@
 import { watch, defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName } from '../utils'
+import { createName, createBem } from '../utils'
 import { tabsProps } from './props'
 import TabsTitle from './tabs-title'
 import { createTabsContext } from './tabs-context'
-import type { TabTitleEvent } from './interface'
+
 import './index.less'
 
 const name = createName('Tabs')
+const bem = createBem('fect-tabs')
 
 export default defineComponent({
   name,
@@ -19,16 +20,16 @@ export default defineComponent({
     const { provider, children } = createTabsContext()
     provider({ props, checked })
 
-    const navClickHandler = (data: TabTitleEvent) => {
-      const { value, e } = data
+    const navClickHandler = (evt: Event, value: number | string, disabled: boolean) => {
+      if (disabled) return
       setChecked(value)
       const selfEvent = {
         target: {
           checkValue: value
         },
-        stopPropagation: e.stopPropagation,
-        preventDefault: e.preventDefault,
-        nativeEvent: e
+        stopPropagation: evt.stopPropagation,
+        preventDefault: evt.preventDefault,
+        nativeEvent: evt
       }
       emit('update:active', value)
       emit('click', selfEvent)
@@ -37,21 +38,29 @@ export default defineComponent({
     watch(checked, (cur) => emit('change', cur))
 
     const renderNav = () => {
-      return children.map((el, idx) => (
-        <TabsTitle
-          title={el.title}
-          value={el.value || idx}
-          key={idx}
-          active={checked.value}
-          disabled={el.disabled}
-          onClick={navClickHandler}
-        />
-      ))
+      return children.map((el, idx) => {
+        const value = el.value || idx
+        const active = checked.value === value
+        return (
+          <TabsTitle
+            v-slots={{ label: el.$slots.label }}
+            title={el.title}
+            key={idx}
+            active={active}
+            disabled={el.disabled}
+            onClick={(e: Event) => navClickHandler(e, value, el.disabled)}
+          />
+        )
+      })
     }
 
     return () => (
       <div class="fect-tabs">
-        <header class={`fect-tabs__header ${props.hideDivider ? 'fect-tabs__header--hide-divider' : ''}`}>
+        <header
+          class={bem('header', { 'hide-divider': props.hideDivider })}
+          role="tablist"
+          aria-orientation="horizontal"
+        >
           {renderNav()}
         </header>
         {slots.default?.()}

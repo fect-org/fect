@@ -38,15 +38,6 @@
     align-items: center;
     line-height: 20px;
     position: relative;
-    &.disabled {
-      cursor: not-allowed;
-    }
-    &.active {
-      &::after {
-        background-color: var(--tabs-title-acitve-color);
-        transform: scaleX(1);
-      }
-    }
     &::after {
       position: absolute;
       content: '';
@@ -58,6 +49,15 @@
       transform: scaleX(0.75);
       background-color: transparent;
       transition: all 500ms ease;
+    }
+    &--disabled {
+      cursor: not-allowed;
+    }
+    &--active {
+      &::after {
+        background-color: var(--tabs-title-acitve-color);
+        transform: scaleX(1);
+      }
     }
   }
 }

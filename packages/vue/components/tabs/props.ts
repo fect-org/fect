@@ -12,7 +12,7 @@ export const basicProps = {
 
 export const tabsTitleProps = {
   ...basicProps,
-  active: [String, Number]
+  active: Boolean
 }
 
 export const tabProps = basicProps
