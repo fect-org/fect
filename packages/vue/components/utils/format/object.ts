@@ -15,3 +15,6 @@ export const assign = <T extends Record<string | number | symbol, any>, K>(
 ): IntersectionToObj<Omit<T, keyof K> & K> => Object.assign(source, ...rest)
 
 export const hasOwn = <T>(source: T, key: string) => Object.hasOwnProperty.call(source, key)
+
+export const pick = <T, K extends keyof T>(source: T, picks: K[]) =>
+  picks.reduce((acc, cur) => ((acc[cur] = source[cur]), acc), {} as Pick<T, K>)
