@@ -41,13 +41,14 @@ export default defineComponent({
         Promise.resolve(beforeRead(postFile))
           .then((res) => {
             if (!res) return
-            if (res && typeof res !== 'boolean') return onAfterRead(res)
-            return onAfterRead(postFile)
+            return typeof res === 'boolean' ? onAfterRead(postFile) : onAfterRead(res)
           })
           .catch((e) => {
             console.log(e)
           })
+        return
       }
+      onAfterRead(postFile)
     }
 
     const changeHandler = (evt: Event) => {
