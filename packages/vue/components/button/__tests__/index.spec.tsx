@@ -103,7 +103,6 @@ describe('Button', () => {
     expect(wrapper.emitted('click')).toBeTruthy()
     await wrapper.setProps({ disabled: true })
     await el.trigger('click')
-    console.log(wrapper.emitted('click'))
     expect(wrapper.emitted('click'))
     await wrapper.setProps({ loading: true })
     await el.trigger('click')

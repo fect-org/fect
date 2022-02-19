@@ -56,6 +56,7 @@ import { Teleport } from './teleport'
 import { ThemeProvide } from './theme-provide'
 import { Toast } from './toast'
 import { Tooltip } from './tooltip'
+import { Upload } from './upload'
 import { User } from './user'
 const components = [
   Avatar,
@@ -112,6 +113,7 @@ const components = [
   ThemeProvide,
   Toast,
   Tooltip,
+  Upload,
   User
 ]
 
@@ -179,6 +181,7 @@ export * from './teleport'
 export * from './theme-provide'
 export * from './toast'
 export * from './tooltip'
+export * from './upload'
 export * from './user'
 export * from './utils/composables'
 

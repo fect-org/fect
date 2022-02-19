@@ -45,7 +45,8 @@ export const zhRoutes: Routes = [
       { title: '单选框 Radio', route: 'Radio' },
       { title: '评分 Rating', route: 'Rating' },
       { title: '选择器 Select', route: 'Select' },
-      { title: '开关 Switch', route: 'Switch' }
+      { title: '开关 Switch', route: 'Switch' },
+      { title: '文件上传 Upload', route: 'Upload' }
     ]
   },
   {
