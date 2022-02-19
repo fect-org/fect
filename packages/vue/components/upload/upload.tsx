@@ -10,7 +10,8 @@ const bem = createBem('fect-upload')
 export default defineComponent({
   name,
   props,
-  setup(props, { slots }) {
+  emits: ['exceed'],
+  setup(props, { slots, emit }) {
     const inputRef = ref<HTMLInputElement>()
 
     const clickHandler = () => {
@@ -21,23 +22,27 @@ export default defineComponent({
       }
     }
 
-    const upload = (files: File | File[]) => {
-      props.afterRead && props.afterRead(files)
-    }
+    const onAfterRead = (files: File | File[]) => props.afterRead && props.afterRead(files)
 
     const uploadFiles = (files: FileList) => {
+      const { limit, beforeRead, assets } = props
+      if (limit && assets.length + files.length > limit) {
+        emit('exceed', files)
+        return
+      }
+
       const postFile = files.length === 1 ? files[0] : [...files]
       if (!postFile) return
-      if (props.beforeRead) {
+      if (beforeRead) {
         /**
          * Promise A+
          * docs: https://promisesaplus.com/#point-53
          */
-        Promise.resolve(props.beforeRead(postFile))
+        Promise.resolve(beforeRead(postFile))
           .then((res) => {
             if (!res) return
-            if (res && typeof res !== 'boolean') return upload(res)
-            return upload(postFile)
+            if (res && typeof res !== 'boolean') return onAfterRead(res)
+            return onAfterRead(postFile)
           })
           .catch((e) => {
             console.log(e)

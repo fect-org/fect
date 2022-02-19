@@ -2,6 +2,10 @@ import type { PropType } from 'vue'
 import type { BeforeReadFn, AfterReadFn } from './interface'
 
 export const props = {
+  assets: {
+    type: Array,
+    default: () => []
+  },
   accept: {
     type: String,
     default: ''
