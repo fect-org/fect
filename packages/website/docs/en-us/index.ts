@@ -46,7 +46,8 @@ export const enRoutes: Routes = [
       { title: 'Radio', route: 'Radio' },
       { title: 'Rating', route: 'Rating' },
       { title: 'Select', route: 'Select' },
-      { title: 'Switch', route: 'Switch' }
+      { title: 'Switch', route: 'Switch' },
+      { title: 'Upload', route: 'Upload' }
     ]
   },
   {
