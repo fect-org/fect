@@ -43,7 +43,7 @@ describe('Pagination', () => {
         count: 10
       }
     })
-    const els = wrapper.findAll('.pagination-item__button ')
+    const els = wrapper.findAll('.fect-pagination__item')
     expect(wrapper.vm.modelValue).toEqual(1)
     await els[2].trigger('click')
     expect(wrapper.emitted().change[0]).toEqual([2])
@@ -71,12 +71,12 @@ describe('Pagination', () => {
 
     expect(wrapper.html()).toMatchSnapshot()
     await wrapper.setData({ limit: 7 })
-    const els = wrapper.findAll('.pagination-item__button')
+    const els = wrapper.findAll('.fect-pagination__item')
     expect(wrapper.html()).toMatchSnapshot()
     await els[els.length - 1].trigger('click')
     expect(wrapper.vm.value).toEqual(2)
     // eslint-disable-next-line prefer-destructuring
-    const ellipsisEl = wrapper.findAll('.pagination-item__button ')[7]
+    const ellipsisEl = els[8]
     await ellipsisEl.trigger('mouseenter')
     await ellipsisEl.trigger('click')
     await ellipsisEl.trigger('mouseleave')

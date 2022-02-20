@@ -52,15 +52,16 @@ pagination/size.vue
 
 ### Pagination Props
 
-| Attribue     | Description                            | Type      | Accepted values                      | Default  |
-| ------------ | -------------------------------------- | --------- | ------------------------------------ | -------- |
-| **v-model**  | current page                           | `number`  | `-`                                  | `1`      |
-| **count**    | the total number of pages              | `number`  | `-`                                  | `1`      |
-| **size**     | pagination size                        | `string`  | `'mini', 'small', 'medium', 'large'` | `medium` |
-| **limit**    | limit of display page                  | `number`  | `-`                                  | `7`      |
-| **simple**   | naive pagination                       | `boolean` | `'true','false'`                     | `false`  |
-| **prevText** | text of the previous page of the pager | `string`  | `-`                                  | `Prev`   |
-| **nextText** | text of the next page of the pager     | `string`  | `-`                                  | `Next`   |
+| Attribue        | Description                            | Type         | Accepted values                      | Default   |
+| --------------- | -------------------------------------- | ------------ | ------------------------------------ | --------- |
+| **v-model**     | current page                           | `number`     | `-`                                  | `1`       |
+| **count**       | the total number of pages              | `number`     | `-`                                  | `1`       |
+| **size**        | pagination size                        | `string`     | `'mini', 'small', 'medium', 'large'` | `medium`  |
+| **limit**       | limit of display page                  | `number`     | `-`                                  | `7`       |
+| **simple**      | naive pagination                       | `boolean`    | `'true','false'`                     | `false`   |
+| **prev-text**   | text of the previous page of the pager | `string`     | `-`                                  | `Prev`    |
+| **next-text**   | text of the next page of the pager     | `string`     | `-`                                  | `Next`    |
+| **hover-color** | pagination item hover highlight        | `hex string` | `-`                                  | `#0070f3` |
 
 ### Pagination Event
 
