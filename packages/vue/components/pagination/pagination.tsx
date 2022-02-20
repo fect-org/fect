@@ -1,31 +1,23 @@
-import { computed, watch, defineComponent, Slot } from 'vue'
+import { computed, watch, defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, NormalSizes, CustomCSSProperties } from '../utils'
-
+import { createName, createBem, addColorAlpha } from '../utils'
 import { props } from './props'
 import { createPaginationContext } from './pagination-context'
 import PaginationPages from './pagination-pages'
 import PaginationNext from './pagination-next'
 import PaginationPrev from './pagination-previous'
-import type { PaginationSize, SideEvent } from './interface'
+import type { SideEvent } from './interface'
+import type { CustomCSSProperties } from '../utils'
 
 import './index.less'
 
 const name = createName('Pagination')
 
+const bem = createBem('fect-pagination')
+
 const COUNT_LOG = '[Fect] <Pagination> the minimum count value must be more than 1 .'
 
 const LIMIT_LOG = '[Fect] <Pagination> the minimum limit value must be more than 3 .'
-
-const queryPaginationSize = (size: NormalSizes) => {
-  const sizes: Record<NormalSizes, PaginationSize> = {
-    mini: { font: '12px', width: '20px' },
-    small: { font: '12px', width: '26.5px' },
-    medium: { font: '14px', width: '32px' },
-    large: { font: '16px', width: '38.5px' }
-  }
-  return sizes[size]
-}
 
 const getEdgeCase = (rule: any, log: string) => {
   const DEV = process.env.NODE_ENV !== 'production'
@@ -49,6 +41,15 @@ export default defineComponent({
 
     const shouldDisabledPrevious = computed(() => currentPage.value <= 1)
     const shouldDisabledNext = computed(() => currentPage.value >= props.count)
+
+    const setPaginationHoverStyle = computed(() => {
+      const { hoverColor } = props
+      console.log(hoverColor)
+      return {
+        '--pagination-hover': addColorAlpha(hoverColor, 0.1),
+        '--pagination-activeHover': addColorAlpha(hoverColor, 0.8)
+      } as CustomCSSProperties
+    })
 
     /**
      * check safe limit value
@@ -82,15 +83,6 @@ export default defineComponent({
       emit('change', page)
     })
 
-    const baseStyle = computed(() => {
-      const { font: fontSize, width } = queryPaginationSize(props.size)
-      const style: CustomCSSProperties = {
-        fontSize,
-        '--pagination-size': width
-      }
-      return style
-    })
-
     const renderPrev = () => {
       const prevSlot = slots['prev']
       const content = prevSlot ? prevSlot : () => props.prevText
@@ -107,7 +99,7 @@ export default defineComponent({
       const { simple, count, limit } = props
       if (simple) {
         return (
-          <li class="pagination-simple__desc">
+          <li class={bem('simple')}>
             {currentPage.value} / {count}
           </li>
         )
@@ -116,7 +108,7 @@ export default defineComponent({
     }
 
     return () => (
-      <nav class="fect-pagination" style={baseStyle.value}>
+      <nav class={bem(null, props.size)} style={setPaginationHoverStyle.value}>
         {renderPrev()}
         {renderPage()}
         {renderNext()}

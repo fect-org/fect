@@ -1,47 +1,29 @@
 import { defineComponent, computed } from 'vue'
-import { addColorAlpha, CustomCSSProperties } from '../utils'
-import { usePaginationContext } from './pagination-context'
+import { createBem } from '../utils'
 
-const hoverable = (): string[] => {
-  const hover = addColorAlpha('#0070f3', 0.1)
-  const activeHover = addColorAlpha('#0070f3', 0.8)
-  return [hover, activeHover]
-}
+const bem = createBem('fect-pagination')
 
 const PaginationItem = defineComponent({
+  inheritAttrs: false,
   props: {
     disabled: Boolean,
     active: Boolean
   },
   emits: ['click', 'mouseenter', 'mouseleave'],
-  setup(props, { emit, slots }) {
-    const { context } = usePaginationContext()
-
-    const gethoverable = computed(() => {
-      const [hover, activeHover] = hoverable()
-      return {
-        '--pagination-hover': hover,
-        '--pagination-activeHover': activeHover
-      } as CustomCSSProperties
-    })
-
-    const queryClass = computed(() => {
-      if (props.disabled) return 'disabled'
-      return props.active ? 'active' : ''
-    })
-
-    const queryModeClass = computed(() => {
-      return context!.props.simple ? 'pagination-simple__side' : 'pagination-item__button'
+  setup(props, { emit, slots, attrs }) {
+    const setPaginationItemClass = computed(() => {
+      const { disabled, active } = props
+      return bem('item', { disabled, active })
     })
 
     return () => (
       <li>
         <button
-          class={`${queryModeClass.value} ${queryClass.value} `}
-          style={gethoverable.value}
+          class={setPaginationItemClass.value}
           onClick={(e) => emit('click', e)}
           onMouseenter={(e) => emit('mouseenter', e)}
           onMouseleave={(e) => emit('mouseleave', e)}
+          {...attrs}
         >
           {slots.default?.()}
         </button>

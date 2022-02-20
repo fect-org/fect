@@ -17,5 +17,9 @@ export const props = {
   prevText: { type: String, default: 'Prev' },
   nextText: { type: String, default: 'Next' },
   simple: Boolean,
-  limit: { type: Number, default: 7 }
+  limit: { type: Number, default: 7 },
+  hoverColor: {
+    type: String,
+    default: '#0070f3'
+  }
 }
