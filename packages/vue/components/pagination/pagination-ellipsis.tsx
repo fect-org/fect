@@ -14,7 +14,7 @@ const PaginationEllipsis = defineComponent({
     const [showMore, setShowMore] = useState<boolean>(false)
 
     const getSVGClass = computed(() => {
-      return props.isBefore ? 'more before' : 'more'
+      return props.isBefore ? 'before' : ''
     })
 
     const handleClick = (e: Event) => {

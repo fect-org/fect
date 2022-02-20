@@ -1,13 +1,20 @@
 import { defineComponent } from 'vue'
+import { createBem } from '../utils'
 import PaginationItem from './pagination-item'
 import { usePaginationContext } from './pagination-context'
+
+const bem = createBem('fect-pagination')
 
 const PaginationNext = defineComponent({
   setup(props, { slots }) {
     const { context } = usePaginationContext()
 
     return () => (
-      <PaginationItem disabled={context!.shouldDisabledNext.value} onClick={() => context!.updateSidePage('next')}>
+      <PaginationItem
+        class={bem('next', { simple: context!.props.simple })}
+        disabled={context!.shouldDisabledNext.value}
+        onClick={() => context!.updateSidePage('next')}
+      >
         {slots.default?.()}
       </PaginationItem>
     )

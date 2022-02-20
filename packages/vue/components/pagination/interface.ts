@@ -10,8 +10,3 @@ export interface PaginationContext {
 }
 
 export type SideEvent = 'prev' | 'next'
-
-export interface PaginationSize {
-  font: string
-  width: string
-}
