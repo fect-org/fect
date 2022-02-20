@@ -44,7 +44,6 @@ export default defineComponent({
 
     const setPaginationHoverStyle = computed(() => {
       const { hoverColor } = props
-      console.log(hoverColor)
       return {
         '--pagination-hover': addColorAlpha(hoverColor, 0.1),
         '--pagination-activeHover': addColorAlpha(hoverColor, 0.8)
