@@ -25,3 +25,14 @@ export type Theme = 'light-theme' | 'dark-theme'
 
 export type WinWidth = Ref<number>
 export type WinHeight = Ref<number>
+
+export interface KeyboardOptions {
+  target?: ElementRef | Document
+  event: 'keydown' | 'keypress' | 'keyup'
+  disableGlobalEvent?: boolean
+  stopPropagation?: boolean
+  preventDefault?: boolean
+  capture?: boolean
+}
+
+export type UseKeyboardHandler = (event: KeyboardEvent) => void
