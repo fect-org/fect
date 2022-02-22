@@ -1,11 +1,11 @@
 <template>
   <div>
     <fe-input placeholder="请输入关键字">
-      <template #icon> <Search /> </template>
+      <template #prefix-icon> <Search /> </template>
     </fe-input>
     <fe-spacer :y="0.5" />
-    <fe-input placeholder="gayhub">
-      <template #icon> <Github /> </template>
+    <fe-input placeholder="Github">
+      <template #suffix-icon> <Github /> </template>
     </fe-input>
   </div>
 </template>

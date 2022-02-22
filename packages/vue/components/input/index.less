@@ -1,8 +1,48 @@
+@input-mini-font-size: 12px;
+@input-small-font-size: 12px;
+@input-medium-font-size: 14px;
+@input-large-font-size: 16px;
+
+@input-mini-ratio: 1.313;
+@input-small-ratio: 1.5;
+@input-medium-ratio: 1.687;
+@input-large-ratio: 1.875;
+
+:root {
+  --input-mini-font-size: @input-mini-font-size;
+  --input-small-font-size: @input-small-font-size;
+  --input-medium-font-size: @input-medium-font-size;
+  --input-large-font-size: @input-large-font-size;
+
+  --input-mini-ratio: @input-mini-ratio;
+  --input-small-ratio: @input-small-ratio;
+  --input-medium-ratio: @input-medium-ratio;
+  --input-large-ratio: @input-large-ratio;
+}
+
 .fect-input {
-  width: inherit;
   display: inline-block;
+  width: initial;
   box-sizing: border-box;
   -webkit-box-align: center;
+  padding: 0;
+  margin: 0;
+  &--mini {
+    --input-ratio: var(--input-mini-ratio);
+    --input-font-size: var(--input-mini-font-size);
+  }
+  &--small {
+    --input-ratio: var(--input-small-ratio);
+    --input-font-size: var(--input-small-font-size);
+  }
+  &--medium {
+    --input-ratio: var(--input-medium-ratio);
+    --input-font-size: var(--input-medium-font-size);
+  }
+  &--large {
+    --input-ratio: var(--input-large-ratio);
+    --input-font-size: var(--input-large-font-size);
+  }
   label {
     display: block;
     font-weight: normal;
@@ -21,8 +61,8 @@
   &__container {
     display: inline-flex;
     align-items: center;
-    width: inherit;
-    height: calc(var(--heightRatio) * var(--fect-gap));
+    width: initial;
+    height: calc(var(--input-ratio) * var(--fect-gap));
   }
   &__wrapper {
     display: inline-flex;
@@ -34,7 +74,17 @@
     border: 1px solid var(--fect-border);
     border-radius: var(--fect-radius);
     transition: border 0.2s ease 0s, color 0.2s ease 0s;
-    padding: 0;
+    &--prefix {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    &--suffix {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    &--hover {
+      border-color: var(--accents-5);
+    }
     input {
       padding: 4px 10px;
       box-shadow: none;
@@ -46,6 +96,7 @@
       min-width: 0;
       height: 100%;
       -webkit-appearance: none;
+      font-size: var(--input-font-size);
       color: var(--primary-foreground);
       &::placeholder {
         color: var(--accents-3);
@@ -57,12 +108,10 @@
         border-color: var(--accents-2);
       }
     }
-    &.hover {
-      border-color: var(--accents-5);
-    }
   }
 
   &__label {
+    font-size: var(--input-font-size);
     display: inline-flex;
     width: initial;
     height: 100%;
@@ -72,15 +121,15 @@
     padding: 0 var(--fect-gap-half);
     color: var(--accents-4);
     background-color: var(--accents-1);
-    border-top-left-radius: var(--fect-radius);
-    border-bottom-left-radius: var(--fect-radius);
     border-top: 1px solid var(--fect-border);
-    border-left: 1px solid var(--fect-border);
     border-bottom: 1px solid var(--fect-border);
     line-height: 1;
-    &.suffix {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
+    &--prefix {
+      border-top-left-radius: var(--fect-radius);
+      border-bottom-left-radius: var(--fect-radius);
+      border-left: 1px solid var(--fect-border);
+    }
+    &--suffix {
       border-top-right-radius: var(--fect-radius);
       border-bottom-right-radius: var(--fect-radius);
       border-left: 0;
@@ -94,47 +143,15 @@
     align-items: center;
     vertical-align: middle;
     margin: 0;
-    width: calc(var(--heightRatio) * 10.66px);
-    padding: calc(var(--heightRatio) * var(--fect-gap) * 0.3);
+    width: calc(var(--input-ratio) * 10.66px);
+    padding: calc(var(--input-ratio) * var(--fect-gap) * 0.3);
     line-height: 1;
     position: relative;
-    &-prefix {
+    &--prefix {
       padding-right: 0;
     }
-    &-suffix {
+    &--suffix {
       padding-left: 0;
-    }
-  }
-
-  &__clear-icon {
-    padding: 0 var(--fect-gap-half);
-    padding-left: 0;
-    margin: 0;
-    display: inline-flex;
-    align-items: center;
-    height: 100%;
-    box-sizing: border-box;
-    transition: color 150ms ease 0s;
-    cursor: pointer;
-    visibility: hidden;
-    color: var(--accents-3);
-    opacity: 0;
-    &.visible {
-      visibility: visible;
-      opacity: 1;
-    }
-    &.disabled {
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-    &:hover {
-      color: var(--primary-foreground);
-    }
-
-    svg {
-      color: currentColor;
-      width: calc(var(--heightRatio) * 10.66px);
-      height: calc(var(--heightRatio) * 10.66px);
     }
   }
 }
