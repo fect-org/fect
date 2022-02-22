@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 
-const PasswordIcon = defineComponent({
+export default defineComponent({
   props: {
     visible: Boolean
   },
@@ -33,5 +33,3 @@ const PasswordIcon = defineComponent({
     )
   }
 })
-
-export default PasswordIcon

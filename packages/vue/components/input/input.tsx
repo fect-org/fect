@@ -1,79 +1,28 @@
-import { computed, ref, watchEffect, PropType, defineComponent } from 'vue'
+import { defineComponent, computed, ref } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, CustomCSSProperties, NormalSizes, assign } from '../utils'
+import { createName, createBem } from '../utils'
+import { props } from './props'
 import ClearableIcon from './clearable-icon'
 import PasswordIcon from './password-icon'
-import IconContent from './icon-content'
+import InputIconContent from './input-icon-content'
 import InputLabel from './input-label'
-import InputBlockLabel from './input-block-label'
+
 import './index.less'
 
 const name = createName('Input')
 
-type InputSize = {
-  heightRatio: string
-  fontSize: string
-}
-
-const queryInputSize = (size: NormalSizes) => {
-  const sizesPool: Record<NormalSizes, InputSize> = {
-    mini: {
-      heightRatio: '1.313',
-      fontSize: '12px'
-    },
-    small: {
-      heightRatio: '1.5',
-      fontSize: '12px'
-    },
-    medium: {
-      heightRatio: '1.687',
-      fontSize: '14px'
-    },
-    large: {
-      heightRatio: '1.875',
-      fontSize: '16px'
-    }
-  }
-
-  return sizesPool[size]
-}
+const bem = createBem('fect-input')
 
 export default defineComponent({
   name,
-  props: {
-    modelValue: {
-      type: [String, Number],
-      default: ''
-    },
-    type: { type: String, default: 'text' },
-    placeholder: String,
-    size: {
-      type: String as PropType<NormalSizes>,
-      default: 'medium'
-    },
-    autocomplete: String,
-    readonly: Boolean,
-    disabled: Boolean,
-    clearable: Boolean,
-    prefix: [String, Number],
-    suffix: [String, Number]
-  },
+  inheritAttrs: false,
+  props,
   emits: ['change', 'blur', 'focus', 'clearClick', 'update:modelValue'],
   setup(props, { slots, emit, attrs }) {
     const inputRef = ref<HTMLInputElement>()
     const [hover, setHover] = useState<boolean>(false)
     const [selfType, setSelfType] = useState<string>(props.type)
-    const [ratio, setRatio] = useState<string>()
-    const [fontSize, setFontSize] = useState<string>()
     const [passwordVisible, setPasswordVisible] = useState<boolean>(false)
-    const [hasPrefix] = useState<boolean>(!!props.prefix)
-    const [hasSuffix] = useState<boolean>(!!props.suffix)
-
-    watchEffect(() => {
-      const { heightRatio, fontSize } = queryInputSize(props.size)
-      setRatio(heightRatio)
-      setFontSize(fontSize)
-    })
 
     const updatelValue = (val: string | number) => {
       if (props.type === 'number') {
@@ -109,10 +58,13 @@ export default defineComponent({
       emit('clearClick', e)
     }
 
-    /**
-     *control clearable icon visible
-     */
-    const setClearable = computed(() => Boolean(props.modelValue !== ''))
+    const passwordVisibleChanger = () => {
+      setPasswordVisible((pre) => !pre)
+      if (passwordVisible.value) return setSelfType('text')
+      return setSelfType('password')
+    }
+
+    const shouldClick = computed(() => !props.disabled || !props.readonly)
 
     const renderInput = () => {
       const InputProps = {
@@ -129,81 +81,60 @@ export default defineComponent({
         ...attrs
       }
 
-      const passwordVisibleChanger = () => {
-        setPasswordVisible(!passwordVisible.value)
-        if (passwordVisible.value) return setSelfType('text')
-        return setSelfType('password')
-      }
+      const disabled = props.disabled ? 'disabled' : ''
+      const shouldClearIcon = props.clearable && Boolean(props.modelValue)
 
       return (
         <>
-          <input
-            type={selfType.value}
-            class={`${props.disabled ? 'disabled' : ''}`}
-            style={{ fontSize: fontSize.value }}
-            {...InputProps}
-          />
+          <input type={selfType.value} class={disabled} {...InputProps} />
           {props.clearable && (
-            <ClearableIcon
-              visible={setClearable.value}
-              disabled={props.disabled || props.readonly}
-              onClick={clearHandler}
-            />
-          )}
-          {props.type === 'password' && (
-            <IconContent onClick={passwordVisibleChanger} clickable={props.disabled || props.readonly}>
-              <PasswordIcon visible={passwordVisible.value} />
-            </IconContent>
+            <InputIconContent onClick={clearHandler} clickable={shouldClick.value && shouldClearIcon} suffix>
+              <ClearableIcon visible={Boolean(props.modelValue)} />
+            </InputIconContent>
           )}
         </>
       )
     }
 
-    const haslabel = computed(() => {
-      const prefixStyle = {
-        borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0
-      }
-      const suffixStyle = {
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0
-      }
-
-      if (hasPrefix.value && hasSuffix.value) {
-        return assign(prefixStyle, suffixStyle)
-      }
-      if (hasPrefix.value) {
-        return prefixStyle
-      }
-      if (hasSuffix.value) {
-        return suffixStyle
-      }
-      return ''
-    })
-
-    const renderIcon = () => {
-      return <div class="fect-input__icon fect-input__icon-prefix">{slots.icon?.()}</div>
+    const renderPrefixIcon = () => {
+      const prefixSlot = slots['prefix-icon']
+      if (prefixSlot) return <InputIconContent prefix v-slots={prefixSlot} />
+      return null
     }
 
-    return () => (
-      <div class="fect-input" style={{ '--heightRatio': ratio.value } as CustomCSSProperties}>
-        {slots.default && <InputBlockLabel v-slots={slots} />}
-        <div class={'fect-input__container'}>
-          {hasPrefix.value && <InputLabel fontSize={fontSize.value}>{props.prefix}</InputLabel>}
-          <div
-            class={`fect-input__wrapper ${hover.value ? 'hover' : ''} ${props.disabled ? 'disabled' : ''}`}
-            style={haslabel.value}
-          >
-            {slots.icon && renderIcon()}
-            {renderInput()}
-          </div>
-          {hasSuffix.value && (
-            <InputLabel fontSize={fontSize.value} isRight>
-              {props.suffix}
-            </InputLabel>
+    const renderSuffixIcon = () => {
+      const prefixSlot = slots['suffix-icon']
+      if (prefixSlot) return <InputIconContent suffix v-slots={prefixSlot} />
+
+      return (
+        <>
+          {props.type === 'password' && (
+            <InputIconContent onClick={passwordVisibleChanger} clickable={shouldClick.value} suffix>
+              <PasswordIcon visible={passwordVisible.value} />
+            </InputIconContent>
           )}
+        </>
+      )
+    }
+    // icon => prefix-icon , and add suffix-icon
+
+    return () => {
+      const hasSuffix = Boolean(props.suffix)
+      const hasPrefix = Boolean(props.prefix)
+      return (
+        <div class={bem(null, props.size)}>
+          {slots.default && <label>{slots.default()}</label>}
+          <div class={bem('container')}>
+            {hasPrefix && <InputLabel prefix>{props.prefix}</InputLabel>}
+            <div class={bem('wrapper', { hover: hover.value, prefix: hasPrefix, suffix: hasSuffix })}>
+              {renderPrefixIcon()}
+              {renderInput()}
+              {renderSuffixIcon()}
+            </div>
+            {hasSuffix && <InputLabel suffix>{props.suffix}</InputLabel>}
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
 })
