@@ -17,3 +17,12 @@ export interface TabsHoverRatio {
   w: number
   h: number
 }
+
+export interface TabEvent {
+  target: {
+    checkValue: string | number
+  }
+  stopPropagation: () => void
+  preventDefault: () => void
+  nativeEvent: Event
+}
