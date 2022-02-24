@@ -1,51 +1,20 @@
-import { computed, ref, watch, defineComponent } from 'vue'
-import { useClickAway, useState } from '@fect-ui/vue-hooks'
-import { createName, useExpose, CustomCSSProperties, NormalSizes } from '../utils'
+import { computed, ref, watch, defineComponent, nextTick } from 'vue'
+import { useState } from '@fect-ui/vue-hooks'
+import { createName, createBem, pick, getDomRect, ComponentInstance, CustomCSSProperties } from '../utils'
+import Input from '../input'
+import Tooltip, { TooltipProps } from '../tooltip'
 import GridGroup from '../grid-group'
 import { createSelectContext } from './select-context'
-import SelectIcon from './select-icon'
-import SelcetClearableIcon from './select-clear-icon'
+import ArrowIcon from './arrow-icon'
+import ClearIcon from './clear-icon'
 import SelectMultiple from './select-multiple'
 import SelectDropDown from './select-dropdown'
-import SeelctInput from './select-input'
 import { props } from './props'
-import type { SizeStyle } from './interface'
 
 import './index.less'
 
 const name = createName('Select')
-
-export const hasEmpty = (val: any) => {
-  if (val === '') return true
-  if (Array.isArray(val) && !val.length) return true
-  return false
-}
-
-const querySelectSize = (size: NormalSizes) => {
-  const sizes: Record<NormalSizes, SizeStyle> = {
-    mini: {
-      height: 'calc(1 * var(--fect-gap))',
-      fontSize: '12px',
-      minWidth: '100px'
-    },
-    small: {
-      height: 'calc(1.35 * var(--fect-gap))',
-      fontSize: '12px',
-      minWidth: '128px'
-    },
-    medium: {
-      height: 'calc(1.688 * var(--fect-gap))',
-      fontSize: '14px',
-      minWidth: '160px'
-    },
-    large: {
-      height: 'calc(1.688 * var(--fect-gap))',
-      fontSize: '16px',
-      minWidth: '200px'
-    }
-  }
-  return sizes[size] || sizes['medium']
-}
+const bem = createBem('fect-select')
 
 export default defineComponent({
   name,
@@ -53,67 +22,40 @@ export default defineComponent({
   emits: ['change', 'update:modelValue'],
   setup(props, { slots, emit }) {
     const selectRef = ref<HTMLDivElement>()
-
+    const gridRef = ref<ComponentInstance>()
     const { provider, children } = createSelectContext()
 
     const [value, setValue] = useState<string | string[]>(props.modelValue || props.value)
     const [visible, setVisible] = useState<boolean>(false)
-    const [clean, setClean] = useState<boolean>(false)
-    const [teleport, setTeleport] = useState<string>('body')
-
-    const empty = computed(() => hasEmpty(value.value))
-
-    const cleanHandler = (e: Event, status: boolean) => {
-      e.stopPropagation()
-      e.preventDefault()
-      setClean(status)
-    }
-
-    useClickAway(() => setVisible(false), selectRef, {
-      event: 'click'
-    })
-
-    const setStyle = computed(() => {
-      const { height, fontSize, minWidth } = querySelectSize(props.size)
-      return {
-        ['--select-minWidth']: minWidth,
-        ['--select-height']: height,
-        ['--select-fontSize']: fontSize
-      } as CustomCSSProperties
-    })
-
-    const setClass = computed(() => {
-      const { multiple, disabled } = props
-      const names: string[] = ['fect-select']
-      multiple && names.push('multiple')
-      disabled && names.push('disabled')
-      return names.join(' ')
-    })
-
-    /**
-     * may click delete when the drop-down box appears
-     */
-    const clearIconHandler = () => {
-      setVisible(false)
-      setValue('')
-    }
+    const [dropdownWidth, setDropdownWidth] = useState<string>('')
+    const [selectWrapperHeight, setSelectWrapperHeight] = useState<number>()
+    const [showClear, setShowClear] = useState<boolean>(false)
+    const [multipleHeight, setMultipleHeight] = useState<string>('')
 
     const updateSelectValue = (val: string) => {
       setValue((pre) => {
-        if (!Array.isArray(pre)) return val
-        if (!pre.includes(val)) return [...pre, val]
-        return pre.filter((item) => item !== val)
+        if (props.multiple) {
+          const previous = Array.isArray(pre) ? pre : [pre]
+          if (!pre.includes(val)) return [...previous, val]
+          return previous.filter((item) => item !== val)
+        } else {
+          return val
+        }
+      })
+      nextTick(() => {
+        if (gridRef.value) {
+          const gridEl = gridRef.value.$el as HTMLElement
+          const rect = getDomRect(gridEl)
+          if (rect.height <= selectWrapperHeight.value) {
+            setMultipleHeight(() => `${selectWrapperHeight.value}px`)
+          } else {
+            setMultipleHeight(() => `${rect.height + 6}px`)
+          }
+        }
       })
     }
 
     provider({ setVisible, updateSelectValue })
-
-    const clickHandler = (e: Event) => {
-      if (props.disabled) return
-      e.stopPropagation()
-      e.preventDefault()
-      setVisible(!visible.value)
-    }
 
     watch(value, (cur) => {
       emit('change', cur)
@@ -122,22 +64,16 @@ export default defineComponent({
 
     const queryChecked = computed(() => {
       const list = Array.isArray(value.value) ? value.value : [value.value]
-      return children.filter((child) => list.includes(child.value))
+      return children.filter((child) => list.includes(child.value as string))
     })
 
-    /**
-     * control show main context
-     */
-    const renderPlaceHolder = () => <span class="value fect-select__placeholder">{props.placeholder}</span>
-
     const renderNodes = () => {
-      const { multiple, clearable } = props
+      const { clearable } = props
       const list = queryChecked.value
-      if (!multiple) return <span class="value">{list.map((_) => _.label)}</span>
       return (
-        <GridGroup gap={0.5}>
+        <GridGroup ref={gridRef} class={bem('multiple')} gap={0.5}>
           {list.map((_) => (
-            <SelectMultiple onClear={() => updateSelectValue(_.value)} clearable={clearable}>
+            <SelectMultiple onClear={() => updateSelectValue(_.value as string)} clearable={clearable}>
               {_.label}
             </SelectMultiple>
           ))}
@@ -145,39 +81,89 @@ export default defineComponent({
       )
     }
 
-    /**
-     * control clearable icon dispaly
-     */
-
-    const showClose = computed(() => {
-      const { clearable, disabled, multiple } = props
-      return clearable && !disabled && !empty.value && !multiple && clean.value
+    watch(visible, () => {
+      const rect = getDomRect(selectRef)
+      const height = rect.height || rect.top - rect.bottom
+      const width = rect.width || rect.right - rect.left
+      setSelectWrapperHeight(height)
+      setDropdownWidth(`${width}px`)
     })
 
-    const renderRightIcon = () => {
-      if (showClose.value) {
-        return <SelcetClearableIcon onClick={clearIconHandler} />
+    const renderSelectWrapper = () => {
+      const { multiple, clearable, disabled } = props
+      const selectInputProps: any = {
+        ...pick(props, ['disabled', 'size', 'placeholder'])
       }
-      const classes = visible.value ? 'click' : ''
-      return <SelectIcon class={classes} />
+      // eslint-disable-next-line prefer-destructuring
+      const checkedValue = queryChecked.value.map((_) => _.label)[0]
+      if (!multiple) {
+        selectInputProps['modelValue'] = checkedValue
+      }
+
+      const showClearIcon = clearable && !disabled && checkedValue && showClear.value && !multiple
+
+      const clearValueHandelr = (e: Event) => {
+        if (showClearIcon) {
+          e.stopImmediatePropagation()
+          e.stopPropagation()
+          setValue('')
+          setVisible(false)
+        }
+      }
+
+      const renderSelectSuffixIcon = () => {
+        if (showClearIcon) return <ClearIcon class={bem('arrow', 'clear')} />
+        return <ArrowIcon class={bem('arrow', { active: visible.value })} />
+      }
+
+      return (
+        <div
+          class={bem('content')}
+          ref={selectRef}
+          onMouseenter={() => setShowClear(true)}
+          onMouseleave={() => setShowClear(false)}
+        >
+          {multiple && renderNodes()}
+          <Input
+            class={bem('input')}
+            readonly
+            role="combobox"
+            aria-haspopup="listbox"
+            onSuffix-icon-click={clearValueHandelr}
+            aria-expanded={visible.value}
+            {...selectInputProps}
+            v-slots={{ ['suffix-icon']: () => renderSelectSuffixIcon() }}
+          />
+        </div>
+      )
     }
 
-    useExpose({ setTeleport })
+    return () => {
+      const _slots = {
+        content: () => <SelectDropDown width={dropdownWidth.value} v-slots={slots} />,
+        default: () => renderSelectWrapper()
+      }
 
-    return () => (
-      <div
-        class={setClass.value}
-        ref={selectRef}
-        style={setStyle.value}
-        onMouseenter={(e) => cleanHandler(e, true)}
-        onMouseleave={(e) => cleanHandler(e, false)}
-        onClick={clickHandler}
-      >
-        <SeelctInput visible={visible.value} />
-        {empty.value ? renderPlaceHolder() : renderNodes()}
-        <SelectDropDown teleport={teleport.value} v-slots={slots} visible={visible.value} parentRef={selectRef.value} />
-        {renderRightIcon()}
-      </div>
-    )
+      const tooltipProps: Partial<TooltipProps> = {
+        portalClass: bem('dropdown'),
+        visible: visible.value,
+        placement: 'bottom',
+        trigger: 'click',
+        visibleArrow: true,
+        disabled: props.disabled
+      }
+
+      const setContentHeight = () => {
+        return {
+          '--select-content-height': multipleHeight.value || 'calc(var(--select-ratio) * var(--fect-gap))'
+        } as CustomCSSProperties
+      }
+
+      return (
+        <div class={bem(null, { disabled: props.disabled, size: props.size })} style={setContentHeight()}>
+          <Tooltip onChange={(cur) => setVisible(cur)} v-slots={_slots} {...tooltipProps} />
+        </div>
+      )
+    }
   }
 })

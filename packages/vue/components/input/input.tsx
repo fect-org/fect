@@ -17,7 +17,7 @@ export default defineComponent({
   name,
   inheritAttrs: false,
   props,
-  emits: ['change', 'blur', 'focus', 'clearClick', 'update:modelValue'],
+  emits: ['change', 'blur', 'focus', 'clearClick', 'update:modelValue', 'prefix-icon-click', 'suffix-icon-click'],
   setup(props, { slots, emit, attrs }) {
     const inputRef = ref<HTMLInputElement>()
     const [hover, setHover] = useState<boolean>(false)
@@ -66,6 +66,10 @@ export default defineComponent({
 
     const shouldClick = computed(() => !props.disabled || !props.readonly)
 
+    const iconClickHandler = (event: 'prefix-icon-click' | 'suffix-icon-click', e: Event) => {
+      emit(event, e)
+    }
+
     const renderInput = () => {
       const InputProps = {
         ref: inputRef,
@@ -98,13 +102,29 @@ export default defineComponent({
 
     const renderPrefixIcon = () => {
       const prefixSlot = slots['prefix-icon']
-      if (prefixSlot) return <InputIconContent prefix v-slots={prefixSlot} />
+      if (prefixSlot)
+        return (
+          <InputIconContent
+            clickable={shouldClick.value}
+            onClick={(e) => iconClickHandler('prefix-icon-click', e)}
+            prefix
+            v-slots={prefixSlot}
+          />
+        )
       return null
     }
 
     const renderSuffixIcon = () => {
-      const prefixSlot = slots['suffix-icon']
-      if (prefixSlot) return <InputIconContent suffix v-slots={prefixSlot} />
+      const suffixSlot = slots['suffix-icon']
+      if (suffixSlot)
+        return (
+          <InputIconContent
+            clickable={shouldClick.value}
+            onClick={(e) => iconClickHandler('suffix-icon-click', e)}
+            suffix
+            v-slots={suffixSlot}
+          />
+        )
 
       return (
         <>
@@ -126,7 +146,14 @@ export default defineComponent({
           {slots.default && <label>{slots.default()}</label>}
           <div class={bem('container')}>
             {hasPrefix && <InputLabel prefix>{props.prefix}</InputLabel>}
-            <div class={bem('wrapper', { hover: hover.value, prefix: hasPrefix, suffix: hasSuffix })}>
+            <div
+              class={bem('wrapper', {
+                hover: hover.value,
+                prefix: hasPrefix,
+                suffix: hasSuffix,
+                disabled: props.disabled
+              })}
+            >
               {renderPrefixIcon()}
               {renderInput()}
               {renderSuffixIcon()}

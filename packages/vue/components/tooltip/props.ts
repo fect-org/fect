@@ -7,6 +7,7 @@ export const props = {
     type: String,
     default: ''
   },
+  disabled: Boolean,
   type: {
     type: String as PropType<TooltipTypes>,
     default: 'default'

@@ -1,16 +1,9 @@
 import { defineComponent } from 'vue'
 
-const SelcetClearableIcon = defineComponent({
-  emits: ['click'],
-  setup(props, { emit }) {
-    const handleClick = (e: Event) => {
-      e.stopPropagation()
-      e.preventDefault()
-      emit('click', e)
-    }
-
+export default defineComponent({
+  setup() {
     return () => (
-      <div class="fect-select__clearIcon" onClick={handleClick}>
+      <div>
         <svg
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -28,5 +21,3 @@ const SelcetClearableIcon = defineComponent({
     )
   }
 })
-
-export default SelcetClearableIcon

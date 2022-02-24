@@ -3,7 +3,7 @@
   max-width: 100%;
   justify-content: flex-start;
   align-items: center;
-  font-size: var(--select-fontSize);
+  font-size: var(--select-font-size);
   height: calc(1.688 * var(--fect-gap));
   padding: 0 var(--fect-gap-half);
   background-color: var(--primary-background);
@@ -11,12 +11,13 @@
   user-select: none;
   border: 0;
   cursor: pointer;
-  &.disabled {
-    cursor: not-allowed;
-    background-color: var(--accents-1);
-  }
-  &:hover:not(.disabled) {
+  &:not(&--disabled):hover {
     background-color: var(--accents-1);
     color: var(--primary-foreground);
+  }
+  &--disabled {
+    cursor: not-allowed;
+    color: var(--accents-3);
+    background-color: var(--accents-1);
   }
 }
