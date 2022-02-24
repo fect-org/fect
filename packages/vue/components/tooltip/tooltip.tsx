@@ -127,6 +127,11 @@ export default defineComponent({
      */
     useClickAway(() => updateShow(false), tooltipRef)
 
+    watch(
+      () => props.visible,
+      (cur) => setShow(cur)
+    )
+
     watch(show, (cur) => {
       emit('update:visible', cur)
       emit('change', cur)
