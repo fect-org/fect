@@ -3,11 +3,9 @@ import { defineComponent } from 'vue'
 const SelectIcon = defineComponent({
   setup() {
     return () => (
-      <div class="fect-select__icon-context">
+      <div>
         <svg
           viewBox="0 0 24 24"
-          width="20px"
-          height="20px"
           stroke-width="1"
           stroke-linecap="round"
           color="currentColor"

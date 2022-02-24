@@ -7,7 +7,7 @@ export const props = {
     default: ''
   },
   value: {
-    type: [String, Array] as PropType<string | string[]>,
+    type: [String, Number, Array] as PropType<string | string[]>,
     default: ''
   },
   placeholder: {
@@ -28,7 +28,7 @@ export const props = {
 
 export const selectOptionProps = {
   value: {
-    type: String,
+    type: [String, Number],
     default: ''
   },
   label: {

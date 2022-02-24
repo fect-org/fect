@@ -4,8 +4,8 @@ import { selectOptionProps, props } from './props'
 
 export interface SelectContext {
   setVisible: (status: boolean) => void
-  setParentValue: (val: string) => void
-  updateSelectValue: (val: string) => void
+  setParentValue: (val: string | number) => void
+  updateSelectValue: (val: string | number) => void
 }
 
 export interface SizeStyle {

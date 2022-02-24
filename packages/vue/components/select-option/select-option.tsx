@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue'
 import { useSelectContext } from '../select/select-context'
 import { selectOptionProps } from '../select/props'
-import { hasEmpty } from '../select/select'
+// import { hasEmpty } from '../select/select'
 import { createName } from '../utils'
 import './index.less'
 
@@ -18,10 +18,12 @@ export default defineComponent({
       e.stopPropagation()
       e.preventDefault()
       if (props.disabled) return
-      if (!hasEmpty(props.value)) {
-        setVisible(false)
-        updateSelectValue(props.value)
-      }
+      // if (!hasEmpty(props.value)) {
+      //   setVisible(false)
+      //   updateSelectValue(props.value)
+      // }
+      setVisible(false)
+      updateSelectValue(props.value)
     }
     return () => (
       <div class={`fect-option ${props.disabled ? 'disabled' : ''}`} onClick={handleClick}>

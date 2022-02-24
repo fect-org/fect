@@ -1,25 +1,21 @@
 import { computed, ref, watch, defineComponent } from 'vue'
-import { useClickAway, useState } from '@fect-ui/vue-hooks'
-import { createName, useExpose, CustomCSSProperties, NormalSizes } from '../utils'
+import { useState, useEventListener } from '@fect-ui/vue-hooks'
+import { createName, CustomCSSProperties, NormalSizes, createBem, pick, getDomRect } from '../utils'
+import Input from '../input'
+import Tooltip, { TooltipProps } from '../tooltip'
 import GridGroup from '../grid-group'
 import { createSelectContext } from './select-context'
 import SelectIcon from './select-icon'
 import SelcetClearableIcon from './select-clear-icon'
 import SelectMultiple from './select-multiple'
 import SelectDropDown from './select-dropdown'
-import SeelctInput from './select-input'
 import { props } from './props'
 import type { SizeStyle } from './interface'
 
 import './index.less'
 
 const name = createName('Select')
-
-export const hasEmpty = (val: any) => {
-  if (val === '') return true
-  if (Array.isArray(val) && !val.length) return true
-  return false
-}
+const bem = createBem('fect-select')
 
 const querySelectSize = (size: NormalSizes) => {
   const sizes: Record<NormalSizes, SizeStyle> = {
@@ -53,25 +49,11 @@ export default defineComponent({
   emits: ['change', 'update:modelValue'],
   setup(props, { slots, emit }) {
     const selectRef = ref<HTMLDivElement>()
-
     const { provider, children } = createSelectContext()
 
     const [value, setValue] = useState<string | string[]>(props.modelValue || props.value)
     const [visible, setVisible] = useState<boolean>(false)
-    const [clean, setClean] = useState<boolean>(false)
-    const [teleport, setTeleport] = useState<string>('body')
-
-    const empty = computed(() => hasEmpty(value.value))
-
-    const cleanHandler = (e: Event, status: boolean) => {
-      e.stopPropagation()
-      e.preventDefault()
-      setClean(status)
-    }
-
-    useClickAway(() => setVisible(false), selectRef, {
-      event: 'click'
-    })
+    const [dropdownWidth, setDropdownWidth] = useState<string>('')
 
     const setStyle = computed(() => {
       const { height, fontSize, minWidth } = querySelectSize(props.size)
@@ -81,22 +63,6 @@ export default defineComponent({
         ['--select-fontSize']: fontSize
       } as CustomCSSProperties
     })
-
-    const setClass = computed(() => {
-      const { multiple, disabled } = props
-      const names: string[] = ['fect-select']
-      multiple && names.push('multiple')
-      disabled && names.push('disabled')
-      return names.join(' ')
-    })
-
-    /**
-     * may click delete when the drop-down box appears
-     */
-    const clearIconHandler = () => {
-      setVisible(false)
-      setValue('')
-    }
 
     const updateSelectValue = (val: string) => {
       setValue((pre) => {
@@ -108,13 +74,6 @@ export default defineComponent({
 
     provider({ setVisible, updateSelectValue })
 
-    const clickHandler = (e: Event) => {
-      if (props.disabled) return
-      e.stopPropagation()
-      e.preventDefault()
-      setVisible(!visible.value)
-    }
-
     watch(value, (cur) => {
       emit('change', cur)
       emit('update:modelValue', cur)
@@ -122,20 +81,14 @@ export default defineComponent({
 
     const queryChecked = computed(() => {
       const list = Array.isArray(value.value) ? value.value : [value.value]
-      return children.filter((child) => list.includes(child.value))
+      return children.filter((child) => list.includes(child.value as string))
     })
 
-    /**
-     * control show main context
-     */
-    const renderPlaceHolder = () => <span class="value fect-select__placeholder">{props.placeholder}</span>
-
     const renderNodes = () => {
-      const { multiple, clearable } = props
+      const { clearable } = props
       const list = queryChecked.value
-      if (!multiple) return <span class="value">{list.map((_) => _.label)}</span>
       return (
-        <GridGroup gap={0.5}>
+        <GridGroup class={bem('multiple')} gap={0.5}>
           {list.map((_) => (
             <SelectMultiple onClear={() => updateSelectValue(_.value)} clearable={clearable}>
               {_.label}
@@ -145,39 +98,69 @@ export default defineComponent({
       )
     }
 
-    /**
-     * control clearable icon dispaly
-     */
-
-    const showClose = computed(() => {
-      const { clearable, disabled, multiple } = props
-      return clearable && !disabled && !empty.value && !multiple && clean.value
+    watch(visible, () => {
+      const rect = getDomRect(selectRef)
+      const width = rect.width || rect.right - rect.left
+      setDropdownWidth(`${width}px`)
     })
 
-    const renderRightIcon = () => {
-      if (showClose.value) {
-        return <SelcetClearableIcon onClick={clearIconHandler} />
+    const selectPopverChangeHandler = (cur: boolean) => setVisible(cur)
+
+    const renderSelectWrapper = () => {
+      const { multiple, clearable, disabled } = props
+      const selectInputProps: any = {
+        ...pick(props, ['disabled', 'size', 'placeholder'])
       }
-      const classes = visible.value ? 'click' : ''
-      return <SelectIcon class={classes} />
+      // eslint-disable-next-line prefer-destructuring
+      const checkedValue = queryChecked.value.map((_) => _.label)[0]
+      if (!multiple) {
+        selectInputProps['modelValue'] = checkedValue
+      }
+
+      const renderSelectSuffixIcon = () => {
+        if (clearable && !disabled && checkedValue) return <SelcetClearableIcon class={bem('arrow')} />
+        return <SelectIcon class={bem('arrow', { active: visible.value })} />
+      }
+
+      return (
+        <div class={bem('content')} ref={selectRef}>
+          <Input
+            class={bem('input')}
+            readonly
+            role="combobox"
+            aria-haspopup="listbox"
+            aria-expanded={visible.value}
+            {...selectInputProps}
+            v-slots={{ ['suffix-icon']: () => renderSelectSuffixIcon() }}
+          >
+            {multiple && renderNodes()}
+          </Input>
+        </div>
+      )
     }
 
-    useExpose({ setTeleport })
+    return () => {
+      const _slots = {
+        content: () => <SelectDropDown width={dropdownWidth.value} v-slots={slots} />,
+        default: () => renderSelectWrapper()
+      }
 
-    return () => (
-      <div
-        class={setClass.value}
-        ref={selectRef}
-        style={setStyle.value}
-        onMouseenter={(e) => cleanHandler(e, true)}
-        onMouseleave={(e) => cleanHandler(e, false)}
-        onClick={clickHandler}
-      >
-        <SeelctInput visible={visible.value} />
-        {empty.value ? renderPlaceHolder() : renderNodes()}
-        <SelectDropDown teleport={teleport.value} v-slots={slots} visible={visible.value} parentRef={selectRef.value} />
-        {renderRightIcon()}
-      </div>
-    )
+      const tooltipProps: Partial<TooltipProps> = {
+        portalClass: bem('dropdown'),
+        visible: visible.value,
+        placement: 'bottom',
+        trigger: 'click',
+        visibleArrow: true
+      }
+
+      return (
+        <Tooltip
+          class={bem(null, { disabled: props.disabled })}
+          onChange={selectPopverChangeHandler}
+          v-slots={_slots}
+          {...tooltipProps}
+        />
+      )
+    }
   }
 })
