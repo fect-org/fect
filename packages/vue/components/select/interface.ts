@@ -8,12 +8,6 @@ export interface SelectContext {
   updateSelectValue: (val: string | number) => void
 }
 
-export interface SizeStyle {
-  height: string
-  fontSize: string
-  minWidth: string
-}
-
 export type SelectPropInstance = ComponentInstance<ExtractPropTypes<typeof selectOptionProps>>
 
 export type SelectProps = Partial<ExtractPropTypes<typeof props>>

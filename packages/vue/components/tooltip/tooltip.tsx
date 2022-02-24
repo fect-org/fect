@@ -117,9 +117,12 @@ export default defineComponent({
       handler(leave)
     }
 
-    const clickHandler = (state: boolean) => props.trigger === 'click' && updateShow(state)
-
     const mouseEventHandler = (state: boolean) => props.trigger === 'hover' && updateShow(state)
+
+    const tooltipClickHandler = () => {
+      if (props.disabled) return
+      props.trigger === 'click' && updateShow(!show.value)
+    }
 
     /**
      * in mobile, mouseEvent can't wrok correctly , it
@@ -138,7 +141,6 @@ export default defineComponent({
     })
 
     useExpose({
-      clickHandler,
       mouseEventHandler,
       setTeleport,
       updateRect
@@ -148,7 +150,7 @@ export default defineComponent({
       <div
         class="fect-tooltip"
         ref={tooltipRef}
-        onClick={() => clickHandler(!show.value)}
+        onClick={tooltipClickHandler}
         onMouseenter={() => mouseEventHandler(true)}
         onMouseleave={() => mouseEventHandler(false)}
       >

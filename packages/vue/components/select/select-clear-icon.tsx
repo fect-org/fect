@@ -1,7 +1,6 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  emits: ['click'],
   setup() {
     return () => (
       <div>

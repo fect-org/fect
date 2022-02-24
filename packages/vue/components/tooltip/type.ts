@@ -52,4 +52,5 @@ export type TooltipProps = {
   showAfter: number
   hideAfter: number
   portalClass: string
+  disabled: boolean
 }

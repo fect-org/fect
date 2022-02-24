@@ -1,6 +1,6 @@
 import { computed, ref, watch, defineComponent } from 'vue'
-import { useState, useEventListener } from '@fect-ui/vue-hooks'
-import { createName, CustomCSSProperties, NormalSizes, createBem, pick, getDomRect } from '../utils'
+import { useState } from '@fect-ui/vue-hooks'
+import { createName, createBem, pick, getDomRect } from '../utils'
 import Input from '../input'
 import Tooltip, { TooltipProps } from '../tooltip'
 import GridGroup from '../grid-group'
@@ -10,38 +10,11 @@ import SelcetClearableIcon from './select-clear-icon'
 import SelectMultiple from './select-multiple'
 import SelectDropDown from './select-dropdown'
 import { props } from './props'
-import type { SizeStyle } from './interface'
 
 import './index.less'
 
 const name = createName('Select')
 const bem = createBem('fect-select')
-
-const querySelectSize = (size: NormalSizes) => {
-  const sizes: Record<NormalSizes, SizeStyle> = {
-    mini: {
-      height: 'calc(1 * var(--fect-gap))',
-      fontSize: '12px',
-      minWidth: '100px'
-    },
-    small: {
-      height: 'calc(1.35 * var(--fect-gap))',
-      fontSize: '12px',
-      minWidth: '128px'
-    },
-    medium: {
-      height: 'calc(1.688 * var(--fect-gap))',
-      fontSize: '14px',
-      minWidth: '160px'
-    },
-    large: {
-      height: 'calc(1.688 * var(--fect-gap))',
-      fontSize: '16px',
-      minWidth: '200px'
-    }
-  }
-  return sizes[size] || sizes['medium']
-}
 
 export default defineComponent({
   name,
@@ -54,15 +27,7 @@ export default defineComponent({
     const [value, setValue] = useState<string | string[]>(props.modelValue || props.value)
     const [visible, setVisible] = useState<boolean>(false)
     const [dropdownWidth, setDropdownWidth] = useState<string>('')
-
-    const setStyle = computed(() => {
-      const { height, fontSize, minWidth } = querySelectSize(props.size)
-      return {
-        ['--select-minWidth']: minWidth,
-        ['--select-height']: height,
-        ['--select-fontSize']: fontSize
-      } as CustomCSSProperties
-    })
+    const [showClear, setShowClear] = useState<boolean>(false)
 
     const updateSelectValue = (val: string) => {
       setValue((pre) => {
@@ -90,7 +55,7 @@ export default defineComponent({
       return (
         <GridGroup class={bem('multiple')} gap={0.5}>
           {list.map((_) => (
-            <SelectMultiple onClear={() => updateSelectValue(_.value)} clearable={clearable}>
+            <SelectMultiple onClear={() => updateSelectValue(_.value as string)} clearable={clearable}>
               {_.label}
             </SelectMultiple>
           ))}
@@ -104,8 +69,6 @@ export default defineComponent({
       setDropdownWidth(`${width}px`)
     })
 
-    const selectPopverChangeHandler = (cur: boolean) => setVisible(cur)
-
     const renderSelectWrapper = () => {
       const { multiple, clearable, disabled } = props
       const selectInputProps: any = {
@@ -117,24 +80,35 @@ export default defineComponent({
         selectInputProps['modelValue'] = checkedValue
       }
 
+      const showClearIcon = clearable && !disabled && checkedValue && showClear.value && !multiple
+
+      const clearValueHandelr = (e: Event) => {
+        if (showClearIcon) {
+          e.stopImmediatePropagation()
+          e.stopPropagation()
+          setValue('')
+          setVisible(false)
+        }
+      }
+
       const renderSelectSuffixIcon = () => {
-        if (clearable && !disabled && checkedValue) return <SelcetClearableIcon class={bem('arrow')} />
+        if (showClearIcon) return <SelcetClearableIcon class={bem('arrow')} />
         return <SelectIcon class={bem('arrow', { active: visible.value })} />
       }
 
       return (
-        <div class={bem('content')} ref={selectRef}>
+        <div ref={selectRef} onMouseenter={() => setShowClear(true)} onMouseleave={() => setShowClear(false)}>
+          {multiple && renderNodes()}
           <Input
             class={bem('input')}
             readonly
             role="combobox"
             aria-haspopup="listbox"
+            onSuffix-icon-click={clearValueHandelr}
             aria-expanded={visible.value}
             {...selectInputProps}
             v-slots={{ ['suffix-icon']: () => renderSelectSuffixIcon() }}
-          >
-            {multiple && renderNodes()}
-          </Input>
+          />
         </div>
       )
     }
@@ -150,16 +124,14 @@ export default defineComponent({
         visible: visible.value,
         placement: 'bottom',
         trigger: 'click',
-        visibleArrow: true
+        visibleArrow: true,
+        disabled: props.disabled
       }
 
       return (
-        <Tooltip
-          class={bem(null, { disabled: props.disabled })}
-          onChange={selectPopverChangeHandler}
-          v-slots={_slots}
-          {...tooltipProps}
-        />
+        <div class={bem(null, { disabled: props.disabled, size: props.size })}>
+          <Tooltip onChange={(cur) => setVisible(cur)} v-slots={_slots} {...tooltipProps} />
+        </div>
       )
     }
   }
