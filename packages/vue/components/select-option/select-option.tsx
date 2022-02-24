@@ -1,11 +1,11 @@
 import { defineComponent } from 'vue'
 import { useSelectContext } from '../select/select-context'
 import { selectOptionProps } from '../select/props'
-// import { hasEmpty } from '../select/select'
-import { createName } from '../utils'
+import { createName, createBem } from '../utils'
 import './index.less'
 
 const name = createName('Option')
+const bem = createBem('fect-option')
 
 export default defineComponent({
   name,
@@ -18,15 +18,11 @@ export default defineComponent({
       e.stopPropagation()
       e.preventDefault()
       if (props.disabled) return
-      // if (!hasEmpty(props.value)) {
-      //   setVisible(false)
-      //   updateSelectValue(props.value)
-      // }
       setVisible(false)
       updateSelectValue(props.value)
     }
     return () => (
-      <div class={`fect-option ${props.disabled ? 'disabled' : ''}`} onClick={handleClick}>
+      <div class={bem(null, { disabled: props.disabled })} onClick={handleClick}>
         {props.label}
       </div>
     )

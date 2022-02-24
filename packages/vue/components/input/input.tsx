@@ -146,7 +146,14 @@ export default defineComponent({
           {slots.default && <label>{slots.default()}</label>}
           <div class={bem('container')}>
             {hasPrefix && <InputLabel prefix>{props.prefix}</InputLabel>}
-            <div class={bem('wrapper', { hover: hover.value, prefix: hasPrefix, suffix: hasSuffix })}>
+            <div
+              class={bem('wrapper', {
+                hover: hover.value,
+                prefix: hasPrefix,
+                suffix: hasSuffix,
+                disabled: props.disabled
+              })}
+            >
               {renderPrefixIcon()}
               {renderInput()}
               {renderSuffixIcon()}

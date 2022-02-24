@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!--  placeholder="placeholder" -->
     <fe-select :value="val" @change="changeHandler">
       <fe-option label="Vue" :value="0"></fe-option>
       <fe-option label="React" :value="1"></fe-option>

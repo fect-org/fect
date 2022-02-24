@@ -1,12 +1,12 @@
-import { computed, ref, watch, defineComponent } from 'vue'
+import { computed, ref, watch, defineComponent, nextTick } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, createBem, pick, getDomRect } from '../utils'
+import { createName, createBem, pick, getDomRect, ComponentInstance, CustomCSSProperties } from '../utils'
 import Input from '../input'
 import Tooltip, { TooltipProps } from '../tooltip'
 import GridGroup from '../grid-group'
 import { createSelectContext } from './select-context'
-import SelectIcon from './select-icon'
-import SelcetClearableIcon from './select-clear-icon'
+import ArrowIcon from './arrow-icon'
+import ClearIcon from './clear-icon'
 import SelectMultiple from './select-multiple'
 import SelectDropDown from './select-dropdown'
 import { props } from './props'
@@ -22,18 +22,27 @@ export default defineComponent({
   emits: ['change', 'update:modelValue'],
   setup(props, { slots, emit }) {
     const selectRef = ref<HTMLDivElement>()
+    const gridRef = ref<ComponentInstance>()
     const { provider, children } = createSelectContext()
 
     const [value, setValue] = useState<string | string[]>(props.modelValue || props.value)
     const [visible, setVisible] = useState<boolean>(false)
     const [dropdownWidth, setDropdownWidth] = useState<string>('')
     const [showClear, setShowClear] = useState<boolean>(false)
+    const [multipleHeight, setMultipleHeight] = useState<string>('')
 
     const updateSelectValue = (val: string) => {
       setValue((pre) => {
         if (!Array.isArray(pre)) return val
         if (!pre.includes(val)) return [...pre, val]
         return pre.filter((item) => item !== val)
+      })
+      nextTick(() => {
+        if (gridRef.value) {
+          const gridEl = gridRef.value.$el as HTMLElement
+          const rect = getDomRect(gridEl)
+          setMultipleHeight(() => (rect.height ? `${rect.height + 6}px` : ''))
+        }
       })
     }
 
@@ -53,7 +62,7 @@ export default defineComponent({
       const { clearable } = props
       const list = queryChecked.value
       return (
-        <GridGroup class={bem('multiple')} gap={0.5}>
+        <GridGroup ref={gridRef} class={bem('multiple')} gap={0.5}>
           {list.map((_) => (
             <SelectMultiple onClear={() => updateSelectValue(_.value as string)} clearable={clearable}>
               {_.label}
@@ -66,6 +75,7 @@ export default defineComponent({
     watch(visible, () => {
       const rect = getDomRect(selectRef)
       const width = rect.width || rect.right - rect.left
+
       setDropdownWidth(`${width}px`)
     })
 
@@ -92,12 +102,17 @@ export default defineComponent({
       }
 
       const renderSelectSuffixIcon = () => {
-        if (showClearIcon) return <SelcetClearableIcon class={bem('arrow')} />
-        return <SelectIcon class={bem('arrow', { active: visible.value })} />
+        if (showClearIcon) return <ClearIcon class={bem('arrow', 'clear')} />
+        return <ArrowIcon class={bem('arrow', { active: visible.value })} />
       }
 
       return (
-        <div ref={selectRef} onMouseenter={() => setShowClear(true)} onMouseleave={() => setShowClear(false)}>
+        <div
+          class={bem('content')}
+          ref={selectRef}
+          onMouseenter={() => setShowClear(true)}
+          onMouseleave={() => setShowClear(false)}
+        >
           {multiple && renderNodes()}
           <Input
             class={bem('input')}
@@ -128,8 +143,14 @@ export default defineComponent({
         disabled: props.disabled
       }
 
+      const setContentHeight = () => {
+        return {
+          '--select-content-height': multipleHeight.value || 'calc(var(--select-ratio) * var(--fect-gap))'
+        } as CustomCSSProperties
+      }
+
       return (
-        <div class={bem(null, { disabled: props.disabled, size: props.size })}>
+        <div class={bem(null, { disabled: props.disabled, size: props.size })} style={setContentHeight()}>
           <Tooltip onChange={(cur) => setVisible(cur)} v-slots={_slots} {...tooltipProps} />
         </div>
       )

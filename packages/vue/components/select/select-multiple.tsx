@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue'
 import Grid from '../grid'
 import { createBem } from '../utils'
-import SelcetClearableIcon from './select-clear-icon'
+import ClearableIcon from './clear-icon'
 
 const bem = createBem('fect-select')
 
@@ -21,7 +21,7 @@ export default defineComponent({
       <Grid>
         <div class={bem('item')}>
           {slots.default?.()}
-          {props.clearable && <SelcetClearableIcon onClick={clearHandler} />}
+          {props.clearable && <ClearableIcon onClick={clearHandler} />}
         </div>
       </Grid>
     )
