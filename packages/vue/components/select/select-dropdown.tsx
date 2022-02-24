@@ -1,5 +1,10 @@
 import { defineComponent } from 'vue'
 
+/**
+ * Keep the logic and wait for the next tooltip
+ * optimization to remove comments
+ */
+
 // const getRect = (Parentref: ElementRef, ref: ElementRef) => {
 //   const parentRect = getDomRect(Parentref)
 //   const { height } = getDomRect(ref)
@@ -19,7 +24,7 @@ import { defineComponent } from 'vue'
 //   }
 // }
 
-const SelectDropDown = defineComponent({
+export default defineComponent({
   props: {
     width: {
       type: String,
@@ -30,5 +35,3 @@ const SelectDropDown = defineComponent({
     return () => <div style={{ width: props.width }}>{slots.default?.()}</div>
   }
 })
-
-export default SelectDropDown

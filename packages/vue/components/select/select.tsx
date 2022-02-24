@@ -28,20 +28,29 @@ export default defineComponent({
     const [value, setValue] = useState<string | string[]>(props.modelValue || props.value)
     const [visible, setVisible] = useState<boolean>(false)
     const [dropdownWidth, setDropdownWidth] = useState<string>('')
+    const [selectWrapperHeight, setSelectWrapperHeight] = useState<number>()
     const [showClear, setShowClear] = useState<boolean>(false)
     const [multipleHeight, setMultipleHeight] = useState<string>('')
 
     const updateSelectValue = (val: string) => {
       setValue((pre) => {
-        if (!Array.isArray(pre)) return val
-        if (!pre.includes(val)) return [...pre, val]
-        return pre.filter((item) => item !== val)
+        if (props.multiple) {
+          const previous = Array.isArray(pre) ? pre : [pre]
+          if (!pre.includes(val)) return [...previous, val]
+          return previous.filter((item) => item !== val)
+        } else {
+          return val
+        }
       })
       nextTick(() => {
         if (gridRef.value) {
           const gridEl = gridRef.value.$el as HTMLElement
           const rect = getDomRect(gridEl)
-          setMultipleHeight(() => (rect.height ? `${rect.height + 6}px` : ''))
+          if (rect.height <= selectWrapperHeight.value) {
+            setMultipleHeight(() => `${selectWrapperHeight.value}px`)
+          } else {
+            setMultipleHeight(() => `${rect.height + 6}px`)
+          }
         }
       })
     }
@@ -74,8 +83,9 @@ export default defineComponent({
 
     watch(visible, () => {
       const rect = getDomRect(selectRef)
+      const height = rect.height || rect.top - rect.bottom
       const width = rect.width || rect.right - rect.left
-
+      setSelectWrapperHeight(height)
       setDropdownWidth(`${width}px`)
     })
 

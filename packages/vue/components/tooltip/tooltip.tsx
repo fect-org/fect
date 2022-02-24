@@ -142,6 +142,7 @@ export default defineComponent({
 
     useExpose({
       mouseEventHandler,
+      tooltipClickHandler,
       setTeleport,
       updateRect
     })

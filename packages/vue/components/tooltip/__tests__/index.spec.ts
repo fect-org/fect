@@ -45,7 +45,7 @@ describe('Tooltip', () => {
   it('component props should work correctly', async () => {
     const wrapper = mount(Wrapper, { attachTo: document.body })
     const {
-      tooltipRef: { clickHandler, mouseEventHandler, setTeleport, updateRect }
+      tooltipRef: { tooltipClickHandler, mouseEventHandler, setTeleport, updateRect }
     } = wrapper.vm.$refs as any
     await setTeleport('.container')
     expect(wrapper.html()).toMatchSnapshot()
@@ -59,11 +59,11 @@ describe('Tooltip', () => {
       visibleArrow: false,
       showAfter: 500
     })
-    clickHandler(true)
+    await tooltipClickHandler()
     const el = wrapper.find('.fect-tooltip__content')
     await el.trigger('click')
     expect(wrapper.find('.fect-tooltip__inner').text()).toBeTruthy()
-    await clickHandler(false)
+    await tooltipClickHandler()
     await wrapper.setData({
       trigger: 'hover',
       visible: true
@@ -71,7 +71,7 @@ describe('Tooltip', () => {
     await wrapper.find('.fect-tooltip').trigger('mouseleave')
     await wrapper.find('.fect-tooltip').trigger('mouseenter')
     await el.trigger('mouseenter')
-    await clickHandler(false)
+    await tooltipClickHandler(false)
     wrapper.unmount()
   })
 
