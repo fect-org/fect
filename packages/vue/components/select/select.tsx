@@ -1,6 +1,6 @@
 import { computed, ref, watch, defineComponent, nextTick, onMounted } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, createBem, pick, getDomRect, ComponentInstance, CustomCSSProperties } from '../utils'
+import { createName, createBem, pick, getDomRect, CustomCSSProperties, ComponentInstance } from '../utils'
 import Input from '../input'
 import Tooltip, { TooltipProps } from '../tooltip'
 import GridGroup from '../grid-group'
@@ -21,6 +21,7 @@ export default defineComponent({
   props,
   emits: ['change', 'update:modelValue'],
   setup(props, { slots, emit }) {
+    const toolTipRef = ref<ComponentInstance>()
     const selectRef = ref<HTMLDivElement>()
     const gridRef = ref<ComponentInstance>()
     const { provider, children } = createSelectContext()
@@ -33,16 +34,7 @@ export default defineComponent({
 
     let selectWrapperHeight: number
 
-    const updateSelectValue = (val: string) => {
-      setValue((pre) => {
-        if (props.multiple) {
-          const previous = Array.isArray(pre) ? pre : [pre]
-          if (!pre.includes(val)) return [...previous, val]
-          return previous.filter((item) => item !== val)
-        } else {
-          return val
-        }
-      })
+    const updateDropDown = () => {
       nextTick(() => {
         if (gridRef.value) {
           const gridEl = gridRef.value.$el as HTMLElement
@@ -53,10 +45,32 @@ export default defineComponent({
             setMultipleHeight(() => `${rect.height + 6}px`)
           }
         }
+        if (props.multiple) {
+          nextTick(() => {
+            toolTipRef.value?.updateRect()
+          })
+        }
       })
     }
 
-    provider({ setVisible, updateSelectValue })
+    const updateSelectValue = (val: string) => {
+      setValue((pre) => {
+        if (props.multiple) {
+          const previous = Array.isArray(pre) ? pre : [pre]
+          if (!pre.includes(val)) return [...previous, val]
+          return previous.filter((item) => item !== val)
+        } else {
+          return val
+        }
+      })
+    }
+
+    const updateSelectVisible = () => {
+      if (props.multiple) return
+      setVisible(false)
+    }
+
+    provider({ updateSelectVisible, updateSelectValue, updateDropDown })
 
     watch(value, (cur) => {
       emit('change', cur)
@@ -89,14 +103,6 @@ export default defineComponent({
       selectWrapperHeight = height
       setDropdownWidth(`${width}px`)
     })
-
-    // watch(visible, () => {
-    //   const rect = getDomRect(selectRef)
-    //   const height = rect.height || rect.top - rect.bottom
-    //   const width = rect.width || rect.right - rect.left
-    //   selectWrapperHeight = height
-    //   setDropdownWidth(`${width}px`)
-    // })
 
     const renderSelectWrapper = () => {
       const { multiple, clearable, disabled } = props
@@ -170,7 +176,7 @@ export default defineComponent({
 
       return (
         <div class={bem(null, { disabled: props.disabled, size: props.size })} style={setContentHeight()}>
-          <Tooltip onChange={(cur) => setVisible(cur)} v-slots={_slots} {...tooltipProps} />
+          <Tooltip ref={toolTipRef} onChange={(cur) => setVisible(cur)} v-slots={_slots} {...tooltipProps} />
         </div>
       )
     }

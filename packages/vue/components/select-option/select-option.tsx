@@ -12,14 +12,15 @@ export default defineComponent({
   props: selectOptionProps,
   setup(props) {
     const { context } = useSelectContext()
-    const { setVisible, updateSelectValue } = context!
+    const { updateSelectVisible, updateSelectValue, updateDropDown } = context!
 
     const handleClick = (e: Event) => {
       e.stopPropagation()
       e.preventDefault()
       if (props.disabled) return
-      setVisible(false)
+      updateSelectVisible()
       updateSelectValue(props.value)
+      updateDropDown()
     }
     return () => (
       <div class={bem(null, { disabled: props.disabled })} onClick={handleClick}>
