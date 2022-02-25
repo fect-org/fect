@@ -6,6 +6,8 @@ const SelectIcon = defineComponent({
       <div>
         <svg
           viewBox="0 0 24 24"
+          height="20"
+          width="20"
           stroke-width="1"
           stroke-linecap="round"
           color="currentColor"

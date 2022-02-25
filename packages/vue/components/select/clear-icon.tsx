@@ -5,6 +5,8 @@ export default defineComponent({
     return () => (
       <div>
         <svg
+          height="15"
+          width="15"
           viewBox="0 0 24 24"
           stroke="currentColor"
           stroke-width="1.5"

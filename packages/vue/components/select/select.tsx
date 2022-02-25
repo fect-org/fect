@@ -1,4 +1,4 @@
-import { computed, ref, watch, defineComponent, nextTick } from 'vue'
+import { computed, ref, watch, defineComponent, nextTick, onMounted } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import { createName, createBem, pick, getDomRect, ComponentInstance, CustomCSSProperties } from '../utils'
 import Input from '../input'
@@ -28,9 +28,10 @@ export default defineComponent({
     const [value, setValue] = useState<string | string[]>(props.modelValue || props.value)
     const [visible, setVisible] = useState<boolean>(false)
     const [dropdownWidth, setDropdownWidth] = useState<string>('')
-    const [selectWrapperHeight, setSelectWrapperHeight] = useState<number>()
     const [showClear, setShowClear] = useState<boolean>(false)
     const [multipleHeight, setMultipleHeight] = useState<string>('')
+
+    let selectWrapperHeight: number
 
     const updateSelectValue = (val: string) => {
       setValue((pre) => {
@@ -46,8 +47,8 @@ export default defineComponent({
         if (gridRef.value) {
           const gridEl = gridRef.value.$el as HTMLElement
           const rect = getDomRect(gridEl)
-          if (rect.height <= selectWrapperHeight.value) {
-            setMultipleHeight(() => `${selectWrapperHeight.value}px`)
+          if (rect.height <= selectWrapperHeight) {
+            setMultipleHeight(() => `${selectWrapperHeight}px`)
           } else {
             setMultipleHeight(() => `${rect.height + 6}px`)
           }
@@ -81,13 +82,21 @@ export default defineComponent({
       )
     }
 
-    watch(visible, () => {
+    onMounted(() => {
       const rect = getDomRect(selectRef)
       const height = rect.height || rect.top - rect.bottom
       const width = rect.width || rect.right - rect.left
-      setSelectWrapperHeight(height)
+      selectWrapperHeight = height
       setDropdownWidth(`${width}px`)
     })
+
+    // watch(visible, () => {
+    //   const rect = getDomRect(selectRef)
+    //   const height = rect.height || rect.top - rect.bottom
+    //   const width = rect.width || rect.right - rect.left
+    //   selectWrapperHeight = height
+    //   setDropdownWidth(`${width}px`)
+    // })
 
     const renderSelectWrapper = () => {
       const { multiple, clearable, disabled } = props

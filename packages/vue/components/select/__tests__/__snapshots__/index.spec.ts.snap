@@ -2,7 +2,7 @@
 
 exports[`Select should support render with multiple mode 1`] = `
 <div class="container">
-  <div class="fect-select fect-select--medium" style="--select-content-height: 6px;" data-size="medium">
+  <div class="fect-select fect-select--medium" style="--select-content-height: 0px;" data-size="medium">
     <div class="fect-tooltip">
       <div class="fect-select__content">
         <div class="fect-grid__group fect-grid__group--wrap fect-select__multiple" style="align-content: flex-start; align-items: stretch; flex-direction: row; justify-content: flex-start; --fect-grid-gap: calc(0.5 * 16px * 1/3);"></div>
@@ -14,7 +14,7 @@ exports[`Select should support render with multiple mode 1`] = `
               <!----><input type="text" class="fect-select__input" readonly="" placeholder="mock placeholder test" role="combobox" aria-haspopup="listbox" aria-expanded="false">
               <!---->
               <div class="fect-input__icon fect-input__icon--suffix" style="cursor: pointer; pointer-events: auto;">
-                <div class="fect-select__arrow"><svg viewBox="0 0 24 24" stroke-width="1" stroke-linecap="round" color="currentColor" stroke="currentColor" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
+                <div class="fect-select__arrow"><svg viewBox="0 0 24 24" height="20" width="20" stroke-width="1" stroke-linecap="round" color="currentColor" stroke="currentColor" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
                     <path d="M6 9l6 6 6-6"></path>
                   </svg></div>
               </div>
@@ -44,7 +44,7 @@ exports[`Select should wrork correctly 1`] = `
               <!----><input type="text" class="fect-select__input" readonly="" placeholder="mock placeholder test" role="combobox" aria-haspopup="listbox" aria-expanded="false">
               <!---->
               <div class="fect-input__icon fect-input__icon--suffix" style="cursor: pointer; pointer-events: auto;">
-                <div class="fect-select__arrow"><svg viewBox="0 0 24 24" stroke-width="1" stroke-linecap="round" color="currentColor" stroke="currentColor" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
+                <div class="fect-select__arrow"><svg viewBox="0 0 24 24" height="20" width="20" stroke-width="1" stroke-linecap="round" color="currentColor" stroke="currentColor" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
                     <path d="M6 9l6 6 6-6"></path>
                   </svg></div>
               </div>
