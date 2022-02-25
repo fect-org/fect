@@ -1,4 +1,4 @@
-import { isMac, assign } from '../format'
+import { isMac, assign, isBrowser } from '../format'
 import { useEventListener } from '@fect-ui/vue-hooks'
 import type { UseKeyboardHandler, KeyboardOptions } from './interface'
 
@@ -89,7 +89,6 @@ export enum KeyMod {
 }
 
 const defaultOptions: KeyboardOptions = {
-  target: document,
   stopPropagation: true,
   preventDefault: true,
   capture: false,
@@ -146,5 +145,7 @@ export const useKeyboard = (
     handler && handler(event)
   }
 
-  useEventListener(event, (e) => eventHandler(e as KeyboardEvent), { target, capture })
+  if (isBrowser()) {
+    useEventListener(event, (e) => eventHandler(e as KeyboardEvent), { target, capture })
+  }
 }
