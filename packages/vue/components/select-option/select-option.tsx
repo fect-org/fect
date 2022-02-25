@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { useSelectContext } from '../select/select-context'
 import { selectOptionProps } from '../select/props'
 import { createName, createBem } from '../utils'
@@ -12,7 +12,7 @@ export default defineComponent({
   props: selectOptionProps,
   setup(props) {
     const { context } = useSelectContext()
-    const { updateSelectVisible, updateSelectValue, updateDropDown } = context!
+    const { updateSelectVisible, updateSelectValue, updateDropDown, parentValue, size } = context!
 
     const handleClick = (e: Event) => {
       e.stopPropagation()
@@ -22,8 +22,16 @@ export default defineComponent({
       updateSelectValue(props.value)
       updateDropDown()
     }
+
+    const setOptionClass = computed(() => {
+      const checked = Array.isArray(parentValue)
+        ? parentValue.includes(props.value as string)
+        : parentValue === props.value
+      return bem(null, { disabled: props.disabled, size, checked })
+    })
+
     return () => (
-      <div class={bem(null, { disabled: props.disabled })} onClick={handleClick}>
+      <div class={setOptionClass.value} onClick={handleClick}>
         {props.label}
       </div>
     )

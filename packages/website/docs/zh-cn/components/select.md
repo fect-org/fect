@@ -8,6 +8,16 @@ select/default.vue
 
 :::
 
+### 尺寸
+
+组件具有不同的大小
+
+:::playground
+
+select/size.vue
+
+:::
+
 ### 多选的
 
 组件支持同时选中多个值

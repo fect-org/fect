@@ -8,6 +8,16 @@ select/default.vue
 
 :::
 
+### Size
+
+`Select` supports different size.
+
+:::playground
+
+select/size.vue
+
+:::
+
 ### Multiple
 
 `Select` supports multiple values to be selected.

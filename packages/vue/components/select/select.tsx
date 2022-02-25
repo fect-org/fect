@@ -70,7 +70,7 @@ export default defineComponent({
       setVisible(false)
     }
 
-    provider({ updateSelectVisible, updateSelectValue, updateDropDown })
+    provider({ updateSelectVisible, updateSelectValue, updateDropDown, size: props.size, parentValue: value.value })
 
     watch(value, (cur) => {
       emit('change', cur)

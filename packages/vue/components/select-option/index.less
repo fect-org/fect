@@ -3,7 +3,6 @@
   max-width: 100%;
   justify-content: flex-start;
   align-items: center;
-  font-size: var(--select-font-size);
   height: calc(1.688 * var(--fect-gap));
   padding: 0 var(--fect-gap-half);
   background-color: var(--primary-background);
@@ -11,9 +10,30 @@
   user-select: none;
   border: 0;
   cursor: pointer;
-  &:not(&--disabled):hover {
+  transition: background 0.2s ease 0s, border-color 0.2s ease 0s;
+  &--mini {
+    font-size: var(--select-mini-font-size);
+  }
+  &--small {
+    font-size: var(--select-small-font-size);
+  }
+  &--medium {
+    font-size: var(--select-medium-font-size);
+  }
+  &--large {
+    font-size: var(--select-large-font-size);
+  }
+
+  &:hover {
     background-color: var(--accents-1);
+    color: var(--accents-7);
+  }
+  &--checked {
     color: var(--primary-foreground);
+    background-color: var(--accents-2);
+    &:hover {
+      background-color: var(--accents-2);
+    }
   }
   &--disabled {
     cursor: not-allowed;
