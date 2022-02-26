@@ -24,20 +24,17 @@
     font-size: var(--select-large-font-size);
   }
 
-  &:hover {
+  &:not(&--disabled):hover {
     background-color: var(--accents-1);
-    color: var(--accents-7);
+    color: var(--accents-4);
   }
   &--checked {
-    color: var(--primary-foreground);
     background-color: var(--accents-2);
-    &:hover {
-      background-color: var(--accents-2);
-    }
+    color: var(--accents-6);
   }
   &--disabled {
     cursor: not-allowed;
-    color: var(--accents-3);
-    background-color: var(--accents-1);
+    color: var(--primary-foreground);
+    background-color: var(--accents-2);
   }
 }

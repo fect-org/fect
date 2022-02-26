@@ -1,5 +1,5 @@
 import { PropType } from 'vue'
-import { NormalSizes } from '../utils'
+import type { NormalSizes } from '../utils'
 
 export const props = {
   modelValue: {
@@ -23,7 +23,11 @@ export const props = {
     type: Boolean,
     default: true
   },
-  disabled: Boolean
+  disabled: Boolean,
+  visibleArrow: {
+    type: Boolean,
+    default: true
+  }
 }
 
 export const selectOptionProps = {
