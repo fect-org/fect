@@ -1,6 +1,6 @@
 import { computed, ref, watch, defineComponent, nextTick, onMounted } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, createBem, pick, getDomRect, CustomCSSProperties, ComponentInstance } from '../utils'
+import { createName, createBem, pick, getDomRect, CustomCSSProperties, ComponentInstance, assign } from '../utils'
 import Input from '../input'
 import Tooltip, { TooltipProps } from '../tooltip'
 import GridGroup from '../grid-group'
@@ -70,7 +70,7 @@ export default defineComponent({
       setVisible(false)
     }
 
-    provider({ updateSelectVisible, updateSelectValue, updateDropDown, size: props.size, parentValue: value.value })
+    provider({ updateSelectVisible, updateSelectValue, updateDropDown, size: props.size, parentValue: value })
 
     watch(value, (cur) => {
       emit('change', cur)
@@ -106,13 +106,11 @@ export default defineComponent({
 
     const renderSelectWrapper = () => {
       const { multiple, clearable, disabled } = props
-      const selectInputProps: any = {
-        ...pick(props, ['disabled', 'size', 'placeholder'])
-      }
+      const selectInputProps = pick(props, ['disabled', 'size', 'placeholder'])
       // eslint-disable-next-line prefer-destructuring
       const checkedValue = queryChecked.value.map((_) => _.label)[0]
       if (!multiple) {
-        selectInputProps['modelValue'] = checkedValue
+        assign(selectInputProps, { modelValue: checkedValue })
       }
 
       const showClearIcon = clearable && !disabled && checkedValue && showClear.value && !multiple
@@ -164,8 +162,8 @@ export default defineComponent({
         visible: visible.value,
         placement: 'bottom',
         trigger: 'click',
-        visibleArrow: true,
-        disabled: props.disabled
+        disabled: props.disabled,
+        visibleArrow: props.visibleArrow
       }
 
       const setContentHeight = () => {
