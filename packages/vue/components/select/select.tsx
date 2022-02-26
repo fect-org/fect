@@ -72,6 +72,11 @@ export default defineComponent({
 
     provider({ updateSelectVisible, updateSelectValue, updateDropDown, size: props.size, parentValue: value })
 
+    watch(
+      () => props.modelValue,
+      (cur) => setValue(cur)
+    )
+
     watch(value, (cur) => {
       emit('change', cur)
       emit('update:modelValue', cur)
