@@ -9,7 +9,6 @@ import { createSelectContext } from './select-context'
 import ArrowIcon from './arrow-icon'
 import ClearIcon from './clear-icon'
 import SelectMultiple from './select-multiple'
-import SelectDropDown from './select-dropdown'
 import { props } from './props'
 
 import './index.less'
@@ -159,7 +158,7 @@ export default defineComponent({
 
     return () => {
       const _slots = {
-        content: () => <SelectDropDown width={dropdownWidth.value} v-slots={slots} />,
+        content: () => <div style={{ width: dropdownWidth.value }}>{slots.default?.()}</div>,
         default: () => renderSelectWrapper()
       }
 
