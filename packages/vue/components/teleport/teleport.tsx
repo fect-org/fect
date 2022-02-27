@@ -1,4 +1,4 @@
-import { Teleport, Transition, watchEffect, ref, defineComponent } from 'vue'
+import { Teleport, Transition, ref, defineComponent, onMounted, onBeforeMount, watch } from 'vue'
 import { createName, useExpose } from '../utils'
 import { props } from './props'
 import './index.less'
@@ -24,11 +24,26 @@ export default defineComponent({
 
     // gen a mask element
 
-    watchEffect(() => {
+    const setLock = () => document.body.classList.add('fect--lock')
+    const removeLock = () => document.body.classList.remove('fect--lock')
+
+    onMounted(() => {
       const { scroll } = props
-      if (scroll) return document.body.classList.add('fect--lock')
-      document.body.classList.remove('fect--lock')
+      if (scroll) {
+        setLock()
+      }
     })
+
+    onBeforeMount(() => {
+      removeLock()
+    })
+
+    watch(
+      () => props.scroll,
+      (pre) => {
+        return pre ? setLock() : removeLock()
+      }
+    )
 
     const clickHandler = (e: Event) => emit('popupClick', e)
 
@@ -55,11 +70,15 @@ export default defineComponent({
       )
     }
 
+    // Ref https://github.com/vuejs/core/issues/5126
+
     return () => (
-      <Teleport to={props.teleport}>
-        {renderOverlay()}
-        {renderTransition()}
-      </Teleport>
+      <>
+        <Teleport to={props.teleport}>
+          {renderOverlay()}
+          {renderTransition()}
+        </Teleport>
+      </>
     )
   }
 })
