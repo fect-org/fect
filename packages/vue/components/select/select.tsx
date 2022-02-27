@@ -72,6 +72,11 @@ export default defineComponent({
 
     provider({ updateSelectVisible, updateSelectValue, updateDropDown, size: props.size, parentValue: value })
 
+    const multipleClearClickHandler = (val: string) => {
+      updateSelectValue(val)
+      updateDropDown()
+    }
+
     watch(
       () => props.modelValue,
       (cur) => setValue(cur)
@@ -93,7 +98,7 @@ export default defineComponent({
       return (
         <GridGroup ref={gridRef} class={bem('multiple')} gap={0.5}>
           {list.map((_) => (
-            <SelectMultiple onClear={() => updateSelectValue(_.value as string)} clearable={clearable}>
+            <SelectMultiple onClear={() => multipleClearClickHandler(_.value as string)} clearable={clearable}>
               {_.label}
             </SelectMultiple>
           ))}
