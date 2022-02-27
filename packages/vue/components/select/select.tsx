@@ -2,7 +2,8 @@ import { computed, ref, watch, defineComponent, nextTick, onMounted } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import { createName, createBem, pick, getDomRect, CustomCSSProperties, ComponentInstance, assign } from '../utils'
 import Input from '../input'
-import Tooltip, { TooltipProps } from '../tooltip'
+import Tooltip from '../tooltip'
+import type { ToolTipProps } from '../tooltip/interface'
 import GridGroup from '../grid-group'
 import { createSelectContext } from './select-context'
 import ArrowIcon from './arrow-icon'
@@ -162,7 +163,7 @@ export default defineComponent({
         default: () => renderSelectWrapper()
       }
 
-      const tooltipProps: Partial<TooltipProps> = {
+      const tooltipProps: Partial<ToolTipProps> = {
         portalClass: bem('dropdown'),
         visible: visible.value,
         placement: 'bottom',

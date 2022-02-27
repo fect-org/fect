@@ -32,6 +32,14 @@ tooltip/variable.vue
 
 :::
 
+### 位置
+
+:::playground
+
+tooltip/placement.vue
+
+:::
+
 ### Tooltip Props
 
 | 属性                | 描述                       | 类型      | 可选值                                                                                                                               | 默认         |
