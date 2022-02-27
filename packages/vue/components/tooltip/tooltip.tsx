@@ -1,15 +1,16 @@
-import { defineComponent, computed, ref, watch } from 'vue'
+import { defineComponent, ref, watch, onMounted, nextTick, onBeforeUnmount } from 'vue'
 import { useClickAway, useState } from '@fect-ui/vue-hooks'
-import { createName, useResize, useExpose, CustomCSSProperties } from '../utils'
-import { queryPlacement, queryArrowPlacement, getPosition } from './style'
+import { createPopper, Instance as PopperInstance } from '@popperjs/core'
+
+import { createName, useExpose, createBem, kebabCase } from '../utils'
 import { Teleport } from '../teleport'
 import { props } from './props'
-import { TooltipPosition } from './type'
+import type { ComponentInstance } from '../utils'
+import type { PopperPlacement } from './interface'
 import './index.less'
 
-type IconOffset = 'x' | 'y'
-
 const name = createName('Tooltip')
+const bem = createBem('fect-tooltip')
 
 export default defineComponent({
   name,
@@ -17,54 +18,55 @@ export default defineComponent({
   emits: ['change', 'update:visible'],
   setup(props, { slots, emit }) {
     const tooltipRef = ref<HTMLDivElement>()
-    const contentRef = ref<HTMLDivElement>()
-    const { width, height } = useResize()
+    const contentRef = ref<ComponentInstance>()
     const [show, setShow] = useState<boolean>(props.visible)
-    const [rect, setRect] = useState<TooltipPosition>()
-    const [iconOffset, setIconOffset] = useState<Record<IconOffset, string>>()
     const [teleport, setTeleport] = useState<string>('body')
 
-    const updateRect = () => {
-      const { placement, offset } = props
-      const rect = getPosition(tooltipRef)
-      const position = queryPlacement(placement, rect, offset)
-      setRect(position)
-      const iconOffset = {
-        x: `${rect.width / 2}px`,
-        y: `${rect.height / 2}px`
-      }
-      setIconOffset(iconOffset)
+    let popperInstance: PopperInstance | null = null
+
+    const createPooperInstance = () => {
+      return createPopper(tooltipRef.value!, contentRef.value!.popupRef.value, {
+        placement: kebabCase(props.placement) as PopperPlacement,
+        modifiers: [
+          {
+            name: 'computeStyles',
+            options: {
+              adaptive: false,
+              gpuAcceleration: false
+            }
+          },
+          {
+            name: 'offset',
+            options: {
+              offset: [0, props.offset]
+            }
+          }
+        ]
+      })
     }
-    const setContentStyle = computed(() => {
-      if (!rect.value && !iconOffset.value) return
-      const style: CustomCSSProperties = {
-        ['--tooltip-icon-offset-x']: iconOffset.value.x,
-        ['--tooltip-icon-offset-y']: iconOffset.value.y,
-        top: rect.value.top,
-        left: rect.value.left,
-        transform: rect.value.transform
+
+    const updateLocaltion = () => {
+      nextTick(() => {
+        if (!show.value) return
+        if (!popperInstance) {
+          popperInstance = createPooperInstance()
+        } else {
+          popperInstance.setOptions({
+            placement: kebabCase(props.placement) as PopperPlacement
+          })
+        }
+      })
+    }
+    onMounted(updateLocaltion)
+
+    onBeforeUnmount(() => {
+      if (popperInstance) {
+        popperInstance.destroy()
+        popperInstance = null
       }
-      return style
     })
 
-    const setArrowRect = computed(() => {
-      const { placement } = props
-      const x = 'var(--tooltip-icon-offset-x)'
-      const y = 'var(--tooltip-icon-offset-y)'
-      const rect = queryArrowPlacement(placement, x, y)
-
-      const style: CustomCSSProperties = {
-        top: rect.top,
-        left: rect.left,
-        right: rect.right,
-        bottom: rect.bottom,
-        transform: rect.transform
-      }
-      return style
-    })
-
-    watch(show, updateRect)
-    watch([width, height], updateRect)
+    watch(show, updateLocaltion)
 
     const preventHandler = (e: Event) => {
       e.stopPropagation()
@@ -72,7 +74,7 @@ export default defineComponent({
     }
 
     // render arrow Node
-    const renderArrowIcon = () => <span class={`fect-tooltip__arrow-icon ${props.type}`} style={setArrowRect.value} />
+    const renderArrowIcon = () => <span class={bem('arrow', props.type)} />
 
     /**
      * render content Node
@@ -84,18 +86,16 @@ export default defineComponent({
         <Teleport
           teleport={teleport.value}
           scroll={false}
-          popupClass={`fect-tooltip__content ${portalClass} ${type}`}
+          popupClass={bem('content', type) + ' ' + portalClass}
           onPopupClick={preventHandler}
           onMouseenter={() => mouseEventHandler(true)}
           onMouseleave={() => mouseEventHandler(false)}
-          style={setContentStyle.value}
           show={show.value}
           ref={contentRef}
         >
-          <div class="fect-tooltip__inner">
-            {visibleArrow && renderArrowIcon()}
-            {contentSlot ? contentSlot() : content}
-          </div>
+          {visibleArrow && renderArrowIcon()}
+
+          <div class={bem('inner')}>{contentSlot ? contentSlot() : content}</div>
         </Teleport>
       )
     }
@@ -122,6 +122,7 @@ export default defineComponent({
     const tooltipClickHandler = () => {
       if (props.disabled) return
       props.trigger === 'click' && updateShow(!show.value)
+      createPooperInstance()
     }
 
     /**
@@ -144,20 +145,22 @@ export default defineComponent({
       mouseEventHandler,
       tooltipClickHandler,
       setTeleport,
-      updateRect
+      updateRect: updateLocaltion
     })
 
     return () => (
-      <div
-        class="fect-tooltip"
-        ref={tooltipRef}
-        onClick={tooltipClickHandler}
-        onMouseenter={() => mouseEventHandler(true)}
-        onMouseleave={() => mouseEventHandler(false)}
-      >
-        {slots.default?.()}
+      <>
+        <div
+          class={bem(null)}
+          ref={tooltipRef}
+          onClick={tooltipClickHandler}
+          onMouseenter={() => mouseEventHandler(true)}
+          onMouseleave={() => mouseEventHandler(false)}
+        >
+          {slots.default?.()}
+        </div>
         {renderContent()}
-      </div>
+      </>
     )
   }
 })

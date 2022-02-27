@@ -2,14 +2,13 @@
 
 exports[`Tooltip component props should work correctly 1`] = `
 <div class="container">
-  <div class="fect-tooltip"> Test dom
-    <!--teleport start-->
-    <!--teleport end-->
-  </div>
+  <div class="fect-tooltip"> Test dom </div>
+  <!--teleport start-->
+  <!--teleport end-->
   <!---->
   <transition-stub>
-    <div class="fect-tooltip__content  default" role="popup" style="display: none;">
-      <div class="fect-tooltip__inner"><span class="fect-tooltip__arrow-icon default" style="left: 50%; bottom: 3px; transform: translate(-50%, 100%) rotate(-90deg);"></span>test infomation</div>
+    <div class="fect-tooltip__content fect-tooltip__content--default" role="popup" style="display: none;"><span class="fect-tooltip__arrow fect-tooltip__arrow--default"></span>
+      <div class="fect-tooltip__inner">test infomation</div>
     </div>
   </transition-stub>
 </div>
@@ -17,37 +16,35 @@ exports[`Tooltip component props should work correctly 1`] = `
 
 exports[`Tooltip component props should work correctly 2`] = `
 <div class="container">
-  <div class="fect-tooltip"> Test dom
-    <!--teleport start-->
-    <!--teleport end-->
-  </div>
+  <div class="fect-tooltip"> Test dom </div>
+  <!--teleport start-->
+  <!--teleport end-->
+  <!---->
   <transition-stub>
-    <div class="fect-tooltip__content  default" role="popup" style="--tooltip-icon-offset-x: 0px; --tooltip-icon-offset-y: 0px; top: -12px; left: 0px; transform: translate(-50%, -100%); display: none;">
-      <div class="fect-tooltip__inner"><span class="fect-tooltip__arrow-icon default" style="left: 50%; bottom: 3px; transform: translate(-50%, 100%) rotate(-90deg);"></span>test infomation</div>
+    <div class="fect-tooltip__content fect-tooltip__content--default" role="popup" style="display: none;"><span class="fect-tooltip__arrow fect-tooltip__arrow--default"></span>
+      <div class="fect-tooltip__inner">test infomation</div>
     </div>
   </transition-stub>
-  <!---->
 </div>
 `;
 
 exports[`Tooltip should be render as a element 1`] = `
 <div class="fect-tooltip">
   <!---->
-  <!--teleport start-->
-  <!--teleport end-->
 </div>
+<!--teleport start-->
+<!--teleport end-->
 `;
 
 exports[`Tooltip should be support click or mouse event 1`] = `
 <div class="container">
-  <div class="fect-tooltip"> Test dom
-    <!--teleport start-->
-    <!--teleport end-->
-  </div>
+  <div class="fect-tooltip"> Test dom </div>
+  <!--teleport start-->
+  <!--teleport end-->
   <!---->
   <transition-stub>
-    <div class="fect-tooltip__content  default" role="popup" style="display: none;">
-      <div class="fect-tooltip__inner"><span class="fect-tooltip__arrow-icon default" style="left: 50%; bottom: 3px; transform: translate(-50%, 100%) rotate(-90deg);"></span>test infomation</div>
+    <div class="fect-tooltip__content fect-tooltip__content--default" role="popup" style="display: none;"><span class="fect-tooltip__arrow fect-tooltip__arrow--default"></span>
+      <div class="fect-tooltip__inner">test infomation</div>
     </div>
   </transition-stub>
 </div>
@@ -55,13 +52,12 @@ exports[`Tooltip should be support click or mouse event 1`] = `
 
 exports[`Tooltip should be support click or mouse event 2`] = `
 <div class="container">
-  <div class="fect-tooltip"> Test dom
-    <!--teleport start-->
-    <!--teleport end-->
-  </div>
+  <div class="fect-tooltip"> Test dom </div>
+  <!--teleport start-->
+  <!--teleport end-->
   <transition-stub>
-    <div class="fect-tooltip__content  default" role="popup" style="display: none;">
-      <div class="fect-tooltip__inner"><span class="fect-tooltip__arrow-icon default" style="left: 50%; bottom: 3px; transform: translate(-50%, 100%) rotate(-90deg);"></span>test infomation</div>
+    <div class="fect-tooltip__content fect-tooltip__content--default" role="popup" style="display: none; position: absolute; left: 0px; top: -12px; margin: 0px;" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top"><span class="fect-tooltip__arrow fect-tooltip__arrow--default"></span>
+      <div class="fect-tooltip__inner">test infomation</div>
     </div>
   </transition-stub>
   <!---->

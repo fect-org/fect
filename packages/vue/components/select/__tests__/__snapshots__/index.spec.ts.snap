@@ -23,9 +23,9 @@ exports[`Select should support render with multiple mode 1`] = `
           </div>
         </div>
       </div>
-      <!--teleport start-->
-      <!--teleport end-->
     </div>
+    <!--teleport start-->
+    <!--teleport end-->
   </div>
 </div>
 `;
@@ -53,9 +53,9 @@ exports[`Select should wrork correctly 1`] = `
           </div>
         </div>
       </div>
-      <!--teleport start-->
-      <!--teleport end-->
     </div>
+    <!--teleport start-->
+    <!--teleport end-->
   </div>
 </div>
 `;

@@ -2,13 +2,12 @@
 
 exports[`Tooltip bidirectional binding should be supported 1`] = `
 <div class="container">
-  <div class="fect-tooltip"> Test Data
-    <!--teleport start-->
-    <!--teleport end-->
-  </div>
+  <div class="fect-tooltip"> Test Data </div>
+  <!--teleport start-->
+  <!--teleport end-->
   <transition-stub>
-    <div class="fect-tooltip__content  default" role="popup" style="--tooltip-icon-offset-x: 0px; --tooltip-icon-offset-y: 0px; top: -12px; left: 0px; transform: translate(-50%, -100%);">
-      <div class="fect-tooltip__inner"><span class="fect-tooltip__arrow-icon default" style="left: 50%; bottom: 3px; transform: translate(-50%, 100%) rotate(-90deg);"></span>testinfo</div>
+    <div class="fect-tooltip__content fect-tooltip__content--default" role="popup" style="position: absolute; left: 0px; top: -12px; margin: 0px;" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top"><span class="fect-tooltip__arrow fect-tooltip__arrow--default"></span>
+      <div class="fect-tooltip__inner">testinfo</div>
     </div>
   </transition-stub>
   <!---->
@@ -18,7 +17,7 @@ exports[`Tooltip bidirectional binding should be supported 1`] = `
 exports[`Tooltip should be support slots content 1`] = `
 <div class="fect-tooltip">
   <!---->
-  <!--teleport start-->
-  <!--teleport end-->
 </div>
+<!--teleport start-->
+<!--teleport end-->
 `;

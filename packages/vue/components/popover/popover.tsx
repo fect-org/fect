@@ -1,12 +1,13 @@
 import { defineComponent, watch } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import { createName, useExpose } from '../utils'
-import { Tooltip, TooltipProps } from '../tooltip'
+import { Tooltip } from '../tooltip'
+import type { ToolTipProps } from '../tooltip/interface'
 import { props } from './props'
 
 import './index.less'
 
-type PopoverProps = Omit<TooltipProps, 'content'>
+type PopoverProps = Omit<ToolTipProps, 'content'>
 
 const name = createName('Popover')
 
@@ -35,6 +36,7 @@ export default defineComponent({
       showAfter: props.showAfter,
       trigger: props.trigger,
       offset: props.offset,
+      disabled: props.disabled,
       portalClass: `popover ${props.portalClass}`
     }
 

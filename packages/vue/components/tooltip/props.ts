@@ -1,5 +1,5 @@
 import { PropType } from 'vue'
-import { PlacementTypes, TooltipTypes, TriggerTypes } from './type'
+import type { PlacementTypes, TooltipTypes, TriggerTypes } from './interface'
 
 export const props = {
   visible: Boolean,
@@ -13,7 +13,7 @@ export const props = {
     default: 'default'
   },
   placement: {
-    type: String as PropType<PlacementTypes>,
+    type: [String] as PropType<PlacementTypes>,
     default: 'top'
   },
   visibleArrow: {

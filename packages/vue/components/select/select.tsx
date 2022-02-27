@@ -2,13 +2,13 @@ import { computed, ref, watch, defineComponent, nextTick, onMounted } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import { createName, createBem, pick, getDomRect, CustomCSSProperties, ComponentInstance, assign } from '../utils'
 import Input from '../input'
-import Tooltip, { TooltipProps } from '../tooltip'
+import Tooltip from '../tooltip'
+import type { ToolTipProps } from '../tooltip/interface'
 import GridGroup from '../grid-group'
 import { createSelectContext } from './select-context'
 import ArrowIcon from './arrow-icon'
 import ClearIcon from './clear-icon'
 import SelectMultiple from './select-multiple'
-import SelectDropDown from './select-dropdown'
 import { props } from './props'
 
 import './index.less'
@@ -72,6 +72,11 @@ export default defineComponent({
 
     provider({ updateSelectVisible, updateSelectValue, updateDropDown, size: props.size, parentValue: value })
 
+    const multipleClearClickHandler = (val: string) => {
+      updateSelectValue(val)
+      updateDropDown()
+    }
+
     watch(
       () => props.modelValue,
       (cur) => setValue(cur)
@@ -93,7 +98,7 @@ export default defineComponent({
       return (
         <GridGroup ref={gridRef} class={bem('multiple')} gap={0.5}>
           {list.map((_) => (
-            <SelectMultiple onClear={() => updateSelectValue(_.value as string)} clearable={clearable}>
+            <SelectMultiple onClear={() => multipleClearClickHandler(_.value as string)} clearable={clearable}>
               {_.label}
             </SelectMultiple>
           ))}
@@ -158,11 +163,11 @@ export default defineComponent({
 
     return () => {
       const _slots = {
-        content: () => <SelectDropDown width={dropdownWidth.value} v-slots={slots} />,
+        content: () => <div style={{ width: dropdownWidth.value }}>{slots.default?.()}</div>,
         default: () => renderSelectWrapper()
       }
 
-      const tooltipProps: Partial<TooltipProps> = {
+      const tooltipProps: Partial<ToolTipProps> = {
         portalClass: bem('dropdown'),
         visible: visible.value,
         placement: 'bottom',

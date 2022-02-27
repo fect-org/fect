@@ -1,8 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Popover should be render as a element 1`] = `
-<div class="fect-tooltip">456
-  <!--teleport start-->
-  <!--teleport end-->
-</div>
+<div class="fect-tooltip">456</div>
+<!--teleport start-->
+<!--teleport end-->
 `;

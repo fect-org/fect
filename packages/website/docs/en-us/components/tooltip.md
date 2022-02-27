@@ -30,6 +30,14 @@ tooltip/variable.vue
 
 :::
 
+### Placement
+
+:::playground
+
+tooltip/placement.vue
+
+:::
+
 ### Tooltip Props
 
 | Attribue            | Description                                    | Type      | Accepted values                                                                                                                      | Default      |
