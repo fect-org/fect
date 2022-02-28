@@ -26,8 +26,8 @@ export const genVolar = async () => {
     }
     return
   })
-
-  const temp = `declare module "vue"{
+  // Ref see volar docs: https://github.com/johnsoncodehk/volar/tree/master/extensions/vscode-vue-language-features
+  const temp = `declare module "@vue/runtime-core"{
         export interface GlobalComponents {
            ${content}
         }
