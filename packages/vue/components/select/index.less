@@ -33,25 +33,27 @@
 .fect-select {
   position: relative;
   display: inline-block;
-  line-height: 32px;
+  padding: 1px 0;
+  vertical-align: middle;
+  box-sizing: border-box;
   &--mini {
     --select-font-size: var(--select-mini-font-size);
-    --select-mini-width: var(--select-mini-width);
+    --select-multiple-width: var(--select-mini-width);
     --select-ratio: var(--select-mini-ratio);
   }
   &--small {
     --select-font-size: var(--select-small-font-size);
-    --select-mini-width: var(--select-small-width);
+    --select-multiple-width: var(--select-small-width);
     --select-ratio: var(--select-small-ratio);
   }
   &--medium {
     --select-font-size: var(--select-medium-font-size);
-    --select-mini-width: var(--select-medium-width);
+    --select-multiple-width: var(--select-medium-width);
     --select-ratio: var(--select-medium-ratio);
   }
   &--large {
     --select-font-size: var(--select-large-font-size);
-    --select-mini-width: var(--select-large-width);
+    --select-multiple-width: var(--select-large-width);
     --select-ratio: var(--select-large-ratio);
   }
   &--disabled {
@@ -64,13 +66,13 @@
   &__content {
     .fect-input__container {
       height: var(--select-content-height);
-      min-width: calc(var(--select-mini-width) + 30px);
+      min-width: calc(var(--select-multiple-width) + 30px);
       overflow: hidden;
     }
   }
   &__multiple {
     top: 50%;
-    max-width: var(--select-mini-width);
+    max-width: var(--select-multiple-width);
     left: 5px;
     margin: auto 0;
     transform: translateY(-50%);
