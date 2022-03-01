@@ -2,30 +2,11 @@ import { computed, defineComponent } from 'vue'
 import { createName, createBem } from '../utils'
 import Link from '../link'
 import HttpIcons from './image-browser-icon'
-import { BrowserColors } from './type'
 
 import './index.less'
 
 const name = createName('ImageBrowser')
 const bem = createBem('fect-image')
-
-const queryBrowserColors = (invert: boolean): BrowserColors => {
-  const invertStyle = {
-    color: 'var(--primary-background)',
-    barBgColor: 'var(--primary-foreground)',
-    inputBgColor: 'var(--accents-8)',
-    borderColor: 'var(--accents-7)',
-    titleColor: 'var(--accents-2)'
-  }
-  const normalStyle = {
-    color: 'var(--primary-foreground)',
-    barBgColor: 'var(--primary-background)',
-    inputBgColor: 'var(--accents-1)',
-    borderColor: 'var(--accents-2)',
-    titleColor: 'var(--accents-5)'
-  }
-  return invert ? invertStyle : normalStyle
-}
 
 const getHostFormUrl = (url: string) => {
   try {
@@ -37,6 +18,7 @@ const getHostFormUrl = (url: string) => {
 
 export default defineComponent({
   name,
+  inheritAttrs: false,
   props: {
     invert: Boolean,
     url: {
@@ -50,13 +32,6 @@ export default defineComponent({
     }
   },
   setup(props, { attrs, slots }) {
-    const setColors = computed(() => {
-      const { invert } = props
-      return queryBrowserColors(invert)
-    })
-
-    const { inputBgColor, titleColor, color, borderColor, barBgColor } = setColors.value
-
     const addressLink = computed(() => {
       const { showFullLink, url } = props
       if (showFullLink) return url
@@ -66,7 +41,7 @@ export default defineComponent({
     const renderTitle = () => {
       const { title } = props
       return (
-        <div class={bem('title')} style={{ color: titleColor }}>
+        <div class={bem('title')}>
           <span>{title}</span>
         </div>
       )
@@ -74,7 +49,7 @@ export default defineComponent({
 
     const renderAddress = () => {
       return (
-        <div class={bem('input')} style={{ backgroundColor: inputBgColor }}>
+        <div class={bem('input')}>
           <span class="https">
             <HttpIcons />
           </span>
@@ -93,15 +68,8 @@ export default defineComponent({
     })
 
     return () => (
-      <div class={bem('browser')}>
-        <header
-          class={bem('traffic')}
-          style={{
-            color,
-            backgroundColor: barBgColor,
-            borderBottomColor: borderColor
-          }}
-        >
+      <div class={bem('browser', { invert: props.invert })}>
+        <header class={bem('traffic')}>
           <div class="traffic__content">
             <span class="close" role="browser-close" />
             <span class="mini" role="browser-mini" />

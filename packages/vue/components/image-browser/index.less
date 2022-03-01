@@ -1,3 +1,45 @@
+// invert color
+@image-invert-browser-color: var(--primary-background);
+@image-invert-browser-bg-color: var(--primary-foreground);
+@image-invert-browser-input-bg-color: var(--accents-8);
+@image-invert-browser-border-color: var(--accents-7);
+@image-invert-browser-title-color: var(--accents-2);
+
+// normal color
+@image-browser-color: var(--primary-foreground);
+@image-browser-bg-color: var(--primary-background);
+@image-browser-input-bg-color: var(--accents-1);
+@image-browser-border-color: var(--accents-2);
+@image-browser-title-color: var(--accents-5);
+
+// traffic color
+
+@image-browser-close-icon: #ff5f56;
+
+@image-browser-mini-icon: #ffbd2e;
+
+@image-browser-full-icon: #27c93f;
+
+:root {
+  // invert color
+  --image-invert-browser-color: @image-invert-browser-color;
+  --image-invert-browser-bg-color: @image-invert-browser-bg-color;
+  --image-invert-browser-input-bg-color: @image-invert-browser-input-bg-color;
+  --image-invert-browser-border-color: @image-invert-browser-border-color;
+  --image-invert-browser-title-color: @image-invert-browser-title-color;
+
+  // normal color
+  --image-browser-color: @image-browser-color;
+  --image-browser-bg-color: @image-browser-bg-color;
+  --image-browser-input-bg-color: @image-browser-input-bg-color;
+  --image-browser-border-color: @image-browser-border-color;
+  --image-browser-title-color: @image-browser-title-color;
+
+  --image-browser-close-icon: @image-browser-close-icon;
+  --image-browser-mini-icon: @image-browser-mini-icon;
+  --image-browser-full-icon: @image-browser-full-icon;
+}
+
 .fect-image {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -9,6 +51,13 @@
     margin: 0 auto;
     border-radius: var(--fect-radius);
     overflow: hidden;
+    &--invert {
+      --image-browser-color: var(--image-invert-browser-color);
+      --image-browser-bg-color: var(--image-invert-browser-bg-color);
+      --image-browser-input-bg-color: var(--image-invert-input-bg-color);
+      --image-browser-border-color: var(--image-invert-browser-border-color);
+      --image-browser-title-color: var(--image-invert-browser-title-color);
+    }
 
     .fect-skeleton__item {
       border-top-right-radius: 0px !important;
@@ -30,6 +79,7 @@
     position: relative;
     font-size: 12px;
     color: inherit;
+    background-color: var(--image-browser-input-bg-color);
     a {
       max-width: 90%;
       overflow: hidden;
@@ -54,7 +104,9 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    border-bottom: 1px solid var(--accents-2);
+    border-bottom: 1px solid var(--image-browser-border-color);
+    color: var(--image-browser-color);
+    background-color: var(--image-browser-bg-color);
     .traffic__content {
       width: auto;
       position: absolute;
@@ -74,20 +126,21 @@
         margin-right: 8px;
       }
       .close {
-        background-color: #ff5f56;
+        background-color: var(--image-browser-close-icon);
       }
 
       .mini {
-        background-color: #ffbd2e;
+        background-color: var(--image-browser-mini-icon);
       }
 
       .full {
-        background-color: #27c93f;
+        background-color: var(--image-browser-full-icon);
       }
     }
   }
 
   &__title {
     font-size: 12px;
+    color: var(--image-browser-title-color);
   }
 }

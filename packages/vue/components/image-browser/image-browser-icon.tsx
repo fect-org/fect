@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 
-const HttpIcons = defineComponent({
+export default defineComponent({
   setup() {
     return () => (
       <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
@@ -14,5 +14,3 @@ const HttpIcons = defineComponent({
     )
   }
 })
-
-export default HttpIcons
