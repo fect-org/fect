@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 
-const ImageSkeleton = defineComponent({
+export default defineComponent({
   setup() {
     return () => (
       <svg
@@ -19,5 +19,3 @@ const ImageSkeleton = defineComponent({
     )
   }
 })
-
-export default ImageSkeleton

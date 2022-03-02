@@ -1,12 +1,9 @@
 import type { IntersectionToObj } from './interface'
 
-export const omit = <T, K extends (string | number | symbol)[]>(
-  source: T,
-  ...exclude: K
-): Pick<T, Exclude<keyof T, K[number]>> =>
-  Object.keys(source).reduce(
-    (acc, cur) => (exclude.includes(cur) ? acc : { ...acc, [cur]: source[cur as never] }),
-    {} as T
+export const omit = <T, K extends keyof T>(source: T, picks: K[]) =>
+  (Object.keys(source) as K[]).reduce(
+    (acc, cur) => (picks.includes(cur) ? acc : Object.assign(acc, { [cur]: source[cur] })),
+    {} as Omit<T, K>
   )
 
 export const assign = <T extends Record<string | number | symbol, any>, K>(

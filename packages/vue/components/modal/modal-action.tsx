@@ -3,7 +3,7 @@ import Button from '../button/index'
 import { useModalContext } from './modal-context'
 import type { Action } from './interface'
 
-const ModalAction = defineComponent({
+export default defineComponent({
   setup() {
     const { context } = useModalContext()
 
@@ -26,5 +26,3 @@ const ModalAction = defineComponent({
     )
   }
 })
-
-export default ModalAction

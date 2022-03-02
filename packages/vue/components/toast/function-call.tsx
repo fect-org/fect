@@ -30,8 +30,7 @@ const Toast = (options: ToastOptions) => {
 
           const updateToasts = (toastOption: Toasts[number], duration: number) => {
             const prevToasts = toasts.value.slice()
-            // toastOption.
-            prevToasts.push(assign(omit(toastOption, 'duration'), { cancel: () => cancel(toastOption.id, duration) }))
+            prevToasts.push(assign(omit(toastOption, ['duration']), { cancel: () => cancel(toastOption.id, duration) }))
             setToasts(prevToasts)
           }
 

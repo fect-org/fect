@@ -1,7 +1,7 @@
+import { mount } from '@vue/test-utils'
 import Skeleton from '../index'
 import SkeletonItem from '../../skeleton-item'
-import { Variable } from '../../skeleton-item/type'
-import { mount } from '@vue/test-utils'
+import type { Variable } from '../interface'
 
 describe('Skeleton', () => {
   it('should be render as a element', () => {
