@@ -6,7 +6,7 @@ import { createBem } from '../utils'
 
 const bem = createBem('fect-modal')
 
-const ModalWrapper = defineComponent({
+export default defineComponent({
   setup(props, { slots }) {
     const { context } = useModalContext()
 
@@ -34,5 +34,3 @@ const ModalWrapper = defineComponent({
     return () => renderWrapper()
   }
 })
-
-export default ModalWrapper

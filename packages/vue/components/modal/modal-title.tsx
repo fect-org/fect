@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue'
 import { useModalContext } from './modal-context'
 
-const ModalTitle = defineComponent({
+export default defineComponent({
   setup() {
     const { context } = useModalContext()
     return () => (
@@ -11,5 +11,3 @@ const ModalTitle = defineComponent({
     )
   }
 })
-
-export default ModalTitle
