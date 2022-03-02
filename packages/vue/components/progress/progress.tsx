@@ -1,40 +1,30 @@
-import { computed, CSSProperties, PropType, defineComponent } from 'vue'
-import { createName, NormalTypes } from '../utils'
+import { computed, CSSProperties, PropType, defineComponent, ComputedRef } from 'vue'
+import { createName, NormalTypes, createBem, isNumber } from '../utils'
 import './index.less'
-
-interface ProgressColros {
-  [prop: number]: string
-}
 
 const name = createName('Progress')
 
-const queryColors = (ratio: number, type: NormalTypes, colors: ProgressColros) => {
-  const defaultColors: { [key in NormalTypes]: string } = {
-    default: 'var(--primary-foreground)',
-    success: 'var(--success-default)',
-    warning: 'var(--warning-default)',
-    error: 'var(--error-default)'
-  }
+const bem = createBem('fect-progress')
+
+const getProgressBgColor = (ratio: number, colors: Record<string | number, string>) => {
   const colorkeys = Object.keys(colors)
-  if (colorkeys.length === 0) return defaultColors[type]
+  if (!colorkeys.length) return ''
   const customColor = colorkeys.find((key) => ratio <= +key)
-  if (!customColor) return defaultColors[type]
+  if (!customColor) return ''
   return colors[+customColor]
 }
 
-const queryProportions = (value: number, maxValue: number) => {
-  /**
-   * In practice, the user may pass in a string.
-   */
+const getProportions = (value: number, maxValue: number) => {
   const val = value / maxValue
-  const rightValue = (Number.isNaN(val) ? 0 : val) * 100
+  const rightValue = isNumber(val) ? val * 100 : 0
   if (rightValue > 100) return 100
   if (rightValue < 0) return 0
-  return rightValue.toFixed(2)
+  return +rightValue.toFixed(2)
 }
 
 export default defineComponent({
   name,
+  inheritAttrs: false,
   props: {
     value: {
       type: Number,
@@ -55,20 +45,24 @@ export default defineComponent({
   },
 
   setup(props, { attrs }) {
-    const setPercentValue = computed(() => `${queryProportions(props.value, props.max)}%`)
-
-    const setStyle = computed(() => {
-      const { type, colors } = props
-      const color = queryColors(queryProportions(props.value, props.max) as number, type, colors || {})
+    const setStyle: ComputedRef<CSSProperties> = computed(() => {
+      const { colors, value, max } = props
+      const percent = getProportions(value, max)
+      const color = getProgressBgColor(percent, colors || {})
       return {
         backgroundColor: color,
-        width: setPercentValue.value
-      } as CSSProperties
+        width: `${percent}%`
+      }
     })
 
     return () => (
-      <div class="fect-progress">
-        <div class="fect-progress__inner" title={setPercentValue.value} style={setStyle.value} {...attrs}></div>
+      <div class={bem(null)}>
+        <div
+          class={bem('inner', props.type)}
+          title={`${getProportions(props.value, props.max)}%`}
+          style={setStyle.value}
+          {...attrs}
+        ></div>
         <progress value={props.value} max={props.max}></progress>
       </div>
     )

@@ -36,13 +36,13 @@ describe('Progress', () => {
     await wrapper.setData({ type: 'error' })
     expect(el.attributes('type-data')).toBe('error')
     await wrapper.setData({ value: 20 })
-    expect(el.attributes('style')).toBe('width: 20.00%;')
+    expect(el.attributes('style')).toBe('width: 20%;')
     await wrapper.setData({ value: 110 })
     expect(el.attributes('title')).toBe('100%')
     await wrapper.setData({ value: -1 })
     expect(el.attributes('title')).toBe('0%')
     await wrapper.setData({ value: 'test' })
-    expect(el.attributes('title')).toBe('0.00%')
+    expect(el.attributes('title')).toBe('0%')
     await wrapper.setData({
       colors: {
         20: 'red',

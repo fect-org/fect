@@ -4,7 +4,12 @@
   height: 10px;
   border-radius: var(--fect-radius);
   background-color: var(--accents-2);
-  .fect-progress__inner {
+
+  progress {
+    display: none;
+  }
+
+  &__inner {
     position: absolute;
     top: 0;
     left: 0;
@@ -12,8 +17,17 @@
     bottom: 0;
     border-radius: var(--fect-radius);
     transition: all 100ms ease-in;
-  }
-  progress {
-    display: none;
+    &--default {
+      background-color: var(--primary-foreground);
+    }
+    &--success {
+      background-color: var(--success-default);
+    }
+    &--warning {
+      background-color: var(--warning-default);
+    }
+    &--error {
+      background-color: var(--error-default);
+    }
   }
 }
