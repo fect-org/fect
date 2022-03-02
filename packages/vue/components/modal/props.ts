@@ -30,4 +30,4 @@ export const props = {
   disableOverlayClick: Boolean
 }
 
-export const staticModalProps = omit(props, 'teleport', 'overlay', 'visible')
+export const staticModalProps = omit(props, ['teleport', 'overlay', 'visible'])

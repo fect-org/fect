@@ -12,7 +12,11 @@ export type ToastOptions = Partial<_ToastOptions>
 export type StaticToastOptions = Omit<ToastOptions, 'type'>
 
 export type Toasts = Array<
-  Omit<ExtractPropTypes<typeof props>, 'index' | 'total' | 'hover'> & { id: string; cancel: () => void }
+  Omit<ExtractPropTypes<typeof props>, 'index' | 'total' | 'hover'> & {
+    id: string
+    cancel: () => void
+    duration?: string | number
+  }
 >
 
 export interface ToastCotnext {
