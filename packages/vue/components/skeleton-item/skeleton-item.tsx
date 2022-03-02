@@ -1,12 +1,15 @@
 import { PropType, computed, defineComponent } from 'vue'
-import { useProvider } from '@fect-ui/vue-hooks'
-import { createName } from '../utils'
-import { Variable } from './type'
+import { createName, createBem } from '../utils'
 import ImageSkeleton from './image-skeleton'
-import { READONLY_SKELETON_KEY, SkeletonProvide } from '../skeleton/skeleton'
+import { useSkeletonContext } from '../skeleton/skeleton-context'
+
+import type { Variable } from '../skeleton/interface'
+
 import './index.less'
 
 const name = createName('SkeletonItem')
+
+const bem = createBem('fect-skeleton')
 
 export default defineComponent({
   name,
@@ -17,7 +20,7 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const { context } = useProvider<SkeletonProvide>(READONLY_SKELETON_KEY)
+    const { context } = useSkeletonContext()
 
     if (!context) {
       if (process.env.NODE_ENV !== 'production') {
@@ -26,17 +29,13 @@ export default defineComponent({
       return
     }
 
-    const setStyle = computed(() => {
-      const { animated } = context!
+    const setSkeletonItemClass = computed(() => {
       const { variable } = props
-      const names = []
-      names.push(variable)
-      animated && names.push('animated')
-      return names.join(' ')
+      const { animated } = context!
+
+      return bem('item', { variable, animated })
     })
 
-    return () => (
-      <div class={`fect-skeleton__item ${setStyle.value}`}>{props.variable === 'image' && <ImageSkeleton />}</div>
-    )
+    return () => <div class={setSkeletonItemClass.value}>{props.variable === 'image' && <ImageSkeleton />}</div>
   }
 })

@@ -1,6 +1,6 @@
 import { PropType, defineComponent } from 'vue'
-import { createProvider } from '@fect-ui/vue-hooks'
-import { createName, createBem } from '../utils'
+import { createName, createBem, addUnit, isArray } from '../utils'
+import { createSkeletonContext } from './skeleton-context'
 import SkeletonItem from '../skeleton-item'
 
 const name = createName('Skeleton')
@@ -8,12 +8,6 @@ const name = createName('Skeleton')
 const bem = createBem('fect-skeleton')
 
 const DEFAULT_ROW_WIDTH = '100%'
-
-export const READONLY_SKELETON_KEY = 'SkeletonKey'
-
-export type SkeletonProvide = {
-  animated: boolean
-}
 
 export default defineComponent({
   name,
@@ -33,33 +27,26 @@ export default defineComponent({
     }
   },
   setup(props, { slots }) {
-    const { provider } = createProvider(READONLY_SKELETON_KEY)
-    provider({ animated: props.animated })
+    const { provider } = createSkeletonContext()
 
-    /**
-     *  If has not slots.skeleton while render this
-     */
+    provider({ animated: props.animated })
 
     const getRowWidth = (index: number) => {
       const { rowsWidth } = props
       if (rowsWidth === DEFAULT_ROW_WIDTH) {
         return DEFAULT_ROW_WIDTH
       }
-      if (Array.isArray(rowsWidth)) {
+      if (isArray(rowsWidth)) {
         return rowsWidth[index]
       }
       return rowsWidth
-    }
-    const setWidth = (val: string | number) => {
-      if (typeof val === 'number') return `${val}px`
-      return val
     }
 
     const renderRows = () => {
       const Rows: Array<JSX.Element | undefined> = []
       const { rows } = props
       Rows.length = rows
-      return Rows.fill(undefined).map((_, i) => <SkeletonItem style={{ width: setWidth(getRowWidth(i)) }} />)
+      return Rows.fill(undefined).map((_, i) => <SkeletonItem style={{ width: addUnit(getRowWidth(i)) }} />)
     }
 
     return () => {
@@ -70,11 +57,7 @@ export default defineComponent({
       if (props.loading) {
         return slots.default?.()
       }
-      return (
-        <div class={bem(null)}>
-          <div class="skeleton__content">{hasSkeleton ? hasSkeleton() : renderRows()}</div>
-        </div>
-      )
+      return <div class={bem(null)}>{hasSkeleton ? hasSkeleton() : renderRows()}</div>
     }
   }
 })

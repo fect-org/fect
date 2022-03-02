@@ -3,13 +3,11 @@
 exports[`Image should  support skeleton 1`] = `
 <div class="fect-image" style="width: 540px; height: 240px;">
   <div class="fect-skeleton">
-    <div class="skeleton__content">
-      <div class="fect-skeleton__item image animated" style="margin-top: 0px; width: 540px; height: 240px;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24">
-          <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
-          <circle cx="8.5" cy="8.5" r="1.5"></circle>
-          <path d="M21 15l-5-5L5 21"></path>
-        </svg></div>
-    </div>
+    <div class="fect-skeleton__item fect-skeleton__item--image fect-skeleton__item--animated" style="margin-top: 0px; width: 540px; height: 240px;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24">
+        <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+        <path d="M21 15l-5-5L5 21"></path>
+      </svg></div>
   </div>
 </div>
 `;
