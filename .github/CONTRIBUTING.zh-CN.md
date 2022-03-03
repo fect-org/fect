@@ -12,13 +12,8 @@
 2. 为您的改动创建一个新的分支: `git checkout -b {BRANCH_NAME}`。
 3. 安装一个包管理工具 [Yarn](https://classic.yarnpkg.com/en/docs/install#mac-stable)
    然后更新项目的依赖: `yarn`
-4. 依次执行以下命令:
-   - `yarn cli`
-   - `yarn clean`
-   - `yarn`
-   - `yarn hooks`
-   - `yarn icon`
-   - `yarn dev`
+4. 执行以下命令:
+   - `yarn bootstrap`
 5. 在本地页面中查看你的更改。
 
 在任何您认为合适的时间，您都可以按照以下步骤提交您优秀的作品:
@@ -34,7 +29,7 @@
 
 1. 在 `packages` 中创建一个组件目录。
 2. 运行 `yarn collect` 命令，它会自动添加一条 `import` 到 `packages/index.ts` 中。
-3. 在 `docs/zh-cn` 和 `docs/example` 中创建该组件的文档文件，它将会被自动注册。
+3. 在 `docs/zh-cn` ,`docs/en-us` 和 `docs/example` 中创建该组件的文档文件，它将会被自动注册。
 4. 重启本地服务查看更改: `yarn dev`。
 
 #### **创建测试用例**

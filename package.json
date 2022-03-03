@@ -14,11 +14,10 @@
     "node": ">=14.17.5"
   },
   "scripts": {
-    "cli": "cd packages/cli && yarn tsc",
+    "bootstrap": "bash ./scripts/bootstrap.sh",
     "compile": "lerna exec --scope @fect-ui/vue -- yarn build",
-    "volar": "lerna exec --scope @fect-ui/vue -- yarn volar",
-    "collect": "lerna exec --scope @fect-ui/vue -- yarn collect",
     "icon": "lerna exec --scope @fect-ui/vue-icons -- yarn build",
+    "collect": "lerna exec --scope @fect-ui/vue -- yarn collect",
     "build": "lerna exec --scope @fect-ui/website -- yarn build",
     "hooks": "cd packages/vue-hooks && yarn build",
     "test": "cd packages/vue &&  yarn test",

@@ -11,22 +11,8 @@ jobs:
         with:
           node-version: '14.x'
 
-      - name: Install Dependencies
-        run: yarn
-
-      - name: Build cli
-        run: yarn cli
-      - name: Clean Dependencies
-        run: yarn clean
-
-      - name: Install Dependencies
-        run: yarn
-
-      - name: Build Hooks
-        run: yarn hooks
-
-      - name: Build icon
-        run: yarn icon
+      - name: Bootstrap
+        run: yarn bootstrap
 
       - name: Run unit test case
         run: yarn test

@@ -8,9 +8,8 @@
   "jsdelivr": "lib/fect.min.umd.js",
   "scripts": {
     "collect": "non collect",
-    "build": "npm run collect && non compile",
-    "test": "non test",
-    "volar": "non volar"
+    "build": "npm run collect && non compile && non volar",
+    "test": "non test"
   },
   "keywords": [
     "vue component",

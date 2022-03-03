@@ -11,13 +11,8 @@ If you don't know Git,basic operation of Git,you can refer to [GitHub's help doc
 2. Create a new branch for your changes: `git checkout -b {BRANCH_NAME}`.
 3. Install a package management tools [Yarn](https://classic.yarnpkg.com/en/docs/install#mac-stable)
    and then update project dependenices `Yarn`
-4. Run these commands in order:
-   - `yarn cli`
-   - `yarn clean`
-   - `yarn`
-   - `yarn hooks`
-   - `yarn icon`
-   - `yarn dev`
+4. Run commands in order:
+   - `yarn bootstrap`
 5. View your changes on your local document site.
 
 At any time, you think it's ok, you can start the following steps to submit your amazing works:
@@ -33,7 +28,7 @@ At any time, you think it's ok, you can start the following steps to submit your
 
 1. Create a component folder in `packages`.
 2. Run `Yarn collect` and it will automatic add `import` to `packages/index.ts`
-3. Create a document file in `docs/zh-cn` and `docs/example`,it will automatic logon.
+3. Create a document file in `docs/zh-cn` or `docs/en-us` and `docs/example`,it will automatic logon.
 4. Restart local server view changes: `yarn dev`.
 
 #### **Create testcase**
