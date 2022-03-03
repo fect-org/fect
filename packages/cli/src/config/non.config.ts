@@ -3,12 +3,12 @@
  */
 import type { Plugin, UserConfig } from 'vite'
 
-export type Formats = 'es' | 'cjs' | 'umd' | 'default' | 'noumd'
+export type Formats = 'es' | 'cjs' | 'umd'
 
 export interface Lib {
   input: string
   name?: string
-  format?: Formats
+  format?: Formats | Formats[]
 }
 
 export interface NonConfig {

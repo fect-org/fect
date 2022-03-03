@@ -36,7 +36,7 @@ export const IGNORE_DIR = ['utils', 'index.ts']
 
 export const IMPORT_REG = /import\s+?(?:(?:(?:[\w*\s{},]*)\s+from(\s+)?)|)(?:(?:".*?")|(?:'.*?'))[\s]*?(?:;|$|)/g
 
-export const normalizePath = (path) => path.replace(/\\/g, '/')
+export const normalizePath = (path: string) => path.replace(/\\/g, '/')
 
 export const isDir = (path) => lstatSync(path).isDirectory()
 

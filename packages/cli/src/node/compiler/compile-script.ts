@@ -8,9 +8,10 @@ export const resolveScriptFile = async (filePath: string) => {
   try {
     const code = await fs.promises.readFile(filePath, 'utf-8')
     const raw = await transform(code, filePath)
-    const resolvedPath = replaceExt(filePath, '.js')
-    fs.unlinkSync(filePath)
-    fs.writeFileSync(resolvedPath, raw.code)
+    // const resolvedPath = replaceExt(filePath, '.js')
+    // fs.unlinkSync(filePath)
+    // fs.writeFileSync(resolvedPath, raw.code)
+    return raw.code
   } catch (error) {
     logErr(error)
     throw error
