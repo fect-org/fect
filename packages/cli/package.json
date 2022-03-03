@@ -51,8 +51,9 @@
     "parse-imports": "0.0.5",
     "postcss": "^8.4.5",
     "prettier": "^2.4.1",
-    "vite": "^2.6.7",
-    "vue-jest": "^5.0.0-alpha.10"
+    "vite": "^2.8.6",
+    "vue-jest": "^5.0.0-alpha.10",
+    "fast-glob": "^3.2.11"
   },
   "devDependencies": {
     "@types/babel__core": "^7.1.16",

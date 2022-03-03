@@ -22,8 +22,6 @@ export const SCRIPTS_EXTENSIONS = ['.tsx', '.ts', '.jsx', '.js']
 
 export const VITE_RESOLVE_EXTENSIONS = [...SCRIPTS_EXTENSIONS, '.json', '.less', '.vue', '.css']
 
-export const NONRC_REG = /(.?)(non).+\.(js|ts)/g
-
 export const NON_DEFAULT_PATH = join(__dirname, '..', 'config', 'non.config.js')
 
 export const DECLARATION_PATH = join(__dirname, '..', '..', 'declaration.json')
