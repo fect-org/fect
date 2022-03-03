@@ -1,9 +1,8 @@
-import { join } from 'path'
 import { merge } from 'lodash'
 import { InlineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Jsx from '@vitejs/plugin-vue-jsx'
-import { CWD, VITE_RESOLVE_EXTENSIONS, UMD_PATH, ESM_PATH } from '../shared/constant'
+import { CWD, VITE_RESOLVE_EXTENSIONS, UMD_PATH } from '../shared/constant'
 import { resolveConfig } from '../node/config'
 
 export const useDevConfig = async (): Promise<InlineConfig> => {
@@ -34,7 +33,7 @@ export const useBuildConfig = async (): Promise<InlineConfig> => {
   }
 }
 
-export const useUMDconfig = (name, mini = false): InlineConfig => {
+export const useUMDconfig = (input, name, mini = false): InlineConfig => {
   return {
     logLevel: 'silent',
     build: {
@@ -42,7 +41,7 @@ export const useUMDconfig = (name, mini = false): InlineConfig => {
         name,
         formats: ['umd'],
         fileName: mini ? `${name}.min` : `${name}`,
-        entry: join(ESM_PATH, 'umd.js')
+        entry: input
       },
       minify: mini ? 'terser' : false,
       rollupOptions: {

@@ -3,7 +3,7 @@ import fg from 'fast-glob'
 import path from 'path'
 import fs from 'fs-extra'
 import { logErr } from '../shared/logger'
-import { normalizePath, isTestDir } from '../shared/constant'
+import { normalizePath } from '../shared/constant'
 
 interface BunndleConfig {
   parrents?: string
@@ -43,7 +43,11 @@ export class Bundle extends EventEmitter {
         }
       })
     )
-    await Promise.all(this.middlewares.map((middleWare) => middleWare(this.files)))
+
+    for (const middleWare of this.middlewares) {
+      await middleWare(this.files, this.parrents)
+    }
+    // await Promise.all(this.middlewares.map((middleWare) => middleWare(this.files, this.parrents)))
     return this
   }
 

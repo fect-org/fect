@@ -32,7 +32,7 @@ export const TSCONFIG_PATH = join(TMP_PATH, 'tsconfig.json')
 
 export const USER_PACKAGES_JSON_PATH = join(CWD, 'package.json')
 
-export const IGNORE_DIR = ['utils', 'index.ts']
+export const IGNORE_DIR = ['utils', 'index.ts', 'tsconfig.json', 'jsconfig.json']
 
 export const IMPORT_REG = /import\s+?(?:(?:(?:[\w*\s{},]*)\s+from(\s+)?)|)(?:(?:".*?")|(?:'.*?'))[\s]*?(?:;|$|)/g
 
