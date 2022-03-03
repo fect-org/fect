@@ -69,15 +69,31 @@ const styleTransform = async (files: Map<string, any>) => {
 
 const genStyleDeps = async (files: Map<string, any>, parrent: string) => {
   const fileskeys = files.keys()
+  const components = fs
+    .readdirSync(parrent)
+    .filter((v) => v !== 'utils')
+    .map((_) => {
+      _ = _.replace(/\-(\w)/g, (_, k: string) => k.toUpperCase())
+      _ = _.charAt(0).toUpperCase() + _.slice(1)
+      return _
+    })
   for (const key of fileskeys) {
     const fileMeta = files.get(key)
     const { content, path: relativePath } = fileMeta
     const contentStr = content.toString()
     if (!relativePath.endsWith('.tsx')) continue
-    //  const { jsonPath } =
-    await analyzeDeps(contentStr, relativePath, files, parrent)
-    // files.set(parrent + jsonPath, { content: Buffer.from('111'), path: jsonPath })
-    // console.log(files.get(parrent + jsonPath))
+    const { jsonPath, deps } = await analyzeDeps(contentStr, relativePath, files, parrent, components)
+    const styleMeta = files.get(jsonPath)
+    if (styleMeta) {
+      const { content } = styleMeta
+      const tep = content.toString()
+      console.log(tep)
+      // Object.assign(JSON.parse(tep), deps)
+      // console.log(tep)
+      // files.set(jsonPath, { content: Buffer.from(JSON.stringify(tep)), path: path.relative(parrent, jsonPath) })
+    } else {
+      files.set(jsonPath, { content: Buffer.from(JSON.stringify(deps)), path: path.relative(parrent, jsonPath) })
+    }
   }
 }
 
@@ -109,10 +125,7 @@ const declarationTask = async (input) => {
 const cjsTask = async (input) => {
   // cjs
   const cjsTask = new Bundle({ parrents: input, dotFile: true })
-  cjsTask
-    .use(cjsTransform)
-    // .use(genStyleDeps)
-    .use(styleTransform)
+  cjsTask.use(cjsTransform).use(styleTransform)
   await cjsTask.process()
   await cjsTask.dest(CJS_PATH, { clean: true })
 }
@@ -125,7 +138,15 @@ const esmTask = async (input) => {
   await esmTask.dest(ESM_PATH, { clean: true })
 }
 
+const analyzeStyleDepsTask = async (input) => {
+  const analyzeStyleDpesTask = new Bundle({ parrents: input, dotFile: true })
+  analyzeStyleDpesTask.use(genStyleDeps)
+  await analyzeStyleDpesTask.process()
+  await analyzeStyleDpesTask.dest(ESM_PATH, { clean: true })
+}
+
 export const compile = async () => {
+  setNodeENV('production')
   const { userConfig, path: configPath } = await resolveConfig()
   const { lib } = userConfig
   if (!isPlainObject(lib)) {
@@ -133,11 +154,11 @@ export const compile = async () => {
   }
 
   const { format, name, input } = lib
-
+  await runTask('Analyze Style Deps', () => analyzeStyleDepsTask(input))
   await runTask('CommonJs', () => cjsTask(input))
-  await runTask('EsModule', () => esmTask(input))
-  if (format === 'umd' || format.includes('umd')) {
-    await runTask('UMD', () => umdTask(input, name))
-  }
-  await runTask('Declaration', () => declarationTask(input))
+  // await runTask('EsModule', () => esmTask(input))
+  // if (format === 'umd' || format.includes('umd')) {
+  //   await runTask('UMD', () => umdTask(input, name))
+  // }
+  // await runTask('Declaration', () => declarationTask(input))
 }
