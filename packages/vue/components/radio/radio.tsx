@@ -1,6 +1,6 @@
 import { defineComponent, computed, watch, watchEffect } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, hasEmpty, createBem } from '../utils'
+import { createName, createBem } from '../utils'
 import { radioProps } from '../radio-group/props'
 import { useRadioContext } from '../radio-group/radio-context'
 import type { RadioEvent } from '../radio-group/interface'
@@ -14,11 +14,6 @@ export default defineComponent({
   props: radioProps,
   emits: ['change', 'update:checked'],
   setup(props, { emit, slots }) {
-    if (process.env.NODE_ENV !== 'production' && hasEmpty(props.value)) {
-      console.error('[Fect] value must be set in <Radio>.')
-      return
-    }
-
     const [selfChecked, setSelfChecked] = useState<boolean>(props.checked)
 
     const { context } = useRadioContext()
