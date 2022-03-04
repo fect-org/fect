@@ -40,6 +40,7 @@ export const analyzeDeps = async (
 
   return {
     jsonPath,
+    componentName,
     deps: {
       [componentName]: stylePath,
       [dependName]: depends
