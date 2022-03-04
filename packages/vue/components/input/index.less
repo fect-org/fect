@@ -103,6 +103,9 @@
       -webkit-appearance: none;
       font-size: var(--input-font-size);
       color: var(--primary-foreground);
+      &[type='password']::-ms-reveal {
+        display: none;
+      }
       &::placeholder {
         color: var(--accents-3);
       }
