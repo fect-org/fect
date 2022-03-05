@@ -7,13 +7,7 @@ const REG = /import .+ from .+()/g
 
 import { normalizePath } from '../../shared/constant'
 
-export const analyzeDeps = async (
-  code: string,
-  filePath: string,
-  maps: Map<string, any>,
-  parrent,
-  components: string[]
-) => {
+export const analyzeDeps = async (code: string, filePath: string, parrent, components: string[]) => {
   const sourcePath = normalizePath(parrent + '/' + filePath)
   const modules = (code.match(REG) || []).join('\n')
   const imports = [...(await parser(modules))]

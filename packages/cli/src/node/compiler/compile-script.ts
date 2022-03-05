@@ -10,11 +10,13 @@ export const transform = async (source: string, fileName) => {
       const res = await transformAsync(code, { filename: fileName })
       ;({ code } = res)
     }
+
     const esbuildResult = await esbuildTransform(code, {
       loader: 'ts',
       target: 'es2016',
       format: process.env.BABEL_ENV === 'esmodule' ? 'esm' : 'cjs'
     })
+
     return {
       code: esbuildResult.code
     }
