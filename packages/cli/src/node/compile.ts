@@ -2,112 +2,19 @@ import fs from 'fs-extra'
 import path from 'path'
 import ora from 'ora'
 import { build } from 'vite'
+import { isPlainObject } from 'lodash'
 import { resolveConfig } from './config'
-import {
-  NON_DEFAULT_PATH,
-  ESM_PATH,
-  TMP_PATH,
-  isScript,
-  isStyle,
-  CJS_PATH,
-  setBabelEnv,
-  DECLARATION_PATH,
-  setNodeENV,
-  replaceStyleInJs,
-  normalizePath
-} from '../shared/constant'
+import { ESM_PATH, CJS_PATH, setBabelEnv, DECLARATION_PATH, setNodeENV } from '../shared/constant'
 import { logErr } from '../shared/logger'
 import { execa } from '../shared/execa'
-import type { Lib } from '../config/non.config'
-import { resolveScriptFile } from './compiler/compile-script'
-import { resolveStyleFile } from './compiler/compile-style'
-import { compileDir } from './compiler/compiler-dir'
-import { resolveExteranlStyle } from './compiler/externalize-style'
-import { compileStyleDeps } from './compiler/compile-style-deps'
 import { useUMDconfig } from '../config/vite.config'
 
-export const removeCodeStyle = async (filePath: string) => {
-  let code
-  code = await fs.readFile(filePath, 'utf8')
-  code = replaceStyleInJs(code, '')
-  fs.outputFileSync(filePath, code)
-  return
-}
+import { bundle } from './_compile'
 
-export const resolveCompileConf = async () => {
-  const { userConfig, path } = await resolveConfig()
-  return {
-    lib: userConfig.lib || false,
-    path
-  }
-}
-
-export const compileFile = async (filePath: string) => {
-  if (/\.(json)/g.test(filePath)) return compileStyleDeps(filePath)
-  if (isScript(filePath)) await resolveScriptFile(filePath)
-  if (isStyle(filePath)) await resolveStyleFile(filePath)
-}
-
-const transform = async (entry) => {
-  try {
-    await compileDir(entry, compileFile)
-  } catch (error) {
-    logErr(error)
-  }
-}
-
-const cjsTask = async (input) => {
-  setBabelEnv('commonjs')
-  await fs.copy(input, CJS_PATH)
-
-  await transform(CJS_PATH)
-}
-
-const esmTask = async (input) => {
-  setBabelEnv('esmodule')
-  await fs.copy(input, ESM_PATH)
-  await transform(ESM_PATH)
-}
-
-const umdTask = async (input, name: string) => {
-  setBabelEnv('esmodule')
-  const entry = path.join(input, 'index.js')
-  const entryRaw = await fs.readFile(entry, 'utf-8')
-  const umdJs = path.join(input, 'umd.js')
-  const ignored = ['utils', 'index.js']
-  const styles = await Promise.all(
-    fs
-      .readdirSync(input)
-      .filter((v) => !ignored.includes(v))
-      .map(async (item) => {
-        const stylePath = path.join(input, item, 'style', 'index.js')
-        const styleExist = await fs.pathExists(stylePath)
-        if (styleExist) {
-          const relative = normalizePath(path.relative(input, stylePath))
-          return `import './${relative}';\n`
-        }
-        return ''
-      })
-  )
-  const styleRaw = styles.join().replace(/,/g, '')
-
-  const raw = `
-  import '@fect-ui/themes'
-  ${entryRaw}
-  ${styleRaw}
- `
-  fs.outputFileSync(umdJs, raw)
-  await Promise.all([build(useUMDconfig(name, true)), build(useUMDconfig(name))]).finally(() => {
-    fs.removeSync(umdJs)
-  })
-}
-
-const declarationTask = async (input) => {
-  const declaration = await fs.readFile(DECLARATION_PATH)
-  const resolvePath = path.join(input, 'tsconfig.json')
-  fs.outputFileSync(resolvePath, declaration)
-  await execa('tsc', ['-p', resolvePath])
-}
+import { transformScript } from '../plugins/non-plugin-script'
+import { transformCss } from '../plugins/non-plugin-css'
+import { analyzeStyleDeps } from '../plugins/non-plugin-analyze-style'
+import { transformDeps } from '../plugins/non-plugin-deps-trans'
 
 export const runTask = async (taskName, task) => {
   const spinner = ora(`Build ${taskName} Outputs`).start()
@@ -120,42 +27,59 @@ export const runTask = async (taskName, task) => {
   }
 }
 
+const umdTask = async (input: string, name: string) => {
+  setBabelEnv('esmodule')
+  input = path.join(input, 'index.ts')
+  await Promise.all([build(useUMDconfig(input, name, true)), build(useUMDconfig(input, name))])
+}
+
+const declarationTask = async (input) => {
+  const declaration = await fs.readFile(DECLARATION_PATH)
+  const resolvePath = path.join(input, 'tsconfig.json')
+  fs.outputFileSync(resolvePath, declaration)
+  await execa('tsc', ['-p', resolvePath])
+  await fs.unlink(resolvePath)
+}
+
+const cjsTask = async (input, reg) => {
+  const cjs = await bundle({
+    input,
+    plugins: [transformScript({ babelEnv: 'commonjs' }), transformCss(), analyzeStyleDeps({ reg }), transformDeps()]
+  })
+  await cjs.write({ dir: CJS_PATH })
+}
+
+const esmTask = async (input, reg) => {
+  const cjs = await bundle({
+    input,
+    plugins: [transformScript({ babelEnv: 'esmodule' }), transformCss(), analyzeStyleDeps({ reg }), transformDeps()]
+  })
+  await cjs.write({ dir: ESM_PATH })
+}
+
 export const compile = async () => {
-  const { lib: libOption, path: confPath } = await resolveCompileConf()
-
-  if (confPath === NON_DEFAULT_PATH) return
-  if (!libOption) {
-    return logErr(`[Non Error!] you can not use it when your set library as false in your config at ${confPath}`)
-  }
-  const { format, name, input } = libOption as Lib
-  if (['default', 'umd'].includes(format) && !name) {
-    return logErr('[Non Error!] "lib.name" is required when format include "umd" or "default"')
-  }
   setNodeENV('production')
-  await fs.copy(input, TMP_PATH)
-  await compileDir(TMP_PATH, removeCodeStyle)
-  await resolveExteranlStyle(TMP_PATH)
-
-  if (format === 'default') {
-    await runTask('EsModule', () => esmTask(TMP_PATH))
-    await runTask('CommonJs', () => cjsTask(TMP_PATH))
-    await runTask('UMD', () => umdTask(ESM_PATH, name))
+  const { userConfig, path: configPath } = await resolveConfig()
+  const { lib } = userConfig
+  if (!isPlainObject(lib)) {
+    return logErr(`[Non Error!] you can not use it when your un set library in your config at ${configPath}`)
   }
 
-  if (format === 'es') {
-    await runTask('EsModule', () => esmTask(TMP_PATH))
+  const { format, name, input } = lib
+
+  const components = fs
+    .readdirSync(input)
+    .filter((v) => v !== 'utils')
+    .map((_) => {
+      _ = _.replace(/\-(\w)/g, (_, k: string) => k.toUpperCase())
+      _ = _.charAt(0).toUpperCase() + _.slice(1)
+      return _
+    })
+
+  await runTask('CommonJs', () => cjsTask(input, components))
+  await runTask('EsModule', () => esmTask(input, components))
+  if (format === 'umd' || format.includes('umd')) {
+    await runTask('UMD', () => umdTask(input, name))
   }
-
-  if (format === 'cjs') {
-    await runTask('CommonJs', () => cjsTask(TMP_PATH))
-  }
-
-  if (format === 'noumd') {
-    await runTask('EsModule', () => esmTask(TMP_PATH))
-    await runTask('CommonJs', () => cjsTask(TMP_PATH))
-  }
-
-  await runTask('Declaration', () => declarationTask(TMP_PATH))
-
-  fs.removeSync(TMP_PATH)
+  await runTask('Declaration', () => declarationTask(input))
 }

@@ -1,65 +1,43 @@
-import { readdirSync, pathExistsSync, outputJSONSync, readFileSync } from 'fs-extra'
-import { extname, dirname, basename, join } from 'path'
-import { isDir } from '../../shared/constant'
-import { compileDir } from './compiler-dir'
+import fs from 'fs-extra'
+import path from 'path'
+
 import parser from 'parse-imports'
 
-export const resolveExteranlStyle = async (path) => {
-  const REG = /import .+ from .+()/g
-  const IGNORE_DIR = ['utils', 'index.ts']
+const REG = /import .+ from .+()/g
 
-  const compoents = readdirSync(path).filter((_) => !IGNORE_DIR.includes(_))
+import { normalizePath } from '../../shared/constant'
 
-  const componentNames = compoents.map((_) => {
-    _ = _.replace(/\-(\w)/g, (_, k: string) => k.toUpperCase())
-    _ = _.charAt(0).toUpperCase() + _.slice(1)
-    return _
+export const analyzeDeps = async (code: string, filePath: string, parrent, components: string[]) => {
+  const sourcePath = normalizePath(parrent + '/' + filePath)
+  const modules = (code.match(REG) || []).join('\n')
+  const imports = [...(await parser(modules))]
+  const dirPath = path.dirname(sourcePath)
+  let depends = null
+  let dependName = null
+  imports.forEach((item) => {
+    if (item.importClause.default) {
+      const depend = item.importClause.default
+      if (components.includes(depend)) {
+        const depsPath = item.moduleSpecifier.value.slice(3)
+        const virtualPath = normalizePath(path.join(parrent, '/', depsPath, 'index.less'))
+        const depsStylePath = fs.pathExistsSync(virtualPath) ? `../../${depsPath}/index.css` : ''
+        depends = depsStylePath
+        dependName = depend
+      }
+    }
   })
 
-  const styleDeps = {}
+  const virtualPath = normalizePath(path.join(dirPath, 'index.less'))
+  const stylePath = fs.pathExistsSync(virtualPath) ? '../index.css' : ''
+  const componentName = path.dirname(filePath)
+  const jsonPath = normalizePath(path.join(dirPath, 'style.json'))
 
-  const setDeps = async (filePath: string) => {
-    if (!['.tsx'].includes(extname(filePath))) return
-    if (IGNORE_DIR.includes(dirname(filePath))) return
-    const dirPath = dirname(filePath)
-    const component = basename(dirPath)
-    const dirPathJson = join(dirPath, 'style.json')
-    let code = readFileSync(filePath, 'utf-8')
-    code = (code.match(REG) || []).join('\n')
-
-    const stylePath = join(dirPath, 'index.less')
-    const hasStyle = pathExistsSync(stylePath)
-    const defaultStyle = hasStyle ? '../index.css' : ''
-    styleDeps[component] = {
-      ...styleDeps[component],
-      [component]: defaultStyle
+  return {
+    jsonPath,
+    componentName,
+    deps: {
+      [componentName]: stylePath,
+      [dependName]: depends
     }
-
-    const imports = [...(await parser(code))]
-    imports.forEach((item) => {
-      if (item.importClause.default) {
-        const depend = item.importClause.default
-        if (componentNames.includes(depend)) {
-          const depsPath = item.moduleSpecifier.value.slice(3)
-          const depsStylePath = pathExistsSync(join(dirname(dirPath), depsPath, 'index.less'))
-            ? `../../${depsPath}/index.css`
-            : ''
-          if (depsStylePath) {
-            styleDeps[component] = {
-              [depend]: depsStylePath,
-              ...styleDeps[component]
-            }
-          }
-        }
-      }
-      outputJSONSync(dirPathJson, styleDeps[component])
-    })
   }
-
-  const analyzeDeps = (component) => {
-    const dir = join(path, component)
-    if (!isDir(dir)) return
-    compileDir(dir, setDeps)
-  }
-  await Promise.all(compoents.map((cop) => analyzeDeps(cop)))
 }

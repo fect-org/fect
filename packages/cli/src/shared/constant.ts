@@ -22,8 +22,6 @@ export const SCRIPTS_EXTENSIONS = ['.tsx', '.ts', '.jsx', '.js']
 
 export const VITE_RESOLVE_EXTENSIONS = [...SCRIPTS_EXTENSIONS, '.json', '.less', '.vue', '.css']
 
-export const NONRC_REG = /(.?)(non).+\.(js|ts)/g
-
 export const NON_DEFAULT_PATH = join(__dirname, '..', 'config', 'non.config.js')
 
 export const DECLARATION_PATH = join(__dirname, '..', '..', 'declaration.json')
@@ -34,11 +32,11 @@ export const TSCONFIG_PATH = join(TMP_PATH, 'tsconfig.json')
 
 export const USER_PACKAGES_JSON_PATH = join(CWD, 'package.json')
 
-export const IGNORE_DIR = ['utils', 'index.ts']
+export const IGNORE_DIR = ['utils', 'index.ts', 'tsconfig.json', 'jsconfig.json']
 
 export const IMPORT_REG = /import\s+?(?:(?:(?:[\w*\s{},]*)\s+from(\s+)?)|)(?:(?:".*?")|(?:'.*?'))[\s]*?(?:;|$|)/g
 
-export const normalizePath = (path) => path.replace(/\\/g, '/')
+export const normalizePath = (path: string) => path.replace(/\\/g, '/')
 
 export const isDir = (path) => lstatSync(path).isDirectory()
 

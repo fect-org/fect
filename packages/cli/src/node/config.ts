@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { CWD, normalizePath, NONRC_REG, NON_DEFAULT_PATH } from '../shared/constant'
+import { CWD, NON_DEFAULT_PATH } from '../shared/constant'
 import type { NonConfig } from '../config/non.config'
 import { build } from 'esbuild'
 import { merge } from 'lodash'
@@ -9,21 +9,22 @@ import { logErr } from '../shared/logger'
 
 export const defineNonConfig = (userConfig: NonConfig) => userConfig
 
-export const getUserNonrc = (dir: string): string | null => {
-  const nonList = fs
-    .readdirSync(dir)
-    .map((dir) => dir.match(NONRC_REG))
-    .filter((v) => v)
-    .flat()
-  if (!nonList.length) return null
-  return path.join(CWD, nonList[0])
-}
+export const loadConfigFromFile = async (root = CWD) => {
+  let resolvePath: string | undefined
 
-export const loadConfigFromFile = async (configfile: string) => {
-  let resolvePath: string
-  if (configfile) {
-    resolvePath = fs.existsSync(configfile) ? path.resolve(configfile) : NON_DEFAULT_PATH
+  const jsConfigFile = path.resolve(root, 'non.config.js')
+  if (fs.existsSync(jsConfigFile)) {
+    resolvePath = jsConfigFile
   }
+  if (!resolvePath) {
+    const tsConfigFile = path.resolve(root, 'non.config.ts')
+    if (fs.existsSync(tsConfigFile)) {
+      resolvePath = tsConfigFile
+    }
+  }
+
+  if (!resolvePath) resolvePath = NON_DEFAULT_PATH
+
   try {
     let userConfig: NonConfig | undefined
     const bundled = await bundleConfigFile(resolvePath)
@@ -40,14 +41,8 @@ export const loadConfigFromFile = async (configfile: string) => {
 }
 
 export const resolveConfig = async () => {
-  const resolveRoot: string = normalizePath(CWD)
-  /**
-   * getUserNonrc may return null . Mean user don't set config file
-   * so we should use default config file path.
-   */
-  const nonrc = getUserNonrc(resolveRoot) || NON_DEFAULT_PATH
-  const loadResult = await loadConfigFromFile(nonrc)
-  return loadResult && loadResult
+  const loadResult = await loadConfigFromFile()
+  return loadResult
 }
 
 export const bundleConfigFile = async (filePath: string, esm = false) => {
