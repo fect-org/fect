@@ -1,6 +1,14 @@
 <template>
   <div>
-    <fe-form :model="formValue" :rules="rules" ref="formRef" label-width="110" label-position="left">
+    <fe-form
+      :model="formValue"
+      show-message
+      :rules="rules"
+      ref="formRef"
+      label-width="110"
+      label-position="left"
+      size="mini"
+    >
       <fe-form-item label="Input" prop="input">
         <fe-input v-model="formValue.input" placeholder="input your nick name"></fe-input>
       </fe-form-item>
@@ -41,7 +49,6 @@ export default {
       checkGroup: [],
       frameWork: ''
     })
-
     const rules = {
       input: [
         {
@@ -59,18 +66,24 @@ export default {
       frameWork: {
         type: 'string',
         required: true,
-        validate: (val) => val === 'koa',
+        validate: (val) => {
+          return val === 'koa'
+        },
         message: 'Please choose a class',
         trigger: 'change'
       }
     }
-
-    const sumbitHandler = () => {
-      // console.log(formValue.value)
+    const sumbitHandler = async () => {
+      try {
+        const state = await formRef.value.validate()
+        console.log(state)
+      } catch (error) {
+        console.log(error)
+      }
     }
-
-    const resetHandler = () => {}
-
+    const resetHandler = () => {
+      //
+    }
     return {
       formValue,
       rules,

@@ -3,9 +3,9 @@
  * FormItem
  */
 
-import { labelPosition } from './type'
+import { labelPosition } from './interface'
 import { addUnit } from '../utils'
-import type { LabelPosition } from './type'
+import type { LabelPosition } from './interface'
 
 export const getLabelPostion = (position: LabelPosition | '') => {
   if (!position) return null
@@ -14,16 +14,3 @@ export const getLabelPostion = (position: LabelPosition | '') => {
 }
 
 export const getLabelWidth = (width: string | number): string => addUnit(width)
-
-export const getFormItemLayoutClass = (inline: boolean, labelPosition: LabelPosition, basisClass: string) => {
-  let classStr = ''
-  classStr += inline ? ` ${basisClass}--inline` : ''
-  classStr += ` ${basisClass}--${labelPosition}`
-  return classStr.trim()
-}
-
-export const getUnVerfiedClass = (display: boolean, basisClass: string) => {
-  let classStr = ''
-  classStr += !display ? ` ${basisClass}--hidden` : ''
-  return classStr.trim()
-}

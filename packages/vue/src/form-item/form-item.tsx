@@ -1,31 +1,54 @@
-import { defineComponent, ref, computed, reactive, toRefs } from 'vue'
-import { useProvider, createProvider } from '@fect-ui/vue-hooks'
-import { createName } from '../utils'
-import { getLabelPostion, getLabelWidth, getFormItemLayoutClass, getUnVerfiedClass } from '../form/style'
-import { READONLY_FORM_KEY, Trigger } from '../form/type'
-import { READONLY_FORM_ITEM_KEY } from './type'
+import { defineComponent, ref, computed, reactive, toRefs, onMounted } from 'vue'
+import { createName, createBem, isArray } from '../utils'
+import { getLabelPostion, getLabelWidth } from '../form/style'
+import { Trigger } from '../form/interface'
+import { useFormContext, createFormItemContext } from '../form/form-context'
 import { props } from './props'
-import type { FormProvide } from '../form/type'
 import type { CSSProperties } from 'vue'
 
 import './index.less'
 
 const name = createName('FormItem')
+const bem = createBem('fect-form')
 
 export default defineComponent({
   name,
   props,
   setup(props, { slots }) {
-    const { context } = useProvider<FormProvide>(READONLY_FORM_KEY)
-
-    const { provider } = createProvider(READONLY_FORM_ITEM_KEY)
-
+    const { context } = useFormContext()
     if (!context && process.env.NODE_ENV !== 'production') {
       console.error('[Fect] <FormItem /> must be a child component of <Form />')
       return
     }
+    const { provider } = createFormItemContext()
 
     const formItemRef = ref<HTMLDivElement>()
+
+    const getRequired = computed(() => {
+      const { required, prop } = props
+      const { apollo } = context!
+      if (!prop) return false
+      if (required) return true
+      const rules = apollo.get(prop)
+      if (!rules) return false
+      if (isArray(rules)) {
+        return rules.some((_) => _.required)
+      } else {
+        return Boolean(rules.required)
+      }
+    })
+
+    const getErrorLog = computed(() => {
+      const { prop } = props
+      const { apollo } = context!
+      if (!prop) return []
+      const rules = apollo.get(prop)
+      if (!rules) return []
+      if (isArray(rules)) {
+        return rules.reduce((acc, cur) => (acc = acc.concat(cur.message || '')), [] as string[])
+      }
+      return ([] as string[]).concat(rules.message || '')
+    })
 
     const setLabelStyle = computed(() => {
       const { formProps } = context!
@@ -38,39 +61,44 @@ export default defineComponent({
       return style
     })
 
-    const setClass = computed(() => {
+    const setFormItemClass = computed(() => {
       const { formProps } = context!
-      const labelPosition = props.labelPosition || formProps.labelPosition
-      const basisClass = 'fect-form-item'
-      return getFormItemLayoutClass(formProps.inline, labelPosition, basisClass)
+      const labelPosition = props.labelPosition || formItemProps.labelPosition
+      return bem('item', [{ inline: formProps.inline }, labelPosition])
     })
 
-    const formItemProps = reactive({ ...toRefs(props) })
-
-    // const setUnVerfiedClass = computed(() => {
-    //   const { formProps } = context!
-    //   const display = props.showMessage || formProps.showMessage
-    //   return getUnVerfiedClass(display, 'fect-form-item__error')
-    // })
+    const setUnVerfiedClass = computed(() => {
+      const { formProps } = context!
+      const display = props.showMessage || formProps.showMessage
+      return bem('error', { hidden: display })
+    })
 
     /**
      * user may pass native attrs  for . so  we should intercept the attr
      */
     const setLabelFor = computed(() => props.prop || props.for)
 
-    // ${setRequired.value ? 'is-required' : ''}
+    const setSize = computed(() => {
+      const { formProps } = context!
+      return formProps.size || props.size
+    })
+
+    const formItemProps = reactive({ ...toRefs(props), size: setSize.value })
+
+    provider({ formItemProps })
+
     return () => (
-      <div class={`fect-form-item ${setClass.value}`} ref={formItemRef}>
-        <label class={'fect-form-item__label '} for={setLabelFor.value} style={setLabelStyle.value}>
+      <div class={setFormItemClass.value} ref={formItemRef}>
+        <label
+          class={bem('label', { required: getRequired.value })}
+          for={setLabelFor.value}
+          style={setLabelStyle.value}
+        >
           {props.label}
         </label>
-        <div class="fect-form-item__content">
+        <div class={bem('content')}>
           {slots.default?.()}
-          {/* {false && (
-            <div class={`fect-form-item__error ${setUnVerfiedClass.value}`}>
-              Please choose the direction you are interested in
-            </div>
-          )} */}
+          <div class={setUnVerfiedClass.value}>{getErrorLog.value}</div>
         </div>
       </div>
     )

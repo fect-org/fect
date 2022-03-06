@@ -1,27 +1,21 @@
-.fect-form-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: calc(var(--fect-gap) * 1.25);
-
-  &--inline {
-    display: inline-flex;
+.fect-form {
+  &__item {
+    display: flex;
     align-items: center;
-    margin-right: var(--fect-gap-half);
-  }
-  &--top {
-    display: block;
-    // .fect-form-item__label {
-    //   padding: 0 0 var(--fect-gap-half) 0;
-    // }
-    .fect-form-item__content {
-      margin-top: var(--fect-gap-half);
+    margin-bottom: calc(var(--fect-gap) * 1.25);
+    &--inline {
+      display: inline-flex;
+      align-items: center;
+      margin-right: var(--fect-gap-half);
+    }
+    &--top {
+      display: block;
     }
   }
-
   &__label {
     box-sizing: border-box;
     padding: 0 var(--fect-gap-half) 0 0;
-    &.is-required {
+    &--required {
       &::before {
         content: '*';
         color: var(--error-default);

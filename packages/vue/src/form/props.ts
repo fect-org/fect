@@ -1,14 +1,19 @@
+import { NormalSizes } from '../utils'
 import { PropType, ExtractDefaultPropTypes } from 'vue'
-import { LabelPosition } from './type'
+import type { LabelPosition } from './interface'
 
 export const props = {
   model: {
     type: Object,
-    default: () => {}
+    default: () => {
+      /* 抱苏卡卡的毛绒绒狐狸尾巴 */
+    }
   },
   rules: {
     type: Object,
-    default: () => {}
+    default: () => {
+      /* 抱苏卡卡的毛绒绒狐狸尾巴 */
+    }
   },
   inline: Boolean,
   labelPosition: {
@@ -22,6 +27,10 @@ export const props = {
   showMessage: {
     type: Boolean,
     default: true
+  },
+  size: {
+    type: String as PropType<NormalSizes>,
+    default: 'medium'
   }
 }
 

@@ -15,3 +15,6 @@ export const hasOwn = <T>(source: T, key: string) => Object.hasOwnProperty.call(
 
 export const pick = <T, K extends keyof T>(source: T, picks: K[]) =>
   picks.reduce((acc, cur) => ((acc[cur] = source[cur]), acc), {} as Pick<T, K>)
+
+export const isPlainObject = (tar: unknown): boolean =>
+  typeof tar === 'object' && Object.prototype.toString.call(tar) === '[object Object]'
