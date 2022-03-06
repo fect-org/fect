@@ -33,7 +33,7 @@ const umdTask = async (input: string, name: string) => {
   await Promise.all([build(useUMDconfig(input, name, true)), build(useUMDconfig(input, name))])
 }
 
-const declarationTask = async (input) => {
+export const declarationTask = async (input) => {
   const declaration = await fs.readFile(DECLARATION_PATH)
   const resolvePath = path.join(input, 'tsconfig.json')
   fs.outputFileSync(resolvePath, declaration)

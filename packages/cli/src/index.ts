@@ -1,2 +1,6 @@
 export { defineNonConfig } from './node/config'
-export { compile } from './node/compile'
+export { compile, declarationTask } from './node/compile'
+export { transformScript } from './plugins/non-plugin-script'
+export { bundle } from './node/_compile'
+export { runTask } from './node/compile'
+export * from './shared/constant'

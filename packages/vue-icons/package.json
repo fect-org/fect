@@ -4,7 +4,7 @@
   "author": "XeryYue",
   "description": "Well prepared high quality Icon Library for fect",
   "scripts": {
-    "build": "ts-node index.ts && rm -rf svg && rm -rf packages"
+    "build": "ts-node index.ts"
   },
   "main": "lib/index.js",
   "module": "es/index.js",

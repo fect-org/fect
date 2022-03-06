@@ -1,7 +1,7 @@
 import fs from 'fs-extra'
 import path from 'path'
 import { installerTmepalte, installerImportTempalte } from './template'
-const packagePath = path.join(__dirname, '../packages')
+const packagePath = path.join(__dirname, '../src')
 const resolvePath = path.join(packagePath, './index.ts')
 
 export const collect = async () => {

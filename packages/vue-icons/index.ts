@@ -1,4 +1,4 @@
-import { build } from './src/bundler'
+import { build } from './scripts/bundler'
 
 //  iife ~
 ;(() => build())()
