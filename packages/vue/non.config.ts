@@ -3,7 +3,7 @@ import { defineNonConfig } from '@fect-ui/cli'
 
 export default defineNonConfig({
   lib: {
-    input: path.join(__dirname, 'components'),
+    input: path.join(__dirname, 'src'),
     format: ['cjs', 'es', 'umd'],
     name: 'fect'
   }

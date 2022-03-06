@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Code should be render as element 1`] = `<code><!----></code>`;
+
+exports[`Code should support props block 1`] = `<pre><code><!----></code></pre>`;

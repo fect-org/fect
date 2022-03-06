@@ -13,5 +13,5 @@
     "jsx": "preserve",
     "lib": ["esnext", "dom"]
   },
-  "include": ["src/**/*"]
+  "include": ["scripts/**/*"]
 }

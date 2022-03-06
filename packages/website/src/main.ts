@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import FectUI from '../../vue/components/index'
+import FectUI from '../../vue/src/index'
 import '@fect-ui/themes'
 import FectIcon from '@fect-ui/vue-icons'
 import { PageComponents } from './components/install'
