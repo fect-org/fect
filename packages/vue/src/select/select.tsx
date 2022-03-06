@@ -28,7 +28,7 @@ export default defineComponent({
 
     const [value, setValue] = useState<string | string[]>(props.modelValue || props.value)
     const [visible, setVisible] = useState<boolean>(false)
-    const [dropdownWidth, setDropdownWidth] = useState<string>('')
+    const [dropdownWidth, setDropdownWidth] = useState<number>(0)
     const [showClear, setShowClear] = useState<boolean>(false)
     const [multipleHeight, setMultipleHeight] = useState<string>('')
 
@@ -106,12 +106,22 @@ export default defineComponent({
       )
     }
 
-    onMounted(() => {
+    const setSelectAndDropWidth = () => {
       const rect = getDomRect(selectRef)
       const height = rect.height || rect.top - rect.bottom
       const width = rect.width || rect.right - rect.left
       selectWrapperHeight = height
-      setDropdownWidth(`${width}px`)
+      setDropdownWidth(width)
+    }
+
+    onMounted(setSelectAndDropWidth)
+
+    watch(visible, (pre) => {
+      if (pre) {
+        if (!dropdownWidth.value || !selectWrapperHeight) {
+          setSelectAndDropWidth()
+        }
+      }
     })
 
     const renderSelectWrapper = () => {
@@ -163,7 +173,7 @@ export default defineComponent({
 
     return () => {
       const _slots = {
-        content: () => <div style={{ width: dropdownWidth.value }}>{slots.default?.()}</div>,
+        content: () => <div style={{ width: `${dropdownWidth.value}px` }}>{slots.default?.()}</div>,
         default: () => renderSelectWrapper()
       }
 
