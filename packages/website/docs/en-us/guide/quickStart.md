@@ -34,7 +34,7 @@ $ yarn add babel-plugin-import -D
       'import',
      {
        libraryName: '@fect-ui/vue',
-        libraryDirectory: 'lib',
+        libraryDirectory: 'es',
         style: (name) => `${name}/style/index`,
       },
     ],
@@ -69,7 +69,7 @@ export default defineConfig({
         {
           libraryName: '@fect-ui/vue',
           esModule: true,
-          resolveStyle: (name) => `@fect-ui/vue/es/${name}/index.css`
+          resolveStyle: (name) => `@fect-ui/vue/es/${name}/style/index`
         }
       ]
     })
@@ -89,6 +89,7 @@ import { Tab, Tabs } from '@fect-ui/vue'
 import { createApp } from 'vue'
 import App from './App.vue'
 import Fect from '@fect-ui/vue'
+import '@fect-ui/themes'
 import '@fect-ui/vue/lib/main.css'
 
 createApp(App).use(Fect).mount('#app')
