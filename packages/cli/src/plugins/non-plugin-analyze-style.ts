@@ -5,34 +5,47 @@ interface AnalyzeStyleDeps {
   reg: string[]
 }
 
+const transformStyleDpes = (styles: Record<string, string>) => {
+  const { BABEL_ENV } = process.env
+  return Object.keys(styles).reduce((acc, cur) => {
+    if (styles[cur]) {
+      if (BABEL_ENV === 'commonjs') {
+        acc += `require("${styles[cur]}");\n`
+      } else {
+        acc += `import "${styles[cur]}";\n`
+      }
+    }
+    return acc
+  }, '')
+}
+
 export const analyzeStyleDeps = (config: AnalyzeStyleDeps) => {
   const { reg } = config
-  const styles = {}
-  const jsonPaths = {}
   return {
     name: 'non-plugin-analyze-style',
-    async transform(stdin: string, id: string, parrent: string) {
-      if (!id.endsWith('.tsx')) return
-      const { jsonPath, deps, componentName } = await analyzeDeps(stdin, id, parrent, reg)
-      if (styles[componentName]) {
-        Object.assign(styles[componentName], deps)
-      } else {
-        styles[componentName] = deps
-      }
-      jsonPaths[jsonPath] = componentName
-      const parentkey = path.dirname(id)
-      let jsonKey = ''
-      for (const key in jsonPaths) {
-        if (jsonPaths[key] === parentkey) {
-          jsonKey = key
-          break
-        }
-      }
-
-      return {
-        id: path.relative(parrent, jsonKey),
-        stdout: JSON.stringify(styles[parentkey]),
-        extra: jsonKey
+    async buildStart(files: Map<string, any>, parrent: string) {
+      const styles = Object.create(null)
+      const promises = []
+      files.forEach((item, key) => {
+        if (!key.endsWith('.tsx')) return
+        const { content, path: relativePath } = item
+        const contentStr = content.toString()
+        promises.push(
+          analyzeDeps(contentStr, relativePath, parrent, reg).then((res) => {
+            const { jsonPath, deps } = res
+            if (styles[jsonPath]) {
+              styles[jsonPath] = Object.assign(styles[jsonPath], deps)
+            } else {
+              styles[jsonPath] = deps
+            }
+          })
+        )
+      })
+      await Promise.all(promises)
+      for (const key in styles) {
+        const styleStr = transformStyleDpes(styles[key])
+        const output = path.join(path.dirname(key), 'style', 'index.js')
+        files.set(key, { content: Buffer.from(styleStr), path: path.relative(parrent, output) })
       }
     }
   }

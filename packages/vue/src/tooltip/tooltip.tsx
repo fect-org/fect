@@ -3,7 +3,7 @@ import { useClickAway, useState } from '@fect-ui/vue-hooks'
 import { createPopper, Instance as PopperInstance } from '@popperjs/core'
 
 import { createName, useExpose, createBem, kebabCase } from '../utils'
-import { Teleport } from '../teleport'
+import Teleport from '../teleport'
 import { props } from './props'
 import type { ComponentInstance } from '../utils'
 import type { PopperPlacement } from './interface'
