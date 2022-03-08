@@ -3,7 +3,7 @@ import { createProvider } from '@fect-ui/vue-hooks'
 import { createName, CustomCSSProperties, assign, createBem } from '../utils'
 import { props } from './props'
 import { READONLY_GRID_GROUP_KEY } from './type'
-import { Grid } from '../grid'
+import Grid from '../grid'
 import { getDynamicStyle, getBasisStyle, getUnitGapStyle, getDynamicLayoutClasses } from './style'
 
 import './index.less'
