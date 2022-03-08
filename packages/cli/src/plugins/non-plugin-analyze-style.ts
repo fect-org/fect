@@ -25,21 +25,23 @@ export const analyzeStyleDeps = (config: AnalyzeStyleDeps) => {
     name: 'non-plugin-analyze-style',
     async buildStart(files: Map<string, any>, parrent: string) {
       const styles = Object.create(null)
-      const p = new Promise((resolve) => {
-        files.forEach(async (item, key) => {
-          if (!key.endsWith('.tsx')) return
-          const { content, path: relativePath } = item
-          const contentStr = content.toString()
-          const { jsonPath, deps } = await analyzeDeps(contentStr, relativePath, parrent, reg)
-          if (styles[jsonPath]) {
-            styles[jsonPath] = Object.assign(styles[jsonPath], deps)
-          } else {
-            styles[jsonPath] = deps
-          }
-          resolve('')
-        })
+      const promises = []
+      files.forEach((item, key) => {
+        if (!key.endsWith('.tsx')) return
+        const { content, path: relativePath } = item
+        const contentStr = content.toString()
+        promises.push(
+          analyzeDeps(contentStr, relativePath, parrent, reg).then((res) => {
+            const { jsonPath, deps } = res
+            if (styles[jsonPath]) {
+              styles[jsonPath] = Object.assign(styles[jsonPath], deps)
+            } else {
+              styles[jsonPath] = deps
+            }
+          })
+        )
       })
-      await p
+      await Promise.all(promises)
       for (const key in styles) {
         const styleStr = transformStyleDpes(styles[key])
         const output = path.join(path.dirname(key), 'style', 'index.js')
