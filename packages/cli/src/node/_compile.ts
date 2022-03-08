@@ -46,6 +46,7 @@ export class Bundle extends EventEmitter {
         }
       })
     )
+    await this.plugins.hookParallel('buildStart', [this.files, this.parrents])
     await Promise.all(
       allStats.map(async (stats) => {
         if (!this.files.has(stats.path)) return
@@ -76,7 +77,7 @@ export class Bundle extends EventEmitter {
       await fs.remove(destPath)
     }
 
-    await this.plugins.hookParallel('buildEnd', [this.files])
+    await this.plugins.hookParallel('buildEnd', [this.files, this.parrents])
     await this.writeFileTree(destPath)
   }
   async writeFileTree(destPath: string) {

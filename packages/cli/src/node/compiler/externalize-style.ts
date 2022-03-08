@@ -12,17 +12,17 @@ export const analyzeDeps = async (code: string, filePath: string, parrent, compo
   const modules = (code.match(REG) || []).join('\n')
   const imports = [...(await parser(modules))]
   const dirPath = path.dirname(sourcePath)
-  let depends = null
-  let dependName = null
-  imports.forEach((item) => {
+  const depends = []
+  const dependName = []
+  imports.map((item) => {
     if (item.importClause.default) {
       const depend = item.importClause.default
       if (components.includes(depend)) {
         const depsPath = item.moduleSpecifier.value.slice(3)
         const virtualPath = normalizePath(path.join(parrent, '/', depsPath, 'index.less'))
         const depsStylePath = fs.pathExistsSync(virtualPath) ? `../../${depsPath}/index.css` : ''
-        depends = depsStylePath
-        dependName = depend
+        depends.push(depsStylePath)
+        dependName.push(depend)
       }
     }
   })
@@ -32,12 +32,23 @@ export const analyzeDeps = async (code: string, filePath: string, parrent, compo
   const componentName = path.dirname(filePath)
   const jsonPath = normalizePath(path.join(dirPath, 'style.json'))
 
+  const deps = {
+    [componentName]: stylePath
+  }
+  if (dependName.length && depends.length) {
+    dependName.forEach((dep, idx) => {
+      Object.assign(deps, {
+        ...deps,
+        [dep]: depends[idx]
+      })
+    })
+  }
+  // if (dependName && depends) {
+  //   // deps[dependName] = depends
+  // }
+
   return {
     jsonPath,
-    componentName,
-    deps: {
-      [componentName]: stylePath,
-      [dependName]: depends
-    }
+    deps
   }
 }
