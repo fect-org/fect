@@ -14,7 +14,6 @@ import { bundle } from './_compile'
 import { transformScript } from '../plugins/non-plugin-script'
 import { transformCss } from '../plugins/non-plugin-css'
 import { analyzeStyleDeps } from '../plugins/non-plugin-analyze-style'
-import { cleanUnsed } from '../plugins/non-plugin-clean-unserd'
 
 export const runTask = async (taskName, task) => {
   const spinner = ora(`Build ${taskName} Outputs`).start()
@@ -44,7 +43,7 @@ export const declarationTask = async (input) => {
 const cjsTask = async (input, reg) => {
   const cjs = await bundle({
     input,
-    plugins: [transformScript({ babelEnv: 'commonjs' }), transformCss(), analyzeStyleDeps({ reg }), cleanUnsed()]
+    plugins: [transformScript({ babelEnv: 'commonjs' }), transformCss(), analyzeStyleDeps({ reg })]
   })
   await cjs.write({ dir: CJS_PATH })
 }
@@ -52,7 +51,7 @@ const cjsTask = async (input, reg) => {
 const esmTask = async (input, reg) => {
   const cjs = await bundle({
     input,
-    plugins: [transformScript({ babelEnv: 'esmodule' }), transformCss(), analyzeStyleDeps({ reg }), cleanUnsed()]
+    plugins: [transformScript({ babelEnv: 'esmodule' }), transformCss(), analyzeStyleDeps({ reg })]
   })
   await cjs.write({ dir: ESM_PATH })
 }
