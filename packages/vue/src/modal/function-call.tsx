@@ -37,7 +37,7 @@ const Modal = (options: StaticModalOptions) => {
 
         return () => (
           <FeModal
-            {...pick(modalProps.value, ['title', 'width', 'done', 'cancel', 'disableOverlayClick'])}
+            {...pick(modalProps.value, ['title', 'width', 'done', 'cancel', 'disableOverlayClick', 'keyboard'])}
             visible={visible.value}
             onCancel={cancelHandler}
             onConfirm={confirmHandler}
