@@ -1,12 +1,18 @@
 import { assign, hasOwn } from '../format/object'
 
-export const pickContextProps = (darft: Record<string, any>, parent?: Record<string, any> | null) => {
-  if (parent) {
-    const source = parent.props || parent
-    return Object.keys(source).reduce((acc, cur) => {
-      if (!hasOwn(darft, cur)) return acc
-      return assign(acc, { [cur]: source[cur] })
-    }, {})
-  }
-  return darft
+export const pickContextProps = <T extends Record<string, any>, K extends Record<string, any> | null>(
+  draft: T,
+  parent: K,
+  invert = false
+): T => {
+  if (!parent) return draft
+  const source = parent.props || parent
+  const slice = Object.keys(source)
+  const len = slice.length
+  if (!len) return draft
+  return slice.reduce((acc, cur) => {
+    if (!hasOwn(draft, cur)) return acc
+    const nil = !source[cur] || invert
+    return assign(acc, { [cur]: nil ? draft[cur] : source[cur] })
+  }, {} as Pick<T, any>)
 }

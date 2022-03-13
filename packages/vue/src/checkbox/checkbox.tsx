@@ -20,8 +20,9 @@ export default defineComponent({
     const { context } = useCheckboxContext()
 
     const selfDisabled = computed(() => {
-      if (context) return context.props.disabled
-      return props.disabled
+      const { disabled } = props
+      const { disabled: state } = pickContextProps({ disabled }, context)
+      return state
     })
 
     const setChekcboxClass = computed(() => {
