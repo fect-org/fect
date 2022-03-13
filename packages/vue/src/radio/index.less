@@ -25,9 +25,11 @@
     right: -1000px;
     position: fixed;
   }
-  label {
+  > label {
     cursor: pointer;
-    &.disabled {
+  }
+  &--disabled {
+    > label {
       color: var(--accents-5);
       cursor: not-allowed;
     }

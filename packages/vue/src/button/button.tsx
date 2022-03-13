@@ -40,14 +40,8 @@ export default defineComponent({
     }
 
     const setButtonClasses = computed(() => {
-      const { ghost, disabled, shadow, loading, type } = props
-      const behavior = pickContextProps(
-        {
-          auto: props.auto,
-          size: props.size
-        },
-        context
-      )
+      const { ghost, disabled, shadow, loading, type, auto, size } = props
+      const behavior = pickContextProps({ auto, size }, context)
 
       return bem(null, [type, { ghost, disabled, shadow, loading, ...behavior }])
     })

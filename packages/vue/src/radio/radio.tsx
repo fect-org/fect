@@ -1,6 +1,6 @@
 import { defineComponent, computed, watch, watchEffect } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, createBem } from '../utils'
+import { createName, createBem, pickContextProps } from '../utils'
 import { radioProps } from '../radio-group/props'
 import { useRadioContext } from '../radio-group/radio-context'
 import type { RadioEvent } from '../radio-group/interface'
@@ -18,26 +18,20 @@ export default defineComponent({
 
     const { context } = useRadioContext()
 
-    const selfSize = computed(() => {
-      if (context) return context.props.size
-      return props.size
-    })
-
-    const selfValue = computed(() => {
-      if (context) return context.props.modelValue
-      return props.value
-    })
-
     const selfDisabled = computed(() => {
-      if (context) return context.props.disabled
-      return props.disabled
+      const { disabled } = props
+      const { disabled: state } = pickContextProps({ disabled }, context)
+      return state
     })
 
-    watchEffect(() => context && setSelfChecked(context.parentValue.value === props.value))
+    const setCurrentState = () => {
+      if (!context) return
+      const parent = context.parentValue.value
+      const checked = parent === props.value
+      setSelfChecked(checked)
+    }
 
-    /**
-     * Extract logic and put it into the group for processing
-     */
+    watchEffect(setCurrentState)
 
     const changeHandler = (e: Event) => {
       if (selfDisabled.value) return
@@ -52,7 +46,7 @@ export default defineComponent({
         context.updateRadioGroupValue(props.value!)
         return
       }
-      setSelfChecked(!selfChecked.value)
+      setSelfChecked((pre) => !pre)
       emit('change', {
         ...radioEvent,
         target: { checked: selfChecked.value }
@@ -61,12 +55,17 @@ export default defineComponent({
 
     watch(selfChecked, (cur) => emit('update:checked', cur))
 
+    const setRadioClass = computed(() => {
+      const { size, disabled } = props
+      const behavoir = pickContextProps({ size, disabled }, context)
+      return bem(null, behavoir)
+    })
+
     return () => (
-      <div class={`fect-radio ${bem(null, selfSize.value)}`}>
-        <label class={`${selfDisabled.value ? 'disabled' : ''}`}>
+      <div class={setRadioClass.value}>
+        <label>
           <input
             type="radio"
-            value={selfValue.value}
             checked={selfChecked.value}
             onChange={changeHandler}
             disabled={selfDisabled.value}
