@@ -4,13 +4,15 @@ exports[`Drawer should be support normal props 1`] = `
 <div class="container">
   <!--teleport start-->
   <!--teleport end-->
-  <transition-stub>
-    <div class="fect-teleport__overlay"></div>
-  </transition-stub>
-  <transition-stub>
-    <div class="fect-drawer__root" role="popup" style="--drawer-transfrom: translate3d(100%, 0, 0);">
-      <div class="fect-drawer__wrapper fect-drawer__wrapper--right fect-drawer__wrapper--round" role="dialog"><span> Test </span></div>
-    </div>
-  </transition-stub>
+  <div class="fect-teleport">
+    <transition-stub>
+      <div class="fect-teleport__overlay"></div>
+    </transition-stub>
+    <transition-stub>
+      <div class="fect-drawer__root" role="popup" style="--drawer-transfrom: translate3d(100%, 0, 0);">
+        <div class="fect-drawer__wrapper fect-drawer__wrapper--right fect-drawer__wrapper--round" role="dialog"><span> Test </span></div>
+      </div>
+    </transition-stub>
+  </div>
 </div>
 `;

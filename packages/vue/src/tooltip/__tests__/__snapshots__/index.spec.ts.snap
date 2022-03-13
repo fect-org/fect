@@ -5,12 +5,14 @@ exports[`Tooltip component props should work correctly 1`] = `
   <div class="fect-tooltip"> Test dom </div>
   <!--teleport start-->
   <!--teleport end-->
-  <!---->
-  <transition-stub>
-    <div class="fect-tooltip__content fect-tooltip__content--default" role="popup" style="display: none;"><span class="fect-tooltip__arrow fect-tooltip__arrow--default"></span>
-      <div class="fect-tooltip__inner">test infomation</div>
-    </div>
-  </transition-stub>
+  <div class="fect-teleport">
+    <!---->
+    <transition-stub>
+      <div class="fect-tooltip__content fect-tooltip__content--default" role="popup" style="display: none;"><span class="fect-tooltip__arrow fect-tooltip__arrow--default"></span>
+        <div class="fect-tooltip__inner">test infomation</div>
+      </div>
+    </transition-stub>
+  </div>
 </div>
 `;
 
@@ -19,12 +21,14 @@ exports[`Tooltip component props should work correctly 2`] = `
   <div class="fect-tooltip"> Test dom </div>
   <!--teleport start-->
   <!--teleport end-->
-  <!---->
-  <transition-stub>
-    <div class="fect-tooltip__content fect-tooltip__content--default" role="popup" style="display: none;"><span class="fect-tooltip__arrow fect-tooltip__arrow--default"></span>
-      <div class="fect-tooltip__inner">test infomation</div>
-    </div>
-  </transition-stub>
+  <div class="fect-teleport">
+    <!---->
+    <transition-stub>
+      <div class="fect-tooltip__content fect-tooltip__content--default" role="popup" style="display: none;"><span class="fect-tooltip__arrow fect-tooltip__arrow--default"></span>
+        <div class="fect-tooltip__inner">test infomation</div>
+      </div>
+    </transition-stub>
+  </div>
 </div>
 `;
 
@@ -41,12 +45,14 @@ exports[`Tooltip should be support click or mouse event 1`] = `
   <div class="fect-tooltip"> Test dom </div>
   <!--teleport start-->
   <!--teleport end-->
-  <!---->
-  <transition-stub>
-    <div class="fect-tooltip__content fect-tooltip__content--default" role="popup" style="display: none;"><span class="fect-tooltip__arrow fect-tooltip__arrow--default"></span>
-      <div class="fect-tooltip__inner">test infomation</div>
-    </div>
-  </transition-stub>
+  <div class="fect-teleport">
+    <!---->
+    <transition-stub>
+      <div class="fect-tooltip__content fect-tooltip__content--default" role="popup" style="display: none;"><span class="fect-tooltip__arrow fect-tooltip__arrow--default"></span>
+        <div class="fect-tooltip__inner">test infomation</div>
+      </div>
+    </transition-stub>
+  </div>
 </div>
 `;
 
@@ -55,11 +61,13 @@ exports[`Tooltip should be support click or mouse event 2`] = `
   <div class="fect-tooltip"> Test dom </div>
   <!--teleport start-->
   <!--teleport end-->
-  <transition-stub>
-    <div class="fect-tooltip__content fect-tooltip__content--default" role="popup" style="display: none; position: absolute; left: 0px; top: -12px; margin: 0px;" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top"><span class="fect-tooltip__arrow fect-tooltip__arrow--default"></span>
-      <div class="fect-tooltip__inner">test infomation</div>
-    </div>
-  </transition-stub>
-  <!---->
+  <div class="fect-teleport">
+    <!---->
+    <transition-stub>
+      <div class="fect-tooltip__content fect-tooltip__content--default" role="popup" style="display: none; position: absolute; left: 0px; top: -12px; margin: 0px;" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top"><span class="fect-tooltip__arrow fect-tooltip__arrow--default"></span>
+        <div class="fect-tooltip__inner">test infomation</div>
+      </div>
+    </transition-stub>
+  </div>
 </div>
 `;

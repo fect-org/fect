@@ -1,6 +1,6 @@
 import { watch, computed, defineComponent, ref } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, CustomCSSProperties, ComponentInstance, createBem } from '../utils'
+import { createName, CustomCSSProperties, ComponentInstance, createBem, KeyCode, useKeyboard } from '../utils'
 import { props } from './props'
 import Teleport from '../teleport'
 import DrawerWrapper from './drawer-wrapper'
@@ -17,6 +17,7 @@ export default defineComponent({
   emits: ['update:modelValue'],
   setup(props, { slots, emit, attrs }) {
     const drawerRef = ref<ComponentInstance>()
+    const teleportRef = ref<ComponentInstance>()
 
     const [visible, setVisible] = useState<boolean>(props.modelValue)
 
@@ -42,6 +43,11 @@ export default defineComponent({
       setVisible(false)
     }
 
+    useKeyboard(() => setVisible(false), KeyCode.Escape, {
+      target: teleportRef.value?.popupRef as HTMLDivElement,
+      event: 'keydown'
+    })
+
     return () => (
       <Teleport
         teleport={props.teleport}
@@ -50,6 +56,7 @@ export default defineComponent({
         show={visible.value}
         popupClass={bem('root')}
         transition="drawer-fade"
+        ref={teleportRef}
         onPopupClick={poupClickHandler}
         style={setDrawerStyle.value}
       >

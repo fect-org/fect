@@ -4,28 +4,32 @@ exports[`Modal should be render as a element 1`] = `
 <div class="container"><button id="btn">Button</button>
   <!--teleport start-->
   <!--teleport end-->
-  <transition-stub>
-    <div class="fect-teleport__overlay" style="display: none;"></div>
-  </transition-stub>
-  <transition-stub>
-    <div class="fect-modal__root" role="popup" style="display: none;">
-      <div role="dialog" tabindex="-1" class="fect-modal__wrapper" style="width: 500px;">
-        <div class="fect-modal__title">
-          <h2 class="title">Test Modal</h2>
+  <div class="fect-teleport">
+    <transition-stub>
+      <div class="fect-teleport__overlay" style="display: none;"></div>
+    </transition-stub>
+    <transition-stub>
+      <div class="fect-modal" role="popup" style="display: none;">
+        <div class="fect-modal__root">
+          <div role="dialog" tabindex="-1" class="fect-modal__wrapper" style="width: 500px;">
+            <div class="fect-modal__title">
+              <h2 class="title">Test Modal</h2>
+            </div>
+            <div class="fect-modal__content">
+              <!---->
+            </div>
+            <footer class="fect-modal__action"><button class="fect-button fect-button--default fect-button--medium fect-modal__button" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
+                <!---->
+                <!---->Cancel
+              </button><button class="fect-button fect-button--default fect-button--medium fect-modal__button" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
+                <!---->
+                <!---->Done
+              </button></footer>
+          </div>
         </div>
-        <div class="fect-modal__content">
-          <!---->
-        </div>
-        <footer class="fect-modal__action"><button class="fect-button fect-button--default fect-button--medium fect-modal__button" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
-            <!---->
-            <!---->Cancel
-          </button><button class="fect-button fect-button--default fect-button--medium fect-modal__button" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
-            <!---->
-            <!---->Done
-          </button></footer>
       </div>
-    </div>
-  </transition-stub>
+    </transition-stub>
+  </div>
 </div>
 `;
 
@@ -33,19 +37,23 @@ exports[`Modal should be support custom slots 1`] = `
 <div class="container">
   <!--teleport start-->
   <!--teleport end-->
-  <transition-stub>
-    <div class="fect-teleport__overlay" style="display: none;"></div>
-  </transition-stub>
-  <transition-stub>
-    <div class="fect-modal__root" role="popup" style="display: none;">
-      <div role="dialog" tabindex="-1" class="fect-modal__wrapper" style="width: 400px;">
-        <div class="fect-modal__title">Custom Title</div>
-        <div class="fect-modal__content">
-          <!---->
+  <div class="fect-teleport">
+    <transition-stub>
+      <div class="fect-teleport__overlay" style="display: none;"></div>
+    </transition-stub>
+    <transition-stub>
+      <div class="fect-modal" role="popup" style="display: none;">
+        <div class="fect-modal__root">
+          <div role="dialog" tabindex="-1" class="fect-modal__wrapper" style="width: 400px;">
+            <div class="fect-modal__title">Custom Title</div>
+            <div class="fect-modal__content">
+              <!---->
+            </div>
+            <h3>Custom Action</h3>
+          </div>
         </div>
-        <h3>Custom Action</h3>
       </div>
-    </div>
-  </transition-stub>
+    </transition-stub>
+  </div>
 </div>
 `;

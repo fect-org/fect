@@ -22,5 +22,9 @@ export const props = {
     type: String as PropType<keyof HTMLElementTagNameMap>,
     default: 'body'
   },
-  disableOverlayClick: Boolean
+  disableOverlayClick: Boolean,
+  keyboard: {
+    type: Boolean,
+    default: true
+  }
 }
