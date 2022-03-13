@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { defineComponent, watch } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import { createName, assign, createBem } from '../utils'
 import { radioGroupProps } from './props'
@@ -31,6 +31,13 @@ export default defineComponent({
       })
       emit('change', nextEvt)
     }
+
+    watch(
+      () => props.modelValue,
+      (pre) => {
+        if (pre) setParentValue(pre)
+      }
+    )
 
     provider({ props, parentValue, updateRadioGroupValue, updateRadioGroupChangeEvent })
     return () => <div class={bem('group', { useRow: props.useRow })}>{slots.default?.()}</div>
