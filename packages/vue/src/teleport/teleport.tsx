@@ -1,9 +1,11 @@
 import { Teleport, Transition, ref, defineComponent, onMounted, onBeforeMount, watch } from 'vue'
-import { createName, useExpose } from '../utils'
+import { createName, useExpose, createBem } from '../utils'
 import { props } from './props'
 import './index.less'
 
 const name = createName('Teleport')
+
+const bem = createBem('fect-teleport')
 
 export default defineComponent({
   name,
@@ -48,22 +50,22 @@ export default defineComponent({
     const clickHandler = (e: Event) => emit('popupClick', e)
 
     const renderOverlay = () => {
-      const { overlay } = props
+      const { overlay, show } = props
       if (overlay) {
         return (
           <Transition name="overlay-fade">
-            <div class="fect-teleport__overlay" v-show={props.show} />
+            <div class={bem('overlay')} v-show={show} />
           </Transition>
         )
       }
     }
 
     const renderTransition = () => {
-      const { transition, popupClass } = props
+      const { transition, popupClass, show } = props
 
       return (
         <Transition name={transition}>
-          <div v-show={props.show} class={popupClass} ref={popupRef} role="popup" onClick={clickHandler} {...attrs}>
+          <div v-show={show} class={popupClass} ref={popupRef} role="popup" onClick={clickHandler} {...attrs}>
             {slots.default?.()}
           </div>
         </Transition>
@@ -75,8 +77,10 @@ export default defineComponent({
     return () => (
       <>
         <Teleport to={props.teleport}>
-          {renderOverlay()}
-          {renderTransition()}
+          <div class={bem(null)}>
+            {renderOverlay()}
+            {renderTransition()}
+          </div>
         </Teleport>
       </>
     )
