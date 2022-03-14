@@ -15,7 +15,6 @@ export const useEventListener = (
 
   const remove = (el: Options['target']) => {
     const _el = unref(el)
-    console.log('removed', _el)
     _el && _el.removeEventListener(event, listener, rest)
   }
 
