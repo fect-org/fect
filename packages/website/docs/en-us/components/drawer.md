@@ -27,4 +27,3 @@ drawer/placement.vue
 | **placement**             | placement                        | `string`  | `'top','left','right','bottom'` | `right` |
 | **round**                 | display round                    | `boolean` | `'true','false'`                | `true`  |
 | **disable-overlay-click** | click background and don't close | `boolean` | `'true','false'`                | `false` |
-| **keyboard**              | press Esc to close drawer        | `boolean` | `'true','false'`                | `true`  |

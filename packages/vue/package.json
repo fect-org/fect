@@ -41,7 +41,7 @@
   ],
   "dependencies": {
     "@fect-ui/themes": "^2.2.0",
-    "@fect-ui/vue-hooks": "^1.1.0",
+    "@fect-ui/vue-hooks": "^1.1.1",
     "proy": "^0.0.3",
     "@popperjs/core": "^2.11.2"
   },

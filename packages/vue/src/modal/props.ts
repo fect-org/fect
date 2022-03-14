@@ -27,11 +27,7 @@ export const props = {
     type: Boolean,
     default: true
   },
-  disableOverlayClick: Boolean,
-  keyboard: {
-    type: Boolean,
-    default: true
-  }
+  disableOverlayClick: Boolean
 }
 
 export const staticModalProps = omit(props, ['teleport', 'overlay', 'visible'])

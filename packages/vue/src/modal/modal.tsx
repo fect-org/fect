@@ -1,6 +1,6 @@
 import { watch, defineComponent, ref } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, ComponentInstance, createBem, useKeyboard, KeyCode } from '../utils'
+import { createName, ComponentInstance, createBem } from '../utils'
 import ModalWrapper from './modal-wrapper'
 import { createModalContext } from './modal-context'
 import Teleport from '../teleport'
@@ -19,7 +19,6 @@ export default defineComponent({
   emits: ['update:visible', 'cancel', 'confirm'],
   setup(props, { attrs, slots, emit }) {
     const modalRef = ref<ComponentInstance>()
-    const teleportRef = ref<ComponentInstance>()
 
     const [selfVisible, setSelfVisible] = useState<boolean>(false)
 
@@ -46,11 +45,6 @@ export default defineComponent({
       closeModal('cancel')
     }
 
-    useKeyboard(() => closeModal('cancel'), KeyCode.Escape, {
-      target: teleportRef.value?.popupRef as HTMLDivElement,
-      event: 'keydown'
-    })
-
     return () => (
       <Teleport
         teleport={props.teleport}
@@ -58,7 +52,6 @@ export default defineComponent({
         scroll={selfVisible.value}
         popupClass={bem(null)}
         transition="modal-fade"
-        ref={teleportRef}
         show={selfVisible.value}
         onPopupClick={popupClickHandler}
       >

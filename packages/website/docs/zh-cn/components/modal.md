@@ -43,20 +43,18 @@ modal/function.vue
 | **done**                  | 确定按钮的文字           | `string`      | `-`              | `done`   |
 | **teleport**              | 指定对话框挂载的节点     | `HTMLElement` | `-`              | `body`   |
 | **disable-overlay-click** | 点击背景层时不关闭对话框 | `boolean`     | `'true','false'` | `false`  |
-| **keyboard**              | 按下 Esc 键关闭对话框    | `boolean`     | `'true','false'` | `true`   |
 
 ### Modal Options
 
-| 属性         | 描述                  | 类型       | 可选值           | 默认     |
-| ------------ | --------------------- | ---------- | ---------------- | -------- |
-| **title**    | 标题                  | `string`   | `-`              | `-`      |
-| **width**    | 对话框宽度            | `string`   | `-`              | `400px`  |
-| **cancel**   | 取消按钮的文字        | `string`   | `-`              | `cancel` |
-| **done**     | 确定按钮的文字        | `string`   | `-`              | `done`   |
-| **content**  | 模态框文本内容        | `string`   | `-`              | `-`      |
-| **close**    | 模态框的取消事件      | `()=>void` | `-`              | `-`      |
-| **confirm**  | 模态框的确认事件      | `()=>void` | `-`              | `-`      |
-| **keyboard** | 按下 Esc 键关闭对话框 | `boolean`  | `'true','false'` | `true`   |
+| 属性        | 描述             | 类型       | 可选值 | 默认     |
+| ----------- | ---------------- | ---------- | ------ | -------- |
+| **title**   | 标题             | `string`   | `-`    | `-`      |
+| **width**   | 对话框宽度       | `string`   | `-`    | `400px`  |
+| **cancel**  | 取消按钮的文字   | `string`   | `-`    | `cancel` |
+| **done**    | 确定按钮的文字   | `string`   | `-`    | `done`   |
+| **content** | 模态框文本内容   | `string`   | `-`    | `-`      |
+| **close**   | 模态框的取消事件 | `()=>void` | `-`    | `-`      |
+| **confirm** | 模态框的确认事件 | `()=>void` | `-`    | `-`      |
 
 ### Modal Events
 

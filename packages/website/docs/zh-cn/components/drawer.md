@@ -27,4 +27,3 @@ drawer/placement.vue
 | **placement**             | 弹出位置                 | `string`  | `'top','left','right','bottom'` | `right` |
 | **round**                 | 是否显示圆角             | `boolean` | `'true','false'`                | `true`  |
 | **disable-overlay-click** | 是否禁用点击遮罩层后关闭 | `boolean` | `'true','false'`                | `false` |
-| **keyboard**              | 按下 Esc 键关闭抽屉      | `boolean` | `'true','false'`                | `true`  |

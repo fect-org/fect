@@ -43,22 +43,20 @@ modal/function.vue
 | **done**                  | confrim button text              | `string`      | `-`              | `done`   |
 | **teleport**              | modal mounted node               | `HTMLElement` | `-`              | `body`   |
 | **disable-overlay-click** | click background and don't close | `boolean`     | `'true','false'` | `false`  |
-| **keyboard**              | press Esc to close modal         | `boolean`     | `'true','false'` | `true`   |
 
 ### Modal Options
 
 Only work with function call.
 
-| Attribue     | Description              | Type       | Accepted values  | Default  |
-| ------------ | ------------------------ | ---------- | ---------------- | -------- |
-| **title**    | modal title              | `string`   | `-`              | `-`      |
-| **width**    | modal width              | `string`   | `-`              | `400px`  |
-| **cancel**   | cancel button text       | `string`   | `-`              | `cancel` |
-| **done**     | confrim button text      | `string`   | `-`              | `done`   |
-| **content**  | modal text content       | `string`   | `-`              | `-`      |
-| **close**    | modal cancel event       | `()=>void` | `-`              | `-`      |
-| **confirm**  | modal confirm event      | `()=>void` | `-`              | `-`      |
-| **keyboard** | press Esc to close modal | `boolean`  | `'true','false'` | `true`   |
+| Attribue    | Description         | Type       | Accepted values | Default  |
+| ----------- | ------------------- | ---------- | --------------- | -------- |
+| **title**   | modal title         | `string`   | `-`             | `-`      |
+| **width**   | modal width         | `string`   | `-`             | `400px`  |
+| **cancel**  | cancel button text  | `string`   | `-`             | `cancel` |
+| **done**    | confrim button text | `string`   | `-`             | `done`   |
+| **content** | modal text content  | `string`   | `-`             | `-`      |
+| **close**   | modal cancel event  | `()=>void` | `-`             | `-`      |
+| **confirm** | modal confirm event | `()=>void` | `-`             | `-`      |
 
 ### Modal Events
 
