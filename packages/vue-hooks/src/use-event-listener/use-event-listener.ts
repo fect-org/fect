@@ -1,37 +1,38 @@
 import { onMounted, unref, onDeactivated, onBeforeUnmount, Ref, watch } from 'vue'
 
-import { useState } from '../use-state'
-
 export type EventTypes = keyof WindowEventMap
-
-export type ElementRef = EventTarget | Window | Document
 
 export type Options = {
   target?: EventTarget | Ref<EventTarget | undefined>
 } & AddEventListenerOptions
 
-export type Listener<E = Event> = {
-  (evt: E): void
-}
+export const useEventListener = (
+  event: EventTypes,
+  listener: EventListenerOrEventListenerObject,
+  options: Options = {}
+) => {
+  const { target = window, ...rest } = options
 
-export const useEventListener = (event: string, listener: EventListener, options: Options = {}) => {
-  const { target = window } = options
-  const [elSnapshot, setElSnapshot] = useState<ElementRef>()
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  let remove = () => {}
-  onMounted(() => {
-    const element = unref(target)
-    if (element) {
-      setElSnapshot(element)
+  const remove = (el: Options['target']) => {
+    const _el = unref(el)
+    console.log('removed', _el)
+    _el && _el.removeEventListener(event, listener, rest)
+  }
+
+  const add = (el: Options['target']) => {
+    const _el = unref(el)
+    _el && _el.addEventListener(event, listener, rest)
+  }
+
+  watch(
+    () => unref(target),
+    (el, prevEl) => {
+      remove(prevEl)
+      add(el)
     }
-  })
+  )
 
-  watch(elSnapshot, (el) => {
-    if (!el) return
-    el.addEventListener(event, listener, options)
-    remove = () => el.removeEventListener(event, listener, options)
-  })
-
-  onBeforeUnmount(remove)
-  onDeactivated(remove)
+  onMounted(() => add(target))
+  onDeactivated(() => remove(target))
+  onBeforeUnmount(() => remove(target))
 }
