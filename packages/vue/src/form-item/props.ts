@@ -21,7 +21,7 @@ export const props = {
   showMessage: Boolean,
   size: {
     type: String as PropType<NormalSizes>,
-    default: 'medium'
+    default: ''
   },
   disabled: Boolean
 }

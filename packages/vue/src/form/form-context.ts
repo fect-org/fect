@@ -15,8 +15,12 @@ export const createFormItemContext = () => createProvider(READONLY_FORM_ITEM_KEY
 
 export const useFormItemCotnext = () => useProvider<FormItemCotnext>(READONLY_FORM_ITEM_KEY)
 
-export const useFormStateContext = <T>(props: T): T => {
-  const { behavior } = inject<FormItemCotnext>(READONLY_FORM_ITEM_KEY)!
-  const state = pickContextProps(props, { ...behavior.value })
-  return state
+export const useFormStateContext = () => {
+  const parentState = inject<FormItemCotnext>(READONLY_FORM_ITEM_KEY)
+  if (!parentState) return
+  const { behavior } = parentState
+  return behavior
 }
+
+export const pickFormStateProps = <T, K, S>(props: T, parent: K, formState: S): T =>
+  pickContextProps(pickContextProps(props, parent), formState)
