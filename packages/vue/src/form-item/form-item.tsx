@@ -1,5 +1,5 @@
-import { defineComponent, ref, computed, reactive, toRefs, onMounted } from 'vue'
-import { createName, createBem, isArray } from '../utils'
+import { defineComponent, ref, computed, onMounted } from 'vue'
+import { createName, createBem, isArray, pickContextProps } from '../utils'
 import { getLabelPostion, getLabelWidth } from '../form/style'
 import { Trigger } from '../form/interface'
 import { useFormContext, createFormItemContext } from '../form/form-context'
@@ -51,25 +51,25 @@ export default defineComponent({
     })
 
     const setLabelStyle = computed(() => {
-      const { formProps } = context!
-      const style: CSSProperties = {}
-      const labelPosition = getLabelPostion(props.labelPosition || formProps.labelPosition)
-      if (!labelPosition) return style
-      const labelWidth = getLabelWidth(props.labelWidth || formProps.labelWidth)
-      style.width = labelWidth
-      style.textAlign = labelPosition
+      const { labelPosition, labelWidth } = props
+      const state = pickContextProps({ labelPosition, labelWidth }, context, true)
+      const style: CSSProperties = {
+        width: getLabelWidth(state.labelWidth),
+        textAlign: getLabelPostion(state.labelPosition)
+      }
       return style
     })
 
     const setFormItemClass = computed(() => {
-      const { formProps } = context!
-      const labelPosition = props.labelPosition || formItemProps.labelPosition
-      return bem('item', [{ inline: formProps.inline }, labelPosition])
+      const { labelPosition } = props
+      return bem('item', { inline: context!.props.inline, ...pickContextProps({ labelPosition }, context, true) })
     })
 
     const setUnVerfiedClass = computed(() => {
-      const { formProps } = context!
-      const display = props.showMessage || formProps.showMessage
+      // const { formProps } = context!
+      // const display = props.showMessage || formProps.showMessage
+      const { showMessage } = props
+      const { showMessage: display } = pickContextProps({ showMessage }, context, true)
       return bem('error', { hidden: display })
     })
 
@@ -78,14 +78,13 @@ export default defineComponent({
      */
     const setLabelFor = computed(() => props.prop || props.for)
 
-    const setSize = computed(() => {
-      const { formProps } = context!
-      return formProps.size || props.size
+    const getFormBehavior = computed(() => {
+      const { size, disabled } = props
+      const state = pickContextProps({ size, disabled }, context, true)
+      return state
     })
 
-    const formItemProps = reactive({ ...toRefs(props), size: setSize.value })
-
-    provider({ formItemProps })
+    provider({ behavior: getFormBehavior })
 
     return () => (
       <div class={setFormItemClass.value} ref={formItemRef}>

@@ -22,7 +22,8 @@ export const props = {
   size: {
     type: String as PropType<NormalSizes>,
     default: 'medium'
-  }
+  },
+  disabled: Boolean
 }
 
 export type FormItemProps = ExtractDefaultPropTypes<typeof props>

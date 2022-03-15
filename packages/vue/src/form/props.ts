@@ -1,19 +1,18 @@
 import { NormalSizes } from '../utils'
-import { PropType, ExtractDefaultPropTypes } from 'vue'
+import type { PropType } from 'vue'
 import type { LabelPosition } from './interface'
+
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const noop = () => {}
 
 export const props = {
   model: {
     type: Object,
-    default: () => {
-      /* 抱苏卡卡的毛绒绒狐狸尾巴 */
-    }
+    default: noop
   },
   rules: {
     type: Object,
-    default: () => {
-      /* 抱苏卡卡的毛绒绒狐狸尾巴 */
-    }
+    default: noop
   },
   inline: Boolean,
   labelPosition: {
@@ -31,7 +30,6 @@ export const props = {
   size: {
     type: String as PropType<NormalSizes>,
     default: 'medium'
-  }
+  },
+  disabled: Boolean
 }
-
-export type FormProps = ExtractDefaultPropTypes<typeof props>

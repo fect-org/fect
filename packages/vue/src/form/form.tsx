@@ -18,8 +18,6 @@ export default defineComponent({
 
     const apollo = new Apollo()
 
-    const formProps = reactive({ ...toRefs(props) })
-
     // validate function call
     const validate = (callback?: ValidateCallback) => {
       if (!isPlainObject(props.model)) {
@@ -63,7 +61,7 @@ export default defineComponent({
 
     useExpose({ validate, resetField })
 
-    provider({ formProps, apollo })
+    provider({ props, apollo })
     return () => <form class={bem(null, { inline: props.inline })}> {slots.default?.()}</form>
   }
 })

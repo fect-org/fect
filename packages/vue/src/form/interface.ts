@@ -1,6 +1,7 @@
 import { tuple } from '../utils'
+import { props } from './props'
 import type { RuleItem, CallbackErrors } from 'proy'
-import type { FormProps } from './props'
+import type { ComputedRef, ExtractDefaultPropTypes } from 'vue'
 import { Apollo } from './validate'
 import type { FormItemProps } from '../form-item/props'
 
@@ -10,13 +11,17 @@ export type LabelPosition = typeof labelPosition[number]
 
 export type Trigger = 'change' | 'blur'
 
+export type FormProps = ExtractDefaultPropTypes<typeof props>
+
 export interface FormContext {
   formProps: FormProps
   apollo: Apollo
+  props: FormProps
   // validate: (trigger: Trigger) => void
 }
 
 export interface FormItemCotnext {
+  behavior: ComputedRef<Pick<FormProps, 'disabled' | 'size'>>
   resetField: () => void
   clearValidate: () => void
   formItemProps: FormItemProps
