@@ -42,7 +42,7 @@ export default defineComponent({
       return (
         <span class={bem('item')}>
           {slots.default?.()}
-          <Separator>{context.separator}</Separator>
+          <Separator>{context.separator.value}</Separator>
         </span>
       )
     }
@@ -53,7 +53,7 @@ export default defineComponent({
           <Link to={props.to} href={props.href} class={bem('link')} {...attrs}>
             {slots.default?.()}
           </Link>
-          <Separator>{context.separator}</Separator>
+          <Separator>{context.separator.value}</Separator>
         </div>
       )
     }

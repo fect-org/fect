@@ -5,7 +5,7 @@ import { selectOptionProps, props } from './props'
 export interface SelectContext {
   updateSelectVisible: () => void
   parentValue: Ref<string | string[]>
-  size: string
+  size: Ref<string>
   updateDropDown: () => void
   updateSelectValue: (val: string | number) => void
 }

@@ -66,8 +66,6 @@ export default defineComponent({
       }
     })
 
-    watch(show, updateLocaltion)
-
     const preventHandler = (e: Event) => {
       e.stopPropagation()
       e.stopImmediatePropagation()
@@ -139,6 +137,7 @@ export default defineComponent({
     watch(show, (cur) => {
       emit('update:visible', cur)
       emit('change', cur)
+      updateLocaltion()
     })
 
     useExpose({

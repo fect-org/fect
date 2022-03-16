@@ -1,12 +1,16 @@
 import { Ref, unref } from 'vue'
-import { useEventListener } from '../use-event-listener'
+import { useEventListener, EventTypes } from '../use-event-listener'
 
 export interface useClickAwayOptions {
-  event?: string
+  event?: EventTypes
 }
 
 const defaultOptions: useClickAwayOptions = {
   event: 'click'
+}
+
+const isBrowser = (): boolean => {
+  return Boolean(typeof window !== 'undefined' && window.document && window.document.createElement)
 }
 
 const useClickAway = (
@@ -14,6 +18,8 @@ const useClickAway = (
   target: Element | Ref<Element | undefined>,
   options = defaultOptions
 ) => {
+  if (!isBrowser()) return
+
   const onClick = (evt: Event) => {
     const element = unref(target)
     if (element && !element.contains(evt.target as Node)) {
