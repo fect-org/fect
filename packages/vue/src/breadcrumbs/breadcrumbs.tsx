@@ -1,4 +1,4 @@
-import { PropType, defineComponent } from 'vue'
+import { PropType, defineComponent, toRef } from 'vue'
 import { createName, createBem } from '../utils'
 import type { NormalSizes } from '../utils'
 import './index.less'
@@ -21,7 +21,7 @@ export default defineComponent({
   },
   setup(props, { slots }) {
     const { provider } = createBreadcrumbsContext()
-    provider({ separator: props.separator })
+    provider({ separator: toRef(props, 'separator') })
 
     return () => <nav class={bem(null, props.size)}>{slots.default?.()}</nav>
   }

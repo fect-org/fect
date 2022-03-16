@@ -1,4 +1,4 @@
-import { PropType, defineComponent } from 'vue'
+import { PropType, defineComponent, toRef } from 'vue'
 import { createName, createBem, addUnit, isArray } from '../utils'
 import { createSkeletonContext } from './skeleton-context'
 import SkeletonItem from '../skeleton-item'
@@ -29,7 +29,7 @@ export default defineComponent({
   setup(props, { slots }) {
     const { provider } = createSkeletonContext()
 
-    provider({ animated: props.animated })
+    provider({ animated: toRef(props, 'animated') })
 
     const getRowWidth = (index: number) => {
       const { rowsWidth } = props

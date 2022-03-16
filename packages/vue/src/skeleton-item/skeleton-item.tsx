@@ -32,8 +32,7 @@ export default defineComponent({
     const setSkeletonItemClass = computed(() => {
       const { variable } = props
       const { animated } = context!
-
-      return bem('item', { variable, animated })
+      return bem('item', { variable, animated: animated.value })
     })
 
     return () => <div class={setSkeletonItemClass.value}>{props.variable === 'image' && <ImageSkeleton />}</div>
