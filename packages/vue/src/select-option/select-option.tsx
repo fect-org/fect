@@ -26,7 +26,7 @@ export default defineComponent({
     const setOptionClass = computed(() => {
       const parentVal = parentValue.value
       const checked = Array.isArray(parentVal) ? parentVal.includes(props.value as string) : parentVal === props.value
-      return bem(null, { disabled: props.disabled, size, checked })
+      return bem(null, { disabled: props.disabled, size: size.value, checked })
     })
 
     return () => (

@@ -1,4 +1,4 @@
-import { computed, ref, watch, defineComponent, nextTick, onMounted } from 'vue'
+import { computed, ref, watch, defineComponent, nextTick, onMounted, toRef } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import { createName, createBem, pick, getDomRect, CustomCSSProperties, ComponentInstance, assign } from '../utils'
 import Input from '../input'
@@ -70,7 +70,7 @@ export default defineComponent({
       setVisible(false)
     }
 
-    provider({ updateSelectVisible, updateSelectValue, updateDropDown, size: props.size, parentValue: value })
+    provider({ updateSelectVisible, updateSelectValue, updateDropDown, size: toRef(props, 'size'), parentValue: value })
 
     const multipleClearClickHandler = (val: string) => {
       updateSelectValue(val)
@@ -124,13 +124,18 @@ export default defineComponent({
       }
     })
 
+    watch(
+      () => props.size,
+      () => setDropdownWidth(0)
+    )
+
     const renderSelectWrapper = () => {
       const { multiple, clearable, disabled } = props
       const selectInputProps = pick(props, ['disabled', 'size', 'placeholder'])
       // eslint-disable-next-line prefer-destructuring
       const checkedValue = queryChecked.value.map((_) => _.label)[0]
       if (!multiple) {
-        assign(selectInputProps, { modelValue: checkedValue })
+        assign(selectInputProps, { value: checkedValue })
       }
 
       const showClearIcon = clearable && !disabled && checkedValue && showClear.value && !multiple
