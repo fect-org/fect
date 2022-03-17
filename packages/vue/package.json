@@ -8,7 +8,7 @@
   "jsdelivr": "lib/fect.min.umd.js",
   "scripts": {
     "collect": "non collect",
-    "build": "npm run collect && non compile && non volar",
+    "build": "npm run collect && non compile && non volar && node ./typing-template.js",
     "test": "non test"
   },
   "keywords": [
