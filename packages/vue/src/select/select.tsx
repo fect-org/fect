@@ -1,4 +1,4 @@
-import { computed, ref, watch, defineComponent, nextTick, onMounted, toRef } from 'vue'
+import { computed, ref, watch, defineComponent, nextTick, onMounted } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import { createName, createBem, pick, getDomRect, CustomCSSProperties, ComponentInstance, assign } from '../utils'
 import Input from '../input'
@@ -10,6 +10,7 @@ import ArrowIcon from './arrow-icon'
 import ClearIcon from './clear-icon'
 import SelectMultiple from './select-multiple'
 import { props } from './props'
+import { useFormStateContext, pickFormStateProps } from '../form/form-context'
 
 import './index.less'
 
@@ -21,6 +22,8 @@ export default defineComponent({
   props,
   emits: ['change', 'update:modelValue'],
   setup(props, { slots, emit }) {
+    const formState = useFormStateContext()
+
     const toolTipRef = ref<ComponentInstance>()
     const selectRef = ref<HTMLDivElement>()
     const gridRef = ref<ComponentInstance>()
@@ -33,6 +36,15 @@ export default defineComponent({
     const [multipleHeight, setMultipleHeight] = useState<string>('')
 
     let selectWrapperHeight: number
+
+    const getSelectState = computed(() => {
+      const { size, disabled } = pickFormStateProps(
+        { size: props.size, disabled: props.disabled },
+        null,
+        formState?.value
+      )
+      return { size, disabled }
+    })
 
     const updateDropDown = () => {
       nextTick(() => {
@@ -70,7 +82,13 @@ export default defineComponent({
       setVisible(false)
     }
 
-    provider({ updateSelectVisible, updateSelectValue, updateDropDown, size: toRef(props, 'size'), parentValue: value })
+    provider({
+      updateSelectVisible,
+      updateSelectValue,
+      updateDropDown,
+      selectState: getSelectState,
+      parentValue: value
+    })
 
     const multipleClearClickHandler = (val: string) => {
       updateSelectValue(val)
@@ -125,20 +143,18 @@ export default defineComponent({
     })
 
     watch(
-      () => props.size,
+      () => getSelectState.value.size,
       () => setDropdownWidth(0)
     )
 
     const renderSelectWrapper = () => {
-      const { multiple, clearable, disabled } = props
+      const { multiple, clearable } = props
       const selectInputProps = pick(props, ['disabled', 'size', 'placeholder'])
       // eslint-disable-next-line prefer-destructuring
       const checkedValue = queryChecked.value.map((_) => _.label)[0]
-      if (!multiple) {
-        assign(selectInputProps, { value: checkedValue })
-      }
+      if (!multiple) assign(selectInputProps, { value: checkedValue })
 
-      const showClearIcon = clearable && !disabled && checkedValue && showClear.value && !multiple
+      const showClearIcon = clearable && !getSelectState.value.disabled && checkedValue && showClear.value && !multiple
 
       const clearValueHandelr = (e: Event) => {
         if (showClearIcon) {
@@ -187,7 +203,7 @@ export default defineComponent({
         visible: visible.value,
         placement: 'bottom',
         trigger: 'click',
-        disabled: props.disabled,
+        disabled: getSelectState.value.disabled,
         visibleArrow: props.visibleArrow
       }
 
@@ -198,7 +214,7 @@ export default defineComponent({
       }
 
       return (
-        <div class={bem(null, { disabled: props.disabled, size: props.size })} style={setContentHeight()}>
+        <div class={bem(null, getSelectState.value)} style={setContentHeight()}>
           <Tooltip ref={toolTipRef} onChange={(cur) => setVisible(cur)} v-slots={_slots} {...tooltipProps} />
         </div>
       )

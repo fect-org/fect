@@ -1,9 +1,10 @@
 import { computed, watch, defineComponent, watchEffect } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import CheckIcon from './checkbox-icon'
-import { createName, createBem, pickContextProps } from '../utils'
+import { createName, createBem } from '../utils'
 import { useCheckboxContext } from '../checkbox-group/checkbox-context'
 import { checkboxProps } from '../checkbox-group/props'
+import { pickFormStateProps, useFormStateContext } from '../form/form-context'
 import type { CheckboxEvent } from '../checkbox-group/interface'
 
 import './index.less'
@@ -19,16 +20,15 @@ export default defineComponent({
     const [selfChecked, setSelfChecked] = useState<boolean>(props.modelValue)
     const { context } = useCheckboxContext()
 
-    const selfDisabled = computed(() => {
-      const { disabled } = props
-      const { disabled: state } = pickContextProps({ disabled }, context)
-      return state
-    })
+    const formState = useFormStateContext()
 
-    const setChekcboxClass = computed(() => {
-      const { size, disabled } = props
-      const behavior = pickContextProps({ size, disabled }, context)
-      return bem(null, behavior)
+    const getCheckboxState = computed(() => {
+      const { size, disabled } = pickFormStateProps(
+        { size: props.size, disabled: props.disabled },
+        context,
+        formState?.value
+      )
+      return { size, disabled }
     })
 
     /**
@@ -46,7 +46,7 @@ export default defineComponent({
     watchEffect(setCurrentState)
 
     const handleChange = (e: Event) => {
-      if (selfDisabled.value) return
+      if (getCheckboxState.value.disabled) return
       const checkboxEvent: CheckboxEvent = {
         target: {},
         stopPropagation: e.stopPropagation,
@@ -69,11 +69,11 @@ export default defineComponent({
     watch(selfChecked, (cur) => emit('update:modelValue', cur))
 
     return () => (
-      <label class={setChekcboxClass.value}>
-        <CheckIcon class={`${selfDisabled.value ? 'disabled' : ''}`} checked={selfChecked.value} />
+      <label class={bem(null, getCheckboxState.value)}>
+        <CheckIcon class={`${getCheckboxState.value.disabled ? 'disabled' : ''}`} checked={selfChecked.value} />
         <input
           type="checkbox"
-          disabled={selfDisabled.value}
+          disabled={getCheckboxState.value.disabled}
           checked={selfChecked.value}
           onChange={handleChange}
         ></input>

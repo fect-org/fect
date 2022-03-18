@@ -31,11 +31,8 @@ export default defineComponent({
       if (required) return true
       const rules = apollo.get(prop)
       if (!rules) return false
-      if (isArray(rules)) {
-        return rules.some((_) => _.required)
-      } else {
-        return Boolean(rules.required)
-      }
+      if (isArray(rules)) return rules.some((_) => _.required)
+      return Boolean(rules.required)
     })
 
     const getErrorLog = computed(() => {

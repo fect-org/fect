@@ -6,6 +6,7 @@ import ClearableIcon from './clearable-icon'
 import PasswordIcon from './password-icon'
 import InputIconContent from './input-icon-content'
 import InputLabel from './input-label'
+import { pickFormStateProps, useFormStateContext } from '../form/form-context'
 
 import './index.less'
 
@@ -23,6 +24,17 @@ export default defineComponent({
     const [hover, setHover] = useState<boolean>(false)
     const [selfType, setSelfType] = useState<string>(props.type)
     const [passwordVisible, setPasswordVisible] = useState<boolean>(false)
+
+    const formState = useFormStateContext()
+
+    const getInputState = computed(() => {
+      const { size, disabled } = pickFormStateProps(
+        { size: props.size, disabled: props.disabled },
+        null,
+        formState?.value
+      )
+      return { size, disabled }
+    })
 
     const updatelValue = (val: string | number) => {
       if (props.type === 'number') {
@@ -49,7 +61,7 @@ export default defineComponent({
     }
 
     const changeHandler = (e: Event) => {
-      if (props.disabled || props.readonly) return
+      if (getInputState.value.disabled || props.readonly) return
       emit('change', e)
     }
 
@@ -64,7 +76,7 @@ export default defineComponent({
       return setSelfType('password')
     }
 
-    const shouldClick = computed(() => !props.disabled || !props.readonly)
+    const shouldClick = computed(() => !getInputState.value.disabled || !props.readonly)
 
     const iconClickHandler = (event: 'prefix-icon-click' | 'suffix-icon-click', e: Event) => {
       emit(event, e)
@@ -74,7 +86,7 @@ export default defineComponent({
       const InputProps = {
         ref: inputRef,
         value: props.modelValue,
-        disabled: props.disabled,
+        disabled: getInputState.value.disabled,
         readOnly: props.readonly,
         placeholder: props.placeholder,
         autocomplete: props.autocomplete,
@@ -85,7 +97,7 @@ export default defineComponent({
         ...attrs
       }
 
-      const disabled = props.disabled ? 'disabled' : ''
+      const disabled = getInputState.value.disabled ? 'disabled' : ''
       const shouldClearIcon = props.clearable && Boolean(props.modelValue)
 
       return (
@@ -136,13 +148,12 @@ export default defineComponent({
         </>
       )
     }
-    // icon => prefix-icon , and add suffix-icon
 
     return () => {
       const hasSuffix = Boolean(props.suffix)
       const hasPrefix = Boolean(props.prefix)
       return (
-        <div class={bem(null, props.size)}>
+        <div class={bem(null, getInputState.value.size)}>
           {slots.default && <label>{slots.default()}</label>}
           <div class={bem('container')}>
             {hasPrefix && <InputLabel prefix>{props.prefix}</InputLabel>}
@@ -151,7 +162,7 @@ export default defineComponent({
                 hover: hover.value,
                 prefix: hasPrefix,
                 suffix: hasSuffix,
-                disabled: props.disabled
+                disabled: getInputState.value.disabled
               })}
             >
               {renderPrefixIcon()}

@@ -16,7 +16,7 @@ export const createFormItemContext = () => createProvider(READONLY_FORM_ITEM_KEY
 export const useFormItemCotnext = () => useProvider<FormItemCotnext>(READONLY_FORM_ITEM_KEY)
 
 export const useFormStateContext = () => {
-  const parentState = inject<FormItemCotnext>(READONLY_FORM_ITEM_KEY)
+  const parentState = inject<FormItemCotnext | null>(READONLY_FORM_ITEM_KEY, null)
   if (!parentState) return
   const { behavior } = parentState
   return behavior

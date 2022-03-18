@@ -1,11 +1,16 @@
-import type { ExtractPropTypes, Ref } from 'vue'
+import type { ExtractPropTypes, Ref, ComputedRef } from 'vue'
 import type { ComponentInstance } from '../utils'
 import { selectOptionProps, props } from './props'
+
+interface SelectState {
+  size: string
+  disabled: boolean
+}
 
 export interface SelectContext {
   updateSelectVisible: () => void
   parentValue: Ref<string | string[]>
-  size: Ref<string>
+  selectState: ComputedRef<SelectState>
   updateDropDown: () => void
   updateSelectValue: (val: string | number) => void
 }

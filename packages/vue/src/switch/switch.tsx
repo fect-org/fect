@@ -1,6 +1,7 @@
 import { computed, PropType, defineComponent, watchEffect } from 'vue'
-import { createName, UnknowProp, hasEmpty, createBem } from '../utils'
 import { useState } from '@fect-ui/vue-hooks'
+import { createName, UnknowProp, hasEmpty, createBem } from '../utils'
+import { useFormStateContext, pickFormStateProps } from '../form/form-context'
 import type { NormalSizes } from '../utils'
 import './index.less'
 
@@ -41,6 +42,18 @@ export default defineComponent({
   setup(props, { emit }) {
     const [value, setValue] = useState<any>(null)
 
+    const formState = useFormStateContext()
+
+    const getSwitchState = computed(() => {
+      const { size, disabled } = pickFormStateProps(
+        { size: props.size, disabled: props.disabled },
+        null,
+        formState?.value
+      )
+
+      return { size, disabled }
+    })
+
     const isChecked = () => value.value === props.checkedValue
 
     watchEffect(() => {
@@ -65,15 +78,14 @@ export default defineComponent({
     const switchHandler = (e: Event) => {
       e.preventDefault()
       e.stopPropagation()
-      const { disabled } = props
+      const { disabled } = getSwitchState.value
       if (disabled) return
       changeHandler(e)
     }
 
     const setSwitchClass = computed(() => {
-      const { size, disabled } = props
       const checked = isChecked()
-      return bem(null, { size, disabled, checked })
+      return bem(null, { ...getSwitchState.value, checked })
     })
 
     return () => (
@@ -82,11 +94,11 @@ export default defineComponent({
           class={bem('checkbox')}
           type="checkBox"
           checked={isChecked()}
-          disabled={props.disabled}
+          disabled={getSwitchState.value.disabled}
           onChange={changeHandler}
         />
         <div class={bem('slider')}>
-          <span class={bem('inner', { checked: isChecked(), disabled: props.disabled })}></span>
+          <span class={bem('inner', { checked: isChecked(), disabled: getSwitchState.value.disabled })}></span>
         </div>
       </label>
     )
