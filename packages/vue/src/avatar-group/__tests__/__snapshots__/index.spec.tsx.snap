@@ -2,10 +2,10 @@
 
 exports[`AvatarGroup avatar context props should be work 1`] = `
 <div class="fect-avatar__group">
-  <div class="fect-avatar fect-avatar--stacked fect-avatar--isSquare fect-avatar--mini ">
+  <div class="fect-avatar fect-avatar--stacked fect-avatar--mini fect-avatar--isSquare ">
     <!----><span class="fect-avatar__text">a</span>
   </div>
-  <div class="fect-avatar fect-avatar--stacked fect-avatar--isSquare fect-avatar--mini ">
+  <div class="fect-avatar fect-avatar--stacked fect-avatar--mini fect-avatar--isSquare ">
     <!----><span class="fect-avatar__text">b</span>
   </div><span class="fect-avatar__counter">+10</span>
 </div>

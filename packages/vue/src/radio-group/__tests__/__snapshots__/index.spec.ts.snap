@@ -3,8 +3,8 @@
 exports[`Radio should be support noraml props like size , disabled , useRow 1`] = `
 <div class="container">
   <div class="fect-radio__group fect-radio__group--useRow">
-    <div class="fect-radio fect-radio--disabled fect-radio--mini"><label><input type="radio" disabled=""><span class="fect-radio__name"><span class="fect-radio__point fect-radio__point--disabled"></span>Test</span></label></div>
-    <div class="fect-radio fect-radio--disabled fect-radio--mini"><label><input type="radio" disabled=""><span class="fect-radio__name"><span class="fect-radio__point fect-radio__point--disabled"></span>Test1</span></label></div>
+    <div class="fect-radio fect-radio--mini fect-radio--disabled"><label><input type="radio" disabled=""><span class="fect-radio__name"><span class="fect-radio__point fect-radio__point--disabled"></span>Test</span></label></div>
+    <div class="fect-radio fect-radio--mini fect-radio--disabled"><label><input type="radio" disabled=""><span class="fect-radio__name"><span class="fect-radio__point fect-radio__point--disabled"></span>Test1</span></label></div>
   </div>
 </div>
 `;
