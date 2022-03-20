@@ -7,7 +7,7 @@
       ref="formRef"
       label-width="110"
       label-position="left"
-      size="mini"
+      size="small"
     >
       <fe-form-item label="Input" prop="input">
         <fe-input v-model="formValue.input" placeholder="input your nick name"></fe-input>

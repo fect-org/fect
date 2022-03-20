@@ -1,8 +1,3 @@
-/**
- * Form
- * FormItem
- */
-
 import { labelPosition } from './interface'
 import { addUnit } from '../utils'
 import type { LabelPosition } from './interface'

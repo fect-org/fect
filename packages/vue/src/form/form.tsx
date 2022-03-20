@@ -5,7 +5,7 @@ import { createName, useExpose, createBem, isPlainObject } from '../utils'
 import { createFormContext } from './form-context'
 import type { PromisfyValidate, ValidateCallback } from './interface'
 import './index.less'
-import { Apollo } from './validate'
+import { Apollo } from './apollo'
 
 const name = createName('Form')
 const bem = createBem('fect-form')
@@ -47,17 +47,17 @@ export default defineComponent({
       // apollo.invalidFields = {}
     }
 
-    watch(
-      () => props.rules,
-      (pre) => {
-        Object.keys(pre).forEach((prop) => {
-          apollo.set(prop, pre[prop])
-        })
-      },
-      { immediate: true }
-    )
+    // watch(
+    //   () => props.rules,
+    //   (pre) => {
+    //     Object.keys(pre).forEach((prop) => {
+    //       apollo.set(prop, pre[prop])
+    //     })
+    //   },
+    //   { immediate: true }
+    // )
 
-    onBeforeUnmount(() => apollo.destory())
+    // onBeforeUnmount(() => apollo.destory())
 
     useExpose({ validate, resetField })
 

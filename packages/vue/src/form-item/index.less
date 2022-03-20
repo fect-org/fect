@@ -26,19 +26,23 @@
     align-items: center;
     &--mini {
       font-size: var(--form-item-mini-font-size);
-      margin-bottom: calc(var(--fect-gap-half) * var(--form-item-mini-ratio));
+      margin-bottom: calc(16px * var(--form-item-mini-ratio));
+      --form-item-font-size: var(--form-item-mini-font-size);
     }
     &--small {
       font-size: var(--form-item-small-font-size);
-      margin-bottom: calc(var(--fect-gap-half) * var(--form-item-small-ratio));
+      margin-bottom: calc(16px * var(--form-item-small-ratio));
+      --form-item-font-size: var(--form-item-small-font-size);
     }
     &--medium {
       font-size: var(--form-item-medium-font-size);
-      margin-bottom: calc(var(--fect-gap-half) * var(--form-item-medium-ratio));
+      margin-bottom: calc(16px * var(--form-item-medium-ratio));
+      --form-item-font-size: var(--form-item-medium-font-size);
     }
     &--large {
       font-size: var(--form-item-large-font-size);
-      margin-bottom: calc(var(--fect-gap-half) * var(--form-item-large-ratio));
+      margin-bottom: calc(16px * var(--form-item-large-ratio));
+      --form-item-font-size: var(--form-item-large-font-size);
     }
     &--inline {
       display: inline-flex;
@@ -71,9 +75,9 @@
   }
   &__error {
     color: var(--error-light);
-    font-size: 13px;
+    font-size: var(--form-item-font-size);
     line-height: 1;
-    padding-top: var(--fect-gap-quarter);
+    padding-top: 4px;
     position: absolute;
     top: 100%;
     left: 0;

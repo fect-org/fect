@@ -1,9 +1,7 @@
-import { NormalSizes } from '../utils'
+import { noop } from '../utils'
+import type { NormalSizes } from '../utils'
 import type { PropType } from 'vue'
 import type { LabelPosition } from './interface'
-
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const noop = () => {}
 
 export const props = {
   model: {

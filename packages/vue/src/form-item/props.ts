@@ -1,12 +1,17 @@
-import { PropType, ExtractDefaultPropTypes } from 'vue'
+import { noop } from '../utils'
+import type { PropType, ExtractDefaultPropTypes } from 'vue'
+import type { NormalSizes } from '../utils'
 import type { LabelPosition } from '../form/interface'
-import { NormalSizes } from '../utils'
 
 export const props = {
   prop: String,
   for: {
     type: String,
     default: ''
+  },
+  rules: {
+    type: Object,
+    default: noop
   },
   label: String,
   labelWidth: {

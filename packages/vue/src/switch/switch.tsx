@@ -48,7 +48,7 @@ export default defineComponent({
       const { size, disabled } = pickFormStateProps(
         { size: props.size, disabled: props.disabled },
         null,
-        formState?.value
+        formState?.behavior.value
       )
 
       return { size, disabled }

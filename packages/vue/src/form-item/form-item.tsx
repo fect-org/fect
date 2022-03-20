@@ -1,7 +1,7 @@
-import { defineComponent, ref, computed, onMounted } from 'vue'
-import { createName, createBem, isArray, pickContextProps, pick } from '../utils'
+import { defineComponent, ref, computed, onMounted, onBeforeMount } from 'vue'
+import { createName, createBem, isArray, pickContextProps, pick, hasOwn, len } from '../utils'
 import { getLabelPostion, getLabelWidth } from '../form/style'
-import { Trigger } from '../form/interface'
+import { FormRule, Trigger, ValidateCallback, PromisfyValidate } from '../form/interface'
 import { useFormContext, createFormItemContext } from '../form/form-context'
 import { props } from './props'
 import type { CSSProperties } from 'vue'
@@ -29,27 +29,35 @@ export default defineComponent({
       return { labelPosition, labelWidth, hidden: showMessage, size, disabled }
     })
 
+    const getRules = (): FormRule[] => {
+      const formRules = context?.props.rules || {}
+      const { rules, prop } = props
+      if (prop && hasOwn(formRules, prop)) {
+        const result = formRules[prop]
+        let parentRules = []
+        let selfRules = []
+        if (result) parentRules = isArray(result) ? result : [result]
+        if (rules) selfRules = isArray(rules) ? rules : [rules]
+        return selfRules.concat(parentRules)
+      }
+      return []
+    }
+
     const getRequired = computed(() => {
       const { required, prop } = props
-      const { apollo } = context!
       if (!prop) return false
       if (required) return true
-      const rules = apollo.get(prop)
-      if (!rules) return false
-      if (isArray(rules)) return rules.some((_) => _.required)
-      return Boolean(rules.required)
+      const rules = getRules()
+      if (!len(rules)) return false
+      return rules.some((_) => _.required)
     })
 
     const getErrorLog = computed(() => {
       const { prop } = props
-      const { apollo } = context!
       if (!prop) return []
-      const rules = apollo.get(prop)
-      if (!rules) return []
-      if (isArray(rules)) {
-        return rules.reduce((acc, cur) => (acc = acc.concat(cur.message || '')), [] as string[])
-      }
-      return ([] as string[]).concat(rules.message || '')
+      const rules = getRules()
+      if (!len(rules)) return []
+      return rules.reduce((acc, cur) => (cur.message && acc.push(cur.message), acc), [] as string[])
     })
 
     const setLabelStyle = computed(() => {
@@ -68,7 +76,47 @@ export default defineComponent({
 
     const getFormBehavior = computed(() => pick(getFormItemState.value, ['size', 'disabled']))
 
-    provider({ behavior: getFormBehavior })
+    /**
+     * validate form value
+     */
+    const validate = (trigger: Trigger = 'change', callback?: ValidateCallback) => {
+      const { prop } = props
+      if (!prop) {
+        if (process.env.NODE_ENV !== 'production') {
+          return console.error(`[Fect] <FormItem> prop is required for validate`)
+        }
+      }
+      let promise: Promise<PromisfyValidate> | undefined
+      //
+      const { model } = context!.props
+      const rules = getRules()
+      if (!callback) {
+        promise = new Promise((resolve, reject) => {
+          callback = (state, err) => {
+            if (state) resolve(state)
+            reject(err)
+          }
+        })
+      }
+      if (callback && !len(rules)) return callback(true, {})
+      context?.apollo.validateField(prop!, model[prop!], callback)
+      if (promise) return promise
+    }
+
+    onMounted(() => {
+      const { prop } = props
+      if (prop) {
+        const rules = getRules()
+        context?.apollo.addField(prop, rules)
+      }
+    })
+
+    onBeforeMount(() => {
+      const { prop } = props
+      if (prop) context?.apollo.removeField(prop)
+    })
+
+    provider({ behavior: getFormBehavior, validate })
 
     return () => (
       <div
