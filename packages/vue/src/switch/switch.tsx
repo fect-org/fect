@@ -73,6 +73,7 @@ export default defineComponent({
       }
       emit('change', selfEvent)
       if (hasEmpty(props.value)) setValue(reverse)
+      if (formState) formState.validate('change')
     }
 
     const switchHandler = (e: Event) => {

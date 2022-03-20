@@ -1,5 +1,5 @@
 import { defineComponent, ref, computed, onMounted, onBeforeMount } from 'vue'
-import { createName, createBem, isArray, pickContextProps, pick, hasOwn, len } from '../utils'
+import { createName, createBem, isArray, pickContextProps, pick, hasOwn, len, useExpose } from '../utils'
 import { getLabelPostion, getLabelWidth } from '../form/style'
 import { FormRule, Trigger, ValidateCallback, PromisfyValidate } from '../form/interface'
 import { useFormContext, createFormItemContext } from '../form/form-context'
@@ -87,7 +87,6 @@ export default defineComponent({
         }
       }
       let promise: Promise<PromisfyValidate> | undefined
-      //
       const { model } = context!.props
       const rules = getRules()
       if (!callback) {
@@ -99,7 +98,7 @@ export default defineComponent({
         })
       }
       if (callback && !len(rules)) return callback(true, {})
-      context?.apollo.validateField(prop!, model[prop!], callback)
+      context?.apollo.validateField(trigger, prop!, { [prop!]: model[prop!] }, callback)
       if (promise) return promise
     }
 
@@ -115,6 +114,8 @@ export default defineComponent({
       const { prop } = props
       if (prop) context?.apollo.removeField(prop)
     })
+
+    useExpose({ validate })
 
     provider({ behavior: getFormBehavior, validate })
 

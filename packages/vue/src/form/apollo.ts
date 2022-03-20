@@ -1,6 +1,13 @@
 import { proy as Proy } from 'proy'
-import { isArray } from '../utils'
-import type { FormRule, ValidateCallback, ValidateErrorParams } from './interface'
+import { isArray, len } from '../utils'
+import type { FormRule, Trigger, ValidateCallback, ValidateErrorParams } from './interface'
+
+const pickRules = (trigger: Trigger, rules: FormRule[]) => {
+  return rules.filter((rule) => {
+    if (!rule.trigger || trigger === '') return true
+    return rule.trigger === trigger
+  })
+}
 
 export class Apollo {
   fields: Map<string, FormRule[]> = new Map()
@@ -48,14 +55,7 @@ export class Apollo {
     }
     return callback(true, {})
   }
-  // destory All fields
-  destory() {
-    this.fields.forEach((_, key) => {
-      if (this.has(key)) {
-        this.remove(key)
-      }
-    })
-  }
+
   addField(field: string, rules: FormRule | FormRule[]) {
     const prevRules = this.get(field)
     const selfRules = isArray(rules) ? rules : [rules]
@@ -68,17 +68,22 @@ export class Apollo {
   removeField(field: string) {
     this.remove(field)
   }
-  validateField(field: string, model: Record<string, any>, callback?: ValidateCallback) {
+  validateField(trigger: Trigger, field: string, model: Record<string, any>, callback?: ValidateCallback) {
     if (!this.has(field)) {
       if (process.env.NODE_ENV !== 'production') {
         console.error(`[Fect] <FormItem> can not validate rules for non-existent field ${field}`)
         callback && callback(true, {})
       }
     }
-    const rules = this.get(field)!
-    rules.forEach((value, key) => {
-      console.log(value)
-      console.log(key)
+    const rules = pickRules(trigger, this.get(field)!)
+    const invalid: ValidateErrorParams = {}
+    rules.forEach((rule) => {
+      this.proy.descriptor({ [field]: rule }).validate(model, (errs) => {
+        if (len(errs)) invalid[field] = errs
+      })
     })
+    if (!callback) return
+    if (len(Object.keys(invalid))) return callback(false, invalid)
+    return callback(true, {})
   }
 }

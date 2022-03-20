@@ -1,6 +1,6 @@
 import { defineComponent, computed, watch, watchEffect } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, createBem, pickContextProps } from '../utils'
+import { createName, createBem } from '../utils'
 import { radioProps } from '../radio-group/props'
 import { useRadioContext } from '../radio-group/radio-context'
 import { useFormStateContext, pickFormStateProps } from '../form/form-context'
@@ -59,7 +59,10 @@ export default defineComponent({
       })
     }
 
-    watch(selfChecked, (cur) => emit('update:checked', cur))
+    watch(selfChecked, (cur) => {
+      if (formState) formState.validate('change')
+      emit('update:checked', cur)
+    })
 
     return () => (
       <div class={bem(null, getRadioState.value)}>

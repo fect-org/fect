@@ -45,6 +45,7 @@ export default defineComponent({
       }
       if (val !== props.modelValue) {
         emit('update:modelValue', val)
+        if (formState) formState.validate('change')
       }
     }
 

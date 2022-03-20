@@ -66,7 +66,16 @@ export default defineComponent({
       })
     }
 
-    watch(selfChecked, (cur) => emit('update:modelValue', cur))
+    watch(selfChecked, (cur) => {
+      if (formState)
+        /**
+       * , (state, err) => {
+          console.log(state, err)
+        }
+       */
+        formState.validate('change')
+      emit('update:modelValue', cur)
+    })
 
     return () => (
       <label class={bem(null, getCheckboxState.value)}>

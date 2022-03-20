@@ -1,11 +1,11 @@
 import { defineComponent, computed, reactive, toRefs, onBeforeUnmount, watch } from 'vue'
-import { useState } from '@fect-ui/vue-hooks'
 import { props } from './props'
-import { createName, useExpose, createBem, isPlainObject } from '../utils'
+import { createName, useExpose, createBem, isPlainObject, pick } from '../utils'
 import { createFormContext } from './form-context'
 import type { PromisfyValidate, ValidateCallback } from './interface'
 import './index.less'
 import { Apollo } from './apollo'
+import { isArray } from '@vue/shared'
 
 const name = createName('Form')
 const bem = createBem('fect-form')
@@ -14,7 +14,7 @@ export default defineComponent({
   name,
   props,
   setup(props, { slots, emit }) {
-    const { provider } = createFormContext()
+    const { provider, children } = createFormContext()
 
     const apollo = new Apollo()
 
@@ -43,23 +43,17 @@ export default defineComponent({
       }
     }
 
+    const validateField = (fields: string | string[], callback?: ValidateCallback) => {
+      fields = isArray(fields) ? fields : [fields]
+      const fds = children.filter((_) => fields.includes(_.prop))
+      return Promise.all(fds.map((fd) => fd.validate('', callback)))
+    }
+
     const resetField = () => {
       // apollo.invalidFields = {}
     }
 
-    // watch(
-    //   () => props.rules,
-    //   (pre) => {
-    //     Object.keys(pre).forEach((prop) => {
-    //       apollo.set(prop, pre[prop])
-    //     })
-    //   },
-    //   { immediate: true }
-    // )
-
-    // onBeforeUnmount(() => apollo.destory())
-
-    useExpose({ validate, resetField })
+    useExpose({ validate, validateField, resetField })
 
     provider({ props, apollo })
     return () => <form class={bem(null, { inline: props.inline })}> {slots.default?.()}</form>

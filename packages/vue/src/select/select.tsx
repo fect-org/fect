@@ -103,6 +103,7 @@ export default defineComponent({
     watch(value, (cur) => {
       emit('change', cur)
       emit('update:modelValue', cur)
+      if (formState) formState.validate('change')
     })
 
     const queryChecked = computed(() => {

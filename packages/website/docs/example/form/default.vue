@@ -64,16 +64,23 @@ export default {
       input: [
         {
           required: true,
-          message: 'Please input your nick name',
-          trigger: 'blur'
+          message: 'Please input your nick name as Kanno',
+          validate: (val) => val === 'kanno'
         }
       ],
-      checkGroup: {
-        required: true,
-        type: 'array',
-        message: 'Please choose the direction you are interested in',
-        trigger: 'change'
-      },
+      checkGroup: [
+        {
+          required: true,
+          type: 'array',
+          message: 'Please choose the direction you are interested in'
+        },
+        {
+          required: true,
+          type: 'array',
+          message: 'Please choose font-end',
+          validate: (val) => val === 'FontEnd'
+        }
+      ],
       frameWork: {
         type: 'string',
         required: true,
@@ -86,7 +93,8 @@ export default {
     }
     const sumbitHandler = async () => {
       try {
-        const state = await formRef.value.validate()
+        // const state = await formRef.value.validate()
+        const state = await formRef.value.validateField(['input', 'frameWork'])
         console.log(state)
       } catch (error) {
         console.log(error)
