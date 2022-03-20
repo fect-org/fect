@@ -13,7 +13,7 @@
         <fe-input v-model="formValue.input" placeholder="input your nick name"></fe-input>
       </fe-form-item>
       <fe-form-item label="CheckGroup" prop="checkGroup">
-        <fe-checkbox-group v-model="formValue.checkGroup">
+        <fe-checkbox-group v-model="formValue.checkGroup" use-row>
           <fe-checkbox label="FontEnd">
             <fe-code>FontEnd</fe-code>
           </fe-checkbox>
@@ -29,6 +29,15 @@
           <fe-option label="Koa" value="koa"></fe-option>
         </fe-select>
       </fe-form-item>
+      <fe-form-item label="Radio" prop="radio">
+        <fe-radio-group v-model="formValue.radio" use-row>
+          <fe-radio value="xeryYue">test1</fe-radio>
+          <fe-radio value="kanno">test2</fe-radio>
+        </fe-radio-group>
+      </fe-form-item>
+      <fe-form-item label="Switch" prop="switch">
+        <fe-switch v-model="formValue.switch" />
+      </fe-form-item>
       <fe-form-item label-position="top">
         <fe-button size="mini" auto @click="sumbitHandler">Sumbit</fe-button>
         <fe-spacer :x="2" inline />
@@ -39,7 +48,7 @@
 </template>
 
 <script>
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 export default {
   name: 'ExDefaultForm',
   setup() {
@@ -47,7 +56,9 @@ export default {
     const formValue = ref({
       input: '',
       checkGroup: [],
-      frameWork: ''
+      frameWork: '',
+      radio: '',
+      switch: ''
     })
     const rules = {
       input: [

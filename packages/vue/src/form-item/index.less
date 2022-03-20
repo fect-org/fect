@@ -1,8 +1,45 @@
+@form-item-mini-font-size: 12px;
+@form-item-small-font-size: 12px;
+@form-item-medium-font-size: 14px;
+@form-item-large-font-size: 16px;
+
+@form-item-mini-ratio: 1.313;
+@form-item-small-ratio: 1.5;
+@form-item-medium-ratio: 1.687;
+@form-item-large-ratio: 1.875;
+
+:root {
+  --form-item-mini-font-size: @form-item-mini-font-size;
+  --form-item-small-font-size: @form-item-small-font-size;
+  --form-item-medium-font-size: @form-item-medium-font-size;
+  --form-item-large-font-size: @form-item-large-font-size;
+
+  --form-item-mini-ratio: @form-item-mini-ratio;
+  --form-item-small-ratio: @form-item-small-ratio;
+  --form-item-medium-ratio: @form-item-medium-ratio;
+  --form-item-large-ratio: @form-item-large-ratio;
+}
+
 .fect-form {
   &__item {
     display: flex;
     align-items: center;
-    margin-bottom: calc(var(--fect-gap) * 1.25);
+    &--mini {
+      font-size: var(--form-item-mini-font-size);
+      margin-bottom: calc(var(--fect-gap-half) * var(--form-item-mini-ratio));
+    }
+    &--small {
+      font-size: var(--form-item-small-font-size);
+      margin-bottom: calc(var(--fect-gap-half) * var(--form-item-small-ratio));
+    }
+    &--medium {
+      font-size: var(--form-item-medium-font-size);
+      margin-bottom: calc(var(--fect-gap-half) * var(--form-item-medium-ratio));
+    }
+    &--large {
+      font-size: var(--form-item-large-font-size);
+      margin-bottom: calc(var(--fect-gap-half) * var(--form-item-large-ratio));
+    }
     &--inline {
       display: inline-flex;
       align-items: center;
@@ -10,6 +47,10 @@
     }
     &--top {
       display: block;
+      .fect-form__label {
+        display: block;
+        margin-bottom: var(--fect-gap-half);
+      }
     }
   }
   &__label {

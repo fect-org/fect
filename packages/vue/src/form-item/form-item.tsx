@@ -1,5 +1,5 @@
 import { defineComponent, ref, computed, onMounted } from 'vue'
-import { createName, createBem, isArray, pickContextProps } from '../utils'
+import { createName, createBem, isArray, pickContextProps, pick } from '../utils'
 import { getLabelPostion, getLabelWidth } from '../form/style'
 import { Trigger } from '../form/interface'
 import { useFormContext, createFormItemContext } from '../form/form-context'
@@ -23,6 +23,11 @@ export default defineComponent({
     const { provider } = createFormItemContext()
 
     const formItemRef = ref<HTMLDivElement>()
+
+    const getFormItemState = computed(() => {
+      const { labelWidth, labelPosition, showMessage, size, disabled } = pickContextProps(props, context, true)
+      return { labelPosition, labelWidth, hidden: showMessage, size, disabled }
+    })
 
     const getRequired = computed(() => {
       const { required, prop } = props
@@ -48,8 +53,7 @@ export default defineComponent({
     })
 
     const setLabelStyle = computed(() => {
-      const { labelPosition, labelWidth } = props
-      const state = pickContextProps({ labelPosition, labelWidth }, context, true)
+      const state = pick(getFormItemState.value, ['labelPosition', 'labelWidth'])
       const style: CSSProperties = {
         width: getLabelWidth(state.labelWidth),
         textAlign: getLabelPostion(state.labelPosition)
@@ -57,34 +61,23 @@ export default defineComponent({
       return style
     })
 
-    const setFormItemClass = computed(() => {
-      const { labelPosition } = props
-      return bem('item', { inline: context!.props.inline, ...pickContextProps({ labelPosition }, context, true) })
-    })
-
-    const setUnVerfiedClass = computed(() => {
-      // const { formProps } = context!
-      // const display = props.showMessage || formProps.showMessage
-      const { showMessage } = props
-      const { showMessage: display } = pickContextProps({ showMessage }, context, true)
-      return bem('error', { hidden: display })
-    })
-
     /**
      * user may pass native attrs  for . so  we should intercept the attr
      */
     const setLabelFor = computed(() => props.prop || props.for)
 
-    const getFormBehavior = computed(() => {
-      const { size, disabled } = props
-      const state = pickContextProps({ size, disabled }, context, true)
-      return state
-    })
+    const getFormBehavior = computed(() => pick(getFormItemState.value, ['size', 'disabled']))
 
     provider({ behavior: getFormBehavior })
 
     return () => (
-      <div class={setFormItemClass.value} ref={formItemRef}>
+      <div
+        class={bem('item', {
+          inline: context!.props.inline,
+          ...pick(getFormItemState.value, ['labelPosition', 'size'])
+        })}
+        ref={formItemRef}
+      >
         <label
           class={bem('label', { required: getRequired.value })}
           for={setLabelFor.value}
@@ -94,7 +87,7 @@ export default defineComponent({
         </label>
         <div class={bem('content')}>
           {slots.default?.()}
-          <div class={setUnVerfiedClass.value}>{getErrorLog.value}</div>
+          <div class={bem('error', { hidden: getFormItemState.value.hidden })}>{getErrorLog.value}</div>
         </div>
       </div>
     )
