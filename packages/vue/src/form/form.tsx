@@ -1,4 +1,4 @@
-import { defineComponent, computed, reactive, toRefs, onBeforeUnmount, watch } from 'vue'
+import { defineComponent } from 'vue'
 import { props } from './props'
 import { createName, useExpose, createBem, isPlainObject, len } from '../utils'
 import { createFormContext } from './form-context'
@@ -13,7 +13,7 @@ const bem = createBem('fect-form')
 export default defineComponent({
   name,
   props,
-  setup(props, { slots, emit }) {
+  setup(props, { slots }) {
     const { provider, children } = createFormContext()
 
     const apollo = new Apollo()
@@ -35,7 +35,13 @@ export default defineComponent({
       }
       if (apollo.isEmpty() && callback) return callback(true, {})
       const { state, errs } = apollo.validateAll(props.model)
-      children.forEach((_) => _.updateShowLogState(true))
+      const errFields = Object.keys(errs)
+
+      children.forEach((_) => {
+        if (errFields.includes(_.prop)) {
+          _.updateShowLogState(true)
+        }
+      })
       callback && callback(state, errs)
       if (promise) return promise
     }

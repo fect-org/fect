@@ -7,7 +7,7 @@
       ref="formRef"
       label-width="110"
       label-position="left"
-      size="small"
+      size="mini"
     >
       <fe-form-item label="Input" prop="input">
         <fe-input v-model="formValue.input" placeholder="input your nick name"></fe-input>
@@ -99,7 +99,6 @@ export default {
       }
     }
     const resetHandler = () => {
-      //
       formRef.value.clearValidate()
     }
     return {

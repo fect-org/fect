@@ -67,13 +67,7 @@ export default defineComponent({
     }
 
     watch(selfChecked, (cur) => {
-      if (formState)
-        /**
-       * , (state, err) => {
-          console.log(state, err)
-        }
-       */
-        formState.validate('change')
+      if (formState) formState.validate('change')
       emit('update:modelValue', cur)
     })
 

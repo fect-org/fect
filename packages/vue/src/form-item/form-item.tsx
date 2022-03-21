@@ -60,7 +60,8 @@ export default defineComponent({
       if (!prop) return []
       const rules = getRules()
       if (!len(rules)) return []
-      return rules.reduce((acc, cur) => (cur.message && acc.push(cur.message), acc), [] as string[])
+      const rul = rules.reduce((acc, cur) => (cur.message && acc.push(cur.message), acc), [] as string[])
+      return rul[0]
     })
 
     const setLabelStyle = computed(() => {

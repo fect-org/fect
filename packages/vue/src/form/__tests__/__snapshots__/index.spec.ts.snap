@@ -1,23 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Form props should work correctly 1`] = `<form class="fect-form "> </form>`;
+exports[`Form props should work correctly 1`] = `<form class="fect-form"> </form>`;
+
+exports[`Form should be work with select and radiobox 1`] = `
+<form class="fect-form">
+  <div class="fect-form__item fect-form__item--right fect-form__item--large"><label class="fect-form__label fect-form__label--required" for="input" style="width: 120px; text-align: right;">Input</label>
+    <div class="fect-form__content">
+      <div class="fect-select fect-select--large" style="--select-content-height: calc(var(--select-ratio) * var(--fect-gap));">
+        <div class="fect-tooltip">
+          <div class="fect-select__content">
+            <!---->
+            <div class="fect-input fect-input--large">
+              <!---->
+              <div class="fect-input__container">
+                <!---->
+                <div class="fect-input__wrapper">
+                  <!----><input type="text" class="fect-select__input" readonly="" placeholder="" role="combobox" aria-haspopup="listbox" aria-expanded="false">
+                  <!---->
+                  <div class="fect-input__icon fect-input__icon--suffix" style="cursor: pointer; pointer-events: auto;">
+                    <div class="fect-select__arrow"><svg viewBox="0 0 24 24" height="20" width="20" stroke-width="1" stroke-linecap="round" color="currentColor" stroke="currentColor" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
+                        <path d="M6 9l6 6 6-6"></path>
+                      </svg></div>
+                  </div>
+                </div>
+                <!---->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--teleport start-->
+        <!--teleport end-->
+      </div>
+      <div class="fect-form__error"><span style="display: none;">Please input your nick name as Vue</span></div>
+    </div>
+  </div>
+  <div class="fect-form__item fect-form__item--right fect-form__item--large"><label class="fect-form__label fect-form__label--required" for="box" style="width: 120px; text-align: right;">CheckGroup</label>
+    <div class="fect-form__content">
+      <div class="fect-radio__group fect-radio__group--useRow">
+        <div class="fect-radio fect-radio--large"><label><input type="radio"><span class="fect-radio__name"><span class="fect-radio__point fect-radio__point--active"></span>test1</span></label></div>
+        <div class="fect-radio fect-radio--large"><label><input type="radio"><span class="fect-radio__name"><span class="fect-radio__point"></span>test2</span></label></div>
+      </div>
+      <div class="fect-form__error"><span style="display: none;"></span></div>
+    </div>
+  </div>
+  <div class="fect-form__item fect-form__item--right fect-form__item--large"><label class="fect-form__label" for="switch" style="width: 120px; text-align: right;">Switch</label>
+    <div class="fect-form__content"><label class="fect-switch fect-switch--large"><input class="fect-switch__checkbox" type="checkbox">
+        <div class="fect-switch__slider"><span class="fect-switch__inner"></span></div>
+      </label>
+      <div class="fect-form__error"><span style="display: none;"></span></div>
+    </div>
+  </div>
+</form>
+`;
 
 exports[`Form should wrok normal 1`] = `
-<form class="fect-form ">
-  <div class="fect-form-item fect-form-item--top"><label class="fect-form-item__label " for="">
+<form class="fect-form">
+  <div class="fect-form__item fect-form__item--top fect-form__item--medium"><label class="fect-form__label" for="" style="width: 100px;">
       <!---->
     </label>
-    <div class="fect-form-item__content">1</div>
+    <div class="fect-form__content">1<div class="fect-form__error"><span style="display: none;"></span></div>
+    </div>
   </div>
-  <div class="fect-form-item fect-form-item--left"><label class="fect-form-item__label " for="" style="width: 10px; text-align: left;">
+  <div class="fect-form__item fect-form__item--left fect-form__item--medium"><label class="fect-form__label" for="" style="width: 10px; text-align: left;">
       <!---->
     </label>
-    <div class="fect-form-item__content">2</div>
+    <div class="fect-form__content">2<div class="fect-form__error"><span style="display: none;"></span></div>
+    </div>
   </div>
-  <div class="fect-form-item fect-form-item--right"><label class="fect-form-item__label " for="" style="width: 120px; text-align: right;">
+  <div class="fect-form__item fect-form__item--right fect-form__item--medium"><label class="fect-form__label" for="" style="width: 120px; text-align: right;">
       <!---->
     </label>
-    <div class="fect-form-item__content">3</div>
+    <div class="fect-form__content">3<div class="fect-form__error"><span style="display: none;"></span></div>
+    </div>
   </div>
 </form>
 `;

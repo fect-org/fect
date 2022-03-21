@@ -1,9 +1,8 @@
 import { mount } from '@vue/test-utils'
 import { Select } from '..'
-import { nextTick } from 'vue'
 import type { SelectProps } from '../interface'
 import { SelectOption } from '../../select-option'
-import { later, trigger } from '../../../tests'
+import { trigger } from '../../../tests'
 
 const _wrapper = (prop?: SelectProps) => {
   return mount({

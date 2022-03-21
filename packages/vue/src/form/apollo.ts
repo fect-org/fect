@@ -33,14 +33,6 @@ export class Apollo {
     return this.fields.has(label)
   }
 
-  clearValiate(label: string) {
-    this.get(label)
-  }
-
-  validate(label: string) {
-    this.get(label)
-  }
-
   validateAll(model: Record<string, any>) {
     const invalidFields: ValidateErrorParams = {}
     this.fields.forEach((value, key) => {

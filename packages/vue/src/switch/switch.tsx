@@ -93,7 +93,7 @@ export default defineComponent({
       <label class={setSwitchClass.value} onClick={switchHandler}>
         <input
           class={bem('checkbox')}
-          type="checkBox"
+          type="checkbox"
           checked={isChecked()}
           disabled={getSwitchState.value.disabled}
           onChange={changeHandler}
