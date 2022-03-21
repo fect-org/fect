@@ -1,14 +1,6 @@
 <template>
   <div>
-    <fe-form
-      :model="formValue"
-      show-message
-      :rules="rules"
-      ref="formRef"
-      label-width="110"
-      label-position="left"
-      size="mini"
-    >
+    <fe-form :model="formValue" show-message :rules="rules" ref="formRef" label-width="110" label-position="left">
       <fe-form-item label="Input" prop="input">
         <fe-input v-model="formValue.input" placeholder="input your nick name"></fe-input>
       </fe-form-item>
@@ -29,15 +21,6 @@
           <fe-option label="Koa" value="koa"></fe-option>
         </fe-select>
       </fe-form-item>
-      <fe-form-item label="Radio" prop="radio">
-        <fe-radio-group v-model="formValue.radio" use-row>
-          <fe-radio value="xeryYue">test1</fe-radio>
-          <fe-radio value="kanno">test2</fe-radio>
-        </fe-radio-group>
-      </fe-form-item>
-      <fe-form-item label="Switch" prop="switch">
-        <fe-switch v-model="formValue.switch" />
-      </fe-form-item>
       <fe-form-item label-position="top">
         <fe-button size="mini" auto @click="sumbitHandler">Sumbit</fe-button>
         <fe-spacer :x="2" inline />
@@ -56,9 +39,7 @@ export default {
     const formValue = ref({
       input: '',
       checkGroup: [],
-      frameWork: '',
-      radio: '',
-      switch: ''
+      frameWork: ''
     })
     const rules = {
       input: [
@@ -73,11 +54,6 @@ export default {
           required: true,
           type: 'array',
           message: 'Please choose the direction you are interested in'
-        },
-        {
-          required: true,
-          type: 'array',
-          message: 'Please choose it'
         }
       ],
       frameWork: {
