@@ -1,4 +1,4 @@
-const version = '1.3.10'
+const version = '1.4.0-rc.0'
 
 import { App } from 'vue'
 
