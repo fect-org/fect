@@ -1,8 +1,9 @@
 import { defineComponent, computed, watch, watchEffect } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, createBem, pickContextProps } from '../utils'
+import { createName, createBem } from '../utils'
 import { radioProps } from '../radio-group/props'
 import { useRadioContext } from '../radio-group/radio-context'
+import { useFormStateContext, pickFormStateProps } from '../form/form-context'
 import type { RadioEvent } from '../radio-group/interface'
 import './index.less'
 
@@ -16,12 +17,17 @@ export default defineComponent({
   setup(props, { emit, slots }) {
     const [selfChecked, setSelfChecked] = useState<boolean>(props.checked)
 
+    const formState = useFormStateContext()
+
     const { context } = useRadioContext()
 
-    const selfDisabled = computed(() => {
-      const { disabled } = props
-      const { disabled: state } = pickContextProps({ disabled }, context)
-      return state
+    const getRadioState = computed(() => {
+      const { size, disabled } = pickFormStateProps(
+        { size: props.size, disabled: props.disabled },
+        context,
+        formState?.behavior.value
+      )
+      return { size, disabled }
     })
 
     const setCurrentState = () => {
@@ -34,7 +40,7 @@ export default defineComponent({
     watchEffect(setCurrentState)
 
     const changeHandler = (e: Event) => {
-      if (selfDisabled.value) return
+      if (getRadioState.value.disabled) return
       const radioEvent: RadioEvent = {
         target: {},
         stopPropagation: e.stopPropagation,
@@ -53,25 +59,22 @@ export default defineComponent({
       })
     }
 
-    watch(selfChecked, (cur) => emit('update:checked', cur))
-
-    const setRadioClass = computed(() => {
-      const { size, disabled } = props
-      const behavoir = pickContextProps({ size, disabled }, context)
-      return bem(null, behavoir)
+    watch(selfChecked, (cur) => {
+      if (formState) formState.validate('change')
+      emit('update:checked', cur)
     })
 
     return () => (
-      <div class={setRadioClass.value}>
+      <div class={bem(null, getRadioState.value)}>
         <label>
           <input
             type="radio"
             checked={selfChecked.value}
             onChange={changeHandler}
-            disabled={selfDisabled.value}
+            disabled={getRadioState.value.disabled}
           ></input>
           <span class={bem('name')}>
-            <span class={bem('point', { disabled: selfDisabled.value, active: selfChecked.value })} />
+            <span class={bem('point', { disabled: getRadioState.value.disabled, active: selfChecked.value })} />
             {slots.default?.()}
           </span>
         </label>

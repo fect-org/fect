@@ -1,27 +1,73 @@
-import { defineComponent, computed, reactive, toRefs, watchEffect } from 'vue'
-import { createProvider, useState } from '@fect-ui/vue-hooks'
-import { READONLY_FORM_KEY } from './type'
-import { proy } from 'proy'
+import { defineComponent } from 'vue'
 import { props } from './props'
-import { createName, useExpose } from '../utils'
-import type { ComponentInstance } from '../utils'
-import type { ValidateCallBack, CallbackErrors } from 'proy'
+import { createName, useExpose, createBem, isPlainObject, len } from '../utils'
+import { createFormContext } from './form-context'
+import type { PromisfyValidate, ValidateCallback } from './interface'
 import './index.less'
+import { Apollo } from './apollo'
+import { isArray } from '@vue/shared'
 
 const name = createName('Form')
+const bem = createBem('fect-form')
 
 export default defineComponent({
   name,
   props,
-  setup(props, { slots, emit }) {
-    const { provider } = createProvider<ComponentInstance>(READONLY_FORM_KEY)
+  setup(props, { slots }) {
+    const { provider, children } = createFormContext()
 
-    const formProps = reactive({ ...toRefs(props) })
+    const apollo = new Apollo()
 
-    useExpose({})
+    const validate = (callback?: ValidateCallback) => {
+      if (!isPlainObject(props.model)) {
+        if (process.env.NODE_ENV !== 'production') {
+          return console.error('[Fect] <Form /> model is required for validate to work')
+        }
+      }
+      let promise: Promise<PromisfyValidate> | undefined
+      if (!callback) {
+        promise = new Promise((resolve, reject) => {
+          callback = (state, err) => {
+            if (state) resolve(state)
+            reject(err)
+          }
+        })
+      }
+      if (apollo.isEmpty() && callback) return callback(true, {})
+      const { state, errs } = apollo.validateAll(props.model)
+      const errFields = Object.keys(errs)
 
-    provider({ formProps })
+      children.forEach((_) => {
+        if (errFields.includes(_.prop)) {
+          _.updateShowLogState(true)
+        }
+      })
+      callback && callback(state, errs)
+      if (promise) return promise
+    }
 
-    return () => <form class={`fect-form ${props.inline ? 'is-inline' : ''}`}> {slots.default?.()}</form>
+    const validateField = (fields: string | string[], callback?: ValidateCallback) => {
+      fields = isArray(fields) ? fields : [fields]
+      const fds = children.filter((_) => fields.includes(_.prop))
+      const result = fds.map((fd) => fd.validate('', callback))
+      if (!len(result) && callback) return callback(true, {})
+      result.forEach(({ state, errs }) => {
+        callback && callback(state, errs)
+      })
+    }
+
+    const clearValidate = (fields: string[] = []) => {
+      const empty = !len(fields)
+      const fds = children.filter((_) => {
+        if (empty) return true
+        return fields.includes(_.prop)
+      })
+      fds.forEach((fd) => fd.clearValidate())
+    }
+
+    useExpose({ validate, validateField, clearValidate })
+
+    provider({ props, apollo })
+    return () => <form class={bem(null, { inline: props.inline })}> {slots.default?.()}</form>
   }
 })

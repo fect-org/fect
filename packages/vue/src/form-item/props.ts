@@ -1,11 +1,17 @@
-import { PropType, ExtractDefaultPropTypes } from 'vue'
-import type { LabelPosition } from '../form/type'
+import { noop } from '../utils'
+import type { PropType, ExtractDefaultPropTypes } from 'vue'
+import type { NormalSizes } from '../utils'
+import type { LabelPosition } from '../form/interface'
 
 export const props = {
   prop: String,
   for: {
     type: String,
     default: ''
+  },
+  rules: {
+    type: Object,
+    default: noop
   },
   label: String,
   labelWidth: {
@@ -17,7 +23,12 @@ export const props = {
     default: ''
   },
   required: Boolean,
-  showMessage: Boolean
+  showMessage: Boolean,
+  size: {
+    type: String as PropType<NormalSizes>,
+    default: ''
+  },
+  disabled: Boolean
 }
 
 export type FormItemProps = ExtractDefaultPropTypes<typeof props>

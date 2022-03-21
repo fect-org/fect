@@ -1,27 +1,66 @@
-.fect-form-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: calc(var(--fect-gap) * 1.25);
+@form-item-mini-font-size: 12px;
+@form-item-small-font-size: 12px;
+@form-item-medium-font-size: 14px;
+@form-item-large-font-size: 16px;
 
-  &--inline {
-    display: inline-flex;
+@form-item-mini-ratio: 1.313;
+@form-item-small-ratio: 1.5;
+@form-item-medium-ratio: 1.687;
+@form-item-large-ratio: 1.875;
+
+:root {
+  --form-item-mini-font-size: @form-item-mini-font-size;
+  --form-item-small-font-size: @form-item-small-font-size;
+  --form-item-medium-font-size: @form-item-medium-font-size;
+  --form-item-large-font-size: @form-item-large-font-size;
+
+  --form-item-mini-ratio: @form-item-mini-ratio;
+  --form-item-small-ratio: @form-item-small-ratio;
+  --form-item-medium-ratio: @form-item-medium-ratio;
+  --form-item-large-ratio: @form-item-large-ratio;
+}
+
+.fect-form {
+  &__item {
+    display: flex;
     align-items: center;
-    margin-right: var(--fect-gap-half);
-  }
-  &--top {
-    display: block;
-    // .fect-form-item__label {
-    //   padding: 0 0 var(--fect-gap-half) 0;
-    // }
-    .fect-form-item__content {
-      margin-top: var(--fect-gap-half);
+    &--mini {
+      font-size: var(--form-item-mini-font-size);
+      margin-bottom: calc(16px * var(--form-item-mini-ratio));
+      --form-item-font-size: var(--form-item-mini-font-size);
+    }
+    &--small {
+      font-size: var(--form-item-small-font-size);
+      margin-bottom: calc(16px * var(--form-item-small-ratio));
+      --form-item-font-size: var(--form-item-small-font-size);
+    }
+    &--medium {
+      font-size: var(--form-item-medium-font-size);
+      margin-bottom: calc(16px * var(--form-item-medium-ratio));
+      --form-item-font-size: var(--form-item-medium-font-size);
+    }
+    &--large {
+      font-size: var(--form-item-large-font-size);
+      margin-bottom: calc(16px * var(--form-item-large-ratio));
+      --form-item-font-size: var(--form-item-large-font-size);
+    }
+    &--inline {
+      display: inline-flex;
+      align-items: center;
+      margin-right: var(--fect-gap-half);
+    }
+    &--top {
+      display: block;
+      .fect-form__label {
+        display: block;
+        margin-bottom: var(--fect-gap-half);
+      }
     }
   }
-
   &__label {
     box-sizing: border-box;
     padding: 0 var(--fect-gap-half) 0 0;
-    &.is-required {
+    &--required {
       &::before {
         content: '*';
         color: var(--error-default);
@@ -36,14 +75,11 @@
   }
   &__error {
     color: var(--error-light);
-    font-size: 13px;
+    font-size: var(--form-item-font-size);
     line-height: 1;
-    padding-top: var(--fect-gap-quarter);
+    padding-top: 4px;
     position: absolute;
     top: 100%;
     left: 0;
-    &--hidden {
-      display: none;
-    }
   }
 }

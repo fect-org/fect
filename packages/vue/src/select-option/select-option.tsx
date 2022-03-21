@@ -12,7 +12,7 @@ export default defineComponent({
   props: selectOptionProps,
   setup(props) {
     const { context } = useSelectContext()
-    const { updateSelectVisible, updateSelectValue, updateDropDown, parentValue, size } = context!
+    const { updateSelectVisible, updateSelectValue, updateDropDown, parentValue, selectState } = context!
 
     const handleClick = (e: Event) => {
       e.stopPropagation()
@@ -26,7 +26,7 @@ export default defineComponent({
     const setOptionClass = computed(() => {
       const parentVal = parentValue.value
       const checked = Array.isArray(parentVal) ? parentVal.includes(props.value as string) : parentVal === props.value
-      return bem(null, { disabled: props.disabled, size: size.value, checked })
+      return bem(null, { disabled: props.disabled, size: selectState.value.size, checked })
     })
 
     return () => (

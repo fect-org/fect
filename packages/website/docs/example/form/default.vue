@@ -1,11 +1,11 @@
 <template>
   <div>
-    <fe-form :model="formValue" :rules="rules" ref="formRef" label-width="110" label-position="left">
+    <fe-form :model="formValue" show-message :rules="rules" ref="formRef" label-width="110" label-position="left">
       <fe-form-item label="Input" prop="input">
         <fe-input v-model="formValue.input" placeholder="input your nick name"></fe-input>
       </fe-form-item>
       <fe-form-item label="CheckGroup" prop="checkGroup">
-        <fe-checkbox-group v-model="formValue.checkGroup">
+        <fe-checkbox-group v-model="formValue.checkGroup" use-row>
           <fe-checkbox label="FontEnd">
             <fe-code>FontEnd</fe-code>
           </fe-checkbox>
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 export default {
   name: 'ExDefaultForm',
   setup() {
@@ -41,36 +41,42 @@ export default {
       checkGroup: [],
       frameWork: ''
     })
-
     const rules = {
       input: [
         {
           required: true,
-          message: 'Please input your nick name',
-          trigger: 'blur'
+          message: 'Please input your nick name as Kanno',
+          validate: (val) => val === 'kanno'
         }
       ],
-      checkGroup: {
-        required: true,
-        type: 'array',
-        message: 'Please choose the direction you are interested in',
-        trigger: 'change'
-      },
+      checkGroup: [
+        {
+          required: true,
+          type: 'array',
+          message: 'Please choose the direction you are interested in'
+        }
+      ],
       frameWork: {
         type: 'string',
         required: true,
-        validate: (val) => val === 'koa',
+        validate: (val) => {
+          return val === 'koa'
+        },
         message: 'Please choose a class',
         trigger: 'change'
       }
     }
-
-    const sumbitHandler = () => {
-      // console.log(formValue.value)
+    const sumbitHandler = async () => {
+      try {
+        const state = await formRef.value.validate()
+        console.log(state)
+      } catch (error) {
+        console.log(error)
+      }
     }
-
-    const resetHandler = () => {}
-
+    const resetHandler = () => {
+      formRef.value.clearValidate()
+    }
     return {
       formValue,
       rules,
