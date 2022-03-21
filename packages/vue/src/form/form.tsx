@@ -1,6 +1,6 @@
 import { defineComponent, computed, reactive, toRefs, onBeforeUnmount, watch } from 'vue'
 import { props } from './props'
-import { createName, useExpose, createBem, isPlainObject, pick } from '../utils'
+import { createName, useExpose, createBem, isPlainObject, len } from '../utils'
 import { createFormContext } from './form-context'
 import type { PromisfyValidate, ValidateCallback } from './interface'
 import './index.less'
@@ -18,7 +18,6 @@ export default defineComponent({
 
     const apollo = new Apollo()
 
-    // validate function call
     const validate = (callback?: ValidateCallback) => {
       if (!isPlainObject(props.model)) {
         if (process.env.NODE_ENV !== 'production') {
@@ -34,26 +33,33 @@ export default defineComponent({
           }
         })
       }
-      if (apollo.isEmpty() && callback) {
-        return callback(true, {})
-      }
-      apollo.validateAll(props.model, callback!)
-      if (promise) {
-        return promise
-      }
+      if (apollo.isEmpty() && callback) return callback(true, {})
+      const { state, errs } = apollo.validateAll(props.model)
+      children.forEach((_) => _.updateShowLogState(true))
+      callback && callback(state, errs)
+      if (promise) return promise
     }
 
     const validateField = (fields: string | string[], callback?: ValidateCallback) => {
       fields = isArray(fields) ? fields : [fields]
       const fds = children.filter((_) => fields.includes(_.prop))
-      return Promise.all(fds.map((fd) => fd.validate('', callback)))
+      const result = fds.map((fd) => fd.validate('', callback))
+      if (!len(result) && callback) return callback(true, {})
+      result.forEach(({ state, errs }) => {
+        callback && callback(state, errs)
+      })
     }
 
-    const resetField = () => {
-      // apollo.invalidFields = {}
+    const clearValidate = (fields: string[] = []) => {
+      const empty = !len(fields)
+      const fds = children.filter((_) => {
+        if (empty) return true
+        return fields.includes(_.prop)
+      })
+      fds.forEach((fd) => fd.clearValidate())
     }
 
-    useExpose({ validate, validateField, resetField })
+    useExpose({ validate, validateField, clearValidate })
 
     provider({ props, apollo })
     return () => <form class={bem(null, { inline: props.inline })}> {slots.default?.()}</form>

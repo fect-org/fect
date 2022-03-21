@@ -1,7 +1,8 @@
 import { defineComponent, ref, computed, onMounted, onBeforeMount } from 'vue'
+import { useState } from '@fect-ui/vue-hooks'
 import { createName, createBem, isArray, pickContextProps, pick, hasOwn, len, useExpose } from '../utils'
 import { getLabelPostion, getLabelWidth } from '../form/style'
-import { FormRule, Trigger, ValidateCallback, PromisfyValidate } from '../form/interface'
+import { FormRule, Trigger, ValidateCallback } from '../form/interface'
 import { useFormContext, createFormItemContext } from '../form/form-context'
 import { props } from './props'
 import type { CSSProperties } from 'vue'
@@ -23,6 +24,8 @@ export default defineComponent({
     const { provider } = createFormItemContext()
 
     const formItemRef = ref<HTMLDivElement>()
+
+    const [showLog, setShowLog] = useState<boolean>()
 
     const getFormItemState = computed(() => {
       const { labelWidth, labelPosition, showMessage, size, disabled } = pickContextProps(props, context, true)
@@ -86,21 +89,17 @@ export default defineComponent({
           return console.error(`[Fect] <FormItem> prop is required for validate`)
         }
       }
-      let promise: Promise<PromisfyValidate> | undefined
       const { model } = context!.props
       const rules = getRules()
-      if (!callback) {
-        promise = new Promise((resolve, reject) => {
-          callback = (state, err) => {
-            if (state) resolve(state)
-            reject(err)
-          }
-        })
-      }
       if (callback && !len(rules)) return callback(true, {})
-      context?.apollo.validateField(trigger, prop!, { [prop!]: model[prop!] }, callback)
-      if (promise) return promise
+      const { state, errs } = context!.apollo.validateField(trigger, prop!, { [prop!]: model[prop!] })
+      setShowLog(!state)
+      return { state, errs }
     }
+
+    const updateShowLogState = (state: boolean) => setShowLog(state)
+
+    const clearValidate = () => setShowLog(false)
 
     onMounted(() => {
       const { prop } = props
@@ -115,7 +114,7 @@ export default defineComponent({
       if (prop) context?.apollo.removeField(prop)
     })
 
-    useExpose({ validate })
+    useExpose({ validate, clearValidate, updateShowLogState })
 
     provider({ behavior: getFormBehavior, validate })
 
@@ -136,7 +135,11 @@ export default defineComponent({
         </label>
         <div class={bem('content')}>
           {slots.default?.()}
-          <div class={bem('error', { hidden: getFormItemState.value.hidden })}>{getErrorLog.value}</div>
+          {getFormItemState.value.hidden && (
+            <div class={bem('error')}>
+              <span v-show={showLog.value}>{getErrorLog.value}</span>
+            </div>
+          )}
         </div>
       </div>
     )

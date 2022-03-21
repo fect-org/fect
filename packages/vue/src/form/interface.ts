@@ -16,15 +16,14 @@ export type FormProps = ExtractDefaultPropTypes<typeof props>
 export interface FormContext {
   apollo: Apollo
   props: FormProps
-  // validate: (trigger: Trigger) => void
 }
 
-export type FormItemInstance = ComponentInstance<Pick<FormItemCotnext, 'validate'> & FormItemProps>
+export type FormItemInstance = ComponentInstance<Omit<FormItemCotnext, 'behavior'> & FormItemProps>
 
 export interface FormItemCotnext {
   behavior: ComputedRef<Pick<FormProps, 'disabled' | 'size'>>
-  validate: (trigger: Trigger, callback?: ValidateCallback) => Promise<void>
-  resetField: () => void
+  validate: (trigger: Trigger, callback?: ValidateCallback) => { state: boolean; errs: ValidateErrorParams }
+  updateShowLogState: (state: boolean) => void
   clearValidate: () => void
 }
 

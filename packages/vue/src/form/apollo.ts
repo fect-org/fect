@@ -1,6 +1,6 @@
 import { proy as Proy } from 'proy'
 import { isArray, len } from '../utils'
-import type { FormRule, Trigger, ValidateCallback, ValidateErrorParams } from './interface'
+import type { FormRule, Trigger, ValidateErrorParams } from './interface'
 
 const pickRules = (trigger: Trigger, rules: FormRule[]) => {
   return rules.filter((rule) => {
@@ -41,19 +41,15 @@ export class Apollo {
     this.get(label)
   }
 
-  validateAll(model: Record<string, any>, callback: ValidateCallback) {
+  validateAll(model: Record<string, any>) {
     const invalidFields: ValidateErrorParams = {}
     this.fields.forEach((value, key) => {
       this.proy.descriptor({ [key]: value }).validate({ [key]: model[key] }, (errs) => {
-        if (errs.length) {
-          invalidFields[key] = errs
-        }
+        if (errs.length) invalidFields[key] = errs
       })
     })
-    if (Object.keys(invalidFields).length) {
-      return callback(false, invalidFields)
-    }
-    return callback(true, {})
+    const state = !len(Object.keys(invalidFields))
+    return { state, errs: invalidFields }
   }
 
   addField(field: string, rules: FormRule | FormRule[]) {
@@ -68,11 +64,10 @@ export class Apollo {
   removeField(field: string) {
     this.remove(field)
   }
-  validateField(trigger: Trigger, field: string, model: Record<string, any>, callback?: ValidateCallback) {
+  validateField(trigger: Trigger, field: string, model: Record<string, any>) {
     if (!this.has(field)) {
       if (process.env.NODE_ENV !== 'production') {
         console.error(`[Fect] <FormItem> can not validate rules for non-existent field ${field}`)
-        callback && callback(true, {})
       }
     }
     const rules = pickRules(trigger, this.get(field)!)
@@ -82,8 +77,7 @@ export class Apollo {
         if (len(errs)) invalid[field] = errs
       })
     })
-    if (!callback) return
-    if (len(Object.keys(invalid))) return callback(false, invalid)
-    return callback(true, {})
+    const state = !len(Object.keys(invalid))
+    return { state, errs: invalid }
   }
 }

@@ -77,8 +77,7 @@ export default {
         {
           required: true,
           type: 'array',
-          message: 'Please choose font-end',
-          validate: (val) => val === 'FontEnd'
+          message: 'Please choose it'
         }
       ],
       frameWork: {
@@ -93,8 +92,7 @@ export default {
     }
     const sumbitHandler = async () => {
       try {
-        // const state = await formRef.value.validate()
-        const state = await formRef.value.validateField(['input', 'frameWork'])
+        const state = await formRef.value.validate()
         console.log(state)
       } catch (error) {
         console.log(error)
@@ -102,6 +100,7 @@ export default {
     }
     const resetHandler = () => {
       //
+      formRef.value.clearValidate()
     }
     return {
       formValue,
