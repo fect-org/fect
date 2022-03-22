@@ -4,7 +4,7 @@ import { CWD, NON_DEFAULT_PATH } from '../shared/constant'
 import type { NonConfig } from '../config/non.config'
 import { build } from 'esbuild'
 import { merge } from 'lodash'
-import { externalizeDeps } from '../external/externalize-deps'
+import { externalizeDeps } from '../plugins/externalize-deps'
 import { logErr } from '../shared/logger'
 
 export const defineNonConfig = (userConfig: NonConfig) => userConfig

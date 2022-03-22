@@ -8,9 +8,7 @@ import { ESM_PATH, CJS_PATH, setBabelEnv, DECLARATION_PATH, setNodeENV } from '.
 import { logErr } from '../shared/logger'
 import { execa } from '../shared/execa'
 import { useUMDconfig } from '../config/vite.config'
-
 import { bundle } from './_compile'
-
 import { transformScript } from '../plugins/non-plugin-script'
 import { transformCss } from '../plugins/non-plugin-css'
 import { analyzeStyleDeps } from '../plugins/non-plugin-analyze-style'

@@ -6,14 +6,31 @@ import { logErr } from '../shared/logger'
 import { normalizePath } from '../shared/constant'
 import { PluginDriver } from './_plugin-driver'
 
+export type Transform = (stdin: string, id: string, parrent: string) => Promise<{ id: string; stdout: string }>
+
+export type buildStart = (files: Map<string, any>, parrent: string) => Promise<void>
+
+export interface Plugin {
+  name: string
+  transform?: Transform
+  buildStart?: buildStart
+  [prop: string]: any
+}
+
 interface BunndleConfig {
   parrents?: string
   dotFile?: boolean
-  plugins?: any[]
+  plugins?: Plugin[]
 }
 
 export class Bundle extends EventEmitter {
-  files = new Map()
+  files = new Map<
+    string,
+    {
+      content: Buffer
+      path: string
+    }
+  >()
   parrents: string
   dotFile: boolean
   plugins: PluginDriver
@@ -36,38 +53,37 @@ export class Bundle extends EventEmitter {
     if (!allStats.length) {
       return logErr(`[Non] can not found any file in this dir ${this.parrents}`)
     }
-    await Promise.all(
-      allStats.map(async (stats) => {
-        const absolutePath = path.resolve(this.parrents, stats.path)
-        const relativePath = path.relative(this.parrents, stats.path)
-        if (absolutePath.indexOf('__tests__') === -1) {
-          const content = fs.readFileSync(absolutePath)
-          this.files.set(stats.path, { content, path: relativePath })
-        }
-      })
-    )
+    allStats.forEach((stats) => {
+      const absolutePath = path.resolve(this.parrents, stats.path)
+      const relativePath = path.relative(this.parrents, stats.path)
+      if (absolutePath.indexOf('__tests__') === -1) {
+        const content = fs.readFileSync(absolutePath)
+        this.files.set(stats.path, { content, path: relativePath })
+      }
+    })
     await this.plugins.hookParallel('buildStart', [this.files, this.parrents])
-    await Promise.all(
-      allStats.map(async (stats) => {
-        if (!this.files.has(stats.path)) return
-        const { content, path } = this.files.get(stats.path)
-        const res = await this.plugins.hookParallel('transform', [content.toString(), path, this.parrents])
-        await Promise.all(
-          res.map((item: any) => {
-            if (item) {
-              let key = stats.path
-              if (item.extra) {
-                key = item.extra
-                this.files.set(key, { content: Buffer.from(item.stdout), path: item.id })
-              } else {
-                const meta = this.files.get(key)
-                this.files.set(key, Object.assign(meta, { content: Buffer.from(item.stdout), path: item.id }))
-              }
-            }
-          })
-        )
-      })
-    )
+    const promises: Promise<any>[] = []
+    const convertKey: string[] = []
+    this.files.forEach((v, k) => {
+      const { content, path: id } = v
+      const pluginPromise = this.plugins.hookParallel('transform', [content.toString(), id, this.parrents])
+      if (pluginPromise) {
+        promises.push(pluginPromise)
+        convertKey.push(k)
+      }
+    })
+
+    const result = await Promise.all(promises)
+    result.forEach((item, idx) => {
+      if (Array.isArray(item)) {
+        for (const conver of item) {
+          if (!conver) continue
+          this.files.set(convertKey[idx], { content: Buffer.from(conver.stdout), path: conver.id })
+        }
+      }
+    })
+    promises.length = 0
+    convertKey.length = 0
   }
 
   async dest(dest: string, clean = false) {
