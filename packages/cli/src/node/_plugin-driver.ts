@@ -3,11 +3,9 @@ import { Plugin } from './_compile'
 
 export class PluginDriver {
   plugins: Plugin[]
-  private pluginContexts: ReadonlyMap<string, any>
 
   constructor(plugins) {
     this.plugins = plugins
-    this.pluginContexts = new Map(this.plugins.map((plugin) => [plugin.name, plugin]))
   }
 
   hookParallel(hookName: string, args: unknown[]) {
@@ -29,13 +27,12 @@ export class PluginDriver {
   runHook(hookName: string, args: unknown[], plugin: any) {
     const hook = plugin[hookName]
     if (!hook) return
-    const context = this.pluginContexts.get(plugin.name)
     return Promise.resolve().then(() => {
       if (typeof hook !== 'function') {
         return logErr(`[Non]:${plugin.name} error`)
       }
       // eslint-disable-next-line @typescript-eslint/ban-types
-      const hookResult = (hook as Function).apply(context, args)
+      const hookResult = (hook as Function).apply(plugin, args)
       if (!hookResult || !hookResult.then) {
         return hookResult
       }
@@ -46,13 +43,12 @@ export class PluginDriver {
   runHookSync(hookName: string, args: any, plugin: any) {
     const hook = plugin[hookName]
     if (!hook) return
-    const context = this.pluginContexts.get(plugin.name)
     try {
       if (typeof hook !== 'function') {
         return logErr(`[Non]:${plugin.name} error`)
       }
       // eslint-disable-next-line @typescript-eslint/ban-types
-      return (hook as Function).apply(context, args)
+      return (hook as Function).apply(plugin, args)
     } catch (error) {
       console.log(error)
       process.exit(1)
