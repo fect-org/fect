@@ -1,5 +1,5 @@
 import { createBem, createName } from '../utils'
-import { computed, CSSProperties, defineComponent, onMounted, ref } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 import { props } from './props'
 import { useState } from '@fect-ui/vue-hooks'
 import { useFormStateContext, pickFormStateProps } from '../form/form-context'

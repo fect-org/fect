@@ -2,7 +2,7 @@ import type { PropType } from 'vue'
 
 export const props = {
   modelValue: {
-    type: [String, Number],
+    type: String,
     default: ''
   },
   autocomplete: String,
