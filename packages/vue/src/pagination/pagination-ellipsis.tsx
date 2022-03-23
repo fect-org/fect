@@ -2,7 +2,7 @@ import { computed, defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import PaginationItem from './pagination-item'
 
-const PaginationEllipsis = defineComponent({
+export default defineComponent({
   props: {
     isBefore: Boolean
   },
@@ -59,5 +59,3 @@ const PaginationEllipsis = defineComponent({
     )
   }
 })
-
-export default PaginationEllipsis

@@ -4,7 +4,7 @@ import { Placement } from './props'
 
 const bem = createBem('fect-drawer')
 
-const DrawerWrapper = defineComponent({
+export default defineComponent({
   props: {
     placement: {
       type: String as PropType<Placement>,
@@ -21,5 +21,3 @@ const DrawerWrapper = defineComponent({
     )
   }
 })
-
-export default DrawerWrapper

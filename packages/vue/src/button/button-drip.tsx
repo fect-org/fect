@@ -1,6 +1,6 @@
 import { defineComponent, computed } from 'vue'
 
-const ButtonDrip = defineComponent({
+export default defineComponent({
   props: {
     x: Number,
     y: Number
@@ -26,5 +26,3 @@ const ButtonDrip = defineComponent({
     )
   }
 })
-
-export default ButtonDrip

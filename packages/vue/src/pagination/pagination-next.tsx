@@ -5,7 +5,7 @@ import { usePaginationContext } from './pagination-context'
 
 const bem = createBem('fect-pagination')
 
-const PaginationNext = defineComponent({
+export default defineComponent({
   setup(props, { slots }) {
     const { context } = usePaginationContext()
 
@@ -20,5 +20,3 @@ const PaginationNext = defineComponent({
     )
   }
 })
-
-export default PaginationNext

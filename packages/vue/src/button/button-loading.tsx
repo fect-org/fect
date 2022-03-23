@@ -2,7 +2,7 @@ import { defineComponent, PropType } from 'vue'
 import { LoadingTypes } from '../utils'
 import Loading from '../loading'
 
-const ButtonLoading = defineComponent({
+export default defineComponent({
   props: {
     loadType: {
       type: String as PropType<LoadingTypes>
@@ -16,5 +16,3 @@ const ButtonLoading = defineComponent({
     )
   }
 })
-
-export default ButtonLoading

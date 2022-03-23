@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 
-const RatingIcon = defineComponent({
+export default defineComponent({
   setup() {
     return () => (
       <svg
@@ -19,5 +19,3 @@ const RatingIcon = defineComponent({
     )
   }
 })
-
-export default RatingIcon

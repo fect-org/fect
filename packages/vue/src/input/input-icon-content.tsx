@@ -3,7 +3,7 @@ import { createBem } from '../utils'
 
 const bem = createBem('fect-input')
 
-const IconContent = defineComponent({
+export default defineComponent({
   props: {
     clickable: Boolean,
     suffix: Boolean,
@@ -30,5 +30,3 @@ const IconContent = defineComponent({
     )
   }
 })
-
-export default IconContent

@@ -3,7 +3,7 @@ import { createBem } from '../utils'
 
 const bem = createBem('fect-pagination')
 
-const PaginationItem = defineComponent({
+export default defineComponent({
   inheritAttrs: false,
   props: {
     disabled: Boolean,
@@ -31,5 +31,3 @@ const PaginationItem = defineComponent({
     )
   }
 })
-
-export default PaginationItem

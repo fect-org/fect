@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 
-const SnippetIcon = defineComponent({
+export default defineComponent({
   setup() {
     return () => (
       <svg
@@ -20,5 +20,3 @@ const SnippetIcon = defineComponent({
     )
   }
 })
-
-export default SnippetIcon

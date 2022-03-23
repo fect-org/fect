@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 
-const CollapseIcon = defineComponent({
+export default defineComponent({
   props: {
     active: Boolean
   },
@@ -24,5 +24,3 @@ const CollapseIcon = defineComponent({
     )
   }
 })
-
-export default CollapseIcon

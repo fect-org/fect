@@ -4,7 +4,7 @@ import PaginationItem from './pagination-item'
 import PaginationEllipsis from './pagination-ellipsis'
 import { usePaginationContext } from './pagination-context'
 
-const PaginationPages = defineComponent({
+export default defineComponent({
   props: {
     current: {
       type: Number,
@@ -124,5 +124,3 @@ const PaginationPages = defineComponent({
     return () => <>{overlaod.value ? renderlessLimit() : renderNormal()}</>
   }
 })
-
-export default PaginationPages

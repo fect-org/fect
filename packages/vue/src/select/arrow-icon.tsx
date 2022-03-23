@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 
-const SelectIcon = defineComponent({
+export default defineComponent({
   setup() {
     return () => (
       <div>
@@ -22,5 +22,3 @@ const SelectIcon = defineComponent({
     )
   }
 })
-
-export default SelectIcon

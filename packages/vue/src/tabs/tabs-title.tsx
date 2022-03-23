@@ -4,7 +4,7 @@ import { tabsTitleProps } from './props'
 
 const bem = createBem('fect-tabs')
 
-const TabsTitle = defineComponent({
+export default defineComponent({
   props: tabsTitleProps,
   emits: ['click', 'mouseenter'],
   setup(props, { emit, slots }) {
@@ -25,5 +25,3 @@ const TabsTitle = defineComponent({
     )
   }
 })
-
-export default TabsTitle
