@@ -39,5 +39,6 @@ textarea/auto-height.vue
 | **v-model**     | 可绑定的输入值                                                                     | `'string'`           | `-`                                                              | `''`     |
 | **change**      | 输入框变化事件                                                                     | `(e)=>void`          | `-`                                                              | `-`      |
 | **auto-height** | 自动计算输入框高度                                                                 | `'boolean'`          | `-`                                                              | `-`      |
+| **width** | 输入框宽度                                                                 | `'string'`          | `-`                                                              | `-`      |
 | **resize**      | CSS reise                                                                          | `'string'`           | `'none', 'both', 'horizontal', 'vertical', 'initial', 'inherit'` | `'none'` |
 | ...             | 原生属性[文档](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) | `TextareaAttributes` | `'class','id',...`                                               | `-`      |

@@ -86,7 +86,11 @@ export default defineComponent({
       return (
         <textarea
           class={disabled}
-          style={{ resize: props.resize, height: autoHeight.value ? `${autoHeight.value}px` : '100%' }}
+          style={{
+            resize: props.resize,
+            height: autoHeight.value ? `${autoHeight.value}px` : '100%',
+            width: props.width ? props.width : '100%'
+          }}
           {...TextareaProps}
         />
       )

@@ -1,5 +1,4 @@
 import type { PropType } from 'vue'
-import type { NormalSizes } from '../utils'
 
 export const props = {
   modelValue: {
@@ -14,5 +13,6 @@ export const props = {
     type: String as PropType<'none' | 'both' | 'horizontal' | 'vertical' | 'initial' | 'inherit'>,
     default: 'none'
   },
-  autoHeight: Boolean
+  autoHeight: Boolean,
+  width: String,
 }

@@ -44,8 +44,8 @@ exports[`Form should be work with select and radiobox 1`] = `
     </div>
   </div>
   <div class="fect-form__item fect-form__item--right fect-form__item--large"><label class="fect-form__label" for="switch" style="width: 120px; text-align: right;">Switch</label>
-    <div class="fect-form__content"><label class="fect-switch fect-switch--large"><input class="fect-switch__checkbox" type="checkbox">
-        <div class="fect-switch__slider"><span class="fect-switch__inner"></span></div>
+    <div class="fect-form__content"><label class="fect-switch fect-switch--large fect-switch--checked"><input class="fect-switch__checkbox" type="checkbox">
+        <div class="fect-switch__slider"><span class="fect-switch__inner fect-switch__inner--checked"></span></div>
       </label>
       <div class="fect-form__error"><span style="display: none;"></span></div>
     </div>
