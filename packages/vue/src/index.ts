@@ -53,6 +53,7 @@ import { Tab } from './tab'
 import { Tabs } from './tabs'
 import { Tag } from './tag'
 import { Teleport } from './teleport'
+import { Textarea } from './textarea'
 import { ThemeProvide } from './theme-provide'
 import { Toast } from './toast'
 import { Tooltip } from './tooltip'
@@ -110,6 +111,7 @@ const components = [
   Tabs,
   Tag,
   Teleport,
+  Textarea,
   ThemeProvide,
   Toast,
   Tooltip,
@@ -178,6 +180,7 @@ export * from './tab'
 export * from './tabs'
 export * from './tag'
 export * from './teleport'
+export * from './textarea'
 export * from './theme-provide'
 export * from './toast'
 export * from './tooltip'

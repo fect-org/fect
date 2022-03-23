@@ -27,8 +27,8 @@
 
 #### **创建组件**
 
-1. 在 `packages` 中创建一个组件目录。
-2. 运行 `yarn collect` 命令，它会自动添加一条 `import` 到 `packages/index.ts` 中。
+1. 在 `packages/vue/src` 中创建一个组件目录。
+2. 运行 `yarn collect` 命令，它会自动添加一条 `import` 到 `packages/vue/src/index.ts` 中。
 3. 在 `docs/zh-cn` ,`docs/en-us` 和 `docs/example` 中创建该组件的文档文件，它将会被自动注册。
 4. 重启本地服务查看更改: `yarn dev`。
 

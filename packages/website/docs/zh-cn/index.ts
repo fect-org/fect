@@ -46,6 +46,7 @@ export const zhRoutes: Routes = [
       { title: '评分 Rating', route: 'Rating' },
       { title: '选择器 Select', route: 'Select' },
       { title: '开关 Switch', route: 'Switch' },
+      { title: '文本输入框 Textarea', route: 'Textarea' },
       { title: '文件上传 Upload', route: 'Upload' }
     ]
   },
