@@ -58,7 +58,6 @@ export default defineComponent({
       if (props.autoHeight) {
         const { node, height } = getTextareaAutoHeight(textareaRef)
         if (!hiddenTextArea) hiddenTextArea = node
-        console.log(hiddenTextArea)
         setAutoHeight(height)
       }
     }
@@ -83,10 +82,8 @@ export default defineComponent({
 
     onBeforeUnmount(() => {
       const browser = isBrowser()
-      console.log('xx')
       if (!browser) return
       if (hiddenTextArea) {
-        console.log(hiddenTextArea.parentNode)
         hiddenTextArea.parentNode?.removeChild(hiddenTextArea)
         hiddenTextArea = undefined
       }

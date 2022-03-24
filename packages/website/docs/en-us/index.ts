@@ -47,6 +47,7 @@ export const enRoutes: Routes = [
       { title: 'Rating', route: 'Rating' },
       { title: 'Select', route: 'Select' },
       { title: 'Switch', route: 'Switch' },
+      { title: 'Textarea', route: 'Textarea' },
       { title: 'Upload', route: 'Upload' }
     ]
   },
