@@ -59,4 +59,19 @@ describe('Textarea', () => {
     expect(wrapper.emitted('update:modelValue')![0]).toEqual(['test'])
     expect(wrapper.emitted()).toHaveProperty('change')
   })
+  it('props auto height should be work', async () => {
+    const wrapper = mount(Textarea, {
+      props: {
+        autoHeight: true
+      }
+    })
+    const textarea = wrapper.find('textarea')
+    textarea.element.value = 'test'
+    await textarea.trigger('input')
+    await textarea.trigger('change')
+    const hiddentTextAreaEl = document.querySelector('.fect-ui--textarea')!
+    expect(hiddentTextAreaEl).toBeTruthy()
+    await wrapper.unmount()
+    expect(document.querySelector('.fect-ui--textarea')).toBeFalsy()
+  })
 })

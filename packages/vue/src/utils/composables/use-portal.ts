@@ -1,10 +1,10 @@
 import { createApp, Component, unref } from 'vue'
 import { ElementRef } from './interface'
 
-const createNode = (name: string) => {
+const createNode = (name: string, node = 'div') => {
   const dom = document.querySelector(`.${name}`)
   if (dom) return dom
-  const elSnapshot = document.createElement('div')
+  const elSnapshot = document.createElement(node)
   elSnapshot.classList.add(name)
   document.body.appendChild(elSnapshot)
   return elSnapshot
