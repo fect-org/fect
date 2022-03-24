@@ -1,6 +1,7 @@
-import { createBem, createName } from '../utils'
-import { computed, defineComponent, onMounted, ref } from 'vue'
+import { createBem, createName, isBrowser, addUnit } from '../utils'
+import { computed, defineComponent, onMounted, ref, onBeforeUnmount } from 'vue'
 import { props } from './props'
+import { getTextareaAutoHeight } from './auto-height'
 import { useState } from '@fect-ui/vue-hooks'
 import { useFormStateContext, pickFormStateProps } from '../form/form-context'
 
@@ -16,6 +17,9 @@ export default defineComponent({
   setup(props, { emit, attrs }) {
     const textareaRef = ref<HTMLTextAreaElement>()
     const [hover, setHover] = useState<boolean>(false)
+    const [autoHeight, setAutoHeight] = useState<string>('')
+
+    let hiddenTextArea: HTMLTextAreaElement | undefined
 
     const formState = useFormStateContext()
 
@@ -50,20 +54,42 @@ export default defineComponent({
 
     const InputHandler = (e: Event) => updatelValue((e.target as HTMLTextAreaElement).value)
 
-    const autoHeight = ref(0)
-
     const resize = () => {
       if (props.autoHeight) {
-        autoHeight.value = textareaRef.value?.scrollHeight || 0
+        const { node, height } = getTextareaAutoHeight(textareaRef)
+        if (!hiddenTextArea) hiddenTextArea = node
+        console.log(hiddenTextArea)
+        setAutoHeight(height)
       }
     }
     const InputHandlerWithAutoCompute = (e: Event) => {
-      resize()
       InputHandler(e)
+      resize()
     }
 
-    onMounted(() => {
-      resize()
+    const initlizeAutoHeight = () => {
+      const browser = isBrowser()
+      if (!browser) return
+      if (!props.autoHeight) return
+      if (textareaRef.value) {
+        setAutoHeight(addUnit(textareaRef.value.scrollHeight))
+      }
+    }
+
+    /**
+     * we don't apply resize as initialization logic
+     */
+    onMounted(initlizeAutoHeight)
+
+    onBeforeUnmount(() => {
+      const browser = isBrowser()
+      console.log('xx')
+      if (!browser) return
+      if (hiddenTextArea) {
+        console.log(hiddenTextArea.parentNode)
+        hiddenTextArea.parentNode?.removeChild(hiddenTextArea)
+        hiddenTextArea = undefined
+      }
     })
 
     const renderTextarea = () => {
@@ -88,7 +114,7 @@ export default defineComponent({
           class={disabled}
           style={{
             resize: props.resize,
-            height: autoHeight.value ? `${autoHeight.value}px` : '100%',
+            height: autoHeight.value ? `${autoHeight.value}` : '100%',
             width: props.width ? props.width : '100%'
           }}
           {...TextareaProps}
