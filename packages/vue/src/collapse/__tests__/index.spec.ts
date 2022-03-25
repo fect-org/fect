@@ -47,7 +47,7 @@ describe('Collapse', () => {
     })
 
     await wrapper.find('.fect-collapse__view').trigger('click')
-    expect(wrapper.find('.fect-collapse__expand').attributes('style')).toBe('visibility: hidden; height: 0px;')
+    expect(wrapper.find('.fect-collapse__expand').attributes('style')).toBe('visibility: visible; height: 0px;')
   })
   it('should be support accordion model', async () => {
     const wrapper = mount({

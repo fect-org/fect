@@ -1,17 +1,12 @@
-import { computed, ref, PropType, watch, defineComponent } from 'vue'
+import { ref, PropType, watch, defineComponent, watchEffect, onMounted, onBeforeUnmount } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { useRealShape, createName, createBem } from '../utils'
+import { createName, createBem, getDomRect } from '../utils'
 import { useCollapseContext } from '../collapse-group/collapse-context'
 import CollapseIcon from './collapse-icon'
 import './index.less'
 
 const name = createName('Collapse')
 const bem = createBem('fect-collapse')
-
-type Shape = {
-  width: number
-  height: number
-}
 
 type Height = string | number
 
@@ -34,45 +29,55 @@ export default defineComponent({
     const expandRef = ref<HTMLDivElement>()
 
     const [height, setHeight] = useState<Height>(props.visible ? 'auto' : 0)
+    const [visible, setVisible] = useState<boolean>(props.visible)
 
     const clickHandler = () => {
       if (context) return context.updateCollapseGroupChecked(idx)
-      emit('update:visible', !props.visible)
+      setVisible((pre) => !pre)
     }
 
-    const visible = computed(() => {
-      if (context) {
-        const valueArr = context!.checked.value
-        const visible = valueArr.indexOf(idx) !== -1
-        setHeight(visible ? 'auto' : 0)
-        return visible
+    const setVislbeWidthGroupMod = () => {
+      if (!context) return
+      const parent = context.checked.value
+      const exist = parent.indexOf(idx) !== -1
+      setVisible(exist)
+      setHeight(exist ? 'auto' : 0)
+    }
+
+    watchEffect(setVislbeWidthGroupMod)
+
+    let shape: ReturnType<typeof getDomRect> | null
+
+    const setShape = () => {
+      if (expandRef.value) {
+        if (shape) return
+        shape = getDomRect(expandRef)
       }
-      return props.visible
-    })
+    }
 
-    /**
-     * visible attrs will control the expand element height value
-     *
-     * in first time will set child height value , and if visible as
-     * true will set auto . as down
-     * and in false will set zero as up
-     *
-     */
+    onMounted(setShape)
 
-    watch(visible, (pre) => {
-      const shape = useRealShape(expandRef) as Shape
-      if (pre) {
+    onBeforeUnmount(() => (shape = null))
+
+    const setCollapseHiehgt = (state: boolean) => {
+      if (!shape) shape = getDomRect(expandRef)
+      if (state) {
         const entryTimer = setTimeout(() => {
-          setHeight(`${shape.height}px`)
+          setHeight(`${shape!.height}px`)
           clearTimeout(entryTimer)
         }, 200 / 30)
-      } else {
-        setHeight(`${shape.height}px`)
-        const leaveTimer = setTimeout(() => {
-          setHeight(0)
-          clearTimeout(leaveTimer)
-        }, 200 / 30)
+        return
       }
+      setHeight(`${shape.height}px`)
+      const leaveTimer = setTimeout(() => {
+        setHeight(0)
+        clearTimeout(leaveTimer)
+      }, 200 / 30)
+    }
+
+    watch(visible, (cur) => {
+      setCollapseHiehgt(cur)
+      emit('update:visible', cur)
     })
 
     return () => (
