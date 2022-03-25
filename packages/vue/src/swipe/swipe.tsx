@@ -1,6 +1,6 @@
 import { computed, CSSProperties, ref, watch, onUnmounted, onMounted, nextTick, defineComponent } from 'vue'
 import { createProvider, useState } from '@fect-ui/vue-hooks'
-import { useRealShape, createName, ComponentInstance } from '../utils'
+import { createName, ComponentInstance, getDomRect } from '../utils'
 import { READONLY_SWIPE_KEY, Shape, Placement } from './type'
 import { props } from './props'
 import './index.less'
@@ -174,7 +174,7 @@ export default defineComponent({
      */
     const resize = () => {
       nextTick(() => {
-        const { width } = useRealShape(swipeRef) as Shape
+        const { width } = getDomRect(swipeRef) as Shape
         setSize(width)
         setTrackSize(width * length.value)
         initializeIndex()

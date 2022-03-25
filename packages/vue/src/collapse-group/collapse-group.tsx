@@ -25,6 +25,10 @@ export default defineComponent({
 
     const [checked, setChecked] = useState<number[]>(props.modelValue)
 
+    /**
+     * We use the index value of the component to control the expand of collapse
+     */
+
     const updateCollapseGroupChecked = (idx: number) => {
       setChecked((pre) => {
         const cursor = pre.indexOf(idx)
