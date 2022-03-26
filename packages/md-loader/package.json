@@ -7,8 +7,5 @@
   "dependencies": {
     "markdown-it": "^12.2.0",
     "@types/markdown-it": "^12.2.3"
-  },
-  "peerDependencies": {
-    "vite": "^2.6.7"
   }
 }
