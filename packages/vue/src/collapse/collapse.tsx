@@ -1,6 +1,6 @@
-import { ref, PropType, watch, defineComponent, watchEffect, onMounted, onBeforeUnmount } from 'vue'
+import { ref, PropType, watch, defineComponent, watchEffect } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, createBem, getDomRect } from '../utils'
+import { createName, createBem, getDomRect, useMounted } from '../utils'
 import { useCollapseContext } from '../collapse-group/collapse-context'
 import CollapseIcon from './collapse-icon'
 import './index.less'
@@ -55,9 +55,7 @@ export default defineComponent({
       }
     }
 
-    onMounted(setShape)
-
-    onBeforeUnmount(() => (shape = null))
+    useMounted([setShape, () => (shape = null)])
 
     const setCollapseHiehgt = (state: boolean) => {
       if (!shape) shape = getDomRect(expandRef)

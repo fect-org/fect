@@ -1,6 +1,6 @@
-import { defineComponent, ref, computed, onMounted, onBeforeMount } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, createBem, isArray, pickContextProps, pick, hasOwn, len, useExpose } from '../utils'
+import { createName, createBem, isArray, pickContextProps, pick, hasOwn, len, useExpose, useMounted } from '../utils'
 import { getLabelPostion, getLabelWidth } from '../form/style'
 import { FormRule, Trigger, ValidateCallback } from '../form/interface'
 import { useFormContext, createFormItemContext } from '../form/form-context'
@@ -102,18 +102,20 @@ export default defineComponent({
 
     const clearValidate = () => setShowLog(false)
 
-    onMounted(() => {
+    const addField = () => {
       const { prop } = props
       if (prop) {
         const rules = getRules()
         context?.apollo.addField(prop, rules)
       }
-    })
+    }
 
-    onBeforeMount(() => {
+    const removeField = () => {
       const { prop } = props
       if (prop) context?.apollo.removeField(prop)
-    })
+    }
+
+    useMounted([addField, removeField])
 
     useExpose({ validate, clearValidate, updateShowLogState })
 
