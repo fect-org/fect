@@ -1,8 +1,8 @@
-import { defineComponent, ref, watch, onMounted, nextTick, onBeforeUnmount } from 'vue'
+import { defineComponent, ref, watch, nextTick } from 'vue'
 import { useClickAway, useState } from '@fect-ui/vue-hooks'
 import { createPopper, Instance as PopperInstance } from '@popperjs/core'
 
-import { createName, useExpose, createBem, kebabCase } from '../utils'
+import { createName, useExpose, createBem, kebabCase, useMounted } from '../utils'
 import Teleport from '../teleport'
 import { props } from './props'
 import type { ComponentInstance } from '../utils'
@@ -57,14 +57,15 @@ export default defineComponent({
         }
       })
     }
-    onMounted(updateLocaltion)
 
-    onBeforeUnmount(() => {
+    const removePoperInstance = () => {
       if (popperInstance) {
         popperInstance.destroy()
         popperInstance = null
       }
-    })
+    }
+
+    useMounted([updateLocaltion, removePoperInstance])
 
     const preventHandler = (e: Event) => {
       e.stopPropagation()

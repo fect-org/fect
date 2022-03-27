@@ -16,9 +16,9 @@ export const useMounted = (fns: MountedFn[]) => {
         start: fns[0],
         end: fns[0]
       }
-    const [, ...ends] = fns
+    const [start, ...ends] = fns
     return {
-      start: fns[0],
+      start,
       end: ends
     }
   }

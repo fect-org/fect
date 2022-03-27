@@ -1,5 +1,5 @@
-import { createBem, createName, isBrowser, addUnit } from '../utils'
-import { computed, defineComponent, onMounted, ref, onBeforeUnmount } from 'vue'
+import { createBem, createName, isBrowser, addUnit, useMounted } from '../utils'
+import { computed, defineComponent, ref } from 'vue'
 import { props } from './props'
 import { getTextareaAutoHeight } from './auto-height'
 import { useState } from '@fect-ui/vue-hooks'
@@ -75,19 +75,16 @@ export default defineComponent({
       }
     }
 
-    /**
-     * we don't apply resize as initialization logic
-     */
-    onMounted(initlizeAutoHeight)
-
-    onBeforeUnmount(() => {
+    const removeAutoHeightHiddenDOM = () => {
       const browser = isBrowser()
       if (!browser) return
       if (hiddenTextArea) {
         hiddenTextArea.parentNode?.removeChild(hiddenTextArea)
         hiddenTextArea = undefined
       }
-    })
+    }
+
+    useMounted([initlizeAutoHeight, removeAutoHeightHiddenDOM])
 
     const renderTextarea = () => {
       const TextareaProps = {
