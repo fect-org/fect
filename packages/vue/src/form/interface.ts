@@ -1,13 +1,11 @@
-import { tuple, ComponentInstance } from '../utils'
+import { ComponentInstance } from '../utils'
 import { props } from './props'
 import type { RuleItem, CallbackErrors } from 'proy'
 import type { FormItemProps } from '../form-item/props'
 import type { ComputedRef, ExtractDefaultPropTypes } from 'vue'
 import { Apollo } from './apollo'
 
-export const labelPosition = tuple('left', 'right', 'top')
-
-export type LabelPosition = typeof labelPosition[number]
+export type LabelPosition = 'left' | 'right' | 'top'
 
 export type Trigger = 'change' | 'blur' | ''
 

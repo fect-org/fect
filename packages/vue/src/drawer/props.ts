@@ -1,8 +1,6 @@
-import { tuple } from '../utils'
 import { PropType } from 'vue'
 
-export const placement = tuple('top', 'right', 'left', 'bottom')
-export type Placement = typeof placement[number]
+export type Placement = 'top' | 'right' | 'left' | 'bottom'
 
 export const props = {
   modelValue: Boolean,

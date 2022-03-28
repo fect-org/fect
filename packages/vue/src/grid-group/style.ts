@@ -4,7 +4,7 @@
  */
 
 import { assign, createBem } from '../utils'
-import type { JustifyTypes, AlignTypes, DirectionTypes, AlignContentTypes, GridTypes } from './type'
+import type { JustifyTypes, AlignTypes, DirectionTypes, AlignContentTypes, GridTypes } from './interface'
 import type { CustomCSSProperties } from '../utils'
 
 export type LayoutVariable = {

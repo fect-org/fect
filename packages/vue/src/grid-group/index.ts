@@ -6,4 +6,4 @@ export const GridGroup = withInstall(_GridGroup)
 
 export default GridGroup
 
-export type { JustifyTypes, AlignTypes, WrapTypes, DirectionTypes, AlignContentTypes } from './type'
+export type { JustifyTypes, AlignTypes, WrapTypes, DirectionTypes, AlignContentTypes } from './interface'

@@ -1,5 +1,5 @@
 import { PropType } from 'vue'
-import type { AlignContentTypes, JustifyTypes, WrapTypes, AlignTypes, DirectionTypes } from './type'
+import type { AlignContentTypes, JustifyTypes, WrapTypes, AlignTypes, DirectionTypes } from './interface'
 
 export const props = {
   gap: {
