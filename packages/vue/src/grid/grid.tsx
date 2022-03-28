@@ -1,9 +1,8 @@
 import { computed, defineComponent } from 'vue'
-import { useProvider } from '@fect-ui/vue-hooks'
 import { createName, assign, createBem } from '../utils'
 import { props } from './props'
+import { useGridContext } from '../grid-group/grid-context'
 import { getBasisStyle, getDynamicStyle, getDynamicLayoutClasses } from '../grid-group/style'
-import { GridGroupProvide, READONLY_GRID_GROUP_KEY } from '../grid-group/type'
 import './index.less'
 
 const name = createName('Grid')
@@ -13,7 +12,7 @@ export default defineComponent({
   name,
   props,
   setup(props, { slots }) {
-    const { context } = useProvider<GridGroupProvide>(READONLY_GRID_GROUP_KEY)
+    const { context } = useGridContext()
 
     const setStyle = computed(() => {
       const { alignContent, alignItems, direction, justify, xs, sm, md, lg, xl } = props
