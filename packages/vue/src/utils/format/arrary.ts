@@ -1,3 +1,3 @@
 export const { isArray } = Array
 
-export const len = (arr: any[]) => arr.length
+export const len = (source: unknown[] | string) => source.length

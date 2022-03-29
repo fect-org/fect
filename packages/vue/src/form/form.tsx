@@ -1,12 +1,11 @@
 import { defineComponent } from 'vue'
 import { useExpose } from '@fect-ui/vue-hooks'
 import { props } from './props'
-import { createName, createBem, isPlainObject, len } from '../utils'
+import { createName, createBem, isPlainObject, len, isArray } from '../utils'
 import { createFormContext } from './form-context'
 import type { PromisfyValidate, ValidateCallback } from './interface'
 import './index.less'
 import { Apollo } from './apollo'
-import { isArray } from '@vue/shared'
 
 const name = createName('Form')
 const bem = createBem('fect-form')
