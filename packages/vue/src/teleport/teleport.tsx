@@ -1,5 +1,6 @@
 import { Teleport, Transition, ref, defineComponent, onMounted, onBeforeMount, watch } from 'vue'
-import { createName, useExpose, createBem } from '../utils'
+import { useExpose } from '@fect-ui/vue-hooks'
+import { createName, createBem } from '../utils'
 import { props } from './props'
 import './index.less'
 

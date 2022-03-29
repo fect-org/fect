@@ -1,6 +1,6 @@
 import { defineComponent, ref, computed } from 'vue'
-import { useState } from '@fect-ui/vue-hooks'
-import { createName, createBem, isArray, pickContextProps, pick, hasOwn, len, useExpose, useMounted } from '../utils'
+import { useState, useExpose } from '@fect-ui/vue-hooks'
+import { createName, createBem, isArray, pickContextProps, pick, hasOwn, len, useMounted } from '../utils'
 import { getLabelPostion, getLabelWidth } from '../form/style'
 import { FormRule, Trigger, ValidateCallback } from '../form/interface'
 import { useFormContext, createFormItemContext } from '../form/form-context'

@@ -1,4 +1,3 @@
-export * from './use-expose'
 export * from './use-portal'
 export * from './use-resize'
 export * from './use-route'

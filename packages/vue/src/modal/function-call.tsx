@@ -1,7 +1,7 @@
 import { App } from 'vue'
-import { useState } from '@fect-ui/vue-hooks'
+import { useState, useExpose } from '@fect-ui/vue-hooks'
 import FeModal from './modal'
-import { withInstall, isBrowser, assign, createPortal, useExpose, pick } from '../utils'
+import { withInstall, isBrowser, assign, createPortal, pick } from '../utils'
 import type { ComponentInstance } from '../utils'
 import type { StaticModalOptions } from './interface'
 
@@ -37,7 +37,7 @@ const Modal = (options: StaticModalOptions) => {
 
         return () => (
           <FeModal
-            {...pick(modalProps.value, ['title', 'width', 'done', 'cancel', 'disableOverlayClick', 'keyboard'])}
+            {...pick(modalProps.value, ['title', 'width', 'done', 'cancel', 'disableOverlayClick'])}
             visible={visible.value}
             onCancel={cancelHandler}
             onConfirm={confirmHandler}

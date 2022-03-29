@@ -85,7 +85,7 @@ describe('Swipe', () => {
   it('component swipeItem should emitter a click event', async () => {
     const wrapper = mount(Wrapper)
     await flushPromises()
-    const els = wrapper.findAll('.fect-swipe-item')
+    const els = wrapper.findAll('.fect-swipe__item')
     await els[0].trigger('click')
     expect(wrapper.emitted()).toBeTruthy()
     wrapper.unmount()
