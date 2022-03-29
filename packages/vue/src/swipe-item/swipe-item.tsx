@@ -1,6 +1,6 @@
 import { computed, CSSProperties, defineComponent } from 'vue'
-import { useProvider, useState } from '@fect-ui/vue-hooks'
-import { createName, useExpose } from '../utils'
+import { useProvider, useState, useExpose } from '@fect-ui/vue-hooks'
+import { createName } from '../utils'
 import { SwipeProvide, READONLY_SWIPE_KEY } from '../swipe/type'
 import './index.less'
 

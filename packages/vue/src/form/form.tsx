@@ -1,6 +1,7 @@
 import { defineComponent } from 'vue'
+import { useExpose } from '@fect-ui/vue-hooks'
 import { props } from './props'
-import { createName, useExpose, createBem, isPlainObject, len } from '../utils'
+import { createName, createBem, isPlainObject, len } from '../utils'
 import { createFormContext } from './form-context'
 import type { PromisfyValidate, ValidateCallback } from './interface'
 import './index.less'

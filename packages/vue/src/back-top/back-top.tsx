@@ -1,6 +1,6 @@
 import { PropType, defineComponent, computed, ref, CSSProperties } from 'vue'
-import { createName, useExpose, isBrowser } from '../utils'
-import { useEventListener, useState } from '@fect-ui/vue-hooks'
+import { createName, isBrowser } from '../utils'
+import { useEventListener, useState, useExpose } from '@fect-ui/vue-hooks'
 
 import './index.less'
 
