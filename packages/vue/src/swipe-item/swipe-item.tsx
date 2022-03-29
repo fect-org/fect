@@ -1,16 +1,15 @@
 import { computed, CSSProperties, defineComponent } from 'vue'
-import { useProvider, useState, useExpose } from '@fect-ui/vue-hooks'
+import { useState, useExpose } from '@fect-ui/vue-hooks'
 import { createName } from '../utils'
-import { SwipeProvide, READONLY_SWIPE_KEY } from '../swipe/type'
-import './index.less'
+import { useSwipeContext } from '../swipe/swipe-context'
 
 const name = createName('SwipeItem')
 
 export default defineComponent({
   name,
   emits: ['click'],
-  setup(props, { attrs, slots, emit }) {
-    const { context } = useProvider<SwipeProvide>(READONLY_SWIPE_KEY)
+  setup(props, { slots, emit }) {
+    const { context } = useSwipeContext()
 
     const [translate, setTranslate] = useState<number>(0)
 
@@ -39,7 +38,7 @@ export default defineComponent({
     useExpose({ setTranslate })
 
     return () => (
-      <div class="fect-swipe-item" style={setStyle.value} onClick={clickHandler}>
+      <div class="fect-swipe__item" style={setStyle.value} onClick={clickHandler}>
         {slots.default?.()}
       </div>
     )

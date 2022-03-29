@@ -1,11 +1,14 @@
 import { computed, CSSProperties, ref, watch, onUnmounted, onMounted, nextTick, defineComponent } from 'vue'
-import { createProvider, useState } from '@fect-ui/vue-hooks'
-import { createName, ComponentInstance, getDomRect } from '../utils'
-import { READONLY_SWIPE_KEY, Shape, Placement } from './type'
+import { useState } from '@fect-ui/vue-hooks'
+import { createName, getDomRect, createBem } from '../utils'
+import type { Shape, Placement } from './interface'
 import { props } from './props'
 import './index.less'
+import { createSwipeContext } from './swipe-context'
 
 const name = createName('Swipe')
+
+const bem = createBem('fect-swipe')
 
 const nextTickFrame = (fn: FrameRequestCallback) => {
   requestAnimationFrame(() => {
@@ -18,8 +21,9 @@ export default defineComponent({
   props,
   emits: ['change'],
   setup(props, { slots, emit }) {
-    const parent = createProvider<ComponentInstance>(READONLY_SWIPE_KEY)
-    const { provider, children } = parent
+    const { provider, children } = createSwipeContext()
+
+    // const parent = createProvider<ComponentInstance>(READONLY_SWIPE_KEY)
 
     const swipeRef = ref<HTMLDivElement>()
     /**  why not set initialValue as inital index ,
@@ -145,14 +149,9 @@ export default defineComponent({
         }
 
         return (
-          <div class="fect-swipe__indicators">
+          <div class={bem('indicators')}>
             {[...Array(length.value)].map((_, i) => (
-              <span
-                class="fect-swipe__indicator"
-                style={setStyle(i)}
-                key={i}
-                onClick={() => indicatorHandler(i)}
-              ></span>
+              <span class={bem('indicator')} style={setStyle(i)} key={i} onClick={() => indicatorHandler(i)}></span>
             ))}
           </div>
         )
@@ -205,8 +204,8 @@ export default defineComponent({
     })
 
     return () => (
-      <div class="fect-swipe" ref={swipeRef}>
-        <div class="fect-swipe__track" style={setTrackStyle.value}>
+      <div class={bem(null)} ref={swipeRef}>
+        <div class={bem('track')} style={setTrackStyle.value}>
           {slots.default?.()}
         </div>
         {renderIndicator()}
