@@ -27,10 +27,17 @@ export default defineComponent({
       return false
     })
 
-    return () => (
-      <div class={bem(null)} v-show={shouldRender.value} role="tabpanel" tabindex={shouldRender.value ? 0 : -1}>
-        {slots.default?.()}
-      </div>
-    )
+    /**
+     * we should sue v-if replace v-show,
+     * because we found when we use custom slot, it will not reRender.
+     * and v-show will immediately calculate and cause some elements that need dynamic height to fail
+     */
+
+    return () =>
+      shouldRender.value && (
+        <div class={bem(null)} role="tabpanel" tabindex={shouldRender.value ? 0 : -1}>
+          {slots.default?.()}
+        </div>
+      )
   }
 })

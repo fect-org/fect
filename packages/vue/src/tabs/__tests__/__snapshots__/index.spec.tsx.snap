@@ -6,7 +6,7 @@ exports[`Tabs Tabs can use slots label custom tab title 1`] = `
     <div class="fect-tabs__highlight" style="transition-property: opacity;"></div>
   </header>
   <div class="fect-tab" role="tabpanel" tabindex="0">HTML</div>
-  <div class="fect-tab" role="tabpanel" tabindex="-1" style="display: none;">JS</div>
+  <!---->
 </div>
 `;
 
@@ -17,8 +17,8 @@ exports[`Tabs should be change acitve value when tab trigger 1`] = `
     <div role="tab" class="fect-tabs__title">HTML</div>
     <div role="tab" class="fect-tabs__title fect-tabs__title--active">JS</div>
   </header>
-  <div class="fect-tab" role="tabpanel" tabindex="-1" style="display: none;">HTML</div>
-  <div class="fect-tab" role="tabpanel" tabindex="0" style="">JS</div>
+  <!---->
+  <div class="fect-tab" role="tabpanel" tabindex="0">JS</div>
 </div>
 `;
 
@@ -30,6 +30,6 @@ exports[`Tabs should be disabled all events 1`] = `
     <div role="tab" class="fect-tabs__title">JS</div>
   </header>
   <div class="fect-tab" role="tabpanel" tabindex="0">HTML</div>
-  <div class="fect-tab" role="tabpanel" tabindex="-1" style="display: none;">JS</div>
+  <!---->
 </div>
 `;
