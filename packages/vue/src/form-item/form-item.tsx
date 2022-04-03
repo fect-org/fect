@@ -1,4 +1,4 @@
-import { defineComponent, ref, computed } from 'vue'
+import { defineComponent, ref, computed, Transition } from 'vue'
 import { useState, useExpose } from '@fect-ui/vue-hooks'
 import { createName, createBem, isArray, pickContextProps, pick, hasOwn, len, useMounted } from '../utils'
 import { getLabelPostion, getLabelWidth } from '../form/style'
@@ -139,9 +139,11 @@ export default defineComponent({
         <div class={bem('content')}>
           {slots.default?.()}
           {getFormItemState.value.hidden && (
-            <div class={bem('error')}>
-              <span v-show={showLog.value}>{getErrorLog.value}</span>
-            </div>
+            <Transition name="form-fade">
+              <div class={bem('error')} v-show={showLog.value}>
+                <span>{getErrorLog.value}</span>
+              </div>
+            </Transition>
           )}
         </div>
       </div>
