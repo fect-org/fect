@@ -35,3 +35,17 @@ form/default.vue
 | **show-message**   | 是否显示校验错误信息                                           | `boolean`         | `true`,`false`                  | `false`  |
 | **size**           | 表单项的尺寸                                                   | `string`          | `mini`,`small`,`medium`,`large` | `medium` |
 | **disabled**       | 禁止表单                                                       | `boolean`         | `true`,`false`                  | `true`   |
+
+### Form Instance
+
+Fect 提供了组件实例的类型 `FormInstance`
+
+```js
+import { ref } from 'vue'
+import type { FormInstance } from '@fect-ui/vue'
+
+const formRef = ref<FormInstance>();
+
+formRef.value?.validate()
+
+```

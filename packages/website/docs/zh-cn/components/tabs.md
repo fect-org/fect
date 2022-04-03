@@ -48,3 +48,9 @@ tabs/divider.vue
 | **title**    | 选项卡的文字描述   | `'string'`          | `-`              | `-`     |
 | **value**    | 绑定选项卡的标识符 | `'string','number'` | `-`              | `-`     |
 | **disabled** | 禁用当前选项卡     | `'boolean'`         | `'true','false'` | `false` |
+
+### Tab Slots
+
+| 插槽      | 描述             |
+| --------- | ---------------- |
+| **label** | 自定义选项卡描述 |

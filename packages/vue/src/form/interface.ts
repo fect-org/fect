@@ -25,6 +25,12 @@ export interface FormItemCotnext {
   clearValidate: () => void
 }
 
+export type FormInstance = ComponentInstance<{
+  validate: (callback?: ValidateCallback) => void | Promise<PromisfyValidate>
+  validateField: (fields: string | string[], callback?: ValidateCallback) => void
+  clearValidate: (fields: string[]) => void
+}>
+
 export interface FormRule extends RuleItem {
   trigger?: Trigger
 }

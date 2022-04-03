@@ -20,6 +20,18 @@
   --form-item-large-ratio: @form-item-large-ratio;
 }
 
+.form-fade {
+  &-enter-active,
+  &-leave-active {
+    opacity: 1;
+    transition: opacity 0.35s ease-out;
+  }
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+  }
+}
+
 .fect-form {
   &__item {
     display: flex;

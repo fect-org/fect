@@ -51,3 +51,9 @@ tabs/divider.vue
 | ---------- | ------------ | ------------- |
 | **change** | change event | `(val)=>void` |
 | **click**  | click Event  | `TabsEvent`   |
+
+### Tab Slots
+
+| Slot name | Description               |
+| --------- | ------------------------- |
+| **label** | define custom tab's label |
