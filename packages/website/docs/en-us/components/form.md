@@ -35,3 +35,17 @@ form/default.vue
 | **show-message**   | show the error message                                                                        | `boolean`         | `true`,`false`                  | `false`  |
 | **size**           | control form-item size                                                                        | `string`          | `mini`,`small`,`medium`,`large` | `medium` |
 | **disabled**       | disabled form-item                                                                            | `boolean`         | `true`,`false`                  | `true`   |
+
+### Form Instance
+
+`FormInstance` is the type of component instance:
+
+```js
+import { ref } from 'vue'
+import type { FormInstance } from '@fect-ui/vue'
+
+const formRef = ref<FormInstance>();
+
+formRef.value?.validate()
+
+```
