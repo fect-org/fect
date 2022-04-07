@@ -1,5 +1,5 @@
 import { createApp, Component, unref } from 'vue'
-import { ElementRef } from './interface'
+import { ElementRef } from '../composables/interface'
 
 const createNode = (name: string, node = 'div') => {
   const dom = document.querySelector(`.${name}`)
