@@ -1,5 +1,5 @@
 import { computed, PropType, defineComponent } from 'vue'
-import { createName } from '../utils'
+import { createName, isArray } from '../utils'
 import type { NormalSizes, NormalTypes, LoadingTypes } from '../utils'
 import LoadingCircle from './loading-circle'
 import './index.less'
@@ -32,7 +32,7 @@ export default defineComponent({
       if (!color) return
 
       const getCurrentColor = () => {
-        const isArr = Array.isArray(color)
+        const isArr = isArray(color)
         if (loadType === 'circle' && isArr) return 'initial'
         return isArr ? `linear-gradient(${color.join()})` : color
       }

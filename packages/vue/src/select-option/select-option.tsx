@@ -1,7 +1,7 @@
 import { defineComponent, computed } from 'vue'
 import { useSelectContext } from '../select/select-context'
 import { selectOptionProps } from '../select/props'
-import { createName, createBem } from '../utils'
+import { createName, createBem, isArray } from '../utils'
 import './index.less'
 
 const name = createName('Option')
@@ -25,7 +25,7 @@ export default defineComponent({
 
     const setOptionClass = computed(() => {
       const parentVal = parentValue.value
-      const checked = Array.isArray(parentVal) ? parentVal.includes(props.value as string) : parentVal === props.value
+      const checked = isArray(parentVal) ? parentVal.includes(props.value as string) : parentVal === props.value
       return bem(null, { disabled: props.disabled, size: selectState.value.size, checked })
     })
 

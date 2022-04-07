@@ -1,6 +1,15 @@
 import { computed, ref, watch, defineComponent, nextTick, onMounted } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, createBem, pick, getDomRect, CustomCSSProperties, ComponentInstance, assign } from '../utils'
+import {
+  createName,
+  createBem,
+  pick,
+  getDomRect,
+  CustomCSSProperties,
+  ComponentInstance,
+  assign,
+  isArray
+} from '../utils'
 import Input from '../input'
 import Tooltip from '../tooltip'
 import type { ToolTipProps } from '../tooltip/interface'
@@ -68,7 +77,7 @@ export default defineComponent({
     const updateSelectValue = (val: string) => {
       setValue((pre) => {
         if (props.multiple) {
-          const previous = Array.isArray(pre) ? pre : [pre]
+          const previous = isArray(pre) ? pre : [pre]
           if (!pre.includes(val)) return [...previous, val]
           return previous.filter((item) => item !== val)
         } else {
@@ -107,7 +116,7 @@ export default defineComponent({
     })
 
     const queryChecked = computed(() => {
-      const list = Array.isArray(value.value) ? value.value : [value.value]
+      const list = isArray(value.value) ? value.value : [value.value]
       return children.filter((child) => list.includes(child.value as string))
     })
 

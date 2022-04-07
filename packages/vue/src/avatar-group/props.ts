@@ -13,7 +13,10 @@ export const avatarProps = {
     default: ''
   },
   src: String,
-  className: String,
+  className: {
+    type: String,
+    default: ''
+  },
   alt: String
 }
 

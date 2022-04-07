@@ -26,13 +26,17 @@ export default defineComponent({
 
     const { context } = useButtonGroupContext()
 
+    const showDrip = computed(() => {
+      const { shadow, ghost, effect } = props
+      return !shadow && !ghost && effect
+    })
+
     const clickHandler = (e: MouseEvent) => {
-      const { disabled, loading, shadow, ghost, effect } = props
+      const { disabled, loading } = props
       if (disabled || loading) return
-      const showDrip = !shadow && !ghost && effect
-      if (showDrip) {
+      if (showDrip.value && buttonRef.value) {
         setDrapShow(true)
-        const rect = buttonRef.value!.getBoundingClientRect()!
+        const rect = buttonRef.value.getBoundingClientRect()
         setDrapX(e.clientX - rect.left)
         setDrapY(e.clientY - rect.top)
       }
