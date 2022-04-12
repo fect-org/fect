@@ -1,19 +1,19 @@
 <template>
   <div>
     <fe-row style="margin-bottom: 10px" gutter="15">
-      <fe-col span="16">
+      <fe-col :span="16">
         <div class="ex-col" :style="rightGap(8)"></div>
       </fe-col>
     </fe-row>
 
     <fe-row style="margin-bottom: 10px" gutter="15" justify="center">
-      <fe-col span="16">
+      <fe-col :span="16">
         <div class="ex-col" :style="rightGap(8)"></div>
       </fe-col>
     </fe-row>
 
     <fe-row style="margin-bottom: 10px" gutter="15" justify="end">
-      <fe-col span="16">
+      <fe-col :span="16">
         <div class="ex-col" :style="rightGap(8)"></div>
       </fe-col>
     </fe-row>

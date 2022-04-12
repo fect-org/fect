@@ -1,60 +1,47 @@
-import { computed, ref, PropType, CSSProperties, defineComponent } from 'vue'
-import { useProvider } from '@fect-ui/vue-hooks'
-import { createName } from '../utils'
-import { RowProvide, READONLY_LAYOUT_KEY } from '../row/row'
+import { computed, defineComponent } from 'vue'
+import { assign, createName, addUnit } from '../utils'
+import { useLayoutContext } from '../row/layout-context'
+import { colProps } from '../row/props'
+import type { CSSProperties } from 'vue'
+
 import './index.less'
 
 const name = createName('Col')
 
-// set safe  distance
-const useDistance = (value: number) => {
-  const tempDistance = 100 / 24
-  if (value >= 24) return '100%'
-  return `${tempDistance * value}%`
+const getDistance = (val: number) => {
+  const t = 100 / 24
+  if (val >= 24) return '100%'
+  return `${t * val}%`
 }
 
 export default defineComponent({
   name,
-  props: {
-    tag: {
-      type: String as PropType<keyof HTMLElementTagNameMap>,
-      default: 'div'
-    },
-    span: {
-      type: [String, Number],
-      default: 24
-    },
-    offset: {
-      type: [String, Number],
-      default: 0
-    }
-  },
+  props: colProps,
   setup(props, { slots }) {
-    const gutter = ref<string | number>(0)
-
-    const { context } = useProvider<RowProvide>(READONLY_LAYOUT_KEY)
-
-    if (context) {
-      gutter.value = context.gutter
-    }
+    const { context } = useLayoutContext()
 
     const setStyle = computed(() => {
       const { span, offset } = props
-      const style: CSSProperties = {
-        width: useDistance(Number(span)),
-        marginLeft: useDistance(Number(offset)),
-        paddingLeft: `${Number(gutter.value) / 2}px`,
-        paddingRight: `${Number(gutter.value) / 2}px`
+      const style = {
+        width: getDistance(span),
+        marginLeft: getDistance(offset)
+      }
+      if (context?.gutter) {
+        const gap = `calc(${addUnit(context.gutter.value)} / 2)`
+        assign(style, {
+          paddingLeft: gap,
+          paddingRight: gap
+        } as CSSProperties)
       }
       return style
     })
 
     return () => {
-      const { tag } = props
+      const { tag: ElementTag } = props
       return (
-        <tag style={setStyle.value} class="fect-col">
+        <ElementTag style={setStyle.value} class="fect-col">
           {slots.default?.()}
-        </tag>
+        </ElementTag>
       )
     }
   }

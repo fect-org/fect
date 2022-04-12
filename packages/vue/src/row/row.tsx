@@ -1,40 +1,21 @@
-import { computed, PropType, CSSProperties, defineComponent } from 'vue'
-import { createProvider } from '@fect-ui/vue-hooks'
-import { createName, JustifyTypes, AlignTypes, createBem } from '../utils'
+import { computed, defineComponent, toRef } from 'vue'
+import { createName, createBem, addUnit, assign } from '../utils'
+import { props } from './props'
+import { createLayoutContext } from './layout-context'
+import type { CSSProperties } from 'vue'
+
 import './index.less'
 
 const name = createName('Row')
 const bem = createBem('fect-row')
 
-export const READONLY_LAYOUT_KEY = 'layoutKey'
-
-export type RowProvide = {
-  gutter: string | number
-}
-
 export default defineComponent({
   name,
-  props: {
-    tag: {
-      type: String as PropType<keyof HTMLElementTagNameMap>,
-      default: 'div'
-    },
-    gutter: {
-      type: [String, Number],
-      default: 0
-    },
-    justify: {
-      type: String as PropType<JustifyTypes>,
-      default: 'start'
-    },
-    align: {
-      type: String as PropType<AlignTypes>,
-      default: 'top'
-    }
-  },
+  props,
   setup(props, { slots }) {
-    const { provider } = createProvider(READONLY_LAYOUT_KEY)
-    provider({ gutter: props.gutter })
+    const { provider } = createLayoutContext()
+
+    provider({ gutter: toRef(props, 'gutter') })
 
     const setRowClass = computed(() => {
       const { justify, align } = props
@@ -42,20 +23,20 @@ export default defineComponent({
     })
 
     const setStyle = computed(() => {
-      const style: CSSProperties = {}
+      const style = {}
       if (props.gutter) {
-        style.marginLeft = `-${Number(props.gutter) / 2}px`
-        style.marginRight = style.marginLeft
+        const gap = `calc(-${addUnit(props.gutter)} / 2)`
+        assign(style, { marginLeft: gap, marginRight: gap } as CSSProperties)
       }
       return style
     })
 
     return () => {
-      const { tag } = props
+      const { tag: ElementTag } = props
       return (
-        <tag class={setRowClass.value} style={setStyle.value}>
+        <ElementTag class={setRowClass.value} style={setStyle.value}>
           {slots.default?.()}
-        </tag>
+        </ElementTag>
       )
     }
   }
