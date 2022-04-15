@@ -88,7 +88,7 @@ grid/col.vue
 
 | Type          | Accepted values                    |
 | ------------- | ---------------------------------- |
-| **WrapTypes** | `'nowrap', 'wrap', 'wrap-reverse'` |
+| **WrapTypes** | `'no-wrap', 'wrap', 'wrap-reverse'` |
 
 ### JustifyTypes
 

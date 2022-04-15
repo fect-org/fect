@@ -21,7 +21,7 @@ export default defineComponent({
     const setGridState = computed(() => {
       const { xs, sm, md, lg, xl, fluid } = props
       if (!fluid) return bem(null, 'live')
-      return getDynamicLayoutClasses({ xs, sm, md, lg, xl }, '', bem)
+      return bem(null, getDynamicLayoutClasses({ xs, sm, md, lg, xl }))
     })
 
     return () => (

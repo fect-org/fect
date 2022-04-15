@@ -86,7 +86,7 @@ grid/col.vue
 
 | 类型          | 可选值                             |     |
 | ------------- | ---------------------------------- | --- |
-| **WrapTypes** | `'nowrap', 'wrap', 'wrap-reverse'` |     |
+| **WrapTypes** | `'no-wrap', 'wrap', 'wrap-reverse'` |     |
 
 ### JustifyTypes
 

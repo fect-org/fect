@@ -1,23 +1,17 @@
-import { defineComponent, computed, Slot } from 'vue'
-import { createName, CustomCSSProperties, createBem, omit, assign } from '../utils'
+import { defineComponent, computed } from 'vue'
+import { createName, createBem, omit, assign } from '../utils'
 import Grid from '../grid'
 import GridBasic from '../grid/grid-basic'
 import { gridGroupProps } from '../grid/props'
 import { createGridContext } from './grid-context'
-import { getUnitGapStyle } from '../grid/style'
+import { getUnitGapStyle, getGridStyle } from '../grid/style'
+
+import type { Slot } from 'vue'
 
 import './index.less'
 
 const name = createName('GridGroup')
 const bem = createBem('fect-grid')
-
-const getGridStyle = (col: number): CustomCSSProperties => {
-  col = Math.abs(col) > 24 ? 24 : col
-  const width = 100 / col
-  return {
-    '--grid-width': `${width}%`
-  }
-}
 
 export default defineComponent({
   name,
