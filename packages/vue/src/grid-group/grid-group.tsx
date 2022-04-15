@@ -1,75 +1,66 @@
-import { defineComponent, computed, Slot } from 'vue'
-import { createName, CustomCSSProperties, assign, createBem } from '../utils'
-import { props } from './props'
+import { defineComponent, computed } from 'vue'
+import { createName, createBem, omit, assign } from '../utils'
 import Grid from '../grid'
+import GridBasic from '../grid/grid-basic'
+import { gridGroupProps } from '../grid/props'
 import { createGridContext } from './grid-context'
-import { getDynamicStyle, getBasisStyle, getUnitGapStyle, getDynamicLayoutClasses } from './style'
+import { getUnitGapStyle, getGridStyle } from '../grid/style'
+
+import type { Slot } from 'vue'
 
 import './index.less'
 
 const name = createName('GridGroup')
 const bem = createBem('fect-grid')
 
-const getGridStyle = (col: number): CustomCSSProperties => {
-  col = Math.abs(col) > 24 ? 24 : col
-  const width = 100 / col
-  return {
-    '--grid-width': `${width}%`
-  }
-}
-
 export default defineComponent({
   name,
-  props,
+  props: gridGroupProps,
   setup(props, { slots }) {
     const { provider } = createGridContext()
-    const useGrid = computed(() => {
-      if (props.col === 0) return false
-      return true
+    /**
+     * When we enable col, the flow layout will fail
+     */
+    const isFluidLayout = computed(() => {
+      if (props.col === 0) return true
+      return false
     })
 
-    const setGroupStyle = computed(() => {
-      const { alignContent, alignItems, direction, justify, gap, col, xs, sm, md, lg, xl } = props
-      const basisStyle = getBasisStyle({ alignContent, alignItems, direction, justify })
+    const setGridGroupClasses = computed(() => {
+      const { wrap } = props
+      return bem('group', isFluidLayout.value ? wrap : 'wrap')
+    })
+
+    const setGridGroupStyles = computed(() => {
+      const { gap, col } = props
       const gapStyle = getUnitGapStyle(gap)
-      // work with dynamic system
-      const style = { ...basisStyle, ...gapStyle }
-      if (!useGrid.value) return assign(style, getDynamicStyle({ xs, sm, md, lg, xl }))
-      const gridStyle = getGridStyle(col)
-      return { ...style, ...gridStyle }
+      if (!isFluidLayout.value) return assign(gapStyle, getGridStyle(col))
+      return gapStyle
     })
 
-    const getWrapperClass = () => {
-      const { wrap: propWrap } = props
-      const wrap = useGrid.value ? 'wrap' : propWrap
-      return { wrap }
-    }
-
-    const setGroupClass = computed(() => {
-      const { xs, sm, md, lg, xl } = props
-      const wrap = getWrapperClass()
-      if (useGrid.value) return bem('group', wrap)
-      return getDynamicLayoutClasses({ wrap, xs, sm, md, lg, xl }, 'group', bem)
-    })
-
-    provider({ useGrid })
+    provider({ isFluidLayout })
 
     const renderGrids = (content: Slot) => {
       const { count } = props
       if (typeof count === 'number') {
-        const Grids: Array<JSX.Element | null> = []
-        Grids.length = count
-        return Grids.fill(null).map((_, idx) => <Grid key={idx}>{content(idx)}</Grid>)
+        const grids: Array<JSX.Element | null> = []
+        grids.length = count
+        return grids.fill(null).map((_, idx) => <Grid key={idx}>{content(idx)}</Grid>)
       }
       return count.map((_, idx) => <Grid key={idx}>{content(_)}</Grid>)
     }
 
     return () => {
       const hasGrid = slots['grid']
+
       return (
-        <div class={setGroupClass.value} style={setGroupStyle.value}>
+        <GridBasic
+          class={setGridGroupClasses.value}
+          style={setGridGroupStyles.value}
+          {...omit(props, ['gap', 'wrap', 'col', 'count'])}
+        >
           {hasGrid ? renderGrids(hasGrid) : slots.default?.()}
-        </div>
+        </GridBasic>
       )
     }
   }

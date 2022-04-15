@@ -3,26 +3,9 @@
  * see: https://stackoverflow.com/questions/53213870/why-display-property-set-to-inherit-with-css-variable-doesnt-work
  */
 
-import { assign, createBem } from '../utils'
-import type { JustifyTypes, AlignTypes, DirectionTypes, AlignContentTypes, GridTypes } from './interface'
+import { assign } from '../utils'
+import type { GridTypes, GridBreakPoint, LayoutVariable, BasisStyle } from './interface'
 import type { CustomCSSProperties } from '../utils'
-
-export type LayoutVariable = {
-  grow: number
-  width: number
-  basis: number
-}
-
-export type GridBreakPoint = number | boolean
-
-export type GridLayout = Record<GridTypes, LayoutVariable>
-
-export type BasisStyle = {
-  alignContent: AlignContentTypes
-  alignItems: AlignTypes
-  direction: DirectionTypes
-  justify: JustifyTypes
-}
 
 export const getLayoutVariable = (grid: GridBreakPoint): LayoutVariable => {
   if (typeof grid === 'number') {
@@ -58,14 +41,14 @@ export const getDynamicStyle = (props: Record<GridTypes, GridBreakPoint>) => {
   return dynamicStyle
 }
 
-export const getDynamicLayoutClasses = (props: Record<string, any>, el: string, bem: ReturnType<typeof createBem>) => {
+export const getDynamicLayoutClasses = (props: Record<string, any>) => {
   const state = (Object.keys(props) as string[]).reduce((acc, cur) => {
     const zero = props[cur] === 0 ? true : false
     if (zero) return assign(acc, { [`${cur}-0`]: true })
     if (props[cur]) return assign(acc, { [cur]: cur })
     return acc
   }, {})
-  return bem(el, state)
+  return state
 }
 
 export const getBasisStyle = (flexable: BasisStyle): CustomCSSProperties => {
@@ -81,5 +64,13 @@ export const getBasisStyle = (flexable: BasisStyle): CustomCSSProperties => {
 export const getUnitGapStyle = (gap: number): CustomCSSProperties => {
   return {
     '--fect-grid-gap': `calc(${gap} * 16px * 1/3)`
+  }
+}
+
+export const getGridStyle = (col: number): CustomCSSProperties => {
+  col = Math.abs(col) > 24 ? 24 : col
+  const width = 100 / col
+  return {
+    '--grid-width': `${width}%`
   }
 }
