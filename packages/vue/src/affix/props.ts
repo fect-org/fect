@@ -10,6 +10,5 @@ export const props = {
     type: String as PropType<AffixPosition>,
     default: 'top'
   },
-  target: null,
   zIndex: Number
 }

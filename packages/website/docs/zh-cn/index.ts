@@ -81,6 +81,7 @@ export const zhRoutes: Routes = [
   {
     name: '导航',
     children: [
+      { title: '固钉 Affix', route: 'Affix' },
       { title: '面包屑 Breadcrumbs', route: 'Breadcrumbs' },
       { title: '链接 Link', route: 'Link' },
       { title: '分页 Pagination', route: 'Pagination' },

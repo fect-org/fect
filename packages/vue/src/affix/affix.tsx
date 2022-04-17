@@ -1,9 +1,8 @@
 import { computed, defineComponent, ref } from 'vue'
 import { useEventListener, useState } from '@fect-ui/vue-hooks'
-import { createBem, createName, addUnit, getDomRect, getScrollTop, isHidden } from '../utils'
+import { createBem, createName, addUnit, getDomRect, getScrollTop, isHidden, convertUnitToPx, assign } from '../utils'
 import { props } from './props'
 import type { AffixLayout } from './interface'
-import type { DomRect } from '../utils'
 
 import './index.less'
 
@@ -21,50 +20,73 @@ export default defineComponent({
     const [fixed, setFixed] = useState<boolean>(false)
     const [style, setStyle] = useState<AffixLayout>({ width: 0, height: 0 })
 
-    const offsetWithUnit = computed(() => addUnit(props.offset))
-
-    const getOffset = () => {
-      const { offset } = props
-    }
-
-    const preventScroll = () => {
-      if (!affixRef.value) return
-      if (isHidden(affixRef)) return
-    }
+    const offset = computed(() => convertUnitToPx(props.offset))
 
     const scrollHandler = () => {
-      preventScroll()
-      const { target, position } = props
+      if (!affixRef.value || isHidden(affixRef)) return
+      const { position } = props
       const affixRect = getDomRect(affixRef)
-      const targetRect = target?.getBoundingClientRect() as DomRect
-      const scollTop = getScrollTop(window)
-
+      const scrollTop = getScrollTop(window)
       setStyle({
         width: affixRect.width,
         height: affixRect.height
       })
-
       if (position === 'top') {
-        if (target) {
-          // const difference = targetRect.bottom-
-        } else {
-          setFixed(()=>)
-        }
+        setFixed(() => offset.value > affixRect.top)
       }
-
       if (position === 'bottom') {
+        const { clientHeight } = document.documentElement
+        setFixed(() => clientHeight - offset.value < affixRect.bottom)
       }
       emit('scroll', {
         fixed: fixed.value,
-        scrollTop: 0
+        scrollTop
       })
     }
 
+    const getAffixSize = () => {
+      return {
+        height: addUnit(style.value.height),
+        width: addUnit(style.value.width)
+      }
+    }
+
+    const setAffixStyle = computed(() => {
+      if (!fixed.value) return
+      const { zIndex, position } = props
+      const _style = getAffixSize()
+
+      if (zIndex) {
+        assign(_style, {
+          zIndex: +zIndex
+        })
+      }
+
+      const setPosition = () => {
+        const offsetPosition = offset.value ? addUnit(offset.value) : 0
+        if (position === 'bottom') return { bottom: offsetPosition }
+        return { top: offsetPosition }
+      }
+
+      assign(_style, setPosition())
+
+      return _style
+    })
+
     useEventListener('scroll', scrollHandler)
 
+    const affixedPosition = () => {
+      return {
+        width: fixed.value ? addUnit(style.value.width) : undefined,
+        height: fixed.value ? addUnit(style.value.height) : undefined
+      }
+    }
+
     return () => (
-      <div ref={affixRef} class={bem(null)}>
-        <div>{slots.default?.()}</div>
+      <div ref={affixRef} class={bem(null)} style={affixedPosition()}>
+        <div class={bem(null, { fixed: fixed.value })} style={setAffixStyle.value}>
+          {slots.default?.()}
+        </div>
       </div>
     )
   }

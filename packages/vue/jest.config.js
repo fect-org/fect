@@ -7,7 +7,8 @@ module.exports = {
     '!src/**/type.ts',
     '!src/**/style.ts',
     '!src/**/interface.ts',
-    '!src/back-top/**'
+    '!src/back-top/**',
+    '!src/affix/**'
   ],
   collectCoverage: true,
   preset: '@fect-ui/cli/lib/config',

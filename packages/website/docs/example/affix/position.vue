@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fe-affix :offset="120" position="top">
+    <fe-affix :offset="120" position="bottom">
       <fe-button>Action</fe-button>
     </fe-affix>
   </div>
@@ -8,6 +8,6 @@
 
 <script>
 export default {
-  name: 'ExAffixDefault'
+  name: 'ExAffixPosition'
 }
 </script>

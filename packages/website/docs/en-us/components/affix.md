@@ -12,21 +12,20 @@ affix/default.vue
 
 :::
 
-### Default
+### Position
 
-Fix element at the top.
+Fix element at the bottom.
 
 :::playground
 
-affix/default.vue
+affix/position.vue
 
 :::
 
 ### Affix Props
 
-| Attribue     | Description            | Type              | Accepted values  | Default |
-| ------------ | ---------------------- | ----------------- | ---------------- | ------- |
-| **offset**   | offset distance        | `string`,`number` | `-`              | `0`     |
-| **z-index**  | fixed z-index level    | `number`          | `-`              | `100`   |
-| **target**   | target elemnt instance | `Element`         | `-`              | `-`     |
-| **position** | position for fixed     | `string`          | `'top','bottom'` | `-`     |
+| Attribue     | Description         | Type              | Accepted values  | Default |
+| ------------ | ------------------- | ----------------- | ---------------- | ------- |
+| **offset**   | offset distance     | `string`,`number` | `-`              | `0`     |
+| **z-index**  | fixed z-index level | `number`          | `-`              | `100`   |
+| **position** | position for fixed  | `string`          | `'top','bottom'` | `-`     |
