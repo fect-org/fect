@@ -1,5 +1,5 @@
 import { computed, CSSProperties, PropType, defineComponent, ComputedRef } from 'vue'
-import { createName, NormalTypes, createBem, isNumber } from '../utils'
+import { createName, NormalTypes, createBem, isNumber, noop } from '../utils'
 import './index.less'
 
 const name = createName('Progress')
@@ -36,7 +36,7 @@ export default defineComponent({
     },
     colors: {
       type: Object,
-      default: () => ({})
+      default: noop
     },
     type: {
       type: String as PropType<NormalTypes>,

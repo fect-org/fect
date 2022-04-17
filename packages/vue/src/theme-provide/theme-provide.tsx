@@ -1,6 +1,6 @@
 import { computed, defineComponent, PropType } from 'vue'
 
-import { assign, createName, kebabCase } from '../utils'
+import { assign, createName, kebabCase, noop } from '../utils'
 import type { StyleType } from './interface'
 
 const name = createName('ThemeProvide')
@@ -17,7 +17,7 @@ export default defineComponent({
   props: {
     vars: {
       type: Object as PropType<StyleType>,
-      default: () => ({})
+      default: noop
     }
   },
   setup(props, { slots }) {
