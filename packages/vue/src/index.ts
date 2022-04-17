@@ -2,6 +2,7 @@ const version = '1.4.1'
 
 import { App } from 'vue'
 
+import { Affix } from './affix'
 import { Avatar } from './avatar'
 import { AvatarGroup } from './avatar-group'
 import { BackTop } from './back-top'
@@ -60,6 +61,7 @@ import { Tooltip } from './tooltip'
 import { Upload } from './upload'
 import { User } from './user'
 const components = [
+  Affix,
   Avatar,
   AvatarGroup,
   BackTop,
@@ -129,6 +131,7 @@ const install = (app: App) => {
   })
 }
 
+export * from './affix'
 export * from './avatar'
 export * from './avatar-group'
 export * from './back-top'

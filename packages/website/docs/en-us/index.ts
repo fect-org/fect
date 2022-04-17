@@ -82,6 +82,7 @@ export const enRoutes: Routes = [
   {
     name: 'NAVIGATION',
     children: [
+      { title: 'Affix', route: 'Affix' },
       { title: 'Breadcrumbs', route: 'Breadcrumbs' },
       { title: 'Link', route: 'Link' },
       { title: 'Pagination', route: 'Pagination' },
