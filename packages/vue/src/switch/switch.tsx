@@ -1,23 +1,13 @@
 import { computed, PropType, defineComponent, watchEffect } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, UnknowProp, hasEmpty, createBem } from '../utils'
+import { createName, UnknowProp, createBem, omit } from '../utils'
 import { useFormStateContext, pickFormStateProps } from '../form/form-context'
 import type { NormalSizes } from '../utils'
+import type { SwitchEvent } from './interface'
 import './index.less'
 
 const name = createName('Switch')
 const bem = createBem('fect-switch')
-
-interface SwitchEventTarget {
-  checked: unknown // may be any value
-}
-
-export interface SwitchEvent {
-  target: SwitchEventTarget
-  stopPropagation: () => void
-  preventDefault: () => void
-  nativeEvent: Event
-}
 
 export default defineComponent({
   name,
@@ -40,7 +30,7 @@ export default defineComponent({
   },
   emits: ['change', 'update:modelValue'],
   setup(props, { emit }) {
-    const [value, setValue] = useState<any>(null)
+    const [currentValue, setCurrentValue] = useState<unknown>(null)
 
     const formState = useFormStateContext()
 
@@ -51,18 +41,24 @@ export default defineComponent({
         formState?.behavior.value
       )
 
-      return { size, disabled }
+      return { size, disabled, checked: isChecked() }
     })
 
-    const isChecked = () => value.value === props.checkedValue
+    const isChecked = () => currentValue.value === props.checkedValue
 
     watchEffect(() => {
-      setValue(props.modelValue || props.value)
+      if (props.value) {
+        setCurrentValue(props.value)
+      }
     })
+
+    const updateSwitchValue = (val: unknown) => {
+      emit('update:modelValue', val)
+      setCurrentValue(val)
+    }
 
     const changeHandler = (e: Event) => {
       const reverse = isChecked() ? props.inactiveValue : props.checkedValue
-      emit('update:modelValue', reverse)
       const selfEvent: SwitchEvent = {
         target: {
           checked: reverse
@@ -71,8 +67,8 @@ export default defineComponent({
         preventDefault: e.preventDefault,
         nativeEvent: e
       }
+      updateSwitchValue(reverse)
       emit('change', selfEvent)
-      if (hasEmpty(props.value)) setValue(reverse)
       if (formState) formState.validate('change')
     }
 
@@ -84,13 +80,8 @@ export default defineComponent({
       changeHandler(e)
     }
 
-    const setSwitchClass = computed(() => {
-      const checked = isChecked()
-      return bem(null, { ...getSwitchState.value, checked })
-    })
-
     return () => (
-      <label class={setSwitchClass.value} onClick={switchHandler}>
+      <label class={bem(null, getSwitchState.value)} onClick={switchHandler}>
         <input
           class={bem('checkbox')}
           type="checkbox"
@@ -99,7 +90,7 @@ export default defineComponent({
           onChange={changeHandler}
         />
         <div class={bem('slider')}>
-          <span class={bem('inner', { checked: isChecked(), disabled: getSwitchState.value.disabled })}></span>
+          <span class={bem('inner', omit(getSwitchState.value, ['size']))}></span>
         </div>
       </label>
     )

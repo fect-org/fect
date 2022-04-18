@@ -5,4 +5,4 @@ export const Switch = withInstall(_Switch)
 
 export default Switch
 
-export type { SwitchEvent } from './switch'
+export type { SwitchEvent } from './interface'

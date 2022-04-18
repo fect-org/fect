@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import Switch from '..'
+import { Switch, SwitchEvent } from '..'
 
 const Wrapper = {
   components: {
@@ -39,5 +39,21 @@ describe('Switch', () => {
     await el.trigger('click')
     expect(wrapper.emitted('update:modelValue')).toBeFalsy()
     expect(wrapper.html()).toMatchSnapshot()
+  })
+  it('switch should support control data flow by manual', async () => {
+    let state: unknown
+    const switchChangeHandler = (e: SwitchEvent) => {
+      state = e.target.checked
+    }
+    const wrapper = mount(Switch, {
+      props: {
+        value: true,
+        onChange: switchChangeHandler
+      }
+    })
+    expect(wrapper.find('.fect-switch--checked').exists()).toBe(true)
+    const el = wrapper.find('.fect-switch')
+    await el.trigger('click')
+    expect(state).toBe(false)
   })
 })
