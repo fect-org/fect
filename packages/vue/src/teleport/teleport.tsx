@@ -1,6 +1,6 @@
-import { Teleport, Transition, ref, defineComponent, onMounted, onBeforeMount, watch } from 'vue'
+import { Teleport, Transition, ref, defineComponent, watch } from 'vue'
 import { useExpose } from '@fect-ui/vue-hooks'
-import { createName, createBem } from '../utils'
+import { createName, createBem, useMounted } from '../utils'
 import { props } from './props'
 import './index.less'
 
@@ -30,16 +30,12 @@ export default defineComponent({
     const setLock = () => document.body.classList.add('fect--lock')
     const removeLock = () => document.body.classList.remove('fect--lock')
 
-    onMounted(() => {
-      const { scroll } = props
-      if (scroll) {
-        setLock()
-      }
-    })
-
-    onBeforeMount(() => {
-      removeLock()
-    })
+    useMounted([
+      () => {
+        if (props.scroll) setLock()
+      },
+      removeLock
+    ])
 
     watch(
       () => props.scroll,

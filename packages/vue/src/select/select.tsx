@@ -1,18 +1,8 @@
-import { computed, ref, watch, defineComponent, nextTick, onMounted } from 'vue'
+import { computed, ref, watch, defineComponent, nextTick } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import {
-  createName,
-  createBem,
-  pick,
-  getDomRect,
-  CustomCSSProperties,
-  ComponentInstance,
-  assign,
-  isArray
-} from '../utils'
+import { createName, createBem, pick, getDomRect, assign, isArray, useMounted, addUnit } from '../utils'
 import Input from '../input'
 import Tooltip from '../tooltip'
-import type { ToolTipProps } from '../tooltip/interface'
 import GridGroup from '../grid-group'
 import { createSelectContext } from './select-context'
 import ArrowIcon from './arrow-icon'
@@ -20,6 +10,9 @@ import ClearIcon from './clear-icon'
 import SelectMultiple from './select-multiple'
 import { props } from './props'
 import { useFormStateContext, pickFormStateProps } from '../form/form-context'
+
+import type { ToolTipProps } from '../tooltip/interface'
+import type { CustomCSSProperties, ComponentInstance } from '../utils'
 
 import './index.less'
 
@@ -60,11 +53,10 @@ export default defineComponent({
         if (gridRef.value) {
           const gridEl = gridRef.value.$el as HTMLElement
           const rect = getDomRect(gridEl)
-          if (rect.height <= selectWrapperHeight) {
-            setMultipleHeight(() => `${selectWrapperHeight}px`)
-          } else {
-            setMultipleHeight(() => `${rect.height + 6}px`)
-          }
+          setMultipleHeight(() => {
+            if (rect.height <= selectWrapperHeight) return addUnit(selectWrapperHeight)
+            return addUnit(rect.height + 6)
+          })
         }
         if (props.multiple) {
           nextTick(() => {
@@ -142,7 +134,8 @@ export default defineComponent({
       setDropdownWidth(width)
     }
 
-    onMounted(setSelectAndDropWidth)
+    //  selectWrapperHeight should be destory.
+    useMounted([setSelectAndDropWidth, () => (selectWrapperHeight = 0)])
 
     watch(visible, (pre) => {
       if (pre) {
