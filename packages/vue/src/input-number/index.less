@@ -1,0 +1,58 @@
+:root {
+  --input-number-mini-font-size: 12px;
+  --input-number-small-font-size: 12px;
+  --input-number-medium-font-size: 14px;
+  --input-number-large-font-size: 16px;
+
+  --input-number-mini-ratio: 1.313;
+  --input-number-small-ratio: 1.5;
+  --input-number-medium-ratio: 1.687;
+  --input-number-large-ratio: 1.875;
+
+  --input-number-mini-width: 80;
+  --input-number-small-width: 100;
+  --input-number-medium-width: 120;
+  --input-number-large-width: 150;
+}
+
+.fect-input-number {
+  &--mini {
+    --input-number-font-size: var(--input-number-mini-font-size);
+    --input-number-width: var(--input-number-mini-width);
+    --input-number-ratio: var(--input-number-mini-ratio);
+  }
+  &--small {
+    --input-number-font-size: var(--input-number-small-font-size);
+    --input-number-width: var(--input-number-small-width);
+    --input-number-ratio: var(--input-number-small-ratio);
+  }
+  &--medium {
+    --input-number-font-size: var(--input-number-medium-font-size);
+    --input-number-width: var(--input-number-medium-width);
+    --input-number-ratio: var(--input-number-medium-ratio);
+  }
+  &--large {
+    --input-number-font-size: var(--input-number-large-font-size);
+    --input-number-width: var(--input-number-large-width);
+    --input-number-ratio: var(--input-number-large-ratio);
+  }
+
+  .fect-input {
+    height: calc(var(--input-number-font-size) * var(--fect-gap));
+    &__label {
+      &--prefix {
+        svg {
+          height: 10px;
+          width: 10px;
+        }
+      }
+
+      &--suffix {
+        svg {
+          height: 10px;
+          width: 10px;
+        }
+      }
+    }
+  }
+}

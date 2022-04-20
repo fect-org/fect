@@ -1,6 +1,6 @@
 import { defineComponent, computed, ref } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, createBem } from '../utils'
+import { createName, createBem, isFunc } from '../utils'
 import { props } from './props'
 import ClearableIcon from './clearable-icon'
 import PasswordIcon from './password-icon'
@@ -153,11 +153,16 @@ export default defineComponent({
     return () => {
       const hasSuffix = Boolean(props.suffix)
       const hasPrefix = Boolean(props.prefix)
+
+      const renderPrefix = () => (isFunc(props.prefix) ? props.prefix() : props.prefix)
+
+      const renderSuffix = () => (isFunc(props.suffix) ? props.suffix() : props.suffix)
+
       return (
         <div class={bem(null, getInputState.value.size)}>
           {slots.default && <label>{slots.default()}</label>}
           <div class={bem('container')}>
-            {hasPrefix && <InputLabel prefix>{props.prefix}</InputLabel>}
+            {hasPrefix && <InputLabel prefix>{renderPrefix()}</InputLabel>}
             <div
               class={bem('wrapper', {
                 hover: hover.value,
@@ -170,7 +175,7 @@ export default defineComponent({
               {renderInput()}
               {renderSuffixIcon()}
             </div>
-            {hasSuffix && <InputLabel suffix>{props.suffix}</InputLabel>}
+            {hasSuffix && <InputLabel suffix>{renderSuffix()}</InputLabel>}
           </div>
         </div>
       )

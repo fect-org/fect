@@ -29,6 +29,7 @@ import { GridGroup } from './grid-group'
 import { Image } from './image'
 import { ImageBrowser } from './image-browser'
 import { Input } from './input'
+import { InputNumber } from './input-number'
 import { Link } from './link'
 import { Loading } from './loading'
 import { Modal } from './modal'
@@ -88,6 +89,7 @@ const components = [
   Image,
   ImageBrowser,
   Input,
+  InputNumber,
   Link,
   Loading,
   Modal,
@@ -158,6 +160,7 @@ export * from './grid-group'
 export * from './image'
 export * from './image-browser'
 export * from './input'
+export * from './input-number'
 export * from './link'
 export * from './loading'
 export * from './modal'

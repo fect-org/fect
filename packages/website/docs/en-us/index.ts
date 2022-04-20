@@ -43,6 +43,7 @@ export const enRoutes: Routes = [
       { title: 'Checkbox', route: 'Checkbox' },
       { title: 'Form', route: 'Form' },
       { title: 'Input', route: 'Input' },
+      { title: 'Input Number', route: 'InputNumber' },
       { title: 'Radio', route: 'Radio' },
       { title: 'Rating', route: 'Rating' },
       { title: 'Select', route: 'Select' },
