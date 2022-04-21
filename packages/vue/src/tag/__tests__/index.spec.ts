@@ -9,12 +9,14 @@ const Wrapper = {
     return {
       invert: false,
       type: 'default',
-      text: 'hello world'
+      text: 'hello world',
+      color: '',
+      round: false
     }
   },
   template: `
    <div class="container">
-    <fe-tag :useInvert="invert" :type="type" :text="text" :type-data="type" />
+    <fe-tag :useInvert="invert" :type="type" :text="text" :type-data="type" :color="color" :round="round" />
    </div>
   `
 }
@@ -31,5 +33,11 @@ describe('Tag', () => {
     expect(el.attributes('type-data')).toBe('success')
     await wrapper.setData({ invert: true })
     expect(wrapper.html()).toMatchSnapshot()
+  })
+  it('custom color should be work correctly', async () => {
+    const wrapper = mount(Wrapper)
+    await wrapper.setData({ color: '#336699' })
+    const el = wrapper.find('.fect-tag')
+    expect(el.attributes('style')).toContain('#336699')
   })
 })

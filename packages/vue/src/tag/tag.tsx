@@ -1,5 +1,5 @@
 import { computed, PropType, defineComponent } from 'vue'
-import { createName, NormalTypes, createBem } from '../utils'
+import { createName, NormalTypes, createBem, CustomCSSProperties } from '../utils'
 import './index.less'
 
 interface Color {
@@ -39,21 +39,32 @@ export default defineComponent({
       type: String as PropType<NormalTypes>,
       default: 'default'
     },
-    useInvert: Boolean
+    useInvert: Boolean,
+    color: String,
+    round: Boolean
   },
   setup(props) {
     const setTagStyle = computed(() => {
-      const { type, useInvert } = props
-      const { color } = getBgColor(type)
+      const { type, useInvert, color: customColor } = props
+      const { color } = customColor ? { color: customColor } : getBgColor(type)
+
+      const customColorStyle: CustomCSSProperties = customColor ? { '--tag-custom-color': color } : {}
+
       if (useInvert)
         return {
-          backgroundColor: color
+          backgroundColor: color,
+          ...customColorStyle
         }
-      return {}
+      return {
+        ...customColorStyle
+      }
     })
 
     return () => (
-      <div class={bem(null, [props.type, { invert: props.useInvert }])} style={setTagStyle.value}>
+      <div
+        class={bem(null, [props.color ? 'custom' : props.type, { invert: props.useInvert, round: props.round }])}
+        style={setTagStyle.value}
+      >
         {props.text}
       </div>
     )
