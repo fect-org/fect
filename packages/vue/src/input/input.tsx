@@ -153,6 +153,7 @@ export default defineComponent({
     return () => {
       const hasSuffix = Boolean(props.suffix)
       const hasPrefix = Boolean(props.prefix)
+
       return (
         <div class={bem(null, getInputState.value.size)}>
           {slots.default && <label>{slots.default()}</label>}
