@@ -42,6 +42,7 @@ export const zhRoutes: Routes = [
       { title: '复选框 Checkbox', route: 'Checkbox' },
       { title: '表单 Form', route: 'Form' },
       { title: '输入框 Input', route: 'Input' },
+      { title: '计数器 InputNumber', route: 'InputNumber' },
       { title: '单选框 Radio', route: 'Radio' },
       { title: '评分 Rating', route: 'Rating' },
       { title: '选择器 Select', route: 'Select' },

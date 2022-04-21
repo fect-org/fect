@@ -1,13 +1,13 @@
 <template>
   <div>
-    <fe-input-number v-model="value" :min="1" :max="11" />
+    <fe-input-number :step="0.5" v-model="value" :min="1" :max="11" size="small" />
   </div>
 </template>
 
 <script>
 import { ref } from 'vue'
 export default {
-  name: 'ExInputNumberDefault',
+  name: 'ExInputNumberStep',
   setup() {
     const value = ref(1)
 
