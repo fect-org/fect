@@ -16,6 +16,6 @@ export const props = {
   readonly: Boolean,
   disabled: Boolean,
   clearable: Boolean,
-  prefix: [String, Number, Function],
-  suffix: [String, Number, Function]
+  prefix: [String, Number],
+  suffix: [String, Number]
 }

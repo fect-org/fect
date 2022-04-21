@@ -37,9 +37,13 @@
     --input-number-ratio: var(--input-number-large-ratio);
   }
 
+  width: var(--input-number-width);
+  display: inline-flex;
+  align-items: center;
+  height: calc(var(--input-number-ratio) * var(--fect-gap));
+
   input {
     text-align: center;
-    // padding-right: 0;
     &[type='number']::-webkit-inner-spin-button,
     ::-webkit-outer-spin-button {
       margin: 0;
@@ -47,23 +51,37 @@
     }
   }
 
-  width: var(--input-number-width);
-  .fect-input {
-    height: calc(var(--input-number-ratio) * var(--fect-gap));
+  &__label {
+    height: 100%;
+    cursor: pointer;
+    text-align: center;
+    margin: 0;
+    padding: 0 var(--fect-gap-half);
+    line-height: calc(var(--input-number-ratio) * var(--fect-gap));
+    border: 1px solid var(--fect-border);
+    &--prefix {
+      border-right: 0;
+      border-top-left-radius: var(--fect-radius);
+      border-bottom-left-radius: var(--fect-radius);
+    }
+    &--suffix {
+      border-left: 0;
+      border-top-right-radius: var(--fect-radius);
+      border-bottom-right-radius: var(--fect-radius);
+    }
+    svg {
+      width: var(--input-number-font-size);
+      height: var(--input-number-font-size);
+    }
+  }
 
-    &__label {
-      &--prefix,
-      &--suffix {
-        pointer-events: inherit;
-        cursor: pointer;
-        svg {
-          height: var(--input-number-font-size);
-          width: var(--input-number-font-size);
-        }
-        &:hover {
-          color: var(--accents-5) !important;
-        }
-      }
+  .fect-input {
+    width: 100%;
+    &__container {
+      width: 100%;
+    }
+    &__wrapper {
+      border-radius: 0;
     }
   }
 }
