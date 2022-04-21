@@ -8,5 +8,10 @@ export const inputNumberProps = assign(omit(props, ['prefix', 'suffix', 'type'])
   step: {
     type: Number,
     default: 1
+  },
+  precision: Number,
+  strictly: {
+    type: Boolean,
+    default: false
   }
 })

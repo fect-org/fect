@@ -1,6 +1,8 @@
 <template>
   <div>
-    <fe-input-number placeholder="一个基础的示例" v-model="value" />
+    <fe-input type="number" />
+    <fe-spacer />
+    <fe-input-number :step="1" v-model="value" :min="1" :max="11" size="small" />
   </div>
 </template>
 
@@ -9,7 +11,7 @@ import { ref } from 'vue'
 export default {
   name: 'ExInputNumberDefault',
   setup() {
-    const value = ref(10)
+    const value = ref(1)
 
     return {
       value
