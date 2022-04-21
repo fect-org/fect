@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fe-input-number placeholder="一个基础的示例" v-model="value" size="small" />
+    <fe-input-number placeholder="一个基础的示例" v-model="value" />
   </div>
 </template>
 

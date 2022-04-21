@@ -1,18 +1,18 @@
 :root {
   --input-number-mini-font-size: 12px;
-  --input-number-small-font-size: 12px;
-  --input-number-medium-font-size: 14px;
-  --input-number-large-font-size: 16px;
+  --input-number-small-font-size: 14px;
+  --input-number-medium-font-size: 16px;
+  --input-number-large-font-size: 18px;
 
-  --input-number-mini-ratio: 1.313;
+  --input-number-mini-ratio: 0.8;
   --input-number-small-ratio: 1.5;
   --input-number-medium-ratio: 1.687;
   --input-number-large-ratio: 1.875;
 
-  --input-number-mini-width: 80;
-  --input-number-small-width: 100;
-  --input-number-medium-width: 120;
-  --input-number-large-width: 150;
+  --input-number-mini-width: 130px;
+  --input-number-small-width: 150px;
+  --input-number-medium-width: 180px;
+  --input-number-large-width: 200px;
 }
 
 .fect-input-number {
@@ -37,20 +37,31 @@
     --input-number-ratio: var(--input-number-large-ratio);
   }
 
-  .fect-input {
-    height: calc(var(--input-number-font-size) * var(--fect-gap));
-    &__label {
-      &--prefix {
-        svg {
-          height: 10px;
-          width: 10px;
-        }
-      }
+  input {
+    text-align: center;
+    // padding-right: 0;
+    &[type='number']::-webkit-inner-spin-button,
+    ::-webkit-outer-spin-button {
+      margin: 0;
+      -webkit-appearance: none;
+    }
+  }
 
+  width: var(--input-number-width);
+  .fect-input {
+    height: calc(var(--input-number-ratio) * var(--fect-gap));
+
+    &__label {
+      &--prefix,
       &--suffix {
+        pointer-events: inherit;
+        cursor: pointer;
         svg {
-          height: 10px;
-          width: 10px;
+          height: var(--input-number-font-size);
+          width: var(--input-number-font-size);
+        }
+        &:hover {
+          color: var(--accents-5) !important;
         }
       }
     }
