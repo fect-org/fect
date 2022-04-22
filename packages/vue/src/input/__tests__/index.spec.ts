@@ -129,7 +129,7 @@ describe('Input', () => {
     input.element.value = '2'
     await input.trigger('input')
     await input.trigger('change')
-    expect(wrapper.emitted('update:modelValue')![0]).toEqual([2])
+    expect(wrapper.emitted('update:modelValue')![0]).toEqual(['2'])
     expect(wrapper.emitted()).toHaveProperty('change')
   })
 })
