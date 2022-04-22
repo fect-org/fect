@@ -22,7 +22,6 @@ export default defineComponent({
   setup(props, { slots, emit, attrs }) {
     const inputRef = ref<HTMLInputElement>()
     const [hover, setHover] = useState<boolean>(false)
-    const [selfType, setSelfType] = useState<string>(props.type)
     const [passwordVisible, setPasswordVisible] = useState<boolean>(false)
 
     const formState = useFormStateContext()
@@ -36,13 +35,13 @@ export default defineComponent({
       return { size, disabled }
     })
 
-    const updatelValue = (val: string | number) => {
-      if (props.type === 'number') {
-        val = Number(val)
-      }
-      if (inputRef.value && val !== inputRef.value.value) {
-        inputRef.value.value = val as string
-      }
+    /**
+     * After version 1.5.0-rc.0, We decide remove htmlType as `number` transform input value
+     * as number type. Because convert value is expensive, it's uer behavior.
+     * May it will regression in future version.
+     */
+    const updatelValue = (val: string) => {
+      if (inputRef.value && val !== inputRef.value.value) inputRef.value.value = val
       if (val !== props.modelValue) {
         emit('update:modelValue', val)
         if (formState) formState.validate('change')
@@ -71,10 +70,13 @@ export default defineComponent({
       emit('clearClick', e)
     }
 
-    const passwordVisibleChanger = () => {
-      setPasswordVisible((pre) => !pre)
-      if (passwordVisible.value) return setSelfType('text')
-      return setSelfType('password')
+    const getInputHTMLType = () => {
+      const { type } = props
+      if (type === 'password') {
+        if (passwordVisible.value) return 'text'
+        return 'password'
+      }
+      return type
     }
 
     const shouldClick = computed(() => !getInputState.value.disabled || !props.readonly)
@@ -103,7 +105,7 @@ export default defineComponent({
 
       return (
         <>
-          <input type={selfType.value} class={disabled} {...InputProps} />
+          <input type={getInputHTMLType()} class={disabled} {...InputProps} />
           {props.clearable && (
             <InputIconContent onClick={clearHandler} clickable={shouldClick.value && shouldClearIcon} suffix>
               <ClearableIcon visible={Boolean(props.modelValue)} />
@@ -142,7 +144,7 @@ export default defineComponent({
       return (
         <>
           {props.type === 'password' && (
-            <InputIconContent onClick={passwordVisibleChanger} clickable={shouldClick.value} suffix>
+            <InputIconContent onClick={() => setPasswordVisible((pre) => !pre)} clickable={shouldClick.value} suffix>
               <PasswordIcon visible={passwordVisible.value} />
             </InputIconContent>
           )}
