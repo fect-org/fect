@@ -55,9 +55,7 @@ export default defineComponent({
           backgroundColor: color,
           ...customColorStyle
         }
-      return {
-        ...customColorStyle
-      }
+      return customColorStyle
     })
 
     return () => (
