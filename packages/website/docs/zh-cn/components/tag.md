@@ -26,6 +26,22 @@ tag/invert.vue
 
 :::
 
+### 圆角
+
+:::playground
+
+tag/round.vue
+
+:::
+
+### 自定义颜色
+
+:::playground
+
+tag/color.vue
+
+:::
+
 ### Tag Props
 
 | 属性          | 描述           | 类型                                       | 推荐值 | 默认      |
@@ -33,3 +49,5 @@ tag/invert.vue
 | **text**      | 标签内容       | `String`                                   | -      | `-`       |
 | **type**      | 标签类型       | `'default', 'success', 'warning', 'error'` | -      | `default` |
 | **useInvert** | 反转背景与主色 | `boolean`                                  | -      | `false`   |
+| **color**     | 自定义颜色     | `string`                                   | -      | `-`       |
+| **round**     | 圆角           | `boolean`                                  | -      | `false`   |

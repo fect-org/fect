@@ -26,6 +26,22 @@ tag/invert.vue
 
 :::
 
+### Round
+
+:::playground
+
+tag/round.vue
+
+:::
+
+### Color
+
+:::playground
+
+tag/color.vue
+
+:::
+
 ### Tag Props
 
 | Attribue       | Description                 | Type                                       | Accepted values | Default   |
@@ -33,3 +49,5 @@ tag/invert.vue
 | **text**       | tag content                 | `String`                                   | -               | `-`       |
 | **type**       | tag type                    | `'default', 'success', 'warning', 'error'` | -               | `default` |
 | **use-invert** | invert color and background | `boolean`                                  | -               | `false`   |
+| **color**      | custom color                | `string`                                   | -               | `-`       |
+| **round**      | round border                | `boolean`                                  | -               | `false`   |

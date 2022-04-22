@@ -14,7 +14,7 @@
   font-size: 14px;
   height: 28px;
   border-radius: var(--tag-radius);
-  padding: 6px;
+  padding: 5px;
   box-sizing: border-box;
   border: 1px solid currentColor;
   background-color: var(--tag-bg-color);
@@ -30,8 +30,15 @@
   &--error {
     color: var(--tag-error-color);
   }
+  &--custom {
+    color: var(--tag-custom-color);
+  }
   &--invert {
     color: var(--tag-invert-text-color);
     border-color: transparent;
+  }
+  &--round {
+    padding: 5px 10px;
+    border-radius: 15px;
   }
 }
