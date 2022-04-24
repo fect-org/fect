@@ -27,6 +27,7 @@ export default defineComponent({
       )
       return { size, disabled }
     })
+
     const fixPrecision = (value: number, condit = 1) => {
       const { step } = props
       const val = value + step * condit
@@ -53,7 +54,7 @@ export default defineComponent({
 
     const enableIncrease = computed(() => fixPrecision(currentValue.value) > props.max)
 
-    const isEdge = (val: number) => {
+    const verfiyValue = (val: number) => {
       const { max, min, precision, strictly, step } = props
       if (strictly) val = Math.round(val / step) * step
       if (!isUndefined(precision)) val = fixPrecision(val, 0)
@@ -62,11 +63,11 @@ export default defineComponent({
       return val
     }
 
-    const updateCurrentValue = (val: number) => setCurrentValue(() => isEdge(val))
+    const updateCurrentValue = (val: number) => setCurrentValue(() => verfiyValue(val))
 
     const inputNumberChangeHandler = (evt: Event) => {
       const originalValue = Number((evt.target as HTMLInputElement).value)
-      updateCurrentValue(fixPrecision(originalValue, 0))
+      updateCurrentValue(originalValue)
     }
 
     const decreaseHandler = () => {
