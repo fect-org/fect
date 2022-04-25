@@ -1,10 +1,13 @@
 import { watch, computed, defineComponent, ref } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, CustomCSSProperties, ComponentInstance, createBem } from '../utils'
+import { createName, ComponentInstance, createBem } from '../utils'
 import { props } from './props'
 import Teleport from '../teleport'
 import DrawerWrapper from './drawer-wrapper'
 import { getDrawerTransfrom } from './style'
+
+import type { CSSProperties } from '../utils'
+
 import './index.less'
 
 const name = createName('Drawer')
@@ -22,7 +25,7 @@ export default defineComponent({
 
     const setDrawerStyle = computed(() => {
       const { placement } = props
-      const styles: CustomCSSProperties = {
+      const styles: CSSProperties = {
         '--drawer-transfrom': getDrawerTransfrom(placement)
       }
       return styles

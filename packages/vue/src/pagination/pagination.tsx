@@ -7,7 +7,7 @@ import PaginationPages from './pagination-pages'
 import PaginationNext from './pagination-next'
 import PaginationPrev from './pagination-previous'
 import type { SideEvent } from './interface'
-import type { CustomCSSProperties } from '../utils'
+import type { CSSProperties } from '../utils'
 
 import './index.less'
 
@@ -47,7 +47,7 @@ export default defineComponent({
       return {
         '--pagination-hover': addColorAlpha(hoverColor, 0.1),
         '--pagination-activeHover': addColorAlpha(hoverColor, 0.8)
-      } as CustomCSSProperties
+      } as CSSProperties
     })
 
     /**

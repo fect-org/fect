@@ -12,7 +12,7 @@ import { props } from './props'
 import { useFormStateContext, pickFormStateProps } from '../form/form-context'
 
 import type { ToolTipProps } from '../tooltip/interface'
-import type { CustomCSSProperties, ComponentInstance } from '../utils'
+import type { CSSProperties, ComponentInstance } from '../utils'
 
 import './index.less'
 
@@ -213,7 +213,7 @@ export default defineComponent({
       const setContentHeight = () => {
         return {
           '--select-content-height': multipleHeight.value || 'calc(var(--select-ratio) * var(--fect-gap))'
-        } as CustomCSSProperties
+        } as CSSProperties
       }
 
       return (

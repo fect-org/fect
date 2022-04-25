@@ -1,8 +1,8 @@
-import { defineComponent, CSSProperties, computed, watchEffect } from 'vue'
+import { defineComponent, computed, watchEffect } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import { props } from './props'
 import { createBem } from '../utils'
-import type { CustomCSSProperties, NormalTypes } from '../utils'
+import type { CSSProperties, NormalTypes } from '../utils'
 
 const bem = createBem('fect-toast')
 
@@ -68,7 +68,7 @@ export default defineComponent({
         '--toast-opacity': reverseIndex.value > 4 ? 0 : 1,
         '--toast-shadow': reverseIndex.value > 4 ? 'none' : 'var(--fect-shadowSmall)',
         ...getToastColor(props.type)
-      } as CustomCSSProperties
+      } as CSSProperties
     })
 
     return () => {

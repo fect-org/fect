@@ -5,7 +5,7 @@
 
 import { assign } from '../utils'
 import type { GridTypes, GridBreakPoint, LayoutVariable, BasisStyle } from './interface'
-import type { CustomCSSProperties } from '../utils'
+import type { CSSProperties } from '../utils'
 
 export const getLayoutVariable = (grid: GridBreakPoint): LayoutVariable => {
   if (typeof grid === 'number') {
@@ -37,7 +37,7 @@ export const getDynamicStyle = (props: Record<GridTypes, GridBreakPoint>) => {
       [`--${cur}-width`]: `${width}%`
     }
     return assign(acc, layout)
-  }, {} as CustomCSSProperties)
+  }, {} as CSSProperties)
   return dynamicStyle
 }
 
@@ -51,7 +51,7 @@ export const getDynamicLayoutClasses = (props: Record<string, any>) => {
   return state
 }
 
-export const getBasisStyle = (flexable: BasisStyle): CustomCSSProperties => {
+export const getBasisStyle = (flexable: BasisStyle): CSSProperties => {
   const { alignContent, alignItems, direction, justify } = flexable
   return {
     alignContent,
@@ -61,13 +61,13 @@ export const getBasisStyle = (flexable: BasisStyle): CustomCSSProperties => {
   }
 }
 
-export const getUnitGapStyle = (gap: number): CustomCSSProperties => {
+export const getUnitGapStyle = (gap: number): CSSProperties => {
   return {
     '--fect-grid-gap': `calc(${gap} * 16px * 1/3)`
   }
 }
 
-export const getGridStyle = (col: number): CustomCSSProperties => {
+export const getGridStyle = (col: number): CSSProperties => {
   col = Math.abs(col) > 24 ? 24 : col
   const width = 100 / col
   return {

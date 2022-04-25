@@ -1,6 +1,6 @@
 import { computed, defineComponent } from 'vue'
 import { createName, createBem } from '../utils'
-import type { CustomCSSProperties } from '../utils'
+import type { CSSProperties } from '../utils'
 import './index.less'
 
 const name = createName('Spacer')
@@ -35,7 +35,7 @@ export default defineComponent({
   },
   setup(props) {
     const setStyle = computed(() => {
-      const style: CustomCSSProperties = {
+      const style: CSSProperties = {
         '--horizontal-num': getMargin(props.x),
         '--vertical-num': getMargin(props.y)
       }

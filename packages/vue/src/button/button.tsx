@@ -7,7 +7,7 @@ import { useButtonGroupContext } from '../button-group/button-group-context'
 import ButtonDrip from './button-drip'
 import { queryHoverColor } from './style'
 
-import type { CustomCSSProperties } from '../utils'
+import type { CSSProperties } from '../utils'
 
 import './index.less'
 
@@ -53,7 +53,7 @@ export default defineComponent({
     const setStyle = computed(() => {
       const { type, ghost } = props
       const { bg, border, color } = queryHoverColor(type, ghost)
-      const style: CustomCSSProperties = {
+      const style: CSSProperties = {
         '--button-hover-bg': bg,
         '--button-hover-border': border,
         '--button-hover-color': color

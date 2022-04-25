@@ -1,5 +1,5 @@
 import { computed, PropType, defineComponent } from 'vue'
-import { createName, NormalTypes, createBem, CustomCSSProperties } from '../utils'
+import { createName, NormalTypes, createBem, CSSProperties } from '../utils'
 import './index.less'
 
 interface Color {
@@ -48,7 +48,7 @@ export default defineComponent({
       const { type, useInvert, color: customColor } = props
       const { color } = customColor ? { color: customColor } : getBgColor(type)
 
-      const customColorStyle: CustomCSSProperties = customColor ? { '--tag-custom-color': color } : {}
+      const customColorStyle: CSSProperties = customColor ? { '--tag-custom-color': color } : {}
 
       if (useInvert)
         return {

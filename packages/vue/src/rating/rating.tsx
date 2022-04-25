@@ -1,7 +1,7 @@
 import { computed, PropType, watch, defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import { createName } from '../utils'
-import type { CustomCSSProperties, NormalTypes, RecordPartial } from '../utils'
+import type { CSSProperties, NormalTypes, RecordPartial } from '../utils'
 import RatingIcon from './rating-icon'
 
 import './index.less'
@@ -49,7 +49,7 @@ export default defineComponent({
       const { type } = props
       return {
         '--rating-svg-color': getColor(type)
-      } as CustomCSSProperties
+      } as CSSProperties
     })
 
     const setActived = (idx: number) => {
