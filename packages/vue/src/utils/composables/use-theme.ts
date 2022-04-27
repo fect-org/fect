@@ -1,10 +1,12 @@
 /**
- * provide fect-ui default theme system.
- * Version:1.1.0  can work in ssr.
+ * Control fect thme System.
+ * After Ver 1.1.0  can work wtih ssr.
+ * In ver 1.1.0-1.5.0-rc.1, useTheme has own instance. So when you use it in different component. you can get differnt ref theme.
+ * It's unreasonable. So we change useTheme behavior after ver 1.5.0-rc.1
  * Author: kanno
  */
 
-import { watch, onMounted, ref } from 'vue'
+import { watch, onMounted, ref, readonly } from 'vue'
 import type { Theme } from './interface'
 
 const DARK_THEME_QUERY = '(prefers-color-scheme: dark)'
@@ -44,7 +46,6 @@ export const useTheme = () => {
   onMounted(() => {
     if (typeof window === 'undefined' || !window.localStorage) return
     const theme = getClientTheme()
-    console.log(theme)
     set(theme)
   })
 
@@ -58,6 +59,6 @@ export const useTheme = () => {
 
   return {
     themeChange,
-    theme
+    theme: readonly(theme)
   }
 }
