@@ -20,17 +20,23 @@ export const build = async () => {
   const getSource = async () => {
     const source = await getSVGSource()
     const { document } = new JSDOM(source).window
-    const icons = document.querySelectorAll('.geist-list .icon')
-    const svgo = new Svgo(svgoConfig)
-    await Promise.all(
-      Array.from(icons).map(async (icon) => {
-        const name = camelize(icon.querySelector('.geist-text').textContent)
-        const svg = icon.querySelector('svg')
-        const { data: optimizeString } = await svgo.optimize(svg.outerHTML)
-        const style = svg.getAttribute('style')
-        svgs[name] = svgParser(optimizeString, style)
-      })
-    )
+    const icons = document.querySelectorAll('.geist-container > .icon')
+    try {
+      if (!icons.length) throw new Error("\nCan't found svg elements. please check bundler.ts file.\n")
+      const svgo = new Svgo(svgoConfig)
+      await Promise.all(
+        Array.from(icons).map(async (icon) => {
+          const name = camelize(icon.querySelector('.geist-text').textContent)
+          const svg = icon.querySelector('svg')
+          const { data: optimizeString } = await svgo.optimize(svg.outerHTML)
+          const style = svg.getAttribute('style')
+          svgs[name] = svgParser(optimizeString, style)
+        })
+      )
+    } catch (error) {
+      console.log(error)
+      process.exit(1)
+    }
   }
 
   const generatorIconSource = async () => {
