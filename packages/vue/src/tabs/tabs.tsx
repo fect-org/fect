@@ -41,6 +41,7 @@ export default defineComponent({
       }
       emit('update:active', value)
       emit('click', selfEvent)
+      emit('change', value)
     }
 
     const tabMouseOverHandler = (e: MouseEvent) => {
@@ -51,7 +52,10 @@ export default defineComponent({
       setHoverable(true)
     }
 
-    watch(checked, (cur) => emit('change', cur))
+    watch(
+      () => props.active,
+      (cur) => setChecked(cur)
+    )
 
     const renderNav = () => {
       return children.map((el, idx) => {

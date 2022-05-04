@@ -81,4 +81,27 @@ describe('Tabs', () => {
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
+
+  it('when user change props active should be reRender', async () => {
+    const wrapper = mount({
+      render() {
+        return (
+          <Tabs v-model={[this.active, ['active']]} hideDivider={false}>
+            <Tab title="HTML">HTML</Tab>
+            <Tab title="JS">JS</Tab>
+          </Tabs>
+        )
+      },
+      data() {
+        return {
+          active: 0
+        }
+      }
+    })
+    await later()
+    const titleOne = wrapper.find('.fect-tabs__title')
+    expect(titleOne.attributes('class')).toContain('fect-tabs__title fect-tabs__title--active')
+    await wrapper.setProps({ active: 1 })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 })
