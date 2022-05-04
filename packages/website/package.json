@@ -16,7 +16,7 @@
     "@fect-ui/md-loader": "1.0.0"
   },
   "dependencies": {
-    "@fect-ui/vue-hooks": "^1.1.0",
+    "@fect-ui/vue-hooks": "^1.2.1",
     "@fect-ui/vue-icons": "2.0.0",
     "prismjs": "^1.23.0",
     "vue-router": "^4.0.8"

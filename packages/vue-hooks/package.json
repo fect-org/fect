@@ -1,6 +1,6 @@
 {
   "name": "@fect-ui/vue-hooks",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Minimalist Vue Compostion Hooks",
   "author": "XeryYue",
   "main": "lib/index.js",
