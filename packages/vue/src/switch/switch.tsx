@@ -1,6 +1,6 @@
 import { computed, PropType, defineComponent, watchEffect } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, UnknowProp, createBem, omit, isUndefined } from '../utils'
+import { createName, UnknowProp, createBem, omit } from '../utils'
 import { useFormStateContext, pickFormStateProps } from '../form/form-context'
 import type { NormalSizes } from '../utils'
 import type { SwitchEvent } from './interface'
