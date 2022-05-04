@@ -56,4 +56,23 @@ describe('Switch', () => {
     await el.trigger('click')
     expect(state).toBe(false)
   })
+
+  it('update modelValue', async () => {
+    const wrapper = mount({
+      components: {
+        [Switch.name]: Switch
+      },
+      data() {
+        return {
+          val: false
+        }
+      },
+      template: `<div class="container">
+       <fe-switch v-model="val"  />
+      </div>`
+    })
+    expect(wrapper.find('.fect-switch--checked').exists()).toBe(false)
+    await wrapper.setData({ val: true })
+    expect(wrapper.find('.fect-switch--checked').exists()).toBe(true)
+  })
 })

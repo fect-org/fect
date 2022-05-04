@@ -47,9 +47,7 @@ export default defineComponent({
     const isChecked = () => currentValue.value === props.checkedValue
 
     watchEffect(() => {
-      if (props.value) {
-        setCurrentValue(props.value)
-      }
+      setCurrentValue(props.value ? props.value : props.modelValue)
     })
 
     const updateSwitchValue = (val: unknown) => {
