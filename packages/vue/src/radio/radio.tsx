@@ -15,7 +15,7 @@ export default defineComponent({
   props: radioProps,
   emits: ['change', 'update:checked'],
   setup(props, { emit, slots }) {
-    const [selfChecked, setSelfChecked] = useState<boolean>(props.checked)
+    const [selfChecked, setSelfChecked] = useState<boolean>()
 
     const formState = useFormStateContext()
 
@@ -31,7 +31,10 @@ export default defineComponent({
     })
 
     const setCurrentState = () => {
-      if (!context) return
+      if (!context) {
+        setSelfChecked(props.checked)
+        return
+      }
       const parent = context.parentValue.value
       const checked = parent === props.value
       setSelfChecked(checked)

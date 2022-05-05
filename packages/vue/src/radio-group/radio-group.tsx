@@ -34,8 +34,8 @@ export default defineComponent({
 
     watch(
       () => props.modelValue,
-      (pre) => {
-        if (pre) setParentValue(pre)
+      (cur) => {
+        if (cur) setParentValue(cur)
       }
     )
 

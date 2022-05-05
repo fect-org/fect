@@ -32,11 +32,18 @@ export default defineComponent({
         target: { value: parentValue }
       }
       emit('change', event)
+      emit('update:modelValue', parentValue.value)
     }
 
     provider({ props, updateCheckboxGroupValue, parentValue, updateCheckboxGroupEvent })
 
-    watch(parentValue, (cur) => emit('update:modelValue', cur))
+    watch(
+      () => props.modelValue,
+      (cur) => {
+        if (cur) setParentValue(cur)
+      }
+    )
+
     return () => <div class={bem('group', { useRow: props.useRow })}>{slots.default?.()}</div>
   }
 })

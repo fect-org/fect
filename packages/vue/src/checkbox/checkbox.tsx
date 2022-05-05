@@ -17,7 +17,7 @@ export default defineComponent({
   props: checkboxProps,
   emits: ['change', 'update:modelValue'],
   setup(props, { slots, emit }) {
-    const [selfChecked, setSelfChecked] = useState<boolean>(props.modelValue)
+    const [selfChecked, setSelfChecked] = useState<boolean>()
     const { context } = useCheckboxContext()
 
     const formState = useFormStateContext()
@@ -37,7 +37,10 @@ export default defineComponent({
      * so we don't need setSelfChecked at once.
      */
     const setCurrentState = () => {
-      if (!context) return
+      if (!context) {
+        setSelfChecked(props.modelValue)
+        return
+      }
       const parent = context.parentValue.value
       const checked = parent.some((v) => v === props.label)
       setSelfChecked(checked)
