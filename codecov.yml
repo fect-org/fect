@@ -1,0 +1,20 @@
+codecov:
+  require_ci_to_pass: true
+
+coverage:
+  status:
+    project:
+      default:
+        target: 90%
+        threshold: 2%
+        base: auto
+        if_ci_failed: error
+        branches:
+          - 'master'
+
+comment:
+  layout: 'reach, diff, flags, files'
+  behavior: default
+  require_changes: false
+  branches:
+    - 'master'
