@@ -8,7 +8,7 @@ import './index.less'
 const name = createName('ImageBrowser')
 const bem = createBem('fect-image')
 
-const getHostFormUrl = (url: string) => {
+const getHostFromUrl = (url: string) => {
   try {
     return new URL(url).host
   } catch (error) {
@@ -35,7 +35,7 @@ export default defineComponent({
     const addressLink = computed(() => {
       const { showFullLink, url } = props
       if (showFullLink) return url
-      return getHostFormUrl(url)
+      return getHostFromUrl(url)
     })
 
     const renderTitle = () => {

@@ -68,8 +68,7 @@ export default defineComponent({
     }
 
     const renderContext = () => {
-      const { icon } = slots
-      const context = slots['default']
+      const { icon, default: context } = slots
       if (icon) {
         const offsetStyle = context ? '15%' : '50%'
         const translateStyle = context ? 'translateY(-50%)' : 'translate(-50%, -50%)'
