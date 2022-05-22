@@ -1,48 +1,31 @@
-import { computed, PropType, defineComponent } from 'vue'
-import { createName, isArray } from '../utils'
-import type { NormalSizes, NormalTypes, LoadingTypes } from '../utils'
+import { computed, defineComponent } from 'vue'
+import { createName, isArray, createBem } from '../utils'
+import { props } from './props'
 import LoadingCircle from './loading-circle'
 import './index.less'
 
 const name = createName('Loading')
+const bem = createBem('fect-loading')
 
 export default defineComponent({
   name,
-  props: {
-    size: {
-      type: String as PropType<NormalSizes>,
-      default: 'medium'
-    },
-    type: {
-      type: String as PropType<NormalTypes>,
-      default: 'default'
-    },
-    loadType: {
-      type: String as PropType<LoadingTypes>,
-      default: 'default'
-    },
-    color: {
-      type: [String, Array],
-      default: ''
-    }
-  },
+  props,
   setup(props) {
-    const setColor = computed(() => {
+    const setLoadingStyles = computed(() => {
       const { color, loadType } = props
       if (!color) return
+      /**
+       * When loadType equal circle , we can't give it any color.
+       * Because LoadingCricle component is svg. So we only do this. :)
+       */
+      const beArrColor = isArray(color)
 
-      const getCurrentColor = () => {
-        const isArr = isArray(color)
-        if (loadType === 'circle' && isArr) return 'initial'
-        return isArr ? `linear-gradient(${color.join()})` : color
-      }
-      const safeColor = getCurrentColor()
-      if (loadType !== 'circle')
+      if (loadType === 'circle')
         return {
-          background: safeColor
+          color: beArrColor ? 'initial' : color
         }
       return {
-        color: safeColor
+        background: beArrColor ? `linear-gradient(${color.join()})` : color
       }
     })
 
@@ -53,13 +36,12 @@ export default defineComponent({
     const cube = 4
     const normal = 3
 
-    const setClass = computed(() => {
-      const { size, type } = props
-      const names = []
-      names.push(type)
-      names.push(size)
-      return names.join(' ')
-    })
+    const setLoadClasses = computed(
+      () =>
+        bem(props.loadType, {
+          size: props.size
+        }) + ` ${props.type}`
+    )
 
     const getLoadNum = computed(() => {
       const { loadType } = props
@@ -67,16 +49,16 @@ export default defineComponent({
       const loader = { wave, default: normal, cube }
       return loader[loadType] || loader.default
     })
-    // LoadingCircle
+
     return () => (
       <div class="fect-loading">
-        <span class="loading">
+        <span class={bem('wrapper')}>
           {getLoadNum.value ? (
             [...Array(getLoadNum.value)].map((_, i) => (
-              <i class={`loading__${props.loadType} ${setClass.value}`} style={setColor.value} key={i} />
+              <i class={setLoadClasses.value} style={setLoadingStyles.value} key={i} />
             ))
           ) : (
-            <LoadingCircle class={setClass.value} style={setColor.value} />
+            <LoadingCircle class={setLoadClasses.value} style={setLoadingStyles.value} />
           )}
         </span>
       </div>
