@@ -77,17 +77,17 @@ exports[`Button should be support icon 1`] = `
 exports[`Button should be support loadType and loadColor follow button color 1`] = `
 <div class="container"><button class="fect-button fect-button--default fect-button--loading fect-button--medium" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
     <div class="fect-button__loading">
-      <div class="fect-loading"><span class="loading"><i class="loading__default default medium"></i><i class="loading__default default medium"></i><i class="loading__default default medium"></i></span></div>
+      <div class="fect-loading"><span class="fect-loading__wrapper"><i class="fect-loading__default fect-loading__default--medium default"></i><i class="fect-loading__default fect-loading__default--medium default"></i><i class="fect-loading__default fect-loading__default--medium default"></i></span></div>
     </div>
     <!---->Button
   </button><button class="fect-button fect-button--success fect-button--loading fect-button--medium" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--button-success-color); --button-hover-color: var(--button-success-color);" type="button">
     <div class="fect-button__loading">
-      <div class="fect-loading"><span class="loading"><i class="loading__cube default medium"></i><i class="loading__cube default medium"></i><i class="loading__cube default medium"></i><i class="loading__cube default medium"></i></span></div>
+      <div class="fect-loading"><span class="fect-loading__wrapper"><i class="fect-loading__cube fect-loading__cube--medium default"></i><i class="fect-loading__cube fect-loading__cube--medium default"></i><i class="fect-loading__cube fect-loading__cube--medium default"></i><i class="fect-loading__cube fect-loading__cube--medium default"></i></span></div>
     </div>
     <!---->Button
   </button><button class="fect-button fect-button--warning fect-button--loading fect-button--medium" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--button-warning-color); --button-hover-color: var(--button-warning-color);" type="button">
     <div class="fect-button__loading">
-      <div class="fect-loading"><span class="loading"><i class="loading__wave default medium"></i><i class="loading__wave default medium"></i><i class="loading__wave default medium"></i><i class="loading__wave default medium"></i><i class="loading__wave default medium"></i></span></div>
+      <div class="fect-loading"><span class="fect-loading__wrapper"><i class="fect-loading__wave fect-loading__wave--medium default"></i><i class="fect-loading__wave fect-loading__wave--medium default"></i><i class="fect-loading__wave fect-loading__wave--medium default"></i><i class="fect-loading__wave fect-loading__wave--medium default"></i><i class="fect-loading__wave fect-loading__wave--medium default"></i></span></div>
     </div>
     <!---->Button
   </button></div>
