@@ -1,6 +1,6 @@
 import { computed, CSSProperties, defineComponent, onMounted } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, isNumber } from '../utils'
+import { createName, isNumber, assign } from '../utils'
 import Skeleton from '../skeleton'
 import SkeletonItem from '../skeleton-item'
 import './index.less'
@@ -31,24 +31,23 @@ export default defineComponent({
   },
   setup(props, { attrs }) {
     const [loading, setLoading] = useState<boolean>(true)
-    const [showSkeleton, setShowSkeleton] = useState<boolean>(props.skeleton)
 
     onMounted(() => {
+      const { maxDelay, skeleton } = props
       // user may pass  a non-number. In order to avoid program errors, we need to give a default value.
-      const delay = isNumber(props.maxDelay) ? Number(props.maxDelay) : 3000
+      const delay = isNumber(maxDelay) ? Number(maxDelay) : 3000
       let timer: number | undefined
       timer && window.clearTimeout(timer)
-      if (showSkeleton.value) {
+      if (skeleton) {
         setLoading(false)
         timer = window.setTimeout(() => {
-          setShowSkeleton(false)
           setLoading(true)
           window.clearTimeout(timer)
         }, delay)
       }
     })
 
-    const setStyle = computed(() => {
+    const setImageStyle = computed(() => {
       const { width, height } = props
       const style: CSSProperties = {
         width,
@@ -59,11 +58,18 @@ export default defineComponent({
 
     const slots = {
       default: () => <img src={props.src} width={props.width} height={props.height} {...attrs} />,
-      skeleton: () => <SkeletonItem variable="image" style={{ marginTop: 0, ...setStyle.value }} />
+      skeleton: () => (
+        <SkeletonItem
+          variable="image"
+          style={assign(setImageStyle.value, {
+            marginTop: 0
+          })}
+        />
+      )
     }
 
     return () => (
-      <div class="fect-image" style={{ ...setStyle.value }}>
+      <div class="fect-image" style={setImageStyle.value}>
         <Skeleton loading={loading.value} v-slots={slots}></Skeleton>
       </div>
     )
