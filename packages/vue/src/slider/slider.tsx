@@ -66,6 +66,7 @@ export default defineComponent({
     const [sliderWidth, setSliderWidth] = useState<number>(0)
     const [isClick, setIsClick] = useState<boolean>(false)
     const [lastDragOffset, setLastDragOffset] = useState<number>(0)
+    const [lock, setLock] = useState<boolean>(false)
     const marks = computed(() => getMarks(props.min, props.max, props.step))
 
     const setDotPosition = computed(() => {
@@ -94,6 +95,7 @@ export default defineComponent({
 
     const clickHandler = (e: MouseEvent) => {
       if (props.disabled) return
+      if (lock.value) return setLock(false)
       setIsClick(true)
       const { x: sliderX, width } = getDomRect(sliderRef)
       setSliderWidth(width)
@@ -104,6 +106,7 @@ export default defineComponent({
 
     const dragStartHandler = () => {
       setIsClick(false)
+      setLock(true)
       const { width } = getDomRect(sliderRef)
       setSliderWidth(width)
     }
@@ -128,9 +131,14 @@ export default defineComponent({
       onEnd: dragEndHandler
     })
 
-    watch(value, (pre) => {
-      emit('update:modelValue', pre)
-      emit('change', pre)
+    watch(
+      () => props.modelValue,
+      (cur) => setValue(cur)
+    )
+
+    watch(value, (cur) => {
+      emit('update:modelValue', cur)
+      emit('change', cur)
     })
 
     return () => (
