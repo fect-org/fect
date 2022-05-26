@@ -1,5 +1,5 @@
 import { computed, defineComponent } from 'vue'
-import { createName, isArray, createBem } from '../utils'
+import { createName, isArray, createBem, make } from '../utils'
 import { props } from './props'
 import LoadingCircle from './loading-circle'
 import './index.less'
@@ -54,7 +54,7 @@ export default defineComponent({
       <div class="fect-loading">
         <span class={bem('wrapper')}>
           {getLoadNum.value ? (
-            [...Array(getLoadNum.value)].map((_, i) => (
+            make(getLoadNum.value).map((_, i) => (
               <i class={setLoadClasses.value} style={setLoadingStyles.value} key={i} />
             ))
           ) : (

@@ -1,6 +1,6 @@
 import { computed, CSSProperties, ref, watch, onUnmounted, onMounted, nextTick, defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, getDomRect, createBem } from '../utils'
+import { createName, getDomRect, createBem, make } from '../utils'
 import type { Shape, Placement } from './interface'
 import { props } from './props'
 import './index.less'
@@ -127,7 +127,7 @@ export default defineComponent({
       if (length.value <= 1 || idx === index.value) return
       idx = idx >= length.value ? length.value : idx
       const status: Placement = idx > index.value ? 'next' : 'prev'
-      const tasks = [...Array(Math.abs(idx - index.value))]
+      const tasks = make(Math.abs(idx - index.value))
       tasks.map(() => updateTranslate(status))
     }
 
@@ -150,7 +150,7 @@ export default defineComponent({
 
         return (
           <div class={bem('indicators')}>
-            {[...Array(length.value)].map((_, i) => (
+            {make(length.value).map((_, i) => (
               <span class={bem('indicator')} style={setStyle(i)} key={i} onClick={() => indicatorHandler(i)}></span>
             ))}
           </div>

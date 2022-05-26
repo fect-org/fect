@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue'
-import { createName, createBem } from '../utils'
+import { createName, createBem, make } from '../utils'
 
 import './index.less'
 
@@ -10,7 +10,7 @@ export default defineComponent({
   name,
   props: {},
   setup(props, { slots }) {
-    const renderDot = () => [...Array(12)].map((_, idx) => <span key={`spinner-${idx}`} />)
+    const renderDot = () => make(12).map((_, idx) => <span key={`spinner-${idx}`} />)
 
     return () => (
       <div class={bem(null)}>
