@@ -95,11 +95,11 @@ export default defineComponent({
 
     const clickHandler = (e: MouseEvent) => {
       if (props.disabled) return
+      if (lock.value) return setLock(false)
       setIsClick(true)
       const { x: sliderX, width } = getDomRect(sliderRef)
       setSliderWidth(width)
       const clickOffset = e.clientX - sliderX
-      if (lock.value) return setLock(false)
       setLastDragOffset(clickOffset)
       updateValue(clickOffset)
     }
