@@ -1,6 +1,6 @@
 import { computed, PropType, watch, defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName } from '../utils'
+import { createName, make } from '../utils'
 import type { CSSProperties, NormalTypes, RecordPartial } from '../utils'
 import RatingIcon from './rating-icon'
 
@@ -95,7 +95,7 @@ export default defineComponent({
 
     return () => (
       <div class="fect-rating" role="slider" tabindex={0}>
-        {[...Array(props.count)].map((_, idx) => renderIcon(idx))}
+        {make(props.count).map((_, idx) => renderIcon(idx))}
       </div>
     )
   }

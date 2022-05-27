@@ -1,6 +1,7 @@
 import { defineComponent, computed, watchEffect } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import PaginationItem from './pagination-item'
+import { make } from '../utils'
 import PaginationEllipsis from './pagination-ellipsis'
 import { usePaginationContext } from './pagination-context'
 
@@ -65,7 +66,7 @@ export default defineComponent({
 
       const pageNum = showBeforeAndAfter ? current + offset : onlyShowBefore ? count - 1 : onlyShowAfter ? limit : count
       const control = showBeforeAndAfter || onlyShowBefore
-      return [...Array(pageNum)].reduce((acc: number[], _, idx: number) => {
+      return make(pageNum).reduce((acc: number[], _, idx: number) => {
         idx += 1
         if (control && idx >= current) acc.push(idx)
         /**
@@ -100,7 +101,7 @@ export default defineComponent({
      */
     const renderlessLimit = () => {
       const { current } = props
-      return [...Array(props.count)].map((_, index) => {
+      return make(props.count).map((_, index) => {
         const value = index + 1
         return renderItem(value, current)
       })
