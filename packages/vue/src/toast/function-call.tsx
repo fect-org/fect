@@ -17,7 +17,7 @@ const Toast = (options: ToastOptions) => {
   const id = `toast-${getId()}`
 
   if (!instance) {
-    //  context
+    // root node
     const container = createNode('fect-ui--toast')
 
     ;({ instance } = createPortal<ToastInsanceMethods>(

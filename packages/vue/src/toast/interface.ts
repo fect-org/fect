@@ -2,9 +2,8 @@ import { props } from './props'
 import type { ExtractPropTypes, Ref } from 'vue'
 import type { ComponentInstance } from '../utils'
 
-export type _ToastOptions = Omit<ExtractPropTypes<typeof props>, 'index' | 'total' | 'hover' | 'willBeDestroy'> & {
+type _ToastOptions = Omit<ExtractPropTypes<typeof props>, 'index' | 'total' | 'hover' | 'willBeDestroy'> & {
   duration?: string | number
-  // we plan to implement this api in the future.
   once?: boolean
 }
 
@@ -15,7 +14,7 @@ export type StaticToastOptions = Omit<ToastOptions, 'type'>
 export type Toasts = Array<
   Omit<ExtractPropTypes<typeof props>, 'index' | 'total' | 'hover'> & {
     id: string
-    cancel: () => void
+    cancel: void
     duration?: string | number
   }
 >

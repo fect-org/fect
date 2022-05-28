@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, createBem } from '../utils'
+import { createName, createBem, isDEV } from '../utils'
 import { useToastContext } from './toast-contenxt'
 import ToastItem from './toast-item'
 
@@ -15,6 +15,15 @@ export default defineComponent({
     const [hover, setHover] = useState<boolean>(false)
     const { context } = useToastContext()
 
+    if (!context) {
+      if (isDEV) {
+        console.error(
+          "[Fect] <Toast> must be called by static methods or function call. Please don't use Toast component in your project."
+        )
+      }
+      return
+    }
+
     let timer: any
 
     const hoverHandler = (state: boolean) => {
@@ -28,6 +37,10 @@ export default defineComponent({
         context!.updateHovering(state)
         timer && clearTimeout(timer)
       }, 200)
+    }
+
+    const ToastContainerMouseHandler = (state: boolean) => {
+      //
     }
 
     const renderToasts = () => {
@@ -50,8 +63,8 @@ export default defineComponent({
     return () => (
       <div
         class={bem('container', { hover: hover.value })}
-        onMouseenter={() => hoverHandler(true)}
-        onMouseleave={() => hoverHandler(false)}
+        onMouseenter={() => ToastContainerMouseHandler(true)}
+        onMouseleave={() => ToastContainerMouseHandler(false)}
       >
         {renderToasts()}
       </div>
