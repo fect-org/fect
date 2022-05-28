@@ -1,17 +1,15 @@
 import { App } from 'vue'
 import { useState, useExpose } from '@fect-ui/vue-hooks'
 import FeToast from './toast'
-import { createNode, withInstall, NormalTypes, createPortal, omit, assign, isNumber, getId } from '../utils'
-
-import type { ComponentInstance } from '../utils'
-import type { ToastOptions, StaticToastOptions, Toasts } from './interface'
+import { createNode, withInstall, NormalTypes, createPortal, omit, assign, isNumber, getId, len } from '../utils'
 import { createToastContext } from './toast-contenxt'
+import type { ToastOptions, StaticToastOptions, Toasts, TostInstance, ToastInsanceMethods } from './interface'
 
 /**
  * Toast will has `once` Api in future.
  */
 
-let instance: ComponentInstance
+let instance: TostInstance
 
 const destroyStack: string[] = []
 
@@ -22,7 +20,7 @@ const Toast = (options: ToastOptions) => {
     //  context
     const container = createNode('fect-ui--toast')
 
-    ;({ instance } = createPortal(
+    ;({ instance } = createPortal<ToastInsanceMethods>(
       {
         setup() {
           const [toasts, setToasts] = useState<Toasts>([])
@@ -88,10 +86,11 @@ const Toast = (options: ToastOptions) => {
   }
 
   /**
-   * user may pass a string type numebr. so we should translate it. Or user pass a string , we will use preset
+   * user may pass a string type numebr. so we should translate it. Or user pass a real string can't convert to number , we will use preset
    * duration value.
    */
-  const duration = isNumber(options.duration) ? Number(options.duration) : Toast.defaultOptions.duration
+  const { duration: userDuration } = options
+  const duration = isNumber(userDuration) ? Number(userDuration) : Toast.defaultOptions.duration
   instance.hideToast(id, duration)
   instance.updateToasts(assign(options, { id }), duration)
 }
@@ -102,10 +101,15 @@ Toast.defaultOptions = {
   type: 'default',
   once: false,
   closeAble: false
-} as ToastOptions
+}
+
+/**
+ * At previous version. user  call Toast or Toast static methods. the assign logic is unreasonable.
+ * Because we only call createMethods for static methods. But we don't provide a preset config for normal call.
+ */
 
 const createMethods = (type: NormalTypes) => (options: StaticToastOptions) =>
-  Toast(assign(Toast.defaultOptions, options, { type } as ToastOptions))
+  Toast(assign(Toast.defaultOptions, options, { type }))
 
 /**
  * static methods
