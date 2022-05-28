@@ -12,7 +12,7 @@ jobs:
           node-version: '16.x'
 
       - name: Bootstrap
-        run: yarn bootstrap
+        run: make
 
       - name: Run unit test case
         run: yarn test

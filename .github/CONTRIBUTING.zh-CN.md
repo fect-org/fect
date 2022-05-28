@@ -13,7 +13,7 @@
 3. 安装一个包管理工具 [Yarn](https://classic.yarnpkg.com/en/docs/install#mac-stable)
    然后更新项目的依赖: `yarn`
 4. 执行以下命令:
-   - `yarn bootstrap`
+   - `make`
 5. 在本地页面中查看你的更改。
 
 在任何您认为合适的时间，您都可以按照以下步骤提交您优秀的作品:

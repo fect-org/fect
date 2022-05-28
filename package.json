@@ -14,7 +14,6 @@
     "node": "^16"
   },
   "scripts": {
-    "bootstrap": "bash ./scripts/bootstrap.sh",
     "compile": "lerna exec --scope @fect-ui/vue -- yarn build",
     "icon": "lerna exec --scope @fect-ui/vue-icons -- yarn build",
     "collect": "lerna exec --scope @fect-ui/vue -- yarn collect",
