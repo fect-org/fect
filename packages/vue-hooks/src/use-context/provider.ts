@@ -6,7 +6,8 @@ import {
   getCurrentInstance,
   VNodeNormalizedChildren,
   ComponentPublicInstance,
-  ComponentInternalInstance
+  ComponentInternalInstance,
+  InjectionKey
 } from 'vue'
 
 export const flattenVNodes = (children: VNodeNormalizedChildren) => {
@@ -48,11 +49,17 @@ export const sortChildren = (
   })
 }
 
-export const createProvider = <T extends ComponentPublicInstance = ComponentPublicInstance>(key: string | symbol) => {
+export const createProvider = <
+  // eslint-disable-next-line
+  T extends ComponentPublicInstance = ComponentPublicInstance<{}, any>,
+  ProvideValue = never
+>(
+  key: InjectionKey<ProvideValue>
+) => {
   const publicChildren: T[] = reactive([])
   const internalChildren: ComponentInternalInstance[] = reactive([])
   const parent = getCurrentInstance()!
-  const provider = (value?: any) => {
+  const provider = (value?: ProvideValue) => {
     const link = (child: ComponentInternalInstance) => {
       if (child.proxy) {
         internalChildren.push(child)
@@ -66,13 +73,18 @@ export const createProvider = <T extends ComponentPublicInstance = ComponentPubl
       publicChildren.splice(idx, 1)
       internalChildren.splice(idx, 1)
     }
-    provide(key, {
-      link,
-      unlink,
-      children: publicChildren,
-      internalChildren,
-      ...value
-    })
+    provide(
+      key,
+      Object.assign(
+        {
+          link,
+          unlink,
+          children: publicChildren,
+          internalChildren
+        },
+        value
+      )
+    )
   }
   return {
     children: publicChildren,

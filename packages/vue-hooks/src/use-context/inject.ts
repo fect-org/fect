@@ -1,6 +1,7 @@
 import {
   getCurrentInstance,
   inject,
+  InjectionKey,
   onUnmounted,
   computed,
   ComponentPublicInstance,
@@ -14,8 +15,8 @@ type Provider<T> = T & {
   internalChildren: ComponentInternalInstance[]
 }
 
-const useProvider = <T>(key: string | symbol) => {
-  const context = inject<Provider<T> | null>(key, null)
+const useProvider = <T>(key: InjectionKey<Provider<T>>) => {
+  const context = inject(key, null)
   if (context) {
     const instance = getCurrentInstance()!
     const { link, unlink, internalChildren, ...rest } = context
