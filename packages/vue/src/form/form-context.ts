@@ -7,7 +7,7 @@ const READONLY_FORM_KEY: InjectionKey<FormContext> = Symbol('formKey')
 
 const READONLY_FORM_ITEM_KEY: InjectionKey<FormItemCotnext> = Symbol('formItemKey')
 
-export const createFormContext = () => createProvider<FormItemInstance>(READONLY_FORM_KEY)
+export const createFormContext = () => createProvider<FormItemInstance, FormContext>(READONLY_FORM_KEY)
 
 export const useFormContext = () => useProvider(READONLY_FORM_KEY)
 

@@ -1,4 +1,4 @@
-import type { ExtractPropTypes, Ref, ComputedRef } from 'vue'
+import type { ExtractPropTypes, Ref, ComputedRef, DeepReadonly } from 'vue'
 import type { ComponentInstance } from '../utils'
 import { selectOptionProps, props } from './props'
 
@@ -9,7 +9,7 @@ interface SelectState {
 
 export interface SelectContext {
   updateSelectVisible: () => void
-  parentValue: Ref<string | string[]>
+  parentValue: DeepReadonly<Ref<string | number | Array<string | number>>>
   selectState: ComputedRef<SelectState>
   updateDropDown: () => void
   updateSelectValue: (val: string | number) => void

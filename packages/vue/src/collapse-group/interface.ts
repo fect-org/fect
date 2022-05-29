@@ -1,6 +1,6 @@
-import type { Ref } from 'vue'
+import type { DeepReadonly, Ref } from 'vue'
 
 export interface CollapseContext {
-  checked: Ref<number[]>
+  checked: DeepReadonly<Ref<number[]>>
   updateCollapseGroupChecked(childIdx: number): void
 }

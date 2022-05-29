@@ -16,13 +16,22 @@ export interface FormContext {
   props: FormProps
 }
 
-export type FormItemInstance = ComponentInstance<Omit<FormItemCotnext, 'behavior'> & FormItemProps>
+export type FormItemInstance = ComponentInstance<
+  Omit<FormItemCotnext, 'behavior'> &
+    FormItemProps & {
+      updateShowLogState: (state: boolean) => void
+      clearValidate: () => void
+    }
+>
+
+export interface ValidateResult {
+  state: boolean
+  errs: ValidateErrorParams
+}
 
 export interface FormItemCotnext {
   behavior: ComputedRef<Pick<FormProps, 'disabled' | 'size'>>
-  validate: (trigger: Trigger, callback?: ValidateCallback) => { state: boolean; errs: ValidateErrorParams }
-  updateShowLogState: (state: boolean) => void
-  clearValidate: () => void
+  validate: (trigger: Trigger, callback?: ValidateCallback) => ValidateResult | void
 }
 
 export type FormInstance = ComponentInstance<{

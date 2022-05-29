@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
 
 export interface LayoutContext {
-  gutter: Ref<number>
+  gutter: Ref<number | string>
 }

@@ -1,4 +1,4 @@
-import type { Ref } from 'vue'
+import type { DeepReadonly, Ref } from 'vue'
 import type { NormalSizes } from '../utils'
 
 export type Parent = number | string
@@ -23,6 +23,6 @@ export interface RadioGroupContext {
     size: NormalSizes
   }
   updateRadioGroupChangeEvent: (val: RadioEvent) => void
-  parentValue: Ref<Parent>
+  parentValue: DeepReadonly<Ref<Parent>>
   updateRadioGroupValue: (val: Parent) => void
 }
