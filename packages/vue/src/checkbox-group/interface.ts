@@ -1,5 +1,5 @@
 import { checkboxGroupProps } from './props'
-import type { Ref, ExtractPropTypes } from 'vue'
+import type { Ref, ExtractPropTypes, DeepReadonly } from 'vue'
 
 interface CheckboxEeventTarget {
   checked?: boolean
@@ -15,7 +15,7 @@ export interface CheckboxEvent {
 
 export interface CheckboxContext {
   props: ExtractPropTypes<typeof checkboxGroupProps>
-  parentValue: Ref<string[]>
+  parentValue: DeepReadonly<Ref<string[]>>
   updateCheckboxGroupValue: (val: string) => void
   updateCheckboxGroupEvent: (e: CheckboxEvent) => void
 }

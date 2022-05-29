@@ -87,7 +87,8 @@ export default defineComponent({
       const { prop } = props
       if (!prop) {
         if (process.env.NODE_ENV !== 'production') {
-          return console.error(`[Fect] <FormItem> prop is required for validate`)
+          console.error(`[Fect] <FormItem> prop is required for validate`)
+          return
         }
       }
       const { model } = context!.props

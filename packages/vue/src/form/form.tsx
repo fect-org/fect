@@ -3,7 +3,7 @@ import { useExpose } from '@fect-ui/vue-hooks'
 import { props } from './props'
 import { createName, createBem, isPlainObject, len, isArray } from '../utils'
 import { createFormContext } from './form-context'
-import type { PromisfyValidate, ValidateCallback } from './interface'
+import type { PromisfyValidate, ValidateCallback, ValidateResult } from './interface'
 import './index.less'
 import { Apollo } from './apollo'
 
@@ -49,7 +49,7 @@ export default defineComponent({
     const validateField = (fields: string | string[], callback?: ValidateCallback) => {
       fields = isArray(fields) ? fields : [fields]
       const fds = children.filter((_) => fields.includes(_.prop))
-      const result = fds.map((fd) => fd.validate('', callback))
+      const result = fds.map((fd) => fd.validate('', callback)) as ValidateResult[]
       if (!len(result) && callback) return callback(true, {})
       result.forEach(({ state, errs }) => {
         callback && callback(state, errs)

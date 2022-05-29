@@ -1,6 +1,6 @@
 import { computed, ref, watch, defineComponent, nextTick } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, createBem, pick, getDomRect, assign, isArray, useMounted, addUnit } from '../utils'
+import { createName, createBem, pick, getDomRect, assign, isArray, useMounted, addUnit, len } from '../utils'
 import Input from '../input'
 import Tooltip from '../tooltip'
 import GridGroup from '../grid-group'
@@ -30,8 +30,7 @@ export default defineComponent({
     const selectRef = ref<HTMLDivElement>()
     const gridRef = ref<ComponentInstance>()
     const { provider, children } = createSelectContext()
-
-    const [value, setValue] = useState<string | string[]>(props.modelValue || props.value)
+    const [value, setValue] = useState<string | number | Array<string | number>>(props.modelValue || props.value)
     const [visible, setVisible] = useState<boolean>(false)
     const [dropdownWidth, setDropdownWidth] = useState<number>(0)
     const [showClear, setShowClear] = useState<boolean>(false)
@@ -66,15 +65,14 @@ export default defineComponent({
       })
     }
 
-    const updateSelectValue = (val: string) => {
+    const updateSelectValue = (val: string | number) => {
       setValue((pre) => {
         if (props.multiple) {
           const previous = isArray(pre) ? pre : [pre]
-          if (!pre.includes(val)) return [...previous, val]
+          if (!previous.includes(val)) return [...previous, val]
           return previous.filter((item) => item !== val)
-        } else {
-          return val
         }
+        return val
       })
     }
 
@@ -116,7 +114,14 @@ export default defineComponent({
       const { clearable } = props
       const list = queryChecked.value
       return (
-        <GridGroup ref={gridRef} class={bem('multiple')} gap={0.5}>
+        <GridGroup
+          ref={gridRef}
+          class={bem('multiple')}
+          gap={0.5}
+          style={{
+            backgroundColor: len(list) ? 'var(--primary-background)' : 'transparent'
+          }}
+        >
           {list.map((_) => (
             <SelectMultiple onClear={() => multipleClearClickHandler(_.value as string)} clearable={clearable}>
               {_.label}
