@@ -1,5 +1,5 @@
 import { props } from './props'
-import type { ExtractPropTypes, Ref } from 'vue'
+import type { DeepReadonly, ExtractPropTypes, Ref } from 'vue'
 import type { ComponentInstance } from '../utils'
 
 type _ToastOptions = Omit<ExtractPropTypes<typeof props>, 'index' | 'total' | 'hover' | 'willBeDestroy'> & {
@@ -14,13 +14,13 @@ export type StaticToastOptions = Omit<ToastOptions, 'type'>
 export type Toasts = Array<
   Omit<ExtractPropTypes<typeof props>, 'index' | 'total' | 'hover'> & {
     id: string
-    cancel: void
+    cancel(): void
     duration?: string | number
   }
 >
 
 export interface ToastCotnext {
-  toasts: Ref<Toasts>
+  toasts: DeepReadonly<Ref<Toasts>>
   updateHovering: (state: boolean) => void
 }
 

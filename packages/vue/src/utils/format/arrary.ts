@@ -1,6 +1,6 @@
 export const { isArray } = Array
 
-export const len = (source: unknown[] | string) => source.length
+export const len = <T extends unknown[]>(source: T | string) => source.length
 
 /**
  * For other language like golang we always use make init us slice. but

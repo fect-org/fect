@@ -1,24 +1,19 @@
 import { defineComponent, computed, watchEffect } from 'vue'
+
 import { useState } from '@fect-ui/vue-hooks'
 import { props } from './props'
 import { createBem } from '../utils'
-import type { CSSProperties, NormalTypes } from '../utils'
+import type { ComputedRef } from 'vue'
+import type { CSSProperties } from '../utils'
 
 const bem = createBem('fect-toast')
 
-const getToastColor = (type: NormalTypes): CSSProperties => {
-  const bgColorsPool: Record<NormalTypes, string> = {
-    default: 'var(--primary-background)',
-    success: 'var(--success-default)',
-    warning: 'var(--warning-default)',
-    error: 'var(--error-default)'
-  }
-  const isDefault = type === 'default'
-  return {
-    backgroundColor: bgColorsPool[type] || bgColorsPool['default'],
-    color: isDefault ? 'var(--primary-foreground)' : 'white'
-  }
-}
+/**
+ * After ver 1.5.1 I decide use class replace inline style.
+ * Because inline style isn't a good way. User can't define
+ * their custom style. And in future i plan use jss replace all
+ * style.
+ */
 
 const getTranslate = (reverseIndex: number, onHover: boolean, total: number) => {
   const calc = `100% + -75px + -${20 * reverseIndex}px`
@@ -61,20 +56,22 @@ export default defineComponent({
       })
     })
 
-    const setStyle = computed(() => {
+    const setToastItemStyle: ComputedRef<CSSProperties> = computed(() => {
       const translate = getTranslate(reverseIndex.value, props.hover, props.total)
       return {
         '--toast-translate': translate,
         '--toast-opacity': reverseIndex.value > 4 ? 0 : 1,
-        '--toast-shadow': reverseIndex.value > 4 ? 'none' : 'var(--fect-shadowSmall)',
-        ...getToastColor(props.type)
-      } as CSSProperties
+        '--toast-shadow': reverseIndex.value > 4 ? 'none' : 'var(--fect-shadowSmall)'
+      }
     })
 
     return () => {
       if (reverseIndex.value > 10) return null
       return (
-        <div class={bem(null, { visible: visible.value, hidden: hidden.value })} style={setStyle.value}>
+        <div
+          class={bem(null, [props.type, { visible: visible.value, hidden: hidden.value }])}
+          style={setToastItemStyle.value}
+        >
           <div class={bem('message')}>{props.text}</div>
           {props.closeAble && (
             <span class={bem('closeable')} onClick={() => emit('cancel')}>

@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, createBem, isDEV } from '../utils'
+import { createName, createBem, isDEV, len } from '../utils'
 import { useToastContext } from './toast-contenxt'
 import ToastItem from './toast-item'
 
@@ -24,27 +24,26 @@ export default defineComponent({
       return
     }
 
-    let timer: any
+    let timer: number | undefined
 
-    const hoverHandler = (state: boolean) => {
+    const ToastContainerMouseHandler = (state: boolean) => {
+      const { updateHovering } = context
       if (state) {
-        timer && clearTimeout(timer)
-        context!.updateHovering(state)
-        return setHover(state)
-      }
-      timer = setTimeout(() => {
+        timer && window.clearTimeout(timer)
+        updateHovering(state)
         setHover(state)
-        context!.updateHovering(state)
-        timer && clearTimeout(timer)
+        return
+      }
+      timer = window.setTimeout(() => {
+        setHover(state)
+        updateHovering(state)
+        timer && window.clearTimeout(timer)
       }, 200)
     }
 
-    const ToastContainerMouseHandler = (state: boolean) => {
-      //
-    }
-
     const renderToasts = () => {
-      const { toasts } = context!
+      const { toasts } = context
+      const total = len(toasts.value as unknown[])
       return toasts.value.map((toast, idx) => (
         <ToastItem
           text={toast.text}
@@ -53,7 +52,7 @@ export default defineComponent({
           willBeDestroy={toast.willBeDestroy}
           index={idx}
           hover={hover.value}
-          total={toasts.value.length}
+          total={total}
           key={`toast-${idx}`}
           onCancel={toast.cancel}
         />
