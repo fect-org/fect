@@ -48,6 +48,10 @@ At any time, you think it's ok, you can start the following steps to submit your
 
 - If this is a feature, set to `main` branch. All the others are set to `rc` branch.
 
+> How can i run this project ?
+
+- We provide makefile. If you are using windows, Please manually run the instructions in the makefile
+
 ### Get stuck
 
 - Create new issue to tell us: [create issue](https://github.com/fect-org/fect/issues).

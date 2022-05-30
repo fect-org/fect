@@ -49,6 +49,10 @@
 
 - 如果这是一个 feature, 请设置为 `main` 分支。其他的都设置为 `rc` 分支。
 
+> 我该如何运行这个项目呢 ?
+
+- 我们提供了 makefile 文件,但是 windows 用户可能需要手动执行这些指令或者可以用 GCC。
+
 ### 遇到困难了
 
 - 创建新的 issue 告诉我们: [创建 issue](https://github.com/fect-org/fect/issues)。
