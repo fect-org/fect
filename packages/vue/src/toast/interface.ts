@@ -20,6 +20,7 @@ export type Toasts = Array<
 >
 
 export interface ToastCotnext {
+  isHovering: DeepReadonly<Ref<boolean>>
   toasts: DeepReadonly<Ref<Toasts>>
   updateHovering: (state: boolean) => void
 }

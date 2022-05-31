@@ -60,7 +60,6 @@ export default defineComponent({
       const translate = getTranslate(reverseIndex.value, props.hover, props.total)
       return {
         '--toast-translate': translate,
-        '--toast-opacity': reverseIndex.value > 4 ? 0 : 1,
         '--toast-shadow': reverseIndex.value > 4 ? 'none' : 'var(--fect-shadowSmall)'
       }
     })

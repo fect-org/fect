@@ -1,7 +1,7 @@
 import { App } from 'vue'
 import { useState, useExpose } from '@fect-ui/vue-hooks'
 import FeToast from './toast'
-import { createNode, withInstall, NormalTypes, createPortal, omit, assign, isNumber, getId, len } from '../utils'
+import { createNode, withInstall, NormalTypes, createPortal, assign, isNumber, getId, len } from '../utils'
 import { createToastContext } from './toast-contenxt'
 import type { ToastOptions, StaticToastOptions, Toasts, TostInstance, ToastInsanceMethods } from './interface'
 
@@ -27,9 +27,10 @@ const Toast = (options: ToastOptions) => {
           const [isHovering, setIsHovering] = useState<boolean>(false)
 
           const updateToasts = (toastOption: Toasts[number], duration: number) => {
-            const prevToasts = toasts.value.slice()
-            prevToasts.push(assign(omit(toastOption, ['duration']), { cancel: () => cancel(toastOption.id, duration) }))
-            setToasts(prevToasts)
+            setToasts((pre) => {
+              const next = pre.concat(assign(toastOption, { cancel: () => cancel(toastOption.id, duration) }))
+              return next
+            })
           }
 
           let maxDestroyTime = 0
@@ -40,8 +41,8 @@ const Toast = (options: ToastOptions) => {
             clearTimeout(destroyTimer)
             maxDestroyTime = time
             destroyTimer = window.setTimeout(() => {
-              if (destroyStack.length < toasts.value.length) {
-                setToasts(toasts.value)
+              if (len(destroyStack) < len(toasts.value as unknown[])) {
+                setToasts((pre) => pre)
               } else {
                 destroyStack.length = 0
                 setToasts([])
@@ -51,13 +52,8 @@ const Toast = (options: ToastOptions) => {
           }
 
           const cancel = (id: string, delay: number) => {
-            const prevToasts = toasts.value.slice()
-            const nextToasts = prevToasts.map((item) => {
-              if (item.id !== id) return item
-              return { ...item, willBeDestroy: true }
-            })
             destroyStack.push(id)
-            setToasts(nextToasts)
+            setToasts((pre) => pre.map((item) => (item.id !== id ? item : assign(item, { willBeDestroy: true }))))
             destroyAllToast(delay, performance.now())
           }
 
@@ -74,7 +70,7 @@ const Toast = (options: ToastOptions) => {
 
           const { provider } = createToastContext()
 
-          provider({ toasts, updateHovering: setIsHovering })
+          provider({ toasts, updateHovering: setIsHovering, isHovering })
 
           useExpose({ updateToasts, hideToast })
 
@@ -89,10 +85,10 @@ const Toast = (options: ToastOptions) => {
    * user may pass a string type numebr. so we should translate it. Or user pass a real string can't convert to number , we will use preset
    * duration value.
    */
-  const { duration: userDuration } = options
+  const { duration: userDuration, ...rest } = options
   const duration = isNumber(userDuration) ? Number(userDuration) : Toast.defaultOptions.duration
   instance.hideToast(id, duration)
-  instance.updateToasts(assign(options, { id }), duration)
+  instance.updateToasts(assign(rest, { id }), duration)
 }
 
 Toast.defaultOptions = {

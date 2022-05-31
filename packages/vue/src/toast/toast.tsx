@@ -1,5 +1,4 @@
 import { defineComponent } from 'vue'
-import { useState } from '@fect-ui/vue-hooks'
 import { createName, createBem, isDEV, len } from '../utils'
 import { useToastContext } from './toast-contenxt'
 import ToastItem from './toast-item'
@@ -12,7 +11,6 @@ import './index.less'
 export default defineComponent({
   name,
   setup(props) {
-    const [hover, setHover] = useState<boolean>(false)
     const { context } = useToastContext()
 
     if (!context) {
@@ -31,18 +29,16 @@ export default defineComponent({
       if (state) {
         timer && window.clearTimeout(timer)
         updateHovering(state)
-        setHover(state)
         return
       }
       timer = window.setTimeout(() => {
-        setHover(state)
         updateHovering(state)
         timer && window.clearTimeout(timer)
       }, 200)
     }
 
     const renderToasts = () => {
-      const { toasts } = context
+      const { toasts, isHovering } = context
       const total = len(toasts.value as unknown[])
       return toasts.value.map((toast, idx) => (
         <ToastItem
@@ -51,7 +47,7 @@ export default defineComponent({
           closeAble={toast.closeAble}
           willBeDestroy={toast.willBeDestroy}
           index={idx}
-          hover={hover.value}
+          hover={isHovering.value}
           total={total}
           key={`toast-${idx}`}
           onCancel={toast.cancel}
@@ -61,7 +57,7 @@ export default defineComponent({
 
     return () => (
       <div
-        class={bem('container', { hover: hover.value })}
+        class={bem('container', { hover: context.isHovering.value })}
         onMouseenter={() => ToastContainerMouseHandler(true)}
         onMouseleave={() => ToastContainerMouseHandler(false)}
       >
