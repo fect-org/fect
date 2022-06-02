@@ -1,5 +1,5 @@
 import { computed, defineComponent } from 'vue'
-import { createName, createBem } from '../utils'
+import { createName, createBem, isDEV } from '../utils'
 import { useTabsContext } from '../tabs/tabs-context'
 import { tabProps } from '../tabs/props'
 import './index.less'
@@ -14,9 +14,7 @@ export default defineComponent({
     const { context, idx } = useTabsContext()
 
     if (!context) {
-      if (process.env.NODE_ENV !== 'production') {
-        console.error('[Fect] <Tab> must be a child component of <Tabs>.')
-      }
+      if (isDEV) console.error('[Fect] <Tab> must be a child component of <Tabs>.')
       return
     }
 

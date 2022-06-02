@@ -1,6 +1,6 @@
 import { computed, watch, defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, createBem, addColorAlpha } from '../utils'
+import { createName, createBem, addColorAlpha, isDEV } from '../utils'
 import { props } from './props'
 import { createPaginationContext } from './pagination-context'
 import PaginationPages from './pagination-pages'
@@ -20,8 +20,7 @@ const COUNT_LOG = '[Fect] <Pagination> the minimum count value must be more than
 const LIMIT_LOG = '[Fect] <Pagination> the minimum limit value must be more than 3 .'
 
 const getEdgeCase = (rule: any, log: string) => {
-  const DEV = process.env.NODE_ENV !== 'production'
-  const next = DEV && rule
+  const next = isDEV && rule
   next && console.error(log)
   return
 }
@@ -69,7 +68,6 @@ export default defineComponent({
     }
 
     provider({
-      currentPage,
       setCurrentPage,
       updateSidePage,
       shouldDisabledPrevious,

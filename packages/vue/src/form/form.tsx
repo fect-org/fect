@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue'
 import { useExpose } from '@fect-ui/vue-hooks'
 import { props } from './props'
-import { createName, createBem, isPlainObject, len, isArray } from '../utils'
+import { createName, createBem, isPlainObject, len, isArray, isDEV } from '../utils'
 import { createFormContext } from './form-context'
 import type { PromisfyValidate, ValidateCallback, ValidateResult } from './interface'
 import './index.less'
@@ -20,9 +20,8 @@ export default defineComponent({
 
     const validate = (callback?: ValidateCallback) => {
       if (!isPlainObject(props.model)) {
-        if (process.env.NODE_ENV !== 'production') {
-          return console.error('[Fect] <Form /> model is required for validate to work')
-        }
+        if (isDEV) console.error('[Fect] <Form /> model is required for validate to work')
+        return
       }
       let promise: Promise<PromisfyValidate> | undefined
       if (!callback) {

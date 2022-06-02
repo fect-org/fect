@@ -1,5 +1,5 @@
 import { computed, defineComponent } from 'vue'
-import { createName, createBem } from '../utils'
+import { createName, createBem, isDEV } from '../utils'
 import type { CSSProperties } from '../utils'
 import './index.less'
 
@@ -7,12 +7,11 @@ const name = createName('Spacer')
 const bem = createBem('fect-spacer')
 
 const getMargin = (num: any) => {
-  const env = process.env.NODE_ENV !== 'production'
-  if (num <= 0 && env) {
+  if (num <= 0 && isDEV) {
     console.error(`[Fect] Spacer Error ${num} should be greater than 0`)
     num = 1
   }
-  if (typeof num !== 'number' && env) {
+  if (typeof num !== 'number' && isDEV) {
     console.error(`[Fect] Spacer Error ${num} should be number`)
     num = 1
   }

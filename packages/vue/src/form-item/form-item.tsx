@@ -1,6 +1,6 @@
 import { defineComponent, ref, computed, Transition } from 'vue'
 import { useState, useExpose } from '@fect-ui/vue-hooks'
-import { createName, createBem, isArray, pickContextProps, pick, hasOwn, len, useMounted } from '../utils'
+import { createName, createBem, isArray, pickContextProps, pick, hasOwn, len, useMounted, isDEV } from '../utils'
 import { getLabelPostion, getLabelWidth } from '../form/style'
 import { FormRule, Trigger, ValidateCallback } from '../form/interface'
 import { useFormContext, createFormItemContext } from '../form/form-context'
@@ -17,8 +17,8 @@ export default defineComponent({
   props,
   setup(props, { slots }) {
     const { context } = useFormContext()
-    if (!context && process.env.NODE_ENV !== 'production') {
-      console.error('[Fect] <FormItem /> must be a child component of <Form />')
+    if (!context) {
+      if (isDEV) console.error('[Fect] <FormItem /> must be a child component of <Form />')
       return
     }
     const { provider } = createFormItemContext()
@@ -33,7 +33,7 @@ export default defineComponent({
     })
 
     const getRules = (): FormRule[] => {
-      const formRules = context?.props.rules || {}
+      const formRules = context.props.rules || {}
       const { rules, prop } = props
       if (prop && hasOwn(formRules, prop)) {
         const result = formRules[prop]
@@ -86,15 +86,13 @@ export default defineComponent({
     const validate = (trigger: Trigger = 'change', callback?: ValidateCallback) => {
       const { prop } = props
       if (!prop) {
-        if (process.env.NODE_ENV !== 'production') {
-          console.error(`[Fect] <FormItem> prop is required for validate`)
-          return
-        }
+        if (isDEV) console.error(`[Fect] <FormItem> prop is required for validate`)
+        return
       }
-      const { model } = context!.props
+      const { model } = context.props
       const rules = getRules()
       if (callback && !len(rules)) return callback(true, {})
-      const { state, errs } = context!.apollo.validateField(trigger, prop!, { [prop!]: model[prop!] })
+      const { state, errs } = context.apollo.validateField(trigger, prop!, { [prop!]: model[prop!] })
       setShowLog(!state)
       return { state, errs }
     }
@@ -107,13 +105,13 @@ export default defineComponent({
       const { prop } = props
       if (prop) {
         const rules = getRules()
-        context?.apollo.addField(prop, rules)
+        context.apollo.addField(prop, rules)
       }
     }
 
     const removeField = () => {
       const { prop } = props
-      if (prop) context?.apollo.removeField(prop)
+      if (prop) context.apollo.removeField(prop)
     }
 
     useMounted([addField, removeField])
@@ -125,7 +123,7 @@ export default defineComponent({
     return () => (
       <div
         class={bem('item', {
-          inline: context!.props.inline,
+          inline: context.props.inline,
           ...pick(getFormItemState.value, ['labelPosition', 'size'])
         })}
         ref={formItemRef}

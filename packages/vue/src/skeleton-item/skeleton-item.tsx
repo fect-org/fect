@@ -1,5 +1,5 @@
 import { PropType, computed, defineComponent } from 'vue'
-import { createName, createBem } from '../utils'
+import { createName, createBem, isDEV } from '../utils'
 import ImageSkeleton from './image-skeleton'
 import { useSkeletonContext } from '../skeleton/skeleton-context'
 
@@ -23,15 +23,13 @@ export default defineComponent({
     const { context } = useSkeletonContext()
 
     if (!context) {
-      if (process.env.NODE_ENV !== 'production') {
-        console.error('[Fect] <SkeletonItem> must be a child component of <Skeleton>.')
-      }
+      if (isDEV) console.error('[Fect] <SkeletonItem> must be a child component of <Skeleton>.')
       return
     }
 
     const setSkeletonItemClass = computed(() => {
       const { variable } = props
-      const { animated } = context!
+      const { animated } = context
       return bem('item', { variable, animated: animated.value })
     })
 

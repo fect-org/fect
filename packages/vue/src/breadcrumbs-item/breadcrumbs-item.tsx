@@ -1,5 +1,5 @@
 import { watchEffect, defineComponent } from 'vue'
-import { createName, createBem } from '../utils'
+import { createName, createBem, isDEV } from '../utils'
 import { useState } from '@fect-ui/vue-hooks'
 import { useBreadcrumbsContext } from '../breadcrumbs/breadcrumbs-context'
 import Link from '../link'
@@ -32,9 +32,7 @@ export default defineComponent({
     })
 
     if (!context) {
-      if (process.env.NODE_ENV !== 'production') {
-        console.error('[Fect] <BreadcrumbsItem> must be a child component of <Breadcrumbs>.')
-      }
+      if (isDEV) console.error('[Fect] <BreadcrumbsItem> must be a child component of <Breadcrumbs>.')
       return
     }
 
