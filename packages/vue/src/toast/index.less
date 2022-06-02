@@ -1,3 +1,12 @@
+:root {
+  --toast-default-color: var(--primary-foreground);
+  --toast-other-color: white;
+  --toast-default-bg-color: var(--primary-background);
+  --toast-success-bg-color: var(--success-default);
+  --toast-warning-bg-color: var(--warning-default);
+  --toast-error-bg-color: var(--error-default);
+}
+
 .fect-toast {
   width: 420px;
   max-width: 90vw;
@@ -12,9 +21,32 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  opacity: var(--toast-opacity);
   transform: translate3d(0, 100%, 0px) scale(1);
   transition: transform 400ms ease 0ms, visibility 200ms ease 0ms, opacity 200ms ease 0ms;
+
+  &--default {
+    background-color: var(--toast-default-bg-color);
+    color: var(--toast-default-color);
+  }
+
+  &--success,
+  &--warning,
+  &--error {
+    color: var(--toast-other-color);
+  }
+
+  &--success {
+    background-color: var(--toast-success-bg-color);
+  }
+
+  &--warning {
+    background-color: var(--toast-warning-bg-color);
+  }
+
+  &--error {
+    background-color: var(--toast-error-bg-color);
+  }
+
   &--visible {
     opacity: 1;
     transform: var(--toast-translate);

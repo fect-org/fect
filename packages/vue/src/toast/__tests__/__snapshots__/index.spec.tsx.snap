@@ -1,26 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Toast should render as element 1`] = `
-<div class="fect-toast" style="--toast-translate: translate3d(0, calc(100% + -75px + --20px), --1px) scale(1.05); --toast-opacity: 1; --toast-shadow: var(--fect-shadowSmall);">
+<div class="fect-toast fect-toast--default" style="--toast-translate: translate3d(0, calc(100% + -75px + --20px), --1px) scale(1.05); --toast-shadow: var(--fect-shadowSmall);">
   <div class="fect-toast__message">Test Message</div>
   <!---->
 </div>
 `;
 
 exports[`Toast should support different types 1`] = `
-<div class="fect-toast" style="--toast-translate: translate3d(0, calc(100% + -75px + --20px), --1px) scale(1.05); --toast-opacity: 1; --toast-shadow: var(--fect-shadowSmall);">
+<div class="fect-toast fect-toast--default" style="--toast-translate: translate3d(0, calc(100% + -75px + --20px), --1px) scale(1.05); --toast-shadow: var(--fect-shadowSmall);">
   <div class="fect-toast__message">0</div>
   <!---->
 </div>
-<div class="fect-toast" style="--toast-translate: translate3d(0, calc(100% + -75px + --20px), --1px) scale(1.05); --toast-opacity: 1; --toast-shadow: var(--fect-shadowSmall); color: white;">
+<div class="fect-toast fect-toast--success" style="--toast-translate: translate3d(0, calc(100% + -75px + --20px), --1px) scale(1.05); --toast-shadow: var(--fect-shadowSmall);">
   <div class="fect-toast__message">1</div>
   <!---->
 </div>
-<div class="fect-toast" style="--toast-translate: translate3d(0, calc(100% + -75px + --20px), --1px) scale(1.05); --toast-opacity: 1; --toast-shadow: var(--fect-shadowSmall); color: white;">
+<div class="fect-toast fect-toast--warning" style="--toast-translate: translate3d(0, calc(100% + -75px + --20px), --1px) scale(1.05); --toast-shadow: var(--fect-shadowSmall);">
   <div class="fect-toast__message">2</div>
   <!---->
 </div>
-<div class="fect-toast" style="--toast-translate: translate3d(0, calc(100% + -75px + --20px), --1px) scale(1.05); --toast-opacity: 1; --toast-shadow: var(--fect-shadowSmall); color: white;">
+<div class="fect-toast fect-toast--error" style="--toast-translate: translate3d(0, calc(100% + -75px + --20px), --1px) scale(1.05); --toast-shadow: var(--fect-shadowSmall);">
   <div class="fect-toast__message">3</div>
   <!---->
 </div>

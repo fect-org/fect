@@ -1,6 +1,5 @@
 import { defineComponent } from 'vue'
-import { useState } from '@fect-ui/vue-hooks'
-import { createName, createBem } from '../utils'
+import { createName, createBem, isDEV, len } from '../utils'
 import { useToastContext } from './toast-contenxt'
 import ToastItem from './toast-item'
 
@@ -12,26 +11,35 @@ import './index.less'
 export default defineComponent({
   name,
   setup(props) {
-    const [hover, setHover] = useState<boolean>(false)
     const { context } = useToastContext()
 
-    let timer: any
-
-    const hoverHandler = (state: boolean) => {
-      if (state) {
-        timer && clearTimeout(timer)
-        context!.updateHovering(state)
-        return setHover(state)
+    if (!context) {
+      if (isDEV) {
+        console.error(
+          "[Fect] <Toast> must be called by static methods or function call. Please don't use Toast component in your project."
+        )
       }
-      timer = setTimeout(() => {
-        setHover(state)
-        context!.updateHovering(state)
-        timer && clearTimeout(timer)
+      return
+    }
+
+    let timer: number | undefined
+
+    const ToastContainerMouseHandler = (state: boolean) => {
+      const { updateHovering } = context
+      if (state) {
+        timer && window.clearTimeout(timer)
+        updateHovering(state)
+        return
+      }
+      timer = window.setTimeout(() => {
+        updateHovering(state)
+        timer && window.clearTimeout(timer)
       }, 200)
     }
 
     const renderToasts = () => {
-      const { toasts } = context!
+      const { toasts, isHovering } = context
+      const total = len(toasts.value as unknown[])
       return toasts.value.map((toast, idx) => (
         <ToastItem
           text={toast.text}
@@ -39,8 +47,8 @@ export default defineComponent({
           closeAble={toast.closeAble}
           willBeDestroy={toast.willBeDestroy}
           index={idx}
-          hover={hover.value}
-          total={toasts.value.length}
+          hover={isHovering.value}
+          total={total}
           key={`toast-${idx}`}
           onCancel={toast.cancel}
         />
@@ -49,9 +57,9 @@ export default defineComponent({
 
     return () => (
       <div
-        class={bem('container', { hover: hover.value })}
-        onMouseenter={() => hoverHandler(true)}
-        onMouseleave={() => hoverHandler(false)}
+        class={bem('container', { hover: context.isHovering.value })}
+        onMouseenter={() => ToastContainerMouseHandler(true)}
+        onMouseleave={() => ToastContainerMouseHandler(false)}
       >
         {renderToasts()}
       </div>
