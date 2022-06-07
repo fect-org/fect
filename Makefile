@@ -4,7 +4,6 @@ bootstrap:	modules
 		clean-all	\
 		build-hooks	\
 		build-icons
-	
 
 modules:
 	yarn install
@@ -13,7 +12,7 @@ build-cli:
 	cd	packages/cli;	yarn	build
 
 clean-all:
-	yarn	clean; yarn	
+	yarn	clean; yarn
 
 build-hooks:
 	cd	packages/vue-hooks;	yarn	build
