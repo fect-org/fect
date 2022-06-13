@@ -4,6 +4,6 @@ import type { TabPropInstance, TabsContext } from './interface'
 
 export const READONLY_TABS_KEY: InjectionKey<TabsContext> = Symbol('tabsKey')
 
-export const createTabsContext = () => createProvider<TabPropInstance>(READONLY_TABS_KEY)
+export const createTabsContext = () => createProvider<TabPropInstance, TabsContext>(READONLY_TABS_KEY)
 
 export const useTabsContext = () => useProvider(READONLY_TABS_KEY)
