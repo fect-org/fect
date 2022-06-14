@@ -3,22 +3,21 @@
   "version": "1.3.0",
   "description": "Minimalist Vue Compostion Hooks",
   "author": "XeryYue",
-  "main": "lib/index.js",
-  "module": "es/index.js",
+  "main": "dist/cjs/index.cjs.js",
+  "module": "dist/esm/index.esm.js",
   "typings": "types/index.d.ts",
   "keywords": [
     "fect",
     "vue-hooks"
   ],
   "files": [
-    "lib/",
-    "es/",
+    "dist",
     "types/",
     "README.md"
   ],
   "license": "MIT",
   "scripts": {
-    "build": "non compile"
+    "build":"ts-node build.ts"
   },
   "devDependencies": {
     "@fect-ui/cli": "1.0.0"
