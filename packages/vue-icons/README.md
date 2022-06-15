@@ -5,7 +5,7 @@ src="https://user-images.githubusercontent.com/52351095/118687359-7e809480-b837-
 
 ## Quick Start
 
-1. Run `yarn add @fect-ui/vue-hooks` or `npm install @fect-ui/vue-hooks` install it.
+1. Run `yarn add @fect-ui/vue-icons` or `npm install @fect-ui/vue-icons` install it.
 2. Import into project.
 
 # Features
@@ -14,4 +14,5 @@ src="https://user-images.githubusercontent.com/52351095/118687359-7e809480-b837-
 
 ## Tips
 
-This is a internal hooks libraries for fect. If you know how to usage.
+`Icon` is peer peer depend `@fect-ui/themes`. If you don't use `@fect-ui/vue` you should
+install the `theme` package :)

@@ -1,4 +1,4 @@
-import { bundle, runTask, transformScript, CJS_PATH, ESM_PATH, declarationTask } from '@fect-ui/cli'
+import { runTask, declarationTask } from '@fect-ui/cli'
 import path from 'path'
 import fs from 'fs-extra'
 import { JSDOM } from 'jsdom'
@@ -8,12 +8,54 @@ import svgoConfig from './svgo.config'
 import { getSVGSource } from './get-source'
 import { singleDefine } from './template'
 import { collect } from './collect'
+import { createBundle, BumpOptions } from 'no-bump'
+import { swc } from 'rollup-plugin-swc3'
+import Jsx from '@vitejs/plugin-vue-jsx'
 
 export const PACKAGE_PATH = path.join(process.cwd(), 'src')
 
 const clean = () => fs.remove(PACKAGE_PATH)
 
-export const build = async () => {
+const { build } = createBundle({
+  plugins: {
+    Jsx,
+    swc: swc({
+      jsc: {
+        target: 'es2017',
+        externalHelpers: false
+      },
+      sourceMaps: false
+    })
+  }
+})
+
+const buildConfig: BumpOptions = {
+  input: path.join(PACKAGE_PATH, 'index.ts'),
+  output: {
+    sourceMap: false,
+    preserveModules: true,
+    extractHelpers: false
+  }
+}
+
+interface Config extends BumpOptions {
+  taskName: string
+}
+
+const configs: Config[] = [
+  {
+    taskName: 'CommonJs',
+    input: buildConfig.input,
+    output: { ...buildConfig.output, format: 'cjs', dir: 'dist/cjs', exports: 'named' }
+  },
+  {
+    taskName: 'EsModule',
+    input: buildConfig.input,
+    output: { ...buildConfig.output, format: 'esm', dir: 'dist/esm' }
+  }
+]
+
+;(async () => {
   const svgs = {}
   await clean()
 
@@ -21,22 +63,17 @@ export const build = async () => {
     const source = await getSVGSource()
     const { document } = new JSDOM(source).window
     const icons = document.querySelectorAll('.geist-container > .icon')
-    try {
-      if (!icons.length) throw new Error("\nCan't found svg elements. please check bundler.ts file.\n")
-      const svgo = new Svgo(svgoConfig)
-      await Promise.all(
-        Array.from(icons).map(async (icon) => {
-          const name = camelize(icon.querySelector('.geist-text').textContent)
-          const svg = icon.querySelector('svg')
-          const { data: optimizeString } = await svgo.optimize(svg.outerHTML)
-          const style = svg.getAttribute('style')
-          svgs[name] = svgParser(optimizeString, style)
-        })
-      )
-    } catch (error) {
-      console.log(error)
-      process.exit(1)
-    }
+    if (!icons.length) throw new Error("\nCan't found svg elements. please check bundler.ts file.\n")
+    const svgo = new Svgo(svgoConfig)
+    await Promise.all(
+      Array.from(icons).map(async (icon) => {
+        const name = camelize(icon.querySelector('.geist-text').textContent)
+        const svg = icon.querySelector('svg')
+        const { data: optimizeString } = await svgo.optimize(svg.outerHTML)
+        const style = svg.getAttribute('style')
+        svgs[name] = svgParser(optimizeString, style)
+      })
+    )
   }
 
   const generatorIconSource = async () => {
@@ -50,21 +87,20 @@ export const build = async () => {
     )
     await collect()
   }
-
-  const cjsTask = async (input) => {
-    const cjs = await bundle({ input, plugins: [transformScript({ babelEnv: 'commonjs' })] })
-    await cjs.write({ dir: CJS_PATH })
+  try {
+    await runTask('Fetch Icon Source', () => getSource())
+    await runTask('Generator Icon source', () => generatorIconSource())
+    await Promise.all(
+      configs.map(async (conf) => {
+        const { taskName, ...rest } = conf
+        await runTask(taskName, () => build(rest))
+      })
+    )
+    await runTask('Declaration', () => declarationTask(PACKAGE_PATH))
+  } catch (error) {
+    console.log(error)
+    process.exit(1)
+  } finally {
+    clean()
   }
-
-  const esmTask = async (input) => {
-    const cjs = await bundle({ input, plugins: [transformScript({ babelEnv: 'esmodule' })] })
-    await cjs.write({ dir: ESM_PATH })
-  }
-
-  await runTask('Icon Source', () => getSource())
-  await generatorIconSource()
-  await runTask('Declaration', () => declarationTask(PACKAGE_PATH))
-  await runTask('CommonJs', () => cjsTask(PACKAGE_PATH))
-  await runTask('EsModule', () => esmTask(PACKAGE_PATH))
-  await clean()
-}
+})()
