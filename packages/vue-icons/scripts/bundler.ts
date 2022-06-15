@@ -46,7 +46,7 @@ const configs: Config[] = [
   {
     taskName: 'CommonJs',
     input: buildConfig.input,
-    output: { ...buildConfig.output, format: 'cjs', dir: 'dist/cjs' }
+    output: { ...buildConfig.output, format: 'cjs', dir: 'dist/cjs', exports: 'named' }
   },
   {
     taskName: 'EsModule',
