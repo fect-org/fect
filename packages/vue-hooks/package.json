@@ -17,7 +17,8 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build":"ts-node build.ts"
+    "clean": "rm -rf dist types",
+    "build": "npm run clean && ts-node build.ts"
   },
   "devDependencies": {
     "@fect-ui/cli": "1.0.0"

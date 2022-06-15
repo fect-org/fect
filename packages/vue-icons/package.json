@@ -4,16 +4,15 @@
   "author": "XeryYue",
   "description": "Well prepared high quality Icon Library for fect",
   "scripts": {
-    "build": "ts-node index.ts"
+    "build": "ts-node scripts/bundler.ts"
   },
-  "main": "lib/index.js",
-  "module": "es/index.js",
+  "main": "dist/cjs/index.cjs.js",
+  "module": "dist/esm/index.esm.js",
   "types": "types/index.d.ts",
   "license": "MIT",
   "files": [
     "LISCENSE",
-    "es/",
-    "lib/",
+    "dist",
     "types/",
     "README.md"
   ],
