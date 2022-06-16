@@ -1,4 +1,4 @@
-import { runTask, declarationTask } from '@fect-ui/cli'
+import { declarationTask } from '@fect-ui/cli'
 import path from 'path'
 import fs from 'fs-extra'
 import { JSDOM } from 'jsdom'
@@ -11,6 +11,7 @@ import { collect } from './collect'
 import { createBundle, BumpOptions } from 'no-bump'
 import { swc } from 'rollup-plugin-swc3'
 import Jsx from '@vitejs/plugin-vue-jsx'
+import { runTask, TASK_NAME, BuildTaskConfig, commonOutput } from 'internal'
 
 export const PACKAGE_PATH = path.join(process.cwd(), 'src')
 
@@ -31,25 +32,17 @@ const { build } = createBundle({
 
 const buildConfig: BumpOptions = {
   input: path.join(PACKAGE_PATH, 'index.ts'),
-  output: {
-    sourceMap: false,
-    preserveModules: true,
-    extractHelpers: false
-  }
+  output: commonOutput
 }
 
-interface Config extends BumpOptions {
-  taskName: string
-}
-
-const configs: Config[] = [
+const configs: BuildTaskConfig[] = [
   {
-    taskName: 'CommonJs',
+    taskName: TASK_NAME.COMMONJS,
     input: buildConfig.input,
     output: { ...buildConfig.output, format: 'cjs', dir: 'dist/cjs', exports: 'named' }
   },
   {
-    taskName: 'EsModule',
+    taskName: TASK_NAME.ESMODULE,
     input: buildConfig.input,
     output: { ...buildConfig.output, format: 'esm', dir: 'dist/esm' }
   }

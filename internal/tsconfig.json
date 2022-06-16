@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "outDir": "./lib",
+      "target": "ES2015",
+      "module": "CommonJS",
+      "sourceMap": false,
+      "declaration": true,
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "importHelpers": true,
+      "allowJs": true,
+      "jsx": "preserve",
+    },
+  }
+  
