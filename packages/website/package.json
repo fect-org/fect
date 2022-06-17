@@ -4,8 +4,8 @@
   "description": "A Website ",
   "main": "index.js",
   "scripts": {
-    "dev": "non dev",
-    "build": "non build"
+    "dev": "vite",
+    "prod": "vite build"
   },
   "keywords": [],
   "author": "XeryYue",

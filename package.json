@@ -18,7 +18,7 @@
     "compile": "lerna exec --scope @fect-ui/vue -- yarn build",
     "icon": "lerna exec --scope @fect-ui/vue-icons -- yarn build",
     "collect": "lerna exec --scope @fect-ui/vue -- yarn collect",
-    "build": "lerna exec --scope @fect-ui/website -- yarn build",
+    "build": "lerna exec --scope @fect-ui/website -- yarn prod",
     "hooks": "cd packages/vue-hooks && yarn build",
     "test": "cd packages/vue &&  yarn test",
     "dev": "lerna exec --scope @fect-ui/website -- yarn dev",
@@ -26,6 +26,7 @@
     "lint": "eslint \"{internal,packages}/**/*.{js,ts,tsx}\""
   },
   "devDependencies": {
+    "@types/node": "^16.10.5",
     "lerna": "^4.0.0",
     "no-bump": "^0.2.0",
     "typescript": "^4.6.3",
@@ -42,6 +43,9 @@
     "eslint-config-kagura": "^1.0.3",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-vue": "^7.19.1",
-    "prettier": "^2.4.1"
+    "prettier": "^2.4.1",
+    "@vitejs/plugin-vue": "^2.2.4",
+    "@vitejs/plugin-vue-jsx": "^1.3.8",
+    "vite": "^2.8.6"
   }
 }

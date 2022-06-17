@@ -22,9 +22,6 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-typescript": "^7.16.7",
     "@types/fs-extra": "^9.0.13",
-    "@types/node": "^16.10.5",
-    "@vitejs/plugin-vue": "^2.2.4",
-    "@vitejs/plugin-vue-jsx": "^1.3.8",
     "@vue/babel-plugin-jsx": "^1.1.1",
     "@vue/test-utils": "^2.0.0-rc.16",
     "autoprefixer": "^10.4.2",
@@ -39,7 +36,6 @@
     "ora": "5.4.1",
     "parse-imports": "0.0.5",
     "postcss": "^8.4.5",
-    "vite": "^2.8.6",
     "fast-glob": "^3.2.11"
   },
   "devDependencies": {
