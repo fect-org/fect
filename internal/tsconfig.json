@@ -5,6 +5,7 @@
       "target": "ES2015",
       "module": "CommonJS",
       "sourceMap": false,
+      "strict": true,
       "declaration": true,
       "skipLibCheck": true,
       "esModuleInterop": true,
