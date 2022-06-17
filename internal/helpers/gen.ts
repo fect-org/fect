@@ -39,20 +39,23 @@ export const gen = async (root = process.cwd(), ignoredDirectories: string[] = [
   return { parserd, directories, relatives }
 }
 
+export const genExports = async (dict: string[], condit = 'default') => {
+  await init
+  return dict.map((d) => {
+    const moduleEntry = path.join(d, 'index.ts')
+    const [, exports] = parse(fs.readFileSync(moduleEntry, 'utf-8'))
+    return exports.filter((module) => module !== condit)
+  })
+}
+
 /**
  * Generator vue component register info
  */
 
 export const genVuePackageMeta = async (root = process.cwd(), ignoredDirectories: string[] = [], version = '0.0.0') => {
   const { parserd, directories, relatives } = await gen(root, ignoredDirectories)
-  await init
 
-  const namedExports = directories.map((d) => {
-    // Because this is a internal func. we can determine the entrance
-    const moduleEntry = path.join(d, 'index.ts')
-    const [, exports] = parse(fs.readFileSync(moduleEntry, 'utf-8'))
-    return exports.filter((module) => module !== 'default')
-  })
+  const namedExports = await genExports(directories)
 
   const str = namedExports.reduce((acc, cur, i) => {
     const moudle = `import {${cur.join()}} from '${relatives[i]}';\n`

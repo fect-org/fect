@@ -9,7 +9,8 @@
   "scripts": {
     "collect": "ts-node scripts/gen.ts",
     "build": "npm run collect && non compile && non volar && node ./typing-template.js",
-    "test": "non test"
+    "test": "non test",
+    "generator:volar": "ts-node scripts/gen-volar.ts"
   },
   "keywords": [
     "vue component",
