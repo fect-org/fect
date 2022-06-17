@@ -16,12 +16,12 @@
   },
   "scripts": {
     "compile": "lerna exec --scope @fect-ui/vue -- yarn build",
-    "icon": "lerna exec --scope @fect-ui/vue-icons -- yarn build",
     "collect": "lerna exec --scope @fect-ui/vue -- yarn collect",
-    "build": "lerna exec --scope @fect-ui/website -- yarn prod",
-    "hooks": "cd packages/vue-hooks && yarn build",
+    "dev:site": "lerna exec --scope @fect-ui/website -- yarn dev",
+    "build:site": "lerna exec --scope @fect-ui/website -- yarn prod",
+    "build:hook": "lerna exec --scope @fect-ui/vue-hooks -- yarn build",
+    "build:icon": "lerna exec --scope @fect-ui/vue-icons -- yarn build",
     "test": "cd packages/vue &&  yarn test",
-    "dev": "lerna exec --scope @fect-ui/website -- yarn dev",
     "clean": "lerna clean --yes",
     "lint": "eslint \"{internal,packages}/**/*.{js,ts,tsx}\""
   },
@@ -37,6 +37,7 @@
     "jest-serializer-vue": "^2.0.2",
     "jest-transform-stub": "^2.0.0",
     "vue-jest": "^5.0.0-alpha.10",
+    "@vue/test-utils": "^2.0.0-rc.16",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^8.0.0",
@@ -46,6 +47,10 @@
     "prettier": "^2.4.1",
     "@vitejs/plugin-vue": "^2.2.4",
     "@vitejs/plugin-vue-jsx": "^1.3.8",
-    "vite": "^2.8.6"
+    "vite": "^2.8.6",
+    "es-module-lexer": "^0.9.3"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
   }
 }

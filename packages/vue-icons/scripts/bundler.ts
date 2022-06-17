@@ -1,4 +1,3 @@
-import { declarationTask } from '@fect-ui/cli'
 import path from 'path'
 import fs from 'fs-extra'
 import { JSDOM } from 'jsdom'
@@ -11,7 +10,7 @@ import { collect } from './gen'
 import { createBundle, BumpOptions } from 'no-bump'
 import { swc } from 'rollup-plugin-swc3'
 import Jsx from '@vitejs/plugin-vue-jsx'
-import { runTask, TASK_NAME, BuildTaskConfig, commonOutput, camelize, kebabCase } from 'internal'
+import { runTask, TASK_NAME, BuildTaskConfig, commonOutput, camelize, kebabCase, declarationTask } from 'internal'
 
 export const PACKAGE_PATH = path.join(process.cwd(), 'src')
 
@@ -91,7 +90,7 @@ const configs: BuildTaskConfig[] = [
         await runTask(taskName, () => build(rest))
       })
     )
-    await runTask('Declaration', () => declarationTask(PACKAGE_PATH))
+    await runTask('Declaration', () => declarationTask())
   } catch (error) {
     console.log(error)
     process.exit(1)

@@ -1,7 +1,5 @@
 import { build, BumpOptions } from 'no-bump'
-import { declarationTask } from '@fect-ui/cli'
-
-import { runTask, commonOutput as internalCoomonOutput, BuildTaskConfig, TASK_NAME } from 'internal'
+import { runTask, commonOutput as internalCoomonOutput, BuildTaskConfig, TASK_NAME, declarationTask } from 'internal'
 
 const commonInput = 'src/index.ts'
 
@@ -23,7 +21,7 @@ const configs: BuildTaskConfig[] = [
     internalPlugins: internalConfig
   },
   {
-    taskName: TASK_NAME.COMMONJS,
+    taskName: TASK_NAME.ESMODULE,
     input: commonInput,
     output: { ...commonOutput, format: 'esm', dir: 'dist/esm' },
     internalPlugins: internalConfig
@@ -33,12 +31,13 @@ const configs: BuildTaskConfig[] = [
 ;(async () => {
   try {
     await Promise.all(
-      configs.map(async (conf) => {
+      configs.map((conf) => {
         const { taskName, ...rest } = conf
-        await runTask(taskName, () => build(rest))
+        runTask(taskName, () => build(rest))
       })
     )
-    await runTask('Declaration', () => declarationTask('src'))
+    // 'src'
+    await runTask('Declaration', () => declarationTask())
   } catch (error) {
     console.log(error)
     process.exit(1)
