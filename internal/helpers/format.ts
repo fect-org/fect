@@ -11,3 +11,10 @@ export const formatCode = (code: string) =>
     trailingComma: 'none',
     tabWidth: 2
   })
+
+const CAMELIZERE = /-(\w)/g
+const KEBACASE = /[A-Z]+(?![a-z])|[A-Z]/g
+
+export const camelize = (str: string): string => str.replace(CAMELIZERE, (_, key) => key.toUpperCase())
+
+export const kebabCase = (str: string): string => str.replace(KEBACASE, (_, ofs) => (ofs ? '-' : '') + _.toLowerCase())

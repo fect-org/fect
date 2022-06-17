@@ -21,9 +21,9 @@ export default defineComponent({
 })
 `
 
-export const exportsTemplate = (name: string) => `
+export const exportsTemplate = (name: string, path: string) => `
 
-import _${name} from './${name}';\n
+import _${name} from './${path}';\n
 
 export const ${name} = _${name};\n
 
