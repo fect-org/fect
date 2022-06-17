@@ -7,7 +7,7 @@
   "types": "types/index.d.ts",
   "jsdelivr": "lib/fect.min.umd.js",
   "scripts": {
-    "collect": "non collect",
+    "collect": "ts-node scripts/gen.ts",
     "build": "npm run collect && non compile && non volar && node ./typing-template.js",
     "test": "non test"
   },

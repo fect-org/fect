@@ -6,8 +6,8 @@ import Svgo from 'svgo'
 import { svgParser, camelize, replaceStyle } from './svg-parser'
 import svgoConfig from './svgo.config'
 import { getSVGSource } from './get-source'
-import { singleDefine } from './template'
-import { collect } from './collect'
+import { singleDefine, exportsTemplate } from './template'
+import { collect } from './gen'
 import { createBundle, BumpOptions } from 'no-bump'
 import { swc } from 'rollup-plugin-swc3'
 import Jsx from '@vitejs/plugin-vue-jsx'
@@ -72,10 +72,12 @@ const configs: BuildTaskConfig[] = [
   const generatorIconSource = async () => {
     await Promise.all(
       Object.keys(svgs).map(async (svg) => {
-        const target = path.join(PACKAGE_PATH, `${svg}.tsx`)
+        const target = path.join(PACKAGE_PATH, svg, `${svg}.tsx`)
+        const entry = path.join(PACKAGE_PATH, svg, 'index.ts')
         const name = svg.charAt(0).toUpperCase() + svg.slice(1)
         const component = singleDefine(name, replaceStyle(svgs[svg]))
         await fs.outputFile(target, component)
+        await fs.outputFile(entry, exportsTemplate(name))
       })
     )
     await collect()

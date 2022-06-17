@@ -192,7 +192,6 @@ export * from './toast'
 export * from './tooltip'
 export * from './upload'
 export * from './user'
-export * from './utils/composables'
 
 export { install, version }
 
@@ -200,3 +199,4 @@ export default {
   install,
   version
 }
+export * from './utils/composables'

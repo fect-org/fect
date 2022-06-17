@@ -29,7 +29,7 @@ export const gen = async (root = process.cwd(), ignoredDirectories: string[] = [
   )
 
   const relatives = directories.reduce((acc: string[], cur: string) => {
-    const relative = path.relative(root, cur)
+    const relative = `./${path.relative(root, cur)}`
     acc.push(relative)
     return acc
   }, [])
@@ -55,7 +55,7 @@ export const genVuePackageMeta = async (root = process.cwd(), ignoredDirectories
   })
 
   const str = namedExports.reduce((acc, cur, i) => {
-    const moudle = `import ${cur.join()} from '${relatives[i]}';\n`
+    const moudle = `import {${cur.join()}} from '${relatives[i]}';\n`
     return (acc += moudle)
   }, '')
 
