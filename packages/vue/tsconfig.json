@@ -4,7 +4,7 @@
     "outDir": "/",
     "jsx": "preserve",
     "target": "esnext",
-    "module": "esnext",
+    "module": "CommonJS",
     "strict": true,
     "allowJs": true,
     "noImplicitThis": true,
