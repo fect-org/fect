@@ -6,7 +6,6 @@ export const analyze = (): Plugin => {
     name: 'rollup-plugin-analyze',
     transform(code, id) {
       if (isStyle(id)) {
-        console.log(id)
       }
       if (isScript(id)) {
         return {
