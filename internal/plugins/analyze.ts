@@ -46,6 +46,7 @@ export const analyze = (config: AnalyzeConfig): Plugin => {
           imports.set(realPath, { ...previous, ...importedBindings })
           return
         }
+        realPaths.add(realPath)
         imports.set(realPath, importedBindings)
       })
       const realList = Array.from(realPaths).filter((v) => v !== config.entryDir)
@@ -57,7 +58,6 @@ export const analyze = (config: AnalyzeConfig): Plugin => {
           const selfEntry = path.join(key as string, 'index.less')
           if (fs.existsSync(selfEntry)) collections[selfEntry] = generatorModule('./index.less', format)
           const deps = imports.get(key)
-
           const shouldBeAnalyzed: Array<Record<string, string[]>> = []
           for (const dep in deps) {
             if (!deps[dep].length) continue
@@ -65,7 +65,6 @@ export const analyze = (config: AnalyzeConfig): Plugin => {
               [dep]: deps[dep]
             })
           }
-
           if (shouldBeAnalyzed.length) {
             shouldBeAnalyzed.forEach((draft: Record<string, string[]>) => {
               const parentKey = key as string

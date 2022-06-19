@@ -1,5 +1,7 @@
 import * as Icons from '@fect-ui/vue-icons'
 
-const iconsPool = Object.keys(Icons).filter((v) => v !== 'install' || v !== 'default')
+const getIcons = () => {
+  return Object.keys(Icons).filter((v) => !['version', 'install', 'default'].includes(v))
+}
 
-export default iconsPool
+export default getIcons()
