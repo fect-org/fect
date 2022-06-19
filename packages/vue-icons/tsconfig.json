@@ -10,6 +10,7 @@
     "esModuleInterop": true,
     "importHelpers": true,
     "allowJs": true,
+    "resolveJsonModule": true,
     "jsx": "preserve",
     "lib": ["esnext", "dom"]
   },

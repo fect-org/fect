@@ -1,3 +1,4 @@
 module.exports = {
-  presets: ['@fect-ui/cli/lib/config/babel-preset']
+  presets: [['@babel/preset-env'], '@babel/preset-typescript'],
+  plugins: ['@vue/babel-plugin-jsx']
 }

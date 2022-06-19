@@ -21,18 +21,12 @@ export default defineComponent({
 })
 `
 
-export const installerTmepalte = `const install =(app:App)=>{
-  components.forEach((c:any) => {
-    if (c.install) {
-      app.use(c);
-    } else if (c.name) {
-      app.component(c.name, c);
-    }
-  });
-};\n
-export { install };\n
-export default { install }\n
-`
+export const exportsTemplate = (name: string, path: string) => `
 
-export const installerImportTempalte = `
-import {App} from 'vue';\n`
+import _${name} from './${path}';\n
+
+export const ${name} = _${name};\n
+
+export default ${name}
+
+`

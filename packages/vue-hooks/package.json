@@ -20,9 +20,6 @@
     "clean": "rm -rf dist types",
     "build": "npm run clean && ts-node build.ts"
   },
-  "devDependencies": {
-    "@fect-ui/cli": "1.0.0"
-  },
   "peerDependencies": {
     "vue": "^3.0.11"
   },

@@ -1,18 +1,9 @@
-import { build, BumpOptions, BumpOutputOptions } from 'no-bump'
-import { runTask, declarationTask } from '@fect-ui/cli'
-
-interface Config extends BumpOptions {
-  taskName: string
-}
+import { build, BumpOptions } from 'no-bump'
+import { runTask, commonOutput as internalCoomonOutput, BuildTaskConfig, TASK_NAME, declarationTask } from 'internal'
 
 const commonInput = 'src/index.ts'
 
-const commonOutput: BumpOutputOptions = {
-  sourceMap: false,
-  preserveModules: true,
-  preserveModulesRoot: 'src',
-  extractHelpers: false
-}
+const commonOutput = { ...internalCoomonOutput, preserveModulesRoot: 'src' }
 
 const internalConfig: BumpOptions['internalPlugins'] = {
   swc: {
@@ -22,15 +13,15 @@ const internalConfig: BumpOptions['internalPlugins'] = {
   }
 }
 
-const configs: Config[] = [
+const configs: BuildTaskConfig[] = [
   {
-    taskName: 'CommonJs',
+    taskName: TASK_NAME.COMMONJS,
     input: commonInput,
     output: { ...commonOutput, format: 'cjs', dir: 'dist/cjs' },
     internalPlugins: internalConfig
   },
   {
-    taskName: 'EsModule',
+    taskName: TASK_NAME.ESMODULE,
     input: commonInput,
     output: { ...commonOutput, format: 'esm', dir: 'dist/esm' },
     internalPlugins: internalConfig
@@ -40,12 +31,13 @@ const configs: Config[] = [
 ;(async () => {
   try {
     await Promise.all(
-      configs.map(async (conf) => {
+      configs.map((conf) => {
         const { taskName, ...rest } = conf
-        await runTask(taskName, () => build(rest))
+        runTask(taskName, () => build(rest))
       })
     )
-    await runTask('Declaration', () => declarationTask('src'))
+    // 'src'
+    await runTask('Declaration', () => declarationTask())
   } catch (error) {
     console.log(error)
     process.exit(1)

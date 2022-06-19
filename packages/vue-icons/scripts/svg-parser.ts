@@ -29,8 +29,3 @@ export const svgParser = (svg: string, style: string) => {
   svg = replaceAll(svg, '"var(--geist-stroke)"', strokeColor)
   return svg
 }
-
-export const camelize = (name: string) => {
-  const REG = /-(\w)/g
-  return name.replace(REG, (_, key) => key.toUpperCase())
-}

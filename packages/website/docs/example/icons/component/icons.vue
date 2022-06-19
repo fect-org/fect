@@ -23,7 +23,7 @@
 <script>
 import { computed, ref, watch } from 'vue'
 import iconsPool from './icon'
-import IconCell from './icons-cell'
+import IconCell from './icons-cell.vue'
 
 export default {
   name: 'Icons',

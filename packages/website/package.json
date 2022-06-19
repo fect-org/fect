@@ -4,14 +4,13 @@
   "description": "A Website ",
   "main": "index.js",
   "scripts": {
-    "dev": "non dev",
-    "build": "non build"
+    "dev": "vite",
+    "prod": "vite build"
   },
   "keywords": [],
   "author": "XeryYue",
   "license": "MIT",
   "devDependencies": {
-    "@fect-ui/cli": "1.0.0",
     "@types/prismjs": "^1.16.6",
     "@fect-ui/md-loader": "1.0.0"
   },
