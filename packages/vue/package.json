@@ -2,14 +2,13 @@
   "name": "@fect-ui/vue",
   "version": "1.5.1",
   "description": "Minimalist UI components built on Vue",
-  "main": "lib/index.js",
-  "module": "es/index.js",
+  "main": "dist/cjs/index.cjs.js",
+  "module": "dist/esm/index.esm.js",
   "types": "types/index.d.ts",
-  "jsdelivr": "lib/fect.min.umd.js",
+  "jsdelivr": "dist/cjs/fect.min.umd.js",
   "scripts": {
     "collect": "ts-node scripts/gen.ts",
-    "build": "npm run collect && non compile && npm run generator:volar && node ./typing-template.js",
-    "build:bump":"ts-node scripts/build.ts",
+    "build": "npm run collect && ts-node scripts/build.ts && npm run generator:volar && node ./typing-template.js",
     "test": "jest -c jest.config.js -u",
     "generator:volar": "ts-node scripts/gen-volar.ts"
   },
@@ -24,8 +23,7 @@
     "url": "https://github.com/fect-org/fect"
   },
   "files": [
-    "lib/",
-    "es/",
+    "dist",
     "types/",
     "vetur/",
     "README.md",
@@ -33,19 +31,16 @@
   ],
   "author": "XeryYue",
   "license": "MIT",
-  "devDependencies": {
-    "@fect-ui/cli": "^1.0.0"
-  },
   "sideEffects": [
-    "es/**/style/*",
-    "lib/**/style/*",
+    "dist/esm/**/style/*",
+    "dist/cjs/**/style/*",
     "*.css"
   ],
   "dependencies": {
     "@fect-ui/themes": "^2.2.0",
     "@fect-ui/vue-hooks": "^1.3.1",
-    "proy": "^0.0.3",
-    "@popperjs/core": "^2.11.2"
+    "@popperjs/core": "^2.11.2",
+    "proy": "^0.0.3"
   },
   "peerDependencies": {
     "vue": "^3.0.11"

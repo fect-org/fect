@@ -1,12 +1,27 @@
-import { BuildTaskConfig, TASK_NAME, runTask, commonOutput, jsx, analyze, declarationTask } from 'internal'
+import { BuildTaskConfig, TASK_NAME, runTask, commonOutput, css, analyze, declarationTask, camelize } from 'internal'
 import { createBundle } from 'no-bump'
 import fs from 'fs-extra'
 import { swc } from 'rollup-plugin-swc3'
+import jsx from '@vitejs/plugin-vue-jsx'
+import path from 'path'
+import { parlletlGeneratorFullBundle } from './full-module'
+
+const components = fs
+  .readdirSync(path.join(__dirname, '..', 'src'))
+  .filter((v) => !['utils', 'index.ts'].includes(v))
+  .map((v) => {
+    const str = camelize(v)
+    return str.charAt(0).toUpperCase() + str.slice(1)
+  })
 
 const { build } = createBundle({
   plugins: {
     jsx,
-    analyze,
+    analyze: analyze({
+      entryDir: path.join(__dirname, '..', 'src'),
+      mapper: components
+    }),
+    css,
     swc: swc({
       jsc: {
         externalHelpers: false,
@@ -67,10 +82,13 @@ const parallelRunTask = async () => {
   )
 }
 
+// Already gen esm cjs umd and declaration. Next we should generator css dependencies graph
+
 ;(async () => {
   try {
     await runTask('Clean', clean)
     await parallelRunTask()
+    await runTask('UMD', parlletlGeneratorFullBundle)
     await runTask(TASK_NAME.DECLARATION, declarationTask)
   } catch (error) {
     console.log(error)
