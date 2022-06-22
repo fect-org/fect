@@ -56,7 +56,7 @@ export const analyze = (config: AnalyzeConfig): Plugin => {
           const collections: Record<string, string> = {}
 
           const selfEntry = path.join(key as string, 'index.less')
-          if (fs.existsSync(selfEntry)) collections[selfEntry] = generatorModule('./index.less', format)
+          if (fs.existsSync(selfEntry)) collections[selfEntry] = generatorModule('../index.css', format)
           const deps = imports.get(key)
           const shouldBeAnalyzed: Array<Record<string, string[]>> = []
           for (const dep in deps) {
@@ -73,7 +73,8 @@ export const analyze = (config: AnalyzeConfig): Plugin => {
                 let subStyleEntry = path.join(config.entryDir, path.dirname(dep), 'index.less')
                 if (fs.existsSync(subStyleEntry)) {
                   subStyleEntry = subStyleEntry.replace('.less', '.css')
-                  const imports = normalizePath(path.relative(parentKey, subStyleEntry))
+                  // because we will generator into style direcotry.
+                  const imports = normalizePath(path.join('..', path.relative(parentKey, subStyleEntry)))
                   Reflect.set(collections, dep, generatorModule(imports, format))
                 }
               }
