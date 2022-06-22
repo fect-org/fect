@@ -15,12 +15,12 @@
     "node": "^16"
   },
   "scripts": {
-    "compile": "lerna exec --scope @fect-ui/vue -- yarn build",
     "collect": "lerna exec --scope @fect-ui/vue -- yarn collect",
     "dev:site": "lerna exec --scope @fect-ui/website -- yarn dev",
     "build:site": "lerna exec --scope @fect-ui/website -- yarn prod",
     "build:hook": "lerna exec --scope @fect-ui/vue-hooks -- yarn build",
     "build:icon": "lerna exec --scope @fect-ui/vue-icons -- yarn build",
+    "build:lib": "lerna exec --scope @fect-ui/vue -- yarn build",
     "test": "cd packages/vue &&  yarn test",
     "clean": "lerna clean --yes",
     "lint": "eslint \"{internal,packages}/**/*.{js,ts,tsx}\""
