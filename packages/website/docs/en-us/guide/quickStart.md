@@ -11,9 +11,9 @@
 ```js
 import { createApp } from 'vue'
 import App from './App.vue'
-import Button from '@fect-ui/vue/lib/button'
+import Button from '@fect-ui/vue/dist/cjs/button'
 import '@fect-ui/themes'
-import '@fect-ui/vue/lib/Button/style'
+import '@fect-ui/vue/dist/cjs/button/style'
 
 createApp(App).use(Button).mount('#app')
 ```
@@ -34,8 +34,8 @@ $ yarn add babel-plugin-import -D
       'import',
      {
        libraryName: '@fect-ui/vue',
-        libraryDirectory: 'es',
-        style: (name) => `${name}/style/index`,
+        libraryDirectory: 'esm',
+        style: (name) => `dist/${name}/style/index`,
       },
     ],
   ],
@@ -59,17 +59,20 @@ $ yarn add vite-plugin-style-import -D
 ```js
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import styleImport from 'vite-plugin-style-import'
+import { createStyleImportPlugin } from 'vite-plugin-style-import'
 
 export default defineConfig({
   plugins: [
     vue(),
-    styleImport({
+    createStyleImportPlugin({
       libs: [
         {
           libraryName: '@fect-ui/vue',
           esModule: true,
-          resolveStyle: (name) => `@fect-ui/vue/es/${name}/style/index`
+          resolveStyle: (name) => {
+            console.log(name)
+            return `@fect-ui/vue/dist/esm/${name}/style`
+          }
         }
       ]
     })
@@ -90,7 +93,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import Fect from '@fect-ui/vue'
 import '@fect-ui/themes'
-import '@fect-ui/vue/lib/main.css'
+import '@fect-ui/vue/dist/cjs/main.css'
 
 createApp(App).use(Fect).mount('#app')
 ```
