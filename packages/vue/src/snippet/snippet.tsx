@@ -1,6 +1,7 @@
 import { computed, defineComponent } from 'vue'
 import { useClipboard } from '@fect-ui/vue-hooks'
-import { createName, createBem } from '../utils'
+import { createName, createBem, isArray, arrayTextToString } from '../utils'
+import type { CSSProperties } from '../utils'
 import { props } from './props'
 import SnippetIcon from './snippet-icon'
 import Toast from '../toast'
@@ -15,33 +16,44 @@ export default defineComponent({
   setup(props) {
     const showCopyIcon = computed(() => props.copy !== 'prevent')
 
-    const { copyText } = useClipboard()
-    const setSnippetClass = computed(() => {
-      const { type, fill } = props
-      const prevent = !showCopyIcon.value
+    const isMultiple = computed(() => isArray(props.text))
 
-      return bem(null, { type, fill, disabled: prevent })
-    })
+    const { copyText } = useClipboard()
+
+    const text = computed(() => (isArray(props.text) ? arrayTextToString(props.text) : props.text))
 
     const copyHandler = () => {
-      const { text, copy, toastText, toastType } = props
-      copyText(text)
+      const { copy, toastText, toastType } = props
+      copyText(text.value)
       if (copy === 'silent') return
       Toast({ text: toastText, type: toastType })
     }
 
-    return () => (
-      <div class={setSnippetClass.value} style={{ width: props.width }}>
-        <span>
-          {props.symbol && <span>{props.symbol}</span>}
-          {props.text}
-        </span>
-        {showCopyIcon.value && (
-          <div class={bem('copy')} onClick={copyHandler}>
-            <SnippetIcon />
-          </div>
-        )}
-      </div>
-    )
+    const setStyle = computed(() => {
+      const str = props.symbol.trim()
+      return {
+        width: props.width,
+        '--snippet-symbol': str ? `'${str} '` : ''
+      } as CSSProperties
+    })
+
+    return () => {
+      const { text, type, fill } = props
+
+      return (
+        <div class={bem(null, { type, fill })} style={setStyle.value}>
+          {isMultiple.value ? (
+            (text as string[]).map((t, i) => <pre key={`snippet-${i}-$${t}`}>{t}</pre>)
+          ) : (
+            <pre>{text}</pre>
+          )}
+          {showCopyIcon.value && (
+            <div class={bem('copy', { multiple: isMultiple.value })} onClick={copyHandler}>
+              <SnippetIcon />
+            </div>
+          )}
+        </div>
+      )
+    }
   }
 })

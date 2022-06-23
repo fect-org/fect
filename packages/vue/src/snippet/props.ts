@@ -3,7 +3,7 @@ import { NormalTypes, SnippetCopyTypes } from '../utils'
 
 export const props = {
   text: {
-    type: String,
+    type: [String, Array] as PropType<string | string[]>,
     default: '',
     required: true
   },

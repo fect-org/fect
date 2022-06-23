@@ -1,15 +1,11 @@
 .fect-snippet {
   position: relative;
   max-width: 100%;
-  width: initial;
   padding: var(--fect-gap-half);
+  margin: 0;
   border-radius: var(--fect-radius);
   border: 1px solid var(--accents-2);
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  user-select: none;
+  font-size: 0.8125rem;
   &--default {
     background-color: var(--primary-background);
   }
@@ -34,31 +30,39 @@
       color: var(--primary-background);
     }
   }
-  &--disabled {
-    cursor: not-allowed;
-  }
-  > span {
+
+  pre {
     margin: 0;
     padding: 0;
     border: none;
     background-color: transparent;
-    font-size: 0.92rem;
-    white-space: nowrap;
-    width: 90%;
-    overflow: hidden;
-    box-sizing: border-box;
-    text-overflow: ellipsis;
-    span {
-      margin-right: var(--fect-gap-quarter);
+    color: inherit;
+    font-size: inherit;
+    &::before {
+      content: var(--snippet-symbol);
+      user-select: none;
     }
   }
-}
 
-.fect-snippet {
-  .fect-snippet__copy {
-    transition: opacity 0.2s ease 0s;
+  &__copy {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: calc(100% - 2px);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0.65;
+    transition: opacity 150ms ease 0s;
+    width: calc(3.281 * 0.8125rem);
+    &--multiple {
+      align-items: flex-start;
+      padding-top: var(--fect-gap-half);
+    }
     &:hover {
-      opacity: 0.65;
+      opacity: 1;
     }
   }
 }

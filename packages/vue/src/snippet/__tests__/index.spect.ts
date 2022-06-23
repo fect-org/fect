@@ -1,6 +1,5 @@
 import { mount } from '@vue/test-utils'
 import Snippet from '..'
-import { later } from '../../../tests'
 
 const Wrapper = {
   components: {
@@ -46,7 +45,7 @@ describe('Snippet', () => {
     await wrapper.setData({
       copy: 'prevent'
     })
-    expect(wrapper.find('.fect-snippet_copy').exists()).toBe(false)
+    expect(wrapper.find('.fect-snippet__copy').exists()).toBe(false)
 
     await wrapper.setData({
       copy: 'silent'
