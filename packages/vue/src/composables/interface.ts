@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
-import { DomRect } from '../format'
+import { DomRect } from '../utils/format'
 
 export type MaybeElement = Element | undefined
 

@@ -1,5 +1,5 @@
 import { onMounted, onBeforeUnmount } from 'vue'
-import { isArray, len } from '../format/arrary'
+import { isArray, len } from '../utils'
 
 type MountedFn = () => void
 

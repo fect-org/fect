@@ -1,4 +1,4 @@
-import { isMac, assign, isBrowser } from '../format'
+import { isMac, assign, isBrowser } from '../utils'
 import { useEventListener } from '@fect-ui/vue-hooks'
 import type { UseKeyboardHandler, KeyboardOptions } from './interface'
 

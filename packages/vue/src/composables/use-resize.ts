@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { useEventListener } from '@fect-ui/vue-hooks'
-import { isBrowser } from '../format/window'
+import { isBrowser } from '../utils'
 import type { WinHeight, WinWidth } from './interface'
 
 let width: WinWidth
