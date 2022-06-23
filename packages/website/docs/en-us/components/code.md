@@ -22,8 +22,20 @@ code/block.vue
 
 :::
 
+### Code Classic
+
+Multi line code display for classic mode.
+
+:::playground
+
+code/classic.vue
+
+:::
+
 ### Code Props
 
-| Attribue  | Description        | Type      | Accepted values  | Default |
-| --------- | ------------------ | --------- | ---------------- | ------- |
-| **block** | show code in `pre` | `boolean` | `'true','false'` | `false` |
+| Attribue    | Description                                 | Type      | Accepted values  | Default |
+| ----------- | ------------------------------------------- | --------- | ---------------- | ------- |
+| **block**   | show code in `pre`                          | `boolean` | `'true','false'` | `false` |
+| **name**    | text displayed at the top of the code block | `string`  | `-`              | `-`     |
+| **classic** | display with classic style                  | `boolean` | `-`              | `false` |

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fe-code block name="src/index.vue">
+    <fe-code block classic name="src/index.vue">
       <code> yarn add @fec-ui/vue</code>
       <br />
       npm install @fect-ui/vue
@@ -10,6 +10,6 @@
 
 <script>
 export default {
-  name: 'ExCodeBlock'
+  name: 'ExCodeClassic'
 }
 </script>
