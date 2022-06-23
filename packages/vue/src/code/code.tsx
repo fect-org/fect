@@ -1,5 +1,7 @@
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, watch } from 'vue'
+import { useState } from '@fect-ui/vue-hooks'
 import { createName, addColorAlpha, createBem, isBrowser } from '../utils'
+import { useTheme } from '../composables'
 import type { ComputedRef } from 'vue'
 import type { CSSProperties } from '../utils'
 
@@ -18,15 +20,23 @@ export default defineComponent({
     classic: Boolean
   },
   setup(props, { slots, attrs }) {
-    const withDefaultColor = () => {
-      if (!isBrowser) return ''
-      return window.getComputedStyle(document.documentElement).getPropertyValue('--accents-1')
-    }
+    const { theme } = useTheme()
+    const [hex, setHex] = useState('')
+
+    watch(
+      () => theme.value,
+      () => {
+        if (!isBrowser()) return
+        const hex = window.getComputedStyle(document.documentElement).getPropertyValue('--accents-1')
+        setHex(hex)
+      },
+      { immediate: true }
+    )
 
     const setStyle: ComputedRef<CSSProperties> = computed(() => {
       const { classic } = props
       return {
-        backgroundColor: classic ? 'var(--primary-background)' : addColorAlpha(withDefaultColor(), 0.75),
+        backgroundColor: classic ? 'var(--primary-background)' : addColorAlpha(hex.value, 0.75),
         borderColor: classic ? 'var(--accents-2)' : 'var(--accents-1)'
       }
     })

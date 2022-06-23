@@ -28,7 +28,7 @@
 <script lang="ts">
 import { defineComponent, watch } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { useTheme } from '@fect-ui/vue/src/utils'
+import { useTheme } from '@fect-ui/vue/src'
 import { useWebsiteContext } from '../../website-context'
 
 export default defineComponent({
