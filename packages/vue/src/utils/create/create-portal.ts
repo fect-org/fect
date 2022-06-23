@@ -1,5 +1,5 @@
 import { createApp, Component, unref } from 'vue'
-import { ElementRef } from '../composables/interface'
+import { ElementRef } from '../../composables/interface'
 import { ComponentInstance } from '../interface'
 
 const createNode = (name: string, node = 'div') => {

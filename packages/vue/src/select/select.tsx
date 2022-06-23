@@ -1,6 +1,7 @@
 import { computed, ref, watch, defineComponent, nextTick } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, createBem, pick, getDomRect, assign, isArray, useMounted, addUnit, len } from '../utils'
+import { createName, createBem, pick, getDomRect, assign, isArray, addUnit, len } from '../utils'
+import { useMounted } from '../composables'
 import Input from '../input'
 import Tooltip from '../tooltip'
 import GridGroup from '../grid-group'

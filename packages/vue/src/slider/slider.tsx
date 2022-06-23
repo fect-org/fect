@@ -1,7 +1,8 @@
 import { defineComponent, watch, computed, ref, Ref } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, getDomRect, useDraggable, createBem } from '../utils'
-import type { Position } from '../utils'
+import { createName, getDomRect, createBem } from '../utils'
+import { useDraggable } from '../composables'
+import type { Position } from '../composables'
 
 import './index.less'
 

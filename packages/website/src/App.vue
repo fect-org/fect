@@ -9,7 +9,7 @@
 import { watch } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import { useRoute, useRouter } from 'vue-router'
-import { useResize } from '@fect-ui/vue/src/utils'
+import { useResize } from '@fect-ui/vue/src'
 import { createWebsiteContext } from './website-context'
 import NavBar from './components/nav-bar/index.vue'
 import type { NavBar as Nav, NavLink } from './interface'

@@ -199,4 +199,4 @@ export default {
   install,
   version
 }
-export * from './utils/composables'
+export * from './composables'

@@ -1,6 +1,6 @@
 import { unref } from 'vue'
 import { isBrowser } from './window'
-import { ElementRef, MaybeElement } from '../composables/interface'
+import { ElementRef, MaybeElement } from '../../composables/interface'
 
 export type DomRect = Omit<DOMRect, 'toJSON'>
 

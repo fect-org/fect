@@ -1,5 +1,6 @@
 import { computed, defineComponent } from 'vue'
-import { useRoute, createName, createBem } from '../utils'
+import { createName, createBem } from '../utils'
+import { useRoute } from '../composables'
 import './index.less'
 
 const name = createName('Link')

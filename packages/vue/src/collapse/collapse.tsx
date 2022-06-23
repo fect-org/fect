@@ -1,6 +1,7 @@
 import { ref, PropType, watch, defineComponent, watchEffect } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, createBem, getDomRect, useMounted } from '../utils'
+import { createName, createBem, getDomRect } from '../utils'
+import { useMounted } from '../composables'
 import { useCollapseContext } from '../collapse-group/collapse-context'
 import CollapseIcon from './collapse-icon'
 import './index.less'
