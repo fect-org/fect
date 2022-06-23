@@ -2,4 +2,8 @@
 
 exports[`Code should be render as element 1`] = `<code><!----></code>`;
 
-exports[`Code should support props block 1`] = `<pre><code><!----></code></pre>`;
+exports[`Code should support props block 1`] = `
+<div class="fect-code__pre" style="background-color: rgba(0, 0, 0, 0.75);">
+  <!----><pre><!----></pre>
+</div>
+`;
