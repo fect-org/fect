@@ -1,6 +1,8 @@
+import { len } from '../format/arrary'
+
 const hexColorToRgb = (hex: string): number[] => {
   hex = hex.indexOf('#') === 0 ? hex.slice(1) : hex
-  const bigint = parseInt(hex, 16)
+  const bigint = len(hex) === 3 ? parseInt(hex + hex, 16) : parseInt(hex, 16)
   const r = (bigint >> 16) & 255
   const g = (bigint >> 8) & 255
   const b = bigint & 255
