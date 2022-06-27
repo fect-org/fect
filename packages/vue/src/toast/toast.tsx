@@ -10,7 +10,7 @@ import './index.less'
 
 export default defineComponent({
   name,
-  setup(props) {
+  setup() {
     const { context } = useToastContext()
 
     if (!context) {

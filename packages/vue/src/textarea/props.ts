@@ -14,5 +14,5 @@ export const props = {
     default: 'none'
   },
   autoHeight: Boolean,
-  width: String,
+  width: String
 }

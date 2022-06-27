@@ -9,7 +9,7 @@ const bem = createBem('fect-spinner')
 export default defineComponent({
   name,
   props: {},
-  setup(props, { slots }) {
+  setup() {
     const renderDot = () => make(12).map((_, idx) => <span key={`spinner-${idx}`} />)
 
     return () => (

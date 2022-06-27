@@ -1,6 +1,5 @@
 import { Slider } from '..'
 import { mount } from '@vue/test-utils'
-import { trigger } from '../../../tests'
 
 describe('Slider', () => {
   it('should render as normal', () => {

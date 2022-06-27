@@ -2,8 +2,8 @@
  * see : https://github.com/vuejs/vue-next/issues/2020
  */
 
-import { PropType, getCurrentInstance, ComponentPublicInstance, ExtractPropTypes } from 'vue'
-
+import { getCurrentInstance } from 'vue'
+import type { PropType, ComponentPublicInstance, ExtractPropTypes } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 
 export const routeProps = {
@@ -13,6 +13,8 @@ export const routeProps = {
 export type RouteProps = ExtractPropTypes<typeof routeProps>
 
 export const route = (vm: ComponentPublicInstance<RouteProps>) => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignored
   const router = vm.$router
   const { to } = vm
   if (to && router) {

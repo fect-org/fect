@@ -1,7 +1,6 @@
 import { flushPromises, mount } from '@vue/test-utils'
 import Swipe from '..'
 import SwipeItem from '../../swipe-item'
-import { later } from '../../../tests'
 
 const Wrapper = {
   components: {

@@ -20,6 +20,7 @@ import { Code } from './code'
 import { Col } from './col'
 import { Collapse } from './collapse'
 import { CollapseGroup } from './collapse-group'
+import {} from './composables'
 import { Dot } from './dot'
 import { Drawer } from './drawer'
 import { Form } from './form'
@@ -151,6 +152,7 @@ export * from './code'
 export * from './col'
 export * from './collapse'
 export * from './collapse-group'
+export * from './composables'
 export * from './dot'
 export * from './drawer'
 export * from './form'
@@ -199,4 +201,3 @@ export default {
   install,
   version
 }
-export * from './composables'
