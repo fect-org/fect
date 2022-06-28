@@ -42,6 +42,7 @@ const Modal = (options: StaticModalOptions) => {
       }
     }))
   }
+  instance.setModalProps(staticOptions)
   instance.setVisible(true)
 }
 
