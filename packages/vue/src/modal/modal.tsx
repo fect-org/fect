@@ -1,10 +1,11 @@
 import { watch, defineComponent, ref } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, ComponentInstance, createBem } from '../utils'
+import { createName, createBem } from '../utils'
 import ModalWrapper from './modal-wrapper'
 import { createModalContext } from './modal-context'
 import Teleport from '../teleport'
 import { props } from './props'
+import type { ComponentInstance } from '../utils'
 import type { Action } from './interface'
 
 import './index.less'

@@ -1,8 +1,8 @@
 import { defineComponent } from 'vue'
-import ModalAction from './modal-action'
-import ModalTitle from './modal-title'
 import { useModalContext } from './modal-context'
 import { createBem } from '../utils'
+import type { Action } from './interface'
+import Button from '../button'
 
 const bem = createBem('fect-modal')
 
@@ -12,12 +12,29 @@ export default defineComponent({
 
     const renderTitle = () => {
       const titleSlot = slots['title']
-      return titleSlot ? <div class={bem('title')}>{titleSlot()}</div> : <ModalTitle />
+      return <div class={bem('title')}>{titleSlot ? titleSlot() : <h2 class="title">{context?.props.title}</h2>}</div>
+    }
+
+    const modalActionClickHandler = (e: Event, action: Action) => {
+      e.stopPropagation()
+      e.preventDefault()
+      context?.closeModal(action)
     }
 
     const renderAction = () => {
       const actionSlot = slots['action']
-      return actionSlot ? actionSlot() : <ModalAction />
+      return actionSlot ? (
+        actionSlot()
+      ) : (
+        <footer class={bem('action')}>
+          <Button class={bem('button')} onClick={(e) => modalActionClickHandler(e, 'cancel')}>
+            {context?.props.cancel}
+          </Button>
+          <Button class={bem('button')} onClick={(e) => modalActionClickHandler(e, 'confirm')}>
+            {context?.props.done}
+          </Button>
+        </footer>
+      )
     }
 
     const renderWrapper = () => {
