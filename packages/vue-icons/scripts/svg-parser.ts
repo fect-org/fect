@@ -23,7 +23,7 @@ export const svgParser = (svg: string, style: string) => {
   }, {})
   const fillColor = parserStyle(styles['--geist-fill'], 'current')
   const strokeColor = parserStyle(styles['--geist-stroke'], 'current')
-  svg = replaceAll(svg, '"var(--geist-foreground)"', 'currentColor')
+  svg = replaceAll(svg, '"var(--geist-foreground)"', '"currentColor"')
   svg = replaceAll(svg, '"var(--geist-background)"', '"var(--primary-background)"')
   svg = replaceAll(svg, '"var(--geist-fill)"', fillColor)
   svg = replaceAll(svg, '"var(--geist-stroke)"', strokeColor)

@@ -6,7 +6,7 @@ const sourcePath = join(__dirname, '..', 'sourcemap')
 
 const ORIGIN = 'https://vercel.com/design/icons'
 
-export const fetchDta = (): Promise<string> =>
+export const fetchData = (): Promise<string> =>
   new Promise((resolve) =>
     https.get(ORIGIN, (res) => {
       let chunk: any = ''
@@ -17,7 +17,7 @@ export const fetchDta = (): Promise<string> =>
 export const getSVGSource = async () => {
   await remove(sourcePath)
   try {
-    const res = await fetchDta()
+    const res = await fetchData()
     return res
   } catch (error) {
     console.log(error)
