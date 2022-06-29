@@ -1,4 +1,4 @@
-import { isMac, assign, isBrowser } from '../utils'
+import { isMac, assign, isBrowser, withModifiers, noop } from '../utils'
 import { useEventListener } from '@fect-ui/vue-hooks'
 import type { UseKeyboardHandler, KeyboardOptions } from './interface'
 
@@ -122,8 +122,14 @@ export const useKeyboard = (
   handler: UseKeyboardHandler,
   keyBindings: Array<number> | number,
   options?: KeyboardOptions
-): void => {
-  const { stopPropagation, preventDefault, target, event, capture } = assign(defaultOptions, options)
+) => {
+  const {
+    stopPropagation,
+    preventDefault,
+    event = 'keydown',
+    capture,
+    disableGlobalEvent
+  } = assign(defaultOptions, options)
   const bindings = Array.isArray(keyBindings) ? keyBindings : [keyBindings]
   const activeModMap = getActiveModMap(bindings)
   // eslint-disable-next-line prefer-destructuring
@@ -145,7 +151,29 @@ export const useKeyboard = (
     handler && handler(event)
   }
 
-  if (isBrowser()) {
-    useEventListener(event, (e) => eventHandler(e as KeyboardEvent), { target, capture })
+  const elementBindingHandler = (elementEventType: 'keydown' | 'keypress' | 'keyup', isCapture = false) => {
+    if (elementEventType !== event) return noop
+    if (isCapture !== capture) return noop
+    return (e: KeyboardEvent) => eventHandler(e)
+  }
+
+  if (isBrowser() && !disableGlobalEvent) {
+    useEventListener(event, (e) => eventHandler(e as KeyboardEvent), { capture })
+  }
+
+  return {
+    bindings: {
+      onKeydown: elementBindingHandler('keydown'),
+      onKeypress: elementBindingHandler('keypress'),
+      onKeyup: elementBindingHandler('keyup'),
+      ...withModifiers(
+        {
+          onKeydown: elementBindingHandler('keydown', true),
+          onKeypress: elementBindingHandler('keypress', true),
+          onKeyup: elementBindingHandler('keyup', true)
+        },
+        ['capture']
+      )
+    }
   }
 }
