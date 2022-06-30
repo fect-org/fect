@@ -12,7 +12,7 @@ export default defineComponent({
   name,
   inheritAttrs: false,
   props,
-  emits: ['click', 'conentClick'],
+  emits: ['click', 'contentClick'],
   setup(props, { slots, emit, attrs }) {
     const [isMouseDown, setIsMouseDown] = useState<boolean>(false)
 
@@ -37,7 +37,7 @@ export default defineComponent({
             <div class={withClassName(bem('layer'), layerClassName)} />
             <div
               class={withClassName(bem('content'), contentClassName)}
-              onClick={(e) => emit('conentClick', e)}
+              onClick={(e) => emit('contentClick', e)}
               onMousedown={() => setIsMouseDown(true)}
             >
               {slots.default?.()}

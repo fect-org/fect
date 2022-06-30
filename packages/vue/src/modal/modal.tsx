@@ -1,17 +1,16 @@
-import { watch, defineComponent, ref } from 'vue'
+import { watch, defineComponent, Teleport } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, createBem } from '../utils'
+import { createName } from '../utils'
 import ModalWrapper from './modal-wrapper'
+import Backdrop from '../backdrop'
 import { createModalContext } from './modal-context'
-import Teleport from '../teleport'
 import { props } from './props'
-import type { ComponentInstance } from '../utils'
+import { useKeyboard, KeyCode, useBodyScroll } from '../composables'
 import type { Action } from './interface'
 
 import './index.less'
 
 const name = createName('Modal')
-const bem = createBem('fect-modal')
 
 export default defineComponent({
   name,
@@ -19,16 +18,16 @@ export default defineComponent({
   props,
   emits: ['update:visible', 'cancel', 'confirm'],
   setup(props, { attrs, slots, emit }) {
-    const modalRef = ref<ComponentInstance>()
-
     const [selfVisible, setSelfVisible] = useState<boolean>(false)
+
+    const { setLock } = useBodyScroll()
 
     const { provider } = createModalContext()
 
-    // modal close event collection
     const closeModal = (action: Action) => {
       setSelfVisible(false)
-      emit(action as keyof typeof emit)
+      setLock(false)
+      emit(action)
     }
 
     provider({ props, closeModal })
@@ -37,28 +36,25 @@ export default defineComponent({
       () => props.visible,
       (cur) => setSelfVisible(cur)
     )
-    watch(selfVisible, (cur) => emit('update:visible', cur))
+    watch(selfVisible, (cur) => {
+      setLock(cur)
+      emit('update:visible', cur)
+    })
 
-    const popupClickHandler = (e: MouseEvent) => {
+    const closeFormBackHandler = () => {
       if (props.disableOverlayClick) return
-      const element = modalRef.value!.$el
-      if (element && element.contains(e.target as Node)) return
       closeModal('cancel')
     }
 
+    const { bindings } = useKeyboard(() => props.keyboard && closeModal('cancel'), KeyCode.Escape, {
+      disableGlobalEvent: true
+    })
+
     return () => (
-      <Teleport
-        teleport={props.teleport}
-        overlay={props.overlay}
-        scroll={selfVisible.value}
-        popupClass={bem(null)}
-        transition="modal-fade"
-        show={selfVisible.value}
-        onPopupClick={popupClickHandler}
-      >
-        <div class={bem('root')}>
-          <ModalWrapper ref={modalRef} v-slots={slots} {...attrs} />
-        </div>
+      <Teleport to="body">
+        <Backdrop visible={selfVisible.value} onClick={closeFormBackHandler} {...bindings}>
+          <ModalWrapper visible={selfVisible.value} v-slots={slots} {...attrs} />
+        </Backdrop>
       </Teleport>
     )
   }
