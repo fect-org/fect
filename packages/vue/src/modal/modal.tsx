@@ -51,8 +51,13 @@ export default defineComponent({
     })
 
     return () => (
-      <Teleport to="body">
-        <Backdrop visible={selfVisible.value} onClick={closeFormBackHandler} {...bindings}>
+      <Teleport to={props.teleport}>
+        <Backdrop
+          visible={selfVisible.value}
+          layerClassName={props.overlay ? '' : 'hidden'}
+          onClick={closeFormBackHandler}
+          {...bindings}
+        >
           <ModalWrapper visible={selfVisible.value} v-slots={slots} {...attrs} />
         </Backdrop>
       </Teleport>

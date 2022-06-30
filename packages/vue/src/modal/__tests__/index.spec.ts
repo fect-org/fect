@@ -1,4 +1,5 @@
 import { mount } from '@vue/test-utils'
+import { later, trigger } from '../../../tests'
 import Modal from '../modal'
 
 // see : https://github.com/vuejs/vue-test-utils-next/issues/183(test for teleport)
@@ -29,36 +30,30 @@ const Wrapper = {
 }
 
 describe('Modal', () => {
-  it('should be render as a element', async () => {
+  it('render normal', async () => {
     const wrapper = mount(Wrapper, { attachTo: document.body })
     await wrapper.setData({ show: true, mounted: true })
     expect(wrapper.html()).toMatchSnapshot()
     expect(() => wrapper.unmount).not.toThrow()
     wrapper.unmount()
   })
-  it('modal props should be work correctly', async () => {
+  it('overlay', async () => {
     const wrapper = mount(Wrapper, { attachTo: document.body })
-    const rootEl = () => wrapper.find('.fect-modal__root')
-    await wrapper.setData({ mounted: true, overlay: false, disableOverlayClick: true })
-    const btn = wrapper.find('#btn')
-    await btn.trigger('click')
-    expect(wrapper.find('.fect-teleport__overlay').exists()).toBe(false)
-    expect(wrapper.find('.fect-modal__root').isVisible()).toBe(true)
-    await rootEl().trigger('click')
-    expect(wrapper.find('.fect-modal__root').isVisible()).toBe(true)
-    await wrapper.setData({ disableOverlayClick: false })
-    const actionBtns = wrapper.findAll('.fect-modal__button')
-    await actionBtns[0].trigger('click')
-    expect(wrapper.vm.show).toBe(false)
-    await btn.trigger('click')
-    await rootEl().trigger('click')
-    expect(wrapper.vm.show).toBe(false)
-    await btn.trigger('click')
-    await wrapper.find('.fect-modal__title').trigger('click')
-    expect(wrapper.vm.show).toBe(true)
+    await wrapper.setData({ show: true, mounted: true, overlay: false })
+    const hiddenableLayer = wrapper.find('.fect-backdrop__layer.hidden')
+    expect(hiddenableLayer.exists()).toBe(true)
+    expect(wrapper.html()).toMatchSnapshot()
     wrapper.unmount()
   })
-  it('should be support custom slots', async () => {
+  it('disable overlay click', async () => {
+    const wrapper = mount(Wrapper, { attachTo: document.body })
+    await wrapper.setData({ show: true, mounted: true, disableOverlayClick: true })
+    const btn = wrapper.find('#btn')
+    await btn.trigger('click')
+    expect(wrapper.html()).toMatchSnapshot()
+    wrapper.unmount()
+  })
+  it('slots', async () => {
     const wrapper = mount(
       {
         components: {
@@ -68,23 +63,21 @@ describe('Modal', () => {
           return { show: false, mounted: false }
         },
         template: `
-        <div class="container">
-          <fe-modal v-model:visible="show" teleport=".container" v-if="mounted">
-            <template #title>Custom Title</template>
-            <template #action>
-              <h3>Custom Action</h3>
-            </template>
-          </fe-modal>
-        </div>
+       <div class="container">
+        <fe-modal teleport=".container" v-model:visible="show" v-if="mounted">
+          <template #title>Title</template>
+          <template #action>
+            <h3>Action</h3>
+          </template>
+        </fe-modal>
+       </div>
       `
       },
       { attachTo: document.body }
     )
-
     await wrapper.setData({ show: true, mounted: true })
-    expect(wrapper.find('.fect-modal__title').text()).toBe('Custom Title')
-    expect(wrapper.find('h3').text()).toBe('Custom Action')
-    expect(wrapper.html()).toMatchSnapshot()
+    expect(wrapper.find('h3').text()).toBe('Action')
+    expect(wrapper.find('.fect-modal__title').text()).toBe('Title')
     wrapper.unmount()
   })
 })
