@@ -27,8 +27,7 @@ export type WinWidth = Ref<number>
 export type WinHeight = Ref<number>
 
 export interface KeyboardOptions {
-  target?: ElementRef | Document
-  event: 'keydown' | 'keypress' | 'keyup'
+  event?: 'keydown' | 'keypress' | 'keyup'
   disableGlobalEvent?: boolean
   stopPropagation?: boolean
   preventDefault?: boolean

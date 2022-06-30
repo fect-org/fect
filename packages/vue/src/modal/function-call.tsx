@@ -1,13 +1,10 @@
-import { App } from 'vue'
 import { useState, useExpose } from '@fect-ui/vue-hooks'
 import FeModal from './modal'
-import { withInstall, isBrowser, assign, createPortal, pick } from '../utils'
-import type { ComponentInstance } from '../utils'
-import type { StaticModalOptions } from './interface'
+import { withInstall, isBrowser, assign, createPortal, pick, isFunc } from '../utils'
+import type { App } from 'vue'
+import type { StaticModalOptions, StaticModalInstance, Action } from './interface'
 
-const isFunc = (val: any) => typeof val === 'function'
-
-let instance: ComponentInstance
+let instance: StaticModalInstance
 
 const Modal = (options: StaticModalOptions) => {
   if (!isBrowser()) return
@@ -21,17 +18,14 @@ const Modal = (options: StaticModalOptions) => {
 
         useExpose({ setVisible, setModalProps })
 
-        const confirmHandler = () => {
+        const clickHandler = (action: Action) => {
           setVisible(false)
-          if (modalProps.value.confirm) {
-            isFunc(modalProps.value.confirm) && modalProps.value.confirm()
+          const { close, confirm } = modalProps.value
+          if (action === 'confirm') {
+            isFunc(confirm) && confirm()
           }
-        }
-
-        const cancelHandler = () => {
-          setVisible(false)
-          if (modalProps.value.close) {
-            isFunc(modalProps.value.close) && modalProps.value.close()
+          if (action === 'cancel') {
+            isFunc(close) && close()
           }
         }
 
@@ -39,8 +33,8 @@ const Modal = (options: StaticModalOptions) => {
           <FeModal
             {...pick(modalProps.value, ['title', 'width', 'done', 'cancel', 'disableOverlayClick'])}
             visible={visible.value}
-            onCancel={cancelHandler}
-            onConfirm={confirmHandler}
+            onCancel={() => clickHandler('cancel')}
+            onConfirm={() => clickHandler('confirm')}
           >
             {modalProps.value.content}
           </FeModal>

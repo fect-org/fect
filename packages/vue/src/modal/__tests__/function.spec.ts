@@ -18,7 +18,6 @@ describe('Modal', () => {
     expect(document.querySelector('.fect-modal__wrapper')).toBeTruthy()
     await trigger('click', btns[0])
     expect(closeFn).toHaveBeenCalled()
-    expect(closeFn).toHaveBeenCalled()
     Modal({
       title: 'test',
       content: 'test message',
