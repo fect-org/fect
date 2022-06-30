@@ -1,4 +1,4 @@
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, PropType, Transition } from 'vue'
 import { createBem } from '../utils'
 import { Placement } from './props'
 
@@ -11,13 +11,16 @@ export default defineComponent({
       default: 'right'
     },
     closeable: Boolean,
-    round: Boolean
+    round: Boolean,
+    visible: Boolean
   },
   setup(props, { slots }) {
     return () => (
-      <div class={bem('wrapper', [props.placement, { round: props.round }])} role="dialog">
-        {slots.default?.()}
-      </div>
+      <Transition name="drawer-fade">
+        <div class={bem('wrapper', [props.placement, { round: props.round }])} role="dialog" v-show={props.visible}>
+          {slots.default?.()}
+        </div>
+      </Transition>
     )
   }
 })
