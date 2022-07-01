@@ -23,15 +23,9 @@ export default defineComponent({
 
     const { setLock } = useBodyScroll()
 
-    const { bindings } = useKeyboard(
-      () => {
-        //    layerClassName={props.overlay ? '' : 'hidden'}
-      },
-      KeyCode.Escape,
-      {
-        disableGlobalEvent: true
-      }
-    )
+    const { bindings } = useKeyboard(() => setVisible(false), KeyCode.Escape, {
+      disableGlobalEvent: true
+    })
 
     watch(
       () => props.modelValue,
