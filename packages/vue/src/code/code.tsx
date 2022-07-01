@@ -20,7 +20,7 @@ export default defineComponent({
     classic: Boolean
   },
   setup(props, { slots, attrs }) {
-    const { theme } = useTheme()
+    const { theme } = useTheme({ withModify: false })
     const [hex, setHex] = useState('')
 
     watch(

@@ -21,8 +21,13 @@ export const THEMES: Record<'LIGHT' | 'DARK', Theme> = {
 
 const THEME_STORAGE_KEY = 'theme'
 
-export const useTheme = () => {
+export interface ThemeConfig {
+  withModify?: boolean
+}
+
+export const useTheme = (config: ThemeConfig = {}) => {
   const themes = [THEMES.LIGHT, THEMES.DARK]
+  const { withModify = true } = config
 
   const getClientTheme = () => {
     const storageTheme = localStorage.getItem(THEME_STORAGE_KEY)
@@ -33,6 +38,7 @@ export const useTheme = () => {
   }
 
   const set = (newTheme: Theme) => {
+    if (!withModify) return
     if (themes.includes(newTheme) && newTheme !== theme.value) {
       theme.value = newTheme
     }
@@ -52,6 +58,7 @@ export const useTheme = () => {
   watch(theme, (cur) => {
     if (typeof window === 'undefined' || !window.localStorage) return
     if (!cur) return
+    if (!withModify) return
     localStorage.setItem('theme', cur)
     const root = document.querySelector('html') as HTMLElement
     root.setAttribute('class', cur)
