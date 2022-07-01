@@ -1,18 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Drawer should be support normal props 1`] = `
-<div class="container">
-  <!--teleport start-->
-  <!--teleport end-->
-  <div class="fect-teleport">
-    <transition-stub>
-      <div class="fect-teleport__overlay"></div>
-    </transition-stub>
-    <transition-stub>
-      <div class="fect-drawer__root" role="popup" style="--drawer-transfrom: translate3d(100%, 0, 0);">
-        <div class="fect-drawer__wrapper fect-drawer__wrapper--right fect-drawer__wrapper--round" role="dialog"><span> Test </span></div>
-      </div>
-    </transition-stub>
+exports[`Drawer overlay 1`] = `
+<transition-stub>
+  <div class="fect-backdrop" style="--drawer-transfrom: translate3d(100%, 0, 0);">
+    <div class=" fect-backdrop__layer hidden"></div>
+    <div class=" fect-backdrop__content ">
+      <transition-stub>
+        <div class="fect-drawer__wrapper fect-drawer__wrapper--right fect-drawer__wrapper--round" role="dialog" tabindex="-1">
+          <div class="fect-drawer__hidden" tabindex="0" aria-hidden="true"></div>
+          <!---->
+          <div class="fect-drawer__hidden" tabindex="0" aria-hidden="true"></div>
+        </div>
+      </transition-stub>
+    </div>
   </div>
-</div>
+</transition-stub>
+`;
+
+exports[`Drawer placement 1`] = `
+<transition-stub>
+  <div class="fect-drawer__wrapper fect-drawer__wrapper--top fect-drawer__wrapper--round" role="dialog" tabindex="-1">
+    <div class="fect-drawer__hidden" tabindex="0" aria-hidden="true"></div>
+    <!---->
+    <div class="fect-drawer__hidden" tabindex="0" aria-hidden="true"></div>
+  </div>
+</transition-stub>
+`;
+
+exports[`Drawer round 1`] = `
+<transition-stub>
+  <div class="fect-drawer__wrapper fect-drawer__wrapper--top" role="dialog" tabindex="-1">
+    <div class="fect-drawer__hidden" tabindex="0" aria-hidden="true"></div>
+    <!---->
+    <div class="fect-drawer__hidden" tabindex="0" aria-hidden="true"></div>
+  </div>
+</transition-stub>
 `;

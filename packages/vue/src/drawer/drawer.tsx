@@ -1,8 +1,9 @@
-import { watch, computed, defineComponent, ref } from 'vue'
+import { watch, defineComponent, Teleport, computed } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, ComponentInstance, createBem } from '../utils'
+import Backdrop from '../backdrop'
+import { createName } from '../utils'
 import { props } from './props'
-import Teleport from '../teleport'
+import { useBodyScroll, useKeyboard, KeyCode } from '../composables'
 import DrawerWrapper from './drawer-wrapper'
 import { getDrawerTransfrom } from './style'
 
@@ -11,7 +12,6 @@ import type { CSSProperties } from '../utils'
 import './index.less'
 
 const name = createName('Drawer')
-const bem = createBem('fect-drawer')
 
 export default defineComponent({
   name,
@@ -19,9 +19,28 @@ export default defineComponent({
   props,
   emits: ['update:modelValue'],
   setup(props, { slots, emit, attrs }) {
-    const drawerRef = ref<ComponentInstance>()
-
     const [visible, setVisible] = useState<boolean>(props.modelValue)
+
+    const { setLock } = useBodyScroll()
+
+    const { bindings } = useKeyboard(() => props.keyboard && setVisible(false), KeyCode.Escape, {
+      disableGlobalEvent: true
+    })
+
+    watch(
+      () => props.modelValue,
+      (cur) => setVisible(cur)
+    )
+
+    watch(visible, (cur) => {
+      setLock(cur)
+      emit('update:modelValue', cur)
+    })
+
+    const closeFormBackHandler = () => {
+      if (props.disableOverlayClick) return
+      setVisible(false)
+    }
 
     const setDrawerStyle = computed(() => {
       const { placement } = props
@@ -31,32 +50,23 @@ export default defineComponent({
       return styles
     })
 
-    watch(
-      () => props.modelValue,
-      (cur) => setVisible(cur)
-    )
-
-    watch(visible, (cur) => emit('update:modelValue', cur))
-
-    const poupClickHandler = (e: Event) => {
-      if (props.disableOverlayClick) return
-      const element = drawerRef.value!.$el
-      if (element && element.contains(e.target as Node)) return
-      setVisible(false)
-    }
-
     return () => (
-      <Teleport
-        teleport={props.teleport}
-        overlay={props.overlay}
-        scroll={visible.value}
-        show={visible.value}
-        popupClass={bem('root')}
-        transition="drawer-fade"
-        onPopupClick={poupClickHandler}
-        style={setDrawerStyle.value}
-      >
-        <DrawerWrapper placement={props.placement} round={props.round} v-slots={slots} ref={drawerRef} {...attrs} />
+      <Teleport to={props.teleport}>
+        <Backdrop
+          visible={visible.value}
+          layerClassName={props.overlay ? '' : 'hidden'}
+          onClick={closeFormBackHandler}
+          style={setDrawerStyle.value}
+          {...bindings}
+        >
+          <DrawerWrapper
+            visible={visible.value}
+            placement={props.placement}
+            round={props.round}
+            v-slots={slots}
+            {...attrs}
+          />
+        </Backdrop>
       </Teleport>
     )
   }

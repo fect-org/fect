@@ -26,7 +26,6 @@ export default defineComponent({
 
     const closeModal = (action: Action) => {
       setSelfVisible(false)
-      setLock(false)
       emit(action)
     }
 

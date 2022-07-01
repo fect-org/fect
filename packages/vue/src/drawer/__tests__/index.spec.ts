@@ -1,60 +1,70 @@
 import { mount } from '@vue/test-utils'
-import Drawer from '../index'
+import { Drawer } from '..'
+import { Backdrop } from '../../backdrop'
+import DrawerWrapper from '../drawer-wrapper'
+
+/**
+ * see: https://test-utils.vuejs.org/guide/advanced/teleport.html#interacting-with-the-teleported-component
+ */
 
 describe('Drawer', () => {
-  it('should be render as  a elemnt', () => {
-    const wrapepr = mount(Drawer)
-    expect(() => wrapepr.unmount()).not.toThrow()
+  beforeEach(() => {
+    const container = document.createElement('div')
+    container.id = 'container'
+    document.body.appendChild(container)
   })
-  it('should be support normal props', async () => {
-    const wrapper = mount(
-      {
-        data() {
-          return {
-            show: false,
-            visible: false,
-            disableOverlayClick: false,
-            overlay: true,
-            placement: 'right'
-          }
-        },
-        components: {
-          [Drawer.name]: Drawer
-        },
-        template: `
-      <div class="container">
-       <fe-drawer 
-        :placement="placement"
-        v-model="visible"
-        v-if="show"
-        teleport=".container"
-        :overlay="overlay"
-        :disable-overlay-click="disableOverlayClick"
-       >
-        <span>
-          Test
-        </span>
-       </fe-drawer>
-      </div>
-      `
-      },
-      { attachTo: document.body }
-    )
 
-    await wrapper.setData({ visible: true })
-    await wrapper.setData({ show: true })
-    expect(wrapper.html()).toMatchSnapshot()
-    await wrapper.setData({ overlay: false })
-    expect(wrapper.find('.fect-teleport__overlay').exists()).toBe(false)
-    const el = wrapper.find('.fect-drawer__root')
-    await el.trigger('click')
-    expect(wrapper.vm.visible).toBe(false)
-    await wrapper.setData({ visible: true })
-    await wrapper.setData({ disableOverlayClick: true })
-    await el.trigger('click')
-    expect(wrapper.vm.visible).toBe(true)
-    const dom = wrapper.find('.fect-drawer__wrapper')
-    await dom.trigger('click')
-    expect(wrapper.vm.visible).toBe(true)
+  afterEach(() => {
+    document.body.outerHTML = ''
+  })
+
+  it('render normal', () => {
+    const wrapper = mount(Drawer, { attachTo: document.body })
+    expect(() => wrapper.unmount()).not.toThrow()
+    wrapper.unmount()
+  })
+  it('placement', () => {
+    const wrapper = mount(Drawer, {
+      props: {
+        teleport: '#container',
+        placement: 'top',
+        modelValue: true
+      }
+    })
+    const drawer = wrapper.getComponent(DrawerWrapper)
+    expect(drawer.html()).toMatchSnapshot()
+    expect(drawer.find('.fect-drawer__wrapper').classes()).toContain('fect-drawer__wrapper--top')
+    wrapper.unmount()
+  })
+  it('round', () => {
+    const wrapper = mount(Drawer, {
+      props: {
+        teleport: '#container',
+        placement: 'top',
+        modelValue: true,
+        round: false
+      }
+    })
+    const drawer = wrapper.getComponent(DrawerWrapper)
+    expect(drawer.find('.fect-drawer__wrapper').classes()).not.toContain('fect-drawer__wrapper--round')
+    expect(drawer.html()).toMatchSnapshot()
+    wrapper.unmount()
+  })
+  it('overlay', async () => {
+    const wrapper = mount(Drawer, {
+      props: {
+        teleport: '#container',
+        modelValue: true,
+        overlay: false
+      }
+    })
+    const backdrop = wrapper.getComponent(Backdrop)
+    expect(backdrop.html()).toMatchSnapshot()
+    expect(backdrop.find('.fect-backdrop__layer').classes()).toContain('hidden')
+    await wrapper.setProps({
+      disableOverlayClick: true
+    })
+    await backdrop.find('.fect-backdrop').trigger('click')
+    wrapper.unmount()
   })
 })

@@ -1,5 +1,5 @@
 import { defineComponent, Transition } from 'vue'
-import { useState } from '@fect-ui/vue-hooks'
+import { useExpose, useState } from '@fect-ui/vue-hooks'
 import { props } from './props'
 import { createBem, createName, withClassName } from '../utils'
 
@@ -28,6 +28,8 @@ export default defineComponent({
         clearTimeout(timer)
       }, 0)
     }
+
+    useExpose({ isMouseDown })
 
     return () => {
       const { visible, contentClassName, layerClassName } = props

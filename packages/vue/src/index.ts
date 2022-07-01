@@ -6,6 +6,7 @@ import { Affix } from './affix'
 import { Avatar } from './avatar'
 import { AvatarGroup } from './avatar-group'
 import { BackTop } from './back-top'
+import { Backdrop } from './backdrop'
 import { Badge } from './badge'
 import { BadgeAnchor } from './badge-anchor'
 import { Breadcrumbs } from './breadcrumbs'
@@ -67,6 +68,7 @@ const components = [
   Avatar,
   AvatarGroup,
   BackTop,
+  Backdrop,
   Badge,
   BadgeAnchor,
   Breadcrumbs,
@@ -138,6 +140,7 @@ export * from './affix'
 export * from './avatar'
 export * from './avatar-group'
 export * from './back-top'
+export * from './backdrop'
 export * from './badge'
 export * from './badge-anchor'
 export * from './breadcrumbs'

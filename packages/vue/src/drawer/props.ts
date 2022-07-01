@@ -17,8 +17,12 @@ export const props = {
     default: true
   },
   teleport: {
-    type: String as PropType<keyof HTMLElementTagNameMap>,
+    type: String,
     default: 'body'
   },
-  disableOverlayClick: Boolean
+  disableOverlayClick: Boolean,
+  keyboard: {
+    type: Boolean,
+    default: true
+  }
 }
