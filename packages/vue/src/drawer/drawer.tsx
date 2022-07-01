@@ -23,7 +23,7 @@ export default defineComponent({
 
     const { setLock } = useBodyScroll()
 
-    const { bindings } = useKeyboard(() => setVisible(false), KeyCode.Escape, {
+    const { bindings } = useKeyboard(() => props.keyboard && setVisible(false), KeyCode.Escape, {
       disableGlobalEvent: true
     })
 

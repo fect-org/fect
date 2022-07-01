@@ -1,11 +1,11 @@
 .drawer-fade {
   &-enter-active {
-    transition: transform 0.35s;
-    transition-timing-function: ease-out;
+    transition: transform 400ms;
+    transition-timing-function: cubic-bezier(0.1, 0.6, 0.1, 1);
   }
   &-leave-active {
-    transition: transform 0.35s;
-    transition-timing-function: ease-in;
+    transition: transform 400ms;
+    transition-timing-function: cubic-bezier(0.1, 0.2, 0.1, 1);
   }
   &-enter-from,
   &-leave-active {
@@ -43,28 +43,19 @@
     }
     &--left {
       height: 100%;
-      top: 50%;
+      top: 0;
       left: 0;
-      transform: translate3d(0, -50%, 0);
       &.fect-drawer__wrapper--round {
         border-radius: 0px 15px 15px 0;
       }
     }
     &--right {
       height: 100%;
-      top: 50%;
+      top: 0;
       right: 0;
-      transform: translate3d(0, -50%, 0);
       &.fect-drawer__wrapper--round {
         border-radius: 15px 0 0 15px;
       }
     }
-  }
-  &__hidden {
-    outline: none;
-    overflow: hidden;
-    width: 0;
-    height: 0;
-    opacity: 0;
   }
 }
