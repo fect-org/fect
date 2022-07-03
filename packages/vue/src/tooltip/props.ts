@@ -39,5 +39,9 @@ export const props = {
   portalClass: {
     type: String,
     default: ''
+  },
+  teleport: {
+    type: String,
+    default: 'body'
   }
 }

@@ -1,12 +1,10 @@
-import { defineComponent, ref, watch, nextTick } from 'vue'
+import { defineComponent, ref, watch, nextTick, Teleport } from 'vue'
 import { useClickAway, useState, useExpose } from '@fect-ui/vue-hooks'
 import { createPopper, Instance as PopperInstance } from '@popperjs/core'
 
-import { createName, createBem, kebabCase } from '../utils'
+import { createName, createBem, kebabCase, withClassName } from '../utils'
 import { useMounted } from '../composables'
-import Teleport from '../teleport'
 import { props } from './props'
-import type { ComponentInstance } from '../utils'
 import type { PopperPlacement } from './interface'
 import './index.less'
 
@@ -19,14 +17,14 @@ export default defineComponent({
   emits: ['change', 'update:visible'],
   setup(props, { slots, emit }) {
     const tooltipRef = ref<HTMLDivElement>()
-    const contentRef = ref<ComponentInstance>()
-    const [show, setShow] = useState<boolean>(props.visible)
-    const [teleport, setTeleport] = useState<string>('body')
+    const tooltipContentRef = ref<HTMLDivElement>()
+    const [visible, setVisible] = useState<boolean>(props.visible)
 
     let popperInstance: PopperInstance | null = null
 
     const createPooperInstance = () => {
-      return createPopper(tooltipRef.value!, contentRef.value!.popupRef.value, {
+      if (!tooltipRef.value || !tooltipContentRef.value) return null
+      return createPopper(tooltipRef.value, tooltipContentRef.value, {
         placement: kebabCase(props.placement) as PopperPlacement,
         modifiers: [
           {
@@ -48,14 +46,14 @@ export default defineComponent({
 
     const updateLocaltion = () => {
       nextTick(() => {
-        if (!show.value) return
+        if (!visible.value) return
         if (!popperInstance) {
           popperInstance = createPooperInstance()
-        } else {
-          popperInstance.setOptions({
-            placement: kebabCase(props.placement) as PopperPlacement
-          })
+          return
         }
+        popperInstance.setOptions({
+          placement: kebabCase(props.placement) as PopperPlacement
+        })
       })
     }
 
@@ -68,60 +66,77 @@ export default defineComponent({
 
     useMounted([updateLocaltion, removePoperInstance])
 
-    const preventHandler = (e: Event) => {
+    const preventClickHandler = (e: Event) => {
       e.stopPropagation()
       e.stopImmediatePropagation()
     }
-
-    // render arrow Node
-    const renderArrowIcon = () => <span class={bem('arrow', props.type)} />
 
     /**
      * render content Node
      */
     const renderContent = () => {
       const contentSlot = slots['content']
-      const { visibleArrow, content, portalClass, type } = props
-      return (
-        <Teleport
-          teleport={teleport.value}
-          scroll={false}
-          popupClass={bem('content', type) + ' ' + portalClass}
-          onPopupClick={preventHandler}
+      const { visibleArrow, content, portalClass, type, teleport } = props
+      /**
+       *   onPopupClick={preventHandler}
           onMouseenter={() => mouseEventHandler(true)}
           onMouseleave={() => mouseEventHandler(false)}
-          show={show.value}
-          ref={contentRef}
-        >
-          {visibleArrow && renderArrowIcon()}
-
-          <div class={bem('inner')}>{contentSlot ? contentSlot() : content}</div>
+       */
+      return (
+        <Teleport to={teleport}>
+          <div
+            class={withClassName(bem('content', type), portalClass)}
+            ref={tooltipContentRef}
+            v-show={visible.value}
+            onClick={preventClickHandler}
+          >
+            <div class={bem('inner')}>
+              {visibleArrow && <span class={bem('arrow', type)} />}
+              {contentSlot ? contentSlot() : content}
+            </div>
+          </div>
         </Teleport>
       )
     }
 
-    const updateShow = (state: boolean) => {
+    const updateVisible = (nextState: boolean) => {
       const { showAfter, hideAfter, trigger } = props
-      let timer: any
+      // let timer: any
 
-      const handler = (delay: number) => {
-        timer = setTimeout(() => {
-          setShow(state)
-          clearTimeout(timer)
-          timer = null
-        }, delay)
+      // const handler = (delay: number) => {
+      //   timer = setTimeout(() => {
+      //     setVisible(state)
+      //     clearTimeout(timer)
+      //     timer = null
+      //   }, delay)
+      // }
+
+      // if (state) return handler(showAfter)
+      // const leave = trigger === 'hover' ? hideAfter : 0
+      // handler(leave)
+      let timer: number | undefined
+      const clear = () => {
+        clearTimeout(timer)
+        timer = undefined
       }
-
-      if (state) return handler(showAfter)
+      const handler = (nextState: boolean) => {
+        setVisible(nextState)
+        clear()
+      }
+      clear()
+      if (nextState) {
+        timer = window.setTimeout(() => handler(true), showAfter)
+        return
+      }
       const leave = trigger === 'hover' ? hideAfter : 0
-      handler(leave)
+      timer = window.setTimeout(() => handler(false), leave)
     }
 
-    const mouseEventHandler = (state: boolean) => props.trigger === 'hover' && updateShow(state)
+    const mouseEventHandler = (state: boolean) => props.trigger === 'hover' && updateVisible(state)
 
     const tooltipClickHandler = () => {
       if (props.disabled) return
-      props.trigger === 'click' && updateShow(!show.value)
+      props.trigger === 'click' && updateVisible(!visible.value)
       createPooperInstance()
     }
 
@@ -129,14 +144,14 @@ export default defineComponent({
      * in mobile, mouseEvent can't wrok correctly , it
      * will be translate as click event .
      */
-    useClickAway(() => updateShow(false), tooltipRef)
+    useClickAway(() => updateVisible(false), tooltipRef)
 
     watch(
       () => props.visible,
-      (cur) => setShow(cur)
+      (cur) => setVisible(cur)
     )
 
-    watch(show, (cur) => {
+    watch(visible, (cur) => {
       emit('update:visible', cur)
       emit('change', cur)
       updateLocaltion()
@@ -145,7 +160,6 @@ export default defineComponent({
     useExpose({
       mouseEventHandler,
       tooltipClickHandler,
-      setTeleport,
       updateRect: updateLocaltion
     })
 
@@ -162,6 +176,6 @@ export default defineComponent({
         </div>
         {renderContent()}
       </>
-    )
+    ) 
   }
 })
