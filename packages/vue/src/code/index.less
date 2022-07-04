@@ -1,3 +1,15 @@
+// Interim plan. will be removed in the future.
+
+:root.light-theme {
+  --code-bg-color: rgba(250, 250, 250, 0.75);
+  --code-border-color: var(--accents-1);
+}
+
+:root.dark-theme {
+  --code-bg-color: rgba(0, 0, 0, 0.75);
+  --code-border-color: var(--accents-1);
+}
+
 .fect-code {
   &__pre {
     max-width: 100%;
@@ -7,6 +19,12 @@
     height: auto;
     margin: var(--fect-gap-half) 0;
     border-radius: var(--fect-radius);
+    background-color: var(--code-bg-color);
+    border-color: var(--code-border-color);
+    &--classic {
+      background-color: var(--primary-background);
+      border-color: var(--accents-2);
+    }
     pre {
       max-width: 100%;
       font-size: inherit;
