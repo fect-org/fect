@@ -7,7 +7,7 @@
 import { mount } from '@vue/test-utils'
 import { defineComponent } from 'vue'
 import { Tooltip } from '..'
-import { later, trigger } from '../../../tests'
+import { later } from '../../../tests'
 
 const Reference = defineComponent({
   setup() {

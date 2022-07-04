@@ -138,10 +138,8 @@ export default defineComponent({
     })
 
     useExpose({
-      mouseEventHandler,
-      tooltipClickHandler,
-      updateRect: updateLocaltion,
-      tooltipVisible: visible
+      tooltipVisible: visible,
+      updateTooltipRect: updateLocaltion
     })
 
     return () => (
