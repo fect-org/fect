@@ -1,4 +1,6 @@
-import Backdrop from './backdrop'
+import _Backdrop from './backdrop'
+
+const Backdrop = _Backdrop
 
 export { Backdrop }
 

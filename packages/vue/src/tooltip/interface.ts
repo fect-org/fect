@@ -1,9 +1,6 @@
 import { props } from './props'
-import type { Placement } from '@popperjs/core'
-import type { ExtractPropTypes } from 'vue'
-import { NormalTypes } from '../utils'
-
-export type PopperPlacement = Placement
+import type { ExtractPropTypes, Ref } from 'vue'
+import type { ComponentInstance, NormalTypes } from '../utils'
 
 export type ToolTipProps = ExtractPropTypes<typeof props>
 
@@ -24,3 +21,10 @@ export type PlacementTypes =
   | 'rightEnd'
 
 export type TriggerTypes = 'hover' | 'click'
+
+export type { Placement as PopperPlacement, Instance as PopperInstance } from '@popperjs/core'
+
+export type TooltipInstance = ComponentInstance<{
+  tooltipVisible: Ref<boolean>
+  updateTooltipRect: () => void
+}>

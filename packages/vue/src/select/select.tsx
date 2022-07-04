@@ -12,7 +12,7 @@ import SelectMultiple from './select-multiple'
 import { props } from './props'
 import { useFormStateContext, pickFormStateProps } from '../form/form-context'
 
-import type { ToolTipProps } from '../tooltip/interface'
+import type { ToolTipProps, TooltipInstance } from '../tooltip/interface'
 import type { CSSProperties, ComponentInstance } from '../utils'
 
 import './index.less'
@@ -27,7 +27,7 @@ export default defineComponent({
   setup(props, { slots, emit }) {
     const formState = useFormStateContext()
 
-    const toolTipRef = ref<ComponentInstance>()
+    const tooltipRef = ref<TooltipInstance>()
     const selectRef = ref<HTMLDivElement>()
     const gridRef = ref<ComponentInstance>()
     const { provider, children } = createSelectContext()
@@ -60,7 +60,7 @@ export default defineComponent({
         }
         if (props.multiple) {
           nextTick(() => {
-            toolTipRef.value?.updateRect()
+            tooltipRef.value?.updateTooltipRect()
           })
         }
       })
@@ -224,7 +224,7 @@ export default defineComponent({
 
       return (
         <div class={bem(null, getSelectState.value)} style={setContentHeight()}>
-          <Tooltip ref={toolTipRef} onChange={(cur) => setVisible(cur)} v-slots={_slots} {...tooltipProps} />
+          <Tooltip ref={tooltipRef} onChange={(cur) => setVisible(cur)} v-slots={_slots} {...tooltipProps} />
         </div>
       )
     }

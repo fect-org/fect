@@ -1,13 +1,10 @@
 import { defineComponent, watch } from 'vue'
 import { useState, useExpose } from '@fect-ui/vue-hooks'
-import { createName } from '../utils'
+import { createName, pick, assign } from '../utils'
 import Tooltip from '../tooltip'
-import type { ToolTipProps } from '../tooltip/interface'
 import { props } from './props'
 
 import './index.less'
-
-type PopoverProps = Omit<ToolTipProps, 'content'>
 
 const name = createName('Popover')
 
@@ -27,18 +24,23 @@ export default defineComponent({
 
     useExpose({ changeHandler })
 
-    const popoverProps: PopoverProps = {
-      placement: props.placement,
-      visible: visible.value,
-      type: props.type,
-      visibleArrow: props.visibleArrow,
-      hideAfter: props.hideAfter,
-      showAfter: props.showAfter,
-      trigger: props.trigger,
-      offset: props.offset,
-      disabled: props.disabled,
-      portalClass: `popover ${props.portalClass}`
-    }
+    const popoverProps = assign(
+      pick(props, [
+        'placement',
+        'type',
+        'visibleArrow',
+        'hideAfter',
+        'showAfter',
+        'trigger',
+        'offset',
+        'disabled',
+        'teleport'
+      ]),
+      {
+        visible: visible.value,
+        portalClass: `popover ${props.portalClass}`
+      }
+    )
 
     return () => (
       <Tooltip onChange={changeHandler} v-slots={{ content: slots.default?.() }} {...popoverProps}>
