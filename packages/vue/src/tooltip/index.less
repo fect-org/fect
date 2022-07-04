@@ -1,3 +1,13 @@
+// Interim plan. will be removed in the future.
+
+:root.light-theme {
+  --tooltip-arrow-border-color: var(--primary-background);
+}
+
+:root.dark-theme {
+  --tooltip-arrow-border-color: var(--accents-2);
+}
+
 .fect-tooltip {
   width: max-content;
   display: inline-block;
@@ -169,8 +179,9 @@
     height: 0;
     border-style: solid;
     border-width: 6px 6px 6px 0;
+
     &--default {
-      border-color: transparent var(--primary-background) transparent transparent;
+      border-color: transparent var(--tooltip-arrow-border-color) transparent transparent;
     }
     &--success {
       border-color: transparent var(--success-default) transparent transparent;

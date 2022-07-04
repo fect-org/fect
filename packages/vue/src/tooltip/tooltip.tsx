@@ -1,11 +1,12 @@
 import { defineComponent, ref, watch, nextTick, Teleport } from 'vue'
 import { useClickAway, useState, useExpose } from '@fect-ui/vue-hooks'
-import { createPopper, Instance as PopperInstance } from '@popperjs/core'
-
-import { createName, createBem, kebabCase, withClassName } from '../utils'
+import { createPopper } from '@popperjs/core'
+import { createName, createBem, kebabCase, withClassName, withModifiers, noop } from '../utils'
 import { useMounted } from '../composables'
 import { props } from './props'
-import type { PopperPlacement } from './interface'
+
+import type { PopperPlacement, PopperInstance } from './interface'
+
 import './index.less'
 
 const name = createName('Tooltip')
@@ -13,9 +14,10 @@ const bem = createBem('fect-tooltip')
 
 export default defineComponent({
   name,
+  inheritAttrs: false,
   props,
   emits: ['change', 'update:visible'],
-  setup(props, { slots, emit }) {
+  setup(props, { slots, emit, attrs }) {
     const tooltipRef = ref<HTMLDivElement>()
     const tooltipContentRef = ref<HTMLDivElement>()
     const [visible, setVisible] = useState<boolean>(props.visible)
@@ -66,29 +68,24 @@ export default defineComponent({
 
     useMounted([updateLocaltion, removePoperInstance])
 
-    const preventClickHandler = (e: Event) => {
-      e.stopPropagation()
-      e.stopImmediatePropagation()
-    }
-
-    /**
-     * render content Node
-     */
     const renderContent = () => {
       const contentSlot = slots['content']
       const { visibleArrow, content, portalClass, type, teleport } = props
-      /**
-       *   onPopupClick={preventHandler}
-          onMouseenter={() => mouseEventHandler(true)}
-          onMouseleave={() => mouseEventHandler(false)}
-       */
+
       return (
         <Teleport to={teleport}>
           <div
             class={withClassName(bem('content', type), portalClass)}
             ref={tooltipContentRef}
             v-show={visible.value}
-            onClick={preventClickHandler}
+            onMouseenter={() => mouseEventHandler(true)}
+            onMouseleave={() => mouseEventHandler(false)}
+            {...withModifiers(
+              {
+                onClick: noop
+              },
+              ['stop']
+            )}
           >
             <div class={bem('inner')}>
               {visibleArrow && <span class={bem('arrow', type)} />}
@@ -101,19 +98,6 @@ export default defineComponent({
 
     const updateVisible = (nextState: boolean) => {
       const { showAfter, hideAfter, trigger } = props
-      // let timer: any
-
-      // const handler = (delay: number) => {
-      //   timer = setTimeout(() => {
-      //     setVisible(state)
-      //     clearTimeout(timer)
-      //     timer = null
-      //   }, delay)
-      // }
-
-      // if (state) return handler(showAfter)
-      // const leave = trigger === 'hover' ? hideAfter : 0
-      // handler(leave)
       let timer: number | undefined
       const clear = () => {
         clearTimeout(timer)
@@ -140,10 +124,7 @@ export default defineComponent({
       createPooperInstance()
     }
 
-    /**
-     * in mobile, mouseEvent can't wrok correctly , it
-     * will be translate as click event .
-     */
+    // With mbile. mouse event can't work correctly , so we use click event instead
     useClickAway(() => updateVisible(false), tooltipRef)
 
     watch(
@@ -171,11 +152,12 @@ export default defineComponent({
           onClick={tooltipClickHandler}
           onMouseenter={() => mouseEventHandler(true)}
           onMouseleave={() => mouseEventHandler(false)}
+          {...attrs}
         >
           {slots.default?.()}
         </div>
         {renderContent()}
       </>
-    ) 
+    )
   }
 })

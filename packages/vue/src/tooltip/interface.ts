@@ -1,9 +1,7 @@
 import { props } from './props'
-import type { Placement } from '@popperjs/core'
+// import type { Placement } from '@popperjs/core'
 import type { ExtractPropTypes } from 'vue'
 import { NormalTypes } from '../utils'
-
-export type PopperPlacement = Placement
 
 export type ToolTipProps = ExtractPropTypes<typeof props>
 
@@ -24,3 +22,5 @@ export type PlacementTypes =
   | 'rightEnd'
 
 export type TriggerTypes = 'hover' | 'click'
+
+export type { Placement as PopperPlacement, Instance as PopperInstance } from '@popperjs/core'
