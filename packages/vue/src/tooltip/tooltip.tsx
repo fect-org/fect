@@ -121,7 +121,6 @@ export default defineComponent({
     const tooltipClickHandler = () => {
       if (props.disabled) return
       props.trigger === 'click' && updateVisible(!visible.value)
-      createPooperInstance()
     }
 
     // With mbile. mouse event can't work correctly , so we use click event instead
@@ -141,7 +140,8 @@ export default defineComponent({
     useExpose({
       mouseEventHandler,
       tooltipClickHandler,
-      updateRect: updateLocaltion
+      updateRect: updateLocaltion,
+      tooltipVisible: visible
     })
 
     return () => (

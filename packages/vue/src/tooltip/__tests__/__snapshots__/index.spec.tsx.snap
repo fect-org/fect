@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tooltip placement 1`] = `<div class="test-content">Tooltip Content Message</div>`;
