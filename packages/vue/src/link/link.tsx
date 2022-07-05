@@ -34,7 +34,7 @@ export default defineComponent({
       return props.href
     })
 
-    const goToHandler = () => props.to && route()
+    const goToHandler = () => props.to && route?.push(props.to)
 
     return () => (
       <a class={setLinkClass.value} href={safeHref.value} onClick={goToHandler}>

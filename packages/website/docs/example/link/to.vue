@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fe-link to="/avatar">Avatar 组件</fe-link>
+    <fe-link to="/zh-cn/components/avatar">Avatar 组件</fe-link>
   </div>
 </template>
 

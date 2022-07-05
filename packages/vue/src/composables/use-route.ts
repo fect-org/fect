@@ -5,6 +5,7 @@
 import { getCurrentInstance } from 'vue'
 import type { PropType, ComponentPublicInstance, ExtractPropTypes } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
+import { pick } from '../utils'
 
 export const routeProps = {
   to: [String, Object] as PropType<RouteLocationRaw>
@@ -12,17 +13,12 @@ export const routeProps = {
 
 export type RouteProps = ExtractPropTypes<typeof routeProps>
 
-export const route = (vm: ComponentPublicInstance<RouteProps>) => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignored
-  const router = vm.$router
-  const { to } = vm
-  if (to && router) {
-    router['push'](to)
-  }
-}
-
 export const useRoute = () => {
   const vm = getCurrentInstance()!.proxy as ComponentPublicInstance<RouteProps>
-  return () => route(vm)
+  const router = vm.$router
+  if (router) {
+    // vue-router next docs: https://router.vuejs.org/api/
+    return pick(router, ['push', 'replace', 'go'])
+  }
+  return null
 }
