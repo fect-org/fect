@@ -1,5 +1,4 @@
 import { mount } from '@vue/test-utils'
-import { later, trigger } from '../../../tests'
 import Modal from '../modal'
 
 // see : https://github.com/vuejs/vue-test-utils-next/issues/183(test for teleport)
