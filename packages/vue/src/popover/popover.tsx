@@ -1,5 +1,5 @@
 import { defineComponent, watch } from 'vue'
-import { useState, useExpose } from '@fect-ui/vue-hooks'
+import { useState } from '@fect-ui/vue-hooks'
 import { createName, pick, assign } from '../utils'
 import Tooltip from '../tooltip'
 import { props } from './props'
@@ -15,14 +15,10 @@ export default defineComponent({
   setup(props, { emit, slots }) {
     const [visible, setVisible] = useState<boolean>(props.visible)
 
-    const changeHandler = (state: boolean) => setVisible(state)
-
     watch(visible, (cur) => {
       emit('change', cur)
       emit('update:visible', cur)
     })
-
-    useExpose({ changeHandler })
 
     const popoverProps = assign(
       pick(props, [
@@ -41,9 +37,8 @@ export default defineComponent({
         portalClass: `popover ${props.portalClass}`
       }
     )
-
     return () => (
-      <Tooltip onChange={changeHandler} v-slots={{ content: slots.default?.() }} {...popoverProps}>
+      <Tooltip v-slots={{ content: slots.default?.() }} {...popoverProps} onChange={setVisible}>
         {slots.widget?.()}
       </Tooltip>
     )

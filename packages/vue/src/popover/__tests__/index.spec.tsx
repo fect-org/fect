@@ -1,49 +1,42 @@
+import { defineComponent } from 'vue'
+import { mount } from '@vue/test-utils'
 import { Popover } from '..'
-import { flushPromises, mount } from '@vue/test-utils'
 import { later } from '../../../tests'
 
-const Wrapper = {
-  components: {
-    [Popover.name]: Popover
-  },
-  data() {
-    return { visible: false }
-  },
-  template: `<div class="container">
-    <fe-popover 
-     ref="popoverRef"
-    v-model:visible="visible" type="click">
-    123hhh    
-    <template #widget>
-      123
-      </template>
-    </fe-popover>
-  </div>`
-}
+const Reference = defineComponent({
+  setup() {
+    return () => <div class="test-popover">Tooltip Popover Message</div>
+  }
+})
 
 describe('Popover', () => {
-  it('should be render as a element', () => {
+  beforeEach(() => {
+    const container = document.createElement('div')
+    container.id = 'container'
+    document.body.appendChild(container)
+  })
+
+  afterEach(() => {
+    document.body.outerHTML = ''
+  })
+  it('render normal', () => {
+    const wrapper = mount(Popover, { attachTo: document.body })
+    expect(() => wrapper.unmount()).not.toThrow()
+    wrapper.unmount()
+  })
+  it('slots', async () => {
     const wrapper = mount(Popover, {
       slots: {
-        default: () => 123,
-        widget: () => 456
+        default: () => <Reference />,
+        widget: () => <div>Action</div>
       }
     })
-
-    expect(wrapper.html()).toMatchSnapshot()
-  })
-  it('should be work correctly', async () => {
-    const wrapper = mount(Wrapper, { attachTo: document.body })
-    const {
-      popoverRef: { changeHandler }
-    } = wrapper.vm.$refs as any
-    await changeHandler(true)
-    await flushPromises()
-    await later()
-    expect(wrapper.vm.visible).toBe(true)
-    await changeHandler(false)
-    await flushPromises()
-    await later()
-    expect(wrapper.vm.visible).toBe(false)
+    const refernce = wrapper.getComponent(Reference)
+    expect(refernce.html()).toMatchSnapshot()
+    const draft = wrapper.find('.fect-tooltip')
+    await draft.trigger('mouseenter')
+    await later(1000)
+    expect(wrapper.emitted('update:visible')).toBeTruthy()
+    wrapper.unmount()
   })
 })
