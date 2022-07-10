@@ -17,7 +17,7 @@ export interface RadioEvent {
 
 export interface RadioGroupContext {
   props: {
-    modelValue: string | number
+    modelValue: string | number | undefined
     useRow: boolean
     disabled: boolean
     size: NormalSizes

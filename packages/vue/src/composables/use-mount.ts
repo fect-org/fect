@@ -1,11 +1,13 @@
 import { onMounted, onBeforeUnmount } from 'vue'
-import { isArray, len } from '../utils'
+import { isArray, len, isDEV } from '../utils'
 
 type MountedFn = () => void
 
 export const useMounted = (fns: MountedFn[]) => {
   if (!isArray(fns)) {
-    console.log('[Fect] useMounted must entry array')
+    if (isDEV) {
+      console.log('[Fect] useMounted must entry array')
+    }
     return
   }
 
@@ -28,11 +30,7 @@ export const useMounted = (fns: MountedFn[]) => {
   onMounted(start)
 
   onBeforeUnmount(() => {
-    if (isArray(end)) {
-      end.forEach((_) => _.apply(null))
-      return
-    }
+    if (isArray(end)) return end.forEach((_) => _.apply(null))
     end()
-    return
   })
 }

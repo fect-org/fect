@@ -4,7 +4,7 @@
 
 import { unref } from 'vue'
 import { createNode, numberParser, addUnit } from '../utils'
-import type { ElementRef } from '../utils'
+import type { ElementRef } from '../composables'
 
 const HIDDEN_TEXTARE_NAME = 'fect-ui--textarea'
 

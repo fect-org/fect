@@ -1,5 +1,5 @@
 import { defineComponent, computed } from 'vue'
-import { createBem } from '../utils'
+import { createBem, noop } from '../utils'
 
 const bem = createBem('fect-tabs')
 
@@ -8,8 +8,7 @@ export default defineComponent({
     active: Boolean,
     rect: {
       type: Object,
-      /* eslint-disable */
-      default: () => {}
+      default: noop
     },
     heightRatio: Number,
     widthRatio: Number
