@@ -14,6 +14,7 @@ import { useFormStateContext, pickFormStateProps } from '../form/form-context'
 
 import type { ToolTipProps, TooltipInstance } from '../tooltip/interface'
 import type { CSSProperties, ComponentInstance } from '../utils'
+import type { SelectValue } from './interface'
 
 import './index.less'
 
@@ -30,14 +31,15 @@ export default defineComponent({
     const tooltipRef = ref<TooltipInstance>()
     const selectRef = ref<HTMLDivElement>()
     const gridRef = ref<ComponentInstance>()
-    const { provider, children } = createSelectContext()
-    const [value, setValue] = useState<string | number | Array<string | number>>(props.modelValue || props.value)
+    const [value, setValue] = useState<SelectValue>(props.modelValue || props.value)
     const [visible, setVisible] = useState<boolean>(false)
     const [dropdownWidth, setDropdownWidth] = useState<number>(0)
     const [showClear, setShowClear] = useState<boolean>(false)
     const [multipleHeight, setMultipleHeight] = useState<string>('')
 
     let selectWrapperHeight: number
+
+    const { provider, children } = createSelectContext()
 
     const getSelectState = computed(() => {
       const { size, disabled } = pickFormStateProps(
@@ -158,10 +160,19 @@ export default defineComponent({
 
     const renderSelectWrapper = () => {
       const { multiple, clearable } = props
-      const selectInputProps = pick(props, ['disabled', 'size', 'placeholder'])
+      const selectInputProps = pick(props, ['disabled', 'placeholder'])
       // eslint-disable-next-line prefer-destructuring
       const checkedValue = queryChecked.value.map((_) => _.label)[0]
       if (!multiple) assign(selectInputProps, { value: checkedValue })
+
+      /**
+       * We should set readonly for the input component . Don't expect
+       * cursor to be appeared. If we decide support load data from remote.
+       */
+      assign(selectInputProps, {
+        readonly: true,
+        size: getSelectState.value.size
+      })
 
       const showClearIcon = clearable && !getSelectState.value.disabled && checkedValue && showClear.value && !multiple
 
@@ -216,15 +227,15 @@ export default defineComponent({
         visibleArrow: props.visibleArrow
       }
 
-      const setContentHeight = () => {
+      const setContentHeight = (): CSSProperties => {
         return {
           '--select-content-height': multipleHeight.value || 'calc(var(--select-ratio) * var(--fect-gap))'
-        } as CSSProperties
+        }
       }
 
       return (
         <div class={bem(null, getSelectState.value)} style={setContentHeight()}>
-          <Tooltip ref={tooltipRef} onChange={(cur) => setVisible(cur)} v-slots={_slots} {...tooltipProps} />
+          <Tooltip ref={tooltipRef} onChange={setVisible} v-slots={_slots} {...tooltipProps} />
         </div>
       )
     }
