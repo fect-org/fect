@@ -36,6 +36,7 @@ export default defineComponent({
     const [dropdownWidth, setDropdownWidth] = useState<number>(0)
     const [showClear, setShowClear] = useState<boolean>(false)
     const [multipleHeight, setMultipleHeight] = useState<string>('')
+    const [clearable, setClearable] = useState<boolean>(false)
 
     let selectWrapperHeight: number
 

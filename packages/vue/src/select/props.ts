@@ -8,10 +8,7 @@ export const props = {
     default: ''
   },
   value: {
-    type: [String, Number, Array] as PropType<SelectValue
-    
-    
-    >,
+    type: [String, Number, Array] as PropType<SelectValue>,
     default: ''
   },
   placeholder: {
