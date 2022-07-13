@@ -18,3 +18,5 @@ export interface SelectContext {
 export type SelectPropInstance = ComponentInstance<ExtractPropTypes<typeof selectOptionProps>>
 
 export type SelectProps = Partial<ExtractPropTypes<typeof props>>
+
+export type SelectValue = string | number | Array<string | number>

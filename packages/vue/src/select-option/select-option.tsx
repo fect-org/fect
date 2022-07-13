@@ -1,7 +1,7 @@
 import { defineComponent, computed } from 'vue'
 import { useSelectContext } from '../select/select-context'
 import { selectOptionProps } from '../select/props'
-import { createName, createBem, isArray } from '../utils'
+import { createName, createBem, isArray, isDEV } from '../utils'
 import './index.less'
 
 const name = createName('Option')
@@ -12,7 +12,13 @@ export default defineComponent({
   props: selectOptionProps,
   setup(props) {
     const { context } = useSelectContext()
-    const { updateSelectVisible, updateSelectValue, updateDropDown, parentValue, selectState } = context!
+    if (!context) {
+      if (isDEV) {
+        console.error('[Fect] <SelectOption /> must be a child component of <Select />')
+      }
+      return
+    }
+    const { updateSelectVisible, updateSelectValue, updateDropDown, parentValue, selectState } = context
 
     const handleClick = (e: Event) => {
       e.stopPropagation()

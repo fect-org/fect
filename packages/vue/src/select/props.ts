@@ -1,13 +1,14 @@
-import { PropType } from 'vue'
+import type { PropType } from 'vue'
 import type { NormalSizes } from '../utils'
+import type { SelectValue } from './interface'
 
 export const props = {
   modelValue: {
-    type: [String, Number, Array] as PropType<string | string[] | number[] | number>,
+    type: [String, Number, Array] as PropType<SelectValue>,
     default: ''
   },
   value: {
-    type: [String, Number, Array] as PropType<string | string[] | number[] | number>,
+    type: [String, Number, Array] as PropType<SelectValue>,
     default: ''
   },
   placeholder: {

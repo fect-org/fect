@@ -9,7 +9,6 @@ exports[`Form should be work with select and radiobox 1`] = `
       <div class="fect-select fect-select--large" style="--select-content-height: calc(var(--select-ratio) * var(--fect-gap));">
         <div class="fect-tooltip">
           <div class="fect-select__content">
-            <!---->
             <div class="fect-input fect-input--large">
               <!---->
               <div class="fect-input__container">
@@ -26,6 +25,7 @@ exports[`Form should be work with select and radiobox 1`] = `
                 <!---->
               </div>
             </div>
+            <!---->
           </div>
         </div>
         <!--teleport start-->

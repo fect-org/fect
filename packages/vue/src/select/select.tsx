@@ -1,4 +1,4 @@
-import { computed, ref, watch, defineComponent, nextTick } from 'vue'
+import { computed, ref, watch, defineComponent, nextTick, withModifiers } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import { createName, createBem, pick, getDomRect, assign, isArray, addUnit, len } from '../utils'
 import { useMounted } from '../composables'
@@ -14,6 +14,7 @@ import { useFormStateContext, pickFormStateProps } from '../form/form-context'
 
 import type { ToolTipProps, TooltipInstance } from '../tooltip/interface'
 import type { CSSProperties, ComponentInstance } from '../utils'
+import type { SelectValue } from './interface'
 
 import './index.less'
 
@@ -30,14 +31,15 @@ export default defineComponent({
     const tooltipRef = ref<TooltipInstance>()
     const selectRef = ref<HTMLDivElement>()
     const gridRef = ref<ComponentInstance>()
-    const { provider, children } = createSelectContext()
-    const [value, setValue] = useState<string | number | Array<string | number>>(props.modelValue || props.value)
+    const [value, setValue] = useState<SelectValue>(props.modelValue || props.value)
     const [visible, setVisible] = useState<boolean>(false)
     const [dropdownWidth, setDropdownWidth] = useState<number>(0)
     const [showClear, setShowClear] = useState<boolean>(false)
     const [multipleHeight, setMultipleHeight] = useState<string>('')
 
     let selectWrapperHeight: number
+
+    const { provider, children } = createSelectContext()
 
     const getSelectState = computed(() => {
       const { size, disabled } = pickFormStateProps(
@@ -48,8 +50,10 @@ export default defineComponent({
       return { size, disabled }
     })
 
+    // For multiple select
     const updateDropDown = () => {
-      nextTick(() => {
+      if (!props.multiple) return
+      nextTick().then(() => {
         if (gridRef.value) {
           const gridEl = gridRef.value.$el as HTMLElement
           const rect = getDomRect(gridEl)
@@ -57,11 +61,7 @@ export default defineComponent({
             if (rect.height <= selectWrapperHeight) return addUnit(selectWrapperHeight)
             return addUnit(rect.height + 6)
           })
-        }
-        if (props.multiple) {
-          nextTick(() => {
-            tooltipRef.value?.updateTooltipRect()
-          })
+          tooltipRef.value?.updateTooltipRect()
         }
       })
     }
@@ -83,16 +83,20 @@ export default defineComponent({
     }
 
     provider({
+      selectState: getSelectState,
+      parentValue: value,
       updateSelectVisible,
       updateSelectValue,
-      updateDropDown,
-      selectState: getSelectState,
-      parentValue: value
+      updateDropDown
     })
 
-    const multipleClearClickHandler = (val: string) => {
+    const clearHandler = (val: string | number) => {
       updateSelectValue(val)
-      updateDropDown()
+      if (props.multiple) {
+        updateDropDown()
+        return
+      }
+      updateSelectVisible()
     }
 
     watch(
@@ -115,16 +119,9 @@ export default defineComponent({
       const { clearable } = props
       const list = queryChecked.value
       return (
-        <GridGroup
-          ref={gridRef}
-          class={bem('multiple')}
-          gap={0.5}
-          style={{
-            backgroundColor: len(list) ? 'var(--primary-background)' : 'transparent'
-          }}
-        >
+        <GridGroup ref={gridRef} class={bem('multiple')} gap={0.5}>
           {list.map((_) => (
-            <SelectMultiple onClear={() => multipleClearClickHandler(_.value as string)} clearable={clearable}>
+            <SelectMultiple onClear={() => clearHandler(_.value)} clearable={clearable}>
               {_.label}
             </SelectMultiple>
           ))}
@@ -158,21 +155,24 @@ export default defineComponent({
 
     const renderSelectWrapper = () => {
       const { multiple, clearable } = props
-      const selectInputProps = pick(props, ['disabled', 'size', 'placeholder'])
+      const selectInputProps = pick(props, ['disabled', 'placeholder'])
       // eslint-disable-next-line prefer-destructuring
       const checkedValue = queryChecked.value.map((_) => _.label)[0]
       if (!multiple) assign(selectInputProps, { value: checkedValue })
 
-      const showClearIcon = clearable && !getSelectState.value.disabled && checkedValue && showClear.value && !multiple
-
-      const clearValueHandelr = (e: Event) => {
-        if (showClearIcon) {
-          e.stopImmediatePropagation()
-          e.stopPropagation()
-          setValue('')
-          setVisible(false)
-        }
+      /**
+       * We should set readonly for the input component . Don't expect
+       * cursor to be appeared. If we decide support load data from remote.
+       */
+      assign(selectInputProps, {
+        readonly: true,
+        size: getSelectState.value.size
+      })
+      if (multiple && len(queryChecked.value)) {
+        Reflect.deleteProperty(selectInputProps, 'placeholder')
       }
+
+      const showClearIcon = clearable && !getSelectState.value.disabled && checkedValue && showClear.value && !multiple
 
       const renderSelectSuffixIcon = () => {
         if (showClearIcon) return <ClearIcon class={bem('arrow', 'clear')} />
@@ -186,17 +186,18 @@ export default defineComponent({
           onMouseenter={() => setShowClear(true)}
           onMouseleave={() => setShowClear(false)}
         >
-          {multiple && renderNodes()}
           <Input
             class={bem('input')}
-            readonly
             role="combobox"
             aria-haspopup="listbox"
-            onSuffix-icon-click={clearValueHandelr}
+            onSuffix-icon-click={withModifiers(() => {
+              if (showClearIcon) clearHandler('')
+            }, ['stop', 'prevent'])}
             aria-expanded={visible.value}
-            {...selectInputProps}
             v-slots={{ ['suffix-icon']: () => renderSelectSuffixIcon() }}
+            {...selectInputProps}
           />
+          {multiple && renderNodes()}
         </div>
       )
     }
@@ -216,15 +217,15 @@ export default defineComponent({
         visibleArrow: props.visibleArrow
       }
 
-      const setContentHeight = () => {
+      const setContentHeight = (): CSSProperties => {
         return {
           '--select-content-height': multipleHeight.value || 'calc(var(--select-ratio) * var(--fect-gap))'
-        } as CSSProperties
+        }
       }
 
       return (
         <div class={bem(null, getSelectState.value)} style={setContentHeight()}>
-          <Tooltip ref={tooltipRef} onChange={(cur) => setVisible(cur)} v-slots={_slots} {...tooltipProps} />
+          <Tooltip ref={tooltipRef} onChange={setVisible} v-slots={_slots} {...tooltipProps} />
         </div>
       )
     }
