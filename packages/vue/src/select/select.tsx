@@ -188,7 +188,6 @@ export default defineComponent({
         >
           <Input
             class={bem('input')}
-            readonly
             role="combobox"
             aria-haspopup="listbox"
             onSuffix-icon-click={withModifiers(() => {
