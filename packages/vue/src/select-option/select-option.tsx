@@ -7,7 +7,6 @@ import './index.less'
 const name = createName('Option')
 const bem = createBem('fect-option')
 
-
 export default defineComponent({
   name,
   props: selectOptionProps,

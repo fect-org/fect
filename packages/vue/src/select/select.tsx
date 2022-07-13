@@ -1,4 +1,4 @@
-import { computed, ref, watch, defineComponent, nextTick } from 'vue'
+import { computed, ref, watch, defineComponent, nextTick, withModifiers } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
 import { createName, createBem, pick, getDomRect, assign, isArray, addUnit, len } from '../utils'
 import { useMounted } from '../composables'
@@ -36,7 +36,6 @@ export default defineComponent({
     const [dropdownWidth, setDropdownWidth] = useState<number>(0)
     const [showClear, setShowClear] = useState<boolean>(false)
     const [multipleHeight, setMultipleHeight] = useState<string>('')
-    const [clearable, setClearable] = useState<boolean>(false)
 
     let selectWrapperHeight: number
 
@@ -51,8 +50,10 @@ export default defineComponent({
       return { size, disabled }
     })
 
+    // For multiple select
     const updateDropDown = () => {
-      nextTick(() => {
+      if (!props.multiple) return
+      nextTick().then(() => {
         if (gridRef.value) {
           const gridEl = gridRef.value.$el as HTMLElement
           const rect = getDomRect(gridEl)
@@ -60,11 +61,7 @@ export default defineComponent({
             if (rect.height <= selectWrapperHeight) return addUnit(selectWrapperHeight)
             return addUnit(rect.height + 6)
           })
-        }
-        if (props.multiple) {
-          nextTick(() => {
-            tooltipRef.value?.updateTooltipRect()
-          })
+          tooltipRef.value?.updateTooltipRect()
         }
       })
     }
@@ -86,16 +83,20 @@ export default defineComponent({
     }
 
     provider({
+      selectState: getSelectState,
+      parentValue: value,
       updateSelectVisible,
       updateSelectValue,
-      updateDropDown,
-      selectState: getSelectState,
-      parentValue: value
+      updateDropDown
     })
 
-    const multipleClearClickHandler = (val: string) => {
+    const clearHandler = (val: string | number) => {
       updateSelectValue(val)
-      updateDropDown()
+      if (props.multiple) {
+        updateDropDown()
+        return
+      }
+      updateSelectVisible()
     }
 
     watch(
@@ -118,16 +119,9 @@ export default defineComponent({
       const { clearable } = props
       const list = queryChecked.value
       return (
-        <GridGroup
-          ref={gridRef}
-          class={bem('multiple')}
-          gap={0.5}
-          style={{
-            backgroundColor: len(list) ? 'var(--primary-background)' : 'transparent'
-          }}
-        >
+        <GridGroup ref={gridRef} class={bem('multiple')} gap={0.5}>
           {list.map((_) => (
-            <SelectMultiple onClear={() => multipleClearClickHandler(_.value as string)} clearable={clearable}>
+            <SelectMultiple onClear={() => clearHandler(_.value)} clearable={clearable}>
               {_.label}
             </SelectMultiple>
           ))}
@@ -174,17 +168,11 @@ export default defineComponent({
         readonly: true,
         size: getSelectState.value.size
       })
+      if (multiple && len(queryChecked.value)) {
+        Reflect.deleteProperty(selectInputProps, 'placeholder')
+      }
 
       const showClearIcon = clearable && !getSelectState.value.disabled && checkedValue && showClear.value && !multiple
-
-      const clearValueHandelr = (e: Event) => {
-        if (showClearIcon) {
-          e.stopImmediatePropagation()
-          e.stopPropagation()
-          setValue('')
-          setVisible(false)
-        }
-      }
 
       const renderSelectSuffixIcon = () => {
         if (showClearIcon) return <ClearIcon class={bem('arrow', 'clear')} />
@@ -198,17 +186,19 @@ export default defineComponent({
           onMouseenter={() => setShowClear(true)}
           onMouseleave={() => setShowClear(false)}
         >
-          {multiple && renderNodes()}
           <Input
             class={bem('input')}
             readonly
             role="combobox"
             aria-haspopup="listbox"
-            onSuffix-icon-click={clearValueHandelr}
+            onSuffix-icon-click={withModifiers(() => {
+              if (showClearIcon) clearHandler('')
+            }, ['stop', 'prevent'])}
             aria-expanded={visible.value}
-            {...selectInputProps}
             v-slots={{ ['suffix-icon']: () => renderSelectSuffixIcon() }}
+            {...selectInputProps}
           />
+          {multiple && renderNodes()}
         </div>
       )
     }
