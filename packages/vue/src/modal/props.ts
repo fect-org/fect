@@ -27,6 +27,10 @@ export const props = {
     type: Boolean,
     default: true
   },
+  positionClassName: {
+    type: String,
+    default: ''
+  },
   disableOverlayClick: Boolean,
   keyboard: {
     type: Boolean,

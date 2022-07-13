@@ -54,6 +54,7 @@ export default defineComponent({
         <Backdrop
           visible={selfVisible.value}
           layerClassName={props.overlay ? '' : 'hidden'}
+          contentClassName={props.positionClassName}
           onClick={closeFormBackHandler}
           {...bindings}
         >
