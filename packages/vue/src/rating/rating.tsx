@@ -1,23 +1,14 @@
-import { computed, PropType, watch, defineComponent } from 'vue'
-import { useState } from '@fect-ui/vue-hooks'
-import { createName, make } from '../utils'
-import type { CSSProperties, NormalTypes, RecordPartial } from '../utils'
+import { PropType, watch, defineComponent } from 'vue'
+import { useState, useExpose } from '@fect-ui/vue-hooks'
+import { createName, createBem, make } from '../utils'
 import RatingIcon from './rating-icon'
+
+import type { NormalTypes } from '../utils'
 
 import './index.less'
 
 const name = createName('Rating')
-
-const getColor = (type: NormalTypes): string => {
-  const colors: RecordPartial<NormalTypes, string> = {
-    default: 'var(--rating-default-color)',
-    success: 'var(--rating-success-color)',
-    warning: 'var(--rating-warning-color)',
-    error: 'var(--rating-error-color)'
-  }
-  //  user may be entry types without NormalTypes
-  return colors[type] || (colors.default as string)
-}
+const bem = createBem('fect-rating')
 
 export default defineComponent({
   name,
@@ -42,22 +33,13 @@ export default defineComponent({
 
     watch(
       () => props.modelValue,
-      (pre) => emit('change', pre)
+      (cur) => setCurrentValue(cur)
     )
 
-    const setSvgFillColor = computed(() => {
-      const { type } = props
-      return {
-        '--rating-svg-color': getColor(type)
-      } as CSSProperties
-    })
-
-    const setActived = (idx: number) => {
-      if (idx < currentValue.value) return 'hoverd'
-      return ''
+    const updateModelValue = (val: number) => {
+      emit('update:modelValue', val)
+      emit('change', val)
     }
-
-    const updateModelValue = (val: number) => emit('update:modelValue', val)
 
     const clickHandler = (idx: number) => {
       if (props.locked) return
@@ -81,9 +63,8 @@ export default defineComponent({
 
       return (
         <div
-          class={`fect-rating__box ${setActived(key)} ${locked ? 'is-locked' : ''}`}
+          class={bem('box', { locked, hover: key < currentValue.value })}
           key={key}
-          style={setSvgFillColor.value}
           onClick={() => clickHandler(key + 1)}
           onMouseenter={() => mouseEnterHanlder(key + 1)}
           onMouseleave={mouseLeaveHandler}
@@ -93,8 +74,12 @@ export default defineComponent({
       )
     }
 
+    useExpose({
+      value: currentValue
+    })
+
     return () => (
-      <div class="fect-rating" role="slider" tabindex={0}>
+      <div class={bem(null, props.type)} role="slider" tabindex={0}>
         {make(props.count).map((_, idx) => renderIcon(idx))}
       </div>
     )

@@ -1,118 +1,112 @@
 import { mount } from '@vue/test-utils'
-import Rating from '../index'
+import { ref } from 'vue'
 import { Github } from '@fect-ui/vue-icons'
+import Rating from '..'
+
+import type { Ref } from 'vue'
 
 describe('Rating', () => {
-  it('should be render as a element', () => {
+  it('render normal', () => {
     const wrapper = mount(Rating)
-    expect(() => wrapper.unmount).not.toThrow()
+    expect(wrapper.element).toMatchSnapshot()
+    expect(() => wrapper.unmount()).not.toThrow()
   })
-
-  it('should be support custom Icon render', () => {
+  it('type', () => {
     const wrapper = mount({
-      components: {
-        [Rating.name]: Rating,
-        Github
-      },
-      template: `<fe-rating>
-        <template #icon><Github /></template>
-      </fe-rating>`
+      components: { [Rating.name]: Rating },
+      template: `
+        <fe-rating type="default" />
+        <fe-rating type="success" />
+        <fe-rating type="warning" />
+        <fe-rating type="error" />
+      `
     })
-    expect(wrapper.html()).toMatchSnapshot()
+    expect(wrapper.find('.fect-rating--default').exists()).toBeTruthy()
+    expect(wrapper.find('.fect-rating--success').exists()).toBeTruthy()
+    expect(wrapper.find('.fect-rating--warning').exists()).toBeTruthy()
+    expect(wrapper.find('.fect-rating--error').exists()).toBeTruthy()
   })
-
-  it('should be support different types', () => {
-    const _success = mount(Rating, {
-      props: {
-        type: 'success'
-      }
+  it('slot', () => {
+    const wrapper = mount({
+      components: { [Rating.name]: Rating, Github },
+      template: `
+        <fe-rating>
+          <template #icon>
+            <github />
+          </template>
+        </fe-rating>
+      `
     })
-
-    const _warn = mount(Rating, {
-      props: {
-        type: 'warning'
-      }
-    })
-
-    const _error = mount(Rating, {
-      props: {
-        type: 'error'
-      }
-    })
-
-    const _other = mount(Rating, {
-      props: {
-        type: undefined
-      }
-    })
-
-    expect(_success.html()).toMatchSnapshot()
-    expect(_warn.html()).toMatchSnapshot()
-    expect(_error.html()).toMatchSnapshot()
-    expect(_other.html()).toMatchSnapshot()
+    expect(wrapper.findComponent(Github).exists()).toBeTruthy()
   })
-
-  it('should be support custom count & lock', () => {
+  it('locked', () => {
     const wrapper = mount(Rating, {
       props: {
-        count: 3,
         locked: true
       }
     })
-    expect(wrapper.findAll('.fect-rating__box').length).toBe(3)
-    expect(wrapper.findAll('.is-locked')).toBeTruthy()
+    const icons = wrapper.findAll('.fect-rating__box')
+    icons[1].trigger('mouseenter')
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignored
+    expect(wrapper.vm.value.value).toBe(0)
+    icons[1].trigger('mouseleave')
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignored
+    expect(wrapper.vm.value.value).toBe(0)
   })
-
-  it('should be acitved', async () => {
+  it('actived', () => {
     const wrapper = mount(Rating, {
       props: {
         modelValue: 3
       }
     })
-    expect(wrapper.findAll('.hoverd').length).toEqual(3)
+    expect(wrapper.findAll('.fect-rating__box--hover').length).toBe(3)
   })
-
-  it('should be support change Event', async () => {
-    const wrapper = mount(Rating, {
-      props: {
-        modelValue: 0
+  it('click', async () => {
+    const changeEvent = jest.fn()
+    const wrapper = mount({
+      setup() {
+        const val = ref(0)
+        return { val, changeEvent }
+      },
+      render() {
+        return <Rating modelValue={this.val} onChange={this.changeEvent} />
+      }
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+    const icons = wrapper.findAll('.fect-rating__box')
+    await icons[1].trigger('click')
+    expect(changeEvent).toHaveBeenCalled()
+  })
+  it('mouse event', async () => {
+    /**
+     * I tried to get the rating component instance. But i can't get it like normally write
+     * a component. must set a string value for the render. And get it by wrapper.vm.$refs
+     * I think it's maybe a bug of vue-test-utils.
+     */
+    const wrapper = mount({
+      setup() {
+        const val = ref(0)
+        const ratingRef = ref()
+        return { val, ratingRef }
+      },
+      render() {
+        return <Rating modelValue={this.val} ref="ratingRef" />
       }
     })
 
-    const els = wrapper.findAll('.fect-rating__box')
-    await els[1].trigger('click')
-    expect(wrapper.emitted('update:modelValue')![0]).toEqual([2])
-    await wrapper.setProps({ modelValue: 2 })
-    expect(wrapper.emitted('change')![0]).toEqual([2])
-  })
-
-  it('when trigger mouseenvt , should be actived', async () => {
-    const wrapper = mount(Rating, {
-      props: {
-        modelValue: 0
+    const icons = wrapper.findAll('.fect-rating__box')
+    await icons[2].trigger('mouseenter')
+    const {
+      ratingRef: { value: internalValue }
+    } = wrapper.vm.$refs as {
+      ratingRef: {
+        value: Ref<number>
       }
-    })
-
-    const els = wrapper.findAll('.fect-rating__box')
-    await els[1].trigger('mouseenter')
-    expect(wrapper.find('.hoverd').exists()).toBe(true)
-    await els[1].trigger('mouseleave')
-    expect(wrapper.find('.hoverd').exists()).toBe(false)
-  })
-
-  it('should disabled all event when set locked', async () => {
-    const wrapper = mount(Rating, {
-      props: {
-        modelValue: 0,
-        locked: true
-      }
-    })
-    const els = wrapper.findAll('.fect-rating__box')
-    await els[1].trigger('click')
-    expect(wrapper.find('.hoverd').exists()).toBe(false)
-    await els[1].trigger('mouseenter')
-    expect(wrapper.find('.hoverd').exists()).toBe(false)
-    await els[1].trigger('mouseleave')
-    expect(wrapper.find('.hoverd').exists()).toBe(false)
+    }
+    expect(internalValue.value).toBe(3)
+    await icons[2].trigger('mouseleave')
+    expect(internalValue.value).toBe(0)
   })
 })

@@ -6,8 +6,8 @@ exports[`Modal disable overlay click 1`] = `
   <!--teleport end-->
   <transition-stub>
     <div class="fect-backdrop" style="display: none;">
-      <div class=" fect-backdrop__layer "></div>
-      <div class=" fect-backdrop__content ">
+      <div class="fect-backdrop__layer"></div>
+      <div class="fect-backdrop__content">
         <transition-stub>
           <div role="dialog" tabindex="-1" class="fect-modal__wrapper" style="width: 500px; display: none;">
             <div class="fect-modal__hidden" tabindex="0" aria-hidden="true"></div>
@@ -39,8 +39,8 @@ exports[`Modal overlay 1`] = `
   <!--teleport end-->
   <transition-stub>
     <div class="fect-backdrop" style="display: none;">
-      <div class=" fect-backdrop__layer hidden"></div>
-      <div class=" fect-backdrop__content ">
+      <div class="fect-backdrop__layer hidden"></div>
+      <div class="fect-backdrop__content">
         <transition-stub>
           <div role="dialog" tabindex="-1" class="fect-modal__wrapper" style="width: 500px; display: none;">
             <div class="fect-modal__hidden" tabindex="0" aria-hidden="true"></div>
@@ -72,8 +72,8 @@ exports[`Modal render normal 1`] = `
   <!--teleport end-->
   <transition-stub>
     <div class="fect-backdrop" style="display: none;">
-      <div class=" fect-backdrop__layer "></div>
-      <div class=" fect-backdrop__content ">
+      <div class="fect-backdrop__layer"></div>
+      <div class="fect-backdrop__content">
         <transition-stub>
           <div role="dialog" tabindex="-1" class="fect-modal__wrapper" style="width: 500px; display: none;">
             <div class="fect-modal__hidden" tabindex="0" aria-hidden="true"></div>

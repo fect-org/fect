@@ -3,8 +3,8 @@
 exports[`Drawer overlay 1`] = `
 <transition-stub>
   <div class="fect-backdrop" style="--drawer-transfrom: translate3d(100%, 0, 0);">
-    <div class=" fect-backdrop__layer hidden"></div>
-    <div class=" fect-backdrop__content ">
+    <div class="fect-backdrop__layer hidden"></div>
+    <div class="fect-backdrop__content">
       <transition-stub>
         <div class="fect-drawer__wrapper fect-drawer__wrapper--right fect-drawer__wrapper--round" role="dialog" tabindex="-1">
           <div class="fect-drawer__hidden" tabindex="0" aria-hidden="true"></div>

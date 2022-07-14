@@ -10,14 +10,25 @@
   display: inline-flex;
   align-items: center;
 
+  &--default {
+    --rating-svg-color: var(--rating-default-color);
+  }
+  &--success {
+    --rating-svg-color: var(--rating-success-color);
+  }
+  &--warning {
+    --rating-svg-color: var(--rating-warning-color);
+  }
+  &--error {
+    --rating-svg-color: var(--rating-error-color);
+  }
+
   &__box {
     box-sizing: border-box;
     cursor: pointer;
     color: var(--rating-svg-color);
     padding: 0 1px;
-    &.is-locked {
-      cursor: default;
-    }
+
     svg {
       width: 100%;
       height: 100%;
@@ -26,7 +37,10 @@
       transition: transform, color, fill 30ms linear;
     }
 
-    &.hoverd {
+    &--locked {
+      cursor: default;
+    }
+    &--hover {
       svg {
         transform: scale(0.9);
         fill: var(--rating-svg-color);
