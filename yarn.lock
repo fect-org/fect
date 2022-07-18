@@ -2501,6 +2501,13 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.2.tgz#830beaec4b4091a9e9398ac50f865ddea52186b9"
   integrity sha512-92FRmppjjqz29VMJ2dn+xdyXZBrMlE42AV6Kq6BwjWV7CNUW1hs2FtxSNLQE+gJhaZ6AAmYuO9y8dshhcBl7vA==
 
+"@rollup/plugin-alias@^3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-alias/-/plugin-alias-3.1.9.tgz#a5d267548fe48441f34be8323fb64d1d4a1b3fdf"
+  integrity sha512-QI5fsEvm9bDzt32k39wpOwZhVzRcL5ydcffUHMyLVaVaLeC70I8TJZ17F1z1eMoLu4E/UOcH9BWVkKpIKdrfiw==
+  dependencies:
+    slash "^3.0.0"
+
 "@rollup/plugin-commonjs@^22.0.0":
   version "22.0.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-22.0.0.tgz#f4d87016e2fbf187a593ab9f46626fe05b59e8bd"
@@ -2525,6 +2532,14 @@
     is-builtin-module "^3.1.0"
     is-module "^1.0.0"
     resolve "^1.19.0"
+
+"@rollup/plugin-replace@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-replace/-/plugin-replace-4.0.0.tgz#e34c457d6a285f0213359740b43f39d969b38a67"
+  integrity sha512-+rumQFiaNac9y64OHtkHGmdjm7us9bo1PlbgQfdihQtuNxzjpaB064HbRnewUOggLQxVCCyINfStkgmBeQpv1g==
+  dependencies:
+    "@rollup/pluginutils" "^3.1.0"
+    magic-string "^0.25.7"
 
 "@rollup/pluginutils@^3.1.0":
   version "3.1.0"
@@ -7781,13 +7796,15 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
-no-bump@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/no-bump/-/no-bump-0.2.0.tgz#78f01e8a115daa953c79427a0bb2ff8b527eedc9"
-  integrity sha512-A5ARxz6Lntblnr12EBIwEzJG2QkQedSNSLLXWVjdAQXOHt9Qlwj/7nRMsmuglpPNhVPopJbHs03nBOOEXr6vmA==
+no-bump@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/no-bump/-/no-bump-0.3.2.tgz#ae3db21ee0c398a8ca6398ac54ee1fead37d3436"
+  integrity sha512-N4drlqrQ4rp2bfpkEdCnnHNeDfacSC+tj095RVFGNPTFxUrQTEN5LNtDDEQpszJ6rQ7tS9p+p/TdW/mVBj6rbQ==
   dependencies:
+    "@rollup/plugin-alias" "^3.1.9"
     "@rollup/plugin-commonjs" "^22.0.0"
     "@rollup/plugin-node-resolve" "^13.3.0"
+    "@rollup/plugin-replace" "^4.0.0"
     "@swc/core" "^1.2.197"
     "@swc/helpers" "^0.3.17"
     lodash.merge "^4.6.2"
@@ -7795,7 +7812,6 @@ no-bump@^0.2.0:
     rollup "^2.75.5"
     rollup-plugin-postcss "^4.0.2"
     rollup-plugin-swc3 "^0.3.0"
-    yaml "^2.1.1"
 
 node-fetch@^2.6.1:
   version "2.6.5"
@@ -10836,11 +10852,6 @@ yaml@^1.10.0, yaml@^1.10.2:
   version "1.10.2"
   resolved "https://registry.yarnpkg.com/yaml/-/yaml-1.10.2.tgz#2301c5ffbf12b467de8da2333a459e29e7920e4b"
   integrity sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==
-
-yaml@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/yaml/-/yaml-2.1.1.tgz#1e06fb4ca46e60d9da07e4f786ea370ed3c3cfec"
-  integrity sha512-o96x3OPo8GjWeSLF+wOAbrPfhFOGY0W00GNaxCDv+9hkcDJEnev1yh8S7pgHF0ik6zc8sQLuL8hjHjJULZp8bw==
 
 yargs-parser@20.2.4:
   version "20.2.4"

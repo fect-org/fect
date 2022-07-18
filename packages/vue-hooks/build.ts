@@ -5,10 +5,12 @@ const commonInput = 'src/index.ts'
 
 const commonOutput = { ...internalCoomonOutput, preserveModulesRoot: 'src' }
 
-const internalConfig: BumpOptions['internalPlugins'] = {
-  swc: {
-    jsc: {
-      target: 'es2017'
+const internalOptions: BumpOptions['internalOptions'] = {
+  plugins: {
+    swc: {
+      jsc: {
+        target: 'es2017'
+      }
     }
   }
 }
@@ -18,13 +20,13 @@ const configs: BuildTaskConfig[] = [
     taskName: TASK_NAME.COMMONJS,
     input: commonInput,
     output: { ...commonOutput, format: 'cjs', dir: 'dist/cjs' },
-    internalPlugins: internalConfig
+    internalOptions
   },
   {
     taskName: TASK_NAME.ESMODULE,
     input: commonInput,
     output: { ...commonOutput, format: 'esm', dir: 'dist/esm' },
-    internalPlugins: internalConfig
+    internalOptions
   }
 ]
 
@@ -36,7 +38,6 @@ const configs: BuildTaskConfig[] = [
         runTask(taskName, () => build(rest))
       })
     )
-    // 'src'
     await runTask('Declaration', () => declarationTask())
   } catch (error) {
     console.log(error)

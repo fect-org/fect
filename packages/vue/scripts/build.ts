@@ -1,7 +1,6 @@
 import { BuildTaskConfig, TASK_NAME, runTask, commonOutput, css, analyze, declarationTask, camelize } from 'internal'
-import { createBundle } from 'no-bump'
+import { build } from 'no-bump'
 import fs from 'fs-extra'
-import { swc } from 'rollup-plugin-swc3'
 import jsx from '@vitejs/plugin-vue-jsx'
 import path from 'path'
 import { parlletlGeneratorFullBundle } from './full-module'
@@ -14,48 +13,60 @@ const components = fs
     return str.charAt(0).toUpperCase() + str.slice(1)
   })
 
-const { build } = createBundle({
-  plugins: {
-    jsx,
-    analyze: analyze({
-      entryDir: path.join(__dirname, '..', 'src'),
-      mapper: components
-    }),
-    css,
-    swc: swc({
-      jsc: {
-        externalHelpers: false,
-        target: 'es2017',
-        parser: {
-          syntax: 'typescript'
-        }
-      }
-    })
-  }
-})
-
 const entry = 'src/index.ts'
 
-const configs: BuildTaskConfig[] = [
-  {
-    taskName: TASK_NAME.COMMONJS,
+interface ConfigParams {
+  taskName: string
+  format: 'cjs' | 'esm'
+}
+
+const generatorConfigs = (config: ConfigParams): BuildTaskConfig => {
+  const { format, taskName } = config
+  const dir = `dist/${format}`
+  return {
+    taskName,
     input: entry,
     output: {
       ...commonOutput,
-      format: 'cjs',
-      dir: 'dist/cjs',
-      exports: 'named'
-    }
-  },
-  {
-    taskName: TASK_NAME.ESMODULE,
-    input: entry,
-    output: {
-      ...commonOutput,
-      format: 'esm',
-      dir: 'dist/esm'
+      format,
+      dir,
+      exports: format === 'cjs' ? 'named' : 'auto'
+    },
+    plugins: {
+      jsx,
+      analyze: analyze({
+        entryDir: path.join(__dirname, '..', 'src'),
+        mapper: components
+      }),
+      css
+    },
+    internalOptions: {
+      plugins: {
+        postcss: false,
+        commonjs: false,
+        swc: {
+          jsc: {
+            externalHelpers: false,
+            target: 'es2017',
+            parser: {
+              syntax: 'typescript'
+            }
+          }
+        }
+      }
     }
   }
+}
+
+const configs: BuildTaskConfig[] = [
+  generatorConfigs({
+    taskName: TASK_NAME.COMMONJS,
+    format: 'cjs'
+  }),
+  generatorConfigs({
+    taskName: TASK_NAME.ESMODULE,
+    format: 'esm'
+  })
 ]
 
 /**
@@ -73,9 +84,9 @@ const clean = async () => {
   await Promise.all(list.map((i) => fs.remove(i)))
 }
 
-const parallelRunTask = async () => {
+const parallelRunTask = async (tasks: BuildTaskConfig[]) => {
   await Promise.all(
-    configs.map(async (conf) => {
+    tasks.map(async (conf) => {
       const { taskName, ...rest } = conf
       await runTask(taskName, () => build(rest))
     })
@@ -87,7 +98,7 @@ const parallelRunTask = async () => {
 ;(async () => {
   try {
     await runTask('Clean', clean)
-    await parallelRunTask()
+    await parallelRunTask(configs)
     await runTask('UMD', parlletlGeneratorFullBundle)
     await runTask(TASK_NAME.DECLARATION, declarationTask)
   } catch (error) {

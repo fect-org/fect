@@ -8,7 +8,6 @@ import { getSVGSource } from './get-source'
 import { singleDefine, exportsTemplate } from './template'
 import { collect } from './gen'
 import { createBundle, BumpOptions } from 'no-bump'
-import { swc } from 'rollup-plugin-swc3'
 import Jsx from '@vitejs/plugin-vue-jsx'
 import { runTask, TASK_NAME, BuildTaskConfig, commonOutput, camelize, kebabCase, declarationTask } from 'internal'
 
@@ -18,14 +17,20 @@ const clean = () => fs.remove(PACKAGE_PATH)
 
 const { build } = createBundle({
   plugins: {
-    Jsx,
-    swc: swc({
-      jsc: {
-        target: 'es2017',
-        externalHelpers: false
-      },
-      sourceMaps: false
-    })
+    Jsx
+  },
+  internalOptions: {
+    plugins: {
+      commonjs: false,
+      postcss: false,
+      swc: {
+        jsc: {
+          target: 'es2017',
+          externalHelpers: false
+        },
+        sourceMaps: false
+      }
+    }
   }
 })
 

@@ -3,12 +3,8 @@
  */
 
 import { BuildTaskConfig } from 'internal'
-import postcss from 'rollup-plugin-postcss'
-import { swc } from 'rollup-plugin-swc3'
-import commonjs from '@rollup/plugin-commonjs'
-import { nodeResolve } from '@rollup/plugin-node-resolve'
 import jsx from '@vitejs/plugin-vue-jsx'
-import { createBundle } from 'no-bump'
+import { build } from 'no-bump'
 import { peerDependencies } from '../package.json'
 import path from 'path'
 
@@ -21,23 +17,25 @@ const generatorFullConfigs = (mini = false): Omit<BuildTaskConfig, 'taskName'> =
       file: mini ? 'fect.min.umd.js' : 'fect.umd.js',
       sourceMap: false,
       dir: 'dist/cjs',
-      exports: 'named'
+      exports: 'named',
+      minifiy: mini
     },
     plugins: {
-      jsx,
-      commonjs,
-      nodeResolve,
-      swc: swc({
-        jsc: {
-          target: 'es2017',
-          externalHelpers: false
+      jsx
+    },
+    internalOptions: {
+      plugins: {
+        swc: {
+          jsc: {
+            target: 'es2017',
+            externalHelpers: false
+          }
         },
-        minify: mini
-      }),
-      postcss: postcss({
-        extract: path.resolve('dist/cjs/main.css'),
-        minimize: true
-      })
+        postcss: {
+          extract: path.resolve('dist/cjs/main.css'),
+          minimize: true
+        }
+      }
     },
     external: [...Object.keys(peerDependencies)],
     global: {
@@ -47,8 +45,6 @@ const generatorFullConfigs = (mini = false): Omit<BuildTaskConfig, 'taskName'> =
 }
 
 export const parlletlGeneratorFullBundle = async () => {
-  const { build } = createBundle()
-
   const configs = [generatorFullConfigs(true), generatorFullConfigs()]
 
   await Promise.all(configs.map((conf) => build(conf)))
