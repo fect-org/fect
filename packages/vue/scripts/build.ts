@@ -1,6 +1,16 @@
-import { BuildTaskConfig, TASK_NAME, runTask, commonOutput, css, analyze, declarationTask, camelize } from 'internal'
+import {
+  BuildTaskConfig,
+  TASK_NAME,
+  runTask,
+  commonOutput,
+  css,
+  analyze,
+  declarationTask,
+  camelize,
+  remove
+} from 'internal'
+import fs from 'fs'
 import { build } from 'no-bump'
-import fs from 'fs-extra'
 import jsx from '@vitejs/plugin-vue-jsx'
 import path from 'path'
 import { parlletlGeneratorFullBundle } from './full-module'
@@ -81,7 +91,7 @@ const configs: BuildTaskConfig[] = [
 
 const clean = async () => {
   const list = ['dist', 'types']
-  await Promise.all(list.map((i) => fs.remove(i)))
+  await Promise.all(list.map((i) => remove(i)))
 }
 
 const parallelRunTask = async (tasks: BuildTaskConfig[]) => {

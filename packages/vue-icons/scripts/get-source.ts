@@ -1,6 +1,6 @@
 import https from 'https'
 import { join } from 'path'
-import { remove } from 'fs-extra'
+import { remove } from 'internal'
 
 const sourcePath = join(__dirname, '..', 'sourcemap')
 
