@@ -1,5 +1,4 @@
 import path from 'path'
-import fs from 'fs-extra'
 import { JSDOM } from 'jsdom'
 import Svgo from 'svgo'
 import { svgParser, replaceStyle } from './svg-parser'
@@ -9,11 +8,21 @@ import { singleDefine, exportsTemplate } from './template'
 import { collect } from './gen'
 import { createBundle, BumpOptions } from 'no-bump'
 import Jsx from '@vitejs/plugin-vue-jsx'
-import { runTask, TASK_NAME, BuildTaskConfig, commonOutput, camelize, kebabCase, declarationTask } from 'internal'
+import {
+  runTask,
+  TASK_NAME,
+  BuildTaskConfig,
+  commonOutput,
+  camelize,
+  kebabCase,
+  declarationTask,
+  remove,
+  outputFile
+} from 'internal'
 
 export const PACKAGE_PATH = path.join(process.cwd(), 'src')
 
-const clean = () => fs.remove(PACKAGE_PATH)
+const clean = () => remove(PACKAGE_PATH)
 
 const { build } = createBundle({
   plugins: {
@@ -80,8 +89,8 @@ const configs: BuildTaskConfig[] = [
         const entry = path.join(PACKAGE_PATH, kebabCase(svg), 'index.ts')
         const name = svg.charAt(0).toUpperCase() + svg.slice(1)
         const component = singleDefine(name, replaceStyle(svgs[svg]))
-        await fs.outputFile(target, component)
-        await fs.outputFile(entry, exportsTemplate(name, kebabCase(svg)))
+        await outputFile(target, component)
+        await outputFile(entry, exportsTemplate(name, kebabCase(svg)))
       })
     )
     await collect()

@@ -22,10 +22,8 @@ export const TASK_NAME = {
 
 export const runTask = (describe: string, fn?: () => void | Promise<void>) => {
   const spinner = ora(describe).start()
-  if (!fn) {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    fn = () => {}
-  }
+  if (!fn) fn = () => Promise.resolve()
+
   const r = fn()
   if (!r || !r.then) {
     spinner.succeed(describe)
