@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "allowJs": true,
+        "importHelpers": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true
+    },
+    "include": ["docs","shims"]
+}

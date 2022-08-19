@@ -1,0 +1,30 @@
+{
+  "cn": {
+    "Guide": {
+      "icon": "package",
+      "desc": "View the design guidelines"
+    },
+    "Components": {
+      "icon": "feather",
+      "desc": "Ever-increasing list of concise and aesthetic components."
+    },
+    "Open Sourced": {
+      "icon": "github",
+      "desc": "Fect is open sourced and available free under MIT licence."
+    }
+  },
+  "us": {
+    "Guide": {
+      "icon": "package",
+      "desc": "View the design guidelines"
+    },
+    "Components": {
+      "icon": "feather",
+      "desc": "Ever-increasing list of concise and aesthetic components."
+    },
+    "Open Sourced": {
+      "icon": "github",
+      "desc": "Fect is open sourced and available free under MIT licence."
+    }
+  }
+}
