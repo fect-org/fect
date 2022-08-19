@@ -3,8 +3,40 @@ import Application from './application.vue'
 import Fect from '@fect-ui/vue/src'
 import Icon from '@fect-ui/vue-icons'
 import router from './common/route'
+import { createGlobalState } from './composables'
 
 import '@fect-ui/themes'
 import './common/var.css'
 
-createApp(Application).use(router).use(Fect).use(Icon).mount('#app')
+const createVueApp = () => {
+  const globalState = createGlobalState()
+
+  const app = createApp(Application)
+
+  app.config.errorHandler = (err) => {
+    globalState.setRenderError(err)
+  }
+
+  router.onError((err) => {
+    console.log(err)
+    globalState.setRenderError(err)
+    console.log(err, 'router err main')
+  })
+
+  const baseTitlte = 'Vue - Fect UI'
+
+  router.beforeEach((to, _, next) => {
+    document.title = (to.meta?.title as string) || baseTitlte
+
+    next()
+  })
+
+  app.use(router)
+  app.use(Fect)
+  app.use(Icon)
+  app.use(globalState)
+  return { app, router }
+}
+const { app, router: _router } = createVueApp()
+
+_router.isReady().then(() => app.mount('#app'))

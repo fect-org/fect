@@ -1,10 +1,7 @@
 <template>
   <layout-header />
   <div class="layout">
-    <main>
-      <router-view />
-      <!-- <router-view /> -->
-    </main>
+    <router-view />
     <search />
   </div>
 </template>
@@ -13,6 +10,7 @@
 import { defineComponent } from 'vue'
 import { Search } from './components/search'
 import { Header } from './components/header'
+// import { ErrorCapture } from './components/not-found'
 
 export default defineComponent({
   components: { Search, ['layout-header']: Header },
@@ -28,10 +26,7 @@ export default defineComponent({
   max-width: var(--fect-page-width);
   margin-top: var(--nav-height);
   min-height: calc(100vh - var(--nav-height));
-}
-
-.layout main {
-  height: 100%;
+  box-sizing: border-box;
   padding: 0 var(--fect-gap) calc(var(--fect-gap) * 2);
 }
 </style>

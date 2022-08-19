@@ -8,11 +8,10 @@
           you need to create amazing applications is at your fingertips.
         </p>
         <div class="actions">
-          <fe-button auto size="small">开始</fe-button>
-          <fe-spacer />
-          <fe-button auto size="small">为什么是Fect</fe-button>
-          <fe-spacer />
-          <fe-button auto size="small">在GitHub查看</fe-button>
+          <template v-for="(action, i) in actions" :key="action.value">
+            <fe-button auto size="small">{{ action.name }}</fe-button>
+            <fe-spacer v-if="i !== actions.length - 1" />
+          </template>
         </div>
       </aside>
       <article>
@@ -27,15 +26,15 @@
     </div>
     <fe-spacer :y="2" />
     <fe-grid-group class="features" justify="space-around">
-      <fe-grid class="card" v-for="(item, key) in cn" :key="key" :xs="24" :lg="7" :xl="7" :md="7" :sm="7">
+      <fe-grid class="card" v-for="feature in features" :key="feature.name" :xs="24" :lg="7" :xl="7" :md="7" :sm="7">
         <fe-card shadow hoverable>
           <h4>
             <div class="icon">
-              <component :is="item.icon" />
+              <component :is="feature.icon" />
             </div>
-            {{ key }}
+            {{ feature.name }}
           </h4>
-          <p>{{ item.desc }}</p>
+          <p>{{ feature.desc }}</p>
         </fe-card>
       </fe-grid>
     </fe-grid-group>
@@ -43,18 +42,30 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { cn } from '../../feature.json'
+import { computed, defineComponent } from 'vue'
+import { useLocale } from '../../composables'
+import { cn, us } from '../../feature.json'
 export default defineComponent({
   setup() {
+    const { locale } = useLocale()
+
+    const features = computed(() => (locale.value === 'zh-cn' ? cn.feature : us.feature))
+
+    const actions = computed(() => (locale.value === 'zh-cn' ? cn.action : us.action))
+
     return {
-      cn
+      features,
+      actions
     }
   }
 })
 </script>
 
 <style lang="less" scoped>
+.home {
+  box-sizing: border-box;
+  padding: var(--fect-gap) calc(var(--fect-gap) * 2) 0;
+}
 .description {
   display: flex;
   width: 100%;
@@ -113,6 +124,45 @@ export default defineComponent({
   svg {
     height: 100%;
     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .home {
+    width: 100%;
+    padding: 0;
+    max-width: 100%;
+    padding-bottom: var(--fect-gap);
+  }
+  .description {
+    padding: var(--fect-gap) var(--fect-gap-half) 0;
+    box-sizing: border-box;
+    text-align: center;
+    flex-direction: column;
+    aside {
+      margin-top: var(--fect-gap);
+      margin-right: 0;
+      order: 2;
+    }
+    h1 {
+      font-size: 40px;
+    }
+    p {
+      line-height: 32px;
+      font-size: 18px;
+    }
+    article {
+      order: 1;
+    }
+  }
+  .actions {
+    justify-content: center;
+  }
+  .features {
+    box-sizing: border-box;
+    > div {
+      padding: var(--fect-gap-half) 0;
+    }
   }
 }
 </style>

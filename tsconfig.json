@@ -4,7 +4,11 @@
         "allowJs": true,
         "importHelpers": true,
         "moduleResolution": "node",
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "jsx": "preserve",
+        "target": "esnext",
+        "module": "esnext",
+        "types":["vite/client"]
     },
     "include": ["docs","shims"]
 }

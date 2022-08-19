@@ -1,3 +1,14 @@
+@import url(./code.css);
+
 :root {
   --nav-height: 64px;
+  --nav-bar-width: 200px;
+}
+
+.light-theme:root {
+  --fect-vague-header: rgba(255, 255, 255, 0.8);
+}
+
+.dark-theme:root {
+  --fect-vague-header: rgba(0, 0, 0, 0.8);
 }
