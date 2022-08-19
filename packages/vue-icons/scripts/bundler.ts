@@ -6,8 +6,10 @@ import svgoConfig from './svgo.config'
 import { getSVGSource } from './get-source'
 import { singleDefine, exportsTemplate } from './template'
 import { collect } from './gen'
-import { createBundle, BumpOptions } from 'no-bump'
+import { build } from 'no-bump'
 import Jsx from '@vitejs/plugin-vue-jsx'
+import type { BumpOptions } from 'no-bump'
+
 import {
   runTask,
   TASK_NAME,
@@ -24,40 +26,34 @@ export const PACKAGE_PATH = path.join(process.cwd(), 'src')
 
 const clean = () => remove(PACKAGE_PATH)
 
-const { build } = createBundle({
+const buildConfig: BumpOptions = {
+  input: path.join(PACKAGE_PATH, 'index.ts'),
+  output: { ...commonOutput, sourceMap: false, extractHelpers: false },
   plugins: {
     Jsx
   },
   internalOptions: {
     plugins: {
       commonjs: false,
-      postcss: false,
-      swc: {
-        jsc: {
-          target: 'es2017',
-          externalHelpers: false
-        },
-        sourceMaps: false
-      }
+      postcss: false
     }
   }
-})
-
-const buildConfig: BumpOptions = {
-  input: path.join(PACKAGE_PATH, 'index.ts'),
-  output: commonOutput
 }
 
 const configs: BuildTaskConfig[] = [
   {
     taskName: TASK_NAME.COMMONJS,
     input: buildConfig.input,
-    output: { ...buildConfig.output, format: 'cjs', dir: 'dist/cjs', exports: 'named' }
+    output: { ...buildConfig.output, format: 'cjs', dir: 'dist/cjs', exports: 'named' },
+    plugins: buildConfig.plugins,
+    internalOptions: buildConfig.internalOptions
   },
   {
     taskName: TASK_NAME.ESMODULE,
     input: buildConfig.input,
-    output: { ...buildConfig.output, format: 'esm', dir: 'dist/esm' }
+    output: { ...buildConfig.output, format: 'esm', dir: 'dist/esm' },
+    plugins: buildConfig.plugins,
+    internalOptions: buildConfig.internalOptions
   }
 ]
 
