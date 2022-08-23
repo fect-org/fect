@@ -11,7 +11,7 @@ index: 1
 
 :::playground
 
-avatar/text.vue
+avatar/default.vue
 
 :::
 
@@ -19,13 +19,31 @@ avatar/text.vue
 
 使用文字展示图像
 
+:::playground
+
+avatar/text.vue
+
+:::
+
 ### 尺寸
 
 指定图像大小
 
+:::playground
+
+avatar/size.vue
+
+:::
+
 ### 组
 
 多个头像框可以堆叠在一起
+
+:::playground
+
+avatar/stacked.vue
+
+:::
 
 ### Avatar Props
 
