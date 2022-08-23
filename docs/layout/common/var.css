@@ -1,4 +1,5 @@
 @import url(./code.css);
+@import url(./table.css);
 
 :root {
   --nav-height: 64px;

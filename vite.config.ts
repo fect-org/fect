@@ -3,6 +3,7 @@ import Vue from '@vitejs/plugin-vue'
 import Jsx from '@vitejs/plugin-vue-jsx'
 import Md from 'vite-plugin-md'
 import Prism from 'prismjs'
+import { playground } from './markdown'
 
 const internalMarkdownParser = (code: string) => {
   return code
@@ -24,12 +25,14 @@ export default defineConfig({
      * docs: https://github.com/yankeeinlondon/meta-builder
      */
     Md({
+      wrapperClasses: 'doc-container',
       markdownItOptions: {
         highlight: (str) => Prism.highlight(str, Prism.languages.javascript, 'javascript')
       },
       transforms: {
         after: internalMarkdownParser
-      }
+      },
+      builders: [playground()]
     })
   ],
   // https://github.com/vitejs/vite/issues/5270

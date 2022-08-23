@@ -6,5 +6,7 @@ export { remove, outputFile } from './shared'
 
 export { css } from './plugins/css'
 
+export { playground } from '../markdown'
+
 export * from './helpers/gen'
 export * from './helpers/format'

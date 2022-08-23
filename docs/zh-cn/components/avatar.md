@@ -9,6 +9,12 @@ index: 1
 
 展示用户的基本信息
 
+:::playground
+
+avatar/text.vue
+
+:::
+
 ### 文本
 
 使用文字展示图像
@@ -23,4 +29,17 @@ index: 1
 
 ### Avatar Props
 
+| 属性          | 描述                    | 类型              | 可选值                    | 默认     |
+| ------------- | ----------------------- | ----------------- | ------------------------- | -------- |
+| **stacked**   | 是否堆叠显示            | `boolean`         | -                         | `false`  |
+| **is-square** | 是否为方形头像          | `boolean`         | -                         | `false`  |
+| **size**      | 头像大小                | `string`          | `mini,small,medium,large` | `medium` |
+| **text**      | 文本,无图像链接才会显示 | `string`,`number` | -                         | `-`      |
+| **src**       | 图像链接                | `string`          | -                         | `-`      |
+
 ### AvatarGroup Props
+
+| 属性      | 描述                                         | 类型            | 可选值 | 默认 |
+| --------- | -------------------------------------------- | --------------- | ------ | ---- |
+| **count** | 数量                                         | `string,number` | --     | --   |
+| ...       | 继承 Avatar 的 stacked, is-square, size 属性 | `-`             | `-`    | `-`  |

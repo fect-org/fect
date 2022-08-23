@@ -4,7 +4,8 @@ import Fect from '@fect-ui/vue/src'
 import Icon from '@fect-ui/vue-icons'
 import router from './common/route'
 import { createGlobalState } from './composables'
-
+import { Playground, Preview } from './components/playground'
+import Example from '../../example'
 import '@fect-ui/themes'
 import './common/var.css'
 
@@ -35,6 +36,9 @@ const createVueApp = () => {
   app.use(Fect)
   app.use(Icon)
   app.use(globalState)
+  app.use(Example)
+  app.component(Playground.name, Playground)
+  app.component(Preview.name, Preview)
   return { app, router }
 }
 const { app, router: _router } = createVueApp()
