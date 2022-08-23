@@ -38,8 +38,18 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .navbar {
-  position: fixed;
   width: var(--nav-bar-width);
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: var(--fect-gap);
+  &::-webkit-scrollbar {
+    width: 0;
+    background-color: transparent;
+  }
 }
 
 .content {

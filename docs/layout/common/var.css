@@ -13,3 +13,10 @@
 .dark-theme:root {
   --fect-vague-header: rgba(0, 0, 0, 0.8);
 }
+
+body::-webkit-scrollbar {
+  width: 0;
+}
+body::-webkit-scrollbar-thumb {
+  width: 0;
+}

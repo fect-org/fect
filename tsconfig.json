@@ -10,5 +10,6 @@
         "module": "esnext",
         "types":["vite/client"]
     },
-    "include": ["docs","shims"]
+    "include": ["docs","shims"],
+    "exclude": ["exmaple/**/*"]
 }

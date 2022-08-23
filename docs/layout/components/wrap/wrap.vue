@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <NavBar v-if="!isMobile" />
+    <aside class="sidebar">
+      <NavBar v-if="!isMobile" />
+    </aside>
     <div class="inner">
       <h2>{{ meta.title }}</h2>
       <router-view />
@@ -34,6 +36,12 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
+.sidebar {
+  height: calc(100% - 2rem - 96px + var(--nav-bar-width));
+  top: 96px;
+  bottom: 2rem;
+  position: fixed;
+}
 .inner {
   height: 100%;
   overflow-y: auto;
