@@ -1,41 +1,29 @@
 ---
 title: Color
 name: Colors
-group: Theme
+group: CUSTOMIZATION
 index: 0
 ---
 
-Default colors for themes.
+`Fect` is based on `@fect-ui/themes`. `Fect` all component style is base on `css variable`. `@fect-ui/themes` provide all `css variable` for `fect`. You can use it in your application.If you like it. All colors with be change with theme. If you want to customlize your colors, please
+read[theme](/en-us/guide/theme) to get more.
 
-<playground
-  component="ex-colors-default"
-  :displayPreview="false"
-/>
+<fe-code block>
 
-## State
+```html
+<template>
+  <div class="message">message</div>
+</template>
 
-Use different colors to express more emotional changes.
+<script>
+  import '@fect-ui/themes'
+</script>
 
-<playground
-  title="Success"
-  component="ex-colors-success"
-  :displayPreview="false"
-/>
+<style>
+  .message {
+    color: var(--accents-1);
+  }
+</style>
+```
 
-<playground
-  title="Warning"
-  component="ex-colors-warning"
-  :displayPreview="false"
-/>
-
-<playground
-  title="Error"
-  component="ex-colors-error"
-  :displayPreview="false"
-/>
-
-<playground
-  title="HeighLight"
-  component="ex-colors-light"
-  :displayPreview="false"
-/>
+<fe-code />

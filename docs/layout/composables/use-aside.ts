@@ -1,4 +1,4 @@
-import { computed, readonly, Ref, ref, unref, watch, DeepReadonly } from 'vue'
+import { computed, readonly, Ref, ref, unref, watchEffect, DeepReadonly } from 'vue'
 import { ModuleInfo } from '../common/loader'
 import { serializedModule } from '../common/route'
 
@@ -16,18 +16,16 @@ export const useAside: UseAside = (locale: Ref<string>, variants: Ref<string> | 
     return module
   })
 
-  watch(
-    module,
-    (cur) => {
-      if (typeof variants === 'boolean') {
-        aside.value = cur
-      } else {
-        const tab = unref(variants)
-        if (cur[tab]) aside.value = cur[tab]
-      }
-    },
-    { immediate: true }
-  )
+  watchEffect(() => {
+    const meta = module.value
+    if (typeof variants !== 'boolean') {
+      const tab = unref(variants)
+      const sideMeta = meta[tab]
+      if (sideMeta) aside.value = sideMeta
+      return
+    }
+    aside.value = meta
+  })
 
   return readonly(aside)
 }

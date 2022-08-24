@@ -1,15 +1,15 @@
 ---
-title: 主题
+title: Theme
 name: Theme
-group: '定制化'
-index: 2
+group: CUSTOMIZATION
+index: 0
 ---
 
-`Fect` 预设了 2 套主题分别为`light`和`dark`。因为是基于`css-variable`的。因此你可以在学习定义`css-variable`后自定义你喜欢的变量。
+`Fect` preset two themes.`light` and `dark`. You can define your css variable by your self. Don't know css variable? Here is a [document about css variable](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
 
-### 切换主题
+### Switch Preset Theme
 
-`Fect` 提供了一个切换预设主题的`hook`。您只需要调用他们就可以随意切换。
+`Fect` provide a internal hook `use-theme`.
 
 <fe-code block name="src/app.vue">
 

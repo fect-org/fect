@@ -5,8 +5,6 @@ group: '快速上手'
 index: 9
 ---
 
-<fe-spacer :y="1" />
-
 ### 极简主义的风格
 
 在众多组件库中,`fect`是一款十分极简主义的`UI`库。他是根据`Geist-ui/vue`作为蓝本不断升级的的一个库。
@@ -18,6 +16,6 @@ index: 9
 
 ### 开源
 
-- 版本发布日志:
-- 贡献指南:
+- [版本发布日志](https://github.com/fect-org/fect/releases)
+- [贡献指南](https://github.com/fect-org/fect/blob/master/.github/CONTRIBUTING.zh-CN.md)
 - 许可证: [MIT LICENSE](https://github.com/fect-org/fect/blob/master/LICENSE)
