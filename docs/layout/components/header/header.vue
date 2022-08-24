@@ -38,12 +38,12 @@ import { useTheme } from '@fect-ui/vue/src'
 import { Menu } from '@fect-ui/vue-icons'
 import MobileMenu from './mobile-menu.vue'
 import { useLocale, useMedia } from '../../composables'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 export default defineComponent({
   components: { menuIcon: Menu, MobileMenu },
   setup() {
     const visible = ref(false)
-
+    const route = useRoute()
     const router = useRouter()
     const { locale, tabbar } = useLocale()
 
@@ -82,8 +82,9 @@ export default defineComponent({
     }
 
     const localeChangeHandler = () => {
-      const currentLocale = locale.value === 'zh-cn' ? 'en-us' : 'zh-cn'
-      router.push({ path: currentLocale })
+      const nextLocale = locale.value === 'zh-cn' ? 'en-us' : 'zh-cn'
+      const nextNavigation = route.fullPath.replace(locale.value, nextLocale)
+      router.push({ path: nextNavigation })
     }
 
     const mobileMenuClickHandler = () => {

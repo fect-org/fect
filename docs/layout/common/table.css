@@ -64,3 +64,16 @@
 .doc-container tbody tr td {
   height: 3px;
 }
+
+@media only screen and (max-width: 650px) {
+  .doc-container {
+    overflow-x: scroll;
+  }
+  .doc-container table {
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+  .doc-container table td code {
+    white-space: nowrap;
+  }
+}

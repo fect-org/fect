@@ -42,9 +42,6 @@ export default defineComponent({
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding-bottom: var(--fect-gap);
   &::-webkit-scrollbar {
     width: 0;
@@ -77,7 +74,12 @@ export default defineComponent({
 }
 
 .item {
+  user-select: none;
   cursor: pointer;
   margin: var(--fect-gap-quarter) 0;
+  a {
+    font-size: 0.85rem;
+    color: var(--accents-6);
+  }
 }
 </style>
