@@ -16,7 +16,7 @@ import path from './path'
  */
 
 // extends OrignalFrontMatter
-export interface ModuleInfo extends Pick<OrignalFrontMatter, 'index' | 'title' | 'name'> {
+export interface ModuleInfo extends Pick<OrignalFrontMatter, 'index' | 'title' | 'name' | 'group'> {
   component: ModuleNamespace
 }
 
@@ -49,7 +49,10 @@ export const loadStaticMarkdownModule = () => {
           past.set(group, [])
         }
         const pastGroup = past.get(group)
-        past.set(group, [...pastGroup, { title, index, name: name.toLocaleLowerCase(), component: _module }])
+        past.set(group, [
+          ...pastGroup,
+          { title, index, group: key, name: name.toLocaleLowerCase(), component: _module }
+        ])
       })
     }
 

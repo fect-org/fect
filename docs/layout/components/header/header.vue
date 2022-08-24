@@ -29,12 +29,12 @@
       </fe-grid>
     </fe-grid-group>
   </div>
-  <mobile-menu v-if="visible" :menus="allSides" />
+  <mobile-menu v-if="visible" :menus="allSides" @route-complete="mobileMenuClickHandler" />
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, ref, watch } from 'vue'
-import { useTheme } from '@fect-ui/vue/src'
+import { useTheme, useBodyScroll } from '@fect-ui/vue/src'
 import { Menu } from '@fect-ui/vue-icons'
 import MobileMenu from './mobile-menu.vue'
 import { useLocale, useMedia } from '../../composables'
@@ -46,6 +46,7 @@ export default defineComponent({
     const route = useRoute()
     const router = useRouter()
     const { locale, tabbar } = useLocale()
+    const { setLock } = useBodyScroll()
 
     const isMobile = useMedia('650px', { match: 'down' })
 
@@ -90,6 +91,7 @@ export default defineComponent({
     const mobileMenuClickHandler = () => {
       if (isMobile) {
         visible.value = !visible.value
+        setLock((pre) => !pre)
       }
     }
 
@@ -98,6 +100,7 @@ export default defineComponent({
       (cur) => {
         if (!cur) {
           visible.value = false
+          setLock(false)
         }
       }
     )

@@ -22,12 +22,15 @@ export const useMedia = (query: string, options: MediaOptions = {}) => {
 
   let media: MediaQueryList | null = null
 
-  const update = () => (breakPonits.value = matchQuery().matches)
+  const update = () => {
+    breakPonits.value = matchQuery().matches
+  }
 
   useMounted([
     () => {
       if (!supportMedia) return
       media = matchQuery()
+      update()
       media.addListener(update)
     },
     () => media && media.removeListener(update)

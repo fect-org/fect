@@ -10,13 +10,20 @@
         <chevron-right v-if="i !== 0" size="1rem" :stroke-width="2" color="var(--accents-4)" />
         {{ menu.localeName }}
       </button>
-      <div class="group" v-if="expandName === menu.value">
+      <div class="group" v-if="expandName === menu.value && group">
         <div v-for="(children, key) in group" :key="key">
           <div class="section">
             <span class="name">
               {{ key }}
             </span>
-            <a class="item" v-for="item in children" :key="item.name"> {{ item.title }}</a>
+            <a
+              class="item"
+              @click="() => linkClickHandler(item.name, item.group)"
+              v-for="item in children"
+              :key="item.name"
+            >
+              {{ item.title }}</a
+            >
           </div>
         </div>
       </div>
@@ -28,6 +35,7 @@
 import { computed, ComputedRef, defineComponent, ref } from 'vue'
 import { useLocale, useAside } from '../../composables'
 import type { PropType } from 'vue'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'MobileMenu',
@@ -41,21 +49,32 @@ export default defineComponent({
       >
     }
   },
-  setup() {
+  emits: ['routeComplete'],
+  setup(props, { emit }) {
+    const router = useRouter()
     const { locale } = useLocale()
     const aside = useAside(locale, true)
     const expandName = ref<string | null>(null)
     const groupClickHandler = (belong: string) => {
-      //
       expandName.value = expandName.value === belong ? null : belong
+      if (!belong) {
+        router.push({ path: `/${locale.value}` })
+      }
+    }
+
+    const linkClickHandler = (name: string, group: string) => {
+      router.push({
+        path: `/${locale.value}/${group}/${name}`
+      })
+      emit('routeComplete')
     }
 
     const group = computed(() => {
       if (expandName.value) return aside.value[expandName.value]
-      return []
+      return null
     }) as ComputedRef<typeof aside.value[number]>
 
-    return { expandName, group, aside, groupClickHandler }
+    return { expandName, group, aside, groupClickHandler, linkClickHandler }
   }
 })
 </script>
