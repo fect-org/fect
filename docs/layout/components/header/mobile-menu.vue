@@ -6,16 +6,28 @@
       :key="menu.localeName"
       :style="{ animationDelay: `${(i + 1) * 50}ms` }"
     >
-      <button class="menu-item">
-        <!-- <chevron-right size="1rem" :stroke-width="2" color="var(--accents-4)" /> -->
+      <button class="menu-item" @click="() => groupClickHandler(menu.value)">
+        <chevron-right v-if="i !== 0" size="1rem" :stroke-width="2" color="var(--accents-4)" />
         {{ menu.localeName }}
       </button>
+      <div class="group" v-if="expandName === menu.value">
+        <div v-for="(children, key) in group" :key="key">
+          <div class="section">
+            <span class="name">
+              {{ key }}
+            </span>
+            <a class="item" v-for="item in children" :key="item.name"> {{ item.title }}</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { computed, ComputedRef, defineComponent, ref } from 'vue'
+import { useLocale, useAside } from '../../composables'
+import type { PropType } from 'vue'
 
 export default defineComponent({
   name: 'MobileMenu',
@@ -30,7 +42,20 @@ export default defineComponent({
     }
   },
   setup() {
-    return {}
+    const { locale } = useLocale()
+    const aside = useAside(locale, true)
+    const expandName = ref<string | null>(null)
+    const groupClickHandler = (belong: string) => {
+      //
+      expandName.value = expandName.value === belong ? null : belong
+    }
+
+    const group = computed(() => {
+      if (expandName.value) return aside.value[expandName.value]
+      return []
+    }) as ComputedRef<typeof aside.value[number]>
+
+    return { expandName, group, aside, groupClickHandler }
   }
 })
 </script>
@@ -49,10 +74,9 @@ export default defineComponent({
 .menu {
   height: calc(100vh - var(--nav-height));
   width: 100vw;
-  padding-left: var(--fect-gap);
   position: fixed;
   top: var(--nav-height);
-  z-index: 999;
+  z-index: 9999;
   box-sizing: border-box;
   background-color: var(--primary-background);
   overflow-y: auto;
@@ -74,10 +98,48 @@ export default defineComponent({
   background: none;
   outline: none;
   cursor: pointer;
+  position: relative;
   box-sizing: border-box;
-  padding: 0 var(--fect-gap-half);
-  // margin: 0 var(--fect-gap);
+  padding: 0 var(--fect-gap);
   text-decoration: capitalize;
-  border-bottom: 1px solid var(--accents-2);
+  font-size: 0.9rem;
+  &::after {
+    position: absolute;
+    bottom: 0;
+    content: '';
+    width: calc(100% - var(--fect-gap));
+    right: 0;
+    border-bottom: 1px solid var(--accents-2);
+  }
+}
+
+.group {
+  background-color: var(--accents-1);
+  padding: 0 calc(var(--fect-gap) * 1.5) var(--fect-gap);
+  border-top: 1px solid var(--accents-2);
+}
+
+.section {
+  .name {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--accents-5);
+    margin-top: var(--fect-gap);
+    margin-bottom: var(--fect-gap-half);
+  }
+  .item {
+    padding: var(--fect-gap-quarter) var(--fect-gap);
+    margin: 0 var(--fect-gap-quarter);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 0.85rem;
+    color: var(--accents-6);
+    border-left: 1px solid var(--accents-2);
+  }
 }
 </style>
