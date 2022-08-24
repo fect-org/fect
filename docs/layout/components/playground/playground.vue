@@ -1,6 +1,8 @@
 <template>
   <div class="playground">
-    <component :is="component" />
+    <div class="exhibition">
+      <component :is="component" />
+    </div>
     <preview :code="code" />
   </div>
 </template>
@@ -26,5 +28,20 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .playground {
+  width: 100%;
+  border: 1px solid var(--fect-border);
+  border-radius: var(--fect-radius);
+}
+
+.exhibition {
+  width: 100%;
+  padding: var(--fect-gap);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  > div {
+    width: 100%;
+    background-color: transparent;
+  }
 }
 </style>
