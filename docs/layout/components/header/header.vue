@@ -2,7 +2,7 @@
   <div class="header">
     <fe-grid-group class="real-header">
       <fe-grid class="aside" :xs="4" :sm="4" :md="4" :lg="4">
-        <fe-link>
+        <fe-link :to="`/${locale}`">
           <div><triangle /></div>
           <h1>Fect</h1>
         </fe-link>
@@ -15,12 +15,24 @@
         </div>
         <div class="controls">
           <template v-if="!isMobile">
-            <fe-button @click="localeChangeHandler" size="mini" auto>{{ locale === 'en-us' ? 'En' : '中' }}</fe-button>
-            <div @click="themeChange">
-              <moon :size="20" v-if="theme === 'dark-theme'" />
-              <sun :size="20" v-else />
-            </div>
-            <github :size="20" />
+            <fe-button class="lang" @click="localeChangeHandler" size="mini" auto>
+              <span class="inner">
+                {{ locale === 'en-us' ? '中' : 'En' }}
+              </span>
+            </fe-button>
+            <fe-spacer :x="0.6" />
+            <fe-button @click="themeChange" size="mini" auto>
+              <template #icon>
+                <moon :size="14" v-if="theme === 'dark-theme'" />
+                <sun :size="14" v-else />
+              </template>
+            </fe-button>
+            <fe-spacer :x="0.6" />
+            <fe-button size="mini" auto @click="redirectGithub">
+              <template #icon>
+                <github :size="14" />
+              </template>
+            </fe-button>
           </template>
           <template v-else>
             <menu-icon @click="mobileMenuClickHandler" size="1.125rem" />
@@ -95,6 +107,10 @@ export default defineComponent({
       }
     }
 
+    const redirectGithub = () => {
+      window.open('https://github.com/fect-org/fect')
+    }
+
     watch(
       () => isMobile.value,
       (cur) => {
@@ -115,7 +131,8 @@ export default defineComponent({
       routerChangeHandler,
       themeChange,
       localeChangeHandler,
-      mobileMenuClickHandler
+      mobileMenuClickHandler,
+      redirectGithub
     }
   }
 })
@@ -159,7 +176,7 @@ export default defineComponent({
 }
 
 .tabs {
-  :deep(.fect-tabs__title) {
+  :deep .fect-tabs__title {
     font-size: 14px !important;
   }
   .fect-tab {
@@ -171,8 +188,12 @@ export default defineComponent({
   display: flex;
   align-items: center;
   margin-left: auto;
-  button {
-    margin-right: var(--fect-gap);
+  .lang {
+    .inner {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
   svg {
     cursor: pointer;

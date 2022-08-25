@@ -24,7 +24,7 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.ALIYUN_SSH_TOKEN }}
           ARGS: '-avz --delete'
-          SOURCE: './packages/website/dist'
+          SOURCE: './dist'
           REMOTE_HOST: ${{ secrets.ALI_HOST }}
           REMOTE_USER: 'root'
           TARGET: '/opt/fect-rc'

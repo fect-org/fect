@@ -24,10 +24,10 @@ const createVueApp = () => {
     console.log(err, 'router err main')
   })
 
-  const baseTitlte = 'Vue - Fect UI'
+  const composeTitle = (base = 'Vue') => `${base} - Fect UI`
 
   router.beforeEach((to, _, next) => {
-    document.title = (to.meta?.title as string) || baseTitlte
+    document.title = composeTitle((to.meta?.title as string) || 'Vue')
 
     next()
   })

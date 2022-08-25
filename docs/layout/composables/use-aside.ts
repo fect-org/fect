@@ -4,7 +4,7 @@ import { serializedModule } from '../common/route'
 
 type UseAside = {
   (locale: Ref<string>, tabbar: Ref<string>): DeepReadonly<Ref<Record<string, Array<Omit<ModuleInfo, 'component'>>>>>
-  (locale: Ref<string>, mobile: true): DeepReadonly<
+  (locale: Ref<string>, full: true): DeepReadonly<
     Ref<Record<string, Record<string, Array<Omit<ModuleInfo, 'component'>>>>>
   >
 }
