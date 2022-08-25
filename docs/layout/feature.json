@@ -1,0 +1,68 @@
+{
+  "cn": {
+    "action": [
+      {
+        "name": "开始",
+        "value": "start"
+      },
+      {
+        "name": "为什么是Fect",
+        "value": "why"
+      },
+      {
+        "name": "在GitHub查看",
+        "value": "github"
+      }
+    ],
+    "feature": [
+      {
+        "name": "Guide",
+        "icon": "package",
+        "desc": "View the design guidelines"
+      },
+      {
+        "name": "Components",
+        "icon": "feather",
+        "desc": "Ever-increasing list of concise and aesthetic components."
+      },
+      {
+        "name": "Open Sourced",
+        "icon": "github",
+        "desc": "Fect is open sourced and available free under MIT licence."
+      }
+    ]
+  },
+  "us": {
+    "action": [
+      {
+        "name": "Start",
+        "value": "start"
+      },
+      {
+        "name": "Why Fect",
+        "value": "why"
+      },
+      {
+        "name": "View on Github",
+        "value": "github"
+      }
+    ],
+    "feature": [
+      {
+        "name": "Guide",
+        "icon": "package",
+        "desc": "View the design guidelines"
+      },
+      {
+        "name": "Components",
+        "icon": "feather",
+        "desc": "Ever-increasing list of concise and aesthetic components."
+      },
+      {
+        "name": "Open Sourced",
+        "icon": "github",
+        "desc": "Fect is open sourced and available free under MIT licence."
+      }
+    ]
+  }
+}

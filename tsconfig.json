@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "allowJs": true,
+        "importHelpers": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "jsx": "preserve",
+        "target": "esnext",
+        "module": "esnext",
+        "types":["vite/client"]
+    },
+    "include": ["docs","shims"],
+    "exclude": ["exmaple/**/*"]
+}
