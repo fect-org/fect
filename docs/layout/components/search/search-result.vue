@@ -1,13 +1,19 @@
 <template>
-  <ul class="results">
+  <ul class="results" ref="ulRef">
     <high-light :rect="defaultRect" />
-    <li role="presentation">
-      <div class="group-title">数据展示</div>
+    <li role="presentation" v-for="group in groupResult" :key="group.title">
+      <div class="group-title">{{ group.title }}</div>
       <ul role="group">
-        <li role="option">
-          <button class="container">
-            <moon />
-            <span class="text"> Avtar 数据 </span>
+        <li role="option" v-for="item in group.items" :key="item.name">
+          <button
+            class="container"
+            @blur="blurHandler"
+            @focus="focusHandler"
+            @mouseover="mouseoverHandler"
+            @click="() => clickHandler(item.url)"
+          >
+            <search-icon />
+            <span class="text">{{ item.title }} </span>
           </button>
         </li>
       </ul>
@@ -16,12 +22,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent, PropType, ref } from 'vue'
+import { flatModule } from '../../common/route'
 import HighLight from '@fect-ui/vue/src/tabs/tabs-highlight'
+import SearchIcon from './search-icon.vue'
 
 export default defineComponent({
-  components: { HighLight },
-  setup() {
+  components: { HighLight, SearchIcon },
+  props: {
+    data: Array as PropType<typeof flatModule['zh']>
+  },
+  emits: ['select'],
+  setup(props, { emit }) {
+    const ulRef = ref<HTMLUListElement>()
+
     const defaultRect = {
       top: -1000,
       left: -1000,
@@ -31,8 +45,34 @@ export default defineComponent({
       elementTop: -1000
     }
 
+    const groupResult = computed(() => {
+      const { data } = props
+      return data.reduce((acc, item) => {
+        const title = item.groupKey || 'General'
+        const nested = acc.find((g) => g.title === title)
+        if (!nested) {
+          acc.push({ title, items: [item] })
+        } else {
+          nested.items.push(item)
+        }
+
+        return acc
+      }, [])
+    })
+
+    const blurHandler = (e: Event) => {}
+    const clickHandler = (url: string) => emit('select', url)
+    const focusHandler = (e: Event) => {}
+    const mouseoverHandler = (e: Event) => {}
+
     return {
-      defaultRect
+      defaultRect,
+      groupResult,
+      ulRef,
+      blurHandler,
+      clickHandler,
+      focusHandler,
+      mouseoverHandler
     }
   }
 })
@@ -46,6 +86,9 @@ export default defineComponent({
   position: relative;
   scroll-behavior: smooth;
   margin-bottom: 0.5rem;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
   li::before {
     content: none;
   }
@@ -83,5 +126,6 @@ export default defineComponent({
 .text {
   margin-left: 12px;
   padding-right: revert;
+  font-size: 14px;
 }
 </style>

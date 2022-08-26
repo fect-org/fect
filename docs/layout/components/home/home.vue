@@ -9,7 +9,7 @@
         </p>
         <div class="actions">
           <template v-for="(action, i) in actions" :key="action.value">
-            <fe-button auto size="small">{{ action.name }}</fe-button>
+            <fe-button auto size="small" @click="() => switchRouteHandler(action.value)">{{ action.name }}</fe-button>
             <fe-spacer v-if="i !== actions.length - 1" />
           </template>
         </div>
@@ -26,7 +26,17 @@
     </div>
     <fe-spacer :y="2" />
     <fe-grid-group class="features" justify="space-around">
-      <fe-grid class="card" v-for="feature in features" :key="feature.name" :xs="24" :lg="7" :xl="7" :md="7" :sm="7">
+      <fe-grid
+        class="card"
+        v-for="feature in features"
+        :key="feature.name"
+        :xs="24"
+        :lg="7"
+        :xl="7"
+        :md="7"
+        :sm="7"
+        @click="() => switchRouteHandler(feature.value)"
+      >
         <fe-card shadow hoverable>
           <h4>
             <div class="icon">
@@ -43,19 +53,40 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
+import { useRouter } from 'vue-router'
 import { useLocale } from '../../composables'
 import { cn, us } from '../../feature.json'
 export default defineComponent({
   setup() {
     const { locale } = useLocale()
 
+    const router = useRouter()
     const features = computed(() => (locale.value === 'zh-cn' ? cn.feature : us.feature))
 
     const actions = computed(() => (locale.value === 'zh-cn' ? cn.action : us.action))
 
+    const switchRouteHandler = (value: string) => {
+      if (value === 'github') {
+        window.location.href = 'https://github.com/fect-org/fect'
+      } else {
+        const getPath = (value: string) => {
+          switch (value) {
+            case 'whyfect':
+            case 'install':
+            case 'guide':
+              return `/${locale.value}/guide/${['whyfect', 'install'].includes(value) ? value : 'whyfect'}`
+            case 'components':
+              return `/${locale.value}/components/avatar`
+          }
+        }
+        router.push({ path: getPath(value) })
+      }
+    }
+
     return {
       features,
-      actions
+      actions,
+      switchRouteHandler
     }
   }
 })
@@ -64,7 +95,7 @@ export default defineComponent({
 <style lang="less" scoped>
 .home {
   box-sizing: border-box;
-  padding: var(--fect-gap) calc(var(--fect-gap) * 2) 0;
+  padding: var(--fect-gap) 0;
 }
 .description {
   display: flex;
@@ -109,6 +140,7 @@ export default defineComponent({
 
 .card {
   min-height: 180px;
+  cursor: pointer;
 }
 .icon {
   height: 2.5rem;

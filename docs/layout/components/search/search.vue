@@ -1,66 +1,80 @@
 <template>
-  <fe-modal class="search" width="500px" position-class-name="search-position" v-model:visible="visible">
-    <template #title />
-    <template #action />
-    <fe-input v-model="input" class="input" placeholder="Search a component" size="large" clearable />
-    <search-result />
-  </fe-modal>
+  <div>
+    <fe-modal class="search" width="500px" position-class-name="search-position" v-model:visible="visible">
+      <template #title />
+      <template #action />
+      <fe-input v-model="input" class="input" placeholder="Search a component" size="large" clearable />
+      <template v-if="menu.length">
+        <fe-spacer :y="0.5" />
+        <search-result :data="menu" @select="selectHandler" />
+      </template>
+    </fe-modal>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, watchEffect, computed } from 'vue'
 import { useKeyboard, KeyCode, KeyMod } from '@fect-ui/vue/src'
-import { useAside, useLocale } from '../../composables'
+import { useLocale } from '../../composables'
 import { flatModule } from '../../common/route'
 import SearchResult from './search-result.vue'
+import { useRouter } from 'vue-router'
 export default defineComponent({
   components: { SearchResult },
   setup() {
     const visible = ref(false)
     const resultVisible = ref(false)
     const input = ref('')
+    const menu = ref<ReturnType<typeof selectorMenuData>>([])
 
     const { locale } = useLocale()
 
-    const allMenu = useAside(locale, true)
+    const localeMenu = computed(() => (locale.value === 'zh-cn' ? flatModule.zh : flatModule.en))
 
     const initlizeKeyboardState = () => {
       visible.value = true
       resultVisible.value = false
+      input.value = ''
     }
 
     const selectorMenuData = (value: string) => {
-      // console.log(allMenu.value)
       value = value.toLocaleLowerCase()
-      const menus = Object.values(allMenu.value)
-      const realMenu = menus.filter((menu) => {
-        return Object.keys(menu).map((groupName) => groupName.toLocaleLowerCase().includes(value))
-      })
-      console.log(realMenu)
+      return localeMenu.value
+        .filter((menu) => {
+          if (menu.name.toLowerCase().includes(value)) return true
+          return menu.groupKey.toLowerCase().includes(value)
+        })
+        .slice(0, 10)
+        .sort((seed) => {
+          const startWithName = seed.name.toLowerCase().startsWith(value)
+          const startWithGroup = seed.groupKey.toLowerCase().startsWith(value)
+          if (startWithName) return -1
+          if (startWithGroup) return 0
+          return 1
+        })
     }
 
     watchEffect(() => {
-      if (!input.value) return
-      selectorMenuData(input.value)
+      if (!input.value) return (menu.value = [])
+      menu.value = selectorMenuData(input.value)
     })
 
     useKeyboard(initlizeKeyboardState, [KeyMod.CtrlCmd, KeyCode.KEY_K])
 
-    // watch(
-    //   () => input.value,
-    //   () => {
-    //     if (input.value) {
-    //       resultVisible.value = true
-    //     } else {
-    //       resultVisible.value = false
-    //     }
-    //   }
-    // )
+    const router = useRouter()
+
+    const selectHandler = (absoluteUrl: string) => {
+      const url = `/${locale.value}${absoluteUrl}`
+      router.push({ path: url })
+      visible.value = false
+    }
 
     return {
       visible,
       resultVisible,
-      input
+      input,
+      menu,
+      selectHandler
     }
   }
 })

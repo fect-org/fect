@@ -85,12 +85,13 @@ export const flatMarkdownModule = (module: ReturnType<typeof loadStaticMarkdownM
         const [groupKey, subModule] = sub.value as [string, Array<ModuleInfo>]
         subModule.forEach((each) => {
           const { index, name, title, group } = each
-          result.push({ index, name, title, group, groupKey })
+          const url = `/${group}/${name}`
+          result.push({ index, name, title, group, groupKey, url })
         })
       }
       if (cur.done) end = true
     }
-    return result
+    return result as Array<{ index: number; name: string; title: string; group: string; groupKey: string; url: string }>
   }
 
   return {
