@@ -3,11 +3,11 @@
     "action": [
       {
         "name": "开始",
-        "value": "start"
+        "value": "install"
       },
       {
         "name": "为什么是Fect",
-        "value": "why"
+        "value": "whyfect"
       },
       {
         "name": "在GitHub查看",
@@ -18,17 +18,20 @@
       {
         "name": "Guide",
         "icon": "package",
-        "desc": "View the design guidelines"
+        "desc": "View the design guidelines",
+        "value": "guide"
       },
       {
         "name": "Components",
         "icon": "feather",
-        "desc": "Ever-increasing list of concise and aesthetic components."
+        "desc": "Ever-increasing list of concise and aesthetic components.",
+        "value": "components"
       },
       {
         "name": "Open Sourced",
         "icon": "github",
-        "desc": "Fect is open sourced and available free under MIT licence."
+        "desc": "Fect is open sourced and available free under MIT licence.",
+        "value": "github"
       }
     ]
   },
@@ -36,11 +39,11 @@
     "action": [
       {
         "name": "Start",
-        "value": "start"
+        "value": "install"
       },
       {
         "name": "Why Fect",
-        "value": "why"
+        "value": "whyfect"
       },
       {
         "name": "View on Github",
@@ -51,17 +54,20 @@
       {
         "name": "Guide",
         "icon": "package",
-        "desc": "View the design guidelines"
+        "desc": "View the design guidelines",
+        "value": "guide"
       },
       {
         "name": "Components",
         "icon": "feather",
-        "desc": "Ever-increasing list of concise and aesthetic components."
+        "desc": "Ever-increasing list of concise and aesthetic components.",
+        "value": "components"
       },
       {
         "name": "Open Sourced",
         "icon": "github",
-        "desc": "Fect is open sourced and available free under MIT licence."
+        "desc": "Fect is open sourced and available free under MIT licence.",
+        "value": "github"
       }
     ]
   }

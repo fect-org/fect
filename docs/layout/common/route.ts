@@ -8,8 +8,7 @@ import { Home } from '../components/home'
 import { Wrap } from '../components/wrap'
 
 import type { RouteRecordRaw } from 'vue-router'
-import { loadStaticMarkdownModule, ModuleInfo } from './loader'
-// import { zhGroupWeights } from './front-matter'
+import { flatMarkdownModule, loadStaticMarkdownModule, ModuleInfo } from './loader'
 
 export const markdownModule = loadStaticMarkdownModule()
 
@@ -33,6 +32,7 @@ const serializeModule = (module: typeof markdownModule) => {
   return all
 }
 
+export const flatModule = flatMarkdownModule(markdownModule)
 export const serializedModule = serializeModule(markdownModule)
 
 const createRoute = () => {

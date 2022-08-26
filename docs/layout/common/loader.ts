@@ -65,3 +65,37 @@ export const loadStaticMarkdownModule = () => {
 
   return { zhModule, enModule }
 }
+
+export const flatMarkdownModule = (module: ReturnType<typeof loadStaticMarkdownModule>) => {
+  //
+  const { zhModule, enModule } = module
+  const iteraotr = (map: typeof zhModule) => {
+    const m = map.entries()
+    let end = false
+    const result = []
+    const TRUE = true
+    while (!end) {
+      const cur = m.next()
+      if (!cur.value) break
+      const [, children] = cur.value as [string, Map<string, ModuleInfo[]>]
+      const item = children.entries()
+      while (TRUE) {
+        const sub = item.next()
+        if (sub.done) break
+        const [groupKey, subModule] = sub.value as [string, Array<ModuleInfo>]
+        subModule.forEach((each) => {
+          const { index, name, title, group } = each
+          const url = `/${group}/${name}`
+          result.push({ index, name, title, group, groupKey, url })
+        })
+      }
+      if (cur.done) end = true
+    }
+    return result as Array<{ index: number; name: string; title: string; group: string; groupKey: string; url: string }>
+  }
+
+  return {
+    zh: iteraotr(zhModule),
+    en: iteraotr(enModule)
+  }
+}

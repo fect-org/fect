@@ -1,13 +1,19 @@
 <template>
-  <ul class="results">
-    <high-light :rect="defaultRect" />
-    <li role="presentation">
-      <div class="group-title">数据展示</div>
+  <ul class="results" ref="ulRef">
+    <high-light :rect="rect" :active="highlightVisible" :height-ratio="1" :width-ratio="1" />
+    <li role="presentation" v-for="group in groupResult" :key="group.title">
+      <div class="group-title">{{ group.title }}</div>
       <ul role="group">
-        <li role="option">
-          <button class="container">
-            <moon />
-            <span class="text"> Avtar 数据 </span>
+        <li role="option" v-for="item in group.items" :key="item.name">
+          <button
+            class="container"
+            @blur="blurHandler"
+            @focus="focusHandler"
+            @mouseover="mouseoverHandler"
+            @click="() => clickHandler(item.url)"
+          >
+            <search-icon />
+            <span class="text">{{ item.title }} </span>
           </button>
         </li>
       </ul>
@@ -16,12 +22,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent, PropType, ref } from 'vue'
+import { flatModule } from '../../common/route'
 import HighLight from '@fect-ui/vue/src/tabs/tabs-highlight'
+import { getHighlightRect } from '@fect-ui/vue/src/tabs/style'
+import SearchIcon from './search-icon.vue'
 
 export default defineComponent({
-  components: { HighLight },
-  setup() {
+  components: { HighLight, SearchIcon },
+  props: {
+    data: Array as PropType<typeof flatModule['zh']>
+  },
+  emits: ['select'],
+  setup(props, { emit }) {
+    const ulRef = ref<HTMLUListElement>()
+    const highlightVisible = ref(false)
+
+    const rect = ref()
+
+    const updateRect = (selfEl: Element, parentEl: Element) => (rect.value = getHighlightRect(selfEl, parentEl))
+
     const defaultRect = {
       top: -1000,
       left: -1000,
@@ -31,8 +51,52 @@ export default defineComponent({
       elementTop: -1000
     }
 
+    const groupResult = computed(() => {
+      const { data } = props
+      return data.reduce((acc, item) => {
+        const title = item.groupKey || 'General'
+        const nested = acc.find((g) => g.title === title)
+        if (!nested) {
+          acc.push({ title, items: [item] })
+        } else {
+          nested.items.push(item)
+        }
+
+        return acc
+      }, [])
+    })
+
+    const validateTargetElement = (e: Event) => {
+      if ((e.target as HTMLElement).nodeName.toUpperCase() === 'BUTTON') {
+        return true
+      }
+      return false
+    }
+
+    const blurHandler = () => {
+      highlightVisible.value = false
+    }
+    const clickHandler = (url: string) => emit('select', url)
+
+    const withVisbile = (e: Event, callback: (e: Event) => void) => {
+      if (!validateTargetElement(e)) return
+      updateRect(e.target as Element, ulRef.value)
+      callback(e)
+    }
+
+    const focusHandler = (e: Event) => withVisbile(e, () => (highlightVisible.value = true))
+    const mouseoverHandler = (e: Event) => withVisbile(e, (e) => (e.target as HTMLButtonElement).focus())
+
     return {
-      defaultRect
+      defaultRect,
+      highlightVisible,
+      groupResult,
+      ulRef,
+      rect,
+      blurHandler,
+      clickHandler,
+      focusHandler,
+      mouseoverHandler
     }
   }
 })
@@ -46,6 +110,9 @@ export default defineComponent({
   position: relative;
   scroll-behavior: smooth;
   margin-bottom: 0.5rem;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
   li::before {
     content: none;
   }
@@ -83,5 +150,6 @@ export default defineComponent({
 .text {
   margin-left: 12px;
   padding-right: revert;
+  font-size: 14px;
 }
 </style>
