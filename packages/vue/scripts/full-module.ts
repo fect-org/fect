@@ -18,7 +18,7 @@ const generatorFullConfigs = (mini = false): Omit<BuildTaskConfig, 'taskName'> =
       sourceMap: false,
       dir: 'dist/cjs',
       exports: 'named',
-      minifiy: mini
+      minify: mini
     },
     plugins: {
       jsx
