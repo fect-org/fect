@@ -1,21 +1,14 @@
 import { defineComponent, computed } from 'vue'
-import { createBem, noop } from '../utils'
+import { createBem } from '../utils'
+import { tabsHighlightProps } from './props'
 
 const bem = createBem('fect-tabs')
 
 export default defineComponent({
-  props: {
-    active: Boolean,
-    rect: {
-      type: Object,
-      default: noop
-    },
-    heightRatio: Number,
-    widthRatio: Number
-  },
+  props: tabsHighlightProps,
   setup(props) {
     const setHighlightStyle = computed(() => {
-      const { rect, heightRatio, widthRatio } = props
+      const { rect, heightRatio, widthRatio, activeOpacity } = props
       if (!rect)
         return {
           'transition-property': 'opacity'
@@ -23,7 +16,7 @@ export default defineComponent({
       const width = rect.width * widthRatio!
       const height = rect.height * heightRatio!
       return {
-        opacity: props.active ? 0.8 : 0,
+        opacity: props.active ? activeOpacity : 0,
         width: `${width}px`,
         left: `${rect.left + (rect.width - width) / 2}px`,
         height: `${height}px`,

@@ -3,7 +3,7 @@
  */
 import { unref } from 'vue'
 import { getDomRect } from '../utils'
-import type { MaybeElement } from '../utils'
+import type { MaybeElement } from '../composables'
 
 export const getHighlightRect = (elRef: MaybeElement, container: MaybeElement) => {
   const elRect = getDomRect(elRef)

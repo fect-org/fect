@@ -41,5 +41,17 @@ export const tabsHighlightProps = {
   active: Boolean,
   rect: {
     type: Object as PropType<TabsHighlightRect>
+  },
+  activeOpacity: {
+    type: Number,
+    default: 0.8
+  },
+  heightRatio: {
+    type: Number,
+    default: 1
+  },
+  widthRatio: {
+    type: Number,
+    default: 1
   }
 }

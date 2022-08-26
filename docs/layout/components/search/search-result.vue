@@ -1,6 +1,6 @@
 <template>
   <ul class="results" ref="ulRef">
-    <high-light :rect="rect" :active="highlightVisible" :height-ratio="1" :width-ratio="1" />
+    <high-light :rect="rect" :active="highlightVisible" :height-ratio="1" :width-ratio="1" :active-opacity="0.5" />
     <li role="presentation" v-for="group in groupResult" :key="group.title">
       <div class="group-title">{{ group.title }}</div>
       <ul role="group">

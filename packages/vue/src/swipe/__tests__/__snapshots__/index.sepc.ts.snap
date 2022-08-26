@@ -55,7 +55,7 @@ exports[`Swipe should be support custom indicator color 1`] = `
 exports[`Swipe should support autoplay 1`] = `
 <div class="container">
   <div class="fect-swipe" style="height: 200px; width: 350px;">
-    <div class="fect-swipe__track" style="width: 0px; transform: translateX(0px); transition-duration: 0ms;">
+    <div class="fect-swipe__track" style="width: 0px; transform: translateX(0px); transition-duration: 300ms;">
       <div class="fect-swipe__item" style="width: 0px; transform: translateX(0px);"> 1 </div>
       <div class="fect-swipe__item" style="width: 0px; transform: translateX(0px);"> 2 </div>
       <div class="fect-swipe__item" style="width: 0px; transform: translateX(0px);"> 3 </div>

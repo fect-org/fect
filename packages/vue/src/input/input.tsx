@@ -1,5 +1,5 @@
 import { defineComponent, computed, ref } from 'vue'
-import { useState } from '@fect-ui/vue-hooks'
+import { useState, useExpose } from '@fect-ui/vue-hooks'
 import { createName, createBem } from '../utils'
 import { props } from './props'
 import ClearableIcon from './clearable-icon'
@@ -37,7 +37,7 @@ export default defineComponent({
 
     /**
      * After version 1.5.0-rc.0, We decide remove htmlType as `number` transform input value
-     * as number type. Because convert value is expensive, it's uer behavior.
+     * as number type. Because convert value is expensive, it's user behavior.
      * May it will regression in future version.
      */
     const updatelValue = (val: string) => {
@@ -84,6 +84,8 @@ export default defineComponent({
     const iconClickHandler = (event: 'prefix-icon-click' | 'suffix-icon-click', e: Event) => {
       emit(event, e)
     }
+
+    useExpose({ ref: inputRef })
 
     const renderInput = () => {
       const InputProps = {

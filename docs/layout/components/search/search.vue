@@ -3,7 +3,7 @@
     <fe-modal class="search" width="500px" position-class-name="search-position" v-model:visible="visible">
       <template #title />
       <template #action />
-      <fe-input v-model="input" class="input" placeholder="Search a component" size="large" clearable />
+      <fe-input v-model="input" class="input" placeholder="Search a component" size="large" clearable ref="inputRef" />
       <template v-if="menu.length">
         <fe-spacer :y="0.5" />
         <search-result :data="menu" @select="selectHandler" />
@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, watchEffect, computed } from 'vue'
-import { useKeyboard, KeyCode, KeyMod } from '@fect-ui/vue/src'
+import { useKeyboard, KeyCode, KeyMod, InputInstance } from '@fect-ui/vue/src'
 import { useLocale } from '../../composables'
 import { flatModule } from '../../common/route'
 import SearchResult from './search-result.vue'
@@ -25,6 +25,7 @@ export default defineComponent({
     const menu = ref<ReturnType<typeof selectorMenuData>>([])
     const visible = ref(false)
     const input = ref('')
+    const inputRef = ref<InputInstance>()
 
     const { locale } = useLocale()
 
@@ -33,6 +34,10 @@ export default defineComponent({
     const initlizeKeyboardState = () => {
       visible.value = true
       input.value = ''
+      const timer = window.setTimeout(() => {
+        inputRef.value && inputRef.value.ref.value.focus()
+        window.clearTimeout(timer)
+      }, 0)
     }
 
     const selectorMenuData = (value: string) => {
@@ -70,6 +75,7 @@ export default defineComponent({
     return {
       visible,
       input,
+      inputRef,
       menu,
       selectHandler
     }
