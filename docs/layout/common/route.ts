@@ -9,7 +9,6 @@ import { Wrap } from '../components/wrap'
 
 import type { RouteRecordRaw } from 'vue-router'
 import { flatMarkdownModule, loadStaticMarkdownModule, ModuleInfo } from './loader'
-// import { zhGroupWeights } from './front-matter'
 
 export const markdownModule = loadStaticMarkdownModule()
 

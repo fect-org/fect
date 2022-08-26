@@ -22,10 +22,9 @@ import { useRouter } from 'vue-router'
 export default defineComponent({
   components: { SearchResult },
   setup() {
-    const visible = ref(false)
-    const resultVisible = ref(false)
-    const input = ref('')
     const menu = ref<ReturnType<typeof selectorMenuData>>([])
+    const visible = ref(false)
+    const input = ref('')
 
     const { locale } = useLocale()
 
@@ -33,7 +32,6 @@ export default defineComponent({
 
     const initlizeKeyboardState = () => {
       visible.value = true
-      resultVisible.value = false
       input.value = ''
     }
 
@@ -71,7 +69,6 @@ export default defineComponent({
 
     return {
       visible,
-      resultVisible,
       input,
       menu,
       selectHandler

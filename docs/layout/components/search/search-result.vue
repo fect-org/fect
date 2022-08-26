@@ -1,6 +1,6 @@
 <template>
   <ul class="results" ref="ulRef">
-    <high-light :rect="defaultRect" />
+    <high-light :rect="rect" :active="highlightVisible" :height-ratio="1" :width-ratio="1" />
     <li role="presentation" v-for="group in groupResult" :key="group.title">
       <div class="group-title">{{ group.title }}</div>
       <ul role="group">
@@ -25,6 +25,7 @@
 import { computed, defineComponent, PropType, ref } from 'vue'
 import { flatModule } from '../../common/route'
 import HighLight from '@fect-ui/vue/src/tabs/tabs-highlight'
+import { getHighlightRect } from '@fect-ui/vue/src/tabs/style'
 import SearchIcon from './search-icon.vue'
 
 export default defineComponent({
@@ -35,6 +36,11 @@ export default defineComponent({
   emits: ['select'],
   setup(props, { emit }) {
     const ulRef = ref<HTMLUListElement>()
+    const highlightVisible = ref(false)
+
+    const rect = ref()
+
+    const updateRect = (selfEl: Element, parentEl: Element) => (rect.value = getHighlightRect(selfEl, parentEl))
 
     const defaultRect = {
       top: -1000,
@@ -60,15 +66,33 @@ export default defineComponent({
       }, [])
     })
 
-    const blurHandler = (e: Event) => {}
+    const validateTargetElement = (e: Event) => {
+      if ((e.target as HTMLElement).nodeName.toUpperCase() === 'BUTTON') {
+        return true
+      }
+      return false
+    }
+
+    const blurHandler = () => {
+      highlightVisible.value = false
+    }
     const clickHandler = (url: string) => emit('select', url)
-    const focusHandler = (e: Event) => {}
-    const mouseoverHandler = (e: Event) => {}
+
+    const withVisbile = (e: Event, callback: (e: Event) => void) => {
+      if (!validateTargetElement(e)) return
+      updateRect(e.target as Element, ulRef.value)
+      callback(e)
+    }
+
+    const focusHandler = (e: Event) => withVisbile(e, () => (highlightVisible.value = true))
+    const mouseoverHandler = (e: Event) => withVisbile(e, (e) => (e.target as HTMLButtonElement).focus())
 
     return {
       defaultRect,
+      highlightVisible,
       groupResult,
       ulRef,
+      rect,
       blurHandler,
       clickHandler,
       focusHandler,
