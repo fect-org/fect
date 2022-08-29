@@ -1,6 +1,3 @@
-// const context = require.context('./', true, /\.vue$/)
-// const exContext = require.context('!raw-loader!./', true, /\.vue$/)
-
 const context = import.meta.globEager('./**/*.vue')
 
 export default {

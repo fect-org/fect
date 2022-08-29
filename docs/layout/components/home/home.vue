@@ -2,7 +2,6 @@
   <div class="home">
     <div class="description">
       <aside class="aside">
-        <h1>Fect</h1>
         <p>
           Fect is a Vue UI Library with beautifully handcrafted Vercel Component.No design skills required — everything
           you need to create amazing applications is at your fingertips.
@@ -16,11 +15,7 @@
       </aside>
       <article>
         <fe-image-browser>
-          <fe-image
-            src="https://user-images.githubusercontent.com/52351095/118687359-7e809480-b837-11eb-8083-b0504ec79652.png"
-            width="500px"
-            height="246px"
-          ></fe-image>
+          <fe-image :src="theme === 'dark-theme' ? 'dark.png' : 'default.png'" width="500px" height="246px"></fe-image>
         </fe-image-browser>
       </article>
     </div>
@@ -54,12 +49,14 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
+import { useTheme } from '@fect-ui/vue/src'
 import { useLocale } from '../../composables'
 import { cn, us } from '../../feature.json'
 export default defineComponent({
   setup() {
     const { locale } = useLocale()
 
+    const { theme } = useTheme()
     const router = useRouter()
     const features = computed(() => (locale.value === 'zh-cn' ? cn.feature : us.feature))
 
@@ -84,6 +81,7 @@ export default defineComponent({
     }
 
     return {
+      theme,
       features,
       actions,
       switchRouteHandler

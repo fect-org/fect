@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
         "baseUrl": ".",
+        "outDir": "./dist",
         "allowJs": true,
         "importHelpers": true,
         "moduleResolution": "node",
@@ -10,6 +11,6 @@
         "module": "esnext",
         "types":["vite/client"]
     },
-    "include": ["docs","shims"],
-    "exclude": ["exmaple/**/*"]
+    "include": ["docs/layout/**/*","shims"],
+    "exclude": ["node_modules"]
 }

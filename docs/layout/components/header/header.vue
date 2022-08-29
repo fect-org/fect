@@ -74,11 +74,11 @@ export default defineComponent({
           localeName: locale.value === 'zh-cn' ? '上手指南' : 'Guide',
           value: 'guide'
         },
-        { localeName: locale.value === 'zh-cn' ? '所有组件' : 'Components', value: 'components' },
-        {
-          localeName: 'Hooks',
-          value: 'composables'
-        }
+        { localeName: locale.value === 'zh-cn' ? '所有组件' : 'Components', value: 'components' }
+        // {
+        //   localeName: 'Hooks',
+        //   value: 'composables'
+        // }
       ]
     })
 
