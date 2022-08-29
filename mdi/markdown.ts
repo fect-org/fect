@@ -8,10 +8,6 @@ import fs from 'fs'
 import path from 'path'
 import { createBuilder } from '@yankeeinlondon/builder-api'
 
-interface PlaygroundOptions {
-  __internal__: string
-}
-
 const palygroundReg = /:::playground((.|\r|\n)*?):::/g
 const scriptReg = /<\s*script>([\s\S]*)<\/script>/g
 
@@ -38,12 +34,10 @@ const parserPlayground = (code: string) => {
 }
 
 export const playground = createBuilder('playground', 'parser')
-  .options<Partial<PlaygroundOptions>>()
+  .options()
   .initializer()
   .handler(async (payload) => {
-    //
     payload.md = parserPlayground(payload.md)
-    // console.log(payload.md, payload.fileName,payload.cod)
-    return { ...payload }
+    return payload
   })
   .meta({ description: 'a internal playground parser' })

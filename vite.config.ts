@@ -3,7 +3,8 @@ import Vue from '@vitejs/plugin-vue'
 import Jsx from '@vitejs/plugin-vue-jsx'
 import Md from 'vite-plugin-md'
 import Prism from 'prismjs'
-import { playground } from './markdown'
+import { playground } from './mdi/markdown'
+import { table } from './mdi/table'
 import path from 'path'
 
 const internalMarkdownParser = (code: string) => {
@@ -34,7 +35,7 @@ export default defineConfig({
       transforms: {
         after: internalMarkdownParser
       },
-      builders: [playground()]
+      builders: [playground(), table()]
     })
   ],
   // https://github.com/vitejs/vite/issues/5270
