@@ -1,6 +1,6 @@
 ---
-title: Icon 图标
-name: Icon
+title: Icons 图标
+name: Icons
 group: '通用'
 index: 3
 ---

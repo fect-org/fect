@@ -20,11 +20,48 @@ export interface ModuleInfo extends Pick<OrignalFrontMatter, 'index' | 'title' |
   component: ModuleNamespace
 }
 
-export const loadStaticMarkdownModule = () => {
-  interface ModuleResult {
-    default: ModuleNamespace
-    frontmatter: OrignalFrontMatter
+interface ModuleResult {
+  default: ModuleNamespace
+  frontmatter: OrignalFrontMatter
+}
+
+export interface StaticModule {
+  title: string
+  index: number
+  name: string
+  group: string
+  dirName: string
+  module: () => Promise<ModuleResult>
+}
+
+export const loadStaticMarkdownModuleAsync = () => {
+  const zh = import.meta.glob<ModuleResult>('../../zh-cn/**/*.md')
+  const en = import.meta.glob<ModuleResult>('../../en-us/**/*.md')
+  const serialization = async (modules: Record<string, () => Promise<ModuleResult>>) => {
+    return Promise.all(
+      Object.entries(modules).map(async ([filePath, module]) => {
+        const {
+          frontmatter: { title, index, name, group }
+        } = await module()
+        const dirName = path.dirname(filePath)
+        return {
+          title,
+          index,
+          name,
+          group,
+          dirName,
+          module
+        }
+      })
+    )
   }
+
+  const asyncLoad = () => Promise.all([serialization(zh), serialization(en)])
+
+  return asyncLoad()
+}
+
+export const loadStaticMarkdownModule = () => {
   const load = () => {
     const zh = import.meta.glob<ModuleResult>('../../zh-cn/**/*.md', { eager: true })
     const en = import.meta.glob<ModuleResult>('../../en-us/**/*.md', { eager: true })
