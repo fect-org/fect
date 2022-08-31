@@ -7,9 +7,10 @@ import { playground } from './mdi/markdown'
 import { table } from './mdi/table'
 import path from 'path'
 
-const internalMarkdownParser = (code: string) => {
-  return code
-}
+const external = ['@fect-ui/vue-hooks', '@fect-ui/vue-icons', 'prismjs', 'vue', 'vue-router'].reduce(
+  (acc, cur) => (Object.assign(acc, { [cur]: [cur] }), acc),
+  {}
+)
 
 export default defineConfig({
   root: 'docs',
@@ -32,9 +33,6 @@ export default defineConfig({
       markdownItOptions: {
         highlight: (str) => Prism.highlight(str, Prism.languages.javascript, 'javascript')
       },
-      transforms: {
-        after: internalMarkdownParser
-      },
       builders: [playground(), table()]
     })
   ],
@@ -45,6 +43,11 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: path.join(__dirname, 'dist')
+    outDir: path.join(__dirname, 'dist'),
+    rollupOptions: {
+      output: {
+        manualChunks: external
+      }
+    }
   }
 })

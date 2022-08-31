@@ -1,16 +1,16 @@
 <template>
   <ul class="results" ref="ulRef">
     <high-light :rect="rect" :active="highlightVisible" :height-ratio="1" :width-ratio="1" :active-opacity="0.5" />
-    <li role="presentation" v-for="group in groupResult" :key="group.title">
-      <div class="group-title">{{ group.title }}</div>
+    <li role="presentation" v-for="group in groupResult" :key="group.group">
+      <div class="group-title">{{ group.group }}</div>
       <ul role="group">
-        <li role="option" v-for="item in group.items" :key="item.name">
+        <li role="option" v-for="item in group.children" :key="item.name">
           <button
             class="container"
             @blur="blurHandler"
             @focus="focusHandler"
             @mouseover="mouseoverHandler"
-            @click="() => clickHandler(item.url)"
+            @click="() => clickHandler(`/${item.dirName}/${item.name}`)"
           >
             <search-icon />
             <span class="text">{{ item.title }} </span>
@@ -23,15 +23,16 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType, ref } from 'vue'
-import { flatModule } from '../../common/route'
-import HighLight from '@fect-ui/vue/src/tabs/tabs-highlight'
 import { getHighlightRect } from '@fect-ui/vue/src/tabs/style'
+import HighLight from '@fect-ui/vue/src/tabs/tabs-highlight'
 import SearchIcon from './search-icon.vue'
+import { traverse } from '../../common/route'
+import type { StaticModule } from '../../common/loader'
 
 export default defineComponent({
   components: { HighLight, SearchIcon },
   props: {
-    data: Array as PropType<typeof flatModule['zh']>
+    data: Array as PropType<Array<StaticModule>>
   },
   emits: ['select'],
   setup(props, { emit }) {
@@ -53,17 +54,7 @@ export default defineComponent({
 
     const groupResult = computed(() => {
       const { data } = props
-      return data.reduce((acc, item) => {
-        const title = item.groupKey || 'General'
-        const nested = acc.find((g) => g.title === title)
-        if (!nested) {
-          acc.push({ title, items: [item] })
-        } else {
-          nested.items.push(item)
-        }
-
-        return acc
-      }, [])
+      return traverse(data, 'group')
     })
 
     const validateTargetElement = (e: Event) => {

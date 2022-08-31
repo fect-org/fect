@@ -11,7 +11,9 @@ export interface OrignalFrontMatter {
 
 const guideWeights = {
   快速上手: 1,
-  定制化: 2
+  定制化: 2,
+  'GETTING STARTED': 1,
+  CUSTOMIZATION: 2
 }
 
 const componentWeights = {
@@ -21,7 +23,14 @@ const componentWeights = {
   表单: 4,
   数据展示: 5,
   布告: 6,
-  导航: 7
+  导航: 7,
+  Common: 1,
+  Layout: 2,
+  SURFACES: 3,
+  Form: 4,
+  'DATA DISPLAY': 5,
+  FEEDBACK: 6,
+  NAVIGATION: 7
 }
 
 export const groupWeights = { ...guideWeights, ...componentWeights }

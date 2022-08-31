@@ -2,27 +2,33 @@ import { createApp } from 'vue'
 import Application from './application.vue'
 import Fect from '@fect-ui/vue/src'
 import Icon from '@fect-ui/vue-icons'
-import router from './common/route'
-import { createGlobalState } from './composables'
+import { loadStaticMarkdownModuleAsync } from './common/loader'
+import { combinedRoutes, createRouter } from './common/route'
+import { createGlobalState } from './common/global'
 import { Playground, Preview } from './components/playground'
 import Example from '../../example'
 import '@fect-ui/themes'
 import './common/var.css'
+import { createWebHistory } from 'vue-router'
 
-const createVueApp = () => {
-  const globalState = createGlobalState()
-
+const createVueApp = async () => {
+  // create app instance
   const app = createApp(Application)
 
-  app.config.errorHandler = (err) => {
-    globalState.setRenderError(err)
-  }
+  // load full static markdown module
+  const staticModule = await loadStaticMarkdownModuleAsync()
 
-  router.onError((err) => {
-    console.log(err)
-    globalState.setRenderError(err)
-    console.log(err, 'router err main')
+  const { routes } = combinedRoutes(staticModule)
+  // create router
+  const router = createRouter({
+    routes,
+    histroy: createWebHistory()
   })
+
+  // create global state
+
+  // traversed
+  const globalState = createGlobalState({ markdonwStaticModules: staticModule })
 
   const composeTitle = (base = 'Vue') => `${base} - Fect UI`
 
@@ -41,6 +47,5 @@ const createVueApp = () => {
   app.component(Preview.name, Preview)
   return { app, router }
 }
-const { app, router: _router } = createVueApp()
 
-_router.isReady().then(() => app.mount('#app'))
+createVueApp().then(({ app, router }) => router.isReady().then(() => app.mount('#app')))

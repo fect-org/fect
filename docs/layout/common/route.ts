@@ -3,40 +3,52 @@
  * and record that tree relationship.
  */
 
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter as createVueRouter } from 'vue-router'
 import { Home } from '../components/home'
 import { Wrap } from '../components/wrap'
 
-import type { RouteRecordRaw } from 'vue-router'
-import { flatMarkdownModule, loadStaticMarkdownModule, ModuleInfo } from './loader'
+import type { RouteRecordRaw, RouterHistory } from 'vue-router'
+import type { StaticModule } from './loader'
 
-export const markdownModule = loadStaticMarkdownModule()
-
-const convert = (enrty: Map<unknown, unknown>) => {
-  return Object.fromEntries(Array.from(enrty.entries(), ([k, v]) => (v instanceof Map ? [k, convert(v)] : [k, v])))
+interface RouterOptions {
+  routes: RouteRecordRaw[]
+  histroy: RouterHistory
 }
 
-const serializeModule = (module: typeof markdownModule) => {
-  const { zhModule, enModule } = module
-
-  const all = [convert(zhModule), convert(enModule)] as Array<Record<string, Record<string, Array<ModuleInfo>>>>
-
-  for (const each of all) {
-    Object.values(each).forEach((val) => {
-      for (const key in val) {
-        val[key] = val[key].sort((a, b) => a.index - b.index)
-      }
-    })
-  }
-
-  return all
+export const createRouter = (options: RouterOptions) => {
+  return createVueRouter({
+    routes: options.routes,
+    history: options.histroy
+  })
 }
 
-export const flatModule = flatMarkdownModule(markdownModule)
-export const serializedModule = serializeModule(markdownModule)
+export const traverse = (
+  entry: StaticModule[],
+  key: Exclude<keyof StaticModule, 'module'> = 'dirName'
+): Array<{
+  group: string
+  children: StaticModule[]
+}> => {
+  const keys = {}
+  const result = []
+  entry.forEach((item) => {
+    const parentGroup = item[key]
+    const children = entry.filter((self) => self[key] === parentGroup).sort((a, b) => a.index - b.index)
+    if (!keys[parentGroup]) {
+      keys[parentGroup] = parentGroup
+      result.push({
+        group: parentGroup,
+        children
+      })
+    }
+  })
+  return result
+}
 
-const createRoute = () => {
-  const routes: RouteRecordRaw[] = [
+export const combinedRoutes = (module: Array<StaticModule[]>) => {
+  const [zh, en] = module
+
+  const basicRoute: RouteRecordRaw[] = [
     {
       path: '/',
       redirect: {
@@ -53,58 +65,29 @@ const createRoute = () => {
     }
   ]
 
-  const { zhModule, enModule } = markdownModule
-
-  type ConvertModule = Record<string, Record<string, Array<ModuleInfo>>>
-
-  const realZhModule = convert(zhModule) as ConvertModule
-  const realEnModule = convert(enModule) as ConvertModule
-
-  const registry = (belong: string, module: ConvertModule) => {
-    Object.keys(module).forEach((group) => {
-      const groupModule = module[group]
-
-      const flatChildren = (val: typeof groupModule) =>
-        Object.values(val).flatMap((r) => {
-          return r.map(({ title, index, component, name }) => {
-            return {
-              path: name,
-              component: component,
-              meta: {
-                title,
-                index
-              }
-            }
-          })
-        })
-
-      routes.push({
-        path: `/${belong}/${group}`,
+  const setter = (basePath: string, baseRoute: RouteRecordRaw[], module: ReturnType<typeof traverse>) => {
+    module.forEach(({ group, children }) => {
+      baseRoute.push({
+        path: `/${basePath}/${group}`,
         component: Wrap,
-        children: flatChildren(groupModule)
+        children: children.map((item) => {
+          const { group, title, name, module } = item
+          return {
+            path: name.toLowerCase(),
+            component: module,
+            meta: {
+              title,
+              group
+            }
+          }
+        })
       })
     })
   }
 
-  registry('zh-cn', realZhModule)
-  registry('en-us', realEnModule)
-
-  // Final we should set the not find for the routes
-  routes.push({
-    path: '/:error(.*)',
-    component: {},
-    meta: {
-      async validate() {
-        return Promise.reject('RenderError')
-      }
-    }
-  })
-  return routes
+  setter('zh-cn', basicRoute, traverse(zh))
+  setter('en-us', basicRoute, traverse(en))
+  return {
+    routes: basicRoute
+  }
 }
-
-const router = createRouter({
-  history: createWebHistory(),
-  routes: createRoute()
-})
-
-export default router
