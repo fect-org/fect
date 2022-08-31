@@ -23,15 +23,15 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType, ref } from 'vue'
-import { flatModule } from '../../common/route'
-import HighLight from '@fect-ui/vue/src/tabs/tabs-highlight'
 import { getHighlightRect } from '@fect-ui/vue/src/tabs/style'
+import HighLight from '@fect-ui/vue/src/tabs/tabs-highlight'
 import SearchIcon from './search-icon.vue'
+import type { StaticModule } from '../../common/loader'
 
 export default defineComponent({
   components: { HighLight, SearchIcon },
   props: {
-    data: Array as PropType<typeof flatModule['zh']>
+    data: Array as PropType<Array<StaticModule>>
   },
   emits: ['select'],
   setup(props, { emit }) {
@@ -54,7 +54,7 @@ export default defineComponent({
     const groupResult = computed(() => {
       const { data } = props
       return data.reduce((acc, item) => {
-        const title = item.groupKey || 'General'
+        const title = item.dirName || 'General'
         const nested = acc.find((g) => g.title === title)
         if (!nested) {
           acc.push({ title, items: [item] })

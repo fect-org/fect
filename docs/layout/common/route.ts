@@ -8,32 +8,7 @@ import { Home } from '../components/home'
 import { Wrap } from '../components/wrap'
 
 import type { RouteRecordRaw, RouterHistory } from 'vue-router'
-import { flatMarkdownModule, loadStaticMarkdownModule, ModuleInfo, StaticModule } from './loader'
-
-export const markdownModule = loadStaticMarkdownModule()
-
-const convert = (enrty: Map<unknown, unknown>) => {
-  return Object.fromEntries(Array.from(enrty.entries(), ([k, v]) => (v instanceof Map ? [k, convert(v)] : [k, v])))
-}
-
-const serializeModule = (module: typeof markdownModule) => {
-  const { zhModule, enModule } = module
-
-  const all = [convert(zhModule), convert(enModule)] as Array<Record<string, Record<string, Array<ModuleInfo>>>>
-
-  for (const each of all) {
-    Object.values(each).forEach((val) => {
-      for (const key in val) {
-        val[key] = val[key].sort((a, b) => a.index - b.index)
-      }
-    })
-  }
-
-  return all
-}
-
-export const flatModule = flatMarkdownModule(markdownModule)
-export const serializedModule = serializeModule(markdownModule)
+import type { StaticModule } from './loader'
 
 interface RouterOptions {
   routes: RouteRecordRaw[]
@@ -47,8 +22,9 @@ export const createRouter = (options: RouterOptions) => {
   })
 }
 
-const traverse = (
-  entry: StaticModule[]
+export const traverse = (
+  entry: StaticModule[],
+  key: Exclude<keyof StaticModule, 'module'> = 'dirName'
 ): Array<{
   group: string
   children: StaticModule[]
@@ -56,8 +32,8 @@ const traverse = (
   const keys = {}
   const result = []
   entry.forEach((item) => {
-    const { dirName: parentGroup } = item
-    const children = entry.filter((self) => self.dirName === parentGroup)
+    const parentGroup = item[key]
+    const children = entry.filter((self) => self[key] === parentGroup).sort((a, b) => a.index - b.index)
     if (!keys[parentGroup]) {
       keys[parentGroup] = parentGroup
       result.push({
@@ -111,5 +87,7 @@ export const combinedRoutes = (module: Array<StaticModule[]>) => {
 
   setter('zh-cn', basicRoute, traverse(zh))
   setter('en-us', basicRoute, traverse(en))
-  return basicRoute
+  return {
+    routes: basicRoute
+  }
 }

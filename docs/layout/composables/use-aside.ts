@@ -1,30 +1,44 @@
-import { computed, readonly, Ref, ref, unref, watchEffect, DeepReadonly } from 'vue'
-import { ModuleInfo } from '../common/loader'
-import { serializedModule } from '../common/route'
+import { computed, readonly, Ref, ref, unref, watchEffect } from 'vue'
+import { useGlobalState } from '../common/global'
+import { StaticModule } from '../common/loader'
+import { traverse } from '../common/route'
+import { groupWeights } from '../common/front-matter'
 
-type UseAside = {
-  (locale: Ref<string>, tabbar: Ref<string>): DeepReadonly<Ref<Record<string, Array<Omit<ModuleInfo, 'component'>>>>>
-  (locale: Ref<string>, full: true): DeepReadonly<
-    Ref<Record<string, Record<string, Array<Omit<ModuleInfo, 'component'>>>>>
-  >
-}
-
-export const useAside: UseAside = (locale: Ref<string>, variants: Ref<string> | true) => {
-  const aside = ref({})
+export const useAside = (locale: Ref<string>, variants: Ref<string> | true) => {
+  const { navs } = useGlobalState()
+  const aside = ref<
+    Array<{
+      group: string
+      children: Array<{
+        group: string
+        children: StaticModule[]
+      }>
+    }>
+  >([])
   const module = computed(() => {
-    const module = unref(locale) === 'zh-cn' ? serializedModule[0] : serializedModule[1]
+    const module = unref(locale) === 'zh-cn' ? navs[0] : navs[1]
     return module
   })
 
   watchEffect(() => {
     const meta = module.value
+    const traversed = []
+    traverse(meta, 'dirName').forEach((item) => {
+      traversed.push({
+        group: item.group,
+        children: traverse(item.children, 'group').sort((a, b) => {
+          return groupWeights[a.group] - groupWeights[b.group]
+        })
+      })
+    })
     if (typeof variants !== 'boolean') {
       const tab = unref(variants)
-      const sideMeta = meta[tab]
+      const sideMeta = traversed.filter((v) => v.group === tab)
+      console.log(sideMeta)
       if (sideMeta) aside.value = sideMeta
       return
     }
-    aside.value = meta
+    aside.value = traversed
   })
 
   return readonly(aside)

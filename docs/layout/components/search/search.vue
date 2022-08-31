@@ -16,7 +16,7 @@
 import { defineComponent, ref, watchEffect, computed } from 'vue'
 import { useKeyboard, KeyCode, KeyMod, InputInstance } from '@fect-ui/vue/src'
 import { useLocale } from '../../composables'
-import { flatModule } from '../../common/route'
+import { useGlobalState } from '../../common/global'
 import SearchResult from './search-result.vue'
 import { useRouter } from 'vue-router'
 export default defineComponent({
@@ -29,8 +29,9 @@ export default defineComponent({
 
     const { locale } = useLocale()
 
-    const localeMenu = computed(() => (locale.value === 'zh-cn' ? flatModule.zh : flatModule.en))
+    const { navs } = useGlobalState()
 
+    const localeMenu = computed(() => (locale.value === 'zh-cn' ? navs[0] : navs[1]))
     const initlizeKeyboardState = () => {
       visible.value = true
       input.value = ''
@@ -45,12 +46,12 @@ export default defineComponent({
       return localeMenu.value
         .filter((menu) => {
           if (menu.name.toLowerCase().includes(value)) return true
-          return menu.groupKey.toLowerCase().includes(value)
+          return menu.dirName.toLowerCase().includes(value)
         })
         .slice(0, 10)
         .sort((seed) => {
           const startWithName = seed.name.toLowerCase().startsWith(value)
-          const startWithGroup = seed.groupKey.toLowerCase().startsWith(value)
+          const startWithGroup = seed.dirName.toLowerCase().startsWith(value)
           if (startWithName) return -1
           if (startWithGroup) return 0
           return 1

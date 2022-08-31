@@ -1,11 +1,11 @@
 <template>
   <div class="navbar">
-    <div class="content" v-for="(category, groupTitle) in aside" :key="groupTitle">
-      <div class="category">{{ groupTitle }}</div>
-      <div class="children">
-        <div class="item" v-for="item in category" :key="item.name">
-          <fe-link :to="getRoutePath(item.name)">
-            {{ item.title }}
+    <div class="content" v-for="category in aside" :key="category.group">
+      <div class="children" v-for="item in category.children" :key="item.group">
+        <div class="category">{{ item.group }}</div>
+        <div class="item" v-for="each in item.children" :key="each.name">
+          <fe-link :to="getRoutePath(each.name)">
+            {{ each.title }}
           </fe-link>
         </div>
       </div>
@@ -42,7 +42,7 @@ export default defineComponent({
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
-  padding-bottom: var(--fect-gap);
+  padding-bottom: calc(var(--fect-gap) * 7.5);
   &::-webkit-scrollbar {
     width: 0;
     background-color: transparent;
@@ -70,7 +70,7 @@ export default defineComponent({
   flex-direction: column;
   transition: all 0.2s ease-in-out;
   position: relative;
-  margin-top: 0.5rem;
+  // margin-top: 0.5rem;
 }
 
 .item {

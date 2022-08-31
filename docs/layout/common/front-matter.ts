@@ -9,14 +9,14 @@ export interface OrignalFrontMatter {
   index?: number
 }
 
-const guideWeights = {
+export const guideWeights = {
   快速上手: 1,
   定制化: 2,
   'GETTING STARTED': 1,
   CUSTOMIZATION: 2
 }
 
-const componentWeights = {
+export const componentWeights = {
   通用: 1,
   布局: 2,
   表面: 3,

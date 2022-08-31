@@ -4,7 +4,7 @@ import Fect from '@fect-ui/vue/src'
 import Icon from '@fect-ui/vue-icons'
 import { loadStaticMarkdownModuleAsync } from './common/loader'
 import { combinedRoutes, createRouter } from './common/route'
-import { createGlobalState } from './composables'
+import { createGlobalState } from './common/global'
 import { Playground, Preview } from './components/playground'
 import Example from '../../example'
 import '@fect-ui/themes'
@@ -12,30 +12,23 @@ import './common/var.css'
 import { createWebHistory } from 'vue-router'
 
 const createVueApp = async () => {
-  const globalState = createGlobalState()
-
   // create app instance
   const app = createApp(Application)
 
   // load full static markdown module
   const staticModule = await loadStaticMarkdownModuleAsync()
 
-  const routes = combinedRoutes(staticModule)
+  const { routes } = combinedRoutes(staticModule)
   // create router
   const router = createRouter({
     routes,
     histroy: createWebHistory()
   })
 
-  app.config.errorHandler = (err) => {
-    globalState.setRenderError(err)
-  }
+  // create global state
 
-  router.onError((err) => {
-    console.log(err)
-    globalState.setRenderError(err)
-    console.log(err, 'router err main')
-  })
+  // traversed
+  const globalState = createGlobalState({ markdonwStaticModules: staticModule })
 
   const composeTitle = (base = 'Vue') => `${base} - Fect UI`
 
