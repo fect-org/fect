@@ -17,7 +17,7 @@
   "scripts": {
     "collect": "yarn workspace @fect-ui/vue collect",
     "dev:site": "vite",
-    "build:site": "vite build",
+    "build:site": "rm -rf dist && vite build",
     "build:hook": "yarn workspace @fect-ui/vue-hooks build",
     "build:icon": "yarn workspace @fect-ui/vue-icons build",
     "build:lib": "yarn workspace @fect-ui/vue  build",
