@@ -7,7 +7,7 @@ import { playground } from './mdi/markdown'
 import { table } from './mdi/table'
 import path from 'path'
 
-const external = ['@fect-ui/vue', '@fect-ui/vue-hooks', '@fect-ui/vue-icons', 'prismjs', 'vue', 'vue-router'].reduce(
+const external = ['@fect-ui/vue-hooks', '@fect-ui/vue-icons', 'prismjs', 'vue', 'vue-router'].reduce(
   (acc, cur) => (Object.assign(acc, { [cur]: [cur] }), acc),
   {}
 )

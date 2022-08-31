@@ -10,20 +10,20 @@
         <chevron-right v-if="i !== 0" size="1rem" :stroke-width="2" color="var(--accents-4)" />
         {{ menu.localeName }}
       </button>
-      <div class="group" v-if="expandName === menu.value && group">
-        <div v-for="(children, key) in group" :key="key">
-          <div class="section">
+      <div class="group" v-if="expandName === menu.value && group.length">
+        <div v-for="each in group" :key="each.group">
+          <div class="section" v-for="item in each.children" :key="item.group">
             <span class="name">
-              {{ key }}
+              {{ item.group }}
             </span>
             <a
               class="item"
-              @click="() => linkClickHandler(item.name, item.group)"
-              v-for="item in children"
-              :key="item.name"
+              v-for="part in item.children"
+              :key="part.name"
+              @click="() => linkClickHandler(part.name, part.dirName)"
             >
-              {{ item.title }}</a
-            >
+              {{ part.title }}
+            </a>
           </div>
         </div>
       </div>
@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import { computed, ComputedRef, defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import { useLocale, useAside } from '../../composables'
 import type { PropType } from 'vue'
 import { useRouter } from 'vue-router'
@@ -70,9 +70,9 @@ export default defineComponent({
     }
 
     const group = computed(() => {
-      if (expandName.value) return aside.value[expandName.value]
-      return null
-    }) as ComputedRef<typeof aside.value[number]>
+      if (expandName.value) return aside.value.filter((v) => v.group === expandName.value)
+      return []
+    })
 
     return { expandName, group, aside, groupClickHandler, linkClickHandler }
   }
