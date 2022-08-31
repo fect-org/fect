@@ -31,6 +31,7 @@ export const useAside = (locale: Ref<string>, variants: Ref<string> | true) => {
         })
       })
     })
+
     if (typeof variants !== 'boolean') {
       const tab = unref(variants)
       const sideMeta = traversed.filter((v) => v.group === tab)

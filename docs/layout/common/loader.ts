@@ -10,7 +10,6 @@
 import type { ModuleNamespace } from 'vite/types/hot'
 import type { OrignalFrontMatter } from './front-matter'
 import path from './path'
-import { traverse } from './route'
 
 /**
  * we should use eager to get frontmatter from markdown

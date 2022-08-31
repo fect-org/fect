@@ -28,7 +28,7 @@ const componentWeights = {
   Layout: 2,
   SURFACES: 3,
   Form: 4,
-  'DATA DISPLAY': 5,
+  'Data Display': 5,
   FEEDBACK: 6,
   NAVIGATION: 7
 }
