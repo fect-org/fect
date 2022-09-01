@@ -43,6 +43,7 @@ export default defineConfig({
     }
   },
   build: {
+    emptyOutDir: true,
     outDir: path.join(__dirname, 'dist'),
     rollupOptions: {
       output: {
