@@ -6,3 +6,5 @@ declare module '*.vue' {
 }
 
 declare module 'vue-prism-component'
+
+declare module 'virtual:router'

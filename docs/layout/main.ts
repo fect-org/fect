@@ -10,16 +10,19 @@ import Example from '../../example'
 import '@fect-ui/themes'
 import './common/var.css'
 import { createWebHistory } from 'vue-router'
+import virtualRoute from 'virtual:router'
 
 const createVueApp = async () => {
   // create app instance
   const app = createApp(Application)
+  console.log(virtualRoute)
 
   // load full static markdown module
   const staticModule = await loadStaticMarkdownModuleAsync()
-
   const { routes } = combinedRoutes(staticModule)
   // create router
+  console.log(staticModule)
+  // console.log(routes)
   const router = createRouter({
     routes,
     histroy: createWebHistory()
@@ -28,7 +31,7 @@ const createVueApp = async () => {
   // create global state
 
   // traversed
-  const globalState = createGlobalState({ markdonwStaticModules: staticModule })
+  const globalState = createGlobalState({ markdonwStaticModules: virtualRoute })
 
   const composeTitle = (base = 'Vue') => `${base} - Fect UI`
 
