@@ -122,7 +122,8 @@ const loadStaticMarkdonModuleImpl = async () => {
 
 const resolver = (markdowns: Map<string, StaticMarkdonMeta>) => {
   const imports: string[] = []
-  const final: any[] = [[], []]
+  const final: Record<string, Array<StaticMarkdonMeta>> = {}
+  //
   const reg = /"(?:module)":("(.*?)")/g
   const replaceModule = (str: string) => {
     str = str.replace(/\"/g, '')
@@ -145,18 +146,13 @@ const resolver = (markdowns: Map<string, StaticMarkdonMeta>) => {
       name,
       dirName: realDirName(key)
     }
-
-    if (lang === 'zh') {
-      final[0].push(meta)
-    }
-    if (lang === 'en') {
-      final[1].push(meta)
-    }
+    if (!final[lang]) final[lang] = []
+    final[lang].push(meta)
   })
 
   const code = `
   ${imports.join(';\n')};\n\
-  const routes =${JSON.stringify(final).replace(reg, replaceModule)};
+  const routes =${JSON.stringify(Object.values(final)).replace(reg, replaceModule)};
   export default routes
   `
   return code
