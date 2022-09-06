@@ -9,7 +9,6 @@
 
 import type { ModuleNamespace } from 'vite/types/hot'
 import type { OrignalFrontMatter } from './front-matter'
-import path from './path'
 
 /**
  * we should use eager to get frontmatter from markdown
@@ -32,31 +31,4 @@ export interface StaticModule {
   group: string
   dirName: string
   module: () => Promise<ModuleResult>
-}
-
-export const loadStaticMarkdownModuleAsync = () => {
-  const zh = import.meta.glob<ModuleResult>('../../zh-cn/**/*.md')
-  const en = import.meta.glob<ModuleResult>('../../en-us/**/*.md')
-  const serialization = async (modules: Record<string, () => Promise<ModuleResult>>) => {
-    return Promise.all(
-      Object.entries(modules).map(async ([filePath, module]) => {
-        const {
-          frontmatter: { title, index, name, group }
-        } = await module()
-        const dirName = path.dirname(filePath)
-        return {
-          title,
-          index,
-          name: name.toLocaleLowerCase(),
-          group,
-          dirName,
-          module
-        }
-      })
-    )
-  }
-
-  const asyncLoad = () => Promise.all([serialization(zh), serialization(en)])
-
-  return asyncLoad()
 }

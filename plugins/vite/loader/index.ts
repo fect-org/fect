@@ -121,39 +121,44 @@ const loadStaticMarkdonModuleImpl = async () => {
 }
 
 const resolver = (markdowns: Map<string, StaticMarkdonMeta>) => {
-  const store: {
-    'en-us': any[]
-    'zh-cn': any[]
-  } = {
-    'en-us': [],
-    'zh-cn': []
-  }
   const imports: string[] = []
-  const realDirName = (file) => path.dirname(file).split('/').pop()
-  const realImport = (variable: string, file: string) => {
-    const source = file.replace(slash(path.join(defaultWd, 'docs')), '')
-    return `const ${variable} = () => import("${source}")`
+  const final: any[] = [[], []]
+  const reg = /"(?:module)":("(.*?)")/g
+  const replaceModule = (str: string) => {
+    str = str.replace(/\"/g, '')
+    return str
   }
-  const componentRE = /"(?:module|element)":("(.*?)")/g
+
+  const realDirName = (file) => path.dirname(file).split('/').pop()
+
   markdowns.forEach(({ group, index, title, name }, key) => {
-    if (key.includes('en-us')) {
-      const moduleName = `${name}_en_us`
-      imports.push(realImport(moduleName, key))
-      store['en-us'].push({ group, index, dirName: realDirName(key), name, title, module: moduleName })
+    const lang = key.includes('zh-cn') ? 'zh' : 'en'
+    const source = key.replace(slash(path.join(defaultWd, 'docs')), '')
+    const moduleName = `_${name}__page__${lang}_${name?.length}_`
+    imports.push(`const ${moduleName} = () => import("${source}")`)
+
+    const meta = {
+      module: moduleName,
+      group,
+      index,
+      title,
+      name,
+      dirName: realDirName(key)
     }
-    if (key.includes('zh-cn')) {
-      const moduleName = `${name}_zh_cn`
-      imports.push(realImport(moduleName, key))
-      store['zh-cn'].push({ group, index, dirName: realDirName(key), name, title, module: moduleName })
+
+    if (lang === 'zh') {
+      final[0].push(meta)
+    }
+    if (lang === 'en') {
+      final[1].push(meta)
     }
   })
-  const final = Object.values(store)
-  const c = JSON.stringify(final).replace(componentRE, (_, $1) => {
-    $1 = $1.replace(/\"/g, '')
-    return _
-  })
-  console.log(c)
-  const code = `${imports.join(';\n')};const routes =${JSON.stringify(final)}; \n\nexport default routes;`
+
+  const code = `
+  ${imports.join(';\n')};\n\
+  const routes =${JSON.stringify(final).replace(reg, replaceModule)};
+  export default routes
+  `
   return code
 }
 
