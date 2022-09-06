@@ -11,6 +11,6 @@
         "module": "esnext",
         "types":["vite/client"]
     },
-    "include": ["docs/layout/**/*","shims"],
+    "include": ["docs/layout/**/*","shims","exmaple"],
     "exclude": ["node_modules"]
 }
