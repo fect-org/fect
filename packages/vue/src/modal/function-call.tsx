@@ -11,7 +11,7 @@ const Modal = (options: StaticModalOptions) => {
   const staticOptions = assign({}, Modal.defaultOptions, options)
 
   if (!instance) {
-    ;({ instance } = createPortal({
+    ;({ instance } = createPortal<StaticModalInstance>({
       setup() {
         const [visible, setVisible] = useState<boolean>(false)
         const [modalProps, setModalProps] = useState<typeof staticOptions>({})

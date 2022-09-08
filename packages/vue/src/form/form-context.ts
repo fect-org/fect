@@ -23,4 +23,6 @@ export const useFormStateContext = (): Pick<FormItemCotnext, 'behavior' | 'valid
 }
 
 export const pickFormStateProps = <T, K, S>(props: T, parent: K, formState: S): T =>
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignored
   pickContextProps(pickContextProps(props, parent), formState)
