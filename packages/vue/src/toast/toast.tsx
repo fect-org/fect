@@ -42,10 +42,11 @@ export default defineComponent({
       const total = len(toasts.value as unknown[])
       return toasts.value.map((toast, idx) => (
         <ToastItem
+          placement={toast.placement}
           text={toast.text}
           type={toast.type}
           closeAble={toast.closeAble}
-          willBeDestroy={toast.willBeDestroy}
+          // willBeDestroy={toast.willBeDestroy}
           index={idx}
           hover={isHovering.value}
           total={total}

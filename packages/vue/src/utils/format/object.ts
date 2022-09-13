@@ -1,4 +1,4 @@
-export const omit = <T, K extends keyof T>(source: T, picks: K[]) =>
+export const omit = <T extends Record<string, unknown>, K extends keyof T>(source: T, picks: K[]) =>
   (Object.keys(source) as K[]).reduce(
     (acc, cur) => (picks.includes(cur) ? acc : Object.assign(acc, { [cur]: source[cur] })),
     {} as Omit<T, K>

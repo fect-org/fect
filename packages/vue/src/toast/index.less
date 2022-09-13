@@ -7,7 +7,36 @@
   --toast-error-bg-color: var(--error-default);
 }
 
+.toast-fade {
+  &-enter-from {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    transform: var('--toast-transition-enter');
+  }
+  &-enter-to {
+    opacity: 1;
+    height: auto;
+
+    transform: translate(0, 0);
+  }
+  &-leave-from {
+    opacity: 1;
+    transform: translate(0, 0);
+    height: auto;
+  }
+  &-leave-to {
+    opacity: 0;
+    transform: var('--toast-transition-leave');
+  }
+}
+
 .fect-toast {
+  margin: 8px 0;
+  padding: 12px 16px;
+  right: var(--fect-gap);
+  bottom: var(--fect-gap);
   width: 420px;
   max-width: 90vw;
   max-height: 75px;
@@ -18,11 +47,19 @@
   box-shadow: var(--toast-shadow);
   border-radius: var(--fect-radius);
   padding: var(--fect-gap);
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  transform: translate3d(0, 100%, 0px) scale(1);
-  transition: transform 400ms ease 0ms, visibility 200ms ease 0ms, opacity 200ms ease 0ms;
+  box-shadow: var(--fect-shadowSmall);
+  transition: all 350ms cubic-bezier(0.1, 0.2, 0.1, 1);
+  overflow: hidden;
+
+  &--top {
+    bottom: unset;
+    flex-direction: column-reverse;
+    top: var(--fect-gap);
+  }
+  &--left {
+    right: unset;
+    left: var(--fect-gap);
+  }
 
   &--default {
     background-color: var(--toast-default-bg-color);
@@ -47,15 +84,6 @@
     background-color: var(--toast-error-bg-color);
   }
 
-  &--visible {
-    opacity: 1;
-    transform: var(--toast-translate);
-  }
-  &--hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
   &__message {
     align-items: center;
     height: 100%;
@@ -71,22 +99,17 @@
     -webkit-line-clamp: 2;
     line-height: 18px;
   }
-  &__closeable {
-    position: absolute;
-    right: 20px;
-    cursor: pointer;
-  }
+
   &__container {
     position: fixed;
-    width: 420px;
-    max-width: 90vw;
-    bottom: var(--fect-gap);
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    max-width: 100%;
     right: var(--fect-gap);
+    bottom: var(--fect-gap);
     z-index: 1001;
     transition: all 400ms ease;
     box-sizing: border-box;
-    &--hover {
-      transform: translate3d(0, -10px, 0);
-    }
   }
 }

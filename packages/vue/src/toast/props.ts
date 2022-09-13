@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import type { NormalTypes } from '../utils'
+import type { NormalTypes, PlaceTypes } from '../utils'
 
 export const props = {
   text: {
@@ -20,5 +20,9 @@ export const props = {
   },
   hover: Boolean,
   willBeDestroy: Boolean,
-  closeAble: Boolean
+  closeAble: Boolean,
+  placement: {
+    type: String as PropType<PlaceTypes>,
+    default: 'bottomRight'
+  }
 }

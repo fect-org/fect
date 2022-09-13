@@ -6,7 +6,26 @@ import { createToastContext } from './toast-contenxt'
 import type { ToastOptions, StaticToastOptions, Toasts, TostInstance, ToastInsanceMethods } from './interface'
 
 /**
- * Toast will has `once` Api in future.
+ * After ver 1.6.0. We reDesign the toast component. In past each toast has be netsed in a container.
+ * But when we need add prop placement. If the placement it's the layout attribue. It means we should break all
+ * the logic. My ideal toast is  independent.
+ * Before 1.6.0 => we joined closeAble. But it's not a good choices.
+ * The new called is
+ * ```js
+ *
+ *  const cancel = (e,cancelEvent) => {
+ *   return <div>Cancel Action</div>
+ * }
+ *
+ *  Toast({
+ *   type: 'success',
+ *   message:"Hello world~",
+ *   actions:[cancel]
+ * })
+ * ```
+ *
+ * ### Architecture
+ * Refactor the toast container. It's should be a container who don't include default position style.
  */
 
 let instance: TostInstance
@@ -93,10 +112,11 @@ const Toast = (options: ToastOptions) => {
 
 Toast.defaultOptions = {
   duration: 4500,
-  text: '',
   type: 'default',
-  once: false,
-  closeAble: false
+  closeAble: false,
+  placement: 'bottomRight'
+} as Required<ToastOptions> & {
+  duration: number
 }
 
 /**

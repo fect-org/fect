@@ -1,10 +1,10 @@
-import { defineComponent, computed, watchEffect } from 'vue'
+import { defineComponent, computed, watchEffect, Transition } from 'vue'
 
 import { useState } from '@fect-ui/vue-hooks'
 import { props } from './props'
 import { createBem } from '../utils'
 import type { ComputedRef } from 'vue'
-import type { CSSProperties } from '../utils'
+import type { CSSProperties, PlaceTypes } from '../utils'
 
 const bem = createBem('fect-toast')
 
@@ -15,13 +15,32 @@ const bem = createBem('fect-toast')
  * style.
  */
 
-const getTranslate = (reverseIndex: number, onHover: boolean, total: number) => {
-  const calc = `100% + -75px + -${20 * reverseIndex}px`
-  if (reverseIndex >= 4) return `translate3d(0, -75px, -${reverseIndex}px) scale(.7)`
-  if (onHover) {
-    return `translate3d(0, ${reverseIndex * -75}px, -${reverseIndex}px) scale(${total === 1 ? 1 : 0.98205})`
+// const getTranslate = (reverseIndex: number, onHover: boolean, total: number) => {
+//   const calc = `100% + -75px + -${20 * reverseIndex}px`
+//   if (reverseIndex >= 4) return `translate3d(0, -75px, -${reverseIndex}px) scale(.7)`
+//   if (onHover) {
+//     return `translate3d(0, ${reverseIndex * -75}px, -${reverseIndex}px) scale(${total === 1 ? 1 : 0.98205})`
+//   }
+//   return `translate3d(0, calc(${calc}), -${reverseIndex}px) scale(${1 - 0.05 * reverseIndex})`
+// }
+
+const getTranslateByPlacement = (placement: PlaceTypes) => {
+  const translateEnter: Record<PlaceTypes, string> = {
+    topLeft: 'translate(-60px, -60px)',
+    topRight: 'translate(60px, -60px)',
+    bottomLeft: 'translate(-60px, 60px)',
+    bottomRight: 'translate(60px, 60px)'
   }
-  return `translate3d(0, calc(${calc}), -${reverseIndex}px) scale(${1 - 0.05 * reverseIndex})`
+  const translateLeave: Record<PlaceTypes, string> = {
+    topLeft: 'translate(-50px, 15px) scale(0.85)',
+    topRight: 'translate(50px, 15px) scale(0.85)',
+    bottomLeft: 'translate(-50px, -15px) scale(0.85)',
+    bottomRight: 'translate(50px, -15px) scale(0.85)'
+  }
+  return {
+    enter: translateEnter[placement],
+    leave: translateLeave[placement]
+  }
 }
 
 export default defineComponent({
@@ -56,42 +75,30 @@ export default defineComponent({
       })
     })
 
-    const setToastItemStyle: ComputedRef<CSSProperties> = computed(() => {
-      const translate = getTranslate(reverseIndex.value, props.hover, props.total)
+    const setToastClasses = computed(() => {
+      const { placement } = props
+      const position = []
+      if (placement.toLocaleLowerCase().startsWith('top')) position.push('top')
+      if (placement.toLocaleLowerCase().startsWith('left')) position.push('left')
+      return position.reduce((acc, cur) => Object.assign(acc, { [cur]: true }), {})
+    })
+
+    const setToastTransition = computed(() => {
+      const { enter, leave } = getTranslateByPlacement(props.placement)
       return {
-        '--toast-translate': translate,
-        '--toast-shadow': reverseIndex.value > 4 ? 'none' : 'var(--fect-shadowSmall)'
-      }
+        '--toast-transition-enter': enter,
+        '--toast-transition-leave': leave
+      } as CSSProperties
     })
 
     return () => {
       if (reverseIndex.value > 10) return null
       return (
-        <div
-          class={bem(null, [props.type, { visible: visible.value, hidden: hidden.value }])}
-          style={setToastItemStyle.value}
-        >
-          <div class={bem('message')}>{props.text}</div>
-          {props.closeAble && (
-            <span class={bem('closeable')} onClick={() => emit('cancel')}>
-              <svg
-                fill="none"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1.5"
-                shape-rendering="geometricPrecision"
-                viewBox="0 0 24 24"
-                height="16"
-                width="16"
-                data-v-8357e50e=""
-                style="color: currentcolor;"
-              >
-                <path d="M18 6L6 18M6 6l12 12"></path>
-              </svg>
-            </span>
-          )}
-        </div>
+        <Transition name="toast-fade" v-show={visible.value}>
+          <div class={bem(null, [props.type, setToastClasses.value])} style={setToastTransition.value}>
+            <div class={bem('message')}>{props.text}</div>
+          </div>
+        </Transition>
       )
     }
   }
