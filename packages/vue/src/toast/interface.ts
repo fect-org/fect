@@ -1,6 +1,6 @@
 import { props } from './props'
 import type { DeepReadonly, ExtractPropTypes, Ref } from 'vue'
-import type { ComponentInstance } from '../utils'
+import type { ComponentInstance, PlaceTypes } from '../utils'
 
 type _ToastOptions = Omit<ExtractPropTypes<typeof props>, 'index' | 'total' | 'hover' | 'willBeDestroy'> & {
   duration?: string | number
@@ -15,24 +15,25 @@ export type Toasts = Array<
     ToastInternalOptions & {
       id: string
       duration?: string | number
-      __timeout: () => void
+      __timeout: null | number
     }
 >
 
 export interface ToastCotnext {
-  isHovering: DeepReadonly<Ref<boolean>>
   toasts: DeepReadonly<Ref<Toasts>>
-  updateHovering: (state: boolean) => void
+  layout: DeepReadonly<Ref<PlaceTypes>>
 }
 
 export interface ToastInsanceMethods {
+  updateLayout(next: PlaceTypes): void
   updateToasts(toastOptions: ToastOptions, duration: number): void
+  removeAll(): void
 }
 
 export type TostInstance = ComponentInstance<ToastInsanceMethods>
 
 export interface ToastAction {
-  (): JSX.Element
+  (cancel: () => void): JSX.Element
 }
 
 // e: Event, cancel: () => void

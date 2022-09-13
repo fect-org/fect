@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { createName, createBem, isDEV } from '../utils'
 import { useToastContext } from './toast-contenxt'
 import ToastItem from './toast-item'
@@ -22,20 +22,13 @@ export default defineComponent({
       return
     }
 
-    let timer: number | undefined
-
-    const ToastContainerMouseHandler = (state: boolean) => {
-      const { updateHovering } = context
-      if (state) {
-        timer && window.clearTimeout(timer)
-        updateHovering(state)
-        return
-      }
-      timer = window.setTimeout(() => {
-        updateHovering(state)
-        timer && window.clearTimeout(timer)
-      }, 200)
-    }
+    const setToastClasses = computed(() => {
+      const { layout: placement } = context
+      const position = []
+      if (placement.value.toLocaleLowerCase().startsWith('top')) position.push('top')
+      if (placement.value.toLocaleLowerCase().startsWith('left')) position.push('left')
+      return position.reduce((acc, cur) => Object.assign(acc, { [cur]: true }), {})
+    })
 
     const renderToasts = () => {
       const { toasts } = context
@@ -49,14 +42,6 @@ export default defineComponent({
       ))
     }
 
-    return () => (
-      <div
-        class={bem('container', { hover: context.isHovering.value })}
-        onMouseenter={() => ToastContainerMouseHandler(true)}
-        onMouseleave={() => ToastContainerMouseHandler(false)}
-      >
-        {renderToasts()}
-      </div>
-    )
+    return () => <div class={bem('container', setToastClasses.value)}>{renderToasts()}</div>
   }
 })

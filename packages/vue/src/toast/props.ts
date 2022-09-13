@@ -12,16 +12,10 @@ export const props = {
     type: String as PropType<NormalTypes>,
     default: 'default'
   },
-  total: {
-    type: Number,
-    default: 0
-  },
   index: {
     type: Number,
     default: 0
   },
-  hover: Boolean,
-  willBeDestroy: Boolean,
   placement: {
     type: String as PropType<PlaceTypes>,
     default: 'bottomRight'

@@ -26,17 +26,17 @@ const getTranslateByPlacement = (placement: PlaceTypes) => {
   }
 }
 
-const makeToastActions = (actions: ToastOptions['actions']) => {
+const makeToastActions = (actions: ToastOptions['actions'], cancel: () => void) => {
   if (isArray(actions)) {
     if (!len(actions)) return null
     return actions.map((action, index) => {
       if (typeof action !== 'function') return null
-      return <div key={`action-${index}`}>{action()}</div>
+      return <div key={`action-${index}`}>{action(cancel)}</div>
     })
   }
   if (actions === 'cancel')
     return (
-      <Button class={bem('action')} type="secondary" auto size="mini">
+      <Button class={bem('action')} type="secondary" auto size="mini" onClick={() => cancel()}>
         cancel
       </Button>
     )
@@ -46,15 +46,7 @@ const makeToastActions = (actions: ToastOptions['actions']) => {
 export default defineComponent({
   props: toastProps,
   emits: ['cancel'],
-  setup(props, { emit }) {
-    const setToastClasses = computed(() => {
-      const { placement } = props.toast
-      const position = []
-      if (placement.toLocaleLowerCase().startsWith('top')) position.push('top')
-      if (placement.toLocaleLowerCase().startsWith('left')) position.push('left')
-      return position.reduce((acc, cur) => Object.assign(acc, { [cur]: true }), {})
-    })
-
+  setup(props) {
     const setToastTransition = computed(() => {
       const { enter, leave } = getTranslateByPlacement(props.toast.placement)
       return {
@@ -64,13 +56,15 @@ export default defineComponent({
     })
 
     return () => {
-      const { visible, text, type, actions } = props.toast
+      const { visible, text, type, actions, cancel } = props.toast
       return (
-        <Transition name="toast-fade" v-show={visible}>
-          <div class={bem(null, [type, setToastClasses.value])} style={setToastTransition.value}>
-            <div class={bem('message')}>{text}</div>
-            <div class={bem('actions')}>{makeToastActions(actions)}</div>
-          </div>
+        <Transition name="toast-fade" appear>
+          {visible && (
+            <div class={bem(null, type)} style={setToastTransition.value}>
+              <div class={bem('message')}>{text}</div>
+              <div class={bem('actions')}>{makeToastActions(actions, cancel)}</div>
+            </div>
+          )}
         </Transition>
       )
     }
