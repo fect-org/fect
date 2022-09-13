@@ -1,5 +1,7 @@
 import type { PropType } from 'vue'
+import { noop } from '../utils'
 import type { NormalTypes, PlaceTypes } from '../utils'
+import type { ToastAction, ToastInternalOptions } from './interface'
 
 export const props = {
   text: {
@@ -20,9 +22,17 @@ export const props = {
   },
   hover: Boolean,
   willBeDestroy: Boolean,
-  closeAble: Boolean,
   placement: {
     type: String as PropType<PlaceTypes>,
     default: 'bottomRight'
+  },
+  actions: [Array, String] as PropType<Array<ToastAction> | 'cancel'>
+}
+
+export const toastProps = {
+  actions: [Array, String] as PropType<Array<ToastAction> | 'cancel'>,
+  toast: {
+    type: Object as PropType<ToastInternalOptions>,
+    default: noop
   }
 }

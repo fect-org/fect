@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue'
-import { createName, createBem, isDEV, len } from '../utils'
+import { createName, createBem, isDEV } from '../utils'
 import { useToastContext } from './toast-contenxt'
 import ToastItem from './toast-item'
 
@@ -38,20 +38,13 @@ export default defineComponent({
     }
 
     const renderToasts = () => {
-      const { toasts, isHovering } = context
-      const total = len(toasts.value as unknown[])
+      const { toasts } = context
       return toasts.value.map((toast, idx) => (
         <ToastItem
-          placement={toast.placement}
-          text={toast.text}
-          type={toast.type}
-          closeAble={toast.closeAble}
-          // willBeDestroy={toast.willBeDestroy}
-          index={idx}
-          hover={isHovering.value}
-          total={total}
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignored
+          toast={toast}
           key={`toast-${idx}`}
-          onCancel={toast.cancel}
         />
       ))
     }

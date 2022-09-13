@@ -1,28 +1,11 @@
-import { defineComponent, computed, watchEffect, Transition } from 'vue'
-
-import { useState } from '@fect-ui/vue-hooks'
-import { props } from './props'
-import { createBem } from '../utils'
-import type { ComputedRef } from 'vue'
+import { defineComponent, computed, Transition } from 'vue'
+import Button from '../button'
+import { toastProps } from './props'
+import { createBem, isArray, len } from '../utils'
 import type { CSSProperties, PlaceTypes } from '../utils'
+import { ToastOptions } from './interface'
 
 const bem = createBem('fect-toast')
-
-/**
- * After ver 1.5.1 I decide use class replace inline style.
- * Because inline style isn't a good way. User can't define
- * their custom style. And in future i plan use jss replace all
- * style.
- */
-
-// const getTranslate = (reverseIndex: number, onHover: boolean, total: number) => {
-//   const calc = `100% + -75px + -${20 * reverseIndex}px`
-//   if (reverseIndex >= 4) return `translate3d(0, -75px, -${reverseIndex}px) scale(.7)`
-//   if (onHover) {
-//     return `translate3d(0, ${reverseIndex * -75}px, -${reverseIndex}px) scale(${total === 1 ? 1 : 0.98205})`
-//   }
-//   return `translate3d(0, calc(${calc}), -${reverseIndex}px) scale(${1 - 0.05 * reverseIndex})`
-// }
 
 const getTranslateByPlacement = (placement: PlaceTypes) => {
   const translateEnter: Record<PlaceTypes, string> = {
@@ -43,40 +26,29 @@ const getTranslateByPlacement = (placement: PlaceTypes) => {
   }
 }
 
+const makeToastActions = (actions: ToastOptions['actions']) => {
+  if (isArray(actions)) {
+    if (!len(actions)) return null
+    return actions.map((action, index) => {
+      if (typeof action !== 'function') return null
+      return <div key={`action-${index}`}>{action()}</div>
+    })
+  }
+  if (actions === 'cancel')
+    return (
+      <Button class={bem('action')} type="secondary" auto size="mini">
+        cancel
+      </Button>
+    )
+  return null
+}
+
 export default defineComponent({
-  props,
+  props: toastProps,
   emits: ['cancel'],
   setup(props, { emit }) {
-    const [visible, setVisible] = useState<boolean>(false)
-
-    const [hidden, setHidden] = useState<boolean>(false)
-
-    const reverseIndex = computed(() => props.total - (props.index + 1))
-
-    watchEffect((onInvalidate) => {
-      const timer = setTimeout(() => {
-        setVisible(true)
-        clearTimeout(timer)
-      }, 10)
-      onInvalidate(() => clearTimeout(timer))
-    })
-
-    watchEffect((onInvalidate) => {
-      let unMount = false
-      const shouldBeHide = reverseIndex.value > 2 || props.willBeDestroy
-      if (!shouldBeHide || unMount) return
-      const timer = setTimeout(() => {
-        setHidden(true)
-        clearTimeout(timer)
-      }, 150)
-      onInvalidate(() => {
-        unMount = true
-        clearTimeout(timer)
-      })
-    })
-
     const setToastClasses = computed(() => {
-      const { placement } = props
+      const { placement } = props.toast
       const position = []
       if (placement.toLocaleLowerCase().startsWith('top')) position.push('top')
       if (placement.toLocaleLowerCase().startsWith('left')) position.push('left')
@@ -84,7 +56,7 @@ export default defineComponent({
     })
 
     const setToastTransition = computed(() => {
-      const { enter, leave } = getTranslateByPlacement(props.placement)
+      const { enter, leave } = getTranslateByPlacement(props.toast.placement)
       return {
         '--toast-transition-enter': enter,
         '--toast-transition-leave': leave
@@ -92,11 +64,12 @@ export default defineComponent({
     })
 
     return () => {
-      if (reverseIndex.value > 10) return null
+      const { visible, text, type, actions } = props.toast
       return (
-        <Transition name="toast-fade" v-show={visible.value}>
-          <div class={bem(null, [props.type, setToastClasses.value])} style={setToastTransition.value}>
-            <div class={bem('message')}>{props.text}</div>
+        <Transition name="toast-fade" v-show={visible}>
+          <div class={bem(null, [type, setToastClasses.value])} style={setToastTransition.value}>
+            <div class={bem('message')}>{text}</div>
+            <div class={bem('actions')}>{makeToastActions(actions)}</div>
           </div>
         </Transition>
       )

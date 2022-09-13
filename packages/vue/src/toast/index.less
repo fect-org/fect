@@ -46,20 +46,19 @@
   border: 0;
   box-shadow: var(--toast-shadow);
   border-radius: var(--fect-radius);
-  padding: var(--fect-gap);
   box-shadow: var(--fect-shadowSmall);
   transition: all 350ms cubic-bezier(0.1, 0.2, 0.1, 1);
   overflow: hidden;
 
-  &--top {
-    bottom: unset;
-    flex-direction: column-reverse;
-    top: var(--fect-gap);
-  }
-  &--left {
-    right: unset;
-    left: var(--fect-gap);
-  }
+  // &--top {
+  //   bottom: unset;
+  //   flex-direction: column-reverse;
+  //   top: var(--fect-gap);
+  // }
+  // &--left {
+  //   right: unset;
+  //   left: var(--fect-gap);
+  // }
 
   &--default {
     background-color: var(--toast-default-bg-color);
@@ -97,7 +96,14 @@
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-    line-height: 18px;
+    line-height: 1.1rem;
+  }
+
+  &__action {
+    font-size: 13px;
+    --button-mini-height: 25px;
+    --button-mini-width: 65px;
+    --button-mini-padding: 0 8px;
   }
 
   &__container {

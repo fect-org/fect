@@ -1,8 +1,8 @@
-import { App } from 'vue'
 import { useState, useExpose } from '@fect-ui/vue-hooks'
 import FeToast from './toast'
 import { createNode, withInstall, NormalTypes, createPortal, assign, isNumber, getId, len } from '../utils'
 import { createToastContext } from './toast-contenxt'
+import type { App } from 'vue'
 import type { ToastOptions, StaticToastOptions, Toasts, TostInstance, ToastInsanceMethods } from './interface'
 
 /**
@@ -28,7 +28,7 @@ import type { ToastOptions, StaticToastOptions, Toasts, TostInstance, ToastInsan
  * Refactor the toast container. It's should be a container who don't include default position style.
  */
 
-let instance: TostInstance
+let instance: TostInstance | null = null
 
 const destroyStack: string[] = []
 
@@ -47,51 +47,29 @@ const Toast = (options: ToastOptions) => {
 
           const updateToasts = (toastOption: Toasts[number], duration: number) => {
             setToasts((pre) => {
-              const next = pre.concat(assign(toastOption, { cancel: () => cancel(toastOption.id, duration) }))
+              const next = pre.concat(
+                assign(toastOption, {
+                  cancel: () => cancel(toastOption.id)
+                  // __timeout: window.setTimeout(() => {
+                  //   cancel(toastOption.id)
+                  //   window.clearTimeout(pre[0].__timeout)
+                  // }, duration)
+                })
+              )
               return next
             })
           }
 
-          let maxDestroyTime = 0
-          let destroyTimer: number | undefined
-
-          const destroyAllToast = (delay: number, time: number) => {
-            if (time <= maxDestroyTime) return
-            clearTimeout(destroyTimer)
-            maxDestroyTime = time
-            destroyTimer = window.setTimeout(() => {
-              if (len(destroyStack) < len(toasts.value as unknown[])) {
-                setToasts((pre) => pre)
-              } else {
-                destroyStack.length = 0
-                setToasts([])
-              }
-              clearTimeout(destroyTimer)
-            }, delay + 350)
-          }
-
-          const cancel = (id: string, delay: number) => {
+          const cancel = (id: string) => {
             destroyStack.push(id)
-            setToasts((pre) => pre.map((item) => (item.id !== id ? item : assign(item, { willBeDestroy: true }))))
-            destroyAllToast(delay, performance.now())
-          }
-
-          const hideToast = (id: string, delay: number) => {
-            const hideTimer = window.setTimeout(() => {
-              if (isHovering.value) {
-                hideToast(id, delay)
-                return clearTimeout(hideTimer)
-              }
-              cancel(id, delay)
-              clearTimeout(hideTimer)
-            }, delay)
+            // setToasts((pre) => pre.map((item) => (item.id !== id ? item : assign(item, { willBeDestroy: true }))))
           }
 
           const { provider } = createToastContext()
 
           provider({ toasts, updateHovering: setIsHovering, isHovering })
 
-          useExpose({ updateToasts, hideToast })
+          useExpose({ updateToasts })
 
           return () => <FeToast />
         }
@@ -100,20 +78,14 @@ const Toast = (options: ToastOptions) => {
     ))
   }
 
-  /**
-   * user may pass a string type numebr. so we should translate it. Or user pass a real string can't convert to number , we will use preset
-   * duration value.
-   */
   const { duration: userDuration, ...rest } = options
   const duration = isNumber(userDuration) ? Number(userDuration) : Toast.defaultOptions.duration
-  instance.hideToast(id, duration)
-  instance.updateToasts(assign(rest, { id }), duration)
+  instance.updateToasts(assign({ id, visible: true, placement: Toast.defaultOptions.placement }, rest), duration)
 }
 
 Toast.defaultOptions = {
   duration: 4500,
   type: 'default',
-  closeAble: false,
   placement: 'bottomRight'
 } as Required<ToastOptions> & {
   duration: number
