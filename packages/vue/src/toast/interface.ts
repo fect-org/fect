@@ -33,7 +33,7 @@ export interface ToastInsanceMethods {
 export type TostInstance = ComponentInstance<ToastInsanceMethods>
 
 export interface ToastAction {
-  (cancel: () => void): JSX.Element
+  (cancel?: () => void): JSX.Element
 }
 
 // e: Event, cancel: () => void

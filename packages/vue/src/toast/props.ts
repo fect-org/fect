@@ -24,7 +24,6 @@ export const props = {
 }
 
 export const toastProps = {
-  actions: [Array, String] as PropType<Array<ToastAction> | 'cancel'>,
   toast: {
     type: Object as PropType<ToastInternalOptions>,
     default: noop
