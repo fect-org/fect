@@ -26,7 +26,7 @@ export default defineComponent({
       const { layout: placement } = context
       const position = []
       if (placement.value.toLocaleLowerCase().startsWith('top')) position.push('top')
-      if (placement.value.toLocaleLowerCase().startsWith('left')) position.push('left')
+      if (placement.value.toLocaleLowerCase().endsWith('left')) position.push('left')
       return position.reduce((acc, cur) => Object.assign(acc, { [cur]: true }), {})
     })
 

@@ -1,7 +1,7 @@
 import Toast from '../toast-item'
 import { mount } from '@vue/test-utils'
+import { noop } from '../../utils'
 import type { ToastInternalOptions } from '../interface'
-import { noop, NormalTypes } from '../../utils'
 
 describe('Toast', () => {
   it('render normal', () => {
