@@ -1,17 +1,20 @@
-import { App } from 'vue'
 import { useState, useExpose } from '@fect-ui/vue-hooks'
 import FeToast from './toast'
-import { createNode, withInstall, NormalTypes, createPortal, assign, isNumber, getId, len } from '../utils'
+import { createNode, withInstall, createPortal, assign, isNumber, getId } from '../utils'
 import { createToastContext } from './toast-contenxt'
+import type { App } from 'vue'
 import type { ToastOptions, StaticToastOptions, Toasts, TostInstance, ToastInsanceMethods } from './interface'
+import type { PlaceTypes, NormalTypes } from '../utils'
 
-/**
- * Toast will has `once` Api in future.
- */
+let instance: TostInstance | null = null
 
-let instance: TostInstance
-
-const destroyStack: string[] = []
+const toastDefaultOptions = {
+  duration: 4500,
+  type: 'default',
+  placement: 'bottomRight'
+} as Required<ToastOptions> & {
+  duration: number
+}
 
 const Toast = (options: ToastOptions) => {
   const id = `toast-${getId()}`
@@ -24,56 +27,40 @@ const Toast = (options: ToastOptions) => {
       {
         setup() {
           const [toasts, setToasts] = useState<Toasts>([])
-          const [isHovering, setIsHovering] = useState<boolean>(false)
+          const [layout, setLayout] = useState<PlaceTypes>('bottomRight')
 
           const updateToasts = (toastOption: Toasts[number], duration: number) => {
-            setToasts((pre) => {
-              const next = pre.concat(assign(toastOption, { cancel: () => cancel(toastOption.id, duration) }))
-              return next
-            })
+            const next: Toasts[number] = {
+              duration,
+              ...toastOption,
+              __timeout: window.setTimeout(() => {
+                cancel(toastOption.id)
+                if (next.__timeout) {
+                  window.clearTimeout(next.__timeout)
+                  next.__timeout = null
+                }
+              }, duration),
+              cancel: () => cancel(toastOption.id)
+            }
+            setToasts((pre) => pre.concat(next))
           }
 
-          let maxDestroyTime = 0
-          let destroyTimer: number | undefined
-
-          const destroyAllToast = (delay: number, time: number) => {
-            if (time <= maxDestroyTime) return
-            clearTimeout(destroyTimer)
-            maxDestroyTime = time
-            destroyTimer = window.setTimeout(() => {
-              if (len(destroyStack) < len(toasts.value as unknown[])) {
-                setToasts((pre) => pre)
-              } else {
-                destroyStack.length = 0
-                setToasts([])
-              }
-              clearTimeout(destroyTimer)
-            }, delay + 350)
+          const updateLayout = (nextPlacement: PlaceTypes) => {
+            if (layout.value === nextPlacement) return
+            setLayout(nextPlacement)
           }
 
-          const cancel = (id: string, delay: number) => {
-            destroyStack.push(id)
-            setToasts((pre) => pre.map((item) => (item.id !== id ? item : assign(item, { willBeDestroy: true }))))
-            destroyAllToast(delay, performance.now())
+          const cancel = (id: string) => {
+            setToasts((pre) => pre.map((item) => (item.id !== id ? item : assign(item, { visible: false }))))
           }
 
-          const hideToast = (id: string, delay: number) => {
-            const hideTimer = window.setTimeout(() => {
-              if (isHovering.value) {
-                hideToast(id, delay)
-                return clearTimeout(hideTimer)
-              }
-              cancel(id, delay)
-              clearTimeout(hideTimer)
-            }, delay)
-          }
+          const removeAll = () => setToasts([])
 
           const { provider } = createToastContext()
 
-          provider({ toasts, updateHovering: setIsHovering, isHovering })
+          provider({ toasts, layout })
 
-          useExpose({ updateToasts, hideToast })
-
+          useExpose({ updateToasts, updateLayout, removeAll })
           return () => <FeToast />
         }
       },
@@ -81,31 +68,14 @@ const Toast = (options: ToastOptions) => {
     ))
   }
 
-  /**
-   * user may pass a string type numebr. so we should translate it. Or user pass a real string can't convert to number , we will use preset
-   * duration value.
-   */
   const { duration: userDuration, ...rest } = options
-  const duration = isNumber(userDuration) ? Number(userDuration) : Toast.defaultOptions.duration
-  instance.hideToast(id, duration)
-  instance.updateToasts(assign(rest, { id }), duration)
+  const duration = isNumber(userDuration) ? Number(userDuration) : toastDefaultOptions.duration
+  instance.updateLayout(rest.placement || toastDefaultOptions.placement)
+  instance.updateToasts(assign({ id, visible: true }, toastDefaultOptions, rest), duration)
 }
-
-Toast.defaultOptions = {
-  duration: 4500,
-  text: '',
-  type: 'default',
-  once: false,
-  closeAble: false
-}
-
-/**
- * At previous version. user  call Toast or Toast static methods. the assign logic is unreasonable.
- * Because we only call createMethods for static methods. But we don't provide a preset config for normal call.
- */
 
 const createMethods = (type: NormalTypes) => (options: StaticToastOptions) =>
-  Toast(assign(Toast.defaultOptions, options, { type }))
+  Toast(assign({}, toastDefaultOptions, options, { type }))
 
 /**
  * static methods
@@ -115,6 +85,10 @@ Toast.success = createMethods('success')
 Toast.warning = createMethods('warning')
 
 Toast.error = createMethods('error')
+
+Toast.removeAll = () => {
+  if (instance) instance.removeAll()
+}
 
 Toast.Component = withInstall(FeToast)
 

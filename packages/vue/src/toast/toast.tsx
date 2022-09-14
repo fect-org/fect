@@ -1,5 +1,5 @@
-import { defineComponent } from 'vue'
-import { createName, createBem, isDEV, len } from '../utils'
+import { defineComponent, computed } from 'vue'
+import { createName, createBem, isDEV } from '../utils'
 import { useToastContext } from './toast-contenxt'
 import ToastItem from './toast-item'
 
@@ -22,47 +22,26 @@ export default defineComponent({
       return
     }
 
-    let timer: number | undefined
-
-    const ToastContainerMouseHandler = (state: boolean) => {
-      const { updateHovering } = context
-      if (state) {
-        timer && window.clearTimeout(timer)
-        updateHovering(state)
-        return
-      }
-      timer = window.setTimeout(() => {
-        updateHovering(state)
-        timer && window.clearTimeout(timer)
-      }, 200)
-    }
+    const setToastClasses = computed(() => {
+      const { layout: placement } = context
+      const position = []
+      if (placement.value.toLocaleLowerCase().startsWith('top')) position.push('top')
+      if (placement.value.toLocaleLowerCase().endsWith('left')) position.push('left')
+      return position.reduce((acc, cur) => Object.assign(acc, { [cur]: true }), {})
+    })
 
     const renderToasts = () => {
-      const { toasts, isHovering } = context
-      const total = len(toasts.value as unknown[])
+      const { toasts } = context
       return toasts.value.map((toast, idx) => (
         <ToastItem
-          text={toast.text}
-          type={toast.type}
-          closeAble={toast.closeAble}
-          willBeDestroy={toast.willBeDestroy}
-          index={idx}
-          hover={isHovering.value}
-          total={total}
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignored
+          toast={toast}
           key={`toast-${idx}`}
-          onCancel={toast.cancel}
         />
       ))
     }
 
-    return () => (
-      <div
-        class={bem('container', { hover: context.isHovering.value })}
-        onMouseenter={() => ToastContainerMouseHandler(true)}
-        onMouseleave={() => ToastContainerMouseHandler(false)}
-      >
-        {renderToasts()}
-      </div>
-    )
+    return () => <div class={bem('container', setToastClasses.value)}>{renderToasts()}</div>
   }
 })
