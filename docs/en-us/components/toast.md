@@ -35,9 +35,9 @@ toast/static.vue
 
 ### Toast Props
 
-| Attribue      | Description           | Type                | Accepted values                            | Default   |
-| ------------- | --------------------- | ------------------- | ------------------------------------------ | --------- |
-| **text**      | toast message         | `'string','number'` | `-`                                        | `-`       |
-| **type**      | toast theme           | `string`            | `'default', 'success', 'warning', 'error'` | `default` |
-| **duration**  | toast show time       | `'string','number'` | `-`                                        | `4500`    |
-| **closeAble** | show toast close icon | `boolean`           | `'true','false'`                           | `false`   |
+| Attribue     | Description          | Type                                            | Accepted values                    | Default   |
+| ------------ | -------------------- | ----------------------------------------------- | ---------------------------------- | --------- |
+| **text**     | toast message        | `string,number`                                 | `-`                                | `-`       |
+| **type**     | toast theme          | `string`                                        | `default, success, warning, error` | `default` |
+| **duration** | toast show time      | `string,number`                                 | `-`                                | `4500`    |
+| **actions**  | toast custom actions | `string,Array<(cancel?:()=>void)=>JSX.Element>` | `cancel`                           | `-`       |

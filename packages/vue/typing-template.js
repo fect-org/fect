@@ -6,6 +6,7 @@ interface StaticToastMethods {
   success: (options: StaticToastOptions) => void
   warning: (options: StaticToastOptions) => void
   error: (options: StaticToastOptions) => void
+  removeAll: () => void
 }
 
 declare module '@vue/runtime-core' {

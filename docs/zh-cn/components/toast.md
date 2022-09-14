@@ -37,9 +37,9 @@ toast/static.vue
 
 ### Toast Props
 
-| 属性          | 描述               | 类型                | 可选值                                     | 默认      |
-| ------------- | ------------------ | ------------------- | ------------------------------------------ | --------- |
-| **text**      | 通知消息的文本     | `'string','number'` | `-`                                        | `-`       |
-| **type**      | 通知框的主题       | `string`            | `'default', 'success', 'warning', 'error'` | `default` |
-| **duration**  | 消息框的展示时间   | `'string','number'` | `-`                                        | `4500`    |
-| **closeAble** | 消息框显示关闭按钮 | `boolean`           | `'true','false'`                           | `false`   |
+| 属性         | 描述               | 类型                                            | 可选值                             | 默认      |
+| ------------ | ------------------ | ----------------------------------------------- | ---------------------------------- | --------- |
+| **text**     | 通知消息的文本     | `string,number`                                 | `-`                                | `-`       |
+| **type**     | 通知框的主题       | `string`                                        | `default, success, warning, error` | `default` |
+| **duration** | 消息框的展示时间   | `string,number`                                 | `-`                                | `4500`    |
+| **actions**  | 消息框显自定义区块 | `string,Array<(cancel?:()=>void)=>JSX.Element>` | `cancel`                           | `-`       |
