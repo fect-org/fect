@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import { mount } from '@vue/test-utils'
 import { Toast } from '../function-call'
 import { make } from '../../utils'
-import { later } from '../../../tests'
+import { later, trigger } from '../../../tests'
 
 describe('Toast', () => {
   it('work correctly', async () => {
@@ -70,5 +70,26 @@ describe('Toast', () => {
     Toast.removeAll()
     await later()
     expect(document.querySelector('.fect-toast__container')?.childElementCount).toBe(0)
+  })
+
+  it('cancel', async () => {
+    make(3).forEach((_, i) => {
+      Toast({
+        text: i + '',
+        actions: 'cancel'
+      })
+    })
+    await later()
+    // eslint-disable-next-line prefer-destructuring
+    const second = document.querySelectorAll('.fect-toast__action')[1]
+    await trigger('click', second)
+    expect(document.querySelectorAll('.fect-toast').length).toBe(2)
+  })
+  it('internal timeout', async () => {
+    Toast({
+      text: 'internal timeout test'
+    })
+    await later(5000)
+    expect(document.querySelector('.fect-toast')).toBeFalsy()
   })
 })
