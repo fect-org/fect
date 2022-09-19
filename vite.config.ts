@@ -9,7 +9,7 @@ import { table } from './plugins/mdi/table'
 import { loadStaticMarkdonModule } from './plugins/vite/loader'
 import { cdn } from './plugins/vite/cdn'
 
-const external = ['@fect-ui/vue-hooks', '@fect-ui/vue-icons', 'prismjs', 'vue', 'vue-router'].reduce(
+const external = ['@fect-ui/vue-hooks', '@fect-ui/vue-icons', 'vue'].reduce(
   (acc, cur) => (Object.assign(acc, { [cur]: [cur] }), acc),
   {}
 )
@@ -42,12 +42,9 @@ export default defineConfig({
       isProduction: process.env.SITE_ENV === 'production',
       moudules: [
         {
-          name: 'vue',
-          global: 'Vue'
-        },
-        {
           name: 'prismjs',
-          global: 'Prism'
+          global: 'Prism',
+          spare: 'https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js'
         },
         {
           name: 'vue-router',
@@ -63,7 +60,6 @@ export default defineConfig({
     }
   },
   build: {
-    manifest: true,
     emptyOutDir: true,
     outDir: path.join(__dirname, 'dist'),
     rollupOptions: {

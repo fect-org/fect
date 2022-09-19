@@ -27,13 +27,10 @@ const tryRequireModule = (module: TrackModule): Required<TrackModule> => {
 }
 
 const parserModuleImpl = (modules: Array<TrackModule>) => {
-  //
   const finder: Map<string, { spare: string; global: string; name: string }> = new Map()
   modules.forEach((item) => {
     const { spare, name, global } = tryRequireModule(item)
-    if (spare) {
-      finder.set(name, { spare, global, name })
-    }
+    if (spare) finder.set(name, { spare, global, name })
   })
   return {
     finder
@@ -62,10 +59,11 @@ export const cdn = (options: CDNOptions = {}): Plugin => {
           }
         }
       }
-      console.log(userConfig.build?.rollupOptions)
     },
     transformIndexHtml(raw: string) {
       if (!isProduction) return raw
+      const scripts = [...finder.values()].reduce((acc, { spare }) => (acc += `<script src="${spare}"></script>\n`), '')
+      return raw.replace(/<\/title>/i, `</title>${scripts}`)
     }
   }
 }
