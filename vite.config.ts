@@ -9,7 +9,7 @@ import { table } from './plugins/mdi/table'
 import { loadStaticMarkdonModule } from './plugins/vite/loader'
 import { cdn } from './plugins/vite/cdn'
 
-const external = ['@fect-ui/vue-hooks', '@fect-ui/vue-icons', 'vue'].reduce(
+const external = ['@fect-ui/vue-hooks', '@fect-ui/vue-icons'].reduce(
   (acc, cur) => (Object.assign(acc, { [cur]: [cur] }), acc),
   {}
 )
@@ -41,6 +41,10 @@ export default defineConfig({
     cdn({
       isProduction: process.env.SITE_ENV === 'production',
       moudules: [
+        {
+          name: 'vue',
+          global: 'Vue'
+        },
         {
           name: 'prismjs',
           global: 'Prism',
