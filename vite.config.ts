@@ -7,6 +7,7 @@ import path from 'path'
 import { playground } from './plugins/mdi/markdown'
 import { table } from './plugins/mdi/table'
 import { loadStaticMarkdonModule } from './plugins/vite/loader'
+import { cdn } from './plugins/vite/cdn'
 
 const external = ['@fect-ui/vue-hooks', '@fect-ui/vue-icons', 'prismjs', 'vue', 'vue-router'].reduce(
   (acc, cur) => (Object.assign(acc, { [cur]: [cur] }), acc),
@@ -36,7 +37,24 @@ export default defineConfig({
       },
       builders: [playground(), table()]
     }),
-    loadStaticMarkdonModule()
+    loadStaticMarkdonModule(),
+    cdn({
+      isProduction: process.env.SITE_ENV === 'production',
+      moudules: [
+        {
+          name: 'vue',
+          global: 'Vue'
+        },
+        {
+          name: 'prismjs',
+          global: 'Prism'
+        },
+        {
+          name: 'vue-router',
+          global: 'VueRouter'
+        }
+      ]
+    })
   ],
   // https://github.com/vitejs/vite/issues/5270
   optimizeDeps: {

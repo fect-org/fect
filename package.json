@@ -17,7 +17,7 @@
   "scripts": {
     "collect": "yarn workspace @fect-ui/vue collect",
     "dev:site": "vite",
-    "build:site": "vite build",
+    "build:site": "cross-env SITE_ENV=production vite build",
     "build:hook": "yarn workspace @fect-ui/vue-hooks build",
     "build:icon": "yarn workspace @fect-ui/vue-icons build",
     "build:lib": "yarn workspace @fect-ui/vue  build",
@@ -42,6 +42,7 @@
     "autoprefixer": "^10.4.2",
     "babel-jest": "26.6.3",
     "clean-css": "^5.2.4",
+    "cross-env": "^7.0.3",
     "es-module-lexer": "^0.9.3",
     "eslint": "^8.19.0",
     "eslint-config-kagura": "^1.0.3",
