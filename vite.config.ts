@@ -1,4 +1,4 @@
-import { defineConfig, normalizePath } from 'vite'
+import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Jsx from '@vitejs/plugin-vue-jsx'
 import Md from 'vite-plugin-md'
@@ -17,10 +17,6 @@ const external = ['@fect-ui/vue-hooks', '@fect-ui/vue-icons'].reduce(
 export default defineConfig({
   root: 'docs',
   publicDir: path.join(process.cwd(), 'public'),
-  // https://vitejs.dev/config/shared-options.html#define
-  define: {
-    defaultWd: JSON.stringify(normalizePath(process.cwd()))
-  },
   plugins: [
     Jsx(),
     Vue({
