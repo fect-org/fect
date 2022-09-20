@@ -1,3 +1,4 @@
+import externalGlobals from 'rollup-plugin-external-globals'
 import type { Plugin, UserConfig } from 'vite'
 
 interface TrackModule {
@@ -54,9 +55,7 @@ export const cdn = (options: CDNOptions = {}): Plugin => {
           const globals = [...finder.values()].reduce((acc, { global, name }) => {
             return Object.assign(acc, { [name]: global })
           }, {})
-          if (!Array.isArray(userConfig.build.rollupOptions.output)) {
-            userConfig.build.rollupOptions.output!.globals = globals
-          }
+          userConfig.build.rollupOptions.plugins = [externalGlobals(globals)]
         }
       }
     },
