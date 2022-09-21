@@ -23,9 +23,6 @@ export interface DraggableOutput {
 
 export type Theme = 'light-theme' | 'dark-theme'
 
-export type WinWidth = Ref<number>
-export type WinHeight = Ref<number>
-
 export interface KeyboardOptions {
   event?: 'keydown' | 'keypress' | 'keyup'
   disableGlobalEvent?: boolean
