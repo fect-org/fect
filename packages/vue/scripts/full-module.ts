@@ -23,6 +23,11 @@ const generatorFullConfigs = (mini = false): Omit<BuildTaskConfig, 'taskName'> =
     plugins: {
       jsx
     },
+    resolve: {
+      define: {
+        'process.env.NODE_ENV': 'production'
+      }
+    },
     internalOptions: {
       plugins: {
         swc: {
