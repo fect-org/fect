@@ -25,7 +25,7 @@ const generatorFullConfigs = (mini = false): Omit<BuildTaskConfig, 'taskName'> =
     },
     resolve: {
       define: {
-        'process.env.NODE_ENV': 'production'
+        'process.env.NODE_ENV': JSON.stringify('production')
       }
     },
     internalOptions: {
