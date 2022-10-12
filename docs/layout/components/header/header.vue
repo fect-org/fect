@@ -176,7 +176,7 @@ export default defineComponent({
 }
 
 .tabs {
-  :deep .fect-tabs__title {
+  :deep(.fect-tabs__title) {
     font-size: 14px !important;
   }
   .fect-tab {

@@ -8119,10 +8119,10 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-vite-plugin-cdn2@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/vite-plugin-cdn2/-/vite-plugin-cdn2-0.2.0.tgz#e633f9380cc14b2552bb1e9bf962d1644b49fb42"
-  integrity sha512-zUhS/dPuKcrRgF8w0Wi3t1jkP7uQ3oZYkb01NzzlrJN0zJosUCZFIgI/Se61zK4cZd4dUTULOt/Al1JRbee+bw==
+vite-plugin-cdn2@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/vite-plugin-cdn2/-/vite-plugin-cdn2-0.2.2.tgz#09d1a99efa59dba294fb8b87e2b2faf5c5fb18f3"
+  integrity sha512-3lZh/Z6QuTaywX666i5s7U9THSSNwkI+YGm1RCH6xeIyiyCHyUd02ytZWvjNfNrg8M/JKa/03aIxDm4JKoNHIw==
   dependencies:
     happy-dom "^6.0.4"
     magic-string "^0.26.4"
