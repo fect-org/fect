@@ -14,11 +14,7 @@ const ensureStyleFileExists = (entry: string, replace = true) => {
   return fs.existsSync(style)
 }
 
-interface Config {
-  base: string
-}
-
-export const analyze = (config: Config): Plugin => {
+export const analyze = (config: { base: string }): Plugin => {
   return {
     name: 'internal-css-analyze',
     generateBundle(opt, bundles) {

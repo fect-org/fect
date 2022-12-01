@@ -1,6 +1,6 @@
 import path from 'path'
 import { build } from 'no-bump'
-import { fs, shared, spinner, internalPlugins } from 'internal'
+import { fs, shared, spinner, internalPlugins, declarationTask } from 'internal'
 
 import type { BumpOutputOptions, BumpOptions } from 'no-bump'
 
@@ -14,8 +14,6 @@ interface InternalBumpOptions {
 }
 
 const ensurePakcage = (sub: string) => {
-  // main package
-  // Object.values(internalPlugins)
   if (sub === 'vue')
     return [
       internalPlugins.css(),
@@ -113,6 +111,18 @@ async function main() {
             }
           }
         })
+        s.success()
+      } catch (error) {
+        s.error({ text: error.message })
+      }
+    })
+  )
+  await Promise.all(
+    options.map(async (conf) => {
+      const input = conf.entryPath
+      const { s } = spinner.useSpinner('declaration')
+      try {
+        await declarationTask(input)
         s.success()
       } catch (error) {
         s.error({ text: error.message })
