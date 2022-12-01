@@ -1,6 +1,8 @@
 import path from 'path'
 import fs from '../fs'
 import { slash, isScript, len } from '../shared'
+import { kebabCase } from '../helpers/format'
+
 import type { Plugin, ModuleFormat } from 'rollup'
 
 const generatorModule = (str: string, format: ModuleFormat = 'esm') => {
@@ -24,6 +26,7 @@ export const analyze = (config: { base: string }): Plugin => {
         {
           imports: string[]
           facadeModuleId: string
+          bindings: Record<string, string[]>
         }
       >()
       let components: string[] = []
@@ -35,16 +38,17 @@ export const analyze = (config: { base: string }): Plugin => {
         if (dir === '.' || exlucdes.some((v) => dir.includes(v))) continue
         const meta = bundles[filename]
         if (meta.type === 'asset') continue
-        const { imports, facadeModuleId } = meta
+        const { imports, facadeModuleId, importedBindings } = meta
         if (!facadeModuleId) continue
         components.push(dir)
         buckets.set(filename, {
           imports,
-          facadeModuleId
+          facadeModuleId,
+          bindings: importedBindings
         })
       }
       components = Array.from(new Set(components))
-      buckets.forEach(({ facadeModuleId, imports }, bucket) => {
+      buckets.forEach(({ facadeModuleId, imports, bindings }, bucket) => {
         const hasExists = ensureStyleFileExists(facadeModuleId)
         const dir = path.dirname(bucket)
         if (!track[dir]) track[dir] = []
@@ -54,6 +58,8 @@ export const analyze = (config: { base: string }): Plugin => {
           if (path.extname(dep)) {
             const prefix = dep.split('/').at(0) as string
             if (!components.includes(prefix)) return
+            const intersection = bindings[dep].map((v) => kebabCase(v)).filter((v) => components.includes(v))
+            if (!len(intersection)) return
             const prefixPath = path.join(config.base, prefix)
             const relativePath = path.relative(facadeModuleId, prefixPath)
             if (relativePath === '..') return
