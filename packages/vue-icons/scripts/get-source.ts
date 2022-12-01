@@ -1,6 +1,6 @@
 import https from 'https'
 import { join } from 'path'
-import { remove } from 'internal'
+import { fs } from 'internal'
 
 const sourcePath = join(__dirname, '..', 'sourcemap')
 
@@ -15,7 +15,7 @@ export const fetchData = (): Promise<string> =>
   )
 
 export const getSVGSource = async () => {
-  await remove(sourcePath)
+  await fs.remove(sourcePath)
   try {
     const res = await fetchData()
     return res

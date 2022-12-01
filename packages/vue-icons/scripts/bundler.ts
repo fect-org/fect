@@ -1,65 +1,61 @@
 import path from 'path'
 import { JSDOM } from 'jsdom'
 import Svgo from 'svgo'
+import { build } from 'no-bump'
 import { svgParser, replaceStyle } from './svg-parser'
 import svgoConfig from './svgo.config'
 import { getSVGSource } from './get-source'
 import { singleDefine, exportsTemplate } from './template'
 import { collect } from './gen'
-import { build } from 'no-bump'
-import Jsx from '@vitejs/plugin-vue-jsx'
-import type { BumpOptions } from 'no-bump'
 
-import {
-  runTask,
-  TASK_NAME,
-  BuildTaskConfig,
-  commonOutput,
-  camelize,
-  kebabCase,
-  declarationTask,
-  remove,
-  outputFile
-} from 'internal'
+import { spinner, camelize, kebabCase, declarationTask, fs } from 'internal'
+
+import type { BumpOptions } from 'no-bump'
 
 export const PACKAGE_PATH = path.join(process.cwd(), 'src')
 
-const clean = () => remove(PACKAGE_PATH)
+const runTask = (describe: string, fn?: () => void | Promise<void>) => {
+  const { s } = spinner.useSpinner(describe)
+  if (!fn) fn = () => Promise.resolve()
 
-const buildConfig: BumpOptions = {
-  input: path.join(PACKAGE_PATH, 'index.ts'),
-  output: { ...commonOutput, sourceMap: false, extractHelpers: false },
-  plugins: {
-    Jsx
-  },
-  internalOptions: {
-    plugins: {
-      commonjs: false,
-      postcss: false
-    }
+  const r = fn()
+  if (!r || !r.then) {
+    s.success()
+    return r
   }
+  const p = Promise.resolve(r).then(() => {
+    s.success()
+  })
+  return p
 }
 
-const configs: BuildTaskConfig[] = [
-  {
-    taskName: TASK_NAME.COMMONJS,
-    input: buildConfig.input,
-    output: { ...buildConfig.output, format: 'cjs', dir: 'dist/cjs', exports: 'named' },
-    plugins: buildConfig.plugins,
-    internalOptions: buildConfig.internalOptions
-  },
-  {
-    taskName: TASK_NAME.ESMODULE,
-    input: buildConfig.input,
-    output: { ...buildConfig.output, format: 'esm', dir: 'dist/esm' },
-    plugins: buildConfig.plugins,
-    internalOptions: buildConfig.internalOptions
-  }
-]
+const resolveConfigs = () => {
+  return ['esm', 'cjs'].reduce<BumpOptions[]>((acc, cur) => {
+    const conf: BumpOptions = {
+      input: path.join(PACKAGE_PATH, 'index.ts'),
+      output: {
+        format: cur as any,
+        dir: `dist/${cur}`,
+        preserveModules: true,
+        exports: cur === 'cjs' ? 'named' : 'auto'
+      },
+      internalOptions: {
+        plugins: {
+          swc: {
+            jsc: {
+              target: 'es2017'
+            }
+          }
+        }
+      }
+    }
+    acc.push(conf)
+    return acc
+  }, [])
+}
 
 ;(async () => {
   const svgs = {}
-  await clean()
 
   const getSource = async () => {
     const source = await getSVGSource()
@@ -85,8 +81,8 @@ const configs: BuildTaskConfig[] = [
         const entry = path.join(PACKAGE_PATH, kebabCase(svg), 'index.ts')
         const name = svg.charAt(0).toUpperCase() + svg.slice(1)
         const component = singleDefine(name, replaceStyle(svgs[svg]))
-        await outputFile(target, component)
-        await outputFile(entry, exportsTemplate(name, kebabCase(svg)))
+        await fs.outputFile(target, component)
+        await fs.outputFile(entry, exportsTemplate(name, kebabCase(svg)))
       })
     )
     await collect()
@@ -94,17 +90,17 @@ const configs: BuildTaskConfig[] = [
   try {
     await runTask('Fetch Icon Source', () => getSource())
     await runTask('Generator Icon source', () => generatorIconSource())
-    await Promise.all(
-      configs.map(async (conf) => {
-        const { taskName, ...rest } = conf
-        await runTask(taskName, () => build(rest))
+    for (const conf of resolveConfigs()) {
+      await runTask(conf.output.format as string, () => {
+        build(conf)
       })
-    )
+    }
+
     await runTask('Declaration', () => declarationTask())
   } catch (error) {
     console.log(error)
     process.exit(1)
   } finally {
-    clean()
+    await fs.remove(PACKAGE_PATH)
   }
 })()
