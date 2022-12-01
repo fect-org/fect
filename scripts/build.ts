@@ -30,6 +30,7 @@ const resolveBuildConfig = async (
   Array<
     InternalBumpOptions & {
       entryPath: string
+      subDir: string
     }
   >
 > => {
@@ -51,6 +52,7 @@ const resolveBuildConfig = async (
       return {
         name,
         formats,
+        subDir,
         entryPath: subDirecotry,
         plugins,
         external: Object.keys({ ...dependencies, ...peerDependencies })
@@ -70,53 +72,74 @@ async function main() {
         dir: string
         format: Required<Extract<BumpOutputOptions['format'], string>>
         input: string
+        mini: boolean
         options: Omit<typeof option, 'formats'>
+        file?: string
       }>
     >((acc, cur) => {
-      const dir = path.join(option.entryPath, 'dist', cur)
-      acc.push({
+      const tar = cur.includes('umd') ? 'cjs' : cur
+      const dir = path.join(option.entryPath, 'dist', tar)
+      const format = (cur.includes('min') ? cur.split('-').at(0) : cur) as any
+      const mini = cur.includes('min')
+      const base = {
         dir,
-        format: cur,
+        format,
         input,
+        mini,
         options: rest
-      })
+      }
+      if (cur.includes('umd') && rest.subDir === 'vue') Object.assign(base, { file: mini ? 'fect.min.js' : 'fect.js' })
+      acc.push(base)
       return acc
     }, [])
   })
-  await Promise.all(
-    configs.map(async (conf) => {
-      const { input, format, options, dir } = conf
-      const { s } = spinner.useSpinner(format)
-      try {
-        await build({
-          input,
-          clean: true,
-          plugins: options.plugins,
-          external: options.external,
-          output: {
-            format,
-            dir,
-            name: options.name,
-            preserveModules: true,
-            preserveModulesRoot: path.dirname(input),
-            exports: format === 'cjs' ? 'named' : 'auto'
-          },
-          internalOptions: {
-            plugins: {
-              swc: {
-                jsc: {
-                  target: 'es2017'
-                }
-              }
+  for (const conf of configs) {
+    const { input, format, options, dir, mini, file } = conf
+    const message = mini ? `${format}-min` : format
+    const { s } = spinner.useSpinner(message)
+    const output: BumpOutputOptions = {
+      format,
+      dir,
+      name: options.name,
+      preserveModules: true,
+      preserveModulesRoot: path.dirname(input),
+      exports: format === 'cjs' ? 'named' : 'auto',
+      minify: mini
+    }
+    const buildOption: BumpOptions = {
+      input,
+      plugins: options.plugins,
+      external: options.external,
+      output,
+      internalOptions: {
+        plugins: {
+          swc: {
+            jsc: {
+              target: 'es2017'
             }
           }
-        })
-        s.success()
-      } catch (error) {
-        s.error({ text: error.message })
+        }
       }
-    })
-  )
+    }
+    if (options.subDir === 'vue' && format === 'umd') {
+      delete output.preserveModules
+      delete output.preserveModulesRoot
+      output.file = file
+      output.exports = 'named'
+      buildOption.global = {
+        vue: 'Vue'
+      }
+      buildOption.external = ['vue']
+      buildOption.plugins?.shift()
+      buildOption.plugins?.unshift(internalPlugins.css({ extract: 'main.css' }))
+    }
+    try {
+      await build(buildOption)
+      s.success()
+    } catch (error) {
+      s.error({ text: error.message })
+    }
+  }
   await Promise.all(
     options.map(async (conf) => {
       const input = conf.entryPath

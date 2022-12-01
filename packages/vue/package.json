@@ -8,7 +8,7 @@
   "jsdelivr": "dist/cjs/fect.min.umd.js",
   "scripts": {
     "collect": "ts-node scripts/gen.ts",
-    "build": "npm run collect && ts-node scripts/build.ts && npm run generator:volar && node ./typing-template.js",
+    "type":"node ./typing-template.js",
     "test": "jest -c jest.config.js -u",
     "generator:volar": "ts-node scripts/gen-volar.ts"
   },
@@ -50,7 +50,8 @@
     "formats": [
       "esm",
       "cjs",
-      "iife"
+      "umd",
+      "umd-min"
     ]
   }
 }

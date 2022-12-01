@@ -62,7 +62,6 @@ export const analyze = (config: { base: string }): Plugin => {
           }
         })
       })
-
       for (const key in track) {
         const final = Array.from(new Set(track[key])).map((item) => generatorModule(item, opt.format))
         const str = final.reduce((acc, cur) => (acc += cur), '')

@@ -16,13 +16,12 @@
   },
   "scripts": {
     "collect": "yarn workspace @fect-ui/vue collect",
+    "generator:volar":"yarn workspace @fect-ui/vue generator:volar",
     "dev:site": "vite",
     "build:site": "cross-env SITE_ENV=production vite build",
-    "build:hook:test": "ts-node --project tsconfig.build.json scripts/build.ts vue-hooks",
-    "build:lib:test": "ts-node --project tsconfig.build.json scripts/build.ts vue",
-    "build:hook": "yarn workspace @fect-ui/vue-hooks build",
+    "build:hook": "ts-node --project tsconfig.build.json scripts/build.ts vue-hooks",
+    "build:lib": "yarn collect && ts-node --project tsconfig.build.json scripts/build.ts vue && yarn generator:volar  && yarn workspace @fect-ui/vue type",
     "build:icon": "yarn workspace @fect-ui/vue-icons build",
-    "build:lib": "yarn workspace @fect-ui/vue  build",
     "test": "yarn workspace @fect-ui/vue  test",
     "lint": "eslint \"{internal,packages}/**/*.{js,ts,tsx}\""
   },

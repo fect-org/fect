@@ -20,7 +20,11 @@ const transformLess = async (styleRaw: string, fileName: string) => {
   }
 }
 
-export const css = (): Plugin => {
+export const css = (
+  config: {
+    extract: boolean | string
+  } = { extract: false }
+): Plugin => {
   const clean = new CleanCss()
   const styles = new Map<
     string,
@@ -51,6 +55,12 @@ export const css = (): Plugin => {
       }
     },
     generateBundle() {
+      if (config.extract) {
+        const styleStr = [...styles.values()].reduce((acc, cur) => (acc += cur.code), '\n')
+        const tar = typeof config.extract === 'boolean' ? 'dist/main.css' : config.extract
+        this.emitFile({ type: 'asset', fileName: tar, source: styleStr })
+        return
+      }
       styles.forEach((v, k) => {
         const dest = path.basename(v.id, path.extname(v.id))
         this.emitFile({ type: 'asset', fileName: `${k}/${dest}.css`, source: v.code })
