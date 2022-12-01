@@ -1,0 +1,7 @@
+{
+  "jsc": {
+    "experimental": {
+      "plugins": [["swc-plugin-vue-jsx", {}]]
+    }
+  }
+}

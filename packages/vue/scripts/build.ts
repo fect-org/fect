@@ -42,21 +42,21 @@ const generatorConfigs = (config: ConfigParams): BuildTaskConfig => {
       dir,
       exports: format === 'cjs' ? 'named' : 'auto'
     },
-    plugins: {
-      jsx,
-      analyze: analyze({
+    plugins: [
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignored
+      jsx() as any,
+      analyze({
         entryDir: path.join(__dirname, '..', 'src'),
         mapper: components
       }),
-      css
-    },
+      css()
+    ],
     internalOptions: {
       plugins: {
-        postcss: false,
         commonjs: false,
         swc: {
           jsc: {
-            externalHelpers: false,
             target: 'es2017',
             parser: {
               syntax: 'typescript'
@@ -98,7 +98,9 @@ const parallelRunTask = async (tasks: BuildTaskConfig[]) => {
   await Promise.all(
     tasks.map(async (conf) => {
       const { taskName, ...rest } = conf
-      await runTask(taskName, () => build(rest))
+      await runTask(taskName, () => {
+        build(rest)
+      })
     })
   )
 }

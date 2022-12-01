@@ -1,91 +1,77 @@
 import path from 'path'
-import fs from 'fs'
-import type { Plugin } from 'rollup'
-import { includes, normalizePath } from '../shared'
+import fs from '../fs'
+import { slash, isScript, len } from '../shared'
+import type { Plugin, ModuleFormat } from 'rollup'
 
-/**
- * This is a internal analyze style deps plugin. If you want to
- * use in your project. It mayn't work as well as it.
- */
-
-interface AnalyzeConfig {
-  entryDir: string
-  mapper: string[]
-}
-
-const generatorModule = (str: string, format: 'cjs' | 'esm' = 'esm') => {
-  if (format === 'cjs') return `require('${str}');\n`
+const generatorModule = (str: string, format: ModuleFormat = 'esm') => {
+  if (['cjs', 'commonjs'].includes(format)) return `require('${str}');\n`
   return `import '${str}';\n`
 }
 
-export const analyze = (config: AnalyzeConfig): Plugin => {
-  config.entryDir = normalizePath(config.entryDir)
+const ensureStyleFileExists = (entry: string, replace = true) => {
+  entry = slash(entry)
+  const style = path.join(replace ? path.dirname(entry) : entry, 'index.less')
+  return fs.existsSync(style)
+}
+
+interface Config {
+  base: string
+}
+
+export const analyze = (config: Config): Plugin => {
   return {
-    name: 'rollup-plugin-analyze',
-    generateBundle(_, bundle) {
-      const realPaths = new Set()
-      const imports = new Map()
-      /**
-       * A not good way to determine the file generation format determines whether it is esm or cjs.
-       *
-       */
-      let format: 'cjs' | 'esm'
-      Object.keys(bundle).forEach((key) => {
-        const { fileName, importedBindings } = bundle[key] as any
-        const realPath = normalizePath(path.join(config.entryDir, path.dirname(fileName)))
-        if (!format) {
-          if (fileName.includes('esm')) {
-            format = 'esm'
-          }
-          if (fileName.includes('cjs')) {
-            format = 'cjs'
-          }
+    name: 'internal-css-analyze',
+    generateBundle(opt, bundles) {
+      const exlucdes = ['composables', 'utils']
+      const buckets = new Map<
+        string,
+        {
+          imports: string[]
+          facadeModuleId: string
         }
-        if (imports.has(realPath)) {
-          const previous = imports.get(realPath)
-          imports.set(realPath, { ...previous, ...importedBindings })
-          return
-        }
-        realPaths.add(realPath)
-        imports.set(realPath, importedBindings)
-      })
-      const realList = Array.from(realPaths).filter((v) => v !== config.entryDir)
-      if (imports.has(config.entryDir)) imports.delete(config.entryDir)
-      realList.forEach((key) => {
-        if (imports.has(key)) {
-          const collections: Record<string, string> = {}
+      >()
+      let components: string[] = []
 
-          const selfEntry = path.join(key as string, 'index.less')
-          if (fs.existsSync(selfEntry)) collections[selfEntry] = generatorModule('../index.css', format)
-          const deps = imports.get(key)
-          const shouldBeAnalyzed: Array<Record<string, string[]>> = []
-          for (const dep in deps) {
-            if (!deps[dep].length) continue
-            shouldBeAnalyzed.push({
-              [dep]: deps[dep]
-            })
+      const track: Record<string, string[]> = {}
+      for (const filename in bundles) {
+        if (!isScript(filename)) continue
+        const dir = path.dirname(filename)
+        if (dir === '.' || exlucdes.some((v) => dir.includes(v))) continue
+        const meta = bundles[filename]
+        if (meta.type === 'asset') continue
+        const { imports, facadeModuleId } = meta
+        if (!facadeModuleId) continue
+        components.push(dir)
+        buckets.set(filename, {
+          imports,
+          facadeModuleId
+        })
+      }
+      components = Array.from(new Set(components))
+      buckets.forEach(({ facadeModuleId, imports }, bucket) => {
+        const hasExists = ensureStyleFileExists(facadeModuleId)
+        const dir = path.dirname(bucket)
+        if (!track[dir]) track[dir] = []
+        if (hasExists) track[dir].push('../index.css')
+        if (!len(imports)) return
+        imports.forEach((dep) => {
+          if (path.extname(dep)) {
+            const prefix = dep.split('/').at(0) as string
+            if (!components.includes(prefix)) return
+            const prefixPath = path.join(config.base, prefix)
+            const relativePath = path.relative(facadeModuleId, prefixPath)
+            if (relativePath === '..') return
+            const exists = ensureStyleFileExists(prefixPath, false)
+            if (exists) track[dir].push(slash(`${relativePath}/index.css`))
           }
-          if (shouldBeAnalyzed.length) {
-            shouldBeAnalyzed.forEach((draft: Record<string, string[]>) => {
-              const parentKey = key as string
-              for (const dep in draft) {
-                if (!includes(config.mapper, draft[dep])) continue
-                let subStyleEntry = path.join(config.entryDir, path.dirname(dep), 'index.less')
-                if (fs.existsSync(subStyleEntry)) {
-                  subStyleEntry = subStyleEntry.replace('.less', '.css')
-                  // because we will generator into style direcotry.
-                  const imports = normalizePath(path.join('..', path.relative(parentKey, subStyleEntry)))
-                  Reflect.set(collections, dep, generatorModule(imports, format))
-                }
-              }
-            })
-          }
-
-          const res = Object.values(collections).reduce((acc, cur) => (acc += cur), '')
-          const dest = (key as string).split('/').pop() || ''
-          this.emitFile({ type: 'asset', fileName: `${dest}/style/index.js`, source: res })
-        }
+        })
       })
+
+      for (const key in track) {
+        const final = Array.from(new Set(track[key])).map((item) => generatorModule(item, opt.format))
+        const str = final.reduce((acc, cur) => (acc += cur), '')
+        this.emitFile({ type: 'asset', fileName: `${key}/style/index.js`, source: str })
+      }
     }
   }
 }

@@ -44,5 +44,12 @@
   },
   "peerDependencies": {
     "vue": "^3.0.11"
+  },
+  "bumpOptions": {
+    "name": "fect",
+    "formats": [
+      "esm",
+      "cjs"
+    ]
   }
 }
