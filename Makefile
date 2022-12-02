@@ -11,3 +11,6 @@ build-hooks:
 
 build-icons:
 	yarn build:icon
+
+build-lib:
+	yarn build:lib

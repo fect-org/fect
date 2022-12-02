@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignored
+// @ts-ignore
 import { render } from 'less'
 import postcss from 'postcss'
 import CleanCss from 'clean-css'

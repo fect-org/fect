@@ -16,12 +16,6 @@
     "types/",
     "README.md"
   ],
-  "devDependencies": {
-    "jsdom": "^16.6.0",
-    "@types/svgo": "1.3.2",
-    "svgo": "1.3.2",
-    "@types/jsdom": "^16.2.11"
-  },
   "peerDependencies": {
     "vue": "^3.0.11"
   },

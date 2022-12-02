@@ -1,5 +1,5 @@
 import path from 'path'
-import { JSDOM } from 'jsdom'
+import { Window } from 'happy-dom'
 import Svgo from 'svgo'
 import { build } from 'no-bump'
 import { svgParser, replaceStyle } from './svg-parser'
@@ -59,7 +59,8 @@ const resolveConfigs = () => {
 
   const getSource = async () => {
     const source = await getSVGSource()
-    const { document } = new JSDOM(source).window
+    const { document } = new Window()
+    document.body.innerHTML = source
     const icons = document.querySelectorAll('.geist-container > .icon')
     if (!icons.length) throw new Error("\nCan't found svg elements. please check bundler.ts file.\n")
     const svgo = new Svgo(svgoConfig)
