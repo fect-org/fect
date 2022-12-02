@@ -25,3 +25,5 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+packages/vue-icons/src/*

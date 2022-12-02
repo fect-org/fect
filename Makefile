@@ -7,7 +7,10 @@ modules:
 	yarn install
 
 build-hooks:
-	cd	packages/vue-hooks;	yarn	build
+	yarn build:hook
 
 build-icons:
-	cd	packages/vue-icons;	yarn build
+	yarn build:icon
+
+build-lib:
+	yarn build:lib

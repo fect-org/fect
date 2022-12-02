@@ -12,15 +12,16 @@
   ],
   "license": "MIT",
   "engines": {
-    "node": "^16"
+    "node": "^18"
   },
   "scripts": {
     "collect": "yarn workspace @fect-ui/vue collect",
+    "generator:volar": "yarn workspace @fect-ui/vue generator:volar",
     "dev:site": "vite",
     "build:site": "cross-env SITE_ENV=production vite build",
-    "build:hook": "yarn workspace @fect-ui/vue-hooks build",
+    "build:hook": "ts-node --project tsconfig.build.json scripts/build.ts vue-hooks",
+    "build:lib": "yarn collect && ts-node --project tsconfig.build.json scripts/build.ts vue && yarn generator:volar  && yarn workspace @fect-ui/vue type",
     "build:icon": "yarn workspace @fect-ui/vue-icons build",
-    "build:lib": "yarn workspace @fect-ui/vue  build",
     "test": "yarn workspace @fect-ui/vue  test",
     "lint": "eslint \"{internal,packages}/**/*.{js,ts,tsx}\""
   },
@@ -54,11 +55,12 @@
     "jest-serializer-vue": "^2.0.2",
     "jest-transform-stub": "^2.0.0",
     "less": "^4.1.2",
-    "no-bump": "^0.5.1",
+    "nanospinner": "^1.1.0",
+    "no-bump": "^0.6.1",
     "postcss": "^8.4.16",
     "prettier": "^2.4.1",
     "prismjs": "^1.23.0",
-    "rollup-plugin-external-globals": "^0.6.1",
+    "swc-plugin-vue-jsx": "^0.2.0",
     "ts-node": "^10.8.1",
     "typescript": "^4.7.4",
     "vite": "^3.0.8",
@@ -66,7 +68,10 @@
     "vite-plugin-md": "^0.20.2",
     "vue": "^3.2.37",
     "vue-jest": "^5.0.0-alpha.10",
-    "vue-router": "^4.0.8"
+    "vue-router": "^4.0.8",
+    "@types/svgo": "1.3.2",
+    "svgo": "1.3.2",
+    "@types/jsdom": "^16.2.11"
   },
   "peerDependencies": {
     "vue": "^3.0.0"
