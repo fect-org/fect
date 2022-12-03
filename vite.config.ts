@@ -34,24 +34,27 @@ export default defineConfig({
       builders: [playground(), table()]
     }),
     loadStaticMarkdonModule(),
-    cdn({
-      isProduction: process.env.SITE_ENV === 'production',
-      modules: [
-        {
-          name: 'vue',
-          global: 'Vue'
-        },
-        {
-          name: 'prismjs',
-          global: 'Prism',
-          spare: 'https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js'
-        },
-        {
-          name: 'vue-router',
-          global: 'VueRouter'
-        }
-      ]
-    })
+    {
+      ...cdn({
+        isProduction: true,
+        modules: [
+          {
+            name: 'vue',
+            global: 'Vue'
+          },
+          {
+            name: 'prismjs',
+            global: 'Prism',
+            spare: 'https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js'
+          },
+          {
+            name: 'vue-router',
+            global: 'VueRouter'
+          }
+        ]
+      }),
+      apply: 'build'
+    }
   ],
   // https://github.com/vitejs/vite/issues/5270
   optimizeDeps: {

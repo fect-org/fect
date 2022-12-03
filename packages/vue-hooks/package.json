@@ -16,10 +16,6 @@
     "README.md"
   ],
   "license": "MIT",
-  "scripts": {
-    "clean": "rm -rf dist types",
-    "build": "npm run clean && ts-node build.ts"
-  },
   "peerDependencies": {
     "vue": "^3.0.11"
   },

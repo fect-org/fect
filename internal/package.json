@@ -2,7 +2,6 @@
   "name": "internal",
   "version": "0.0.0",
   "description": "An internal module for fect",
-  "private": "true",
   "author": "kanno",
   "main": "index.ts",
   "module": "index.ts"
