@@ -1,7 +1,8 @@
 import { css } from './plugins/css'
 import { analyze } from './plugins/analyze'
+import { svg } from './plugins/svg'
 
-export const internalPlugins = { css, analyze }
+export const internalPlugins = { css, analyze, svg }
 
 export * from './process'
 export * from './helpers/gen'
