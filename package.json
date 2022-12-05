@@ -12,16 +12,18 @@
   ],
   "license": "MIT",
   "engines": {
-    "node": "^18"
+    "node": ">=18.12.1"
   },
   "scripts": {
+    "preinstall": "node scripts/preinstall.js",
     "collect": "yarn workspace @fect-ui/vue collect",
     "generator:volar": "yarn workspace @fect-ui/vue generator:volar",
     "dev:site": "vite",
+    "update:icon": "ts-node scripts/source.ts",
     "build:site": "vite build",
-    "build:hook": "ts-node --project tsconfig.build.json scripts/build.ts vue-hooks",
-    "build:lib": "yarn collect && ts-node --project tsconfig.build.json scripts/build.ts vue && yarn generator:volar  && yarn workspace @fect-ui/vue type",
-    "build:icon": "yarn workspace @fect-ui/vue-icons build",
+    "build:hook": "ts-node scripts/build.ts vue-hooks",
+    "build:lib": "yarn collect && ts-node scripts/build.ts vue && yarn generator:volar  && yarn workspace @fect-ui/vue type",
+    "build:icon": "ts-node scripts/icon.ts && ts-node scripts/build.ts vue-icons",
     "test": "yarn workspace @fect-ui/vue  test",
     "lint": "eslint \"{internal,packages}/**/*.{js,ts,tsx}\""
   },

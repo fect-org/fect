@@ -12,5 +12,11 @@
     "types": ["vite/client"]
   },
   "include": ["docs/layout/**/*", "shims", "exmaple"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS",
+      "esModuleInterop": true
+    }
+  }
 }

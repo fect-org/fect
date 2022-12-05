@@ -8,6 +8,6 @@ const entry = path.join(__dirname, '..', 'src')
 const ignored = ['utils']
 
 ;(async () => {
-  const code = await genVuePackageMeta(entry, ignored, version)
+  const code = await genVuePackageMeta(entry, { ignored, version })
   await fs.promises.writeFile(path.join(entry, 'index.ts'), formatCode(code), 'utf-8')
 })()
