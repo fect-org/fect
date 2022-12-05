@@ -11,7 +11,7 @@ const output = path.join(__dirname, '..', 'components.d.ts')
 const ignored = ['utils']
 
 ;(async () => {
-  const { directories } = await gen(entry, ignored)
+  const { directories } = await gen(entry, { ignored })
   const exports = await genExports(directories)
   const str = exports
     .flat()

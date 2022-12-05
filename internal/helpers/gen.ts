@@ -5,28 +5,45 @@
  * @example
  *  export * from './module'
  */
-import fs from 'fs'
 import path from 'path'
 import { init, parse } from 'es-module-lexer'
+import fs from '../fs'
+import { camelize } from './format'
 
-export const gen = async (root = process.cwd(), ignoredDirectories: string[] = []) => {
-  ignoredDirectories = ignoredDirectories.map((dir) => {
+interface PackageConfig {
+  ignored?: string[]
+  version?: string
+  fileOnly?: boolean
+}
+
+export const gen = async (
+  root = process.cwd(),
+  {
+    ignored = [],
+    fileOnly = false
+  }: {
+    ignored?: string[]
+    fileOnly?: boolean
+  }
+) => {
+  const ignoredDirectories = ignored.map((dir) => {
     if (path.isAbsolute(dir)) return dir
     return path.join(root, dir)
   })
-
-  const directories = await Promise.all(
+  let directories = await Promise.all(
     (
       await fs.promises.readdir(root)
     )
       .map((dir) => path.join(root, dir))
-      .filter((subPath) => {
-        if (fs.statSync(subPath).isDirectory()) {
-          return !ignoredDirectories.includes(subPath)
-        }
-        return false
+      .filter(async (subPath) => {
+        const stats = await fs.promises.stat(subPath)
+        if (fileOnly) return stats.isFile() && !ignoredDirectories.includes(subPath)
+        return stats.isDirectory() && !ignoredDirectories.includes(subPath)
       })
   )
+  if (fileOnly) {
+    directories = directories.map((file) => file.split('.').slice(0, -1).join(''))
+  }
 
   const relatives = directories.reduce((acc: string[], cur: string) => {
     const relative = `./${path.relative(root, cur)}`
@@ -34,12 +51,26 @@ export const gen = async (root = process.cwd(), ignoredDirectories: string[] = [
     return acc
   }, [])
 
-  const parserd = relatives.reduce((acc, cur) => (acc += `export * from '${cur}';\n`), '')
+  const parserd = relatives.reduce((acc, cur) => {
+    if (fileOnly) {
+      const name = path.basename(cur).charAt(0).toLocaleLowerCase() + path.basename(cur).slice(1)
+      return (acc += `export {default as ${camelize(`-${name}`)}} from '${cur}';\n`)
+    }
+    return (acc += `export * from '${cur}';\n`)
+  }, '')
 
   return { parserd, directories, relatives }
 }
 
-export const genExports = async (dict: string[], condit = 'default') => {
+export const genExports = async (dict: string[], options: { condit?: string; fileOnly?: boolean } = {}) => {
+  const { condit = 'default', fileOnly = false } = options
+  if (fileOnly) {
+    return dict.map((d) => {
+      const basename = path.basename(d)
+      const finalName = basename.charAt(0).toLocaleLowerCase() + basename.slice(1)
+      return camelize(`-${finalName}`)
+    })
+  }
   await init
   return dict.map((d) => {
     const moduleEntry = path.join(d, 'index.ts')
@@ -52,15 +83,18 @@ export const genExports = async (dict: string[], condit = 'default') => {
  * Generator vue component register info
  */
 
-export const genVuePackageMeta = async (root = process.cwd(), ignoredDirectories: string[] = [], version = '0.0.0') => {
-  const { parserd, directories, relatives } = await gen(root, ignoredDirectories)
+export const genVuePackageMeta = async (root = process.cwd(), options: PackageConfig) => {
+  const { ignored = [], version = '0.0.0', fileOnly = false } = options
+  const { parserd, directories, relatives } = await gen(root, { ignored, fileOnly })
 
-  const namedExports = await genExports(directories)
+  const namedExports = await genExports(directories, { fileOnly })
 
-  const str = namedExports.reduce((acc, cur, i) => {
-    const moudle = `import {${cur.join()}} from '${relatives[i]}';\n`
-    return (acc += moudle)
-  }, '')
+  const str = namedExports
+    .map((item, i) => {
+      const moudle = `import ${Array.isArray(item) ? `{${item.join()}}` : item}  from '${relatives[i]}';\n`
+      return moudle
+    })
+    .join('\n')
 
   const flatMoudle = namedExports.flat()
 
@@ -75,7 +109,7 @@ export const genVuePackageMeta = async (root = process.cwd(), ignoredDirectories
     `const components =[${flatMoudle}];\n
   
   const install = (app:App) => {
-    components.map((component:any) => {
+    components.forEach((component:any) => {
       if (component.install) {
         app.use(component)
       } else if(component.name) {
