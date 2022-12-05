@@ -6,8 +6,8 @@ import type { CustomPlugin } from 'svgo'
 const NODES = ['path', 'rect', 'circle']
 
 function replaceAttribute(val: string, ident: string) {
-  if (!val) return '""'
-  return val.includes(ident) ? '"currentColor"' : '"var(--primary-background)"'
+  if (!val) return ''
+  return val.includes(ident) ? 'currentColor' : 'var(--primary-background)'
 }
 
 export const svg: CustomPlugin = {

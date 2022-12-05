@@ -96,6 +96,7 @@ async function main() {
   } catch (error) {
     throw error
   }
+  await fs.remove(ICON_PATH)
   await Promise.all(
     Object.values(icons).map(async ({ component, kebaseName }) => {
       const filename = path.join(ICON_PATH, `${kebaseName}.tsx`)
