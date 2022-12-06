@@ -5,14 +5,13 @@
   "author": "kanno",
   "main": "dist/cjs/index.cjs.js",
   "module": "dist/esm/index.esm.js",
-  "typings": "types/index.d.ts",
+  "typings": "dist/types/index.d.ts",
   "keywords": [
     "fect",
     "vue-hooks"
   ],
   "files": [
     "dist",
-    "types/",
     "README.md"
   ],
   "license": "MIT",

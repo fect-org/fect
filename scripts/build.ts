@@ -1,6 +1,6 @@
 import path from 'path'
 import { build } from 'no-bump'
-import { fs, shared, spinner, internalPlugins, declarationTask } from 'internal'
+import { fs, shared, spinner, internalPlugins, declarationTask, gen, genExports, formatCode } from 'internal'
 
 import type { BumpOutputOptions, BumpOptions } from 'no-bump'
 
@@ -115,7 +115,10 @@ async function main() {
         plugins: {
           swc: {
             jsc: {
-              target: 'es2017'
+              target: 'es2017',
+              experimental: {
+                plugins: [['swc-plugin-vue-jsx', {}]]
+              }
             }
           }
         }
@@ -149,6 +152,49 @@ async function main() {
         s.success()
       } catch (error) {
         s.error({ text: error.message })
+      }
+      if (conf.subDir === 'core') {
+        s.update({ text: 'volar declaration' })
+        const { directories } = await gen(path.join(conf.entryPath, 'src'), {
+          ignored: ['utils', 'composables', 'index.ts']
+        })
+        const exports = await genExports(directories)
+        await fs.outputFile(
+          path.join(conf.entryPath, 'components.d.ts'),
+          formatCode(`
+        declare module "@vue/runtime-core" {
+          export interface GlobalComponents {
+            ${exports.flat().reduce((acc, cur) => (acc += `Fe${cur}: typeof import("@fect-ui/vue")["${cur}"];\n`))}
+          }
+        };\n
+        export {};\n
+        `),
+          'utf8'
+        )
+        const dtsPath = path.join(conf.entryPath, 'dist', 'types', 'index.d.ts')
+        const dts = await fs.promises.readFile(dtsPath, 'utf8')
+        await fs.outputFile(
+          dtsPath,
+          formatCode(`${dts}
+          import { StaticModalOptions } from './modal/interface'
+          import { ToastOptions, StaticToastOptions } from './toast/interface'
+          
+          interface StaticToastMethods {
+            success: (options: StaticToastOptions) => void
+            warning: (options: StaticToastOptions) => void
+            error: (options: StaticToastOptions) => void
+            removeAll: () => void
+          }
+          
+          declare module '@vue/runtime-core' {
+            export interface ComponentCustomProperties {
+              $toast: Pick<StaticToastMethods, keyof StaticToastMethods> & ((options: ToastOptions) => void)
+              $modal: (options: StaticModalOptions) => void
+            }
+          }
+          `)
+        )
+        s.success()
       }
     })
   )

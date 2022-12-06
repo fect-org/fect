@@ -9,7 +9,7 @@ If you don't know Git,basic operation of Git,you can refer to [GitHub's help doc
 
 1. [Fork this repository](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) to your own account and then clone it.
 2. Create a new branch for your changes: `git checkout -b {BRANCH_NAME}`.
-3. Install a package management tools [Yarn](https://classic.yarnpkg.com/en/docs/install#mac-stable)
+3. Install a package management tools [Yarn](https://yarnpkg.com/getting-started/install)
    and then update project dependenices `Yarn`
 4. Run commands in order:
    - `make`
@@ -27,8 +27,8 @@ At any time, you think it's ok, you can start the following steps to submit your
 #### **Create component**
 
 1. Create a component folder in `packages/core/src`.
-2. Run `Yarn collect` and it will automatic add `import` to `packages/core/src/index.ts`
-3. Create a document file in `docs/zh-cn` or `docs/en-us` and `docs/example`,it will automatic logon.
+2. Add an `import` record to `packages/core/src/index.ts`
+3. Create a document file at `docs/zh-cn` and `docs/en-us` and `docs/example`,it will automatic logon.
 4. Restart local server view changes: `yarn dev:site`.
 
 #### **Create testcase**
