@@ -1,3 +1,5 @@
+[build.environment]
+  NPM_FLAGS = "--version" 
 [[redirects]]
   from = "/*"
   to = "/index.html"
