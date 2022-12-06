@@ -26,8 +26,8 @@ At any time, you think it's ok, you can start the following steps to submit your
 
 #### **Create component**
 
-1. Create a component folder in `packages`.
-2. Run `Yarn collect` and it will automatic add `import` to `packages/index.ts`
+1. Create a component folder in `packages/core/src`.
+2. Run `Yarn collect` and it will automatic add `import` to `packages/core/src/index.ts`
 3. Create a document file in `docs/zh-cn` or `docs/en-us` and `docs/example`,it will automatic logon.
 4. Restart local server view changes: `yarn dev:site`.
 

@@ -10,7 +10,7 @@ const Wrapper = {
   data() {
     return {
       invert: false,
-      url: 'https://www.miaya.art',
+      url: 'https://www.fect-org.com/',
       showFullLink: false,
       title: 'Fect'
     }
