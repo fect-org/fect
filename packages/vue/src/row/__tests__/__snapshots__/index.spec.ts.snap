@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Row should be render as Element 1`] = `
-<div class="fect-row fect-row--start fect-row--top">
-  <!---->
-</div>
-`;

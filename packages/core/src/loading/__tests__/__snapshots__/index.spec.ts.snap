@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading component props should be work correctly 1`] = `
+<div class="container">
+  <div class="fect-loading" type-data="success" type-size="small"><span class="fect-loading__wrapper"><i class="fect-loading__wave fect-loading__wave--small success"></i><i class="fect-loading__wave fect-loading__wave--small success"></i><i class="fect-loading__wave fect-loading__wave--small success"></i><i class="fect-loading__wave fect-loading__wave--small success"></i><i class="fect-loading__wave fect-loading__wave--small success"></i></span></div>
+</div>
+`;
+
+exports[`Loading should be rendera as a element 1`] = `<div class="fect-loading"><span class="fect-loading__wrapper"><i class="fect-loading__default fect-loading__default--medium default"></i><i class="fect-loading__default fect-loading__default--medium default"></i><i class="fect-loading__default fect-loading__default--medium default"></i></span></div>`;

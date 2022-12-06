@@ -1,0 +1,32 @@
+.fect-user {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  font-size: 16px;
+  width: max-content;
+  height: auto;
+  padding: 0 var(--fect-gap-half) 0 var(--fect-gap-half);
+  margin: 0;
+  &__names {
+    font-size: inherit;
+    margin-left: var(--fect-gap-half);
+    display: inline-flex;
+    flex-direction: column;
+    white-space: nowrap;
+
+    .name {
+      font-size: 14px;
+      color: var(--accents-8);
+      text-transform: capitalize;
+      font-weight: 500;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .social {
+      font-size: 13px;
+      color: var(--accents-6);
+    }
+  }
+}

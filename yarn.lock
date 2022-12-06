@@ -2177,25 +2177,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fect-ui/vue-hooks@workspace:^, @fect-ui/vue-hooks@workspace:packages/vue-hooks":
+"@fect-ui/vue-hooks@workspace:^, @fect-ui/vue-hooks@workspace:packages/hooks":
   version: 0.0.0-use.local
-  resolution: "@fect-ui/vue-hooks@workspace:packages/vue-hooks"
+  resolution: "@fect-ui/vue-hooks@workspace:packages/hooks"
   peerDependencies:
     vue: ^3.0.11
   languageName: unknown
   linkType: soft
 
-"@fect-ui/vue-icons@workspace:packages/vue-icons":
+"@fect-ui/vue-icons@workspace:packages/icons":
   version: 0.0.0-use.local
-  resolution: "@fect-ui/vue-icons@workspace:packages/vue-icons"
+  resolution: "@fect-ui/vue-icons@workspace:packages/icons"
   peerDependencies:
     vue: ^3.0.11
   languageName: unknown
   linkType: soft
 
-"@fect-ui/vue@workspace:packages/vue":
+"@fect-ui/vue@workspace:packages/core":
   version: 0.0.0-use.local
-  resolution: "@fect-ui/vue@workspace:packages/vue"
+  resolution: "@fect-ui/vue@workspace:packages/core"
   dependencies:
     "@fect-ui/themes": ^2.2.0
     "@fect-ui/vue-hooks": "workspace:^"

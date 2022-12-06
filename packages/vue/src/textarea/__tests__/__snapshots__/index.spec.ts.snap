@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Textarea normal props should work correctly 1`] = `
-<div>
-  <div class="fect-textarea"><textarea class="" style="resize: none; height: 100%; width: 50px;" placeholder="This is a test message"></textarea></div>
-</div>
-`;
-
-exports[`Textarea should be render as a element 1`] = `<div class="fect-textarea"><textarea class="" style="resize: none; height: 100%; width: 100%;"></textarea></div>`;

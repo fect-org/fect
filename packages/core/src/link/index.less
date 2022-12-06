@@ -1,0 +1,37 @@
+:root {
+  --link-color: var(--success-default);
+  --link-hover-color: var(--success-light);
+  --link-block-hover-color: #0076ff1a;
+}
+
+.fect-link {
+  display: inline-flex;
+  line-height: inherit;
+  color: inherit;
+  width: fit-content;
+  text-decoration: none;
+  transition: color 200ms ease 0ms;
+  &--underline {
+    &:active,
+    &:focus,
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &--color {
+    color: var(--link-color);
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: var(--link-hover-color);
+  }
+  &--block {
+    padding: 8px;
+    border-radius: 5px;
+    &:hover {
+      background-color: var(--link-block-hover-color);
+    }
+  }
+}

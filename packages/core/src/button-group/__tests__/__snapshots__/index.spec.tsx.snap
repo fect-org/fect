@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonGroup should render correctly 1`] = `
+<div class="fect-button__group fect-button__group--horizontal"><button class="fect-button fect-button--default fect-button--auto fect-button--mini" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
+    <!---->
+    <!---->Action
+  </button><button class="fect-button fect-button--default fect-button--auto fect-button--mini" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
+    <!---->
+    <!---->Action
+  </button><button class="fect-button fect-button--default fect-button--auto fect-button--mini" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
+    <!---->
+    <!---->Action
+  </button></div>
+`;
+
+exports[`ButtonGroup should support render vertical 1`] = `
+<div class="fect-button__group fect-button__group--vertical"><button class="fect-button fect-button--default fect-button--auto fect-button--mini" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
+    <!---->
+    <!---->Action
+  </button><button class="fect-button fect-button--default fect-button--auto fect-button--mini" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
+    <!---->
+    <!---->Action
+  </button><button class="fect-button fect-button--default fect-button--auto fect-button--mini" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
+    <!---->
+    <!---->Action
+  </button></div>
+`;

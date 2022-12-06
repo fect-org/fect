@@ -1,0 +1,35 @@
+:root {
+  --dot-default-color: var(--accents-2);
+  --dot-success-color: var(--success-default);
+  --dot-warning-color: var(--warning-default);
+  --dot-error-color: var(--error-default);
+}
+
+.fect-dot {
+  display: inline-flex;
+  align-items: center;
+  &__circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    user-select: none;
+    &--default {
+      background-color: var(--dot-default-color);
+    }
+    &--success {
+      background-color: var(--dot-success-color);
+    }
+    &--warning {
+      background-color: var(--dot-warning-color);
+    }
+    &--error {
+      background-color: var(--dot-error-color);
+    }
+  }
+  &__ctx {
+    margin-left: 8px;
+    font-size: 1rem;
+    text-transform: capitalize;
+  }
+}

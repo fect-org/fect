@@ -1,0 +1,35 @@
+.fect-back-top {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+
+  &.focus {
+    cursor: pointer;
+  }
+  &__content {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+    background-color: var(--accents-3);
+    border-radius: 20px;
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: var(--accents-6);
+      transition: all 0.3s;
+    }
+  }
+
+  &__icon {
+    display: inline-block;
+    color: inherit;
+    font-style: normal;
+    line-height: 0;
+    text-align: center;
+    text-transform: none;
+    vertical-align: -1rem;
+    text-rendering: optimizeLegibility;
+  }
+}
