@@ -14,11 +14,11 @@ interface InternalBumpOptions {
 }
 
 const ensurePakcage = (sub: string) => {
-  if (sub === 'vue')
+  if (sub === 'core')
     return [
       internalPlugins.css(),
       internalPlugins.analyze({
-        base: path.join(defaultWd, 'packages', 'vue', 'src')
+        base: path.join(defaultWd, 'packages', 'core', 'src')
       })
     ]
   return []
@@ -88,7 +88,7 @@ async function main() {
         mini,
         options: rest
       }
-      if (cur.includes('umd') && rest.subDir === 'vue') Object.assign(base, { file: mini ? 'fect.min.js' : 'fect.js' })
+      if (cur.includes('umd') && rest.subDir === 'core') Object.assign(base, { file: mini ? 'fect.min.js' : 'fect.js' })
       acc.push(base)
       return acc
     }, [])
@@ -121,7 +121,7 @@ async function main() {
         }
       }
     }
-    if (options.subDir === 'vue' && format === 'umd') {
+    if (options.subDir === 'core' && format === 'umd') {
       delete output.preserveModules
       delete output.preserveModulesRoot
       output.file = file
