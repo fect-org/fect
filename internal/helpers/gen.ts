@@ -9,6 +9,7 @@ import path from 'path'
 import { init, parse } from 'es-module-lexer'
 import fs from '../fs'
 import { camelize } from './format'
+import { len } from '../shared'
 
 interface PackageConfig {
   ignored?: string[]
@@ -35,8 +36,8 @@ export const gen = async (
       await fs.promises.readdir(root)
     )
       .map((dir) => path.join(root, dir))
-      .filter(async (subPath) => {
-        const stats = await fs.promises.stat(subPath)
+      .filter((subPath) => {
+        const stats = fs.statSync(subPath)
         if (fileOnly) return stats.isFile() && !ignoredDirectories.includes(subPath)
         return stats.isDirectory() && !ignoredDirectories.includes(subPath)
       })
@@ -91,6 +92,7 @@ export const genVuePackageMeta = async (root = process.cwd(), options: PackageCo
 
   const str = namedExports
     .map((item, i) => {
+      if ((Array.isArray(item) && !len(item)) || !len(item)) return ''
       const moudle = `import ${Array.isArray(item) ? `{${item.join()}}` : item}  from '${relatives[i]}';\n`
       return moudle
     })

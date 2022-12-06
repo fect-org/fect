@@ -16,13 +16,11 @@
   },
   "scripts": {
     "preinstall": "node scripts/preinstall.js",
-    "collect": "yarn workspace @fect-ui/vue collect",
-    "generator:volar": "yarn workspace @fect-ui/vue generator:volar",
     "dev:site": "vite",
     "update:icon": "ts-node scripts/source.ts",
     "build:site": "vite build",
     "build:hook": "ts-node scripts/build.ts hooks",
-    "build:lib": "yarn collect && ts-node scripts/build.ts core && yarn generator:volar  && yarn workspace @fect-ui/vue type",
+    "build:lib": "ts-node scripts/build.ts core",
     "build:icon": "ts-node scripts/icon.ts && ts-node scripts/build.ts icons",
     "test": "yarn workspace @fect-ui/vue  test",
     "lint": "eslint \"{internal,packages}/**/*.{js,ts,tsx}\""

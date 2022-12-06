@@ -5,12 +5,11 @@
   "description": "Well prepared high quality Icon Library for fect",
   "main": "dist/cjs/index.cjs.js",
   "module": "dist/esm/index.esm.js",
-  "types": "types/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "license": "MIT",
   "files": [
     "LISCENSE",
     "dist",
-    "types/",
     "README.md"
   ],
   "peerDependencies": {

@@ -10,7 +10,7 @@
 
 1. [Fork 这个仓库](https://help.github.com/zh/github/getting-started-with-github/fork-a-repo)到您自己的账号下，然后将它 clone 到本地。
 2. 为您的改动创建一个新的分支: `git checkout -b {BRANCH_NAME}`。
-3. 安装一个包管理工具 [Yarn](https://classic.yarnpkg.com/en/docs/install#mac-stable)
+3. 安装一个包管理工具 [Yarn](https://yarnpkg.com/getting-started/install)
    然后更新项目的依赖: `yarn`
 4. 执行以下命令:
    - `make`
@@ -28,7 +28,7 @@
 #### **创建组件**
 
 1. 在 `packages/core/src` 中创建一个组件目录。
-2. 运行 `yarn collect` 命令，它会自动添加一条 `import` 到 `packages/vue/src/index.ts` 中。
+2. 添加一条 `import` 记录 到 `packages/core/src/index.ts` 中。
 3. 在 `docs/zh-cn` ,`docs/en-us` 和 `docs/example` 中创建该组件的文档文件，它将会被自动注册。
 4. 重启本地服务查看更改: `yarn dev:site`。
 

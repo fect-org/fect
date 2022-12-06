@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "./types",
+    "outDir": "./dist/types",
     "jsx": "preserve",
     "target": "es2019",
     "module": "esnext",
