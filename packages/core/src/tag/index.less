@@ -1,0 +1,44 @@
+:root {
+  --tag-radius: var(--fect-radius);
+  --tag-default-color: var(--primary-foreground);
+  --tag-success-color: var(--success-default);
+  --tag-warning-color: var(--warning-default);
+  --tag-error-color: var(--error-default);
+  --tag-bg-color: var(--primary-background);
+  --tag-invert-text-color: var(--primary-background);
+}
+
+.fect-tag {
+  display: inline-block;
+  line-height: 14px;
+  font-size: 14px;
+  height: 28px;
+  border-radius: var(--tag-radius);
+  padding: 5px;
+  box-sizing: border-box;
+  border: 1px solid currentColor;
+  background-color: var(--tag-bg-color);
+  &--default {
+    color: var(--tag-default-color);
+  }
+  &--success {
+    color: var(--tag-success-color);
+  }
+  &--warning {
+    color: var(--tag-warning-color);
+  }
+  &--error {
+    color: var(--tag-error-color);
+  }
+  &--custom {
+    color: var(--tag-custom-color);
+  }
+  &--invert {
+    color: var(--tag-invert-text-color);
+    border-color: transparent;
+  }
+  &--round {
+    padding: 5px 10px;
+    border-radius: 15px;
+  }
+}

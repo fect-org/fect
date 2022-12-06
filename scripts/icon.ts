@@ -9,7 +9,7 @@ const ICON_SELECTOR = '.geist-container > .icon'
 
 const ICON_SELECTOR_TEXT = '.geist-text'
 
-const ICON_PATH = path.join(process.cwd(), 'packages', 'vue-icons', 'src')
+const ICON_PATH = path.join(process.cwd(), 'packages', 'icons', 'src')
 
 const SVGO_OPTIONS: Config = {
   plugins: [

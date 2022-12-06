@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Skeleton should be render as a element 1`] = `
+<div class="fect-skeleton">
+  <div class="fect-skeleton__item fect-skeleton__item--text fect-skeleton__item--animated" style="width: 100%;">
+    <!---->
+  </div>
+  <div class="fect-skeleton__item fect-skeleton__item--text fect-skeleton__item--animated" style="width: 100%;">
+    <!---->
+  </div>
+  <div class="fect-skeleton__item fect-skeleton__item--text fect-skeleton__item--animated" style="width: 100%;">
+    <!---->
+  </div>
+</div>
+`;
+
+exports[`Skeleton should render anysome rows and setup width with rowsWidth 1`] = `
+<div class="fect-skeleton">
+  <div class="fect-skeleton__item fect-skeleton__item--text fect-skeleton__item--animated" style="width: 10px;">
+    <!---->
+  </div>
+  <div class="fect-skeleton__item fect-skeleton__item--text fect-skeleton__item--animated" style="width: 80px;">
+    <!---->
+  </div>
+  <div class="fect-skeleton__item fect-skeleton__item--text fect-skeleton__item--animated" style="width: 70%;">
+    <!---->
+  </div>
+</div>
+`;
+
+exports[`Skeleton should render anysome rows and setup width with rowsWidth 2`] = `
+<div class="fect-skeleton">
+  <div class="fect-skeleton__item fect-skeleton__item--text fect-skeleton__item--animated" style="width: 50%;">
+    <!---->
+  </div>
+  <div class="fect-skeleton__item fect-skeleton__item--text fect-skeleton__item--animated" style="width: 50%;">
+    <!---->
+  </div>
+  <div class="fect-skeleton__item fect-skeleton__item--text fect-skeleton__item--animated" style="width: 50%;">
+    <!---->
+  </div>
+</div>
+`;
+
+exports[`Skeleton should render different type skeletonItem 1`] = `
+<div class="fect-skeleton">
+  <div class="fect-skeleton__item fect-skeleton__item--p fect-skeleton__item--animated">
+    <!---->
+  </div>
+  <div class="fect-skeleton__item fect-skeleton__item--text fect-skeleton__item--animated">
+    <!---->
+  </div>
+  <div class="fect-skeleton__item fect-skeleton__item--h1 fect-skeleton__item--animated">
+    <!---->
+  </div>
+  <div class="fect-skeleton__item fect-skeleton__item--h3 fect-skeleton__item--animated">
+    <!---->
+  </div>
+  <div class="fect-skeleton__item fect-skeleton__item--rect fect-skeleton__item--animated">
+    <!---->
+  </div>
+  <div class="fect-skeleton__item fect-skeleton__item--circle fect-skeleton__item--animated">
+    <!---->
+  </div>
+  <div class="fect-skeleton__item fect-skeleton__item--image fect-skeleton__item--animated"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24">
+      <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+      <circle cx="8.5" cy="8.5" r="1.5"></circle>
+      <path d="M21 15l-5-5L5 21"></path>
+    </svg></div>
+  <div class="fect-skeleton__item fect-skeleton__item--button fect-skeleton__item--animated">
+    <!---->
+  </div>
+  <div class="fect-skeleton__item fect-skeleton__item--caption fect-skeleton__item--animated">
+    <!---->
+  </div>
+</div>
+`;
+
+exports[`Skeleton should support custom skeleton render 1`] = `
+<div class="fect-skeleton">
+  <div class="fect-skeleton__item fect-skeleton__item--text fect-skeleton__item--animated">
+    <!---->
+  </div>
+</div>
+`;
+
+exports[`Skeleton should support custom skeleton render 2`] = `<p>already render</p>`;

@@ -1,0 +1,23 @@
+:root {
+  --breadcrumbs-last-color: var(--accents-6);
+  --breadcrumbs-link-size: 550;
+}
+
+.fect-breadcrumbs {
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+    &:last-child {
+      color: var(--breadcrumbs-last-color);
+      .fect-breadcrumbs__separator {
+        display: none;
+      }
+    }
+  }
+
+  &__link {
+    font-weight: var(--breadcrumbs-link-size);
+  }
+}

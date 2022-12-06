@@ -27,4 +27,4 @@ coverage
 *.sw?
 .yarn/cache
 .yarn/install-state.gz
-packages/vue-icons/src/*
+packages/icons/src/*

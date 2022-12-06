@@ -1,0 +1,24 @@
+{
+  "name": "@fect-ui/vue-icons",
+  "version": "2.1.0",
+  "author": "kanno",
+  "description": "Well prepared high quality Icon Library for fect",
+  "main": "dist/cjs/index.cjs.js",
+  "module": "dist/esm/index.esm.js",
+  "types": "dist/types/index.d.ts",
+  "license": "MIT",
+  "files": [
+    "LISCENSE",
+    "dist",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "vue": "^3.0.11"
+  },
+  "sideEffects": false,
+  "homepage": "https://github.com/fect-org/fect",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fect-org/fect"
+  }
+}

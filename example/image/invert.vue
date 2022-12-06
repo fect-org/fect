@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fe-imageBrowser invert target="__blank" url="https://vue.miaya.art">
+    <fe-imageBrowser invert target="__blank" url="https://https://www.fect-org.com/">
       <fe-image :src="img" width="540px" height="246px" skeleton></fe-image>
     </fe-imageBrowser>
   </div>

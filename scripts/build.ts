@@ -1,6 +1,6 @@
 import path from 'path'
 import { build } from 'no-bump'
-import { fs, shared, spinner, internalPlugins, declarationTask } from 'internal'
+import { fs, shared, spinner, internalPlugins, declarationTask, gen, genExports, formatCode } from 'internal'
 
 import type { BumpOutputOptions, BumpOptions } from 'no-bump'
 
@@ -14,11 +14,11 @@ interface InternalBumpOptions {
 }
 
 const ensurePakcage = (sub: string) => {
-  if (sub === 'vue')
+  if (sub === 'core')
     return [
       internalPlugins.css(),
       internalPlugins.analyze({
-        base: path.join(defaultWd, 'packages', 'vue', 'src')
+        base: path.join(defaultWd, 'packages', 'core', 'src')
       })
     ]
   return []
@@ -88,7 +88,7 @@ async function main() {
         mini,
         options: rest
       }
-      if (cur.includes('umd') && rest.subDir === 'vue') Object.assign(base, { file: mini ? 'fect.min.js' : 'fect.js' })
+      if (cur.includes('umd') && rest.subDir === 'core') Object.assign(base, { file: mini ? 'fect.min.js' : 'fect.js' })
       acc.push(base)
       return acc
     }, [])
@@ -115,13 +115,16 @@ async function main() {
         plugins: {
           swc: {
             jsc: {
-              target: 'es2017'
+              target: 'es2017',
+              experimental: {
+                plugins: [['swc-plugin-vue-jsx', {}]]
+              }
             }
           }
         }
       }
     }
-    if (options.subDir === 'vue' && format === 'umd') {
+    if (options.subDir === 'core' && format === 'umd') {
       delete output.preserveModules
       delete output.preserveModulesRoot
       output.file = file
@@ -149,6 +152,49 @@ async function main() {
         s.success()
       } catch (error) {
         s.error({ text: error.message })
+      }
+      if (conf.subDir === 'core') {
+        s.update({ text: 'volar declaration' })
+        const { directories } = await gen(path.join(conf.entryPath, 'src'), {
+          ignored: ['utils', 'composables', 'index.ts']
+        })
+        const exports = await genExports(directories)
+        await fs.outputFile(
+          path.join(conf.entryPath, 'components.d.ts'),
+          formatCode(`
+        declare module "@vue/runtime-core" {
+          export interface GlobalComponents {
+            ${exports.flat().reduce((acc, cur) => (acc += `Fe${cur}: typeof import("@fect-ui/vue")["${cur}"];\n`))}
+          }
+        };\n
+        export {};\n
+        `),
+          'utf8'
+        )
+        const dtsPath = path.join(conf.entryPath, 'dist', 'types', 'index.d.ts')
+        const dts = await fs.promises.readFile(dtsPath, 'utf8')
+        await fs.outputFile(
+          dtsPath,
+          formatCode(`${dts}
+          import { StaticModalOptions } from './modal/interface'
+          import { ToastOptions, StaticToastOptions } from './toast/interface'
+          
+          interface StaticToastMethods {
+            success: (options: StaticToastOptions) => void
+            warning: (options: StaticToastOptions) => void
+            error: (options: StaticToastOptions) => void
+            removeAll: () => void
+          }
+          
+          declare module '@vue/runtime-core' {
+            export interface ComponentCustomProperties {
+              $toast: Pick<StaticToastMethods, keyof StaticToastMethods> & ((options: ToastOptions) => void)
+              $modal: (options: StaticModalOptions) => void
+            }
+          }
+          `)
+        )
+        s.success()
       }
     })
   )
