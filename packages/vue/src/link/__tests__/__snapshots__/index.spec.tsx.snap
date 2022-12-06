@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Link should be render as a element 1`] = `
-<a class="fect-link" href="">
-  <!---->
-</a>
-`;
-
-exports[`Link should be render correctly 1`] = `<a class="fect-link" href="https://www.test.com">Link</a><a class="fect-link fect-link--color" href="https://www.test.com">Link</a><a class="fect-link fect-link--underline" href="https://www.test.com">Link</a><a class="fect-link fect-link--color fect-link--underline" href="https://www.test.com">Link</a><a class="fect-link fect-link--block" href="https://www.test.com">Link</a>`;

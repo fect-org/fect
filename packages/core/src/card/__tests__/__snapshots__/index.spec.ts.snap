@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card should be render as a element 1`] = `
+<div class="fect-card">
+  <div class="fect-card__content">
+    <!---->
+  </div>
+</div>
+`;
+
+exports[`Card should support render different state component 1`] = `
+<div class="container">
+  <fe-card>Normalize Card</fe-card>
+  <fe-card hoverable="true">Hoverable Card</fe-card>
+  <fe-card shadow="true">Shadow Card</fe-card>
+  <fe-card hoverable="true" shadow="true">Hoverable and Shadow Card</fe-card>
+</div>
+`;

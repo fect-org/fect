@@ -21,7 +21,7 @@
     "dev:site": "vite",
     "update:icon": "ts-node scripts/source.ts",
     "build:site": "vite build",
-    "build:hook": "ts-node scripts/build.ts vue-hooks",
+    "build:hook": "ts-node scripts/build.ts hooks",
     "build:lib": "yarn collect && ts-node scripts/build.ts vue && yarn generator:volar  && yarn workspace @fect-ui/vue type",
     "build:icon": "ts-node scripts/icon.ts && ts-node scripts/build.ts vue-icons",
     "test": "yarn workspace @fect-ui/vue  test",

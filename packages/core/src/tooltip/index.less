@@ -1,0 +1,205 @@
+// Interim plan. will be removed in the future.
+
+:root.light-theme {
+  --tooltip-arrow-border-color: var(--primary-background);
+}
+
+:root.dark-theme {
+  --tooltip-arrow-border-color: var(--accents-2);
+}
+
+.fect-tooltip {
+  width: max-content;
+  display: inline-block;
+  &__content {
+    position: absolute;
+    box-sizing: border-box;
+    border-radius: var(--fect-radius);
+    padding: 0;
+    z-index: 200;
+    width: auto;
+    height: auto;
+    &:not(&--default) {
+      color: var(--primary-background);
+    }
+    &--default {
+      box-shadow: var(--fect-shadowMedium);
+      background-color: var(--primary-background);
+    }
+    &--success {
+      background-color: var(--success-default);
+    }
+    &--warning {
+      background-color: var(--warning-default);
+    }
+    &--error {
+      background-color: var(--error-default);
+    }
+    &--secondary {
+      background-color: var(--secondary-default);
+    }
+    &--lite {
+      background-color: var(--lite-default);
+    }
+    &--dark {
+      background-color: var(--dark-default);
+    }
+
+    &[data-popper-placement^='top'] {
+      .fect-tooltip__arrow {
+        bottom: 3px;
+        left: 50%;
+        transform: translate(-50%, 100%) rotate(-90deg);
+      }
+    }
+
+    &[data-popper-placement='top-start'] {
+      transform-origin: 0 100%;
+      .fect-tooltip__arrow {
+        left: 16px;
+        top: auto;
+        right: auto;
+        bottom: 3px;
+        transform: translate(0, 100%) rotate(-90deg);
+      }
+    }
+
+    &[data-popper-placement='top-end'] {
+      .fect-tooltip__arrow {
+        top: auto;
+        left: auto;
+        transform: translate(0, 100%) rotate(-90deg);
+        right: 16px;
+      }
+    }
+
+    &[data-popper-placement^='left'] {
+      .fect-tooltip__arrow {
+        right: 0;
+        top: 50%;
+        left: auto;
+        bottom: auto;
+        transform: translate(100%, -50%) rotate(180deg);
+      }
+    }
+
+    &[data-popper-placement='left-start'] {
+      transform-origin: 100% 0;
+      .fect-tooltip__arrow {
+        top: 16px;
+        right: 0;
+        left: auto;
+        bottom: auto;
+        transform: translate(100%, -50%) rotate(180deg);
+      }
+    }
+
+    &[data-popper-placement='left-end'] {
+      .fect-tooltip__arrow {
+        bottom: 16px;
+        left: auto;
+        right: 0;
+        top: auto;
+        transform: translate(100%, 50%) rotate(180deg);
+      }
+    }
+
+    &[data-popper-placement='right'] {
+      .fect-tooltip__arrow {
+        top: 50%;
+        right: auto;
+        left: 0;
+        bottom: auto;
+        transform: translate(-100%, -50%) rotate(0deg);
+      }
+    }
+
+    &[data-popper-placement='right-start'] {
+      .fect-tooltip__arrow {
+        top: 16px;
+        right: auto;
+        left: 0;
+        bottom: auto;
+        transform: translate(-100%, -50%) rotate(0deg);
+      }
+    }
+
+    &[data-popper-placement='right-end'] {
+      .fect-tooltip__arrow {
+        bottom: 16px;
+        top: auto;
+        right: auto;
+        left: 0;
+        transform: translate(-100%, 50%) rotate(0deg);
+      }
+    }
+
+    &[data-popper-placement='bottom'] {
+      .fect-tooltip__arrow {
+        left: 50%;
+        bottom: auto;
+        right: auto;
+        top: 3px;
+        transform: translate(-50%, -100%) rotate(90deg);
+      }
+    }
+
+    &[data-popper-placement='bottom-start'] {
+      .fect-tooltip__arrow {
+        left: 16px;
+        top: 3px;
+        bottom: auto;
+        transform: translate(0, -100%) rotate(90deg);
+      }
+    }
+
+    &[data-popper-placement='bottom-end'] {
+      .fect-tooltip__arrow {
+        right: 16px;
+        left: auto;
+        bottom: auto;
+        top: 3px;
+        transform: translate(0, -100%) rotate(90deg);
+      }
+    }
+  }
+  &__inner {
+    --horizontal-side: calc(var(--fect-gap-quarter) * 1.8);
+    --vertical-side: calc(var(--fect-gap-quarter) * 1.5);
+    position: relative;
+    box-sizing: border-box;
+    font-size: 16px;
+    height: 100%;
+    padding: var(--vertical-side) var(--horizontal-side);
+  }
+
+  &__arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 6px 6px 0;
+
+    &--default {
+      border-color: transparent var(--tooltip-arrow-border-color) transparent transparent;
+    }
+    &--success {
+      border-color: transparent var(--success-default) transparent transparent;
+    }
+    &--warning {
+      border-color: transparent var(--warning-default) transparent transparent;
+    }
+    &--error {
+      border-color: transparent var(--error-default) transparent transparent;
+    }
+    &--secondary {
+      border-color: transparent var(--secondary-default) transparent transparent;
+    }
+    &--lite {
+      border-color: transparent var(--lite-default) transparent transparent;
+    }
+    &--dark {
+      border-color: transparent var(--dark-default) transparent transparent;
+    }
+  }
+}

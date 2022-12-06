@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Swipe should be support custom render indicator 1`] = `
+<div class="fect-swipe">
+  <div class="fect-swipe__track" style="width: 0px; transform: translateX(0px); transition-duration: 0ms;">
+    <div class="fect-swipe__item" style="width: 0px; transform: translateX(0px);">1</div>
+    <div class="fect-swipe__item" style="width: 0px; transform: translateX(0px);">2</div>
+  </div>
+  <div>custom</div>
+</div>
+`;

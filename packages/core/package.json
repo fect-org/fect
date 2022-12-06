@@ -1,0 +1,57 @@
+{
+  "name": "@fect-ui/vue",
+  "version": "1.6.0",
+  "description": "Minimalist UI components built on Vue",
+  "main": "dist/cjs/index.cjs.js",
+  "module": "dist/esm/index.esm.js",
+  "types": "types/index.d.ts",
+  "jsdelivr": "dist/cjs/fect.min.umd.js",
+  "scripts": {
+    "collect": "ts-node scripts/gen.ts",
+    "type": "node ./typing-template.js",
+    "test": "jest -c jest.config.js -u",
+    "generator:volar": "ts-node scripts/gen-volar.ts"
+  },
+  "keywords": [
+    "vue component",
+    "fect",
+    "vue ui"
+  ],
+  "homepage": "https://github.com/fect-org/fect",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fect-org/fect"
+  },
+  "files": [
+    "dist",
+    "types/",
+    "vetur/",
+    "README.md",
+    "components.d.ts"
+  ],
+  "author": "XeryYue",
+  "license": "MIT",
+  "sideEffects": [
+    "dist/esm/**/style/*",
+    "dist/cjs/**/style/*",
+    "*.css"
+  ],
+  "dependencies": {
+    "@fect-ui/themes": "^2.2.0",
+    "@fect-ui/vue-hooks": "workspace:^",
+    "@popperjs/core": "^2.11.2",
+    "proy": "^0.0.3"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.11"
+  },
+  "bumpOptions": {
+    "name": "fect",
+    "formats": [
+      "esm",
+      "cjs",
+      "umd",
+      "umd-min"
+    ]
+  }
+}
