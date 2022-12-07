@@ -1,5 +1,5 @@
 import { createVNode, defineComponent, inject, provide, reactive, watchEffect } from 'vue'
-import { assign, omit, pick } from '@fect-ui/shared'
+import { assign, omit, pick, isNumber } from '@fect-ui/shared'
 import { CONSTATNS } from './constants'
 import type { DefineComponent, InjectionKey, ExtractPropTypes, UnwrapNestedRefs } from 'vue'
 
@@ -45,28 +45,22 @@ const scaleProps: {
     default: CONSTATNS.unit
   },
   width: {
-    type: [String, Number],
-    default: CONSTATNS.width
+    type: [String, Number]
   },
   w: {
-    type: [String, Number],
-    default: CONSTATNS.w
+    type: [String, Number]
   },
   height: {
-    type: [String, Number],
-    default: CONSTATNS.height
+    type: [String, Number]
   },
   h: {
-    type: [String, Number],
-    default: CONSTATNS.h
+    type: [String, Number]
   },
   font: {
-    type: [String, Number],
-    default: CONSTATNS.font
+    type: [String, Number]
   },
   margin: {
-    type: [String, Number],
-    default: CONSTATNS.margin
+    type: [String, Number]
   },
   marginTop: {
     type: [String, Number]
@@ -99,8 +93,7 @@ const scaleProps: {
     type: [String, Number]
   },
   padding: {
-    type: [String, Number],
-    default: CONSTATNS.padding
+    type: [String, Number]
   },
   paddingTop: {
     type: [String, Number]
@@ -138,35 +131,31 @@ export type ScaleProps = ExtractPropTypes<typeof scaleProps>
 
 type ModifersPipe = (baseScale: number, defaultValue?: string | number) => string
 
-const isNumber = (val: unknown): val is number => {
-  val = Number(val)
-  return !Number.isNaN(val)
-}
-const isUndefined = (val: unknown): val is undefined => typeof val === 'undefined'
-
-const reduceScaleCoefficient = (scale: number) => {
+function reduceScaleCoefficient(scale: number) {
   if (scale === 1) return scale
   const diff = Math.abs((scale - 1) / 2)
   return scale > 1 ? 1 + diff : 1 - diff
 }
 
-const modifers =
-  (attrValue: string | number | undefined, { scale, unit }: { scale: number; unit: string }): ModifersPipe =>
-  (baseScale, defaultValue) => {
+function modifers(
+  attrValue: string | number | undefined,
+  { scale, unit }: { scale: number; unit: string }
+): ModifersPipe {
+  return (baseScale, defaultValue) => {
     if (!baseScale) {
       baseScale = 1
       defaultValue = defaultValue || 0
     }
     const stand = reduceScaleCoefficient(scale) * baseScale
-    if (isUndefined(attrValue)) {
-      if (!isUndefined(defaultValue)) return `${defaultValue}`
+    if (typeof attrValue === 'undefined') {
+      if (typeof defaultValue !== 'undefined') return `${defaultValue}`
       return `calc(${stand} * ${unit})`
     }
     if (!isNumber(attrValue)) return `${attrValue}`
     const userStand = stand * Number(attrValue)
     return `calc(${userStand} * ${unit})`
   }
-
+}
 const SCALES = pick(CONSTATNS, [
   'pt',
   'pr',
@@ -194,15 +183,13 @@ const initScales = (scaleProps: ScaleProps) => {
   }
 }
 
-// P,
-export function withScale<P, T extends DefineComponent<P, any, any>>(userComponent: T) {
+export function withScale<P extends Record<string, any>>(userComponent: DefineComponent<P, any, any>) {
   const { name } = userComponent
   return defineComponent({
     name,
-    props: scaleProps as typeof scaleProps,
-    setup(props, { slots, attrs }) {
+    props: scaleProps as unknown as typeof scaleProps & P,
+    setup(props: any, { slots, attrs }) {
       const scales = reactive(initScales(props))
-
       const updateSCALES = (): typeof scales => {
         return {
           unit: props.unit,
@@ -270,11 +257,8 @@ export function withScale<P, T extends DefineComponent<P, any, any>>(userCompone
           }
         }
       }
-
       watchEffect(() => assign(scales, updateSCALES()))
-
       createScaleContext(scales)
-
       return () =>
         createVNode(
           userComponent,
