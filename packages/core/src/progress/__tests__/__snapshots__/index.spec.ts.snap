@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Progress component props should work correctly 1`] = `
-<div class="container">
+"<div class="container">
   <div class="fect-progress">
     <div class="fect-progress__inner fect-progress__inner--error" title="60%" style="width: 60%;" type-data="error"></div><progress max="100" value="60"></progress>
   </div>
-</div>
+</div>"
 `;

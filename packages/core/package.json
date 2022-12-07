@@ -6,9 +6,6 @@
   "module": "dist/esm/index.esm.js",
   "types": "dist/types/index.d.ts",
   "jsdelivr": "dist/cjs/fect.min.umd.js",
-  "scripts": {
-    "test": "jest -c jest.config.js -u"
-  },
   "keywords": [
     "vue component",
     "fect",

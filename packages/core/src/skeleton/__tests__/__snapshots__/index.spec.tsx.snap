@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Skeleton should be render as a element 1`] = `
-<div class="fect-skeleton">
+"<div class="fect-skeleton">
   <div class="fect-skeleton__item fect-skeleton__item--text fect-skeleton__item--animated" style="width: 100%;">
     <!---->
   </div>
@@ -11,11 +11,11 @@ exports[`Skeleton should be render as a element 1`] = `
   <div class="fect-skeleton__item fect-skeleton__item--text fect-skeleton__item--animated" style="width: 100%;">
     <!---->
   </div>
-</div>
+</div>"
 `;
 
 exports[`Skeleton should render anysome rows and setup width with rowsWidth 1`] = `
-<div class="fect-skeleton">
+"<div class="fect-skeleton">
   <div class="fect-skeleton__item fect-skeleton__item--text fect-skeleton__item--animated" style="width: 10px;">
     <!---->
   </div>
@@ -25,11 +25,11 @@ exports[`Skeleton should render anysome rows and setup width with rowsWidth 1`] 
   <div class="fect-skeleton__item fect-skeleton__item--text fect-skeleton__item--animated" style="width: 70%;">
     <!---->
   </div>
-</div>
+</div>"
 `;
 
 exports[`Skeleton should render anysome rows and setup width with rowsWidth 2`] = `
-<div class="fect-skeleton">
+"<div class="fect-skeleton">
   <div class="fect-skeleton__item fect-skeleton__item--text fect-skeleton__item--animated" style="width: 50%;">
     <!---->
   </div>
@@ -39,11 +39,11 @@ exports[`Skeleton should render anysome rows and setup width with rowsWidth 2`] 
   <div class="fect-skeleton__item fect-skeleton__item--text fect-skeleton__item--animated" style="width: 50%;">
     <!---->
   </div>
-</div>
+</div>"
 `;
 
 exports[`Skeleton should render different type skeletonItem 1`] = `
-<div class="fect-skeleton">
+"<div class="fect-skeleton">
   <div class="fect-skeleton__item fect-skeleton__item--p fect-skeleton__item--animated">
     <!---->
   </div>
@@ -73,15 +73,15 @@ exports[`Skeleton should render different type skeletonItem 1`] = `
   <div class="fect-skeleton__item fect-skeleton__item--caption fect-skeleton__item--animated">
     <!---->
   </div>
-</div>
+</div>"
 `;
 
 exports[`Skeleton should support custom skeleton render 1`] = `
-<div class="fect-skeleton">
+"<div class="fect-skeleton">
   <div class="fect-skeleton__item fect-skeleton__item--text fect-skeleton__item--animated">
     <!---->
   </div>
-</div>
+</div>"
 `;
 
-exports[`Skeleton should support custom skeleton render 2`] = `<p>already render</p>`;
+exports[`Skeleton should support custom skeleton render 2`] = `"<p>already render</p>"`;

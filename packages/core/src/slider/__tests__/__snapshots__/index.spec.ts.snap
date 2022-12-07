@@ -1,23 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Slider props should work correctly 1`] = `
-<div class="fect-slider fect-slider--disabled" role="slider" title="0%">
+"<div class="fect-slider fect-slider--disabled" role="slider" title="0%">
   <div class="fect-slider__dot" style="left: 0%;">
     <!---->
   </div><span class="fect-slider__mark" style="left: 5%;"></span><span class="fect-slider__mark" style="left: 10%;"></span><span class="fect-slider__mark" style="left: 15%;"></span><span class="fect-slider__mark" style="left: 20%;"></span><span class="fect-slider__mark" style="left: 25%;"></span><span class="fect-slider__mark" style="left: 30%;"></span><span class="fect-slider__mark" style="left: 35%;"></span><span class="fect-slider__mark" style="left: 40%;"></span><span class="fect-slider__mark" style="left: 45%;"></span><span class="fect-slider__mark" style="left: 50%;"></span><span class="fect-slider__mark" style="left: 55%;"></span><span class="fect-slider__mark" style="left: 60%;"></span><span class="fect-slider__mark" style="left: 65%;"></span><span class="fect-slider__mark" style="left: 70%;"></span><span class="fect-slider__mark" style="left: 75%;"></span><span class="fect-slider__mark" style="left: 80%;"></span><span class="fect-slider__mark" style="left: 85%;"></span><span class="fect-slider__mark" style="left: 90%;"></span><span class="fect-slider__mark" style="left: 95%;"></span>
-</div>
+</div>"
 `;
 
 exports[`Slider should render as normal 1`] = `
-<div class="fect-slider" role="slider" title="0%">
+"<div class="fect-slider" role="slider" title="0%">
   <div class="fect-slider__dot" style="left: 0%;">0</div>
   <!---->
-</div>
+</div>"
 `;
 
 exports[`Slider should trigger event when click 1`] = `
-<div class="fect-slider fect-slider--disabled" role="slider" title="0%">
+"<div class="fect-slider fect-slider--disabled" role="slider" title="0%">
   <div class="fect-slider__dot fect-slider__dot--click" style="left: 0%;">0</div>
   <!---->
-</div>
+</div>"
 `;

@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Toast render normal 1`] = `
-<transition-stub>
+"<transition-stub name="toast-fade" appear="true" persisted="false" css="true">
   <div class="fect-toast">
     <div class="fect-toast__message">Test Message</div>
     <div class="fect-toast__actions">
       <!---->
     </div>
   </div>
-</transition-stub>
+</transition-stub>"
 `;
