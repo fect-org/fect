@@ -1,0 +1,33 @@
+// This is the scale system base variables.
+
+export const CONSTATNS = {
+  scale: 1,
+  unit: '16px',
+  width: 'auto',
+  w: 'auto',
+  height: 'auto',
+  h: 'auto',
+  font: '16px',
+  margin: 0,
+  marginTop: 0,
+  marginRight: 0,
+  marginBottom: 0,
+  marginLeft: 0,
+  mt: 0,
+  mr: 0,
+  mb: 0,
+  ml: 0,
+  mx: 0,
+  my: 0,
+  padding: 0,
+  paddingTop: 0,
+  paddingRight: 0,
+  paddingBottom: 0,
+  paddingLeft: 0,
+  pt: 0,
+  pr: 0,
+  pb: 0,
+  pl: 0,
+  px: 0,
+  py: 0
+}
