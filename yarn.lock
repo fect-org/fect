@@ -954,10 +954,14 @@ __metadata:
 "@fect-ui/scale@workspace:packages/scale":
   version: 0.0.0-use.local
   resolution: "@fect-ui/scale@workspace:packages/scale"
+  dependencies:
+    "@fect-ui/shared": "workspace:^"
+  peerDependencies:
+    vue: ^3.0.11
   languageName: unknown
   linkType: soft
 
-"@fect-ui/shared@workspace:packages/shared":
+"@fect-ui/shared@workspace:^, @fect-ui/shared@workspace:packages/shared":
   version: 0.0.0-use.local
   resolution: "@fect-ui/shared@workspace:packages/shared"
   languageName: unknown
