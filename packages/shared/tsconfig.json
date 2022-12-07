@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "ES5",
-    "outDir": "./types",
+    "target": "ESNext",
     "module": "NodeNext",
     "strict": true,
     "declaration": true,
@@ -13,5 +12,4 @@
     "moduleResolution": "Node",
     "lib": ["esnext", "dom"]
   },
-  "include": ["src/**/*"]
 }
