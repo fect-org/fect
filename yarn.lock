@@ -957,6 +957,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@fect-ui/shared@workspace:packages/shared":
+  version: 0.0.0-use.local
+  resolution: "@fect-ui/shared@workspace:packages/shared"
+  languageName: unknown
+  linkType: soft
+
 "@fect-ui/themes@npm:^2.2.0":
   version: 2.2.0
   resolution: "@fect-ui/themes@npm:2.2.0"
