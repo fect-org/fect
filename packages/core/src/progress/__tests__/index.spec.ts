@@ -41,7 +41,7 @@ describe('Progress', () => {
     expect(el.attributes('title')).toBe('100%')
     await wrapper.setData({ value: -1 })
     expect(el.attributes('title')).toBe('0%')
-    await wrapper.setData({ value: 'test' })
+    await wrapper.setData({ value: '0' })
     expect(el.attributes('title')).toBe('0%')
     await wrapper.setData({
       colors: {

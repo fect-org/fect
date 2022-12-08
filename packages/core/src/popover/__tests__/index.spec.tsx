@@ -15,9 +15,8 @@ describe('Popover', () => {
     container.id = 'container'
     document.body.appendChild(container)
   })
-
   afterEach(() => {
-    document.body.outerHTML = ''
+    document.body.innerHTML = ''
   })
   it('render normal', () => {
     const wrapper = mount(Popover, { attachTo: document.body })

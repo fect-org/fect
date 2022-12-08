@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { createApp, createVNode, defineComponent } from 'vue'
 import { mount } from '@vue/test-utils'
 import { Toast } from '../function-call'
 import { make } from '../../utils'
@@ -16,7 +16,14 @@ describe('Toast', () => {
   it('component', () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignored
-    const wrapper = mount(Toast.Component)
+    const wrapper = mount(
+      defineComponent({
+        name: Toast.Component.name,
+        setup() {
+          return createVNode(Toast.Component, {}, {})
+        }
+      })
+    )
     expect(() => wrapper.getComponent(Toast.Component.name)).toThrowError()
   })
 
@@ -84,12 +91,14 @@ describe('Toast', () => {
     const second = document.querySelectorAll('.fect-toast__action')[1]
     await trigger('click', second)
     expect(document.querySelectorAll('.fect-toast').length).toBe(2)
+    Toast.removeAll()
   })
   it('internal timeout', async () => {
     Toast({
-      text: 'internal timeout test'
+      text: 'internal timeout test',
+      duration: 200
     })
-    await later(5000)
+    await later(4000)
     expect(document.querySelector('.fect-toast')).toBeFalsy()
   })
 })

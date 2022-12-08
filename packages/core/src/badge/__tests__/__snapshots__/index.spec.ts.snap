@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Badge should be supprot noramlize props 1`] = `
-<div class="container">
+"<div class="container">
   <div class="fect-dot fect-badge__dot" type-data="success"><span class="fect-dot__circle fect-dot__circle--success"></span><span class="fect-dot__ctx"><!----></span></div>
-</div>
+</div>"
 `;

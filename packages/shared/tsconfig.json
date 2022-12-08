@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "ESNext",
+    "module": "NodeNext",
+    "strict": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "emitDeclarationOnly": true,
+    "moduleResolution": "Node",
+    "lib": ["esnext", "dom"]
+  },
+}

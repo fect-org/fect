@@ -132,6 +132,11 @@ async function main() {
       buildOption.global = {
         vue: 'Vue'
       }
+      buildOption.resolve = {
+        define: {
+          'process.env.NODE_ENV': JSON.stringify('production')
+        }
+      }
       buildOption.external = ['vue']
       buildOption.plugins?.shift()
       buildOption.plugins?.unshift(internalPlugins.css({ extract: 'main.css' }))

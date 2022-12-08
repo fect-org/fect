@@ -11,6 +11,7 @@ import { Switch } from '../../switch'
 import { FormItem } from '../../form-item'
 import { assign } from '../../utils'
 import { trigger } from '../../../tests'
+import { defineComponent } from 'vue'
 
 const registerComponent = (components: any[]) => components.reduce((acc, cur) => assign(acc, { [cur.name]: cur }), {})
 
@@ -23,7 +24,7 @@ describe('Form', () => {
         inline: true
       },
       slots: {
-        default: () => FormItem
+        default: FormItem
       }
     })
 
@@ -52,33 +53,34 @@ describe('Form', () => {
     expect(() => wrapper.get('.fect-form-item')).toThrowError()
   })
 
-  it('should work correctly ', async () => {
-    const wrapper = mount({
-      data() {
-        return {
-          formValue: {
-            input: '',
-            box: []
-          },
-          rules: {
-            input: [
-              {
+  it('should work correctly', async () => {
+    const wrapper = mount(
+      defineComponent({
+        data() {
+          return {
+            formValue: {
+              input: '',
+              box: []
+            },
+            rules: {
+              input: [
+                {
+                  required: true,
+                  message: 'Please input your nick name as Kanno',
+                  validate: (val: string) => val === 'kanno'
+                }
+              ],
+              box: {
                 required: true,
-                message: 'Please input your nick name as Kanno',
-                validate: (val: string) => val === 'kanno'
+                type: 'array',
+                message: 'Please choose the direction you are interested in',
+                validate: (val: string[]) => val.includes('font-end')
               }
-            ],
-            box: {
-              required: true,
-              type: 'array',
-              message: 'Please choose the direction you are interested in',
-              validate: (val: string[]) => val.includes('font-end')
             }
           }
-        }
-      },
-      components: registerComponent([Form, FormItem, Input, Checkbox, CheckboxGroup]),
-      template: `<fe-form ref="formRef" label-width="120px" :model="formValue" show-message :rules="rules" size="large">
+        },
+        components: registerComponent([Form, FormItem, Input, Checkbox, CheckboxGroup]),
+        template: `<fe-form ref="formRef" label-width="120px" :model="formValue" show-message :rules="rules" size="large">
          <fe-form-item label="Input" prop="input">
          <fe-input v-model="formValue.input" placeholder="input your nick name"></fe-input>
          </fe-form-item>
@@ -89,7 +91,8 @@ describe('Form', () => {
           </fe-checkbox-group>
          </fe-form-item>
       </fe-form>`
-    })
+      })
+    )
 
     const {
       formRef: { validate, validateField, clearValidate }

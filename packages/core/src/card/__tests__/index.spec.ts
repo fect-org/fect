@@ -1,8 +1,9 @@
 import { mount } from '@vue/test-utils'
+import { defineComponent } from 'vue'
 import Card from '..'
 
-const Wrapper = {
-  component: {
+const Wrapper = defineComponent({
+  components: {
     [Card.name]: Card
   },
   data() {
@@ -19,7 +20,7 @@ const Wrapper = {
     <fe-card :hoverable="hoverable" :shadow="shadow">Hoverable and Shadow Card</fe-card>
    </div>
   `
-}
+})
 
 describe('Card', () => {
   it('should be render as a element', () => {

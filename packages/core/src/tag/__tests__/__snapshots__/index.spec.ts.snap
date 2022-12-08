@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Tag component props should be work correctly 1`] = `
-<div class="container">
-  <div class="fect-tag fect-tag--success fect-tag--invert" type-data="success">hello world</div>
-</div>
+"<div class="container">
+  <div class="fect-tag fect-tag--success fect-tag--invert" type-data="success" style="background-color: var(--tag-success-color);">hello world</div>
+</div>"
 `;

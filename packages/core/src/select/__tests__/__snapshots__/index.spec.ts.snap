@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Select should support render with multiple mode 1`] = `
-<div class="container">
+"<div class="container">
   <div class="fect-select fect-select--medium" style="--select-content-height: 0px;" data-size="medium">
     <div class="fect-tooltip">
       <div class="fect-select__content">
@@ -27,11 +27,11 @@ exports[`Select should support render with multiple mode 1`] = `
     <!--teleport start-->
     <!--teleport end-->
   </div>
-</div>
+</div>"
 `;
 
 exports[`Select should wrork correctly 1`] = `
-<div class="container">
+"<div class="container">
   <div class="fect-select fect-select--mini" style="--select-content-height: calc(var(--select-ratio) * var(--fect-gap));" data-size="mini">
     <div class="fect-tooltip">
       <div class="fect-select__content">
@@ -57,5 +57,5 @@ exports[`Select should wrork correctly 1`] = `
     <!--teleport start-->
     <!--teleport end-->
   </div>
-</div>
+</div>"
 `;

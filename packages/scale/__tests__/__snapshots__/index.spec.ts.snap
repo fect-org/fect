@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Scale importance 1`] = `
+"<div class="normal">
+  <p class="unit">16px</p>
+  <p class="mr">calc(0 * 16px)</p>
+  <p class="ml">calc(20 * 16px)</p>
+  <p class="width">0</p>
+</div>"
+`;
+
+exports[`Scale normal 1`] = `
+"<div class="classic">
+  <p class="unit">16px</p>
+  <p class="mr">calc(0 * 16px)</p>
+  <p class="ml">calc(0 * 16px)</p>
+  <p class="width">auto</p>
+</div>"
+`;
+
+exports[`Scale preset value 1`] = `
+"<div class="normal">
+  <p class="unit">16px</p>
+  <p class="mr">20px</p>
+  <p class="ml">calc(20 * 16px)</p>
+  <p class="width">0</p>
+</div>"
+`;
+
+exports[`Scale scale 1`] = `
+"<div class="normal">
+  <p class="unit">16px</p>
+  <p class="mr">calc(30 * 16px)</p>
+  <p class="ml">calc(20 * 16px)</p>
+  <p class="width">0</p>
+</div>"
+`;
+
+exports[`Scale scale coefficient 1`] = `
+"<div class="normal">
+  <p class="unit">16px</p>
+  <p class="mr">calc(15 * 16px)</p>
+  <p class="ml">calc(10 * 16px)</p>
+  <p class="width">0</p>
+</div>"
+`;
+
+exports[`Scale specified value 1`] = `
+"<div class="normal">
+  <p class="unit">16px</p>
+  <p class="mr">100px</p>
+  <p class="ml">calc(20 * 16px)</p>
+  <p class="width">0</p>
+</div>"
+`;
+
+exports[`Scale stand 1`] = `
+"<div class="normal">
+  <p class="unit">16px</p>
+  <p class="mr">20px</p>
+  <p class="ml">calc(1 * 16px)</p>
+  <p class="width">0</p>
+</div>"
+`;

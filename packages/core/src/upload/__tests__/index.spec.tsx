@@ -32,7 +32,6 @@ describe('Upload', () => {
     await btn.trigger('click')
     expect(afterRead).toHaveBeenCalledTimes(0)
   })
-
   it('should limit upload count', async () => {
     const assets: any[] = [1, 2, 3]
     const afterRead: AfterReadFn = (files) => {
@@ -52,16 +51,16 @@ describe('Upload', () => {
   })
   it('should be support beforeRead return false', async () => {
     const afterRead = jest.fn()
-    const wrapper = _mount({ beforeRead: () => undefined, afterRead })
-    await later()
+    const beforeRead = jest.fn()
+    beforeRead.mockImplementation(() => false)
+    const wrapper = _mount({ beforeRead, afterRead })
+    const fileList = [new File(['content'], 'test-file.txt'), new File(['content'], 'test-file.txt')]
     const input = wrapper.find('input')
-    const btn = wrapper.find('div')
-    await btn.trigger('click')
+    mockGetFile(input.element, fileList)
+    input.trigger('change')
     await later()
     expect(afterRead).toHaveBeenCalledTimes(0)
-    expect(input.element.value).toEqual('')
   })
-
   it('The event should be skipped when there is no file', () => {
     const wrapper = _mount({})
     const input = wrapper.find('input')

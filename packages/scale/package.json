@@ -1,0 +1,14 @@
+{
+  "name": "@fect-ui/scale",
+  "author": "kanno",
+  "version": "0.0.0",
+  "main": "dist/cjs/index.cjs.js",
+  "module": "dist/esm/index.esm.js",
+  "types": "dist/types/index.d.ts",
+  "dependencies": {
+    "@fect-ui/shared": "workspace:^"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.11"
+  }
+}

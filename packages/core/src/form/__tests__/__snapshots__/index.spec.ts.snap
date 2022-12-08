@@ -1,9 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Form props should work correctly 1`] = `<form class="fect-form"> </form>`;
+exports[`Form props should work correctly 1`] = `
+"<form class="fect-form">
+  <div class="fect-form__item fect-form__item--left fect-form__item--medium"><label class="fect-form__label" for="" style="width: 110px; text-align: left;">
+      <!---->
+    </label>
+    <div class="fect-form__content">
+      <!---->
+      <transition-stub name="form-fade" appear="false" persisted="false" css="true">
+        <div class="fect-form__error" style="display: none;"><span></span></div>
+      </transition-stub>
+    </div>
+  </div>
+</form>"
+`;
 
 exports[`Form should be work with select and radiobox 1`] = `
-<form class="fect-form">
+"<form class="fect-form">
   <div class="fect-form__item fect-form__item--right fect-form__item--large"><label class="fect-form__label fect-form__label--required" for="input" style="width: 120px; text-align: right;">Input</label>
     <div class="fect-form__content">
       <div class="fect-select fect-select--large" style="--select-content-height: calc(var(--select-ratio) * var(--fect-gap));">
@@ -31,7 +44,7 @@ exports[`Form should be work with select and radiobox 1`] = `
         <!--teleport start-->
         <!--teleport end-->
       </div>
-      <transition-stub>
+      <transition-stub name="form-fade" appear="false" persisted="false" css="true">
         <div class="fect-form__error" style="display: none;"><span>Please input your nick name as Vue</span></div>
       </transition-stub>
     </div>
@@ -39,32 +52,32 @@ exports[`Form should be work with select and radiobox 1`] = `
   <div class="fect-form__item fect-form__item--right fect-form__item--large"><label class="fect-form__label fect-form__label--required" for="box" style="width: 120px; text-align: right;">CheckGroup</label>
     <div class="fect-form__content">
       <div class="fect-radio__group fect-radio__group--useRow">
-        <div class="fect-radio fect-radio--large"><label><input type="radio"><span class="fect-radio__name"><span class="fect-radio__point fect-radio__point--active"></span>test1</span></label></div>
+        <div class="fect-radio fect-radio--large"><label><input type="radio" checked=""><span class="fect-radio__name"><span class="fect-radio__point fect-radio__point--active"></span>test1</span></label></div>
         <div class="fect-radio fect-radio--large"><label><input type="radio"><span class="fect-radio__name"><span class="fect-radio__point"></span>test2</span></label></div>
       </div>
-      <transition-stub>
+      <transition-stub name="form-fade" appear="false" persisted="false" css="true">
         <div class="fect-form__error" style="display: none;"><span></span></div>
       </transition-stub>
     </div>
   </div>
   <div class="fect-form__item fect-form__item--right fect-form__item--large"><label class="fect-form__label" for="switch" style="width: 120px; text-align: right;">Switch</label>
-    <div class="fect-form__content"><label class="fect-switch fect-switch--large fect-switch--checked"><input class="fect-switch__checkbox" type="checkbox">
+    <div class="fect-form__content"><label class="fect-switch fect-switch--large fect-switch--checked"><input class="fect-switch__checkbox" type="checkbox" checked="">
         <div class="fect-switch__slider"><span class="fect-switch__inner fect-switch__inner--checked"></span></div>
       </label>
-      <transition-stub>
+      <transition-stub name="form-fade" appear="false" persisted="false" css="true">
         <div class="fect-form__error" style="display: none;"><span></span></div>
       </transition-stub>
     </div>
   </div>
-</form>
+</form>"
 `;
 
 exports[`Form should wrok normal 1`] = `
-<form class="fect-form">
+"<form class="fect-form">
   <div class="fect-form__item fect-form__item--top fect-form__item--medium"><label class="fect-form__label" for="" style="width: 100px;">
       <!---->
     </label>
-    <div class="fect-form__content">1<transition-stub>
+    <div class="fect-form__content">1<transition-stub name="form-fade" appear="false" persisted="false" css="true">
         <div class="fect-form__error" style="display: none;"><span></span></div>
       </transition-stub>
     </div>
@@ -72,7 +85,7 @@ exports[`Form should wrok normal 1`] = `
   <div class="fect-form__item fect-form__item--left fect-form__item--medium"><label class="fect-form__label" for="" style="width: 10px; text-align: left;">
       <!---->
     </label>
-    <div class="fect-form__content">2<transition-stub>
+    <div class="fect-form__content">2<transition-stub name="form-fade" appear="false" persisted="false" css="true">
         <div class="fect-form__error" style="display: none;"><span></span></div>
       </transition-stub>
     </div>
@@ -80,10 +93,10 @@ exports[`Form should wrok normal 1`] = `
   <div class="fect-form__item fect-form__item--right fect-form__item--medium"><label class="fect-form__label" for="" style="width: 120px; text-align: right;">
       <!---->
     </label>
-    <div class="fect-form__content">3<transition-stub>
+    <div class="fect-form__content">3<transition-stub name="form-fade" appear="false" persisted="false" css="true">
         <div class="fect-form__error" style="display: none;"><span></span></div>
       </transition-stub>
     </div>
   </div>
-</form>
+</form>"
 `;

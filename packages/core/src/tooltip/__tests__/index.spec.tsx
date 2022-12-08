@@ -23,7 +23,7 @@ describe('Tooltip', () => {
   })
 
   afterEach(() => {
-    document.body.outerHTML = ''
+    document.body.innerHTML = ''
   })
   it('render normal', () => {
     const wrapper = mount(Tooltip, { attachTo: document.body })

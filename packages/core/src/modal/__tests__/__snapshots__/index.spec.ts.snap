@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Modal disable overlay click 1`] = `
-<div class="container"><button id="btn">Button</button>
+"<div class="container"><button id="btn">Button</button>
   <!--teleport start-->
   <!--teleport end-->
-  <transition-stub>
+  <transition-stub name="backdrop-fade" appear="false" persisted="false" css="true">
     <div class="fect-backdrop" style="display: none;">
       <div class="fect-backdrop__layer"></div>
       <div class="fect-backdrop__content">
-        <transition-stub>
+        <transition-stub name="modal-fade" appear="false" persisted="false" css="true">
           <div role="dialog" tabindex="-1" class="fect-modal__wrapper" style="width: 500px; display: none;">
             <div class="fect-modal__hidden" tabindex="0" aria-hidden="true"></div>
             <div class="fect-modal__title">
@@ -30,18 +30,18 @@ exports[`Modal disable overlay click 1`] = `
       </div>
     </div>
   </transition-stub>
-</div>
+</div>"
 `;
 
 exports[`Modal overlay 1`] = `
-<div class="container"><button id="btn">Button</button>
+"<div class="container"><button id="btn">Button</button>
   <!--teleport start-->
   <!--teleport end-->
-  <transition-stub>
+  <transition-stub name="backdrop-fade" appear="false" persisted="false" css="true">
     <div class="fect-backdrop" style="display: none;">
       <div class="fect-backdrop__layer hidden"></div>
       <div class="fect-backdrop__content">
-        <transition-stub>
+        <transition-stub name="modal-fade" appear="false" persisted="false" css="true">
           <div role="dialog" tabindex="-1" class="fect-modal__wrapper" style="width: 500px; display: none;">
             <div class="fect-modal__hidden" tabindex="0" aria-hidden="true"></div>
             <div class="fect-modal__title">
@@ -63,18 +63,18 @@ exports[`Modal overlay 1`] = `
       </div>
     </div>
   </transition-stub>
-</div>
+</div>"
 `;
 
 exports[`Modal render normal 1`] = `
-<div class="container"><button id="btn">Button</button>
+"<div class="container"><button id="btn">Button</button>
   <!--teleport start-->
   <!--teleport end-->
-  <transition-stub>
+  <transition-stub name="backdrop-fade" appear="false" persisted="false" css="true">
     <div class="fect-backdrop" style="display: none;">
       <div class="fect-backdrop__layer"></div>
       <div class="fect-backdrop__content">
-        <transition-stub>
+        <transition-stub name="modal-fade" appear="false" persisted="false" css="true">
           <div role="dialog" tabindex="-1" class="fect-modal__wrapper" style="width: 500px; display: none;">
             <div class="fect-modal__hidden" tabindex="0" aria-hidden="true"></div>
             <div class="fect-modal__title">
@@ -96,5 +96,5 @@ exports[`Modal render normal 1`] = `
       </div>
     </div>
   </transition-stub>
-</div>
+</div>"
 `;

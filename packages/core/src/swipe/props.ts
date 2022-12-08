@@ -5,7 +5,7 @@ export const props = {
   },
   autoplay: {
     type: [Number],
-    default: ''
+    default: 0
   },
   loop: {
     type: Boolean,
