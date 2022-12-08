@@ -30,7 +30,18 @@ const config: Config = {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|css|less)$':
       'internal/__mocks__/file-mock.js'
   },
-  collectCoverage: true
+  collectCoverage: true,
+  collectCoverageFrom: ['packages/*/src/**/*.{js,jsx,ts,tsx}'],
+  // Todo. for ci. after v2 will change it. Don't be forget.
+  coveragePathIgnorePatterns: [
+    'packages/icons/',
+    'packages/hooks/',
+    'packages/core/src/index.ts',
+    'packages/core/src/back-top/',
+    'packages/core/src/affix/',
+    'packages/core/src/snippet/',
+    'packages/core/src/swipe/'
+  ]
 }
 
 export default config
