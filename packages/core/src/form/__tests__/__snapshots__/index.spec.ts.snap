@@ -1,6 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Form props should work correctly 1`] = `"<form class="fect-form"></form>"`;
+exports[`Form props should work correctly 1`] = `
+"<form class="fect-form">
+  <div class="fect-form__item fect-form__item--left fect-form__item--medium"><label class="fect-form__label" for="" style="width: 110px; text-align: left;">
+      <!---->
+    </label>
+    <div class="fect-form__content">
+      <!---->
+      <transition-stub name="form-fade" appear="false" persisted="false" css="true">
+        <div class="fect-form__error" style="display: none;"><span></span></div>
+      </transition-stub>
+    </div>
+  </div>
+</form>"
+`;
 
 exports[`Form should be work with select and radiobox 1`] = `
 "<form class="fect-form">

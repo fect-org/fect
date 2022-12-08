@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { createApp, createVNode, defineComponent } from 'vue'
 import { mount } from '@vue/test-utils'
 import { Toast } from '../function-call'
 import { make } from '../../utils'
@@ -16,7 +16,14 @@ describe('Toast', () => {
   it('component', () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignored
-    const wrapper = mount(Toast.Component)
+    const wrapper = mount(
+      defineComponent({
+        name: Toast.Component.name,
+        setup() {
+          return createVNode(Toast.Component, {}, {})
+        }
+      })
+    )
     expect(() => wrapper.getComponent(Toast.Component.name)).toThrowError()
   })
 
