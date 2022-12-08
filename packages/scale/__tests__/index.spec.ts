@@ -32,7 +32,7 @@ describe('Scale', () => {
       }
     })
     expect(wrapper.html()).toMatchSnapshot()
-    expect(wrapper.find('.mr').text()).toBe('calc(50 * 16px')
+    expect(wrapper.find('.mr').text()).toBe('calc(0 * 16px)')
   })
   it('specified value', () => {
     const wrapper = mount(ScaleElement, {
@@ -55,7 +55,7 @@ describe('Scale', () => {
       }
     })
     expect(wrapper.html()).toMatchSnapshot()
-    expect(wrapper.find('.mr').text()).toBe('calc(15 * 16px')
+    expect(wrapper.find('.mr').text()).toBe('calc(15 * 16px)')
   })
   it('preset value', () => {
     const wrapper = mount(ScaleElement, {

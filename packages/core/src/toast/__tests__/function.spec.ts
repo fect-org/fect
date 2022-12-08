@@ -84,12 +84,14 @@ describe('Toast', () => {
     const second = document.querySelectorAll('.fect-toast__action')[1]
     await trigger('click', second)
     expect(document.querySelectorAll('.fect-toast').length).toBe(2)
+    Toast.removeAll()
   })
   it('internal timeout', async () => {
     Toast({
-      text: 'internal timeout test'
+      text: 'internal timeout test',
+      duration: 200
     })
-    await later(5000)
+    await later(4000)
     expect(document.querySelector('.fect-toast')).toBeFalsy()
   })
 })

@@ -18,16 +18,16 @@ describe('Object utils', () => {
       name: 'kanno',
       job: 'software engineer'
     }
-    expect(omit(base, ['job'])).toBe({ name: 'kanno' })
-    expect(base).toBe(base)
+    expect(omit(base, ['job'])).toEqual({ name: 'kanno' })
+    expect(base).toEqual(base)
   })
   it('pick', () => {
     const base = {
       name: 'kanno',
       job: 'software engineer'
     }
-    expect(pick(base, ['job'])).toBe({ job: 'software engineer' })
-    expect(base).toBe(base)
+    expect(pick(base, ['job'])).toEqual({ job: 'software engineer' })
+    expect(base).toEqual(base)
   })
 
   it('hasOWn', () => {

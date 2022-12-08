@@ -38,7 +38,7 @@ export default defineComponent({
       }
     )
     return () => (
-      <Tooltip v-slots={{ content: slots.default?.() }} {...popoverProps} onChange={setVisible}>
+      <Tooltip v-slots={{ content: () => slots.default?.() }} {...popoverProps} onChange={setVisible}>
         {slots.widget?.()}
       </Tooltip>
     )

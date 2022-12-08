@@ -26,7 +26,7 @@ describe('BadgeAnchor', () => {
     const wrapper = mount(Wrapper)
     const el = wrapper.find('sup')
     expect(el.attributes('style')).toBe(
-      'position: absolute; top: 0px; right: 0px; transform: translate(50%, -50%); transform-origin: 100% 0%; z-index: 1;'
+      'position: absolute; top: 0px; left: auto; right: 0px; bottom: auto; transform: translate(50%, -50%); transform-origin: 100% 0%; z-index: 1;'
     )
     await wrapper.setData({ dot: true })
     expect(wrapper.html()).toMatchSnapshot()

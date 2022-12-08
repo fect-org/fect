@@ -15,7 +15,7 @@ describe('Drawer', () => {
   })
 
   afterEach(() => {
-    document.body.outerHTML = ''
+    document.body.innerHTML = ''
   })
 
   it('render normal', () => {
