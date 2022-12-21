@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Jsx from '@vitejs/plugin-vue-jsx'
 import Md from 'vite-plugin-md'
+import Style9 from 'style9/vite'
 import { cdn } from 'vite-plugin-cdn2'
 import Prism from 'prismjs'
 import path from 'path'
@@ -22,6 +23,12 @@ export default defineConfig({
     Vue({
       include: [/\.vue$/, /\.md$/]
     }),
+    {
+      ...Style9({
+        include: [/\.[jt]sx?$/, /\.vue$/, /\.md$/]
+      }),
+      enforce: 'post'
+    },
     /**
      * From vite-plugin-md we can define the custom frontmatter.
      * docs: https://github.com/yankeeinlondon/meta-builder
