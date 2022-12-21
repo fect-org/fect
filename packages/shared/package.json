@@ -2,8 +2,8 @@
   "name": "@fect-ui/shared",
   "author": "kanno",
   "description": "shared for fect",
-  "main": "dist/cjs/index.cjs.js",
-  "module": "dist/esm/index.esm.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
   "version": "0.0.0"
 }
