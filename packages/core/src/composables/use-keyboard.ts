@@ -1,5 +1,6 @@
-import { isMac, assign, isBrowser, withModifiers, noop } from '../utils'
+import { isMac, assign, isBrowser, noop } from '@fect-ui/shared'
 import { useEventListener } from '@fect-ui/vue-hooks'
+import { withModifiers } from '../utils'
 import type { UseKeyboardHandler, KeyboardOptions } from './interface'
 
 export enum KeyCode {

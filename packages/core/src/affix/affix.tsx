@@ -1,6 +1,7 @@
 import { computed, defineComponent, ref } from 'vue'
 import { useEventListener, useState } from '@fect-ui/vue-hooks'
-import { createBem, createName, addUnit, getDomRect, getScrollTop, isHidden, convertUnitToPx, assign } from '../utils'
+import { assign } from '@fect-ui/shared'
+import { createBem, createName, addUnit, getDomRect, getScrollTop, isHidden, convertUnitToPx } from '../utils'
 import { props } from './props'
 import type { AffixLayout } from './interface'
 

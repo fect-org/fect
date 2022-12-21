@@ -1,6 +1,6 @@
-import { PropType } from 'vue'
+import { assign, omit } from '@fect-ui/shared'
+import type { PropType } from 'vue'
 import type { AlignContentTypes, JustifyTypes, WrapTypes, AlignTypes, DirectionTypes } from './interface'
-import { assign, omit } from '../utils'
 
 export const gridGroupProps = {
   gap: {

@@ -1,5 +1,6 @@
 import { defineComponent } from 'vue'
-import { createName, createBem, make } from '../utils'
+import { make } from '@fect-ui/shared'
+import { createName, createBem } from '../utils'
 
 import './index.less'
 

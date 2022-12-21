@@ -2,8 +2,8 @@
   "name": "@fect-ui/scale",
   "author": "kanno",
   "version": "0.0.0",
-  "main": "dist/cjs/index.cjs.js",
-  "module": "dist/esm/index.esm.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
   "dependencies": {
     "@fect-ui/shared": "workspace:^"

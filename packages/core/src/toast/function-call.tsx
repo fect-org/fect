@@ -1,6 +1,7 @@
 import { useState, useExpose } from '@fect-ui/vue-hooks'
+import { assign, isNumber, getId } from '@fect-ui/shared'
 import FeToast from './toast'
-import { createNode, withInstall, createPortal, assign, isNumber, getId } from '../utils'
+import { createNode, withInstall, createPortal } from '../utils'
 import { createToastContext } from './toast-contenxt'
 import type { App } from 'vue'
 import type { ToastOptions, StaticToastOptions, Toasts, TostInstance, ToastInsanceMethods } from './interface'

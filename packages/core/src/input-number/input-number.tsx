@@ -1,6 +1,7 @@
 import { computed, defineComponent, watch } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createBem, createName, numberParser, isUndefined, len, omit } from '../utils'
+import { len, omit } from '@fect-ui/shared'
+import { createBem, createName, numberParser, isUndefined } from '../utils'
 import Input from '../input'
 import { useFormStateContext, pickFormStateProps } from '../form/form-context'
 import { inputNumberProps } from './props'

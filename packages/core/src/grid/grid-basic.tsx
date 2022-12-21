@@ -1,5 +1,6 @@
 import { defineComponent, computed } from 'vue'
-import { createBem, assign } from '../utils'
+import { assign } from '@fect-ui/shared'
+import { createBem } from '../utils'
 import { groupBaiscProps } from './props'
 
 import './index.less'

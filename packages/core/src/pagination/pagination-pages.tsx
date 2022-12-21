@@ -1,7 +1,7 @@
 import { defineComponent, computed, watchEffect } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
+import { make } from '@fect-ui/shared'
 import PaginationItem from './pagination-item'
-import { make } from '../utils'
 import PaginationEllipsis from './pagination-ellipsis'
 import { usePaginationContext } from './pagination-context'
 

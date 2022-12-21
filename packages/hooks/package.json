@@ -3,8 +3,8 @@
   "version": "1.3.1",
   "description": "Minimalist Vue Compostion Hooks",
   "author": "kanno",
-  "main": "dist/cjs/index.cjs.js",
-  "module": "dist/esm/index.esm.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.mjs",
   "typings": "dist/types/index.d.ts",
   "keywords": [
     "fect",
@@ -17,6 +17,9 @@
   "license": "MIT",
   "peerDependencies": {
     "vue": "^3.0.11"
+  },
+  "dependencies": {
+    "@fect-ui/shared": "workspace:^"
   },
   "sideEffects": false,
   "homepage": "https://github.com/fect-org/fect",

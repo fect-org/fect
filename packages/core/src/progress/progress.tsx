@@ -1,5 +1,6 @@
 import { computed, CSSProperties, PropType, defineComponent, ComputedRef } from 'vue'
-import { createName, NormalTypes, createBem, isNumber, noop } from '../utils'
+import { isNumber, noop } from '@fect-ui/shared'
+import { createName, NormalTypes, createBem } from '../utils'
 import './index.less'
 
 const name = createName('Progress')

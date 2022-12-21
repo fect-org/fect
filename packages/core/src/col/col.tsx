@@ -1,5 +1,6 @@
 import { computed, defineComponent } from 'vue'
-import { assign, createName, addUnit } from '../utils'
+import { assign } from '@fect-ui/shared'
+import { createName, addUnit } from '../utils'
 import { useLayoutContext } from '../row/layout-context'
 import { colProps } from '../row/props'
 import type { CSSProperties } from 'vue'

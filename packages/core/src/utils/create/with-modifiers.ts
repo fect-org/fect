@@ -1,6 +1,6 @@
 import { withModifiers as vueWithModifiers, capitalize } from 'vue'
+import { assign, len } from '@fect-ui/shared'
 import type { Events } from 'vue'
-import { assign, len } from '../format'
 
 export type Event = {
   [key in keyof Events]: ((evt: Events[key]) => void) | undefined

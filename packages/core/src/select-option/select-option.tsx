@@ -1,7 +1,8 @@
 import { defineComponent, computed } from 'vue'
+import { isArray } from '@fect-ui/shared'
 import { useSelectContext } from '../select/select-context'
 import { selectOptionProps } from '../select/props'
-import { createName, createBem, isArray, isDEV } from '../utils'
+import { createName, createBem, isDEV } from '../utils'
 import './index.less'
 
 const name = createName('Option')

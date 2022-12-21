@@ -1,6 +1,7 @@
 import { computed, defineComponent } from 'vue'
 import { useClipboard } from '@fect-ui/vue-hooks'
-import { createName, createBem, isArray, arrayTextToString } from '../utils'
+import { isArray, arrayTextToString } from '@fect-ui/shared'
+import { createName, createBem } from '../utils'
 import type { CSSProperties } from '../utils'
 import { props } from './props'
 import SnippetIcon from './snippet-icon'

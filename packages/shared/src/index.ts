@@ -1,2 +1,6 @@
 export * from './object'
 export * from './number'
+export * from './array'
+export * from './function'
+export * from './string'
+export * from './environment'

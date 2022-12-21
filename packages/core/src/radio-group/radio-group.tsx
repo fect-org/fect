@@ -1,6 +1,7 @@
 import { defineComponent, watch } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, assign, createBem } from '../utils'
+import { assign } from '@fect-ui/shared'
+import { createName, createBem } from '../utils'
 import { radioGroupProps } from './props'
 import { createRadioContext } from './radio-context'
 import type { RadioEvent, Parent } from './interface'

@@ -1,5 +1,6 @@
 import { onMounted, onBeforeUnmount } from 'vue'
-import { isArray, len, isDEV } from '../utils'
+import { isArray, len } from '@fect-ui/shared'
+import { isDEV } from '../utils'
 
 type MountedFn = () => void
 

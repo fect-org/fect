@@ -1,7 +1,8 @@
 import { defineComponent, ref, watch, nextTick, Teleport } from 'vue'
 import { useClickAway, useState, useExpose } from '@fect-ui/vue-hooks'
+import { kebabCase, noop } from '@fect-ui/shared'
 import { createPopper } from '@popperjs/core'
-import { createName, createBem, kebabCase, withClassName, withModifiers, noop } from '../utils'
+import { createName, createBem, withClassName, withModifiers } from '../utils'
 import { useMounted } from '../composables'
 import { props } from './props'
 

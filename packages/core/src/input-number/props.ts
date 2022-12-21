@@ -1,5 +1,5 @@
+import { omit, assign } from '@fect-ui/shared'
 import { props } from '../input/props'
-import { omit, assign } from '../utils'
 
 export const inputNumberProps = assign(omit(props, ['prefix', 'suffix', 'type', 'modelValue']), {
   max: { type: Number, default: Infinity },

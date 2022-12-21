@@ -1,7 +1,7 @@
 import { createApp, createVNode, defineComponent } from 'vue'
 import { mount } from '@vue/test-utils'
+import { make } from '@fect-ui/shared'
 import { Toast } from '../function-call'
-import { make } from '../../utils'
 import { later, trigger } from '../../../tests'
 
 describe('Toast', () => {

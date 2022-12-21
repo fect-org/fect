@@ -1,6 +1,7 @@
 import { defineComponent, watch } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, pick, assign } from '../utils'
+import { pick, assign } from '@fect-ui/shared'
+import { createName } from '../utils'
 import Tooltip from '../tooltip'
 import { props } from './props'
 

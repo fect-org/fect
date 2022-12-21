@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import { noop } from '../utils'
+import { noop } from '@fect-ui/shared'
 import type { NormalTypes, PlaceTypes } from '../utils'
 import type { ToastAction, ToastInternalOptions } from './interface'
 

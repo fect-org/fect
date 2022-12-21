@@ -1,6 +1,7 @@
 import { useState, useExpose } from '@fect-ui/vue-hooks'
+import { isBrowser, assign, pick } from '@fect-ui/shared'
 import FeModal from './modal'
-import { withInstall, isBrowser, assign, createPortal, pick, isFunc } from '../utils'
+import { withInstall, createPortal, isFunc } from '../utils'
 import type { App } from 'vue'
 import type { StaticModalOptions, StaticModalInstance, Action } from './interface'
 

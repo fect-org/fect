@@ -1,7 +1,8 @@
 import { defineComponent, computed, Transition } from 'vue'
+import { isArray, len } from '@fect-ui/shared'
 import Button from '../button'
 import { toastProps } from './props'
-import { createBem, isArray, len } from '../utils'
+import { createBem } from '../utils'
 import type { CSSProperties, PlaceTypes } from '../utils'
 import { ToastOptions } from './interface'
 

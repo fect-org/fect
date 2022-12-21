@@ -93,6 +93,12 @@ async function main() {
       return acc
     }, [])
   })
+  await Promise.all(
+    configs.map((conf) => {
+      const { options } = conf
+      fs.remove(options.subDir)
+    })
+  )
   for (const conf of configs) {
     const { input, format, options, dir, mini, file } = conf
     const message = mini ? `${format}-min` : format
@@ -104,7 +110,8 @@ async function main() {
       preserveModules: true,
       preserveModulesRoot: path.dirname(input),
       exports: format === 'cjs' ? 'named' : 'auto',
-      minify: mini
+      minify: mini,
+      file: ({ format }) => (format === 'esm' ? '[name].mjs' : '[name][ext]')
     }
     const buildOption: BumpOptions = {
       input,

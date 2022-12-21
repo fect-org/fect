@@ -1,4 +1,4 @@
-import { len } from '../format/arrary'
+import { len } from '@fect-ui/shared'
 
 const hexColorToRgb = (hex: string): number[] => {
   hex = hex.indexOf('#') === 0 ? hex.slice(1) : hex
