@@ -1,6 +1,9 @@
-import { ElementRef, DraggableOptions, DraggableOutput, Position } from './interface'
 import { useEventListener, useState } from '@fect-ui/vue-hooks'
-import { isBrowser, getDomRect } from '../utils'
+import { isBrowser } from '@fect-ui/shared'
+
+import { getDomRect } from '../utils'
+
+import type { ElementRef, DraggableOptions, DraggableOutput, Position } from './interface'
 
 export const useDraggable = (el: ElementRef, options: DraggableOptions = {}): DraggableOutput => {
   const browser = isBrowser()

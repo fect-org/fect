@@ -1,5 +1,6 @@
 import { defineComponent, computed } from 'vue'
-import { createName, createBem, omit, assign } from '../utils'
+import { omit, assign } from '@fect-ui/shared'
+import { createName, createBem } from '../utils'
 import Grid from '../grid'
 import GridBasic from '../grid/grid-basic'
 import { gridGroupProps } from '../grid/props'

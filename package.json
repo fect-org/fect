@@ -20,7 +20,7 @@
     "update:icon": "ts-node scripts/source.ts",
     "build:site": "vite build",
     "build:hook": "ts-node scripts/build.ts hooks",
-    "build:lib": "ts-node scripts/build.ts core",
+    "build:core": "ts-node scripts/build.ts core",
     "build:icon": "ts-node scripts/icon.ts && ts-node scripts/build.ts icons",
     "build:shared": "ts-node scripts/build.ts shared",
     "build:scale": "ts-node scripts/build.ts scale",

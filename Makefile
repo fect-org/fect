@@ -20,4 +20,4 @@ build-icons:
 	yarn	build:icon
 
 build-lib:
-	yarn	build:lib
+	yarn	build:core

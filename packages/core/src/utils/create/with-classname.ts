@@ -1,4 +1,4 @@
-import { len } from '../format'
+import { len } from '@fect-ui/shared'
 
 export const withClassName = (...calssNames: string[]) => {
   if (!len(calssNames)) return ''

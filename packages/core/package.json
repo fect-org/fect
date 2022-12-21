@@ -30,6 +30,7 @@
     "*.css"
   ],
   "dependencies": {
+    "@fect-ui/shared": "workspace:^",
     "@fect-ui/themes": "^2.2.0",
     "@fect-ui/vue-hooks": "workspace:^",
     "@popperjs/core": "^2.11.2",

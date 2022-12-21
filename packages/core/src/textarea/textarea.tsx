@@ -1,9 +1,10 @@
 import { computed, defineComponent, ref } from 'vue'
+import { useState } from '@fect-ui/vue-hooks'
+import { isBrowser } from '@fect-ui/shared'
 import { props } from './props'
 import { getTextareaAutoHeight } from './auto-height'
-import { useState } from '@fect-ui/vue-hooks'
 import { useFormStateContext, pickFormStateProps } from '../form/form-context'
-import { createBem, createName, isBrowser, addUnit } from '../utils'
+import { createBem, createName, addUnit } from '../utils'
 import { useMounted } from '../composables'
 
 import './index.less'

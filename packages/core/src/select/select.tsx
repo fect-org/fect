@@ -1,6 +1,7 @@
 import { computed, ref, watch, defineComponent, nextTick, withModifiers } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, createBem, pick, getDomRect, assign, isArray, addUnit, len } from '../utils'
+import { pick, assign, isArray, len } from '@fect-ui/shared'
+import { createName, createBem, getDomRect, addUnit } from '../utils'
 import { useMounted } from '../composables'
 import Input from '../input'
 import Tooltip from '../tooltip'

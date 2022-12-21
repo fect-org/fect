@@ -3,7 +3,7 @@
  * see: https://stackoverflow.com/questions/53213870/why-display-property-set-to-inherit-with-css-variable-doesnt-work
  */
 
-import { assign } from '../utils'
+import { assign } from '@fect-ui/shared'
 import type { GridTypes, GridBreakPoint, LayoutVariable, BasisStyle } from './interface'
 import type { CSSProperties } from '../utils'
 

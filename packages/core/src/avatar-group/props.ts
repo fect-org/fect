@@ -1,5 +1,5 @@
 import { PropType } from 'vue'
-import { NormalSizes } from '../utils'
+import type { NormalSizes } from '../utils'
 
 export const avatarProps = {
   stacked: Boolean,

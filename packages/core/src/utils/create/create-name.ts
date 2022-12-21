@@ -5,7 +5,7 @@
  *  the vue3 style see : https://v3.vuejs.org/style-guide/#priority-a-essential
  */
 
-import { camelize } from '../format/string'
+import { camelize } from '@fect-ui/shared'
 
 export const COMPONENT_PREFFIX_NAME = 'fe'
 

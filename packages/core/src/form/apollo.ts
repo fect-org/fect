@@ -1,5 +1,5 @@
 import { proy as Proy } from 'proy'
-import { isArray, len } from '../utils'
+import { isArray, len } from '@fect-ui/shared'
 import type { FormRule, Trigger, ValidateErrorParams } from './interface'
 
 const pickRules = (trigger: Trigger, rules: FormRule[]) => {

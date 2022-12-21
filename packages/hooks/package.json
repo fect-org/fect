@@ -18,6 +18,9 @@
   "peerDependencies": {
     "vue": "^3.0.11"
   },
+  "dependencies": {
+    "@fect-ui/shared": "workspace:^"
+  },
   "sideEffects": false,
   "homepage": "https://github.com/fect-org/fect",
   "repository": {

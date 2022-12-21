@@ -1,5 +1,6 @@
 import { computed, defineComponent, toRef } from 'vue'
-import { createName, createBem, addUnit, assign } from '../utils'
+import { assign } from '@fect-ui/shared'
+import { createName, createBem, addUnit } from '../utils'
 import { props } from './props'
 import { createLayoutContext } from './layout-context'
 import type { CSSProperties } from 'vue'

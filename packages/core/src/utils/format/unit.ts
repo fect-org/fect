@@ -1,5 +1,5 @@
-import { isNumber, numberParser } from './number'
-import { isBrowser } from './window'
+import { isNumber, isBrowser } from '@fect-ui/shared'
+import { numberParser } from './number'
 
 export const addUnit = (val: number | string, unit = 'px'): string => {
   if (isNumber(val)) return `${Number(val)}${unit}`

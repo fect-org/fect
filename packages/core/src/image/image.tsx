@@ -1,6 +1,7 @@
 import { computed, CSSProperties, defineComponent, onMounted } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, isNumber, assign } from '../utils'
+import { isNumber, assign } from '@fect-ui/shared'
+import { createName } from '../utils'
 import Skeleton from '../skeleton'
 import SkeletonItem from '../skeleton-item'
 import './index.less'

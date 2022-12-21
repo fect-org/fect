@@ -3,9 +3,10 @@
  */
 
 import { getCurrentInstance } from 'vue'
+import { pick } from '@fect-ui/shared'
+
 import type { PropType, ComponentPublicInstance, ExtractPropTypes } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
-import { pick } from '../utils'
 
 export const routeProps = {
   to: [String, Object] as PropType<RouteLocationRaw>

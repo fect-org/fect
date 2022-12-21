@@ -977,6 +977,8 @@ __metadata:
 "@fect-ui/vue-hooks@workspace:^, @fect-ui/vue-hooks@workspace:packages/hooks":
   version: 0.0.0-use.local
   resolution: "@fect-ui/vue-hooks@workspace:packages/hooks"
+  dependencies:
+    "@fect-ui/shared": "workspace:^"
   peerDependencies:
     vue: ^3.0.11
   languageName: unknown
@@ -994,6 +996,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@fect-ui/vue@workspace:packages/core"
   dependencies:
+    "@fect-ui/shared": "workspace:^"
     "@fect-ui/themes": ^2.2.0
     "@fect-ui/vue-hooks": "workspace:^"
     "@popperjs/core": ^2.11.2

@@ -1,4 +1,5 @@
 import { Ref, unref } from 'vue'
+import { isBrowser } from '@fect-ui/shared'
 import { useEventListener, EventTypes } from '../use-event-listener'
 
 export interface useClickAwayOptions {
@@ -7,10 +8,6 @@ export interface useClickAwayOptions {
 
 const defaultOptions: useClickAwayOptions = {
   event: 'click'
-}
-
-const isBrowser = (): boolean => {
-  return Boolean(typeof window !== 'undefined' && window.document && window.document.createElement)
 }
 
 const useClickAway = (

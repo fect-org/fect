@@ -1,6 +1,6 @@
 import { computed, defineComponent, PropType } from 'vue'
-
-import { assign, createName, kebabCase, noop } from '../utils'
+import { assign, kebabCase, noop } from '@fect-ui/shared'
+import { createName } from '../utils'
 import type { StyleType } from './interface'
 
 const name = createName('ThemeProvide')

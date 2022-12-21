@@ -1,5 +1,6 @@
 import { computed, defineComponent } from 'vue'
-import { createName, isArray, createBem, make } from '../utils'
+import { isArray, make } from '@fect-ui/shared'
+import { createName, createBem } from '../utils'
 import { props } from './props'
 import LoadingCircle from './loading-circle'
 import './index.less'

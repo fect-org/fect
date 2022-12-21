@@ -1,5 +1,6 @@
+import { pick } from '@fect-ui/shared'
+
 import type { PropType } from 'vue'
-import { pick } from '../utils'
 import type { JustifyTypes, AlignTypes } from '../utils'
 
 export const props = {

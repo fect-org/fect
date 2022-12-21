@@ -1,4 +1,4 @@
-import { noop } from '../utils'
+import { noop } from '@fect-ui/shared'
 import type { NormalSizes } from '../utils'
 import type { PropType } from 'vue'
 import type { LabelPosition } from './interface'

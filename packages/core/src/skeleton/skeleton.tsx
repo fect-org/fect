@@ -1,5 +1,6 @@
 import { PropType, defineComponent, toRef } from 'vue'
-import { createName, createBem, addUnit, isArray } from '../utils'
+import { isArray } from '@fect-ui/shared'
+import { createName, createBem, addUnit } from '../utils'
 import { createSkeletonContext } from './skeleton-context'
 import SkeletonItem from '../skeleton-item'
 

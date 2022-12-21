@@ -1,4 +1,4 @@
-import { assign } from '../format/object'
+import { assign } from '@fect-ui/shared'
 
 export const pickContextProps = <T extends Record<string, any>, K extends Record<string, any> | null>(
   draft: T,

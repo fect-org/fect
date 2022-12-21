@@ -1,6 +1,7 @@
 import { computed, CSSProperties, ref, watch, onUnmounted, onMounted, nextTick, defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
-import { createName, getDomRect, createBem, make } from '../utils'
+import { make } from '@fect-ui/shared'
+import { createName, getDomRect, createBem } from '../utils'
 import type { Shape, Placement } from './interface'
 import { props } from './props'
 import './index.less'

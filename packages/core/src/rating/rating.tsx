@@ -1,6 +1,7 @@
 import { PropType, watch, defineComponent } from 'vue'
 import { useState, useExpose } from '@fect-ui/vue-hooks'
-import { createName, createBem, make } from '../utils'
+import { make } from '@fect-ui/shared'
+import { createName, createBem } from '../utils'
 import RatingIcon from './rating-icon'
 
 import type { NormalTypes } from '../utils'

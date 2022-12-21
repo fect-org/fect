@@ -1,5 +1,5 @@
 import { unref } from 'vue'
-import { isBrowser } from './window'
+import { isBrowser } from '@fect-ui/shared'
 import { ElementRef, MaybeElement } from '../../composables/interface'
 
 export type DomRect = Omit<DOMRect, 'toJSON'>

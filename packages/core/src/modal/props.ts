@@ -1,5 +1,5 @@
-import { PropType } from 'vue'
-import { omit } from '../utils'
+import { omit } from '@fect-ui/shared'
+import type { PropType } from 'vue'
 
 export const props = {
   visible: Boolean,
