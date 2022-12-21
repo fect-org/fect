@@ -17,7 +17,7 @@ build-hooks:
 
 
 build-scale:
-	yarn	build:sclae
+	yarn	build:scale
 
 build-icons:
 	yarn	build:icon
