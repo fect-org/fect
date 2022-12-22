@@ -242,11 +242,11 @@ export function withScale<P extends Record<string, any>>(userComponent: DefineCo
               scale: props.scale,
               unit: props.unit
             }),
-            width: modifers(props.paddingRight ?? props.pr ?? props.px ?? props.padding, {
+            width: modifers(props.width ?? props.w, {
               scale: props.scale,
               unit: props.unit
             }),
-            height: modifers(props.width ?? props.w, {
+            height: modifers(props.height ?? props.h, {
               scale: props.scale,
               unit: props.unit
             }),
