@@ -6,8 +6,13 @@ function getPresets(): Array<UIThemes> {
   return [lightThemes, darkThemes]
 }
 
-export const THEMES = {
-  getPresets
+function getPresetStaticTheme() {
+  return lightThemes
+}
+
+export const Themes = {
+  getPresets,
+  getPresetStaticTheme
 }
 
 export * from './presets/interface'
