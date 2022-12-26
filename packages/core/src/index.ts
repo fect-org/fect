@@ -57,6 +57,7 @@ import { Tabs } from './tabs'
 import { Tag } from './tag'
 import { Textarea } from './textarea'
 import { ThemeProvide } from './theme-provide'
+import { ThemeProvider } from './provider'
 import { Toast } from './toast'
 import { Tooltip } from './tooltip'
 import { Upload } from './upload'
@@ -120,7 +121,8 @@ const components = [
   Toast,
   Tooltip,
   Upload,
-  User
+  User,
+  ThemeProvider
 ]
 
 const install = (app: App) => {
@@ -193,6 +195,8 @@ export * from './toast'
 export * from './tooltip'
 export * from './upload'
 export * from './user'
+export * from './provider'
+export * from './themes'
 
 export { install, version }
 
