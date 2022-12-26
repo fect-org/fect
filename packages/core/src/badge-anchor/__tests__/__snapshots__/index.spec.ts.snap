@@ -4,7 +4,7 @@ exports[`BadgeAnchor should be render as a context  1`] = `
 "<div class="container">
   <div class="fect-badge__anchor">
     <p>Test Message</p><sup style="position: absolute; top: 0px; left: auto; right: 0px; bottom: auto; transform: translate(50%, -50%); transform-origin: 100% 0%; z-index: 1;">
-      <div class="fect-dot fect-badge__dot"><span class="fect-dot__circle fect-dot__circle--default"></span><span class="fect-dot__ctx"><!----></span></div>
+      <div class="fect-dot fect-badge__dot" style="--dot-font-size: calc(1 * 16px); --dot-width: auto; --dot-height: auto; --dot-pt: 0; --dot-pr: 0; --dot-pb: 0; --dot-pl: 0; --dot-mt: 0; --dot-mr: 0; --dot-mb: 0; --dot-ml: 0; --dot-color: #eaeaea;"><span class="fect-dot__circle fect-dot__circle--default"></span><span class="fect-dot__ctx"><!----></span></div>
     </sup>
   </div>
 </div>"

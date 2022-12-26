@@ -1,23 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AvatarGroup avatar context props should be work 1`] = `
-"<div class="fect-avatar__group">
-  <div class="fect-avatar fect-avatar--stacked fect-avatar--mini fect-avatar--isSquare ">
-    <!----><span class="fect-avatar__text">a</span>
-  </div>
-  <div class="fect-avatar fect-avatar--stacked fect-avatar--mini fect-avatar--isSquare ">
-    <!----><span class="fect-avatar__text">b</span>
-  </div><span class="fect-avatar__counter">+10</span>
-</div>"
-`;
-
-exports[`AvatarGroup should be work as avatar container 1`] = `
-"<div class="fect-avatar__group">
-  <div class="fect-avatar fect-avatar--stacked fect-avatar--medium ">
-    <!----><span class="fect-avatar__text">a</span>
-  </div>
-  <div class="fect-avatar fect-avatar--stacked fect-avatar--medium ">
-    <!----><span class="fect-avatar__text">b</span>
-  </div><span class="fect-avatar__counter">+10</span>
+exports[`AvatarGroup count 1`] = `
+"<div class="fect-avatar__group" style="--avatar-group-width: max-content; --avatar-group-height: auto; --avatar-group-pt: 0; --avatar-group-pr: 0; --avatar-group-pb: 0; --avatar-group-pl: 0; --avatar-group-mt: 0; --avatar-group-mr: 0; --avatar-group-mb: 0; --avatar-group-ml: 0; --avatar-group-font-size: calc(0.875 * 16px); --avatar-group-count-color: #333;">
+  <div class="fect-avatar fect-avatar--stacked" style="--avatar-border-color: #eaeaea; --avatar-bg-color: #fff; --avatar-radius: 6px; --avatar-size: calc(1.75 * 16px); --avatar-pt: 0; --avatar-pr: 0; --avatar-pb: 0; --avatar-pl: 0; --avatar-mt: 0; --avatar-mr: 0; --avatar-mb: 0; --avatar-ml: calc(-0.625 * 16px); --avatar-font-size: calc(1 * 16px);"><span class="fect-avatar__text">a</span></div>
+  <div class="fect-avatar fect-avatar--stacked" style="--avatar-border-color: #eaeaea; --avatar-bg-color: #fff; --avatar-radius: 6px; --avatar-size: calc(1.75 * 16px); --avatar-pt: 0; --avatar-pr: 0; --avatar-pb: 0; --avatar-pl: 0; --avatar-mt: 0; --avatar-mr: 0; --avatar-mb: 0; --avatar-ml: calc(-0.625 * 16px); --avatar-font-size: calc(1 * 16px);"><span class="fect-avatar__text">b</span></div><span class="fect-avatar__counter">+10</span>
 </div>"
 `;

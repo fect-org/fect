@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dot should be render as a element 1`] = `"<div class="fect-dot" style="--dot-font-size: calc(1 * 16px); --dot-width: auto; --dot-height: auto; --dot-pt: 0; --dot-pr: 0; --dot-pb: 0; --dot-pl: 0; --dot-mt: 0; --dot-mr: 0; --dot-mb: 0; --dot-ml: 0; --dot-color: #eaeaea;"><span class="fect-dot__circle fect-dot__circle--default"></span><span class="fect-dot__ctx"><!----></span></div>"`;
+
+exports[`Dot types 1`] = `
+"<div>
+  <div class="fect-dot" style="--dot-font-size: calc(1 * 16px); --dot-width: auto; --dot-height: auto; --dot-pt: 0; --dot-pr: 0; --dot-pb: 0; --dot-pl: 0; --dot-mt: 0; --dot-mr: 0; --dot-mb: 0; --dot-ml: 0; --dot-color: #eaeaea;"><span class="fect-dot__circle fect-dot__circle--default"></span><span class="fect-dot__ctx"><!----></span></div>
+  <div class="fect-dot" style="--dot-font-size: calc(1 * 16px); --dot-width: auto; --dot-height: auto; --dot-pt: 0; --dot-pr: 0; --dot-pb: 0; --dot-pl: 0; --dot-mt: 0; --dot-mr: 0; --dot-mb: 0; --dot-ml: 0; --dot-color: #0070f3;"><span class="fect-dot__circle fect-dot__circle--success"></span><span class="fect-dot__ctx"><!----></span></div>
+  <div class="fect-dot" style="--dot-font-size: calc(1 * 16px); --dot-width: auto; --dot-height: auto; --dot-pt: 0; --dot-pr: 0; --dot-pb: 0; --dot-pl: 0; --dot-mt: 0; --dot-mr: 0; --dot-mb: 0; --dot-ml: 0; --dot-color: #f5a623;"><span class="fect-dot__circle fect-dot__circle--warning"></span><span class="fect-dot__ctx"><!----></span></div>
+  <div class="fect-dot" style="--dot-font-size: calc(1 * 16px); --dot-width: auto; --dot-height: auto; --dot-pt: 0; --dot-pr: 0; --dot-pb: 0; --dot-pl: 0; --dot-mt: 0; --dot-mr: 0; --dot-mb: 0; --dot-ml: 0; --dot-color: #e00;"><span class="fect-dot__circle fect-dot__circle--error"></span><span class="fect-dot__ctx"><!----></span></div>
+</div>"
+`;

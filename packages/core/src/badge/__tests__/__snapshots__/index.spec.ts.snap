@@ -2,6 +2,6 @@
 
 exports[`Badge should be supprot noramlize props 1`] = `
 "<div class="container">
-  <div class="fect-dot fect-badge__dot" type-data="success"><span class="fect-dot__circle fect-dot__circle--success"></span><span class="fect-dot__ctx"><!----></span></div>
+  <div class="fect-dot fect-badge__dot" style="--dot-font-size: calc(1 * 16px); --dot-width: auto; --dot-height: auto; --dot-pt: 0; --dot-pr: 0; --dot-pb: 0; --dot-pl: 0; --dot-mt: 0; --dot-mr: 0; --dot-mb: 0; --dot-ml: 0; --dot-color: #0070f3;" type-data="success"><span class="fect-dot__circle fect-dot__circle--success"></span><span class="fect-dot__ctx"><!----></span></div>
 </div>"
 `;

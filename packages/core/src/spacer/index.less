@@ -1,12 +1,10 @@
-:root {
-  --spacer-horizontal: 15.25pt;
-  --spacer-vertical: 15.25pt;
-}
-
 .fect-spacer {
   display: block;
-  height: calc(var(--spacer-vertical) * var(--vertical-num));
-  width: calc(var(--spacer-horizontal) * var(--horizontal-num));
+  width: var(--spacer-width);
+  height: var(--spacer-height);
+  margin: var(--spacer-mt) var(--spacer-mr) var(--spacer-mb) var(--spacer-ml);
+  padding: var(--spacer-pt) var(--spacer-pr) var(--spacer-pb) var(--spacer-pl);
+
   &--inline {
     display: inline-block;
   }

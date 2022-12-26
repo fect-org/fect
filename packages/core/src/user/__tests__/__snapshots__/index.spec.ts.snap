@@ -2,7 +2,7 @@
 
 exports[`User should render as normal 1`] = `
 "<div class="fect-user">
-  <div class="fect-avatar fect-avatar--small "><span class="fect-avatar__text">Kan</span></div>
+  <div class="fect-avatar" style="--avatar-border-color: #eaeaea; --avatar-bg-color: #fff; --avatar-radius: 6px; --avatar-size: calc(1.75 * 16px); --avatar-pt: 0; --avatar-pr: 0; --avatar-pb: 0; --avatar-pl: 0; --avatar-mt: 0; --avatar-mr: 0; --avatar-mb: 0; --avatar-ml: 0; --avatar-font-size: calc(1 * 16px);"><span class="fect-avatar__text" size="small" alt="">Kan</span></div>
   <div class="fect-user__names"><span class="name">kanno</span><span class="social"><!----></span></div>
 </div>"
 `;
