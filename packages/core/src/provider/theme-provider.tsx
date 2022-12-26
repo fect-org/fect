@@ -3,9 +3,9 @@ import { isArray, noop, len } from '@fect-ui/shared'
 import { useState } from '@fect-ui/vue-hooks'
 import { Themes } from '../themes'
 import { createName } from '../utils'
+import { createThemeContext } from './theme-context'
 import type { PropType } from 'vue'
 import type { UIThemes } from '../themes'
-import { createThemeContext } from './theme-context'
 
 const name = createName('ThemeProvider')
 

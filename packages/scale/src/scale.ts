@@ -14,17 +14,17 @@ type ScaleSystemContext = UnwrapNestedRefs<{ unit: string | undefined }> & {
 }
 const INTERNAL_SCALE_KEY: InjectionKey<ScaleSystemContext> = Symbol('ScaleRenderKey')
 
-interface NumberProp {
+export interface NumberProp {
   type: NumberConstructor
   default?: number
 }
 
-interface NumberOrStringProp {
+export interface NumberOrStringProp {
   type: (NumberConstructor | StringConstructor)[]
   default?: string | number
 }
 
-interface StringProp {
+export interface StringProp {
   type: StringConstructor
   default?: string
 }

@@ -69,8 +69,5 @@
   "peerDependencies": {
     "vue": "^3.0.0"
   },
-  "packageManager": "yarn@3.3.0",
-  "dependencies": {
-    "style9": "https://github.com/nonzzz/style9"
-  }
+  "packageManager": "yarn@3.3.0"
 }

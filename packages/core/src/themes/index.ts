@@ -2,6 +2,10 @@ import { lightThemes } from './presets/default'
 import { darkThemes } from './presets/dark'
 import { UIThemes } from './presets/interface'
 
+import type { DeepPartial } from '../utils'
+
+export type UserTheme = DeepPartial<UIThemes> & { type: string }
+
 function getPresets(): Array<UIThemes> {
   return [lightThemes, darkThemes]
 }
