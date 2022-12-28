@@ -18,7 +18,6 @@ import { Card } from './card'
 import { Checkbox } from './checkbox'
 import { CheckboxGroup } from './checkbox-group'
 import { Code } from './code'
-import { Col } from './col'
 import { Collapse } from './collapse'
 import { CollapseGroup } from './collapse-group'
 import { Dot } from './dot'
@@ -40,7 +39,6 @@ import { Progress } from './progress'
 import { Radio } from './radio'
 import { RadioGroup } from './radio-group'
 import { Rating } from './rating'
-import { Row } from './row'
 import { Select } from './select'
 import { SelectOption } from './select-option'
 import { Skeleton } from './skeleton'
@@ -49,8 +47,6 @@ import { Slider } from './slider'
 import { Snippet } from './snippet'
 import { Spacer } from './spacer'
 import { Spinner } from './spinner'
-import { Swipe } from './swipe'
-import { SwipeItem } from './swipe-item'
 import { Switch } from './switch'
 import { Tab } from './tab'
 import { Tabs } from './tabs'
@@ -79,7 +75,6 @@ const components = [
   Checkbox,
   CheckboxGroup,
   Code,
-  Col,
   Collapse,
   CollapseGroup,
   Dot,
@@ -101,7 +96,6 @@ const components = [
   Radio,
   RadioGroup,
   Rating,
-  Row,
   Select,
   SelectOption,
   Skeleton,
@@ -110,8 +104,6 @@ const components = [
   Snippet,
   Spacer,
   Spinner,
-  Swipe,
-  SwipeItem,
   Switch,
   Tab,
   Tabs,
@@ -151,7 +143,6 @@ export * from './card'
 export * from './checkbox'
 export * from './checkbox-group'
 export * from './code'
-export * from './col'
 export * from './collapse'
 export * from './collapse-group'
 export * from './composables'
@@ -174,7 +165,6 @@ export * from './progress'
 export * from './radio'
 export * from './radio-group'
 export * from './rating'
-export * from './row'
 export * from './select'
 export * from './select-option'
 export * from './skeleton'
@@ -183,8 +173,6 @@ export * from './slider'
 export * from './snippet'
 export * from './spacer'
 export * from './spinner'
-export * from './swipe'
-export * from './swipe-item'
 export * from './switch'
 export * from './tab'
 export * from './tabs'
