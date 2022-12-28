@@ -1,4 +1,6 @@
 import { defineComponent } from 'vue'
+import { useScale } from '@fect-ui/scale'
+import { useTheme } from '../provider/theme-context'
 import Avatar from '../avatar'
 import { createName, createBem } from '../utils'
 
@@ -29,9 +31,12 @@ export default defineComponent({
     }
   },
   setup(props, { slots }) {
+    const scale = useScale()
+    const { theme } = useTheme()
+
     return () => (
       <div class={bem(null)}>
-        <Avatar size="small" src={props.src} text={props.text} alt={props.altText} />
+        <Avatar src={props.src} text={props.text} alt={props.altText} />
         <div class={bem('names')}>
           <span class="name">{props.name}</span>
           <span class="social">{slots.default?.()}</span>

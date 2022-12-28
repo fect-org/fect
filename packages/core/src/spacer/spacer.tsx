@@ -13,10 +13,9 @@ export default defineComponent({
     inline: Boolean
   },
   setup(props) {
-    const scale = useScale()
+    const { SCALES } = useScale()
 
     const setCssVariables = computed(() => {
-      const { SCALES } = scale
       return {
         '--spacer-width': SCALES.width(1),
         '--spacer-height': SCALES.height(1),

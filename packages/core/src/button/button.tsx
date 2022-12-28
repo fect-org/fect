@@ -19,7 +19,7 @@ export default defineComponent({
   props,
   emits: ['click'],
   setup(props, { slots, emit }) {
-    const scale = useScale()
+    const { SCALES } = useScale()
     const { theme } = useTheme()
     const buttonRef = ref<HTMLButtonElement>()
     const [drapShow, setDrapShow] = useState<boolean>(false)
@@ -34,7 +34,6 @@ export default defineComponent({
     })
 
     const padding = computed(() => {
-      const { SCALES } = scale
       if (props.auto) return [SCALES.pl(1.15), SCALES.pr(1.15)]
       return [SCALES.pl(1.375), SCALES.pr(1.375)]
     })
@@ -46,7 +45,6 @@ export default defineComponent({
     const dripColor = computed(() => getButtonDripColor(theme.value.palette, props))
 
     const setCssVariables = computed(() => {
-      const { SCALES } = scale
       const [pl, pr] = padding.value
       const { color, bg, border } = colors.value
       const { bg: hoverBg, border: hoverBorder, color: hoverColor } = hover.value

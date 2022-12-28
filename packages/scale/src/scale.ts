@@ -1,9 +1,9 @@
-import { createVNode, defineComponent, inject, provide, reactive, watchEffect } from 'vue'
+import { computed, createVNode, defineComponent, inject, provide, reactive, ref, watchEffect } from 'vue'
 import { assign, omit, pick, isNumber } from '@fect-ui/shared'
 import { CONSTATNS } from './constants'
-import type { DefineComponent, InjectionKey, ExtractPropTypes, UnwrapNestedRefs } from 'vue'
+import type { DefineComponent, InjectionKey, ExtractPropTypes, ComputedRef, Ref } from 'vue'
 
-type ScaleSystemContext = UnwrapNestedRefs<{ unit: string | undefined }> & {
+interface ScaleSystemContext {
   SCALES: Record<
     Extract<
       keyof typeof CONSTATNS,
@@ -11,6 +11,8 @@ type ScaleSystemContext = UnwrapNestedRefs<{ unit: string | undefined }> & {
     >,
     ModifersPipe
   >
+  unit: Ref<string>
+  getScaleableProps(props: Array<keyof typeof CONSTATNS>): ComputedRef<string>
 }
 const INTERNAL_SCALE_KEY: InjectionKey<ScaleSystemContext> = Symbol('ScaleRenderKey')
 
@@ -174,13 +176,10 @@ const SCALES = pick(CONSTATNS, [
   'font'
 ])
 
-const initScales = (scaleProps: ScaleProps) => {
-  return {
-    unit: scaleProps.unit,
-    SCALES: (Object.keys(SCALES) as Array<keyof typeof SCALES>).reduce((acc, cur) => {
-      return assign(acc, { [cur]: modifers(CONSTATNS[cur], { scale: CONSTATNS.scale, unit: CONSTATNS.unit }) })
-    }, {} as Record<keyof typeof SCALES, ModifersPipe>)
-  }
+const initScales = () => {
+  return (Object.keys(SCALES) as Array<keyof typeof SCALES>).reduce((acc, cur) => {
+    return assign(acc, { [cur]: modifers(CONSTATNS[cur], { scale: CONSTATNS.scale, unit: CONSTATNS.unit }) })
+  }, {} as Record<keyof typeof SCALES, ModifersPipe>)
 }
 
 export function withScale<P extends Record<string, any>>(
@@ -191,76 +190,89 @@ export function withScale<P extends Record<string, any>>(
     name,
     props: scaleProps as unknown as typeof scaleProps & P,
     setup(props: any, { slots, attrs }) {
-      const scales = reactive(initScales(props))
+      const scales = reactive(initScales())
+      const unit = ref<string>(props.unit)
       const updateSCALES = (): typeof scales => {
         return {
-          unit: props.unit,
-          SCALES: {
-            pt: modifers(props.paddingTop ?? props.pt ?? props.py ?? props.padding, {
-              scale: props.scale,
-              unit: props.unit
-            }),
-            pr: modifers(props.paddingRight ?? props.pr ?? props.px ?? props.padding, {
-              scale: props.scale,
-              unit: props.unit
-            }),
-            pb: modifers(props.paddingBottom ?? props.pb ?? props.py ?? props.padding, {
-              scale: props.scale,
-              unit: props.unit
-            }),
-            pl: modifers(props.paddingLeft ?? props.pl ?? props.px ?? props.padding, {
-              scale: props.scale,
-              unit: props.unit
-            }),
-            px: modifers(props.px ?? props.paddingLeft ?? props.paddingRight ?? props.pl ?? props.pr ?? props.padding, {
-              scale: props.scale,
-              unit: props.unit
-            }),
-            py: modifers(props.py ?? props.paddingTop ?? props.paddingBottom ?? props.pt ?? props.pb ?? props.padding, {
-              scale: props.scale,
-              unit: props.unit
-            }),
-            mt: modifers(props.marginTop ?? props.mt ?? props.my ?? props.margin, {
-              scale: props.scale,
-              unit: props.unit
-            }),
-            mr: modifers(props.marginRight ?? props.mr ?? props.mx ?? props.margin, {
-              scale: props.scale,
-              unit: props.unit
-            }),
-            mb: modifers(props.marginBottom ?? props.mb ?? props.my ?? props.margin, {
-              scale: props.scale,
-              unit: props.unit
-            }),
-            ml: modifers(props.marginLeft ?? props.ml ?? props.mx ?? props.margin, {
-              scale: props.scale,
-              unit: props.unit
-            }),
-            mx: modifers(props.mx ?? props.marginLeft ?? props.marginRight ?? props.ml ?? props.mr ?? props.margin, {
-              scale: props.scale,
-              unit: props.unit
-            }),
-            my: modifers(props.my ?? props.marginTop ?? props.marginBottom ?? props.mt ?? props.mb ?? props.margin, {
-              scale: props.scale,
-              unit: props.unit
-            }),
-            width: modifers(props.width ?? props.w, {
-              scale: props.scale,
-              unit: props.unit
-            }),
-            height: modifers(props.height ?? props.h, {
-              scale: props.scale,
-              unit: props.unit
-            }),
-            font: modifers(props.font, {
-              scale: props.scale,
-              unit: props.unit
-            })
-          }
+          pt: modifers(props.paddingTop ?? props.pt ?? props.py ?? props.padding, {
+            scale: props.scale,
+            unit: props.unit
+          }),
+          pr: modifers(props.paddingRight ?? props.pr ?? props.px ?? props.padding, {
+            scale: props.scale,
+            unit: props.unit
+          }),
+          pb: modifers(props.paddingBottom ?? props.pb ?? props.py ?? props.padding, {
+            scale: props.scale,
+            unit: props.unit
+          }),
+          pl: modifers(props.paddingLeft ?? props.pl ?? props.px ?? props.padding, {
+            scale: props.scale,
+            unit: props.unit
+          }),
+          px: modifers(props.px ?? props.paddingLeft ?? props.paddingRight ?? props.pl ?? props.pr ?? props.padding, {
+            scale: props.scale,
+            unit: props.unit
+          }),
+          py: modifers(props.py ?? props.paddingTop ?? props.paddingBottom ?? props.pt ?? props.pb ?? props.padding, {
+            scale: props.scale,
+            unit: props.unit
+          }),
+          mt: modifers(props.marginTop ?? props.mt ?? props.my ?? props.margin, {
+            scale: props.scale,
+            unit: props.unit
+          }),
+          mr: modifers(props.marginRight ?? props.mr ?? props.mx ?? props.margin, {
+            scale: props.scale,
+            unit: props.unit
+          }),
+          mb: modifers(props.marginBottom ?? props.mb ?? props.my ?? props.margin, {
+            scale: props.scale,
+            unit: props.unit
+          }),
+          ml: modifers(props.marginLeft ?? props.ml ?? props.mx ?? props.margin, {
+            scale: props.scale,
+            unit: props.unit
+          }),
+          mx: modifers(props.mx ?? props.marginLeft ?? props.marginRight ?? props.ml ?? props.mr ?? props.margin, {
+            scale: props.scale,
+            unit: props.unit
+          }),
+          my: modifers(props.my ?? props.marginTop ?? props.marginBottom ?? props.mt ?? props.mb ?? props.margin, {
+            scale: props.scale,
+            unit: props.unit
+          }),
+          width: modifers(props.width ?? props.w, {
+            scale: props.scale,
+            unit: props.unit
+          }),
+          height: modifers(props.height ?? props.h, {
+            scale: props.scale,
+            unit: props.unit
+          }),
+          font: modifers(props.font, {
+            scale: props.scale,
+            unit: props.unit
+          })
         }
       }
-      watchEffect(() => assign(scales, updateSCALES()))
-      createScaleContext(scales)
+
+      const getScaleableProps = (scaleProps: Array<keyof typeof CONSTATNS>) => {
+        let value = ''
+        for (const prop of scaleProps) {
+          const current = props[prop]
+          if (typeof current !== 'undefined') {
+            value = current
+          }
+        }
+        return computed(() => value)
+      }
+
+      watchEffect(() => {
+        assign(scales, updateSCALES())
+        unit.value = props.unit
+      })
+      createScaleContext({ SCALES: scales, unit, getScaleableProps })
       return () =>
         createVNode(
           userComponent,
@@ -272,7 +284,11 @@ export function withScale<P extends Record<string, any>>(
 }
 
 export function useScale() {
-  return inject(INTERNAL_SCALE_KEY, initScales(CONSTATNS))
+  return inject(INTERNAL_SCALE_KEY, {
+    unit: ref(CONSTATNS.unit),
+    SCALES: reactive(initScales()),
+    getScaleableProps: () => computed(() => '')
+  })
 }
 
 function createScaleContext(scaleSystem: ScaleSystemContext) {

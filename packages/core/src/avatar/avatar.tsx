@@ -19,6 +19,7 @@ export default defineComponent({
       type: String,
       default: ''
     },
+    alt: String,
     src: String,
     className: {
       type: String,
@@ -26,7 +27,7 @@ export default defineComponent({
     }
   },
   setup(props, { attrs }) {
-    const scale = useScale()
+    const { SCALES } = useScale()
     const { theme } = useTheme()
 
     const safeText = (text: string) => {
@@ -35,7 +36,6 @@ export default defineComponent({
     }
 
     const setCssVariables = computed(() => {
-      const { SCALES } = scale
       const { palette, layout } = theme.value
       return {
         '--avatar-border-color': palette.accents_2,
@@ -60,7 +60,7 @@ export default defineComponent({
         style={setCssVariables.value}
       >
         {props.src ? (
-          <img src={props.src} draggable="false" {...attrs} />
+          <img src={props.src} draggable="false" alt={props.alt} {...attrs} />
         ) : (
           <span class={bem('text')} {...attrs}>
             {safeText(props.text)}

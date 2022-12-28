@@ -1,6 +1,6 @@
-import { withInstall } from '../utils'
+import { withScaleInstall } from '../utils'
 import _User from './user'
 
-export const User = withInstall(_User)
+export const User = withScaleInstall(_User)
 
 export default User

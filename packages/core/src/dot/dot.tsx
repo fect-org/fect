@@ -31,13 +31,12 @@ export default defineComponent({
     }
   },
   setup(props, { slots }) {
-    const scale = useScale()
+    const { SCALES } = useScale()
     const { theme } = useTheme()
 
     const color = computed(() => getColor(props.type, theme.value))
 
     const setCssVariables = computed(() => {
-      const { SCALES } = scale
       return {
         '--dot-font-size': SCALES.font(1),
         '--dot-width': SCALES.width(1, 'auto'),
