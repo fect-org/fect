@@ -15,7 +15,7 @@ export default defineComponent({
   setup(props) {
     const scale = useScale()
 
-    const getCssVariables = computed(() => {
+    const setCssVariables = computed(() => {
       const { SCALES } = scale
       return {
         '--spacer-width': SCALES.width(1),
@@ -31,6 +31,6 @@ export default defineComponent({
       }
     })
 
-    return () => <span class={bem(null, { inline: props.inline })} style={getCssVariables.value}></span>
+    return () => <span class={bem(null, { inline: props.inline })} style={setCssVariables.value}></span>
   }
 })

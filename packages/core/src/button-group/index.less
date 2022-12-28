@@ -1,20 +1,14 @@
-:root {
-  --button-group-radius: var(--fect-radius);
-  --button-group-border: var(--fect-border);
-  --button-group-magin: 16px;
-}
-
 .fect-button {
   &__group {
     display: inline-flex;
     border-radius: var(--button-group-radius);
-    border: 1px solid var(--button-group-border);
+    border: 1px solid var(--button-group-border-color);
     background-color: transparent;
     overflow: hidden;
-    width: auto;
-    height: min-content;
-    padding: 0;
-    margin: calc(var(--button-group-magin) * 0.313);
+    width: var(--button-group-width);
+    height: var(--button-group-height);
+    padding: var(--button-group-pt) var(--button-group-pr) var(--button-group-pb) var(--button-group-pl);
+    margin: var(--button-group-mt) var(--button-group-mr) var(--button-group-mb) var(--button-group-ml);
 
     > .fect-button {
       border: none;
@@ -29,7 +23,7 @@
         &:not(:first-child) {
           border-top-left-radius: 0;
           border-top-right-radius: 0;
-          border-top: 1px solid var(--button-border-color);
+          border-top: 1px solid var(--button-group-border-color);
         }
         &:not(:last-child) {
           border-bottom-left-radius: 0;
@@ -43,7 +37,7 @@
         &:not(:first-child) {
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
-          border-left: 1px solid var(--button-border-color);
+          border-left: 1px solid var(--button-group-border-color);
         }
         &:not(:last-child) {
           border-top-right-radius: 0;

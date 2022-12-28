@@ -36,7 +36,7 @@ export default defineComponent({
 
     const color = computed(() => getColor(props.type, theme.value))
 
-    const getCssVariables = computed(() => {
+    const setCssVariables = computed(() => {
       const { SCALES } = scale
       return {
         '--dot-font-size': SCALES.font(1),
@@ -55,7 +55,7 @@ export default defineComponent({
     })
 
     return () => (
-      <div class={bem(null)} style={getCssVariables.value}>
+      <div class={bem(null)} style={setCssVariables.value}>
         <span class={bem('circle', props.type)}></span>
         <span class={bem('ctx')}>{slots.default?.()}</span>
       </div>

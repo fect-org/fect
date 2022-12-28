@@ -1,101 +1,86 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button button have icon only 1`] = `
-"<div class="container"><button class="fect-button fect-button--default fect-button--medium" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
-    <!---->
-    <!---->
-    <div class="fect-button__icon" style="left: 50%; transform: translate(-50%, -50%);"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" style="" viewBox="0 0 24 24">
-        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-      </svg></div>
-    <!---->
-  </button></div>"
-`;
-
-exports[`Button should be allow some status  1`] = `
-"<div class="container"><button class="fect-button fect-button--default fect-button--disabled fect-button--medium" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
-    <!---->
-    <!---->Button
-  </button><button class="fect-button fect-button--default fect-button--shadow fect-button--medium" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
-    <!---->
-    <!---->Button
-  </button></div>"
-`;
-
-exports[`Button should be render as a element 1`] = `
-"<button class="fect-button fect-button--default fect-button--medium" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
+exports[`Button disabled 1`] = `
+"<button class="fect-button fect-button--default fect-button--disabled" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #fafafa; --button-border-color: #eaeaea; --button-color: #ccc; --button-hover-bg-color: #fafafa; --button-hover-border-color: #eaeaea; --button-hover-color: #ccc;" type="button">
   <!---->
-  <!---->Button
+  <!---->Action
 </button>"
 `;
 
-exports[`Button should be support diferent types 1`] = `
-"<div class="container"><button class="fect-button fect-button--default fect-button--medium" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
+exports[`Button ghost 1`] = `
+"<div><button class="fect-button fect-button--default fect-button--ghost" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #fff; --button-border-color: #eaeaea; --button-color: #666; --button-hover-bg-color: #fff; --button-hover-border-color: #000; --button-hover-color: #000;" type="button">
     <!---->
-    <!---->Button
-  </button><button class="fect-button fect-button--success fect-button--medium" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--button-success-color); --button-hover-color: var(--button-success-color);" type="button">
+    <!---->Default
+  </button><button class="fect-button fect-button--abort fect-button--ghost" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #fff; --button-border-color: #eaeaea; --button-color: #666; --button-hover-bg-color: #fff; --button-hover-border-color: #000; --button-hover-color: #000;" type="button">
     <!---->
-    <!---->Button
-  </button><button class="fect-button fect-button--warning fect-button--medium" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--button-warning-color); --button-hover-color: var(--button-warning-color);" type="button">
+    <!---->Abort
+  </button><button class="fect-button fect-button--success fect-button--ghost" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #fff; --button-border-color: #0070f3; --button-color: #0070f3; --button-hover-bg-color: #0070f3; --button-hover-border-color: #fff; --button-hover-color: white;" type="button">
     <!---->
-    <!---->Button
-  </button><button class="fect-button fect-button--error fect-button--medium" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--button-error-color); --button-hover-color: var(--button-error-color);" type="button">
+    <!---->Success
+  </button><button class="fect-button fect-button--success-light fect-button--ghost" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #fff; --button-border-color: #0070f3; --button-color: #0070f3; --button-hover-bg-color: #0070f3; --button-hover-border-color: #fff; --button-hover-color: white;" type="button">
     <!---->
-    <!---->Button
+    <!---->Success Light
+  </button><button class="fect-button fect-button--secondary fect-button--ghost" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #fff; --button-border-color: #000; --button-color: #000; --button-hover-bg-color: #000; --button-hover-border-color: #fff; --button-hover-color: #fff;" type="button">
+    <!---->
+    <!---->Secondary
+  </button><button class="fect-button fect-button--secondary-light fect-button--ghost" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #fff; --button-border-color: #000; --button-color: #000; --button-hover-bg-color: #000; --button-hover-border-color: #fff; --button-hover-color: #fff;" type="button">
+    <!---->
+    <!---->Secondary Light
+  </button><button class="fect-button fect-button--warning fect-button--ghost" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #fff; --button-border-color: #f5a623; --button-color: #f5a623; --button-hover-bg-color: #f5a623; --button-hover-border-color: #fff; --button-hover-color: white;" type="button">
+    <!---->
+    <!---->Warning
+  </button><button class="fect-button fect-button--warning-light fect-button--ghost" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #fff; --button-border-color: #f5a623; --button-color: #f5a623; --button-hover-bg-color: #f5a623; --button-hover-border-color: #fff; --button-hover-color: white;" type="button">
+    <!---->
+    <!---->Warning Light
+  </button><button class="fect-button fect-button--error fect-button--ghost" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #fff; --button-border-color: #e00; --button-color: #e00; --button-hover-bg-color: #e00; --button-hover-border-color: #fff; --button-hover-color: white;" type="button">
+    <!---->
+    <!---->Error
+  </button><button class="fect-button fect-button--error-light fect-button--ghost" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #fff; --button-border-color: #e00; --button-color: #e00; --button-hover-bg-color: #e00; --button-hover-border-color: #fff; --button-hover-color: white;" type="button">
+    <!---->
+    <!---->Error Light
   </button></div>"
 `;
 
-exports[`Button should be support different sizes 1`] = `
-"<div class="container"><button class="fect-button fect-button--default fect-button--mini" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
-    <!---->
-    <!---->Button
-  </button><button class="fect-button fect-button--default fect-button--small" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
-    <!---->
-    <!---->Button
-  </button><button class="fect-button fect-button--default fect-button--medium" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
-    <!---->
-    <!---->Button
-  </button><button class="fect-button fect-button--default fect-button--large" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
-    <!---->
-    <!---->Button
-  </button><button class="fect-button fect-button--default fect-button--auto fect-button--medium" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
-    <!---->
-    <!---->Button
-  </button></div>"
-`;
-
-exports[`Button should be support icon 1`] = `
-"<div class="container"><button class="fect-button fect-button--default fect-button--medium" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
-    <!---->
-    <!---->
-    <div class="fect-button__icon" style="left: 15%; transform: translateY(-50%);"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" style="" viewBox="0 0 24 24">
-        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-      </svg></div>
-    <div class="fect-button__text"> Button </div>
-  </button></div>"
-`;
-
-exports[`Button should be support loadType and loadColor follow button color 1`] = `
-"<div class="container"><button class="fect-button fect-button--default fect-button--loading fect-button--medium" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
-    <div class="fect-button__loading">
-      <div class="fect-loading"><span class="fect-loading__wrapper"><i class="fect-loading__default fect-loading__default--medium default" style="background: var(--button-load-color);"></i><i class="fect-loading__default fect-loading__default--medium default" style="background: var(--button-load-color);"></i><i class="fect-loading__default fect-loading__default--medium default" style="background: var(--button-load-color);"></i></span></div>
-    </div>
-    <!---->Button
-  </button><button class="fect-button fect-button--success fect-button--loading fect-button--medium" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--button-success-color); --button-hover-color: var(--button-success-color);" type="button">
-    <div class="fect-button__loading">
-      <div class="fect-loading"><span class="fect-loading__wrapper"><i class="fect-loading__cube fect-loading__cube--medium default" style="background: var(--button-load-color);"></i><i class="fect-loading__cube fect-loading__cube--medium default" style="background: var(--button-load-color);"></i><i class="fect-loading__cube fect-loading__cube--medium default" style="background: var(--button-load-color);"></i><i class="fect-loading__cube fect-loading__cube--medium default" style="background: var(--button-load-color);"></i></span></div>
-    </div>
-    <!---->Button
-  </button><button class="fect-button fect-button--warning fect-button--loading fect-button--medium" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--button-warning-color); --button-hover-color: var(--button-warning-color);" type="button">
-    <div class="fect-button__loading">
-      <div class="fect-loading"><span class="fect-loading__wrapper"><i class="fect-loading__wave fect-loading__wave--medium default" style="background: var(--button-load-color);"></i><i class="fect-loading__wave fect-loading__wave--medium default" style="background: var(--button-load-color);"></i><i class="fect-loading__wave fect-loading__wave--medium default" style="background: var(--button-load-color);"></i><i class="fect-loading__wave fect-loading__wave--medium default" style="background: var(--button-load-color);"></i><i class="fect-loading__wave fect-loading__wave--medium default" style="background: var(--button-load-color);"></i></span></div>
-    </div>
-    <!---->Button
-  </button></div>"
-`;
-
-exports[`Button should trigger a effect 1`] = `
-"<button class="fect-button fect-button--default fect-button--medium" style="--button-hover-bg: var(--button-default-color); --button-hover-border: var(--primary-foreground); --button-hover-color: var(--primary-foreground);" type="button">
+exports[`Button loading 1`] = `
+"<button class="fect-button fect-button--loading fect-button--default" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #fff; --button-border-color: #eaeaea; --button-color: #666; --button-hover-bg-color: #fff; --button-hover-border-color: #eaeaea; --button-hover-color: transparent;" type="button">
+  <div class="fect-button__loading">
+    <div class="fect-loading"><span class="fect-loading__wrapper"><i class="fect-loading__wave fect-loading__wave--medium default" style="background: #666;"></i><i class="fect-loading__wave fect-loading__wave--medium default" style="background: #666;"></i><i class="fect-loading__wave fect-loading__wave--medium default" style="background: #666;"></i><i class="fect-loading__wave fect-loading__wave--medium default" style="background: #666;"></i><i class="fect-loading__wave fect-loading__wave--medium default" style="background: #666;"></i></span></div>
+  </div>
   <!---->
-  <!---->Button
+  <!---->
 </button>"
+`;
+
+exports[`Button type 1`] = `
+"<div><button class="fect-button fect-button--default" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #fff; --button-border-color: #eaeaea; --button-color: #666; --button-hover-bg-color: #fff; --button-hover-border-color: #000; --button-hover-color: #000;" type="button">
+    <!---->
+    <!---->Default
+  </button><button class="fect-button fect-button--abort" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: transparent; --button-border-color: transparent; --button-color: #666; --button-hover-bg-color: transparent; --button-hover-border-color: transparent; --button-hover-color: #666;" type="button">
+    <!---->
+    <!---->Abort
+  </button><button class="fect-button fect-button--success" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #0070f3; --button-border-color: #0070f3; --button-color: #fff; --button-hover-bg-color: #fff; --button-hover-border-color: #0070f3; --button-hover-color: #0070f3;" type="button">
+    <!---->
+    <!---->Success
+  </button><button class="fect-button fect-button--success-light" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #0070f3; --button-border-color: #0070f3; --button-color: #fff; --button-hover-bg-color: rgba(0, 112, 243, 0.85); --button-hover-border-color: #0070f3; --button-hover-color: #fff;" type="button">
+    <!---->
+    <!---->Success Light
+  </button><button class="fect-button fect-button--secondary" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #000; --button-border-color: #000; --button-color: #fff; --button-hover-bg-color: #fff; --button-hover-border-color: #000; --button-hover-color: #000;" type="button">
+    <!---->
+    <!---->Secondary
+  </button><button class="fect-button fect-button--secondary-light" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #000; --button-border-color: #000; --button-color: #fff; --button-hover-bg-color: rgba(0, 0, 0, 0.85); --button-hover-border-color: #000; --button-hover-color: #fff;" type="button">
+    <!---->
+    <!---->Secondary Light
+  </button><button class="fect-button fect-button--warning" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #f5a623; --button-border-color: #f5a623; --button-color: #fff; --button-hover-bg-color: #fff; --button-hover-border-color: #f5a623; --button-hover-color: #f5a623;" type="button">
+    <!---->
+    <!---->Warning
+  </button><button class="fect-button fect-button--warning-light" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #f5a623; --button-border-color: #f5a623; --button-color: #fff; --button-hover-bg-color: rgba(245, 166, 35, 0.85); --button-hover-border-color: #f5a623; --button-hover-color: #fff;" type="button">
+    <!---->
+    <!---->Warning Light
+  </button><button class="fect-button fect-button--error" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #e00; --button-border-color: #e00; --button-color: #fff; --button-hover-bg-color: #fff; --button-hover-border-color: #e00; --button-hover-color: #e00;" type="button">
+    <!---->
+    <!---->Error
+  </button><button class="fect-button fect-button--error-light" style="--button-height: calc(2.5 * 16px); --button-min-width: calc(10.5 * 16px); --button-radius: 6px; --button-font-size: calc(0.875 * 16px); --button-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --button-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); --button-pt: 0; --button-pr: calc(1.375 * 16px); --button-pb: 0; --button-pl: calc(1.375 * 16px); --button-mt: 0; --button-mr: 0; --button-mb: 0; --button-ml: 0; --button-bg-color: #e00; --button-border-color: #e00; --button-color: #fff; --button-hover-bg-color: rgba(224, 14, 0, 0.85); --button-hover-border-color: #e00; --button-hover-color: #fff;" type="button">
+    <!---->
+    <!---->Error Light
+  </button></div>"
 `;

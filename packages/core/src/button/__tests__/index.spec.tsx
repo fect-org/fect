@@ -1,142 +1,134 @@
-import Button from '..'
 import { mount } from '@vue/test-utils'
-import { Github } from '@fect-ui/vue-icons'
-import { later } from '../../../tests'
+import Button from '..'
 
 describe('Button', () => {
-  it('should be render as a element', () => {
-    const wrapper = mount(Button, {
-      slots: {
-        default: 'Button'
-      }
-    })
-    expect(wrapper.html()).toMatchSnapshot()
+  it('render normal', () => {
+    const wrapper = mount(Button)
     expect(() => wrapper.unmount()).not.toThrow()
   })
-  it('should be support diferent types', async () => {
-    const wrapper = mount({
-      data() {
-        return { ghost: false }
-      },
-      template: `
-      <div class="container">
-        <fe-button type="default" :ghost="ghost">Button</fe-button>
-        <fe-button type="success" :ghost="ghost">Button</fe-button>
-        <fe-button type="warning" :ghost="ghost">Button</fe-button>
-        <fe-button type="error" :ghost="ghost">Button</fe-button>
-      </div>`,
-      components: {
-        [Button.name]: Button
-      }
-    })
-    expect(wrapper.html()).toMatchSnapshot()
-    await wrapper.setData({ ghost: true })
-    expect(wrapper.findAll('.fect-button--ghost').length).toEqual(4)
-  })
-  it('should be support different sizes', () => {
-    const wrapper = mount({
-      template: `
-      <div class="container">
-        <fe-button size="mini">Button</fe-button>
-        <fe-button size="small">Button</fe-button>
-        <fe-button size="medium">Button</fe-button>
-        <fe-button size="large">Button</fe-button>
-        <fe-button auto>Button</fe-button>
-      </div>`,
-      components: {
-        [Button.name]: Button
-      }
-    })
-    expect(wrapper.html()).toMatchSnapshot()
-  })
 
-  it('should be support loadType and loadColor follow button color', () => {
-    const wrapper = mount({
-      template: `
-      <div class="container">
-        <fe-button loading>Button</fe-button>
-        <fe-button loading type="success" load-type="cube">Button</fe-button>
-        <fe-button loading type="warning" load-type="wave">Button</fe-button>
-      </div>`,
-      components: {
-        [Button.name]: Button
-      }
-    })
-    expect(wrapper.html()).toMatchSnapshot()
-    expect(wrapper.findAll('.loading__cube')).toBeTruthy()
-    expect(wrapper.findAll('.loading__wave')).toBeTruthy()
-  })
-  it('should be allow some status ', () => {
-    const wrapper = mount({
-      template: `
-      <div class="container">
-        <fe-button disabled>Button</fe-button>
-        <fe-button shadow>Button</fe-button>
-      </div>`,
-      components: {
-        [Button.name]: Button
-      }
-    })
-    expect(wrapper.html()).toMatchSnapshot()
-  })
-
-  it('should be support icon', () => {
-    const wrapper = mount({
-      components: {
-        [Button.name]: Button,
-        Github
-      },
-      template: `
-      <div class="container">
-        <fe-button>
-          <template #icon><Github /></template>
-            Button
-        </fe-button>
-      </div>`
-    })
-    expect(wrapper.html()).toMatchSnapshot()
-  })
-  it('should only emit event when button status not be loading or disabled', async () => {
-    const wrapper = mount(Button)
-    const el = wrapper.find('.fect-button')
-    await el.trigger('click')
-    expect(wrapper.emitted('click')).toBeTruthy()
-    await wrapper.setProps({ disabled: true })
-    await el.trigger('click')
-    expect(wrapper.emitted('click'))
-    await wrapper.setProps({ loading: true })
-    await el.trigger('click')
-    expect(wrapper.emitted('click'))
-  })
-  it('button have icon only', () => {
-    const wrapper = mount({
-      components: {
-        [Button.name]: Button,
-        Github
-      },
-      template: `
-      <div class="container">
-        <fe-button>
-          <template #icon><Github /></template>
-        </fe-button>
-      </div>`
-    })
-    expect(wrapper.html()).toMatchSnapshot()
-  })
-
-  it('should trigger a effect', async () => {
+  it('disabled', () => {
     const wrapper = mount(Button, {
+      props: {
+        disabled: true
+      },
       slots: {
-        default: 'Button'
+        default: () => 'Action'
       }
     })
-    const btn = wrapper.find('.fect-button')
-    await btn.trigger('click')
-    const el = wrapper.find('.fect-button__drip')
-    await el.trigger('animationend')
-    expect(el.exists()).toBeTruthy()
+    expect(wrapper.find('.fect-button--disabled').exists()).toBeTruthy()
     expect(wrapper.html()).toMatchSnapshot()
-    await later(1000)
-    expect(wrapper.find('.fect-button__drip').exists()).toBeFalsy()
+  })
+  it('type', () => {
+    const wrapper = mount({
+      render() {
+        return (
+          <div>
+            <Button>Default</Button>
+            <Button type="abort">Abort</Button>
+            <Button type="success">Success</Button>
+            <Button type="success-light">Success Light</Button>
+            <Button type="secondary">Secondary</Button>
+            <Button type="secondary-light">Secondary Light</Button>
+            <Button type="warning">Warning</Button>
+            <Button type="warning-light">Warning Light</Button>
+            <Button type="error">Error</Button>
+            <Button type="error-light">Error Light</Button>
+          </div>
+        )
+      }
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('loading', () => {
+    const wrapper = mount(Button, {
+      props: {
+        loading: true,
+        loadType: 'wave'
+      }
+    })
+    expect(wrapper.find('.fect-button--loading').exists()).toBeTruthy()
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('ghost', () => {
+    const wrapper = mount({
+      render() {
+        return (
+          <div>
+            <Button ghost>Default</Button>
+            <Button ghost type="abort">
+              Abort
+            </Button>
+            <Button ghost type="success">
+              Success
+            </Button>
+            <Button ghost type="success-light">
+              Success Light
+            </Button>
+            <Button ghost type="secondary">
+              Secondary
+            </Button>
+            <Button ghost type="secondary-light">
+              Secondary Light
+            </Button>
+            <Button ghost type="warning">
+              Warning
+            </Button>
+            <Button ghost type="warning-light">
+              Warning Light
+            </Button>
+            <Button ghost type="error">
+              Error
+            </Button>
+            <Button ghost type="error-light">
+              Error Light
+            </Button>
+          </div>
+        )
+      }
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('shadow', () => {
+    const wrapper = mount(Button, {
+      props: {
+        shadow: true
+      },
+      slots: {
+        default: () => 'Action'
+      }
+    })
+    expect(wrapper.find('.fect-button--shadow').exists()).toBeTruthy()
+  })
+
+  it('auto', () => {
+    const wrapper = mount(Button, {
+      props: {
+        auto: true
+      },
+      slots: {
+        default: () => 'Action'
+      }
+    })
+    expect(wrapper.find('.fect-button--auto').exists()).toBeTruthy()
+  })
+
+  it('drip', async () => {
+    const clickMock = jest.fn()
+    const wrapper = mount(Button, {
+      props: {
+        onClick: clickMock
+      },
+      slots: {
+        default: () => 'Action'
+      }
+    })
+    await wrapper.trigger('click')
+    expect(wrapper.find('.fect-button__drip').exists()).toBeTruthy()
+    await wrapper.find('.fect-button__drip').trigger('animationend')
+    expect(clickMock).toHaveBeenCalled()
   })
 })

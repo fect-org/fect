@@ -13,7 +13,9 @@ export const withInstall = <T>(component: T) => {
   return component as WithInstall<T>
 }
 
-export function withScaleInstall<T extends Record<string, any>>(userComponent: DefineComponent<T, any, any>) {
+export function withScaleInstall<T extends Record<string, any>>(
+  userComponent: DefineComponent<T, any, any, any, any, any, any, any>
+) {
   const component = withScale<T>(userComponent)
   component.install = (app: App) => {
     const { name } = component

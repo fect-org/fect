@@ -1,13 +1,13 @@
 import { computed, ref, defineComponent } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
+import { useScale } from '@fect-ui/scale'
+import { useTheme } from '../provider/theme-context'
 import { createName, createBem, pickContextProps } from '../utils'
+import { useButtonGroupContext } from '../button-group/button-group-context'
 import { props } from './props'
 import ButtonLoading from './button-loading'
-import { useButtonGroupContext } from '../button-group/button-group-context'
+import { getButtonColors, getButtonHoverColors, getButtonDripColor } from './style'
 import ButtonDrip from './button-drip'
-import { queryHoverColor } from './style'
-
-import type { CSSProperties } from '../utils'
 
 import './index.less'
 
@@ -19,10 +19,12 @@ export default defineComponent({
   props,
   emits: ['click'],
   setup(props, { slots, emit }) {
+    const scale = useScale()
+    const { theme } = useTheme()
     const buttonRef = ref<HTMLButtonElement>()
     const [drapShow, setDrapShow] = useState<boolean>(false)
-    const [drapX, setDrapX] = useState<number>(0)
-    const [drapY, setDrapY] = useState<number>(0)
+    const [dripX, setDripX] = useState<number>(0)
+    const [dripY, setDripY] = useState<number>(0)
 
     const { context } = useButtonGroupContext()
 
@@ -31,40 +33,76 @@ export default defineComponent({
       return !shadow && !ghost && effect
     })
 
+    const padding = computed(() => {
+      const { SCALES } = scale
+      if (props.auto) return [SCALES.pl(1.15), SCALES.pr(1.15)]
+      return [SCALES.pl(1.375), SCALES.pr(1.375)]
+    })
+
+    const hover = computed(() => getButtonHoverColors(theme.value.palette, filterPropsWithButtonGroup.value))
+
+    const colors = computed(() => getButtonColors(theme.value.palette, filterPropsWithButtonGroup.value))
+
+    const dripColor = computed(() => getButtonDripColor(theme.value.palette, props))
+
+    const setCssVariables = computed(() => {
+      const { SCALES } = scale
+      const [pl, pr] = padding.value
+      const { color, bg, border } = colors.value
+      const { bg: hoverBg, border: hoverBorder, color: hoverColor } = hover.value
+      const { layout, expressiveness } = theme.value
+      return {
+        '--button-height': SCALES.height(2.5),
+        '--button-min-width': SCALES.width(10.5),
+        '--button-radius': layout.radius,
+        '--button-font-size': SCALES.font(0.875),
+        '--button-shadow': expressiveness.shadowSmall,
+        '--button-shadow-hover': expressiveness.shadowMedium,
+        '--button-pt': SCALES.pt(0),
+        '--button-pr': pr,
+        '--button-pb': SCALES.pb(0),
+        '--button-pl': pl,
+        '--button-mt': SCALES.mt(0),
+        '--button-mr': SCALES.mr(0),
+        '--button-mb': SCALES.mb(0),
+        '--button-ml': SCALES.ml(0),
+        '--button-bg-color': bg,
+        '--button-border-color': border,
+        '--button-color': color,
+        '--button-hover-bg-color': hoverBg,
+        '--button-hover-border-color': hoverBorder,
+        '--button-hover-color': hoverColor
+      }
+    })
+
     const clickHandler = (e: MouseEvent) => {
-      const { disabled, loading } = props
+      const { disabled, loading } = filterPropsWithButtonGroup.value
       if (disabled || loading) return
       if (showDrip.value && buttonRef.value) {
         setDrapShow(true)
         const rect = buttonRef.value.getBoundingClientRect()
-        setDrapX(e.clientX - rect.left)
-        setDrapY(e.clientY - rect.top)
+        setDripX(e.clientX - rect.left)
+        setDripY(e.clientY - rect.top)
       }
       emit('click', e)
     }
 
-    const setButtonClasses = computed(() => {
-      const { ghost, disabled, shadow, loading, type, auto, size } = props
-      const behavior = pickContextProps({ auto, size }, context)
-
-      return bem(null, [type, { ghost, disabled, shadow, loading, ...behavior }])
+    const filterPropsWithButtonGroup = computed(() => {
+      const { shadow, loading, auto, type, disabled, ghost } = props
+      const behavior = pickContextProps({ shadow, loading, auto, type, disabled, ghost }, context)
+      if (!context) return { ...behavior, auto }
+      return { ...behavior, auto: true }
     })
 
-    const setStyle = computed(() => {
-      const { type, ghost } = props
-      const { bg, border, color } = queryHoverColor(type, ghost)
-      const style: CSSProperties = {
-        '--button-hover-bg': bg,
-        '--button-hover-border': border,
-        '--button-hover-color': color
-      }
-      return style
+    const setButtonClasses = computed(() => {
+      const state = filterPropsWithButtonGroup.value
+      return bem(null, state)
     })
 
     const dripCompleteHandler = () => {
       setDrapShow(false)
-      setDrapX(0)
-      setDrapY(0)
+      setDripX(0)
+      setDripY(0)
     }
 
     const renderContext = () => {
@@ -88,12 +126,14 @@ export default defineComponent({
       <button
         class={setButtonClasses.value}
         ref={buttonRef}
-        style={setStyle.value}
+        style={setCssVariables.value}
         type={props.htmlType}
         onClick={clickHandler}
       >
-        {props.loading && <ButtonLoading loadType={props.loadType} />}
-        {drapShow.value && <ButtonDrip x={drapX.value} y={drapY.value} onCompleted={dripCompleteHandler} />}
+        {props.loading && <ButtonLoading loadType={props.loadType} color={colors.value.color} />}
+        {drapShow.value && (
+          <ButtonDrip color={dripColor.value} x={dripX.value} y={dripY.value} onCompleted={dripCompleteHandler} />
+        )}
         {renderContext()}
       </button>
     )

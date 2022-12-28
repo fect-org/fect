@@ -34,7 +34,7 @@ export default defineComponent({
       return len(text) > 4 ? text.slice(0, 3) : text
     }
 
-    const getCssVariables = computed(() => {
+    const setCssVariables = computed(() => {
       const { SCALES } = scale
       const { palette, layout } = theme.value
       return {
@@ -57,7 +57,7 @@ export default defineComponent({
     return () => (
       <div
         class={withClassName(bem(null, { square: props.isSquare, stacked: props.stacked }), props.className)}
-        style={getCssVariables.value}
+        style={setCssVariables.value}
       >
         {props.src ? (
           <img src={props.src} draggable="false" {...attrs} />

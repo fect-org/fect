@@ -1,6 +1,6 @@
 import _ButtonGroup from './button-group'
-import { withInstall } from '../utils'
+import { withScaleInstall } from '../utils'
 
-export const ButtonGroup = withInstall(_ButtonGroup)
+export const ButtonGroup = withScaleInstall(_ButtonGroup)
 
 export default ButtonGroup

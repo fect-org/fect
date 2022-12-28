@@ -1,14 +1,12 @@
-import type { PropType } from 'vue'
-import { NormalSizes } from '../utils'
+import { PropType } from 'vue'
+import type { ButtonTypes } from '../utils'
 
 export const buttonGroupProps = {
-  auto: {
-    type: Boolean,
-    default: true
+  vertical: Boolean,
+  type: {
+    type: String as PropType<ButtonTypes>,
+    default: 'default'
   },
-  size: {
-    type: String as PropType<NormalSizes>,
-    default: 'small'
-  },
-  vertical: Boolean
+  ghost: Boolean,
+  disabled: Boolean
 }

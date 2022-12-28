@@ -1,6 +1,13 @@
 export type NormalSizes = 'mini' | 'small' | 'medium' | 'large'
 export type NormalTypes = 'default' | 'success' | 'warning' | 'error'
-export type ButtonTypes = NormalTypes | 'secondary'
+export type ButtonTypes =
+  | NormalTypes
+  | 'secondary'
+  | 'abort'
+  | 'secondary-light'
+  | 'success-light'
+  | 'warning-light'
+  | 'error-light'
 export type ThemeTypes = 'dark' | 'light'
 export type JustifyTypes = 'start' | 'end' | 'center' | 'space-around' | 'space-between'
 export type AlignTypes = 'top' | 'middle' | 'bottom'

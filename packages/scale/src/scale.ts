@@ -183,7 +183,9 @@ const initScales = (scaleProps: ScaleProps) => {
   }
 }
 
-export function withScale<P extends Record<string, any>>(userComponent: DefineComponent<P, any, any>) {
+export function withScale<P extends Record<string, any>>(
+  userComponent: DefineComponent<P, any, any, any, any, any, any, any>
+) {
   const { name } = userComponent
   return defineComponent({
     name,
