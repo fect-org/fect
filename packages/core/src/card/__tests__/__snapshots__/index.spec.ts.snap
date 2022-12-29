@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Card should be render as a element 1`] = `
-"<div class="fect-card">
-  <div class="fect-card__content">
+"<div class="fect-card" style="--card-radius: 6px; --card-bg-color: #fff; --card-border-color: #eaeaea; --card-hover-shadow: none; --card-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --card-width: auto; --card-height: auto; --card-pt: 0; --card-pr: 0; --card-pb: 0; --card-pl: 0; --card-mt: 0; --card-mr: 0; --card-mb: 0; --card-ml: 0;">
+  <div class="fect-card__content" style="--card-content-width: auto; --card-content-height: auto; --card-content-pt: calc(1 * 16px); --card-content-pr: calc(1 * 16px); --card-content-pb: calc(1 * 16px); --card-content-pl: calc(1 * 16px); --card-content-mt: 0; --card-content-mr: 0; --card-content-mb: 0; --card-content-ml: 0;">
     <!---->
   </div>
 </div>"
@@ -10,17 +10,17 @@ exports[`Card should be render as a element 1`] = `
 
 exports[`Card should support render different state component 1`] = `
 "<div class="container">
-  <div class="fect-card">
-    <div class="fect-card__content">Normalize Card</div>
+  <div class="fect-card" style="--card-radius: 6px; --card-bg-color: #fff; --card-border-color: #eaeaea; --card-hover-shadow: none; --card-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --card-width: auto; --card-height: auto; --card-pt: 0; --card-pr: 0; --card-pb: 0; --card-pl: 0; --card-mt: 0; --card-mr: 0; --card-mb: 0; --card-ml: 0;">
+    <div class="fect-card__content" style="--card-content-width: auto; --card-content-height: auto; --card-content-pt: calc(1 * 16px); --card-content-pr: calc(1 * 16px); --card-content-pb: calc(1 * 16px); --card-content-pl: calc(1 * 16px); --card-content-mt: 0; --card-content-mr: 0; --card-content-mb: 0; --card-content-ml: 0;">Normalize Card</div>
   </div>
-  <div class="fect-card fect-card--hoverable">
-    <div class="fect-card__content">Hoverable Card</div>
+  <div class="fect-card fect-card--hoverable" style="--card-radius: 6px; --card-bg-color: #fff; --card-border-color: #eaeaea; --card-hover-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --card-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --card-width: auto; --card-height: auto; --card-pt: 0; --card-pr: 0; --card-pb: 0; --card-pl: 0; --card-mt: 0; --card-mr: 0; --card-mb: 0; --card-ml: 0;">
+    <div class="fect-card__content" style="--card-content-width: auto; --card-content-height: auto; --card-content-pt: calc(1 * 16px); --card-content-pr: calc(1 * 16px); --card-content-pb: calc(1 * 16px); --card-content-pl: calc(1 * 16px); --card-content-mt: 0; --card-content-mr: 0; --card-content-mb: 0; --card-content-ml: 0;">Hoverable Card</div>
   </div>
-  <div class="fect-card fect-card--shadow">
-    <div class="fect-card__content">Shadow Card</div>
+  <div class="fect-card fect-card--shadow" style="--card-radius: 6px; --card-bg-color: #fff; --card-border-color: #eaeaea; --card-hover-shadow: 0 8px 30px rgba(0, 0, 0, 0.12); --card-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --card-width: auto; --card-height: auto; --card-pt: 0; --card-pr: 0; --card-pb: 0; --card-pl: 0; --card-mt: 0; --card-mr: 0; --card-mb: 0; --card-ml: 0;">
+    <div class="fect-card__content" style="--card-content-width: auto; --card-content-height: auto; --card-content-pt: calc(1 * 16px); --card-content-pr: calc(1 * 16px); --card-content-pb: calc(1 * 16px); --card-content-pl: calc(1 * 16px); --card-content-mt: 0; --card-content-mr: 0; --card-content-mb: 0; --card-content-ml: 0;">Shadow Card</div>
   </div>
-  <div class="fect-card fect-card--shadow fect-card--hoverable">
-    <div class="fect-card__content">Hoverable and Shadow Card</div>
+  <div class="fect-card fect-card--shadow fect-card--hoverable" style="--card-radius: 6px; --card-bg-color: #fff; --card-border-color: #eaeaea; --card-hover-shadow: 0 8px 30px rgba(0, 0, 0, 0.12); --card-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --card-width: auto; --card-height: auto; --card-pt: 0; --card-pr: 0; --card-pb: 0; --card-pl: 0; --card-mt: 0; --card-mr: 0; --card-mb: 0; --card-ml: 0;">
+    <div class="fect-card__content" style="--card-content-width: auto; --card-content-height: auto; --card-content-pt: calc(1 * 16px); --card-content-pr: calc(1 * 16px); --card-content-pb: calc(1 * 16px); --card-content-pl: calc(1 * 16px); --card-content-mt: 0; --card-content-mr: 0; --card-content-mb: 0; --card-content-ml: 0;">Hoverable and Shadow Card</div>
   </div>
 </div>"
 `;

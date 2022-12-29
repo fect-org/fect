@@ -1,26 +1,28 @@
 .fect-card {
-  margin: 0;
-  padding: 0;
-  width: 100%;
+  width: var(--card-width);
+  height: var(--card-height);
+  margin: var(--card-mt) var(--card-mr) var(--card-mb) var(--card-ml);
+  padding: var(--card-pt) var(--card-pr) var(--card-pb) var(--card-pl);
   transition: all 0.2s ease;
   box-sizing: border-box;
-  border-radius: 5px;
-  border: 1px solid var(--accents-2);
-
-  &--hoverable {
-    &:hover {
-      box-shadow: var(--fect-shadowMedium);
-    }
-  }
+  border-radius: var(--card-radius);
+  background-color: var(--card-bg-color);
+  border: 1px solid var(--card-border-color);
 
   &--shadow {
-    box-shadow: var(--fect-shadowSmall);
+    box-shadow: var(--card-shadow);
     border-color: transparent;
   }
 
+  &:hover {
+    box-shadow: var(--card-hover-shadow);
+  }
+
   &__content {
-    width: 100%;
-    padding: var(--fect-gap);
+    height: var(--card-content-height);
+    width: var(--card-content-width);
+    margin: var(--card-content-mt) var(--card-content-mr) var(--card-content-mb) var(--card-content-ml);
+    padding: var(--card-content-pt) var(--card-content-pr) var(--card-content-pb) var(--card-content-pl);
     box-sizing: border-box;
     & p:first-child {
       margin-top: 0;
