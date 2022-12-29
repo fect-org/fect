@@ -1,3 +1,6 @@
+import type { ComputedRef } from 'vue'
+import type { PlaceTypes } from '../utils'
+
 export interface TransformStyles {
   top?: string
   bottom?: string
@@ -6,3 +9,9 @@ export interface TransformStyles {
   value: string
   origin: string
 }
+
+export interface BadgeAnchorContext {
+  transform: ComputedRef<TransformStyles>
+}
+
+export type BadgeAnchorTypes = PlaceTypes

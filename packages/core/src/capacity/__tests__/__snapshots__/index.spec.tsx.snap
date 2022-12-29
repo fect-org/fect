@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Capacity should render title attrs 1`] = `"<div title="40%" class="fect-capacity"><span style="background-color: var(--capacity-two-thirds-color); width: 40%;"></span></div>"`;
+exports[`Capacity should render title attrs 1`] = `"<div class="fect-capacity" title="40%" style="--capacity-fill-color: #f5a623; --capacity-radius: 6px; --capacity-bg-color: #eaeaea; --capacity-width: calc(3.125 * 16px); --capacity-height: calc(0.625 * 16px); --capacity-pt: 0; --capacity-pr: 0; --capacity-pb: 0; --capacity-pl: 0; --capacity-mt: 0; --capacity-mr: 0; --capacity-mb: 0; --capacity-ml: 0; --capacity-fill-width: 40%;"><span></span></div>"`;
 
-exports[`Capacity should render title attrs 2`] = `"<div title="80%" class="fect-capacity"><span style="background-color: var(--capacity-done-color); width: 80%;"></span></div>"`;
+exports[`Capacity should render title attrs 2`] = `"<div class="fect-capacity" title="80%" style="--capacity-fill-color: #c50000; --capacity-radius: 6px; --capacity-bg-color: #eaeaea; --capacity-width: calc(3.125 * 16px); --capacity-height: calc(0.625 * 16px); --capacity-pt: 0; --capacity-pr: 0; --capacity-pb: 0; --capacity-pl: 0; --capacity-mt: 0; --capacity-mr: 0; --capacity-mb: 0; --capacity-ml: 0; --capacity-fill-width: 80%;"><span></span></div>"`;
 
-exports[`Capacity should support custom color 1`] = `"<div title="30%" class="fect-capacity"><span style="background-color: pink; width: 30%;"></span></div>"`;
+exports[`Capacity should support custom color 1`] = `"<div class="fect-capacity" title="30%" style="--capacity-fill-color: pink; --capacity-radius: 6px; --capacity-bg-color: #eaeaea; --capacity-width: calc(3.125 * 16px); --capacity-height: calc(0.625 * 16px); --capacity-pt: 0; --capacity-pr: 0; --capacity-pb: 0; --capacity-pl: 0; --capacity-mt: 0; --capacity-mr: 0; --capacity-mb: 0; --capacity-ml: 0; --capacity-fill-width: 30%;"><span></span></div>"`;

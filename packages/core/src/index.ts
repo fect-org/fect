@@ -46,7 +46,6 @@ import { SkeletonItem } from './skeleton-item'
 import { Slider } from './slider'
 import { Snippet } from './snippet'
 import { Spacer } from './spacer'
-import { Spinner } from './spinner'
 import { Switch } from './switch'
 import { Tab } from './tab'
 import { Tabs } from './tabs'
@@ -103,7 +102,6 @@ const components = [
   Slider,
   Snippet,
   Spacer,
-  Spinner,
   Switch,
   Tab,
   Tabs,
@@ -172,7 +170,6 @@ export * from './skeleton-item'
 export * from './slider'
 export * from './snippet'
 export * from './spacer'
-export * from './spinner'
 export * from './switch'
 export * from './tab'
 export * from './tabs'

@@ -12,7 +12,7 @@ interface ScaleSystemContext {
     ModifersPipe
   >
   unit: Ref<string>
-  getScaleableProps(props: Array<keyof typeof CONSTATNS>): ComputedRef<string>
+  getScaleableProps<T>(props: Array<keyof typeof CONSTATNS>): ComputedRef<T>
 }
 const INTERNAL_SCALE_KEY: InjectionKey<ScaleSystemContext> = Symbol('ScaleRenderKey')
 
@@ -257,15 +257,17 @@ export function withScale<P extends Record<string, any>>(
         }
       }
 
-      const getScaleableProps = (scaleProps: Array<keyof typeof CONSTATNS>) => {
-        let value = ''
-        for (const prop of scaleProps) {
-          const current = props[prop]
-          if (typeof current !== 'undefined') {
-            value = current
+      const getScaleableProps = <T>(scaleProps: Array<keyof typeof CONSTATNS>) => {
+        return computed(() => {
+          let value = ''
+          for (const prop of scaleProps) {
+            const current = props[prop]
+            if (typeof current !== 'undefined') {
+              value = current
+            }
           }
-        }
-        return computed(() => value)
+          return value
+        }) as ComputedRef<T>
       }
 
       watchEffect(() => {
@@ -287,7 +289,7 @@ export function useScale() {
   return inject(INTERNAL_SCALE_KEY, {
     unit: ref(CONSTATNS.unit),
     SCALES: reactive(initScales()),
-    getScaleableProps: () => computed(() => '')
+    getScaleableProps: <T>() => computed(() => '') as ComputedRef<T>
   })
 }
 

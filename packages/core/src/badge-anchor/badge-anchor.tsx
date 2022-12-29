@@ -1,15 +1,16 @@
-import { PropType, defineComponent } from 'vue'
-import { createName, PlaceTypes, createBem } from '../utils'
+import { computed, defineComponent } from 'vue'
+import { createName, createBem } from '../utils'
 import { createBadgeContext } from './badge-context'
-import type { TransformStyles } from './interface'
+import type { PropType } from 'vue'
+import type { TransformStyles, BadgeAnchorTypes } from './interface'
 
 import './index.less'
 
 const name = createName('BadgeAnchor')
 const bem = createBem('fect-badge')
 
-export const getTransform = (placement: PlaceTypes): TransformStyles => {
-  const styles: { [key in PlaceTypes]: TransformStyles } = {
+export const getTransform = (placement: BadgeAnchorTypes): TransformStyles => {
+  const styles: { [key in BadgeAnchorTypes]: TransformStyles } = {
     topLeft: {
       top: '0',
       left: '0',
@@ -44,13 +45,15 @@ export default defineComponent({
   name,
   props: {
     placement: {
-      type: String as PropType<PlaceTypes>,
+      type: String as PropType<BadgeAnchorTypes>,
       default: 'topRight'
     }
   },
   setup(props, { slots }) {
+    const transform = computed(() => getTransform(props.placement))
+
     const { provider } = createBadgeContext()
-    provider(getTransform(props.placement))
+    provider({ transform })
     return () => <div class={bem('anchor')}>{slots.default?.()}</div>
   }
 })
