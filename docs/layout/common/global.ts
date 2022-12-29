@@ -4,7 +4,7 @@
  */
 
 import { inject } from 'vue'
-
+import { useState } from '@fect-ui/vue-hooks'
 import type { App } from 'vue'
 
 import type { StaticModule } from './loader'
@@ -18,8 +18,12 @@ export interface GlobalStateInitlize {
 }
 
 export const createGlobalState = (state: GlobalStateInitlize) => {
+  const [theme, setTheme] = useState<'light' | 'dark'>('light')
+
   const globalState = {
-    navs: state.markdonwStaticModules
+    navs: state.markdonwStaticModules,
+    theme,
+    updateSiteTheme: setTheme
   }
 
   return {

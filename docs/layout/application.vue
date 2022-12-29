@@ -1,21 +1,26 @@
 <template>
-  <layout-header />
-  <div class="layout">
-    <router-view />
-    <search />
-  </div>
+  <fe-theme-provider :theme-type="theme">
+    <layout-header />
+    <div class="layout">
+      <router-view />
+      <search />
+    </div>
+  </fe-theme-provider>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
 import { Search } from './components/search'
 import { Header } from './components/header'
+import { useGlobalState } from './common/global'
 // import { ErrorCapture } from './components/not-found'
 
 export default defineComponent({
   components: { Search, ['layout-header']: Header },
   setup() {
-    return {}
+    const { theme } = useGlobalState()
+
+    return { theme }
   }
 })
 </script>

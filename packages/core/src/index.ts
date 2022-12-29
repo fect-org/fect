@@ -51,7 +51,6 @@ import { Tab } from './tab'
 import { Tabs } from './tabs'
 import { Tag } from './tag'
 import { Textarea } from './textarea'
-import { ThemeProvide } from './theme-provide'
 import { ThemeProvider } from './provider'
 import { Toast } from './toast'
 import { Tooltip } from './tooltip'
@@ -107,7 +106,6 @@ const components = [
   Tabs,
   Tag,
   Textarea,
-  ThemeProvide,
   Toast,
   Tooltip,
   Upload,
@@ -175,7 +173,6 @@ export * from './tab'
 export * from './tabs'
 export * from './tag'
 export * from './textarea'
-export * from './theme-provide'
 export * from './toast'
 export * from './tooltip'
 export * from './upload'

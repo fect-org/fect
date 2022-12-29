@@ -8,14 +8,14 @@
         </p>
         <div class="actions">
           <template v-for="(action, i) in actions" :key="action.value">
-            <fe-button auto size="small" @click="() => switchRouteHandler(action.value)">{{ action.name }}</fe-button>
+            <fe-button auto :scale="0.7" @click="() => switchRouteHandler(action.value)">{{ action.name }}</fe-button>
             <fe-spacer v-if="i !== actions.length - 1" />
           </template>
         </div>
       </aside>
       <article>
         <fe-image-browser>
-          <fe-image :src="theme === 'dark-theme' ? 'dark.png' : 'default.png'" width="500px" height="246px"></fe-image>
+          <fe-image :src="theme === 'dark' ? 'dark.png' : 'default.png'" width="500px" height="246px"></fe-image>
         </fe-image-browser>
       </article>
     </div>
@@ -32,7 +32,7 @@
         :sm="7"
         @click="() => switchRouteHandler(feature.value)"
       >
-        <fe-card shadow hoverable>
+        <fe-card shadow hoverable w="100%">
           <h4>
             <div class="icon">
               <component :is="feature.icon" />
@@ -49,14 +49,14 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
-import { useTheme } from '@fect-ui/vue/src'
 import { useLocale } from '../../composables'
+import { useGlobalState } from '../../common/global'
 import { cn, us } from '../../feature.json'
 export default defineComponent({
   setup() {
     const { locale } = useLocale()
 
-    const { theme } = useTheme()
+    const { theme } = useGlobalState()
     const router = useRouter()
     const features = computed(() => (locale.value === 'zh-cn' ? cn.feature : us.feature))
 

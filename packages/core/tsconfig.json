@@ -14,6 +14,6 @@
     "moduleResolution": "node",
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
-  "include": ["src", "../../shims/*"],
+  "include": ["src", "../../typings/*"],
   "exclude": ["node_modules"]
 }

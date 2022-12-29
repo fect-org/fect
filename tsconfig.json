@@ -11,7 +11,7 @@
     "module": "esnext",
     "types": ["vite/client"]
   },
-  "include": ["docs/layout/**/*", "shims", "exmaple"],
+  "include": ["docs/layout/**/*", "typings", "exmaple"],
   "exclude": ["node_modules"],
   "ts-node": {
     "compilerOptions": {
