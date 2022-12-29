@@ -1,6 +1,6 @@
-import { withInstall } from '../utils'
+import { withScaleInstall } from '../utils'
 import _Code from './code'
 
-export const Code = withInstall(_Code)
+export const Code = withScaleInstall(_Code)
 
 export default Code

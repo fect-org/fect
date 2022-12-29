@@ -3,7 +3,7 @@
 exports[`Code should be render as element 1`] = `"<code><!----></code>"`;
 
 exports[`Code should support props block 1`] = `
-"<div class="fect-code__pre">
+"<div class="fect-code" style="--code-border: #fafafa; --code-bg-color: rgba(250, 250, 250, 0.75); --code-radius: 6px; --code-name-border: #eaeaea; --code-name-bg-color: #eaeaea; --code-name-color: #666; --code-font-size: calc(0.875 * 16px); --code-width: initial; --code-height: auto; --code-pt: calc(1.1 * 16px); --code-pr: calc(1 * 16px); --code-pb: calc(1.1 * 16px); --code-pl: calc(1 * 16px); --code-mt: calc(1.3 * 16px); --code-mr: 0; --code-mb: calc(1.3 * 16px); --code-ml: 0; --code-name-pt: calc(0.32 * 16px); --code-name-pr: calc(0.5 * 16px); --code-name-pb: calc(0.32 * 16px); --code-name-pl: calc(0.5 * 16px); --code-name-font-size: calc(0.8125 * 16px);">
   <!----><pre><!----></pre>
 </div>"
 `;
