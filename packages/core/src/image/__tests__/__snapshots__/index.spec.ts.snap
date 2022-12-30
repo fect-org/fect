@@ -3,7 +3,7 @@
 exports[`Image should  support skeleton 1`] = `
 "<div class="fect-image" style="width: 540px; height: 240px;">
   <div class="fect-skeleton">
-    <div class="fect-skeleton__item fect-skeleton__item--image fect-skeleton__item--animated" style="width: 540px; height: 240px; margin-top: 0px;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24">
+    <div class="fect-skeleton__item fect-skeleton__item--image fect-skeleton__item--animated" style="--skeleton-bg-color: #eaeaea; --skeleton-image-color: #999; --skeleton-radius: 6px; --skeleton-animation-linear: 270deg,#fafafa,#eaeaea,#eaeaea,#fafafa; --skeleton-width: 100%; --skeleton-caption-height: calc(0.75 * 16px); --skeleton-text-height: calc(0.8125 * 16px); --skeleton-rect-height: calc(1 * 16px); --skeleton-h1-height: calc(1.25 * 16px); --skeleton-h3-height: calc(1.125 * 16px); --skeleton-circle-size: calc(1.75 * 16px); --skeleton-button-height: calc(2.5 * 16px); --skeleton-button-width: calc(10.5 * 16px); --skeleton-mt: calc(0.3125 * 16px); --skeleton-mr: 0; --skeleton-mb: calc(0.3125 * 16px); --skeleton-ml: 0; width: 540px; height: 240px; margin-top: 0px;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24">
         <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
         <circle cx="8.5" cy="8.5" r="1.5"></circle>
         <path d="M21 15l-5-5L5 21"></path>

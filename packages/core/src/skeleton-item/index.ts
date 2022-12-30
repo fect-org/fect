@@ -1,6 +1,6 @@
-import { withInstall } from '../utils'
+import { withScaleInstall } from '../utils'
 import _SkeletonItem from './skeleton-item'
 
-export const SkeletonItem = withInstall(_SkeletonItem)
+export const SkeletonItem = withScaleInstall(_SkeletonItem)
 
 export default SkeletonItem
