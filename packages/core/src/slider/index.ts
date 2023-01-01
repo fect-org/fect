@@ -1,6 +1,6 @@
-import { withInstall } from '../utils'
+import { withScaleInstall } from '../utils'
 import _Slider from './slider'
 
-export const Slider = withInstall(_Slider)
+export const Slider = withScaleInstall(_Slider)
 
 export default Slider
