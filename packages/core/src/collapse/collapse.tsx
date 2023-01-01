@@ -1,9 +1,14 @@
-import { ref, PropType, watch, defineComponent, watchEffect } from 'vue'
+import { ref, watch, defineComponent, watchEffect, computed } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
+import { useScale } from '@fect-ui/scale'
+import { useTheme } from '../composables'
 import { createName, createBem, getDomRect } from '../utils'
 import { useMounted } from '../composables'
 import { useCollapseContext } from '../collapse-group/collapse-context'
 import CollapseIcon from './collapse-icon'
+
+import type { PropType } from 'vue'
+
 import './index.less'
 
 const name = createName('Collapse')
@@ -26,6 +31,8 @@ export default defineComponent({
   emits: ['update:visible'],
   setup(props, { slots, emit }) {
     const { context, idx } = useCollapseContext()
+    const { SCALES } = useScale()
+    const { theme } = useTheme()
 
     const expandRef = ref<HTMLDivElement>()
 
@@ -36,6 +43,39 @@ export default defineComponent({
       if (context) return context.updateCollapseGroupChecked(idx)
       setVisible((pre) => !pre)
     }
+
+    const baseStyle = computed(() => {
+      const { palette, layout, expressiveness } = theme.value
+      return {
+        '--collapse-border': palette.border,
+        '--collapse-shadow': expressiveness.shadowSmall,
+        '--collapse-radius': layout.radius,
+        '--collapse-shadow-padding': layout.gap,
+        '--collapse-title-color': palette.foreground,
+        '--collapse-sub-title-color': palette.accents_5
+      }
+    })
+
+    const setCssVariables = computed(() => {
+      return {
+        ...baseStyle.value,
+        '--collapse-font-size': SCALES.font(1),
+        '--collapse-width': SCALES.width(1, 'auto'),
+        '--collapse-height': SCALES.height(1, 'auto'),
+        '--collapse-pt': SCALES.pt(1.2),
+        '--collapse-pr': SCALES.pr(0),
+        '--collapse-pb': SCALES.pb(1.2),
+        '--collapse-pl': SCALES.pl(0),
+        '--collapse-mt': SCALES.mt(0),
+        '--collapse-mr': SCALES.mr(0),
+        '--collapse-mb': SCALES.mb(0),
+        '--collapse-ml': SCALES.ml(0),
+        '--collapse-content-pt': SCALES.pt(1.2),
+        '--collapse-content-pr': SCALES.pr(0),
+        '--collapse-content-pb': SCALES.pb(1.2),
+        '--collapse-content-pl': SCALES.pl(0)
+      }
+    })
 
     const setVislbeWidthGroupMod = () => {
       if (!context) return
@@ -80,7 +120,7 @@ export default defineComponent({
     })
 
     return () => (
-      <div class={bem(null, { shadow: props.shadow })}>
+      <div class={bem(null, { shadow: props.shadow })} style={setCssVariables.value}>
         <div class={bem('view')} role="collapseButton" onClick={clickHandler}>
           <div class="title">
             <h3>{props.title}</h3>

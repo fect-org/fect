@@ -1,6 +1,6 @@
-import { withInstall } from '../utils'
+import { withScaleInstall } from '../utils'
 import _Collapse from './collapse'
 
-export const Collapse = withInstall(_Collapse)
+export const Collapse = withScaleInstall(_Collapse)
 
 export default Collapse
