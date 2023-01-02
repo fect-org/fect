@@ -12,13 +12,13 @@ export const Element = defineComponent({
     }
   },
   setup(props) {
-    const scale = useScale()
+    const { SCALES, unit } = useScale()
     return () => (
       <div class={props.type}>
-        <p class="unit">{scale.unit}</p>
-        <p class="mr">{scale.SCALES.mr(1, '20px')}</p>
-        <p class="ml">{scale.SCALES.ml(1, undefined)}</p>
-        <p class="width">{scale.SCALES.width(0)}</p>
+        <p class="unit">{unit.value}</p>
+        <p class="mr">{SCALES.mr(1, '20px')}</p>
+        <p class="ml">{SCALES.ml(1, undefined)}</p>
+        <p class="width">{SCALES.width(0)}</p>
       </div>
     )
   }

@@ -1,7 +1,10 @@
-import { defineComponent, watch, computed, ref, Ref } from 'vue'
+import { defineComponent, watch, computed, ref } from 'vue'
+import { useScale } from '@fect-ui/scale'
 import { useState } from '@fect-ui/vue-hooks'
+import { useTheme } from '../composables'
 import { createName, getDomRect, createBem } from '../utils'
 import { useDraggable } from '../composables'
+import type { Ref } from 'vue'
 import type { Position } from '../composables'
 
 import './index.less'
@@ -61,6 +64,8 @@ export default defineComponent({
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { emit }) {
+    const { SCALES } = useScale()
+    const { theme } = useTheme()
     const sliderRef = ref<HTMLDivElement>()
     const dotRef = ref<HTMLDivElement>()
     const [value, setValue] = useState<number>(props.modelValue)
@@ -142,11 +147,40 @@ export default defineComponent({
       emit('change', cur)
     })
 
+    const baseStyle = computed(() => {
+      const { disabled } = props
+      const { palette } = theme.value
+      return {
+        '--slider-mark-bg-color': palette.background,
+        '--slider-dot-color': disabled ? palette.accents_4 : palette.background,
+        '--slider-dot-bg-color': disabled ? palette.accents_2 : palette.success,
+        '--slider-bg-color': disabled ? palette.accents_2 : palette.accents_8
+      }
+    })
+
+    const setCssVariables = computed(() => {
+      return {
+        ...baseStyle.value,
+        '--slider-font-size': SCALES.font(1),
+        '--slider-width': SCALES.width(1, '100%'),
+        '--slider-height': SCALES.height(0.5),
+        '--slider-pt': SCALES.pt(0),
+        '--slider-pr': SCALES.pr(0),
+        '--slider-pb': SCALES.pb(0),
+        '--slider-pl': SCALES.pl(0),
+        '--slider-mt': SCALES.mt(0),
+        '--slider-mr': SCALES.mr(0),
+        '--slider-mb': SCALES.mb(0),
+        '--slider-ml': SCALES.ml(0)
+      }
+    })
+
     return () => (
       <div
         class={bem(null, { disabled: props.disabled })}
         ref={sliderRef}
         role="slider"
+        style={setCssVariables.value}
         title={value.value + '%'}
         onClick={clickHandler}
       >

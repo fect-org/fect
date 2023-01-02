@@ -1,9 +1,19 @@
 .fect-progress {
   position: relative;
-  width: 100%;
-  height: 10px;
-  border-radius: var(--fect-radius);
-  background-color: var(--accents-2);
+  height: var(--progress-height);
+  width: var(--progress-width);
+  padding: var(--progress-pt) var(--progress-pr) var(--progress-pb) var(--progress-pl);
+  margin: var(--progress-mt) var(--progress-mr) var(--progress-mb) var(--progress-ml);
+  background-color: var(--progress-bg-color);
+  border-radius: var(--progress-radius);
+
+  &--fixed {
+    position: fixed;
+    left: 0;
+    border-radius: 0;
+    top: var(--progress-fixed-top);
+    bottom: var(--progress-fixed-bottom);
+  }
 
   progress {
     display: none;
@@ -15,19 +25,9 @@
     left: 0;
     height: 100%;
     bottom: 0;
-    border-radius: var(--fect-radius);
+    border-radius: var(--progress-radius);
+    width: var(--progress-inner-width);
+    background-color: var(--progress-inner-bg-color);
     transition: all 100ms ease-in;
-    &--default {
-      background-color: var(--primary-foreground);
-    }
-    &--success {
-      background-color: var(--success-default);
-    }
-    &--warning {
-      background-color: var(--warning-default);
-    }
-    &--error {
-      background-color: var(--error-default);
-    }
   }
 }

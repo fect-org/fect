@@ -1,51 +1,67 @@
 import { mount } from '@vue/test-utils'
-import Avatar from '../index'
+import Avatar from '..'
 
 const BASE_IMG_URL = 'http://img.com'
 
 describe('Avatar', () => {
-  it('should be support square and circle', () => {
-    const circle = mount(Avatar, {})
-    expect(() => circle.unmount()).not.toThrow()
-    const square = mount(Avatar, {
+  it('render normal', () => {
+    const wrapepr = mount(Avatar)
+    expect(() => wrapepr.unmount()).not.toThrow()
+  })
+  it('img', () => {
+    const wrapper = mount(Avatar, {
+      props: {
+        src: BASE_IMG_URL
+      }
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('text', () => {
+    const wrapper = mount(Avatar, {
+      props: {
+        text: 'kanno'
+      }
+    })
+    expect(wrapper.find('span').text()).toBe('kan')
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('safe text', () => {
+    const wrapper = mount(Avatar, {
+      props: {
+        text: 123 as unknown as string
+      }
+    })
+    expect(wrapper.find('span').text()).toBe('')
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('scale', () => {
+    const wrapper = mount(Avatar, {
+      props: {
+        h: 3,
+        text: 'S'
+      }
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  test('square', () => {
+    const wrapper = mount(Avatar, {
       props: {
         isSquare: true
       }
     })
-    expect(() => square.unmount()).not.toThrow()
+    expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should be limited 4 characters', () => {
-    const ava = mount(Avatar, {
-      props: {
-        text: 'XeryYue'
-      }
-    })
-    const text = ava.find('.fect-avatar__text').text()
-    expect(text.length).toBeLessThanOrEqual(3)
-  })
-  it('should be render as Element', () => {
-    const normalAva = mount(Avatar, {
-      props: {
-        src: BASE_IMG_URL,
-        size: 'mini'
-      }
-    })
-    expect(normalAva.html()).toMatchSnapshot()
-    const textAva = mount(Avatar, {
-      props: {
-        text: 'test'
-      }
-    })
-    expect(textAva.html()).toMatchSnapshot()
-  })
-
-  it('stacked should be work', () => {
-    const ava = mount(Avatar, {
+  test('stacked', () => {
+    const wrapper = mount(Avatar, {
       props: {
         stacked: true
       }
     })
-    expect(() => ava.unmount()).not.toThrow()
+    expect(wrapper.html()).toMatchSnapshot()
   })
 })

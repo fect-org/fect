@@ -1,52 +1,33 @@
-// Interim plan. will be removed in the future.
-
-:root.light-theme {
-  --code-bg-color: rgba(250, 250, 250, 0.75);
-  --code-border-color: var(--accents-1);
-}
-
-:root.dark-theme {
-  --code-bg-color: rgba(15, 15, 15, 0.75);
-  --code-border-color: var(--accents-1);
-}
-
 .fect-code {
-  &__pre {
+  max-width: 100%;
+  border: 1px solid var(--code-border);
+  font-size: var(--code-font-size);
+  height: var(--code-height);
+  width: var(--code-width);
+  margin: var(--code-mt) var(--code-mr) var(--code-mb) var(--code-ml);
+  border-radius: var(--code-radius);
+  background-color: var(--code-bg-color);
+  pre {
     max-width: 100%;
-    border: 1px solid;
-    font-size: calc(16px * 0.875);
-    width: initial;
-    height: auto;
-    margin: var(--fect-gap-half) 0;
-    border-radius: var(--fect-radius);
-    background-color: var(--code-bg-color);
-    border-color: var(--code-border-color);
-    &--classic {
-      background-color: var(--primary-background);
-      border-color: var(--accents-2);
-    }
-    pre {
-      max-width: 100%;
-      font-size: inherit;
-      border: none;
-      margin: 0;
-      line-height: 1.5em;
-      padding: var(--fect-gap-half);
-    }
+    font-size: inherit;
+    border: none;
+    margin: 0;
+    line-height: 1.5em;
+    padding: var(--code-pt) var(--code-pr) var(--code-pb) var(--code-pl);
   }
-
   &__name {
-    border: 1px solid var(--accents-2);
-    background-color: var(--accents-2);
-    color: var(--accents-5);
+    border: 1px solid var(--code-name-border);
+    background-color: var(--code-name-bg-color);
+    color: var(--code-name-color);
+    width: auto;
+    padding: var(--code-name-pt) var(--code-name-pr) var(--code-name-pb) var(--code-name-pl);
     height: auto;
+    font-size: var(--code-name-font-size);
     line-height: 1.35em;
     display: inline-flex;
     align-items: center;
-    font-size: calc(16px * 0.8125);
     width: auto;
-    padding: 5.12px 8px;
-    border-top-left-radius: var(--fect-radius);
-    border-bottom-right-radius: var(--fect-radius);
+    border-top-left-radius: calc(var(--code-radius) - 1px);
+    border-bottom-right-radius: var(--code-radius);
   }
 }

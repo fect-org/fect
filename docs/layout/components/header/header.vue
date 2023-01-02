@@ -15,20 +15,20 @@
         </div>
         <div class="controls">
           <template v-if="!isMobile">
-            <fe-button class="lang" @click="localeChangeHandler" size="mini" auto>
+            <fe-button :scale="0.5" class="lang" @click="localeChangeHandler" auto>
               <span class="inner">
                 {{ locale === 'en-us' ? '中' : 'En' }}
               </span>
             </fe-button>
             <fe-spacer :x="0.6" />
-            <fe-button @click="themeChange" size="mini" auto>
+            <fe-button :scale="0.5" @click="updateSiteTheme(theme === 'dark' ? 'light' : 'dark')" auto>
               <template #icon>
-                <moon :size="14" v-if="theme === 'dark-theme'" />
+                <moon :size="14" v-if="theme === 'dark'" />
                 <sun :size="14" v-else />
               </template>
             </fe-button>
             <fe-spacer :x="0.6" />
-            <fe-button size="mini" auto @click="redirectGithub">
+            <fe-button :scale="0.5" auto @click="redirectGithub">
               <template #icon>
                 <github :size="14" />
               </template>
@@ -46,10 +46,11 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref, watch } from 'vue'
-import { useTheme, useBodyScroll } from '@fect-ui/vue/src'
+import { useBodyScroll } from '@fect-ui/vue/src'
 import { Menu } from '@fect-ui/vue-icons'
 import MobileMenu from './mobile-menu.vue'
 import { useLocale, useMedia } from '../../composables'
+import { useGlobalState } from '../../common/global'
 import { useRoute, useRouter } from 'vue-router'
 export default defineComponent({
   components: { menuIcon: Menu, MobileMenu },
@@ -61,8 +62,7 @@ export default defineComponent({
     const { setLock } = useBodyScroll()
 
     const isMobile = useMedia('650px', { match: 'down' })
-
-    const { themeChange, theme } = useTheme()
+    const { theme, updateSiteTheme } = useGlobalState()
 
     const allSides = computed(() => {
       return [
@@ -129,7 +129,7 @@ export default defineComponent({
       isMobile,
       visible,
       routerChangeHandler,
-      themeChange,
+      updateSiteTheme,
       localeChangeHandler,
       mobileMenuClickHandler,
       redirectGithub

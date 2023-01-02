@@ -1,6 +1,6 @@
-import { withInstall } from '../utils'
+import { withScaleInstall } from '../utils'
 import _Card from './card'
 
-export const Card = withInstall(_Card)
+export const Card = withScaleInstall(_Card)
 
 export default Card

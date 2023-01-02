@@ -1,33 +1,3 @@
-:root {
-  // color variable
-  --button-default-color: var(--primary-background);
-  --button-success-color: var(--success-default);
-  --button-warning-color: var(--warning-default);
-  --button-error-color: var(--error-default);
-  --button-secondary-color: var(--dark-default);
-  // width variable
-  --button-mini-width: 85px;
-  --button-small-width: 150px;
-  --button-medium-width: 200px;
-  --button-large-width: 250px;
-  // height variable
-  --button-mini-height: 30px;
-  --button-small-height: 35px;
-  --button-medium-height: 40px;
-  --button-large-height: 45px;
-  // padding variable
-  --button-mini-padding: 0 15px;
-  --button-small-padding: 0 20px;
-  --button-medium-padding: 0 25px;
-  --button-large-padding: 0 30px;
-  //  state variable
-  --button-disabled-text-color: #ccc;
-  --button-disabled-bg-color: var(--accents-1);
-  --button-disabled-border-color: var(--accents-2);
-  // gap variable
-  --buton-auto-gap: var(--fect-gap);
-}
-
 @keyframes button-expand {
   0% {
     opacity: 0;
@@ -51,142 +21,56 @@
 .fect-button {
   box-sizing: border-box;
   display: inline-block;
+  line-height: var(--button-height);
+  border-radius: var(--button-radius);
   font-weight: 400;
+  font-size: var(--button-font-size);
   user-select: none;
-  text-transform: capitalize;
-  white-space: nowrap;
-  text-align: center;
   outline: none;
-  border-radius: 5px;
-  font-size: 15px;
-  padding: 0 25px;
+  text-transform: capitalize;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  transition: background-color 200ms ease 0ms, box-shadow 200ms ease 0ms, border 200ms ease 0ms, color 200ms ease 0ms;
+  position: relative;
   overflow: hidden;
   cursor: pointer;
-  position: relative;
-  transition: background-color 200ms ease 0ms, box-shadow 200ms ease 0ms, border 200ms ease 0ms, color 200ms ease 0ms;
-  border: 1px solid;
-
-  &--default {
-    border-color: var(--accents-2);
-    background-color: var(--button-default-color);
-    color: var(--accents-5);
-    --button-load-bg: var(--accents-1);
-    --button-load-color: var(--accents-5);
-    --button-border-color: var(--accents-2);
-  }
-
-  &--success {
-    background-color: var(--button-success-color);
-    border-color: var(--button-success-color);
-    color: #fff;
-    --button-load-bg: var(--button-success-color);
-    --button-load-color: #fff;
-    --button-border-color: var(--button-success-color);
-    --button-ghost-color: var(--button-success-color);
-  }
-
-  &--warning {
-    background-color: var(--button-warning-color);
-    border-color: var(--button-warning-color);
-    color: #fff;
-    --button-load-bg: var(--button-warning-color);
-    --button-load-color: #fff;
-    --button-border-color: var(--button-warning-color);
-    --button-ghost-color: var(--button-warning-color);
-  }
-
-  &--error {
-    background-color: var(--button-error-color);
-    border-color: var(--button-error-color);
-    color: #fff;
-    --button-load-bg: var(--button-error-color);
-    --button-load-color: #fff;
-    --button-border-color: var(--button-error-color);
-    --button-ghost-color: var(--button-error-color);
-  }
-
-  &--secondary {
-    border-color: var(--button-secondary-color);
-    background-color: var(--button-secondary-color);
-    color: var(--primary-background);
-    --button-load-bg: var(--button-secondary-color);
-    --button-load-color: var(--primary-background);
-    --button-border-color: var(--button-secondary-color);
-    --button-ghost-color: var(--button-secondary-color);
-  }
-
-  &--mini {
-    width: initial;
-    min-width: var(--button-mini-width);
-    font-size: 12px;
-    padding: var(--button-mini-padding);
-    height: var(--button-mini-height);
-    --button-icon-height: var(--button-mini-height);
-  }
-
-  &--small {
-    width: initial;
-    min-width: var(--button-small-width);
-    font-size: 13px;
-    padding: var(--button-small-padding);
-    height: var(--button-small-height);
-    --button-icon-height: var(--button-mini-height);
-  }
-
-  &--medium {
-    width: initial;
-    min-width: var(--button-medium-width);
-    font-size: 15px;
-    padding: var(--button-medium-padding);
-    height: var(--button-medium-height);
-    --button-icon-height: var(--button-medium-height);
-  }
-
-  &--large {
-    width: initial;
-    min-width: var(--button-large-width);
-    font-size: 18px;
-    padding: var(--button-large-padding);
-    height: var(--button-large-height);
-    --button-icon-height: var(--button-large-height);
-  }
+  height: var(--button-height);
+  min-width: var(--button-min-width);
+  width: initial;
+  padding: var(--button-pt) var(--button-pr) var(--button-pb) var(--button-pl);
+  margin: var(--button-mt) var(--button-mr) var(--button-mb) var(--button-ml);
+  background-color: var(--button-bg-color);
+  border: 1px solid var(--button-border-color);
+  color: var(--button-color);
 
   &--disabled {
     cursor: not-allowed;
-    color: var(--button-disabled-text-color);
-    background-color: var(--button-disabled-bg-color);
-    border-color: var(--button-disabled-border-color);
   }
 
   &--shadow {
-    box-shadow: var(--fect-shadowSmall);
-
+    box-shadow: var(--button-shadow);
     &:hover {
-      box-shadow: var(--fect-shadowMedium);
-      transform: translateY(-1px);
+      box-shadow: var(--button-shadow-hover);
+      transform: translate3d(0px, -1px, 0px);
     }
   }
 
   &--auto {
     width: auto;
-    min-width: auto;
+    min-width: min-content;
   }
 
   &--loading {
     pointer-events: none;
   }
-  &--ghost {
-    background-color: var(--primary-background);
-    color: var(--button-ghost-color);
-    --button-load-bg: var(--primary-background);
-    --button-load-color: var(--button-ghost-color);
-  }
 
   &:not(.fect-button--shadow, .fect-button--disabled, .fect-button--loading):hover,
   &:not(.fect-button--shadow, .fect-button--disabled, .fect-button--loading):focus {
     color: var(--button-hover-color);
-    background-color: var(--button-hover-bg);
-    border-color: var(--button-hover-border);
+    background-color: var(--button-hover-bg-color);
+    border-color: var(--button-hover-border-color);
+    transform: translate3d(0px, 0px, 0px);
   }
 
   &__loading {
@@ -196,8 +80,8 @@
     right: 0;
     bottom: 0;
     z-index: 2;
-    background-color: var(--button-load-bg);
-    border-radius: 5px;
+    background-color: var(--button-bg-color);
+    border-radius: var(--button-radius);
   }
 
   &__drip {
@@ -227,8 +111,8 @@
 
     svg {
       background: transparent;
-      height: calc(var(--button-icon-height) / 2.35);
-      width: calc(var(--button-icon-height) / 2.35);
+      height: calc(var(--button-height) / 2.35);
+      width: calc(var(--button-height) / 2.35);
     }
   }
   &__text {
@@ -240,6 +124,5 @@
     text-align: center;
     line-height: inherit;
     top: -1px;
-    padding-left: var(--buton-auto-gap);
   }
 }

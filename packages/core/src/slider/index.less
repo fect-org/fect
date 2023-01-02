@@ -1,20 +1,18 @@
 .fect-slider {
-  width: 100%;
   border-radius: 50px;
-  background-color: var(--accents-8);
+  background-color: var(--slider-bg-color);
   position: relative;
-  height: 8px;
-  padding: 0;
-  margin: 0;
-  --slider-font-size: 16px;
+  width: var(--slider-width);
+  height: var(--slider-height);
+  margin: var(--slider-mt) var(--slider-mr) var(--slider-mb) var(--slider-ml);
+  padding: var(--slider-pt) var(--slider-pr) var(--slider-pb) var(--slider-pl);
   cursor: pointer;
   &--disabled {
-    background-color: var(--accents-2);
-    .fect-slider__dot {
-      background-color: var(--accents-2);
-      color: var(--accents-4);
-      cursor: not-allowed;
-    }
+    cursor: not-allowed;
+    // .fect-slider__dot {
+    // background-color: var(--accents-2);
+    // color: var(--accents-4);
+    // }
   }
   &__dot {
     position: absolute;
@@ -28,9 +26,9 @@
     font-weight: 700;
     font-size: calc(var(--slider-font-size) * 0.75);
     z-index: 30;
-    background-color: var(--success-default);
+    background-color: var(--slider-dot-bg-color);
     text-align: center;
-    color: var(--primary-background);
+    color: var(--slider-dot-color);
     padding: 0 calc(0.57 * var(--slider-font-size));
     &:hover {
       cursor: grab;
@@ -48,6 +46,6 @@
     height: 100%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background-color: var(--primary-background);
+    background-color: var(--slider-mark-bg-color);
   }
 }

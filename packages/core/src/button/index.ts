@@ -1,6 +1,8 @@
-import { withInstall } from '../utils'
+import { withScaleInstall } from '../utils'
 import _Button from './button'
 
-export const Button = withInstall(_Button)
+
+
+export const Button = withScaleInstall(_Button)
 
 export default Button

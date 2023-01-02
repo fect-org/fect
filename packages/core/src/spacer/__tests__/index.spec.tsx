@@ -1,6 +1,5 @@
 import { mount } from '@vue/test-utils'
-
-import Spacer from '../index'
+import Spacer from '..'
 
 describe('Spacer', () => {
   it('shoul be render as element', () => {
@@ -17,33 +16,43 @@ describe('Spacer', () => {
     expect(wrapper.find('.fect-spacer--inline').exists()).toBe(true)
   })
 
-  it('should be support x and y', () => {
+  it('horizontal', () => {
     const wrapper = mount({
       render() {
         return (
-          <>
-            <Spacer x={1} />
-            <Spacer y={2} />
-          </>
+          <div>
+            <Spacer w={2} />
+            <Spacer width={15} />
+          </div>
         )
       }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should be display right spacing when x or y are minus', () => {
-    const wrapper = mount(Spacer, {
-      props: {
-        x: -0.5
+  it('vertical', () => {
+    const wrapper = mount({
+      render() {
+        return (
+          <div>
+            <Spacer h={2} />
+            <Spacer height={11} />
+          </div>
+        )
       }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should be display right spacing when x or y are string', () => {
-    const wrapper = mount(Spacer, {
-      props: {
-        x: '111' as unknown as number
+  it('float', () => {
+    const wrapper = mount({
+      render() {
+        return (
+          <div>
+            <Spacer h={2.1} />
+            <Spacer height={3.5} />
+          </div>
+        )
       }
     })
     expect(wrapper.html()).toMatchSnapshot()

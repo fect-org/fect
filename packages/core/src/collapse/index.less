@@ -1,13 +1,16 @@
 .fect-collapse {
-  padding: var(--fect-gap) 0;
-  border: 1px solid var(--fect-border);
-  border-left: none;
-  border-right: none;
+  border-top: 1px solid var(--collapse-border);
+  padding-bottom: 1px solid var(--collapse-border);
+  font-size: var(--collapse-font-size);
+  width: var(--collapse-width);
+  height: var(--collapse-height);
+  margin: var(--collapse-mt) var(--collapse-mr) var(--collapse-mb) var(--collapse-ml);
+  padding: var(--collapse-pt) var(--collapse-pr) var(--collapse-pb) var(--collapse-pl);
   &--shadow {
-    box-shadow: var(--fect-shadowSmall);
+    box-shadow: var(--collapse-shadow);
     border: none;
-    border-radius: var(--fect-radius);
-    padding: var(--fect-gap);
+    border-radius: var(--collapse-radius);
+    padding: var(--collapse-shadow-padding);
   }
   &__view {
     cursor: pointer;
@@ -17,16 +20,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: var(--primary-foreground);
+      color: var(--collapse-title-color);
       h3 {
-        font-weight: 450;
         margin: 0;
-        font-size: 25px;
+        font-size: 1.5em;
       }
     }
 
     .subtitle {
-      color: var(--accents-5);
+      color: var(--collapse-sub-title-color);
       margin: 0;
     }
   }
@@ -47,9 +49,9 @@
     transition: height 200ms ease;
   }
   &__content {
-    font-size: 16px;
-    line-height: 25px;
-    padding: var(--fect-gap) 0;
+    font-size: inherit;
+    line-height: 1.6em;
+    padding: var(--collapse-content-pt) var(--collapse-content-pr) var(--collapse-content-pb) var(--collapse-content-pl);
 
     &:first-child {
       margin-top: 0;

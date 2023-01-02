@@ -1,6 +1,6 @@
-import { withInstall } from '../utils'
+import { withScaleInstall } from '../utils'
 import _Spacer from './spacer'
 
-export const Spacer = withInstall(_Spacer)
+export const Spacer = withScaleInstall(_Spacer)
 
 export default Spacer

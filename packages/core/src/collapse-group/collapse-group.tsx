@@ -1,7 +1,11 @@
-import { PropType, watch, defineComponent } from 'vue'
+import { watch, defineComponent, computed } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
+import { useScale } from '@fect-ui/scale'
 import { createName, createBem } from '../utils'
 import { createCollapseContext } from './collapse-context'
+
+import type { PropType } from 'vue'
+
 import './index.less'
 
 const name = createName('CollapseGroup')
@@ -21,6 +25,8 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, { slots, emit }) {
+    const { SCALES } = useScale()
+
     const { provider } = createCollapseContext()
 
     const [checked, setChecked] = useState<number[]>(props.modelValue)
@@ -39,10 +45,30 @@ export default defineComponent({
       })
     }
 
+    const setCssVariables = computed(() => {
+      return {
+        '--collapse-group-width': SCALES.width(1, 'auto'),
+        '--collapse-group-height': SCALES.height(1, 'auto'),
+        '--collapse-group-pt': SCALES.pt(0),
+        '--collapse-group-pr': SCALES.pr(0.6),
+        '--collapse-group-pb': SCALES.pb(0),
+        '--collapse-group-pl': SCALES.pl(0.6),
+        '--collapse-group-mt': SCALES.mt(0),
+        '--collapse-group-mr': SCALES.mr(0),
+        '--collapse-group-mb': SCALES.mb(0),
+        '--collapse-group-ml': SCALES.ml(0)
+      }
+    })
+
     provider({ checked, updateCollapseGroupChecked })
 
     watch(checked, (cur) => emit('update:modelValue', cur))
 
-    return () => <div class={bem('group')}> {slots.default?.()}</div>
+    return () => (
+      <div class={bem('group')} style={setCssVariables.value}>
+        {' '}
+        {slots.default?.()}
+      </div>
+    )
   }
 })

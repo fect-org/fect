@@ -1,5 +1,5 @@
-import { PropType } from 'vue'
-import { NormalTypes, SnippetCopyTypes } from '../utils'
+import type { PropType } from 'vue'
+import type { SnippetStyleTypes, SnippetCopyTypes, NormalTypes } from '../utils'
 
 export const props = {
   text: {
@@ -7,13 +7,9 @@ export const props = {
     default: '',
     required: true
   },
-  width: {
-    type: [String, Number],
-    default: 'initial'
-  },
   fill: Boolean,
   type: {
-    type: String as PropType<NormalTypes>,
+    type: String as PropType<SnippetStyleTypes>,
     default: 'default'
   },
   copy: {

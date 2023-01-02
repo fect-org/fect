@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Progress color 1`] = `
+"<div class="fect-progress" style="--progress-radius: 6px; --progress-bg-color: #eaeaea; --progress-inner-width: 45%; --progress-inner-bg-color: green; --progress-fixed-bottom: unset; --progress-fixed-top: unset; --progress-width: 100%; --progress-height: calc(0.625 * 16px); --progress-pt: 0; --progress-pr: 0; --progress-pb: 0; --progress-pl: 0; --progress-mt: 0; --progress-mr: 0; --progress-mb: 0; --progress-ml: 0;">
+  <div class="fect-progress__inner fect-progress__inner--default" title="45%"></div><progress max="100" value="45"></progress>
+</div>"
+`;
+
+exports[`Progress fixed 1`] = `
+"<div class="fect-progress fect-progress--fixed" style="--progress-radius: 6px; --progress-bg-color: #eaeaea; --progress-inner-width: 0%; --progress-inner-bg-color: #000; --progress-fixed-bottom: unset; --progress-fixed-top: 0; --progress-width: 100%; --progress-height: calc(0.625 * 16px); --progress-pt: 0; --progress-pr: 0; --progress-pb: 0; --progress-pl: 0; --progress-mt: 0; --progress-mr: 0; --progress-mb: 0; --progress-ml: 0;">
+  <div class="fect-progress__inner fect-progress__inner--default" title="0%"></div><progress max="100" value="0"></progress>
+</div>
+<div class="fect-progress fect-progress--fixed" style="--progress-radius: 6px; --progress-bg-color: #eaeaea; --progress-inner-width: 0%; --progress-inner-bg-color: #000; --progress-fixed-bottom: 0; --progress-fixed-top: unset; --progress-width: 100%; --progress-height: calc(0.625 * 16px); --progress-pt: 0; --progress-pr: 0; --progress-pb: 0; --progress-pl: 0; --progress-mt: 0; --progress-mr: 0; --progress-mb: 0; --progress-ml: 0;">
+  <div class="fect-progress__inner fect-progress__inner--default" title="0%"></div><progress max="100" value="0"></progress>
+</div>"
+`;

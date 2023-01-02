@@ -3,11 +3,11 @@ import { ButtonGroup } from '..'
 import { Button } from '../../button'
 
 describe('ButtonGroup', () => {
-  it('should render correctly', () => {
+  it('render normal', () => {
     const wrapper = mount({
       render() {
         return (
-          <ButtonGroup size="mini">
+          <ButtonGroup>
             <Button>Action</Button>
             <Button>Action</Button>
             <Button>Action</Button>
@@ -17,11 +17,54 @@ describe('ButtonGroup', () => {
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
-  it('should support render vertical', () => {
+  it('vertical', () => {
     const wrapper = mount({
       render() {
         return (
-          <ButtonGroup size="mini" vertical>
+          <ButtonGroup vertical>
+            <Button>Action</Button>
+            <Button>Action</Button>
+            <Button>Action</Button>
+          </ButtonGroup>
+        )
+      }
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+  it('ghost', () => {
+    const wrapper = mount({
+      render() {
+        return (
+          <ButtonGroup ghost>
+            <Button>Action</Button>
+            <Button>Action</Button>
+            <Button>Action</Button>
+          </ButtonGroup>
+        )
+      }
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('disabled', () => {
+    const wrapper = mount({
+      render() {
+        return (
+          <ButtonGroup disabled>
+            <Button>Action</Button>
+            <Button>Action</Button>
+            <Button>Action</Button>
+          </ButtonGroup>
+        )
+      }
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+  it('type', () => {
+    const wrapper = mount({
+      render() {
+        return (
+          <ButtonGroup type="success">
             <Button>Action</Button>
             <Button>Action</Button>
             <Button>Action</Button>

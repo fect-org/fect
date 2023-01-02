@@ -18,7 +18,6 @@ import { Card } from './card'
 import { Checkbox } from './checkbox'
 import { CheckboxGroup } from './checkbox-group'
 import { Code } from './code'
-import { Col } from './col'
 import { Collapse } from './collapse'
 import { CollapseGroup } from './collapse-group'
 import { Dot } from './dot'
@@ -28,7 +27,7 @@ import { FormItem } from './form-item'
 import { Grid } from './grid'
 import { GridGroup } from './grid-group'
 import { Image } from './image'
-import { ImageBrowser } from './image-browser'
+import { Browser } from './browser'
 import { Input } from './input'
 import { InputNumber } from './input-number'
 import { Link } from './link'
@@ -40,7 +39,6 @@ import { Progress } from './progress'
 import { Radio } from './radio'
 import { RadioGroup } from './radio-group'
 import { Rating } from './rating'
-import { Row } from './row'
 import { Select } from './select'
 import { SelectOption } from './select-option'
 import { Skeleton } from './skeleton'
@@ -48,15 +46,11 @@ import { SkeletonItem } from './skeleton-item'
 import { Slider } from './slider'
 import { Snippet } from './snippet'
 import { Spacer } from './spacer'
-import { Spinner } from './spinner'
-import { Swipe } from './swipe'
-import { SwipeItem } from './swipe-item'
 import { Switch } from './switch'
 import { Tab } from './tab'
 import { Tabs } from './tabs'
 import { Tag } from './tag'
 import { Textarea } from './textarea'
-import { ThemeProvide } from './theme-provide'
 import { ThemeProvider } from './provider'
 import { Toast } from './toast'
 import { Tooltip } from './tooltip'
@@ -67,6 +61,7 @@ const components = [
   Avatar,
   AvatarGroup,
   BackTop,
+  Browser,
   Backdrop,
   Badge,
   BadgeAnchor,
@@ -79,7 +74,6 @@ const components = [
   Checkbox,
   CheckboxGroup,
   Code,
-  Col,
   Collapse,
   CollapseGroup,
   Dot,
@@ -89,7 +83,6 @@ const components = [
   Grid,
   GridGroup,
   Image,
-  ImageBrowser,
   Input,
   InputNumber,
   Link,
@@ -101,7 +94,6 @@ const components = [
   Radio,
   RadioGroup,
   Rating,
-  Row,
   Select,
   SelectOption,
   Skeleton,
@@ -109,15 +101,11 @@ const components = [
   Slider,
   Snippet,
   Spacer,
-  Spinner,
-  Swipe,
-  SwipeItem,
   Switch,
   Tab,
   Tabs,
   Tag,
   Textarea,
-  ThemeProvide,
   Toast,
   Tooltip,
   Upload,
@@ -151,7 +139,6 @@ export * from './card'
 export * from './checkbox'
 export * from './checkbox-group'
 export * from './code'
-export * from './col'
 export * from './collapse'
 export * from './collapse-group'
 export * from './composables'
@@ -162,7 +149,7 @@ export * from './form-item'
 export * from './grid'
 export * from './grid-group'
 export * from './image'
-export * from './image-browser'
+export * from './browser'
 export * from './input'
 export * from './input-number'
 export * from './link'
@@ -174,7 +161,6 @@ export * from './progress'
 export * from './radio'
 export * from './radio-group'
 export * from './rating'
-export * from './row'
 export * from './select'
 export * from './select-option'
 export * from './skeleton'
@@ -182,15 +168,11 @@ export * from './skeleton-item'
 export * from './slider'
 export * from './snippet'
 export * from './spacer'
-export * from './spinner'
-export * from './swipe'
-export * from './swipe-item'
 export * from './switch'
 export * from './tab'
 export * from './tabs'
 export * from './tag'
 export * from './textarea'
-export * from './theme-provide'
 export * from './toast'
 export * from './tooltip'
 export * from './upload'

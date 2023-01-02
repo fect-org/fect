@@ -1,9 +1,10 @@
 .fect-collapse {
   &__group {
-    width: auto;
-    height: auto;
-    padding: 0 var(--fect-gap);
-    margin: 0;
+    width: var(--collapse-group-width);
+    height: var(--collapse-group-height);
+    margin: var(--collapse-group-mt) var(--collapse-group-mr) var(--collapse-group-mb) var(--collapse-group-ml);
+    padding: var(--collapse-group-pt) var(--collapse-group-pr) var(--collapse-group-pb) var(--collapse-group-pl);
+
     > div + div {
       border-top: none;
     }

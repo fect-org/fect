@@ -10,7 +10,7 @@ export function createThemeContext(themes: AllThemesConfigs) {
 }
 
 export function useTheme() {
-  inject(INTERNAL_THEME_KEY, {
+  return inject(INTERNAL_THEME_KEY, {
     themes: ref(Themes.getPresets()),
     theme: ref(Themes.getPresetStaticTheme())
   })

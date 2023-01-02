@@ -1,6 +1,6 @@
-import { withInstall } from '../utils'
+import { withScaleInstall } from '../utils'
 import _Avatar from './avatar'
 
-export const Avatar = withInstall(_Avatar)
+export const Avatar = withScaleInstall(_Avatar)
 
 export default Avatar

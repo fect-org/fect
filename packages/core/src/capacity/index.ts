@@ -1,6 +1,6 @@
-import { withInstall } from '../utils'
+import { withScaleInstall } from '../utils'
 import _Capacity from './capacity'
 
-export const Capacity = withInstall(_Capacity)
+export const Capacity = withScaleInstall(_Capacity)
 
 export default Capacity

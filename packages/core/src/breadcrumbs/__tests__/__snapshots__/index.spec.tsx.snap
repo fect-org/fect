@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Breadcrumbs separator 1`] = `
+"<nav class="fect-breadcrumbs" style="--breadcrumbs-color: #888; --breadcrumbs-last-color: #444; --breadcrumbs-font-size: calc(1 * 16px); --breadcrumbs-width: auto; --breadcrumbs-height: auto; --breadcrumbs-pt: 0; --breadcrumbs-pr: 0; --breadcrumbs-pb: 0; --breadcrumbs-pl: 0; --breadcrumbs-mt: 0; --breadcrumbs-mr: 0; --breadcrumbs-mb: 0; --breadcrumbs-ml: 0;">
+  <div class="fect-breadcrumbs__item"><a class="fect-link" style="--link-color: inherit; --link-hover-color: inherit; --link-radius: 6px; --link-bg-color: rgba(0, 112, 243, 0.1); --link-font-size: inherit; --link-width: fit-content; --link-height: auto; --link-pt: 0; --link-pr: 0; --link-pb: 0; --link-pl: 0; --link-mt: 0; --link-mr: 0; --link-mb: 0; --link-ml: 0; --link-block-pt: calc(0.268 * 16px); --link-block-pr: calc(0.5625 * 16px); --link-block-pb: calc(0.268 * 16px); --link-block-pl: calc(0.5625 * 16px);" href="https://www.test.com">First</a>
+    <div class="fect-breadcrumbs__separator" style="--breadcrumbs-spearator-width: auto; --breadcrumbs-spearator-height: auto; --breadcrumbs-spearator-pt: 0; --breadcrumbs-spearator-pr: 0; --breadcrumbs-spearator-pb: 0; --breadcrumbs-spearator-pl: 0; --breadcrumbs-spearator-mt: 0; --breadcrumbs-spearator-mr: calc(0.5 * 16px); --breadcrumbs-spearator-mb: 0; --breadcrumbs-spearator-ml: calc(0.5 * 16px);">#</div>
+  </div>
+  <div class="fect-breadcrumbs__item">Second<div class="fect-breadcrumbs__separator" style="--breadcrumbs-spearator-width: auto; --breadcrumbs-spearator-height: auto; --breadcrumbs-spearator-pt: 0; --breadcrumbs-spearator-pr: 0; --breadcrumbs-spearator-pb: 0; --breadcrumbs-spearator-pl: 0; --breadcrumbs-spearator-mt: 0; --breadcrumbs-spearator-mr: calc(0.5 * 16px); --breadcrumbs-spearator-mb: 0; --breadcrumbs-spearator-ml: calc(0.5 * 16px);">#</div>
+  </div>
+</nav>"
+`;

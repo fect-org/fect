@@ -1,35 +1,25 @@
-:root {
-  --dot-default-color: var(--accents-2);
-  --dot-success-color: var(--success-default);
-  --dot-warning-color: var(--warning-default);
-  --dot-error-color: var(--error-default);
-}
-
 .fect-dot {
   display: inline-flex;
   align-items: center;
+  font-size: var(--dot-font-size);
+  height: var(--dot-height);
+  width: var(--dot-width);
+  margin: var(--dot-mt) var(--dot-mr) var(--dot-mb) var(--dot-ml);
+  padding: var(--dot-pt) var(--dot-pr) var(--dot-pb) var(--dot-pl);
   &__circle {
-    width: 10px;
-    height: 10px;
+    width: 0.625em;
+    height: 0.625em;
+    min-width: calc(0.625 * 12px);
+    min-height: calc(0.625 * 12px);
     border-radius: 50%;
     overflow: hidden;
     user-select: none;
-    &--default {
-      background-color: var(--dot-default-color);
-    }
-    &--success {
-      background-color: var(--dot-success-color);
-    }
-    &--warning {
-      background-color: var(--dot-warning-color);
-    }
-    &--error {
-      background-color: var(--dot-error-color);
-    }
+    background-color: var(--dot-color);
   }
   &__ctx {
-    margin-left: 8px;
-    font-size: 1rem;
+    margin-left: 0.5em;
+    font-size: 1em;
+    line-height: 1em;
     text-transform: capitalize;
   }
 }

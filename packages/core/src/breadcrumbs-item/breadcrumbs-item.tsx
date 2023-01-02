@@ -1,6 +1,5 @@
-import { watchEffect, defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { createName, createBem, isDEV } from '../utils'
-import { useState } from '@fect-ui/vue-hooks'
 import { useBreadcrumbsContext } from '../breadcrumbs/breadcrumbs-context'
 import Link from '../link'
 import Separator from './breadcrumbs-spearator'
@@ -21,41 +20,29 @@ export default defineComponent({
       default: ''
     }
   },
-  setup(props, { slots, attrs }) {
-    const [hasLink, setHasLink] = useState<boolean>(false)
-
+  setup(props, { slots }) {
     const { context } = useBreadcrumbsContext()
 
-    watchEffect(() => {
-      const isNull = Boolean(props?.to) || props.href !== ''
-      setHasLink(isNull)
-    })
+    const link = computed(() => !!props.to || props.href !== '')
 
     if (!context) {
       if (isDEV) console.error('[Fect] <BreadcrumbsItem> must be a child component of <Breadcrumbs>.')
       return
     }
 
-    const withoutLinkRender = () => {
-      return (
-        <span class={bem('item')}>
-          {slots.default?.()}
-          <Separator>{context.separator.value}</Separator>
-        </span>
-      )
-    }
-
-    const linkRender = () => {
+    return () => {
       return (
         <div class={bem('item')}>
-          <Link to={props.to} href={props.href} class={bem('link')} {...attrs}>
-            {slots.default?.()}
-          </Link>
-          <Separator>{context.separator.value}</Separator>
+          {link.value ? (
+            <Link to={props.to} href={props.href}>
+              {slots.default?.()}
+            </Link>
+          ) : (
+            slots.default?.()
+          )}
+          <Separator>{context.props.separator}</Separator>
         </div>
       )
     }
-
-    return () => <>{hasLink.value ? <>{linkRender()}</> : <>{withoutLinkRender()}</>}</>
   }
 })

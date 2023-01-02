@@ -1,5 +1,5 @@
 import { computed, defineComponent, watchEffect } from 'vue'
-import { isArray, noop, len } from '@fect-ui/shared'
+import { isArray, len } from '@fect-ui/shared'
 import { useState } from '@fect-ui/vue-hooks'
 import { Themes } from '../themes'
 import { createName } from '../utils'
@@ -14,14 +14,14 @@ export default defineComponent({
   props: {
     themes: {
       type: Array as PropType<Array<UIThemes>>,
-      default: noop
+      default: () => []
     },
     themeType: {
       type: String
     }
   },
   setup(props, { slots }) {
-    const [allThemes, setAllThems] = useState<Array<UIThemes>>([])
+    const [allThemes, setAllThems] = useState<Array<UIThemes>>(Themes.getPresets())
 
     const currentTheme = computed(() => {
       const theme = allThemes.value.find((theme) => theme.type === props.themeType)

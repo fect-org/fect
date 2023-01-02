@@ -1,6 +1,6 @@
-import { withInstall } from '../utils'
+import { withScaleInstall } from '../utils'
 import _Badge from './badge'
 
-export const Badge = withInstall(_Badge)
+export const Badge = withScaleInstall(_Badge)
 
 export default Badge

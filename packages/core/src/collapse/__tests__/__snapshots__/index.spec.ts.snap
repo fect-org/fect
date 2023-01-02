@@ -2,8 +2,8 @@
 
 exports[`Collapse should be support accordion model 1`] = `
 "<div class="container">
-  <div class="fect-collapse__group">
-    <div class="fect-collapse">
+  <div class="fect-collapse__group" style="--collapse-group-width: auto; --collapse-group-height: auto; --collapse-group-pt: 0; --collapse-group-pr: calc(0.6 * 16px); --collapse-group-pb: 0; --collapse-group-pl: calc(0.6 * 16px); --collapse-group-mt: 0; --collapse-group-mr: 0; --collapse-group-mb: 0; --collapse-group-ml: 0;">
+    <div class="fect-collapse" style="--collapse-border: #eaeaea; --collapse-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --collapse-radius: 6px; --collapse-shadow-padding: 16pt; --collapse-title-color: #000; --collapse-sub-title-color: #666; --collapse-font-size: calc(1 * 16px); --collapse-width: auto; --collapse-height: auto; --collapse-pt: calc(1.2 * 16px); --collapse-pr: 0; --collapse-pb: calc(1.2 * 16px); --collapse-pl: 0; --collapse-mt: 0; --collapse-mr: 0; --collapse-mb: 0; --collapse-ml: 0; --collapse-content-pt: calc(1.2 * 16px); --collapse-content-pr: 0; --collapse-content-pb: calc(1.2 * 16px); --collapse-content-pl: 0;">
       <div class="fect-collapse__view" role="collapseButton">
         <div class="title">
           <h3>Test</h3><svg class="fect-collapse__svg--active" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision" style="color: currentcolor;">
@@ -16,7 +16,7 @@ exports[`Collapse should be support accordion model 1`] = `
         <div class="fect-collapse__content"> 123456 </div>
       </div>
     </div>
-    <div class="fect-collapse">
+    <div class="fect-collapse" style="--collapse-border: #eaeaea; --collapse-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --collapse-radius: 6px; --collapse-shadow-padding: 16pt; --collapse-title-color: #000; --collapse-sub-title-color: #666; --collapse-font-size: calc(1 * 16px); --collapse-width: auto; --collapse-height: auto; --collapse-pt: calc(1.2 * 16px); --collapse-pr: 0; --collapse-pb: calc(1.2 * 16px); --collapse-pl: 0; --collapse-mt: 0; --collapse-mr: 0; --collapse-mb: 0; --collapse-ml: 0; --collapse-content-pt: calc(1.2 * 16px); --collapse-content-pr: 0; --collapse-content-pb: calc(1.2 * 16px); --collapse-content-pl: 0;">
       <div class="fect-collapse__view" role="collapseButton">
         <div class="title">
           <h3>Test1</h3><svg class="fect-collapse__svg" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision" style="color: currentcolor;">
@@ -34,7 +34,7 @@ exports[`Collapse should be support accordion model 1`] = `
 `;
 
 exports[`Collapse should be support subTag and shadow mode 1`] = `
-"<div class="fect-collapse fect-collapse--shadow">
+"<div class="fect-collapse fect-collapse--shadow" style="--collapse-border: #eaeaea; --collapse-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --collapse-radius: 6px; --collapse-shadow-padding: 16pt; --collapse-title-color: #000; --collapse-sub-title-color: #666; --collapse-font-size: calc(1 * 16px); --collapse-width: auto; --collapse-height: auto; --collapse-pt: calc(1.2 * 16px); --collapse-pr: 0; --collapse-pb: calc(1.2 * 16px); --collapse-pl: 0; --collapse-mt: 0; --collapse-mr: 0; --collapse-mb: 0; --collapse-ml: 0; --collapse-content-pt: calc(1.2 * 16px); --collapse-content-pr: 0; --collapse-content-pb: calc(1.2 * 16px); --collapse-content-pl: 0;">
   <div class="fect-collapse__view" role="collapseButton">
     <div class="title">
       <h3>HTML</h3><svg class="fect-collapse__svg" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision" style="color: currentcolor;">
@@ -52,7 +52,7 @@ exports[`Collapse should be support subTag and shadow mode 1`] = `
 `;
 
 exports[`Collapse should be support title and subtitle 1`] = `
-"<div class="fect-collapse">
+"<div class="fect-collapse" style="--collapse-border: #eaeaea; --collapse-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); --collapse-radius: 6px; --collapse-shadow-padding: 16pt; --collapse-title-color: #000; --collapse-sub-title-color: #666; --collapse-font-size: calc(1 * 16px); --collapse-width: auto; --collapse-height: auto; --collapse-pt: calc(1.2 * 16px); --collapse-pr: 0; --collapse-pb: calc(1.2 * 16px); --collapse-pl: 0; --collapse-mt: 0; --collapse-mr: 0; --collapse-mb: 0; --collapse-ml: 0; --collapse-content-pt: calc(1.2 * 16px); --collapse-content-pr: 0; --collapse-content-pb: calc(1.2 * 16px); --collapse-content-pl: 0;">
   <div class="fect-collapse__view" role="collapseButton">
     <div class="title">
       <h3>HTML</h3><svg class="fect-collapse__svg" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision" style="color: currentcolor;">

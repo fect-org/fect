@@ -10,13 +10,12 @@ const Wrapper = {
       invert: false,
       type: 'default',
       text: 'hello world',
-      color: '',
-      round: false
+      color: ''
     }
   },
   template: `
    <div class="container">
-    <fe-tag :useInvert="invert" :type="type" :text="text" :type-data="type" :color="color" :round="round" />
+    <fe-tag :useInvert="invert" :type="type" :text="text" :type-data="type" :color="color" />
    </div>
   `
 }

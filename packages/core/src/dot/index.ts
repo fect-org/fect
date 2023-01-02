@@ -1,6 +1,6 @@
-import { withInstall } from '../utils'
+import { withScaleInstall } from '../utils'
 import _Dot from './dot'
 
-export const Dot = withInstall(_Dot)
+export const Dot = withScaleInstall(_Dot)
 
 export default Dot

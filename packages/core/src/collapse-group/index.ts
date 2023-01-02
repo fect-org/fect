@@ -1,6 +1,6 @@
-import { withInstall } from '../utils'
+import { withScaleInstall } from '../utils'
 import _CollapseGroup from './collapse-group'
 
-export const CollapseGroup = withInstall(_CollapseGroup)
+export const CollapseGroup = withScaleInstall(_CollapseGroup)
 
 export default CollapseGroup

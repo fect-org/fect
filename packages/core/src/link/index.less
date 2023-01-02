@@ -1,16 +1,13 @@
-:root {
-  --link-color: var(--success-default);
-  --link-hover-color: var(--success-light);
-  --link-block-hover-color: #0076ff1a;
-}
-
 .fect-link {
   display: inline-flex;
   line-height: inherit;
-  color: inherit;
-  width: fit-content;
+  color: var(--link-color);
   text-decoration: none;
   transition: color 200ms ease 0ms;
+  width: var(--link-width);
+  height: var(--link-height);
+  margin: var(--link-mt) var(--link-mr) var(--link-mb) var(--link-ml);
+  padding: var(--link-pt) var(--link-pr) var(--link-pb) var(--link-pl);
   &--underline {
     &:active,
     &:focus,
@@ -18,20 +15,16 @@
       text-decoration: underline;
     }
   }
-  &--color {
-    color: var(--link-color);
-  }
-
   &:active,
   &:focus,
   &:hover {
     color: var(--link-hover-color);
   }
   &--block {
-    padding: 8px;
-    border-radius: 5px;
+    padding: var(--link-block-pt) var(--link-block-pr) var(--link-block-pb) var(--link-block-pl);
+    border-radius: var(--link-radius);
     &:hover {
-      background-color: var(--link-block-hover-color);
+      background-color: var(--link-bg-color);
     }
   }
 }

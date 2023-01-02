@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`User should render as normal 1`] = `
-"<div class="fect-user">
-  <div class="fect-avatar fect-avatar--small "><span class="fect-avatar__text">Kan</span></div>
+"<div class="fect-user" style="--user-gap-half: 8pt; --user-name-color: #111; --user-social-color: #444; --user-font-size: calc(1 * 16px); --user-width: max-content; --user-height: auto; --user-pt: 0; --user-pr: calc(0.5 * 16px); --user-pb: 0; --user-pl: calc(0.5 * 16px); --user-mt: 0; --user-mr: 0; --user-mb: 0; --user-ml: 0;">
+  <div class="fect-avatar" style="--avatar-border-color: #eaeaea; --avatar-bg-color: #fff; --avatar-radius: 6px; --avatar-size: calc(1.75 * 16px); --avatar-pt: 0; --avatar-pr: 0; --avatar-pb: 0; --avatar-pl: 0; --avatar-mt: 0; --avatar-mr: 0; --avatar-mb: 0; --avatar-ml: 0; --avatar-font-size: calc(1 * 16px);"><span class="fect-avatar__text">Kan</span></div>
   <div class="fect-user__names"><span class="name">kanno</span><span class="social"><!----></span></div>
 </div>"
 `;

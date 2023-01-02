@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Slider props should work correctly 1`] = `
-"<div class="fect-slider fect-slider--disabled" role="slider" title="0%">
+"<div class="fect-slider fect-slider--disabled" role="slider" style="--slider-mark-bg-color: #fff; --slider-dot-color: #888; --slider-dot-bg-color: #eaeaea; --slider-bg-color: #eaeaea; --slider-font-size: calc(1 * 16px); --slider-width: 100%; --slider-height: calc(0.5 * 16px); --slider-pt: 0; --slider-pr: 0; --slider-pb: 0; --slider-pl: 0; --slider-mt: 0; --slider-mr: 0; --slider-mb: 0; --slider-ml: 0;" title="0%">
   <div class="fect-slider__dot" style="left: 0%;">
     <!---->
   </div><span class="fect-slider__mark" style="left: 5%;"></span><span class="fect-slider__mark" style="left: 10%;"></span><span class="fect-slider__mark" style="left: 15%;"></span><span class="fect-slider__mark" style="left: 20%;"></span><span class="fect-slider__mark" style="left: 25%;"></span><span class="fect-slider__mark" style="left: 30%;"></span><span class="fect-slider__mark" style="left: 35%;"></span><span class="fect-slider__mark" style="left: 40%;"></span><span class="fect-slider__mark" style="left: 45%;"></span><span class="fect-slider__mark" style="left: 50%;"></span><span class="fect-slider__mark" style="left: 55%;"></span><span class="fect-slider__mark" style="left: 60%;"></span><span class="fect-slider__mark" style="left: 65%;"></span><span class="fect-slider__mark" style="left: 70%;"></span><span class="fect-slider__mark" style="left: 75%;"></span><span class="fect-slider__mark" style="left: 80%;"></span><span class="fect-slider__mark" style="left: 85%;"></span><span class="fect-slider__mark" style="left: 90%;"></span><span class="fect-slider__mark" style="left: 95%;"></span>
@@ -9,14 +9,14 @@ exports[`Slider props should work correctly 1`] = `
 `;
 
 exports[`Slider should render as normal 1`] = `
-"<div class="fect-slider" role="slider" title="0%">
+"<div class="fect-slider" role="slider" style="--slider-mark-bg-color: #fff; --slider-dot-color: #fff; --slider-dot-bg-color: #0070f3; --slider-bg-color: #111; --slider-font-size: calc(1 * 16px); --slider-width: 100%; --slider-height: calc(0.5 * 16px); --slider-pt: 0; --slider-pr: 0; --slider-pb: 0; --slider-pl: 0; --slider-mt: 0; --slider-mr: 0; --slider-mb: 0; --slider-ml: 0;" title="0%">
   <div class="fect-slider__dot" style="left: 0%;">0</div>
   <!---->
 </div>"
 `;
 
 exports[`Slider should trigger event when click 1`] = `
-"<div class="fect-slider fect-slider--disabled" role="slider" title="0%">
+"<div class="fect-slider fect-slider--disabled" role="slider" style="--slider-mark-bg-color: #fff; --slider-dot-color: #888; --slider-dot-bg-color: #eaeaea; --slider-bg-color: #eaeaea; --slider-font-size: calc(1 * 16px); --slider-width: 100%; --slider-height: calc(0.5 * 16px); --slider-pt: 0; --slider-pr: 0; --slider-pb: 0; --slider-pl: 0; --slider-mt: 0; --slider-mr: 0; --slider-mb: 0; --slider-ml: 0;" title="0%">
   <div class="fect-slider__dot fect-slider__dot--click" style="left: 0%;">0</div>
   <!---->
 </div>"

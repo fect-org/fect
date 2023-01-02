@@ -1,35 +1,15 @@
 .fect-snippet {
   position: relative;
   max-width: 100%;
-  padding: var(--fect-gap-half);
-  margin: 0;
-  border-radius: var(--fect-radius);
-  border: 1px solid var(--accents-2);
-  font-size: 0.8125rem;
-  &--default {
-    background-color: var(--primary-background);
-  }
-  &--success {
-    border-color: var(--success-default);
-    color: var(--success-default);
-    --snippet-fill-color: var(--success-default);
-  }
-  &--warning {
-    border-color: var(--warning-default);
-    color: var(--warning-default);
-    --snippet-fill-color: var(--warning-default);
-  }
-  &--error {
-    border-color: var(--error-default);
-    color: var(--error-default);
-    --snippet-fill-color: var(--error-default);
-  }
-  &--fill {
-    &:not(.fect-snippet--default) {
-      background-color: var(--snippet-fill-color);
-      color: var(--primary-background);
-    }
-  }
+  color: var(--snippet-color);
+  background-color: var(--snippet-bg-color);
+  border: 1px solid var(--snippet-border);
+  border-radius: var(--snippet-radius);
+  font-size: var(--snippet-font-size);
+  width: var(--snippet-width);
+  height: var(--snippet-height);
+  margin: var(--snippet-mt) var(--snippet-mr) var(--snippet-mb) var(--snippet-ml);
+  padding: var(--snippet-pt) var(--snippet-pr) var(--snippet-pb) var(--snippet-pl);
 
   pre {
     margin: 0;
@@ -56,13 +36,17 @@
     cursor: pointer;
     opacity: 0.65;
     transition: opacity 150ms ease 0s;
-    width: calc(3.281 * 0.8125rem);
+    width: calc(3.281 * var(--snippet-font-size));
     &--multiple {
       align-items: flex-start;
-      padding-top: var(--fect-gap-half);
+      padding-top: var(--snippet-pt);
     }
     &:hover {
       opacity: 1;
+    }
+    svg {
+      height: calc(var(--snippet-font-size) * 1.69);
+      width: calc(var(--snippet-font-size) * 1.69);
     }
   }
 }

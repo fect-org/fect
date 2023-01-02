@@ -1,18 +1,15 @@
-:root {
-  --capacity-one-thirds-color: var(--hightlight-cyan);
-  --capacity-two-thirds-color: var(--warning-light);
-  --capacity-done-color: var(--error-dark);
-  --capacity-bg-color: var(--accents-2);
-}
-
 .fect-capacity {
-  width: 50px;
-  height: 10px;
-  overflow: hidden;
+  width: var(--capacity-width);
+  height: var(--capacity-height);
+  border-radius: var(--capacity-radius);
   background-color: var(--capacity-bg-color);
-  border-radius: 5px;
+  overflow: hidden;
+  margin: var(--capacity-mt) var(--capacity-mr) var(--capacity-mb) var(--capacity-ml);
+  padding: var(--capacity-pt) var(--capacity-pr) var(--capacity-pb) var(--capacity-pl);
   span {
+    background-color: var(--capacity-fill-color);
     height: 100%;
+    width: var(--capacity-fill-width);
     display: block;
     margin: 0;
     padding: 0;

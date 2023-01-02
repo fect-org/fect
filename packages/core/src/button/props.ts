@@ -4,16 +4,12 @@
 
 import { PropType } from 'vue'
 import type { ButtonHTMLAttributes } from 'vue'
-import { NormalSizes, ButtonTypes, LoadingTypes } from '../utils'
+import type { ButtonTypes, LoadingTypes } from '../utils'
 
 export const props = {
   type: {
     type: String as PropType<ButtonTypes>,
     default: 'default'
-  },
-  size: {
-    type: String as PropType<NormalSizes>,
-    default: 'medium'
   },
   ghost: Boolean,
   loading: Boolean,

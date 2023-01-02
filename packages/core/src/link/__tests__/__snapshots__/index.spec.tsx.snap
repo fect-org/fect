@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Link should be render as a element 1`] = `
-"<a class="fect-link" href="">
+"<a class="fect-link" style="--link-color: inherit; --link-hover-color: inherit; --link-radius: 6px; --link-bg-color: rgba(0, 112, 243, 0.1); --link-font-size: inherit; --link-width: fit-content; --link-height: auto; --link-pt: 0; --link-pr: 0; --link-pb: 0; --link-pl: 0; --link-mt: 0; --link-mr: 0; --link-mb: 0; --link-ml: 0; --link-block-pt: calc(0.268 * 16px); --link-block-pr: calc(0.5625 * 16px); --link-block-pb: calc(0.268 * 16px); --link-block-pl: calc(0.5625 * 16px);" href="">
   <!---->
 </a>"
 `;
 
 exports[`Link should be render correctly 1`] = `
-"<a class="fect-link" href="https://www.test.com">Link</a>
-<a class="fect-link fect-link--color" href="https://www.test.com">Link</a>
-<a class="fect-link fect-link--underline" href="https://www.test.com">Link</a>
-<a class="fect-link fect-link--color fect-link--underline" href="https://www.test.com">Link</a>
-<a class="fect-link fect-link--block" href="https://www.test.com">Link</a>"
+"<a class="fect-link" style="--link-color: inherit; --link-hover-color: inherit; --link-radius: 6px; --link-bg-color: rgba(0, 112, 243, 0.1); --link-font-size: inherit; --link-width: fit-content; --link-height: auto; --link-pt: 0; --link-pr: 0; --link-pb: 0; --link-pl: 0; --link-mt: 0; --link-mr: 0; --link-mb: 0; --link-ml: 0; --link-block-pt: calc(0.268 * 16px); --link-block-pr: calc(0.5625 * 16px); --link-block-pb: calc(0.268 * 16px); --link-block-pl: calc(0.5625 * 16px);" href="https://www.test.com">Link</a>
+<a class="fect-link" style="--link-color: #0070f3; --link-hover-color: #3291ff; --link-radius: 6px; --link-bg-color: rgba(0, 112, 243, 0.1); --link-font-size: inherit; --link-width: fit-content; --link-height: auto; --link-pt: 0; --link-pr: 0; --link-pb: 0; --link-pl: 0; --link-mt: 0; --link-mr: 0; --link-mb: 0; --link-ml: 0; --link-block-pt: calc(0.268 * 16px); --link-block-pr: calc(0.5625 * 16px); --link-block-pb: calc(0.268 * 16px); --link-block-pl: calc(0.5625 * 16px);" href="https://www.test.com">Link</a>
+<a class="fect-link fect-link--underline" style="--link-color: inherit; --link-hover-color: inherit; --link-radius: 6px; --link-bg-color: rgba(0, 112, 243, 0.1); --link-font-size: inherit; --link-width: fit-content; --link-height: auto; --link-pt: 0; --link-pr: 0; --link-pb: 0; --link-pl: 0; --link-mt: 0; --link-mr: 0; --link-mb: 0; --link-ml: 0; --link-block-pt: calc(0.268 * 16px); --link-block-pr: calc(0.5625 * 16px); --link-block-pb: calc(0.268 * 16px); --link-block-pl: calc(0.5625 * 16px);" href="https://www.test.com">Link</a>
+<a class="fect-link fect-link--underline" style="--link-color: #0070f3; --link-hover-color: #3291ff; --link-radius: 6px; --link-bg-color: rgba(0, 112, 243, 0.1); --link-font-size: inherit; --link-width: fit-content; --link-height: auto; --link-pt: 0; --link-pr: 0; --link-pb: 0; --link-pl: 0; --link-mt: 0; --link-mr: 0; --link-mb: 0; --link-ml: 0; --link-block-pt: calc(0.268 * 16px); --link-block-pr: calc(0.5625 * 16px); --link-block-pb: calc(0.268 * 16px); --link-block-pl: calc(0.5625 * 16px);" href="https://www.test.com">Link</a>
+<a class="fect-link fect-link--block" style="--link-color: #0070f3; --link-hover-color: #3291ff; --link-radius: 6px; --link-bg-color: rgba(0, 112, 243, 0.1); --link-font-size: inherit; --link-width: fit-content; --link-height: auto; --link-pt: 0; --link-pr: 0; --link-pb: 0; --link-pl: 0; --link-mt: 0; --link-mr: 0; --link-mb: 0; --link-ml: 0; --link-block-pt: calc(0.268 * 16px); --link-block-pr: calc(0.5625 * 16px); --link-block-pb: calc(0.268 * 16px); --link-block-pl: calc(0.5625 * 16px);" href="https://www.test.com">Link</a>"
 `;
