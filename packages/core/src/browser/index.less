@@ -1,0 +1,104 @@
+.fect-browser {
+  background-color: transparent;
+  box-shadow: var(--fect-shadowLarge);
+  width: var(--browser-width);
+  height: var(--browser-height);
+  max-width: 100%;
+  border-radius: var(--browser-radius);
+  overflow: hidden;
+  font-size: var(--browser-font-size);
+  margin: var(--browser-mt) var(--browser-mr) var(--browser-mb) var(--browser-ml);
+  padding: var(--browser-pt) var(--browser-pr) var(--browser-pb) var(--browser-pl);
+
+  .fect-image {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .fect-skeleton__item {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    margin-top: 0;
+  }
+
+  &__input {
+    height: 28px;
+    min-width: 40%;
+    max-width: 60%;
+    color: inherit;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+    overflow: hidden;
+    position: relative;
+    font-size: 12px;
+    color: inherit;
+    background-color: var(--image-browser-input-bg-color);
+    a {
+      max-width: 90%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      display: inline-block;
+      color: inherit;
+    }
+    .https {
+      width: 12px;
+      height: 12px;
+      margin-right: 8px;
+      user-select: none;
+      margin-top: -1px;
+      color: inherit;
+    }
+  }
+  &__traffic {
+    height: 2.5em;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: var(--browser-color);
+    background-color: var(--browser-bar-bg-color);
+    border-bottom: 1px solid var(--browser-border);
+    .traffic__content {
+      width: auto;
+      position: absolute;
+      left: var(--browser-gap-half);
+      top: 50%;
+      transform: translateY(-50%);
+      bottom: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      user-select: none;
+      span {
+        border-radius: 50%;
+        width: 0.75em;
+        height: 0.75em;
+        max-width: 20px;
+        max-height: 20px;
+        display: inline-block;
+        margin-right: 0.5em;
+      }
+      .close {
+        background-color: #ff5f56;
+      }
+
+      .mini {
+        background-color: #ffbd2e;
+      }
+
+      .full {
+        background-color: #27c93f;
+      }
+    }
+  }
+
+  &__title {
+    font-size: 0.75em;
+    color: var(--browser-title-color);
+  }
+}

@@ -48,6 +48,7 @@ export default defineComponent({
         '--skeleton-caption-height': SCALES.height(0.75),
         '--skeleton-text-height': SCALES.height(0.8125),
         '--skeleton-rect-height': SCALES.height(1),
+        '--skeleton-image-height': SCALES.height(1),
         '--skeleton-h1-height': SCALES.height(1.25),
         '--skeleton-h3-height': SCALES.height(1.125),
         '--skeleton-circle-size': SCALES.height(1.75),

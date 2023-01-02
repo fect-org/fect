@@ -27,7 +27,7 @@ import { FormItem } from './form-item'
 import { Grid } from './grid'
 import { GridGroup } from './grid-group'
 import { Image } from './image'
-import { ImageBrowser } from './image-browser'
+import { Browser } from './browser'
 import { Input } from './input'
 import { InputNumber } from './input-number'
 import { Link } from './link'
@@ -61,6 +61,7 @@ const components = [
   Avatar,
   AvatarGroup,
   BackTop,
+  Browser,
   Backdrop,
   Badge,
   BadgeAnchor,
@@ -82,7 +83,6 @@ const components = [
   Grid,
   GridGroup,
   Image,
-  ImageBrowser,
   Input,
   InputNumber,
   Link,
@@ -149,7 +149,7 @@ export * from './form-item'
 export * from './grid'
 export * from './grid-group'
 export * from './image'
-export * from './image-browser'
+export * from './browser'
 export * from './input'
 export * from './input-number'
 export * from './link'

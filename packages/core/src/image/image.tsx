@@ -1,6 +1,8 @@
-import { computed, CSSProperties, defineComponent, onMounted } from 'vue'
+import { computed, defineComponent, onMounted } from 'vue'
 import { useState } from '@fect-ui/vue-hooks'
+import { useScale } from '@fect-ui/scale'
 import { isNumber, assign } from '@fect-ui/shared'
+import { useTheme } from '../composables'
 import { createName } from '../utils'
 import Skeleton from '../skeleton'
 import SkeletonItem from '../skeleton-item'
@@ -20,19 +22,22 @@ export default defineComponent({
     maxDelay: {
       type: [String, Number],
       default: 3000
-    },
-    width: {
-      type: [Number, String],
-      default: 'auto'
-    },
-    height: {
-      type: [Number, String],
-      default: 'auto'
     }
+    // width: {
+    //   type: [Number, String],
+    //   default: 'auto'
+    // },
+    // height: {
+    //   type: [Number, String],
+    //   default: 'auto'
+    // }
   },
   setup(props, { attrs }) {
+    const { theme } = useTheme()
+    const { SCALES, getScaleableProps } = useScale()
     const [loading, setLoading] = useState<boolean>(true)
-
+    const width = getScaleableProps<string | number | undefined>(['width', 'w'])
+    const height = getScaleableProps<string | number | undefined>(['height', 'h'])
     onMounted(() => {
       const { maxDelay, skeleton } = props
       // user may pass  a non-number. In order to avoid program errors, we need to give a default value.
@@ -48,29 +53,36 @@ export default defineComponent({
       }
     })
 
-    const setImageStyle = computed(() => {
-      const { width, height } = props
-      const style: CSSProperties = {
-        width,
-        height
+    const baseStyle = computed(() => {
+      const { layout } = theme.value
+      return {
+        '--image-radius': layout.radius
       }
-      return style
+    })
+
+    const setCssVaariables = computed(() => {
+      return {
+        ...baseStyle.value,
+        '--image-width': SCALES.width(1, 'auto'),
+        '--image-height': SCALES.height(1, 'auto'),
+        '--image-pt': SCALES.pt(0),
+        '--image-pr': SCALES.pr(0),
+        '--image-pb': SCALES.pb(0),
+        '--image-pl': SCALES.pl(0),
+        '--image-mt': SCALES.mt(0),
+        '--image-mr': SCALES.mr(0),
+        '--image-mb': SCALES.mb(0),
+        '--image-ml': SCALES.ml(0)
+      }
     })
 
     const slots = {
-      default: () => <img src={props.src} width={props.width} height={props.height} {...attrs} />,
-      skeleton: () => (
-        <SkeletonItem
-          variable="image"
-          style={assign(setImageStyle.value, {
-            marginTop: 0
-          })}
-        />
-      )
+      default: () => <img src={props.src} {...attrs} />,
+      skeleton: () => <SkeletonItem variable="image" w={width.value} h={height.value} />
     }
 
     return () => (
-      <div class="fect-image" style={setImageStyle.value}>
+      <div class="fect-image" style={setCssVaariables.value}>
         <Skeleton loading={loading.value} v-slots={slots}></Skeleton>
       </div>
     )
